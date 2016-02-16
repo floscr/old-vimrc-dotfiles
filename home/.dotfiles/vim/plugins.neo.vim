@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
-
 " -----------------------------------------------------------------------------
+
 " Language agnostic plugins
 " -----------------------------------------------------------------------------
 
@@ -40,6 +40,9 @@ Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
 Plug 'heavenshell/vim-jsdoc'        " DocBlockr
 Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
 
+" MARKDOWN
+Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
+
 " CSS
 Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
 
@@ -64,6 +67,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'           " Git Implementation
 Plug 'airblade/vim-gitgutter'       " Sublime GitGutter Adaption
+
+
 
 " ------------------------------------------------------------------------------
 " Text insertion/manipulation
