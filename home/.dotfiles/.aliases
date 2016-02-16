@@ -1,0 +1,216 @@
+#!/bin/sh
+#==============================================================================#
+# ALIASES                                                                      #
+# =============================================================================#
+# Navigation
+# Application Shortcuts
+# GIT Alias
+# File & Folder Manipulation
+# Local Server
+# Internet & Server
+# System
+# Etc
+# =============================================================================#
+# Unused
+#==============================================================================#
+
+#==============================================================================#
+# Navigation
+#==============================================================================#
+
+# FOLDER SHORTCUTS
+alias dek="cd ~/Desktop"
+alias desk="cd ~/Desktop"
+alias sync="cd ~/Dropbox/Synchronisation"
+alias synch="cd ~/Dropbox/Synchronisation"
+alias s="cd ~/Sites"
+alias dr="cd ~/Dropbox"
+alias proj="cd ~/Documents/Projekte"
+alias a="cd ~/Desktop/Arbeitsserver"
+alias dot="cd ~/.homesick/repos/dotfiles"
+alias dots="slt ~/.homesick/repos/dotfiles; cd ~/.homesick/repos/dotfiles"
+alias down="cd ~/Downloads"
+
+# NAVIGATION
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+alias o="_open_location"
+
+# BROWSING
+alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
+
+## LIST
+
+# Recursive directory listing
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
+
+# List all files colorized in long format
+alias l="ls -l \${colorflag}"
+
+# List all files colorized in long format, including dot files
+alias la="ls -la \${colorflag}"
+
+# List only directories
+alias lsd='ls -l | grep "^d"'
+
+# Always use color output for `ls`
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    alias ls="command ls -G"
+else
+    alias ls="command ls --color"
+    export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+fi
+
+# Find and replace aliases like in alfred
+alias regd="find_and_replace"
+
+#==============================================================================#
+# GIT Alias
+#==============================================================================#
+
+# Git Shortcuts
+alias g="git"
+alias gap="git add -p"
+alias gc="git_check_staged"
+alias gac="git_commit"
+alias c="git commit -am"
+alias gs='scmpuff_status'
+alias gs='scmpuff_status'
+alias gbda='git_branch_delete_and_push'
+# alias gs="git status"
+alias stash="git stash"
+alias gbc="git checkout -b"
+alias gb="gitswitchbranch"
+alias ga="git_add"
+alias gac="git add -A .; git commit -am"
+alias gpa="git push -u origin HEAD; git push origin --tags"
+alias push="git_push"
+alias gp="push"
+alias pull="git pull"
+alias merge="git merge --no-ff"
+alias gr="git reset"
+alias grh="git reset --hard"
+alias clone="git clone --recursive"
+alias tag="git tag"
+alias ccd="clonecd"
+alias rebase="git rebase"
+alias grf="git checkout HEAD -- "
+alias gclean="git clean -xdf"
+alias gundo="git reset --soft HEAD\^"
+alias subp="git submodule update --init --recursive"
+alias gdry="git fetch --dry-run"
+alias gcm="git commit -m"
+alias deploy="git push production master"
+alias fetch="git fetch"
+
+alias unassumeall="git unassumeall"
+alias assumeall="git assumeall"
+
+# Tig Aliases
+alias ts="tig status"
+
+# Load all submodules
+alias gitpup="git pull && git submodule init && git submodule update && git submodule status"
+
+# Nice short summary of the recent commits
+alias gl="git log --oneline --graph --all --decorate"
+
+# Git log for a file
+alias glf="git log -p"
+
+# Git log with files
+# alias glf="git log --oneline --all --decorate --name-status"
+
+# Advanced Git log
+alias gla="git log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate"
+
+
+# Advanced Git log with timestamps
+alias glt="git log --pretty=format:'%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --date=relative"
+
+# Undo a push
+alias gundopush="git push -f origin HEAD^:master"
+
+alias gh1="git checkout \"HEAD~1\""
+alias gh2="git checkout \"HEAD~2\""
+alias gh3="git checkout \"HEAD~3\""
+alias gh4="git checkout \"HEAD~4\""
+
+# Gitcopy
+
+#==============================================================================#
+# File & Folder Manipulation
+#==============================================================================#
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
+
+# File size
+alias fs="stat -f \"%z bytes\""
+
+
+#==============================================================================#
+# Local Server
+#==============================================================================#
+
+# Apache
+alias apacheStart='sudo apachectl start'
+alias apacheRestart='sudo apachectl restart'
+alias apacheStop='sudo apachectl stop'
+
+# IP address
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en1"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
+# Vagrant
+alias vu="vagrant up"
+alias vup="vagrant up --provision"
+alias vssh="vagrant ssh"
+alias vh="vagrant halt"
+alias vr="vagrant reload"
+
+#==============================================================================#
+# Internet & Server
+#==============================================================================#
+
+alias chrome="/usr/bin/open -a /Applications/Google\ Chrome\ Canary.app --new"
+
+#==============================================================================#
+# SYSTEM
+#==============================================================================#
+
+alias bootmac="sudo bless -mount /volumes/macintosh\ hd -setboot"
+alias b="bash"
+
+# Describe terminal commands, aliases, functions
+# http://brettterpstra.com/2014/11/18/solve-command-line-mysteries-with-type/
+alias what="whence -favs"
+
+#Empty the Mail folder which gets created from local woocommerce for instance
+alias emptymail="sudo rm -rf /private/var/mail/\$USER"
+
+#==============================================================================#
+# Etc
+#==============================================================================#
+
+alias v='nvim'
+alias vim='nvim'
+# alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+# alias neo='open -a Neovim .'
+
+# Empty the Trash on all mounted volumes and the main HDD
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
+
+# Alias for brew cask
+alias cask="brew cask"
+
+# Tab Completion for all open sessions
+alias tma="tmux switch-client -t"
+
+# Create a new session from the current dir
+alias ntmx='tmux new -s $(basename $(pwd))'

@@ -1,0 +1,55 @@
+#===================================#
+# Defaults
+#===================================#
+
+# Git
+brew 'git'
+brew 'tig'
+brew 'scmpuff'
+
+# Bunch of cool git extras
+brew 'git-extras'
+
+# Zsh
+brew 'zsh'
+brew 'zsh-completions'
+
+# Defaults
+brew 'python3'
+brew 'nvm'
+brew 'wget'
+brew 'ffmpeg'
+
+# NeoVim
+tap 'neovim/neovim'
+
+# To support colorprofile conversion install imagemagick with little-cms
+brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
+
+#===================================#
+# Tools
+#===================================#
+
+# Z Alternative
+brew 'fasd'
+# Quickly copy ssh keys
+brew 'ssh-copy-id'
+# Git deployment to servers without git
+brew 'git-ftp'
+# Donwload youtube videos
+brew 'youtube-dl'
+# CLI Fuzzy Finder
+brew 'fzf'
+
+# HowDoI
+# If the installation for howdoi fails execute this cmd:
+# sudo chmod -R go+w /Library/Python/2.7/site-packages/
+brew install https://raw.github.com/gleitz/howdoi/master/howdoi.rb
+
+#===================================#
+# LINTERS
+#===================================#
+
+brew 'CMake'
+brew 'shellcheck'
+brew 'phplint'

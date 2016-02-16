@@ -1,0 +1,103 @@
+#==============================================================================#
+# Settings
+#==============================================================================#
+
+[use]
+	name = Florian Schroedl Home
+[user]
+	email = flo.schroedl@gmail.com
+	name = Florian Schroedl Home
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+[core]
+  editor = "nvim"
+	excludesfile = ~/.gitignore_global
+[credential]
+	helper = osxkeychain
+	pager = less -FRSX
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[difftool "Kaleidoscope"]
+  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+[diff]
+  tool = Kaleidoscope
+[push]
+	default = matching
+[alias]
+
+#==============================================================================#
+# Git log lists
+#==============================================================================#
+
+ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graphgl # Short git message with date, commit author,
+ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # Log with the changed files
+lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short # List showing date stamps
+ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative # List with hour timestamp
+lnc = log --pretty=format:"%h\\ %s\\ [%cn]" # List with no colors (For Unix pipes)
+
+fl = log -u # Show the history of a file
+
+#==============================================================================#
+# Searching inside repositories
+#==============================================================================#
+
+# Find a file inside of the repository
+f = "!git ls-files | grep -i"
+
+# Search/grep your entire codebase for a string:
+grep = grep -Ii
+gr = grep -Ii
+
+# Grep from root folder
+gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+
+#==============================================================================#
+# Commit
+#==============================================================================#
+
+# Quickly amend done- on current branch
+bdone = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+
+# Assume
+assume = update-index --assume-unchanged
+unassume = update-index --no-assume-unchanged
+assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+assumeall = "!git status -s | awk {'print $2'} | xargs git assume"
+
+# Easily solve merge conflicts from the command line
+# [merge - Simple tool to 'accept theirs' or 'accept mine' on a whole file using git - Stack Overflow]
+# (http://stackoverflow.com/questions/914939/simple-tool-to-accept-theirs-or-accept-mine-on-a-whole-file-using-git/11843922#11843922)
+accept-ours = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --ours -- $files; git add -u $files; }; f"
+accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
+
+#==============================================================================#
+# Fetch / Clone
+#==============================================================================#
+
+# Execute a fetch on all the remotes you have configured
+fetchall = !bash -c 'source /etc/bash_completion.d/git &amp;&amp; __git_remotes | xargs --no-run-if-empty -t -n1 git fetch $*' -
+
+#==============================================================================#
+# Etc
+#==============================================================================#
+
+# List tags using (better) version sorting (if your sort supports it)
+tags = !sh -c 'git tag | sort -V'
+
+# Show last tag
+lasttag = describe --tags --abbrev=0
+lt = describe --tags --abbrev=0
+
+# List all aliases
+la = "!git config -l | grep alias | cut -c 7-"

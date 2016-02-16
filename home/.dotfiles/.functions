@@ -1,0 +1,285 @@
+#!/bin/bash
+
+type emulate >/dev/null 2>/dev/null || alias emulate=true
+
+#################################################################################
+# My functions
+################################################################################
+
+### TERMINAL ##
+
+# Opens a man page as a pdf in preview
+function pman () {
+    man -t $1 | open -f -a /Applications/Preview.app
+ }
+
+# Opens man page in Sublime
+ function sman() {
+     man "${1}" | col -b | open -f -a /Applications/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2
+ }
+
+
+
+ ### FINDER ###
+
+# Makes a directory on directly jumps into it
+ function md () {
+     mkdir $1
+     cd $1
+ }
+
+ function cdl () {
+     cd $1 && ls
+ }
+
+ quit () {
+     for app in $*; do
+         osascript -e 'quit app "'$app'"'
+     done
+ }
+
+ function winzip {
+    zip -0 $1 -r $2 -x "*.DS_Store"
+ }
+
+function safezip {
+  zip -er $1 $2
+}
+ 
+
+
+### RUBY ###
+
+# Silent simple irb shortut
+function sirb () {
+    irb --simple-prompt --noecho
+}
+
+function r () {
+  ruby $1
+}
+
+### GIT ###
+
+# Quick first initialize, adding all files & folders and making the first commit.
+function gini {
+  git init
+  git add .
+  if [[ $# == 0 ]]; then
+    git commit -m "First initialize"
+  else
+    git commit -m "$1"
+  fi
+}
+
+# Quick commit and push to server
+function gcp() {
+   git commit -am $1
+   git push -u origin master
+}
+
+# Live git log for second window panel
+function glive {
+  while :
+    do
+    clear
+    gl
+    sleep 1
+  done
+}
+
+# Opens the github page for the current git repository in your browser
+# git@github.com:jasonneylon/dotfiles.git
+# https://github.com/jasonneylon/dotfiles/
+function gh() {
+  giturl=$(git config --get remote.origin.url)
+  if [ "$giturl" == "" ]
+    then
+     echo "Not a git repository or no remote.origin.url set"
+     exit 1;
+  fi
+ 
+  giturl=${giturl/git\@github\.com\:/https://github.com/}
+  giturl=${giturl/\.git/\/tree/}
+  branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
+  branch="(unnamed branch)"     # detached HEAD
+  branch=${branch##refs/heads/}
+  giturl=$giturl/tree/$branch
+  open $giturl
+}
+
+# Live git status
+function gslive {
+  while :
+    do
+    clear
+    gs
+    sleep 1
+  done
+}
+
+### Graphic Design ###
+
+# Android resize script
+
+function andresize () {
+
+    # Getting the res folder location from the private location.lst
+    # Res folder saved und $res variable
+    source ~/Dotfiles/locations.lst
+    # echo "${res}"
+
+    # xhdpi
+    cp -R $1 "${res}/drawable-xhdpi/${1}"
+    convert $1 -filter Lanczos -sampling-factor 1x1 -quality 90 -resize 810 "${res}/drawable-hdpi/${1}"
+    convert $1 -filter Lanczos -sampling-factor 1x1 -quality 90 -resize 540 "${res}/drawable-mdpi/${1}"
+    convert $1 -filter Lanczos -sampling-factor 1x1 -quality 75 -resize 405 "${res}/drawable-ldpi/${1}"
+}
+
+
+
+
+
+# Including the make project funtion
+# source $HOME/Dotfiles/.code/makeProject.sh
+
+# Creates an encrypted zip archive of a file/folder
+# source $HOME/Dotfiles/.code/makeProject.sh
+
+################################################################################
+# Paul Irish's stuff:
+################################################################################
+
+# Create a new directory and enter it
+function md() {
+	mkdir -p "$@" && cd "$@"
+}
+
+# find shorthand
+function f() {
+    find . -name "$1"
+}
+
+# cd into whatever is the forefront Finder window.
+cdf() {  # short for cdfinder
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
+
+
+# Start an HTTP server from a directory, optionally specifying the port
+function server() {
+	local port="${1:-8000}"
+	open "http://localhost:${port}/"
+	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
+	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
+	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+}
+
+# # git log with per-commit cmd-clickable GitHub URLs (iTerm)
+# function gf() {
+#   local remote="$(git remote -v | awk '/^origin.*\(push\)$/ {print $2}')"
+#   [[ "$remote" ]] || return
+#   local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
+#   git log $* --name-status --color | awk "$(cat <<AWK
+#     /^.*commit [0-9a-f]{40}/ {sha=substr(\$2,1,7)}
+#     /^[MA]\t/ {printf "%s\thttps://github.com/$user_repo/blob/%s/%s\n", \$1, sha, \$2; next}
+#     /.*/ {print \$0}
+# AWK
+#   )" | less -F
+# }
+
+
+# Copy w/ progress
+cp_p () {
+  rsync -WavP --human-readable --progress $1 $2
+}
+
+
+# Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
+# Send a fake UA string for sites that sniff it instead of using the Accept-Encoding header. (Looking at you, ajax.googleapis.com!)
+function httpcompression() {
+	encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" | grep '^Content-Encoding:')" && echo "$1 is encoded using ${encoding#* }" || echo "$1 is not using any encoding"
+}
+
+# Syntax-highlight JSON strings or files
+function json() {
+	if [ -p /dev/stdin ]; then
+		# piping, e.g. `echo '{"foo":42}' | json`
+		python -mjson.tool | pygmentize -l javascript
+	else
+		# e.g. `json '{"foo":42}'`
+		python -mjson.tool <<< "$*" | pygmentize -l javascript
+	fi
+}
+
+
+# take this repo and copy it to somewhere else minus the .git stuff.
+function gitexport(){
+	mkdir -p "$1"
+	git archive master | tar -x -C "$1"
+}
+
+
+
+# get gzipped size
+function gz() {
+	echo "orig size    (bytes): "
+	cat "$1" | wc -c
+	echo "gzipped size (bytes): "
+	gzip -c "$1" | wc -c
+}
+
+
+# Escape UTF-8 characters into their 3-byte format
+function escape() {
+	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u)
+	echo # newline
+}
+
+# Decode \x{ABCD}-style Unicode escape sequences
+function unidecode() {
+	perl -e "binmode(STDOUT, ':utf8'); print \"$@\""
+	echo # newline
+}
+
+# Extract archives - use: extract <file>
+# Credits to http://dotfiles.org/~pseup/.bashrc
+function extract() {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2) tar xjf $1 ;;
+			*.tar.gz) tar xzf $1 ;;
+			*.bz2) bunzip2 $1 ;;
+			*.rar) rar x $1 ;;
+			*.gz) gunzip $1 ;;
+			*.tar) tar xf $1 ;;
+			*.tbz2) tar xjf $1 ;;
+			*.tgz) tar xzf $1 ;;
+			*.zip) unzip $1 ;;
+			*.Z) uncompress $1 ;;
+			*.7z) 7z x $1 ;;
+			*) echo "'$1' cannot be extracted via extract()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+
+# animated gifs from any video
+# from alex sexton   gist.github.com/SlexAxton/4989674
+gifify() {
+  if [[ -n "$1" ]]; then
+    if [[ $2 == '--good' ]]; then
+      ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
+      time convert -verbose +dither -layers Optimize -resize 600x600\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $1.gif
+      rm out-static*.png
+    else
+      ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
+    fi
+  else
+    echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+  fi
+}
+

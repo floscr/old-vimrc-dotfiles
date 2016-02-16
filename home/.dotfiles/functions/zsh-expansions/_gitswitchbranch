@@ -1,0 +1,15 @@
+#compdef gitswitchbranch
+
+_gitswitchbranch() {
+  ref=$(git branch | cut -c 2)
+  if [[ -n $ref ]]; then
+    if (( CURRENT == 2 )); then
+
+      remotes=`git branch | cut -c 2- | sed "s/\|$//g"`
+      compadd `echo $remotes | sed "s/ //g"`
+    fi
+  else;
+    _files
+fi
+}
+
