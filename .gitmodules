@@ -1,3 +1,6 @@
 [submodule "home/.dotfiles/plugins/oh-my-zsh"]
 	path = home/.dotfiles/plugins/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
+[submodule "home/.tmux/plugins/tpm"]
+	path = home/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
