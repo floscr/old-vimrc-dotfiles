@@ -79,8 +79,7 @@ Plug 'wellle/targets.vim'                         " Additional text targets
 " Color Scheme
 " -----------------------------------------------------------------------------
 
-Plug 'mhartington/oceanic-next'
-Plug 'chriskempson/base16-vim'
+Plug 'floscr/oceanic-next'
 
 call plug#end()
 
