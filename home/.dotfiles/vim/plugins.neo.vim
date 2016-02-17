@@ -1,22 +1,16 @@
 call plug#begin('~/.vim/plugged')
-" -----------------------------------------------------------------------------
 
+" -----------------------------------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------------------------------
 
 Plug 'sheerun/vim-polyglot'       " Most common languages file types (syntax, indenting, etc.)
-Plug 'cohama/lexima.vim'          " Automatically closing tags
 Plug 'ervandew/supertab'          " Tab Expanding
 Plug 'tpope/vim-commentary'       " Commenting support (gc)
 Plug 'duggiefresh/vim-easydir'    " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'    " Delete all buffers except the current one
-Plug 'vim-signature'              " Save marks in the gutter
-Plug 'tpope/vim-repeat'           " Repeat certain cmds lik surround
-Plug 'junegunn/limelight.vim'     " Syntax highlighting only on current paragraph
-                                  " Has a nice sideeffect of speeding up slow
-                                  " syntax plugins
-Plug 'junegunn/vim-peekaboo'      " Shwo register sidebar when pasting
-Plug 'junegunn/goyo.vim'          " Focus Mode
+Plug 'tpope/vim-repeat'           " Repeat certain cmds like surround
+Plug 'cohama/lexima.vim'          " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'       " CIQ to match any pairs
 
 " -----------------------------------------------------------------------------
@@ -50,25 +44,26 @@ Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
 " Interface
 " ------------------------------------------------------------------------------
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " Sidebar file-browser
-Plug 'easymotion/vim-easymotion'                        " Letter Navigation
-Plug 'bling/vim-bufferline'                             " Buffer bar in the lightline
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-" Plug 'itchyny/lightline.vim'                            " Lightline (simple status line)
+Plug 'vim-signature'             " Save marks in the gutter
+Plug 'easymotion/vim-easymotion' " Letter Navigation
+Plug 'junegunn/vim-peekaboo'     " Shwo register sidebar when pasting
+Plug 'junegunn/limelight.vim'    " Syntax highlighting only on current paragraph
+Plug 'junegunn/goyo.vim'         " Focus Mode
+
+Plug 'bling/vim-bufferline'      " Buffer bar in the lightline
 Plug 'vim-airline/vim-airline'
 
-" Plug 'ctrlpvim/ctrlp.vim'                               " Fuzzy File Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " ------------------------------------------------------------------------------
-" External tools integration plugins
+" Git
 " ------------------------------------------------------------------------------
 
 Plug 'tpope/vim-fugitive'           " Git Implementation
 Plug 'airblade/vim-gitgutter'       " Sublime GitGutter Adaption
-
-
 
 " ------------------------------------------------------------------------------
 " Text insertion/manipulation
@@ -86,12 +81,6 @@ Plug 'wellle/targets.vim'                         " Additional text targets
 
 Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/base16-vim'
-
-" -----------------------------------------------------------------------------
-" ETC
-" -----------------------------------------------------------------------------
-
-Plug 'tpope/vim-repeat'          " Repeat certain cmds like surround
 
 call plug#end()
 
