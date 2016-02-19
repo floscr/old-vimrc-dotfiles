@@ -19,7 +19,7 @@ set autoread				" Reload files changed outside vim
 set autochdir				" Set working dir to the current file
 set cpoptions+=$		" When changing words append a $ sign
 set mouse=a					" Mouse Control
-" set autowrite				" Automatically :write before running commands
+set shortmess+=I    " Turn off the intro
 
 " SEARCHING
 set incsearch  " do incremental searching
