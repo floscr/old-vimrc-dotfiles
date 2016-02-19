@@ -20,6 +20,7 @@ set autochdir				" Set working dir to the current file
 set cpoptions+=$		" When changing words append a $ sign
 set mouse=a					" Mouse Control
 set shortmess+=I    " Turn off the intro
+set virtualedit=all " Don't rewrap cursor on line end
 
 " SEARCHING
 set incsearch  " do incremental searching
