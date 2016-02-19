@@ -6,15 +6,6 @@ function! ToggleNERDTreeFind()
   execute ':NERDTreeFind'
 endfunction
 
- " function! ToggleNERDTreeFind()
- "    if g:NERDTree.IsOpen()
- "        execute ':NERDTreeClose'
- "    else
- "        execute ':NERDTreeFind'
- "    endif
- "  execute ':NERDTreeFind'
- " endfunction
-
 nnoremap <silent> <leader>kb :NERDTreeToggle<CR>
 nnoremap <silent> <leader>kn :call ToggleNERDTreeFind()<CR>
 let NERDTreeIgnore = ['\.git$']
@@ -41,7 +32,7 @@ nnoremap <silent> <leader>ga :BCommits<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
-"
+
 " --------
 " Fugitive
 " --------
@@ -100,28 +91,6 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" ------
-" CTRL-P
-" ------
-
-" " Skip grep files
-" let Grep_Skip_Files='*.bak *~ *.pyc *.o *.obj'
-" let Grep_Skip_Dirs='.bzr .git .hg node_modules bower_components'
-" let g:ctrlp_show_hidden = 1 " Show hidden files
-
-" " Much faster ctr-p loading by using the git repository index
-" let g:ctrlp_use_caching = 0
-" if executable('ag')
-"   set grepprg=ag\ --nogroup\ --nocolor
-
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" else
-"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-"   let g:ctrlp_prompt_mappings = {
-"         \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-"         \ }
-" endif
-
 " --------
 " FUGITIVE
 " --------
@@ -146,21 +115,6 @@ nmap <leader>hb <Plug>GitGutterPrevHunk
 nmap <Leader>ha <PlugtGitGutterStageHunk
 nmap <Leader>hu <Plug>GitGutterRevertHunk
 
-" ------------
-" VIM-SURROUND
-" ------------
-
-" Surround text currently selected while in visual mode
-" (The surrounded text is kept selected after being surround)
-" Changed to shortcuts that work with a german keyboard
-vmap <leader>2 S"lvi"
-vmap <leader># S'lvi'
-vmap <leader>´ S`lvi`
-vmap <leader>8 S)lvi(
-vmap <leader>7 S}lvi{
-vmap <leader>9 S]lvi[
-vmap <leader>< S>lvi<
-
 " ---------
 " LIMELIGHT
 " ---------
@@ -177,35 +131,33 @@ autocmd FileType vue setlocal commentstring=//\ %s
 " -------
 " AIRLINE
 " -------
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-airline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#fnamemod = ':t'
-  let g:airline#extensions#tabline#show_tab_nr = 1
-  let g:airline_left_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_theme='oceanicnext'
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
 
-  nmap <leader>x :bp <BAR> bd #<CR>
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_theme='oceanicnext'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+nmap <leader>x :bp <BAR> bd #<CR>
 " This replaes :tabnew which I used to bind to this mapping
-  nmap <leader>n :enew<cr>
+nmap <leader>n :enew<cr>
 " Move to the next buffer
-  nmap <leader>. :bnext<CR>
+nmap <leader>. :bnext<CR>
 " Move to the previous buffer
-  nmap <leader>, :bprevious<CR>
-  nmap <leader>, :bprevious<CR>
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
-  nmap <leader>1 <Plug>AirlineSelectTab1
-  nmap <leader>2 <Plug>AirlineSelectTab2
-  nmap <leader>3 <Plug>AirlineSelectTab3
-  nmap <leader>4 <Plug>AirlineSelectTab4
-  nmap <leader>5 <Plug>AirlineSelectTab5
-  nmap <leader>6 <Plug>AirlineSelectTab6
-  nmap <leader>7 <Plug>AirlineSelectTab7
-  nmap <leader>8 <Plug>AirlineSelectTab8
-  nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>, :bprevious<CR>
+nmap <leader>, :bprevious<CR>
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 let g:bufferline_echo = 0
