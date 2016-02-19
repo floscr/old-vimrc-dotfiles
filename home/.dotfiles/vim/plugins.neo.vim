@@ -24,7 +24,7 @@ Plug 'honza/vim-snippets'
 " Syntax Specific
 " -----------------------------------------------------------------------------
 
-" Linting
+" LINTING
 Plug 'scrooloose/syntastic'
 
 " JAVASCRIPT
@@ -33,6 +33,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
 Plug 'heavenshell/vim-jsdoc'        " DocBlockr
 Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
+
+" PHP
+Plug 'evidens/vim-twig'
 
 " MARKDOWN
 Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
