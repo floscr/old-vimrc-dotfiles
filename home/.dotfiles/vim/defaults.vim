@@ -27,15 +27,14 @@ set ignorecase " case insensitive searching (unless specified)
 set smartcase
 
 " LINE WRAPPING
+set colorcolumn=+1
 " Make it obvious where 80 characters is
 " set textwidth=80
-set colorcolumn=+1
 " set nowrap					" Don't wrap lines
 
-
 " PERFORMANCE
-set showcmd			 " display incomplete command
-set lazyredraw	 " Wait to redraw
+set lazyredraw	   " Wait to redraw
+" set showcmd			 " display incomplete command
 " set nocursorline " Don't paint cursor line
 " set ttyfast			 " Faster scrolling
 " set noshowmatch  " Don't match parentheses/brackets
