@@ -11,7 +11,6 @@ set vb t_vb= " Disable System Bell
 set cursorline					" highlight current line
 
 set hidden					" Enable switching buffers without saving
-set nowrap					" Don't wrap lines
 set backspace=2			" Backspace deletes like most programs in insert mode
 set history=50			" 50 History Entries
 set ruler						" show the cursor position all the time
@@ -26,6 +25,13 @@ set mouse=a					" Mouse Control
 set incsearch  " do incremental searching
 set ignorecase " case insensitive searching (unless specified)
 set smartcase
+
+" LINE WRAPPING
+" Make it obvious where 80 characters is
+" set textwidth=80
+set colorcolumn=+1
+" set nowrap					" Don't wrap lines
+
 
 " PERFORMANCE
 set showcmd			 " display incomplete command
@@ -57,10 +63,6 @@ set noexpandtab
 set smarttab
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
-
-" Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
 
 " Numbers
 set number
