@@ -40,6 +40,7 @@ set lazyredraw	   " Wait to redraw
 " set noshowmatch  " Don't match parentheses/brackets
 
 " UNDO
+" Save undo history to .VIM_UNDO_FILES
 if has('persistent_undo')
 	set undolevels=5000
 	set undodir=$HOME/.VIM_UNDO_FILES
@@ -49,7 +50,7 @@ endif
 filetype plugin indent on
 
 " Share the clipboard between multiple vim instances
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 set nobackup
 set noswapfile
