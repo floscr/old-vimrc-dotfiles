@@ -21,6 +21,8 @@ set cpoptions+=$		" When changing words append a $ sign
 set mouse=a					" Mouse Control
 set shortmess+=I    " Turn off the intro
 set virtualedit=all " Don't rewrap cursor on line end
+set wildmenu        " Visual autocomplete for cmd menu
+set showmatch       " Show matching tags
 
 " SEARCHING
 set incsearch  " do incremental searching
