@@ -15,11 +15,11 @@ set backspace=2			" Backspace deletes like most programs in insert mode
 set history=50			" 50 History Entries
 set ruler						" show the cursor position all the time
 set laststatus=2		" Always display the status line
-set autowrite				" Automatically :write before running commands
 set autoread				" Reload files changed outside vim
 set autochdir				" Set working dir to the current file
 set cpoptions+=$		" When changing words append a $ sign
 set mouse=a					" Mouse Control
+" set autowrite				" Automatically :write before running commands
 
 " SEARCHING
 set incsearch  " do incremental searching
