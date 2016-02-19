@@ -73,12 +73,6 @@ set numberwidth=5
 set splitbelow
 set splitright
 
-" " Auto resize Vim splits to active split
-" set winwidth=84
-" set winheight=5
-" set winminheight=5
-" set winheight=999
-
 " Whitespace Display Options
 set list
 " set listchars=eol:⌐,tab:⋅⋅,trail:~,extends:>,precedes:<
@@ -103,20 +97,6 @@ let xml_syntax_folding=1			" XML
 
 set foldmethod=indent
 set foldnestmax=2 " RELATIVE NUMBERING
-
-" function! ToggleNumbersOn()
-"			set nu!
-"			set rnu
-" endfunction
-" function! ToggleRelativeOn()
-"			set rnu!
-"			set nu
-" endfunction
-" autocmd FocusLost * call ToggleRelativeOn()
-" autocmd FocusGained * call ToggleRelativeOn()
-" autocmd InsertEnter * call ToggleRelativeOn()
-" autocmd InsertLeave * call ToggleRelativeOn()
-" set rnu
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
