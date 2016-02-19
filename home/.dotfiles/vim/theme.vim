@@ -6,7 +6,7 @@ set background=dark
 colorscheme OceanicNext
 " colorscheme base16-ocean
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" highlight SpecialKey ctermfg=66 guifg=#41495A
+highlight SpecialKey ctermfg=66 guifg=#223843
 
 " " Restoe colorscheme for NeoVim Terminal
 " let g:terminal_color_0="#1b2b34"
