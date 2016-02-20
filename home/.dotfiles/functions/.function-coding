@@ -5,6 +5,11 @@ function sirb () {
    irb --simple-prompt --noecho
 }
 
+function vscode () {
+  VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*;
+}
+
+
 function r () {
  ruby $1
 }
