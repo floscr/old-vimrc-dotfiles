@@ -3,4 +3,4 @@
 " ----------
 
 " Execute current file in node
-map <silent><leader>bb :! node %<cr>
+map <buffer><silent><leader>bb :! node %<cr>

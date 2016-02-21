@@ -1,3 +1,3 @@
 " These visual enhancements make vim unbearably slow.
-set nocursorline
-set norelativenumber
+setlocal nocursorline
+setlocal norelativenumber

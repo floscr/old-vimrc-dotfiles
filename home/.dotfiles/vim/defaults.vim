@@ -20,7 +20,7 @@ set autochdir				" Set working dir to the current file
 set cpoptions+=$		" When changing words append a $ sign
 set mouse=a					" Mouse Control
 set shortmess+=I    " Turn off the intro
-set virtualedit=all " Don't rewrap cursor on line end
+" set virtualedit=all " Don't rewrap cursor on line end
 set wildmenu        " Visual autocomplete for cmd menu
 set showmatch       " Show matching tags
 
@@ -108,9 +108,5 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 endif
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 source ~/.dotfiles/vim/shortcuts.vim
-au Filetype javascript source ~/.dotfiles/vim/syntax/javascript.vim
-au Filetype markdown source ~/.dotfiles/vim/syntax/markdown.vim
-au Filetype html source ~/.dotfiles/vim/syntax/html.vim
-au Filetype css,vue source ~/.dotfiles/vim/syntax/css.vim
-au Filetype vue source ~/.dotfiles/vim/syntax/vue.vim
