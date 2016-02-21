@@ -26,7 +26,7 @@ nnoremap <silent> <leader>c :Commands<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
-nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>h :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
