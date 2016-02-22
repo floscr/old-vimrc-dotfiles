@@ -58,8 +58,12 @@ Plug 'junegunn/goyo.vim'         " Focus Mode
 Plug 'bling/vim-bufferline'      " Buffer bar in the lightline
 Plug 'vim-airline/vim-airline'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+if has("gui_macvim")
+	Plug 'ctrlpvim/ctrlp.vim'
+else
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
+endif
 
 " ------------------------------------------------------------------------------
 " Git
