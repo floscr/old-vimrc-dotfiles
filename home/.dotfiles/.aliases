@@ -203,6 +203,10 @@ alias vim='nvim'
 # alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # alias neo='open -a Neovim .'
 
+# TASK RUNNER
+alias nw="npm run watch"
+alias nb="npm run build"
+
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 
