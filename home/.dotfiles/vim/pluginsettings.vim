@@ -13,25 +13,51 @@ let NERDTreeIgnore = ['\.git$']
 " ---
 " FZF
 " ---
+if exists(':FZF')
+	" Open files in a split
+	let g:fzf_action = {
+				\ 'ctrl-t': 'tab split',
+				\ 'ctrl-x': 'split',
+				\ 'ctrl-v': 'vsplit' }
 
-" Open files in a split
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+	" nnoremap <silent> <leader><space><space> :GitFiles<CR>
+	nnoremap <silent> <C-p> :GitFiles<CR>
+	nnoremap <silent> <leader>c :Commands<CR>
+	nnoremap <silent> <leader>a :Buffers<CR>
+	nnoremap <silent> <leader>; :BLines<CR>
+	nnoremap <silent> <leader>. :Lines<CR>
+	nnoremap <silent> <leader>h :History<CR>
+	nnoremap <silent> <leader>gl :Commits<CR>
+	nnoremap <silent> <leader>ga :BCommits<CR>
 
-" nnoremap <silent> <leader><space><space> :GitFiles<CR>
-nnoremap <silent> <C-p> :GitFiles<CR>
-nnoremap <silent> <leader>c :Commands<CR>
-nnoremap <silent> <leader>a :Buffers<CR>
-nnoremap <silent> <leader>; :BLines<CR>
-nnoremap <silent> <leader>. :Lines<CR>
-nnoremap <silent> <leader>h :History<CR>
-nnoremap <silent> <leader>gl :Commits<CR>
-nnoremap <silent> <leader>ga :BCommits<CR>
+	imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+	imap <C-x><C-l> <plug>(fzf-complete-line)
+endif
 
-imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-imap <C-x><C-l> <plug>(fzf-complete-line)
+" -----
+" CTRLP
+" -----
+
+if exists(':CtrlP')
+	let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden
+				\ --ignore .git
+				\ --ignore .svn
+				\ --ignore .hg
+				\ --ignore .DS_Store
+				\ --ignore "**/*.pyc"
+				\ --ignore lib
+				\ -g ""'
+	let g:ctrlp_regexp = 1
+	let g:ctrlp_use_caching = 0
+	let g:ctrlp_working_path_mode = 0
+	let g:ctrlp_switch_buffer = 0
+	" let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+	let g:ackprg = 'ag --nogroup --column'
+	set grepprg=ag\ --nogroup\ --nocolor
+	let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+	" nnoremap <leader>a :Ag<space>
+	nnoremap <leader>r :CtrlPMRU<cr>
+endif
 
 " --------
 " Fugitive
