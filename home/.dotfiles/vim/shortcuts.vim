@@ -120,11 +120,3 @@ function! NumberToggle()
 endfunc
 
 nnoremap <Leader>0 :call NumberToggle()<cr>
-
-" --------------------
-" NEOVIM TERMINAL MODE
-" --------------------
-
-" Exit terminal insert mode
-tnoremap <Leader>e <C-\><C-n>
-
