@@ -15,9 +15,11 @@ if has("mac")
 	nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 endif
 
+" Enter Visualblock mode
+command! Vb normal! <C-v>
+
 " Create the file under the cursor
 nnoremap gF :e <cfile><cr>
-
 nnoremap <Cr> :
 
 " Zoom / Restore window.
