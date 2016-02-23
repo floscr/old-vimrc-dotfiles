@@ -59,13 +59,14 @@ set nobackup
 set noswapfile
 
 " INDENTATION
-set tabstop=2
+set expandtab
+set softtabstop=2
 set shiftwidth=2
-set shiftround
-set noexpandtab
-set smarttab
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
+" set shiftround
+" set noexpandtab
+" set smarttab
 
 " Numbers
 set number
