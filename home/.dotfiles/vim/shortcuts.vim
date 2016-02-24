@@ -1,38 +1,42 @@
-	" Workaround for alt keys to work with mac
+" Workaround for alt keys to work with mac
 " º = A-j
 " ∆ = A-k
 if has("mac")
-	nnoremap º :m .+1<CR>==
-	nnoremap ∆ :m .-2<CR>==
-	vnoremap º :m '>+1<CR>gv=gv
-	vnoremap ∆ :m '<-2<CR>gv=gv
+  nnoremap º :m .+1<CR>==
+  nnoremap ∆ :m .-2<CR>==
+  vnoremap º :m '>+1<CR>gv=gv
+  vnoremap ∆ :m '<-2<CR>gv=gv
 
-	" Number up/down
-	" ⌥ + a/x
-	nnoremap å <C-a>
-	nnoremap Å <C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a>
-	nnoremap ≈ <C-x>
-	nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
+  " Number up/down
+  " ⌥ + a/x
+  nnoremap å <C-a>
+  nnoremap Å <C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a>
+  nnoremap ≈ <C-x>
+  nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 endif
 
 " Enter Visualblock mode
 command! Vb normal! <C-v>
 
 " Create the file under the cursor
+" Create file under cursor
+" map <leader>gf :e <cfile><cr>
 nnoremap gF :e <cfile><cr>
+
+" Enter command by pressing enter
 nnoremap <Cr> :
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
-		if exists('t:zoomed') && t:zoomed
-				execute t:zoom_winrestcmd
-				let t:zoomed = 0
-		else
-				let t:zoom_winrestcmd = winrestcmd()
-				resize
-				vertical resize
-				let t:zoomed = 1
-		endif
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <C-w>z :ZoomToggle<CR>
@@ -47,9 +51,9 @@ map <leader>gf :e <cfile><cr>
 map Y ^y$
 
 " Resize window with the arrow keys =)
-noremap <up>		<C-W>+
-noremap <down>	<C-W>-
-noremap <left>	3<C-W><
+noremap <up> <C-W>+
+noremap <down> <C-W>-
+noremap <left> 3<C-W><
 noremap <right> 3<C-W>>
 
 " TABBING BEHAVIOUR
