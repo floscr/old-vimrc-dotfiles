@@ -58,8 +58,8 @@ imap <S-Tab> <C-o><<
 map <S-Tab> <<
 map <Tab> >>
 " Visual Indentation
-vmap <Tab> >gv
-vmap <S-Tab> <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Clear highlighting on escape in normal mode
 nnoremap <silent><esc> :noh<return><esc>
