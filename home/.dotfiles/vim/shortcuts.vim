@@ -94,9 +94,6 @@ noremap Q @q
 " PASTE Mode
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" Remove all trailing whitespace
-" nnoremap <Leader>rtw :%s/\s\+$//e<CR>
-
 " Buffers
 map gn :bn<cr>
 map gp :bp<cr>
@@ -107,14 +104,3 @@ map gl :ls<return>
 
 " Open current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
-
-function! NumberToggle()
-	if(&relativenumber == 1)
-		set number
-		set norelativenumber
-	else
-		set relativenumber
-	endif
-endfunc
-
-nnoremap <Leader>0 :call NumberToggle()<cr>
