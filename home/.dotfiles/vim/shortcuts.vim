@@ -15,9 +15,6 @@ if has("mac")
   nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 endif
 
-" Enter Visualblock mode
-command! Vb normal! <C-v>
-
 " Create the file under the cursor
 " Create file under cursor
 " map <leader>gf :e <cfile><cr>
@@ -109,3 +106,4 @@ nnoremap <leader><cr> :silent !open .<cr>
 " Most of these bindings map CTRL to CMD
 " I'm getting bad RSI form pushing CTRL with my weak pinky :)
 nnoremap <D-w> <C-w>
+
