@@ -104,3 +104,8 @@ map gl :ls<return>
 
 " Open current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
+
+" GVIM
+" Most of these bindings map CTRL to CMD
+" I'm getting bad RSI form pushing CTRL with my weak pinky :)
+nnoremap <D-w> <C-w>
