@@ -41,6 +41,12 @@ brew 'youtube-dl'
 # CLI Fuzzy Finder
 brew 'fzf'
 
+#===================================#
+# Coding
+#===================================#
+
+brew 'ctags'
+
 # HowDoI
 # If the installation for howdoi fails execute this cmd:
 # sudo chmod -R go+w /Library/Python/2.7/site-packages/
