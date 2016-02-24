@@ -44,9 +44,6 @@ nnoremap <silent> <C-w>z :ZoomToggle<CR>
 " Use the last used search to use in replace command
 nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 
-" Create file under cursor
-map <leader>gf :e <cfile><cr>
-
 " Yank from cursor to end of line
 map Y ^y$
 
