@@ -198,8 +198,9 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 # Etc
 #==============================================================================#
 
-alias v='nvim'
-alias vim='nvim'
+alias v="nvim"
+alias vim="nvim"
+alias gv="gvim"
 # alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # alias neo='open -a Neovim .'
 
