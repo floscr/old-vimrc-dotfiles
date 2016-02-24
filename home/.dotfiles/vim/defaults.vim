@@ -59,9 +59,6 @@ set softtabstop=2
 set shiftwidth=2
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
-" set shiftround
-" set noexpandtab
-" set smarttab
 
 " Numbers
 set number
@@ -74,11 +71,10 @@ set splitright
 
 " Whitespace Display Options
 set list
-" set listchars=eol:⌐,tab:⋅⋅,trail:~,extends:>,precedes:<
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
 
 " SCROLLING
-set scrolloff=10                                 "Start scrolling when we're 10 lines away from margins
+set scrolloff=10 "Start scrolling when we're 10 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -93,9 +89,6 @@ let ruby_fold=1
 let sh_fold_enabled=1
 let vimsyn_folding='af'
 let xml_syntax_folding=1
-
-set foldmethod=indent
-set foldnestmax=2 " RELATIVE NUMBERING
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
