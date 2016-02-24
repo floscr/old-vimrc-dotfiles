@@ -80,12 +80,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
-set pastetoggle=<F4> "F2 before pasting to preserve indentation
-"Copy paste to/from clipboard
-vnoremap <C-c> "*y
-
 map <silent><Leader>p :set paste<CR><esc>"*p:set nopaste<cr>"
-" map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
 map <silent><C-v> :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 
