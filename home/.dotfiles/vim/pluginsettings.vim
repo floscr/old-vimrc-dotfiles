@@ -6,6 +6,7 @@ function! ToggleNERDTreeFind()
   execute ':NERDTreeFind'
 endfunction
 
+nmap <D-1> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>kb :NERDTreeToggle<CR>
 nnoremap <silent> <leader>kn :call ToggleNERDTreeFind()<CR>
 let NERDTreeIgnore = ['\.git$']
@@ -13,26 +14,14 @@ let NERDTreeIgnore = ['\.git$']
 " CTRLP
 " -----
 
-if exists(':CtrlP')
-	let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden
-				\ --ignore .git
-				\ --ignore .svn
-				\ --ignore .hg
-				\ --ignore .DS_Store
-				\ --ignore "**/*.pyc"
-				\ --ignore lib
-				\ -g ""'
-	let g:ctrlp_regexp = 1
-	let g:ctrlp_use_caching = 0
-	let g:ctrlp_working_path_mode = 0
-	let g:ctrlp_switch_buffer = 0
-	" let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-	let g:ackprg = 'ag --nogroup --column'
-	set grepprg=ag\ --nogroup\ --nocolor
-	let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-	" nnoremap <leader>a :Ag<space>
-	nnoremap <leader>r :CtrlPMRU<cr>
-endif
+let g:ctrlp_custom_ignore = 'node_modules\DS_Store\|git'
+let g:ctrlp_user_command = [
+      \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
+      \ 'find %s -type f'
+      \ ]
+nmap <D-p> :CtrlP<cr>
+nmap <D-r> :CtrlPBufTag<cr>
+nmap <D-e> :CtrlPMRUFiles<cr>
 
 " --------
 " Fugitive
