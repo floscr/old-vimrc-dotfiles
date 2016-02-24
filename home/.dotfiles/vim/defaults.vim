@@ -50,9 +50,6 @@ endif
 
 filetype plugin indent on
 
-" Share the clipboard between multiple vim instances
-" set clipboard=unnamedplus
-
 set nobackup
 set noswapfile
 
