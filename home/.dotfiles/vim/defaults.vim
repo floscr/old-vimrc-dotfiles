@@ -96,6 +96,12 @@ let sh_fold_enabled=1
 let vimsyn_folding='af'
 let xml_syntax_folding=1
 
+" Load .vimrc in the base directory of a git repo, if it exists
+let $git_vimrc= expand(system("echo -n $(git rev-parse --show-toplevel)/.lvimrc"))
+if filereadable($git_vimrc)
+  source $git_vimrc
+endif
+
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 source ~/.dotfiles/vim/shortcuts.vim
