@@ -48,7 +48,13 @@ if has('persistent_undo')
   set undofile
 endif
 
+" Syntax Highlighting
 filetype plugin indent on
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
+endif
 
 set nobackup
 set noswapfile
@@ -89,12 +95,6 @@ let ruby_fold=1
 let sh_fold_enabled=1
 let vimsyn_folding='af'
 let xml_syntax_folding=1
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
