@@ -202,6 +202,11 @@ alias vim="nvim"
 alias v="mvim"
 alias vv="mvim -v"
 
+# Document Coverter
+alias docx_convert_to_html="pandoc -f docx -t html -o"
+alias docx_convert_to_markdown="pandoc -f docx -t markdown -o"
+
+
 # TASK RUNNER
 alias nw="npm run watch"
 alias nb="npm run build"
