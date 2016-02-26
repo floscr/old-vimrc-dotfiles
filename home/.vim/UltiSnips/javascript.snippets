@@ -1,3 +1,27 @@
-snippet me "Module Exports for browserify"
-module.exports = ${1:''};
+snippet fun
+function($1) {
+	$0
+}
+endsnippet
+
+snippet vfun
+var $1 = function($2) {
+	$0
+}
+endsnippet
+
+snippet cl
+console.log($1);$0
+endsnippet
+
+snippet req
+require('$1');$0
+endsnippet
+
+snippet vreq
+var ${1} = require('${2:$1}');$0
+endsnippet
+
+snippet shebang
+#!/usr/bin/env node
 endsnippet
