@@ -25,6 +25,7 @@ set showmatch    " Show matching tags
 " SEARCHING
 set incsearch  " do incremental searching
 set ignorecase " case insensitive searching (unless specified)
+set hlsearch
 set smartcase
 
 " LINE WRAPPING
