@@ -203,6 +203,7 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 
 alias vim="nvim"
 alias v="mvim"
+alias vs="mvim --servername"
 alias nv="nvim"
 alias vv="mvim -v"
 
