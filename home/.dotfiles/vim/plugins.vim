@@ -20,7 +20,7 @@ Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 " -----------------------------------------------------------------------------
 
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 " -----------------------------------------------------------------------------
 " Syntax Specific
