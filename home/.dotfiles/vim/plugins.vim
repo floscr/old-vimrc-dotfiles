@@ -14,6 +14,8 @@ Plug 'cohama/lexima.vim'             " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 " Plug 'mhinz/vim-startify'            " Pretty start screen
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 " -----------------------------------------------------------------------------
 " Snippets
