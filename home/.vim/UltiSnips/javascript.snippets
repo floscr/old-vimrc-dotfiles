@@ -1,18 +1,22 @@
+# ---------
+# Functions
+# ---------
+
 snippet fun
 function($1) {
-	$0
+$0
 }
 endsnippet
 
 snippet vfun
 var $1 = function($2) {
-	$0
+$0
 }
 endsnippet
 
-snippet cl
-console.log($1);$0
-endsnippet
+# ----
+# NODE
+# ----
 
 snippet req
 require('$1');$0
@@ -24,4 +28,82 @@ endsnippet
 
 snippet shebang
 #!/usr/bin/env node
+endsnippet
+
+# --------------
+# Query selector
+# --------------
+
+snippet get
+getElementsBy${1:TagName}('${0}')
+endsnippet
+snippet by.
+${1:document}.getElementsByClassName('${0:class}')
+endsnippet
+# Element by ID
+snippet by#
+${1:document}.getElementById('${0:element ID}')
+endsnippet
+# Query selector
+snippet qs
+${1:document}.querySelector('${0:CSS selector}')
+endsnippet
+# Query selector all
+snippet qsa
+${1:document}.querySelectorAll('${0:CSS selector}')
+endsnippet
+
+# ---------
+# Debugging
+# ---------
+snippet de
+debugger;
+endsnippet
+# console.log
+snippet cl
+console.log(${0});
+endsnippet
+# console.debug
+snippet cd
+console.debug(${0});
+endsnippet
+# console.error
+snippet ce
+console.error(${0});
+endsnippet
+# console.trace
+snippet ct
+console.trace(${0:label});
+endsnippet
+# console.time
+snippet ctime
+console.time(${0:label});
+endsnippet
+# console.assert
+snippet ca
+console.assert(${1:expression}, ${0:obj});
+endsnippet
+# console.dir
+snippet cdir
+console.dir(${0:obj});
+endsnippet
+
+# ----
+# Misc
+# ----
+
+# 'use strict';
+snippet us
+'use strict';
+endsnippet
+
+# setTimeout function
+snippet timeout
+setTimeout(function () {${0}}${2}, ${1:10});
+endsnippet
+
+snippet onkey
+document.onkeydown = function(event) {
+$1
+}
 endsnippet
