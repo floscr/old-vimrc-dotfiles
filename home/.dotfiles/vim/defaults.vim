@@ -104,6 +104,6 @@ if filereadable($git_vimrc)
 endif
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufNewFile,BufReadPost *.twig set filetype=jinja
+autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
 source ~/.dotfiles/vim/shortcuts.vim
