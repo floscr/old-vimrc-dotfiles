@@ -67,7 +67,7 @@ nnoremap <esc>^[ <esc>^[
 nnoremap <C-c> :q<return>
 
 " Quickly open/reload vim
-nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>ev :e ~/.homesick/repos/dotfiles/home/.vimrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Quicker window movement
