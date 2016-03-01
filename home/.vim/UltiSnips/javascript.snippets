@@ -30,6 +30,24 @@ snippet shebang
 #!/usr/bin/env node
 endsnippet
 
+# Documentation
+
+# docstring
+snippet /**
+/**
+ * ${0:description}
+ */
+endsnippet
+
+snippet @par
+@param {${1:type}} ${2:name} ${0:description}
+endsnippet
+
+snippet @ret
+@return {${1:type}} ${0:description}
+endsnippet
+
+
 # --------------
 # Query selector
 # --------------
@@ -42,6 +60,9 @@ ${1:document}.getElementsByClassName('${0:class}')
 endsnippet
 # Element by ID
 snippet by#
+${1:document}.getElementById('${0:element ID}')
+endsnippet
+snippet gid
 ${1:document}.getElementById('${0:element ID}')
 endsnippet
 # Query selector
