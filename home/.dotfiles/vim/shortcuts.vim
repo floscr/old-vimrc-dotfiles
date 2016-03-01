@@ -15,6 +15,9 @@ if has("mac")
   nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 endif
 
+" Increade / Decrease number by 11
+nnoremap <C-X> <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
+nnoremap <C-A> <C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a>
 " Create the file under the cursor
 " Create file under cursor
 " map <leader>gf :e <cfile><cr>
@@ -67,7 +70,7 @@ nnoremap <esc>^[ <esc>^[
 nnoremap <C-c> :q<return>
 
 " Quickly open/reload vim
-nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>ev :e ~/.homesick/repos/dotfiles/home/.vimrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Quicker window movement

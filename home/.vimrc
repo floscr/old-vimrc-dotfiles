@@ -16,7 +16,7 @@ if has("gui_macvim")
   set guifont=Inconsolata:h18
   set gcr=n:blinkon0 " Turn off blinking cursor in normal mode
   set guioptions-=e  " We don't want Gui tabs.
-  set linespace=15   " Macvim-specific line-height.
+  set linespace=14   " Macvim-specific line-height.
 
   set guioptions-=l  " Disable Gui scrollbars.
   set guioptions-=L
