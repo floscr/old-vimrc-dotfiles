@@ -19,6 +19,13 @@
     <identifier>private.switchYtoZ</identifier>
     <autogen>--KeyToKey-- KeyCode::Y, KeyCode::Z</autogen>
     <autogen>--KeyToKey-- KeyCode::Z, KeyCode::Y</autogen>
-    </item>
+  </item>
+
+  <item>
+      <name>Space to Control_L except for Adobe Apps</name>
+      <identifier>remap.space2controlLExceptAdobeApps</identifier>
+      <not>PHOTOSHOP, ILLUSTRATOR</not>
+      <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SPACE, KeyCode::CONTROL_L, KeyCode::SPACE</autogen>
+  </item>
 
 </root>
