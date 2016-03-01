@@ -40,6 +40,7 @@ Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
 
 " PHP
 Plug 'evidens/vim-twig'
+Plug 'tokutake/twig-indent' " Fix indentation for twig
 
 " MARKDOWN
 Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
