@@ -29,7 +29,7 @@ set hlsearch
 set smartcase
 
 " LINE WRAPPING
-set colorcolumn=+1
+" set colorcolumn=+1
 " Make it obvious where 80 characters is
 " set textwidth=80
 set nowrap " Don't wrap lines
