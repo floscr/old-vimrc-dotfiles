@@ -108,6 +108,13 @@ set       editing-mode vi # Set vi mode for zsh
 bindkey -v # Fix vi mode for tmux
 export KEYTIMEOUT=1 # Remove the timeout
 
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
 setopt    correctall # correct misspelled commands
 unsetopt  nomatch # no error if glob fails to expand (scp fix)
 
