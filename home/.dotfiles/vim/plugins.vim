@@ -13,16 +13,16 @@ Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
 Plug 'cohama/lexima.vim'             " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
+Plug 'tpope/vim-unimpaired'
 " Plug 'mhinz/vim-startify'            " Pretty start screen
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-misc'                " Needed for vim-startify
+" Plug 'xolox/vim-session'             " Sessions Restore, have to define later
 
 " -----------------------------------------------------------------------------
 " Snippets
 " -----------------------------------------------------------------------------
 
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 
 " -----------------------------------------------------------------------------
 " Syntax Specific
@@ -35,8 +35,8 @@ Plug 'scrooloose/syntastic'
 Plug 'moll/vim-node'                " Open require statements with <gf>
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
-Plug 'heavenshell/vim-jsdoc'        " DocBlockr
 Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
+" Plug 'heavenshell/vim-jsdoc'        " DocBlockr
 
 " PHP
 Plug 'evidens/vim-twig'
