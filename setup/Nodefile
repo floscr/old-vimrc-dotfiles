@@ -1,6 +1,8 @@
 bower
 dev-ip
 eslint
+babel-eslint
+eslint_d
 eslint-plugin-react
 gulp
 iectrl
