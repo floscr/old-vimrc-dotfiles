@@ -21,6 +21,8 @@ let NERDTreeIgnore = ['\.git$']
 
 if has("gui_running")
   " CTRLP
+  unlet g:ctrlp_custom_ignore
+  unlet g:ctrlp_user_command
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
