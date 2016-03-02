@@ -110,4 +110,11 @@ autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 " AUTOCOMMANDS Files
 autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
 
+" Theme
+syntax enable
+set background=dark
+colorscheme OceanicNext
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+highlight SpecialKey ctermfg=66 guifg=#223843
+
 source ~/.dotfiles/vim/shortcuts.vim
