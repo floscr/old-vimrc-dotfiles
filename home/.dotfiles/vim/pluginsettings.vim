@@ -68,6 +68,12 @@ nnoremap <space>ge :Gedit<CR>
 nnoremap <space>gw :Gwrite<CR><CR>
 nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
 
+" Hard reset all changes
+nnoremap <silent> <space>grh :silent! Git reset --hard<CR>
+
+" Reset current file
+nnoremap <silent> <space>grf :silent! Git checkout HEAD -- %<CR>
+
 nnoremap <space>gp :Ggrep<Space>
 nnoremap <space>gm :Gmove<Space>
 nnoremap <space>gb :Git branch<Space>
