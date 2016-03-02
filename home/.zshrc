@@ -105,7 +105,8 @@ zstyle ':completion:*' menu select=2
 COMPLETION_WAITING_DOTS="true"
 
 set       editing-mode vi # Set vi mode for zsh
-bindkey -v
+bindkey -v # Fix vi mode for tmux
+export KEYTIMEOUT=1 # Remove the timeout
 
 setopt    correctall # correct misspelled commands
 unsetopt  nomatch # no error if glob fails to expand (scp fix)
