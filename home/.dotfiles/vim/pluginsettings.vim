@@ -23,7 +23,7 @@ if has("gui_running")
   " CTRLP
   " let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$'
   let g:ctrlp_user_command = [
-        \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
+        \ '.git', 'cd %s && git ls-files . --others -co --exclude-standard',
         \ 'find %s -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
         \ ]
   nmap <D-p> :CtrlP<cr>
