@@ -13,6 +13,12 @@ if has("gui_macvim")
   macmenu &File.Print key=<nop>
   "Disable the Print key for MacVim.
 
+  " Disable red color highlight
+  au ColorScheme * hi Error NONE
+  au ColorScheme * hi ErrorMsg NONE
+  au GuiEnter * hi Error NONE
+  au GuiEnter * hi ErrorMsg NONE
+
   set guifont=Inconsolata:h18
   set lines=40
   set columns=120
