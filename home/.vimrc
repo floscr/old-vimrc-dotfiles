@@ -14,6 +14,8 @@ if has("gui_macvim")
   "Disable the Print key for MacVim.
 
   set guifont=Inconsolata:h18
+  set lines=40
+  set columns=120
   set gcr=n:blinkon0 " Turn off blinking cursor in normal mode
   set guioptions-=e  " We don't want Gui tabs.
   set linespace=14   " Macvim-specific line-height.
@@ -22,9 +24,6 @@ if has("gui_macvim")
   set guioptions-=L
   set guioptions-=r
   set guioptions-=R
-
-
-  let g:fzf_launcher = 'urxvt -geometry 120x30 -e sh -c %s'
 endif
 
 
