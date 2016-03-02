@@ -84,7 +84,7 @@ Plug 'airblade/vim-gitgutter'       " Sublime GitGutter Adaption
 Plug 'terryma/vim-multiple-cursors'               " Multiple cursors
 Plug 'tpope/vim-surround'                         " Change surrounding characters
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
-" VSelect lines :Tabularize /= <- Regex
+                                                  " VSelect lines :Tabularize /= <- Regex
 Plug 'wellle/targets.vim'                         " Additional text targets
 
 " -----------------------------------------------------------------------------
