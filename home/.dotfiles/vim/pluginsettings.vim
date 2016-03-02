@@ -12,7 +12,7 @@ endfunction
 nmap <D-1> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>kb :NERDTreeToggle<CR>
 nnoremap <silent> <leader>kn :NERDTreeToggle<CR>:call ToggleNERDTreeFind()<CR>
-let NERDTreeIgnore = ['\.git$']
+let NERDTreeIgnore = ['\.git$', '\.DS_Store']
 
 " -------------------------------------------
 " CTRLP or FZF
