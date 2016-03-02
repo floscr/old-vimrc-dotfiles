@@ -103,7 +103,11 @@ if filereadable($git_vimrc)
   source $git_vimrc
 endif
 
+" AUTOCOMMANDS Filetypes
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
+
+" AUTOCOMMANDS Files
+autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
 
 source ~/.dotfiles/vim/shortcuts.vim
