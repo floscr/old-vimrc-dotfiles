@@ -80,9 +80,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
-map <silent><Leader>p :set paste<CR><esc>"*p:set nopaste<cr>"
-map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
-map <silent><C-v> :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+" map <silent><Leader>p :set paste<CR><esc>"*p:set nopaste<cr>"
+" map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
+" map <silent><C-v> :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
@@ -92,7 +92,7 @@ noremap <leader>yy "*Y
 noremap Q @q
 
 " PASTE Mode
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Buffers
 map gn :bn<cr>
