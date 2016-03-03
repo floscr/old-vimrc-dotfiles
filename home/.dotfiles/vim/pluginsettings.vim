@@ -27,6 +27,7 @@ if has("gui_running")
         \ 'find %s -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
         \ ]
   nmap <D-p> :CtrlP<cr>
+  nmap <D-[> :CtrlPBuffer<cr>
   nmap <D-r> :CtrlPBufTag<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
 else
@@ -109,6 +110,12 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+" Open the current filetype snippet file
+function! EditFileTypeSnippet()
+  execute 'edit ~/.homesick/repos/dotfiles/home/.vim/ftplugin/' . &filetype . '.vim'
+endfunction
+nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 
 " --------
 " FUGITIVE

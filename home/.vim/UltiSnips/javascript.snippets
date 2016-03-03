@@ -14,6 +14,31 @@ $0
 }
 endsnippet
 
+# ------------
+# CONDITIONALS
+# ------------
+
+# if
+snippet if
+if (${1:true}) {
+${0}
+}
+endsnippet
+
+# if ... else
+snippet ife
+if (${1:true}) {
+${2}
+} else {
+${0}
+}
+endsnippet
+
+# tertiary conditional
+snippet ter
+${1:/* condition */} ? ${2:/* if true */} : ${0:/* if false */}
+endsnippet
+
 # ----
 # NODE
 # ----

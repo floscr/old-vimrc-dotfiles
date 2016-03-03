@@ -104,6 +104,17 @@ zstyle ':completion:*' menu select=2
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+# set editing-mode vi # Set vi mode for zsh
+bindkey -v          # Fix vi mode for tmux
+export KEYTIMEOUT=1 # Remove the timeout
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
 setopt    correctall # correct misspelled commands
 unsetopt  nomatch # no error if glob fails to expand (scp fix)
 
