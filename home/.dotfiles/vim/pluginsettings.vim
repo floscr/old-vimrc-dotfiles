@@ -27,6 +27,7 @@ if has("gui_running")
         \ 'find %s -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
         \ ]
   nmap <D-p> :CtrlP<cr>
+  nmap <D-[> :CtrlPBuffer<cr>
   nmap <D-r> :CtrlPBufTag<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
 else
