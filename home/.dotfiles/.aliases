@@ -20,15 +20,6 @@
 
 # FOLDER SHORTCUTS
 alias dek="cd ~/Desktop"
-alias desk="cd ~/Desktop"
-alias sync="cd ~/Dropbox/Synchronisation"
-alias synch="cd ~/Dropbox/Synchronisation"
-alias s="cd ~/Sites"
-alias dr="cd ~/Dropbox"
-alias proj="cd ~/Documents/Projekte"
-alias a="cd ~/Desktop/Arbeitsserver"
-alias dot="cd ~/.homesick/repos/dotfiles"
-alias dots="slt ~/.homesick/repos/dotfiles; cd ~/.homesick/repos/dotfiles"
 alias down="cd ~/Downloads"
 
 # NAVIGATION
