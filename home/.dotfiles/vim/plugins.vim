@@ -87,9 +87,11 @@ Plug 'tpope/vim-surround'                         " Change surrounding character
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
                                                   " VSelect lines :Tabularize /= <- Regex
 Plug 'wellle/targets.vim'                         " Additional text targets
+
+" Custom textobjects
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-function'
-Plug 'thinca/vim-textobj-function-javascript'
+Plug 'kana/vim-textobj-function'              " Function Text Object
+Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 
 " -----------------------------------------------------------------------------
 " Color Scheme
