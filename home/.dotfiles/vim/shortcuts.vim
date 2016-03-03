@@ -26,6 +26,9 @@ nnoremap gF :e <cfile><cr>
 " Enter command by pressing enter
 nnoremap <Cr> :
 
+" Split lines / opposite of J
+nnoremap S ht lr<cr>k$
+
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
   if exists('t:zoomed') && t:zoomed
