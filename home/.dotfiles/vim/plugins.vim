@@ -52,7 +52,8 @@ Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
 " Interface
 " ------------------------------------------------------------------------------
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-vinegar'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
