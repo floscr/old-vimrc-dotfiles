@@ -167,14 +167,6 @@ let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-nmap <leader>x :bp <BAR> bd #<CR>
-" This replaes :tabnew which I used to bind to this mapping
-nmap <leader>n :enew<cr>
-" Move to the next buffer
-nmap <leader>. :bnext<CR>
-" Move to the previous buffer
-nmap <leader>, :bprevious<CR>
-nmap <leader>, :bprevious<CR>
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
