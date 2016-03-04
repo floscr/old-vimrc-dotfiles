@@ -114,7 +114,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " Open the current filetype snippet file
 function! EditFileTypeSnippet()
-  execute 'edit ~/.homesick/repos/dotfiles/home/.vim/ftplugin/' . &filetype . '.vim'
+  execute 'edit ~/.homesick/repos/dotfiles/home/.vim/UltiSnips/' . &filetype . '.snippets'
 endfunction
 nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 
