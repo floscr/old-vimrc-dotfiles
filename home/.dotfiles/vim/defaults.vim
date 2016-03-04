@@ -110,6 +110,7 @@ autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
 " AUTOCOMMANDS Files
 autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
+au! FileType css,scss setl iskeyword+=-
 
 " Theme
 syntax enable
