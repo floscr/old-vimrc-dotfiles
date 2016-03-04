@@ -102,3 +102,4 @@ Plug 'floscr/oceanic-next'
 call plug#end()
 
 source ~/.dotfiles/vim/plugins/autowrite.vim
+source ~/.dotfiles/vim/plugins/formatfiletype.vim
