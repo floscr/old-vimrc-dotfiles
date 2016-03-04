@@ -30,6 +30,7 @@ if has("gui_running")
   nmap <D-[> :CtrlPBuffer<cr>
   nmap <D-r> :CtrlPBufTag<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
+  nnoremap <leader>. :CtrlPTag<cr>
 else
   " FZF
   " Open files in a split
