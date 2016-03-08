@@ -101,6 +101,7 @@ let g:syntastic_check_on_wq = 0
 
 " Remap emmet leader key
 let g:user_emmet_leader_key='<C-e>'
+" let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.homesick/repos/dotfiles/home/.vim/emmet/emmet-snippets.json')), "\n"))
 " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " -------------------------
@@ -115,6 +116,8 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " Open the current filetype snippet file
 function! EditFileTypeSnippet()
   execute 'edit ~/.homesick/repos/dotfiles/home/.vim/UltiSnips/' . &filetype . '.snippets'
+  " if(&filetype == 'scss')
+  " endif
 endfunction
 nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 
