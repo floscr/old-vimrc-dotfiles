@@ -9,9 +9,6 @@ set ttymouse=xterm2
 
 " Macvim specific settings
 if has("gui_macvim")
-  macmenu &File.Print key=<nop>
-  "Disable the Print key for MacVim.
-
   " Disable red color highlight
   au ColorScheme * hi Error NONE
   au ColorScheme * hi ErrorMsg NONE
