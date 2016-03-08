@@ -104,7 +104,7 @@ let g:user_emmet_leader_key='<C-e>'
 " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " -------------------------
-" ULTISNIPS & YOUCOMPLETEME
+" ULTISNIPS
 " -------------------------
 
 let g:UltiSnipsExpandTrigger="<c-k>"
