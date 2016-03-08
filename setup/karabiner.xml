@@ -6,6 +6,11 @@
     <prefix>com.adobe.</prefix>
   </appdef>
 
+  <appdef>
+    <appname>MODO</appname>
+    <equal>com.luxology.modo</equal>
+  </appdef>
+
   <item>
     <name>F19 to F19</name>
     <appendix>(F19 to Hyper (ctrl+shift+cmd+opt) + F19 Only, send escape)</appendix>
@@ -29,8 +34,9 @@
   <item>
       <name>Space to Control_L except for Adobe Apps</name>
       <identifier>remap.space2controlLExceptAdobeApps</identifier>
-      <not>ADOBEAPPS</not>
+      <not>ADOBEAPPS, MODO</not>
       <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SPACE, KeyCode::CONTROL_L, KeyCode::SPACE</autogen>
   </item>
 
 </root>
+

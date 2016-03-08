@@ -20,15 +20,6 @@
 
 # FOLDER SHORTCUTS
 alias dek="cd ~/Desktop"
-alias desk="cd ~/Desktop"
-alias sync="cd ~/Dropbox/Synchronisation"
-alias synch="cd ~/Dropbox/Synchronisation"
-alias s="cd ~/Sites"
-alias dr="cd ~/Dropbox"
-alias proj="cd ~/Documents/Projekte"
-alias a="cd ~/Desktop/Arbeitsserver"
-alias dot="cd ~/.homesick/repos/dotfiles"
-alias dots="slt ~/.homesick/repos/dotfiles; cd ~/.homesick/repos/dotfiles"
 alias down="cd ~/Downloads"
 
 # NAVIGATION
@@ -78,10 +69,8 @@ alias gap="git add -p"
 alias gc="git_check_staged"
 alias gac="git_commit"
 alias c="git commit -am"
-alias gs='scmpuff_status'
-alias gs='scmpuff_status'
+alias gs='scmpuff_status' # npm i -g scmpuff
 alias gbda='git_branch_delete_and_push'
-# alias gs="git status"
 alias stash="git stash"
 alias gbc="git checkout -b"
 alias gb="gitswitchbranch"
@@ -128,7 +117,6 @@ alias glf="git log -p"
 # Advanced Git log
 alias gla="git log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate"
 
-
 # Advanced Git log with timestamps
 alias glt="git log --pretty=format:'%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --date=relative"
 
@@ -140,8 +128,6 @@ alias gh2="git checkout \"HEAD~2\""
 alias gh3="git checkout \"HEAD~3\""
 alias gh4="git checkout \"HEAD~4\""
 
-# Gitcopy
-
 #==============================================================================#
 # File & Folder Manipulation
 #==============================================================================#
@@ -151,7 +137,6 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # File size
 alias fs="stat -f \"%z bytes\""
-
 
 #==============================================================================#
 # Local Server

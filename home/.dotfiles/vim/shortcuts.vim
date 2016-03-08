@@ -15,6 +15,15 @@ if has("mac")
   nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 endif
 
+nmap <leader>x :bp <BAR> bd #<CR>
+" This replaes :tabnew which I used to bind to this mapping
+" nmap <leader>n :enew<cr>
+" Move to the next buffer
+" nmap <leader>. :bnext<CR>
+" Move to the previous buffer
+" nmap <leader>, :bprevious<CR>
+" nmap <leader>, :bprevious<CR>
+
 " Increade / Decrease number by 11
 nnoremap <C-X> <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 nnoremap <C-A> <C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a>
@@ -25,6 +34,9 @@ nnoremap gF :e <cfile><cr>
 
 " Enter command by pressing enter
 nnoremap <Cr> :
+
+" Split lines / opposite of J
+nnoremap S ht lr<cr>k$
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort

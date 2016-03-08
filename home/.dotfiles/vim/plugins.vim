@@ -52,7 +52,8 @@ Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
 " Interface
 " ------------------------------------------------------------------------------
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-vinegar'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
@@ -87,6 +88,11 @@ Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
                                                   " VSelect lines :Tabularize /= <- Regex
 Plug 'wellle/targets.vim'                         " Additional text targets
 
+" Custom textobjects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'              " Function Text Object
+Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
+
 " -----------------------------------------------------------------------------
 " Color Scheme
 " -----------------------------------------------------------------------------
@@ -96,3 +102,4 @@ Plug 'floscr/oceanic-next'
 call plug#end()
 
 source ~/.dotfiles/vim/plugins/autowrite.vim
+source ~/.dotfiles/vim/plugins/formatfiletype.vim

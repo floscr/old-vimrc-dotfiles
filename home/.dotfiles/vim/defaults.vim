@@ -49,8 +49,9 @@ if has('persistent_undo')
   set undofile
 endif
 
-" Syntax Highlighting
+" Turn the filetype specific plugin loadin on in .vim/ftplugin
 filetype plugin indent on
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
@@ -109,6 +110,7 @@ autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
 " AUTOCOMMANDS Files
 autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
+au! FileType css,scss setl iskeyword+=-
 
 " Theme
 syntax enable

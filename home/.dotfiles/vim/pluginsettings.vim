@@ -5,14 +5,14 @@ let g:session_autoload = 'yes'
 " NERDTREE
 " --------
 
-function! ToggleNERDTreeFind()
-  execute ':NERDTreeFind'
-endfunction
+" function! ToggleNERDTreeFind()
+"   execute ':NERDTreeFind'
+" endfunction
 
-nmap <D-1> :NERDTreeToggle<cr>
-nnoremap <silent> <leader>kb :NERDTreeToggle<CR>
-nnoremap <silent> <leader>kn :NERDTreeToggle<CR>:call ToggleNERDTreeFind()<CR>
-let NERDTreeIgnore = ['\.git$', '\.DS_Store']
+" nmap <D-1> :NERDTreeToggle<cr>
+" nnoremap <silent> <leader>kb :NERDTreeToggle<CR>
+" nnoremap <silent> <leader>kn :NERDTreeToggle<CR>:call ToggleNERDTreeFind()<CR>
+" let NERDTreeIgnore = ['\.git$', '\.DS_Store']
 
 " -------------------------------------------
 " CTRLP or FZF
@@ -30,6 +30,7 @@ if has("gui_running")
   nmap <D-[> :CtrlPBuffer<cr>
   nmap <D-r> :CtrlPBufTag<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
+  nnoremap <leader>. :CtrlPTag<cr>
 else
   " FZF
   " Open files in a split
@@ -113,7 +114,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " Open the current filetype snippet file
 function! EditFileTypeSnippet()
-  execute 'edit ~/.homesick/repos/dotfiles/home/.vim/ftplugin/' . &filetype . '.vim'
+  execute 'edit ~/.homesick/repos/dotfiles/home/.vim/UltiSnips/' . &filetype . '.snippets'
 endfunction
 nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 
@@ -167,14 +168,6 @@ let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-nmap <leader>x :bp <BAR> bd #<CR>
-" This replaes :tabnew which I used to bind to this mapping
-nmap <leader>n :enew<cr>
-" Move to the next buffer
-nmap <leader>. :bnext<CR>
-" Move to the previous buffer
-nmap <leader>, :bprevious<CR>
-nmap <leader>, :bprevious<CR>
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
