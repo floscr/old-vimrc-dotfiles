@@ -14,9 +14,6 @@ Plug 'cohama/lexima.vim'             " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'
-" Plug 'mhinz/vim-startify'            " Pretty start screen
-" Plug 'xolox/vim-misc'                " Needed for vim-startify
-" Plug 'xolox/vim-session'             " Sessions Restore, have to define later
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -36,7 +33,6 @@ Plug 'moll/vim-node'                " Open require statements with <gf>
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
 Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
-" Plug 'heavenshell/vim-jsdoc'        " DocBlockr
 
 " PHP
 Plug 'evidens/vim-twig'
@@ -53,7 +49,6 @@ Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
 " ------------------------------------------------------------------------------
 
 Plug 'tpope/vim-vinegar'
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
