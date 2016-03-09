@@ -9,6 +9,7 @@
 # Local Server
 # Internet & Server
 # System
+# Development
 # Etc
 # =============================================================================#
 # Unused
@@ -183,23 +184,34 @@ alias what="whence -favs"
 alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 
 #==============================================================================#
-# Etc
+# Development
 #==============================================================================#
 
+# Watson
+alias w="watson"
+alias ws="watson start"
+alias wl="watson log"
+alias wx="watson stop"
+alias wts="watson status"
+
+# Watson
 alias vim="nvim"
 alias v="mvim"
 alias vs="mvim --servername"
 alias nv="nvim"
 alias vv="mvim -v"
 
-# Document Coverter
-alias docx_convert_to_html="pandoc -f docx -t html -o"
-alias docx_convert_to_markdown="pandoc -f docx -t markdown -o"
-
-
 # TASK RUNNER
 alias nw="npm run watch"
 alias nb="npm run build"
+
+#==============================================================================#
+# Etc
+#==============================================================================#
+
+# Document Coverter
+alias docx_convert_to_html="pandoc -f docx -t html -o"
+alias docx_convert_to_markdown="pandoc -f docx -t markdown -o"
 
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
