@@ -87,13 +87,31 @@ nnoremap <space>gpl :Dispatch! git pull<CR>
 " SYTASTIC
 " --------
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_mode_map = { 'passive_filetypes': ['twig'] }
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:syntastic_error_symbol = '!'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '~~'
+let g:syntastic_style_warning_symbol = '*'
+
+let g:syntastic_javascript_checkers = ['eslint']
+" let b:syntastic_javascript_eslint_exec = StrTrim(system('npm-which eslint'))
+" let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
+let g:syntastic_mode_map = { 'passive_filetypes': ['twig'] } " Ignore linting for twig
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 
 " -----
 " EMMET
