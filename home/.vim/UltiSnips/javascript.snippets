@@ -134,6 +134,23 @@ snippet cdir
 console.dir(${0:obj});
 endsnippet
 
+# ------------
+# Task Runners
+# ------------
+
+snippet gulp
+gulp.task('${1:task}', function() {
+  return gulp.src('${2:src}')
+    .pipe(gulp.dest('${3:dst}'));
+});
+endsnippet
+
+snippet gulpwatch
+gulp.task('watch', function() {
+  return gulp.watch('${1:./src/*}', ['${2:task}']);
+});
+endsnippet
+
 # ----
 # Misc
 # ----
