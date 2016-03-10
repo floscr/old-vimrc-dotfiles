@@ -21,12 +21,12 @@ status=`/usr/local/bin/watson status`
 # show watson
 if [[ "$status" == "No project started" ]]
 then
-    echo "⏱ Watson"
+    echo " "
     exit 1
 fi
 
 # get the project name
-project=`echo "$status" | awk '{printf "⏱ %s", $2}'`
+project=`echo "$status" | awk '{printf "%s %s", $2, $3}'`
 
 # get the started time and uppercase the sentence
 started=`echo "$status" | grep -E -o 'started (.*) \('`
