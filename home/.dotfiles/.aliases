@@ -194,12 +194,14 @@ alias wl="watson log"
 alias wx="watson stop"
 alias wts="watson status"
 
-# Watson
+# Terminal Vim
 alias vim="nvim"
+alias vi="nvim"
+
+# GuiVim
 alias v="mvim"
+alias v.="v ."
 alias vs="mvim --servername"
-alias nv="nvim"
-alias vv="mvim -v"
 
 # TASK RUNNER
 alias nw="npm run watch"
