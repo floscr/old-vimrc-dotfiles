@@ -5,16 +5,15 @@
 
 if has("gui_running")
   " CTRLP
-  " let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$'
   let g:ctrlp_user_command = [
         \ '.git', 'cd %s && git ls-files . --others -co --exclude-standard',
         \ 'find %s -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
         \ ]
   nmap <D-p> :CtrlP<cr>
   nmap <D-[> :CtrlPBuffer<cr>
-  nmap <D-r> :CtrlPBufTag<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
   nnoremap <leader>. :CtrlPTag<cr>
+  nmap <D-r> :CtrlPBufTag<cr>
 else
   " FZF
   " Open files in a split
@@ -40,6 +39,8 @@ endif
 " --------
 " Fugitive
 " --------
+
+set diffopt+=vertical " Always use vertical diffs
 
 nnoremap <silent> <space>gf :Git add %:p<CR><CR>
 nnoremap <silent> <space>ga :Git add .<CR><CR>
@@ -123,11 +124,6 @@ function! EditFileTypeSnippet()
 endfunction
 nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 
-" --------
-" FUGITIVE
-" --------
-set diffopt+=vertical " Always use vertical diffs
-
 " ---------
 " GITGUTTER
 " ---------
@@ -144,7 +140,7 @@ nmap <leader>hp <Plug>GitGutterPrevHunk
 nmap <leader>hb <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
-nmap <Leader>ha <PlugtGitGutterStageHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hu <Plug>GitGutterRevertHunk
 
 " ---------
