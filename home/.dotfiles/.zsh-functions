@@ -14,6 +14,25 @@ local functions_path="$dotfiles_dir/home/.dotfiles/functions/"
 . "$functions_path.function-mercurial"
 
 #==============================================================================#
+# Time Management
+#==============================================================================#
+
+# Watson report for each day of the week
+# TODO: Make this less repetitive ;)
+function wreport() {
+  mon=$(date -v -Mon "+%Y-%m-%d")
+  tue=$( date -v -Tue "+%Y-%m-%d" )
+  wed=$( date -v -Wed "+%Y-%m-%d" )
+  thu=$( date -v -Thu "+%Y-%m-%d" )
+  fri=$( date -v -Fri "+%Y-%m-%d" )
+  watson report --from $mon --to $mon
+  watson report --from $tue --to $tue
+  watson report --from $wed --to $wed
+  watson report --from $thu --to $thu
+  watson report --from $fri --to $fri
+}
+
+#==============================================================================#
 # Etc
 #==============================================================================#
 
