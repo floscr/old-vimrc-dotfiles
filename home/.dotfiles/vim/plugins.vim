@@ -10,7 +10,8 @@ Plug 'tpope/vim-commentary'          " Commenting support (gc)
 Plug 'duggiefresh/vim-easydir'       " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'       " Delete all buffers except the current one
 Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
-Plug 'cohama/lexima.vim'             " Automatically closing tags
+Plug 'jiangmiao/auto-pairs'
+" Plug 'cohama/lexima.vim'             " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
