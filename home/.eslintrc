@@ -48,7 +48,6 @@
 
     "no-with": 1,
     "no-eval": 1,
-    "space-after-keywords": 1,
 
     "curly": [1, "all"],
     "space-before-blocks": 1,
