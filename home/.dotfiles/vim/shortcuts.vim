@@ -86,6 +86,11 @@ nnoremap <C-l> <C-w>l
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 
+" Zoom when in Tmux(>v1.8)
+if exists('$TMUX')
+  nnoremap <silent> <leader>z :call system("tmux resize-pane -Z")<CR>
+endif
+
 " Run the q macro
 noremap Q @q
 
