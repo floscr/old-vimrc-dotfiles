@@ -86,6 +86,9 @@ nnoremap <C-l> <C-w>l
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 
+" Select the last thing that has been pasted
+nnoremap gV `[V`]`]`
+
 " Zoom when in Tmux(>v1.8)
 if exists('$TMUX')
   nnoremap <silent> <leader>z :call system("tmux resize-pane -Z")<CR>
