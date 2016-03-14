@@ -35,8 +35,12 @@ Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
 Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
 
+" JSON
+Plug 'elzr/vim-json'
+
 " PHP
 Plug 'evidens/vim-twig'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'tokutake/twig-indent' " Fix indentation for twig
 
 " MARKDOWN
