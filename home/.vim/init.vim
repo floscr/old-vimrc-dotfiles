@@ -1,1 +1,0 @@
-/Users/flo/.nvimrc
