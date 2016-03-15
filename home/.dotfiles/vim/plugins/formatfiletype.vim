@@ -9,6 +9,8 @@ function! ReformatFileByFileType()
     " Remove spaces padding inside braces
     silent! %s/\s)/)/
     silent! %s/(\s/(/
+    " Remove space before a comma
+    silent! %s/\s\ze,//g
 
   endif
 
