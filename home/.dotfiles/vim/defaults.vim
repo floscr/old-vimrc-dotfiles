@@ -105,7 +105,7 @@ if filereadable($git_vimrc)
 endif
 
 " AUTOCOMMANDS Filetypes
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
 autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
 " AUTOCOMMANDS Files
