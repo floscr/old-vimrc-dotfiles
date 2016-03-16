@@ -96,6 +96,7 @@ alias gdry="git fetch --dry-run"
 alias gcm="git commit -m"
 alias deploy="git push production master"
 alias fetch="git fetch"
+alias gru="git remote get-url origin"
 
 alias unassumeall="git unassumeall"
 alias assumeall="git assumeall"
