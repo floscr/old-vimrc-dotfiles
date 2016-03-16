@@ -20,7 +20,9 @@ set cpoptions+=$ " When changing words append a $ sign
 set mouse=a      " Mouse Control
 set shortmess+=I " Turn off the intro
 set wildmenu     " Visual autocomplete for cmd menu
-set showmatch    " Show matching tags
+set noshowmatch  " Show matching tags
+                 " having this turned on will make the cursor jump around
+                 " weirdly
 
 " SEARCHING
 set incsearch  " do incremental searching
@@ -102,6 +104,34 @@ let xml_syntax_folding=1
 let $git_vimrc= expand(system("echo -n $(git rev-parse --show-toplevel)/.lvimrc"))
 if filereadable($git_vimrc)
   source $git_vimrc
+endif
+
+" Scrolling
+" Save the scroll position when switching buffers
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
 endif
 
 " AUTOCOMMANDS Filetypes
