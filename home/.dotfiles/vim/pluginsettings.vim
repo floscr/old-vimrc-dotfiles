@@ -131,7 +131,7 @@ nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 " Only load gitgutter when the file is loaded/saved
 " This increases the speed in tab switching
 let g:gitgutter_max_signs=9999
-let g:gitgutter_eager = 0
+let g:gitgutter_eager = 1
 let g:gitgutter_realtime = 0
 
 " Next/Prev Git Hunk
