@@ -46,7 +46,7 @@ nnoremap <silent> <space>gf :Git add %:p<CR><CR>
 nnoremap <silent> <space>ga :Git add .<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
 nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gC :Git add %:p<CR><CR>:Gcommit -v -q<CR>
+nnoremap <silent> <space>gC :Git add %:p<CR><CR>:Gcommit -v -q<CR>
 nnoremap <space>gt :Gcommit -v -q %:p<CR>
 nnoremap <space>gd :Gdiff<CR>
 
