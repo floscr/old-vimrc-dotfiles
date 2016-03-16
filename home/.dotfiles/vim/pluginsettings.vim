@@ -135,9 +135,8 @@ let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
 
 " Next/Prev Git Hunk
-nmap <leader>hn <Plug>GitGutterNextHunk
-nmap <leader>hp <Plug>GitGutterPrevHunk
-nmap <leader>hb <Plug>GitGutterPrevHunk
+nmap ghn <Plug>GitGutterNextHunk
+nmap ghp <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
 nmap <Leader>ha <Plug>GitGutterStageHunk
