@@ -6,7 +6,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'          " Most common languages file types (syntax, indenting, etc.)
 Plug 'ervandew/supertab'             " Tab Expanding
-Plug 'tpope/vim-commentary'          " Commenting support (gc)
+" Plug 'tpope/vim-commentary'          " Commenting support (gc)
+Plug 'tomtom/tcomment_vim'
 Plug 'duggiefresh/vim-easydir'       " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'       " Delete all buffers except the current one
 Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
