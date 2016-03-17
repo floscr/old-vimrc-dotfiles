@@ -24,7 +24,7 @@ It's pretty much the US keyboard, except for a few changes:
   1. <kbd>Y</kbd> & <kbd>Z</kbd> are switched    
   *Just can't shake that*
   2. <kbd>^</kbd> replaces <kbd>§</kbd>    
-  Who needs that symbol ever.
+  *Who needs that symbol ever.*
   3. Umlaut are in the same position as in the german keyboard, but are triggered by pressing ⌥.    
   example: <kbd>⌥</kbd> + <kbd>'</kbd> = <kbd>ä</kbd>    
   example: <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>'</kbd> = <kbd>Ä</kbd>
