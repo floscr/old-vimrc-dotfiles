@@ -21,13 +21,13 @@ Since the US keyboard is much better when programming but I just can't shake som
 
 It's pretty much the US keyboard, except for a few changes:    
 
-  1. Y & Z are switched    
+  1. <kbd>Y</kbd> & <kbd>Z</kbd> are switched    
   *Just can't shake that*
   2. <kbd>^</kbd> replaces <kbd>§</kbd>    
   Who needs that symbol ever.
   3. Umlaut are in the same position as in the german keyboard, but are triggered by pressing ⌥.    
   example: <kbd>⌥</kbd> + <kbd>'</kbd> = <kbd>ä</kbd>    
-  example: <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>'<kbd> = <kbd>Ä</kbd>
+  example: <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>'</kbd> = <kbd>Ä</kbd>
 
 Here a few screenshots:
 
