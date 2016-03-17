@@ -47,6 +47,8 @@ Plug 'tokutake/twig-indent' " Fix indentation for twig
 
 " MARKDOWN
 Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
+                            " <leader>am -> Link at the bottom
+                            " <leader>ac -> Fetch link URL
 
 " CSS
 Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
