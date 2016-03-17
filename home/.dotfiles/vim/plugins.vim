@@ -105,3 +105,4 @@ call plug#end()
 
 source ~/.dotfiles/vim/plugins/autowrite.vim
 source ~/.dotfiles/vim/plugins/formatfiletype.vim
+source ~/.dotfiles/vim/plugins/Rename.vim
