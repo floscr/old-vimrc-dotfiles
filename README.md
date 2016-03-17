@@ -26,8 +26,8 @@ It's pretty much the US keyboard, except for a few changes:
   2. <kbd>^</kbd> replaces <kbd>§</kbd>    
   *Who needs that symbol ever.*
   3. Umlaut are in the same position as in the german keyboard, but are triggered by pressing ⌥.    
-  example: <kbd>⌥</kbd> + <kbd>'</kbd> = <kbd>ä</kbd>    
-  example: <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>'</kbd> = <kbd>Ä</kbd>
+  example: <kbd>ALT</kbd> + <kbd>'</kbd> = <kbd>ä</kbd>    
+  example: <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>'</kbd> = <kbd>Ä</kbd>
 
 Here a few screenshots:
 
