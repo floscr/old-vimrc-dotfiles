@@ -42,6 +42,7 @@ Plug 'elzr/vim-json'
 
 " PHP
 Plug 'evidens/vim-twig'
+Plug 'stephpy/vim-php-cs-fixer'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'tokutake/twig-indent' " Fix indentation for twig
 

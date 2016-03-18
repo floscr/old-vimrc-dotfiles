@@ -155,6 +155,13 @@ let g:limelight_conceal_guifg = '#5F7080'
 " Fix the commentary for *.vue
 autocmd FileType vue setlocal commentstring=//\ %s
 
+" ------------
+" PHP CS FIXER
+" ------------
+
+let g:php_cs_fixer_enable_default_mapping = 0
+let g:php_cs_fixer_level = "psr2"
+
 " -------
 " AIRLINE
 " -------
