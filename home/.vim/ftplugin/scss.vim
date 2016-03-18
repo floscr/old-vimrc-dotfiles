@@ -6,4 +6,4 @@ nmap <silent> <buffer> <leader>{ ?{<CR>
 nmap <silent> <buffer> <leader>} ?}<CR>
 
 " Create scss files under cursor
-nmap <silent> <buffer> gF :e <cfile>:h/_<cfile>:t.scss<CR>
+nmap <silent> <buffer> gF :e %:p:h/<cfile>:h/_<cfile>:t.scss<CR>
