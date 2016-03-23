@@ -128,6 +128,11 @@ function! AutoRestoreWinView()
     endif
 endfunction
 
+function! OpenWithMarkedApp()
+  silent! execute '!open "' . bufname("%") . '" -a /Applications/Marked\ 2.app'
+endfunction
+command! Marked call OpenWithMarkedApp()
+
 " When switching buffers, preserve window view.
 if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
