@@ -32,8 +32,8 @@ else
   nnoremap <silent> <leader>gl :Commits<CR>
   nnoremap <silent> <leader>ga :BCommits<CR>
 
-  imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-  imap <C-x><C-l> <plug>(fzf-complete-line)
+  " imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+  " imap <C-x><C-l> <plug>(fzf-complete-line)
 endif
 
 " --------
