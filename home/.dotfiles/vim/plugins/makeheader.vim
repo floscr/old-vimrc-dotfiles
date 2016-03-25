@@ -11,14 +11,17 @@ function! MakeHeader()
     " Go back to comment word
     silent! normal k^w
   else
+    silent! normal ^
+    " Remove any comments on current line
+    silent! .s/^\/\+\s//g
     " Paste our default header everywhere else
-    silent! normal o//-----------------------------------------------------------------------------
-    silent! normal kO//-----------------------------------------------------------------------------
-    silent! normal k^w
+    silent! normal O/*--------------------------------------------------------*\
+    silent! normal jo *--------------------------------------------------------*/
+    silent! normal kI* l
   endif
 
 endfunction
 
 command! MakeHeader call MakeHeader()
 
-nnoremap <leader>mh :MakeHeader<cr>
+nnoremap gmh :MakeHeader<cr>
