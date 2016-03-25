@@ -106,6 +106,18 @@ Plug 'floscr/oceanic-next'
 
 call plug#end()
 
+" -----------------------------------------------------------------------------
+" Custom Plugins
+" -----------------------------------------------------------------------------
+
+" Trim whitespace on file write
 source ~/.dotfiles/vim/plugins/autowrite.vim
+
+" Format file
 source ~/.dotfiles/vim/plugins/formatfiletype.vim
+
+" Rename current buffer
 source ~/.dotfiles/vim/plugins/Rename.vim
+
+" Make comment header depending on filetype
+source ~/.dotfiles/vim/plugins/makeheader.vim
