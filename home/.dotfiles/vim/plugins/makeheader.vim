@@ -10,6 +10,8 @@ function! MakeHeader()
     silent! normal "tyykP
     " Go back to comment word
     silent! normal k^w
+  elseif &filetype == "markdown"
+    silent! normal yypVr=o
   else
     silent! normal ^
     " Remove any comments on current line
@@ -17,7 +19,7 @@ function! MakeHeader()
     " Paste our default header everywhere else
     silent! normal O/*--------------------------------------------------------*\
     silent! normal jo *--------------------------------------------------------*/
-    silent! normal kI* l
+    silent! normal kI * l
   endif
 
 endfunction
