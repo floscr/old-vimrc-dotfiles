@@ -193,7 +193,7 @@ alias w="watson"
 alias ws="watson start"
 alias wl="watson log"
 alias wx="watson stop"
-alias wts="watson status"
+alias wst="watson status"
 
 # Terminal Vim
 alias vim="nvim"
