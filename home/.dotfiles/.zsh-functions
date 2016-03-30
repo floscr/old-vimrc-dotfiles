@@ -49,6 +49,12 @@ function tgulp() {
 # Etc
 #==============================================================================#
 
+# Uses tree - install first
+# brew install tree
+function t() {
+  tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst --filelimit 15 -L ${1:-3} -C $2
+}
+
 # Opens a man page as a pdf in preview
 function pman() {
   man -t $1 | open -f -a /Applications/Preview.app

@@ -20,6 +20,11 @@ homesick symlink
 From time to time i will describe my custom functions and aliases here:    
 
 ### Functions
+
+  + `t`
+    Display nice tree structure in current directory.
+    Uses [tree](http://mama.indstate.edu/users/ice/tree/)
+
   + `tgulp`
     Run gulp in a new split without leaving the current split.    
     This also closes all other splits!
