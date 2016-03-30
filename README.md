@@ -5,7 +5,7 @@ Dotfiles for my setup using zsh, tmux and neovim
 
 ## Setup
 
-### Cloning
+### Installation
 
 I clone my dotfiles using using [homesick]
 
@@ -14,6 +14,17 @@ gem install homesick
 homesick clone https://github.com/floscr/Dotfiles
 homesick symlink
 ```
+
+## Shell Aliases & Functions
+
+From time to time i will describe my custom functions and aliases here:    
+
+### Functions
+  + `tgulp`
+    Run gulp in a new split without leaving the current split.    
+    This also closes all other splits!
+
+* * *
 
 ### Custom German Programming keyboard
 
