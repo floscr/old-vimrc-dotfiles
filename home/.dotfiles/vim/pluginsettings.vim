@@ -105,7 +105,6 @@ highlight link SyntasticStyleWarningSign SignColumn
 " Remap emmet leader key
 let g:user_emmet_leader_key='<C-e>'
 " let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.homesick/repos/dotfiles/home/.vim/emmet/emmet-snippets.json')), "\n"))
-" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " -------------------------
 " ULTISNIPS
