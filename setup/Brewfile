@@ -40,6 +40,8 @@ brew 'git-ftp'
 brew 'youtube-dl'
 # CLI Fuzzy Finder
 brew 'fzf'
+# Tree folder architecture
+brew 'tree'
 
 #===================================#
 # Coding
