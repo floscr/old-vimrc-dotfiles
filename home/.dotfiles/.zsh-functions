@@ -37,12 +37,14 @@ function wreport() {
 #==============================================================================#
 
 # Close other panes and open gulp in new split
+# Also has the nice side effect of closing the pane after the gulp task has ended
 function tgulp() {
   PANE_COUNT=`tmux display-message -p '#{window_panes}'`
   if [[ $PANE_COUNT == 2 ]]; then
     tmux kill-pane -a
   fi
- tmux split-window -d "gulp"
+  tmux split-window -d "gulp"
+  tmux resize-pane -D 10 # Add a bit more space to the non-gulp pane
 }
 
 #==============================================================================#
