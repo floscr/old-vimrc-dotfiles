@@ -24,6 +24,10 @@ set noshowmatch  " Show matching tags
                  " having this turned on will make the cursor jump around
                  " weirdly
 
+" Workaround to get autochdir working again
+" https://github.com/vim/vim/issues/704
+autocmd VimEnter * set autochdir
+
 " SEARCHING
 set incsearch  " do incremental searching
 set ignorecase " case insensitive searching (unless specified)
