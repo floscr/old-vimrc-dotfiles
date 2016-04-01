@@ -6,3 +6,5 @@ function! ToggleTodoListBrackets()
   endif
 endfunction
 command! ToggleTodoListBrackets call ToggleTodoListBrackets()
+
+nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
