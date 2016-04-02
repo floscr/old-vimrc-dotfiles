@@ -147,8 +147,9 @@ endif
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
 autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
-" AUTOCOMMANDS Files
+"Autosource the vimrc and vim files
 autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
+
 au! FileType css,scss setl iskeyword+=-
 
 " Theme

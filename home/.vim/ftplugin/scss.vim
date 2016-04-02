@@ -1,4 +1,5 @@
 " Set - as part of the word in css
+autocmd FileType css,scss setl iskeyword+=-
 autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
 
 " Quickly navigate classes in css
