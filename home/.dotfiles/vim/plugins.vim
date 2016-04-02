@@ -17,6 +17,7 @@ Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
 Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
+Plug 'tpope/vim-dispatch'
 
 " -----------------------------------------------------------------------------
 " Snippets

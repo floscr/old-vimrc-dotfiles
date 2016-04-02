@@ -97,6 +97,7 @@ alias gcm="git commit -m"
 alias deploy="git push production master"
 alias fetch="git fetch"
 alias gru="git remote get-url origin"
+alias grini="rm -rf .git/; gini"
 
 alias unassumeall="git unassumeall"
 alias assumeall="git assumeall"
@@ -193,7 +194,7 @@ alias w="watson"
 alias ws="watson start"
 alias wl="watson log"
 alias wx="watson stop"
-alias wts="watson status"
+alias wst="watson status"
 
 # Terminal Vim
 alias vim="nvim"

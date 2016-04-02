@@ -116,6 +116,7 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
+bindkey '^[[Z' reverse-menu-complete
 
 setopt    correctall # correct misspelled commands
 unsetopt  nomatch # no error if glob fails to expand (scp fix)

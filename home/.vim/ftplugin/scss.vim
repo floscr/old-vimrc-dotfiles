@@ -7,3 +7,5 @@ nmap <silent> <buffer> <leader>} ?}<CR>
 
 " Create scss files under cursor
 nmap <buffer> <silent> gF :e %:p:h/<cfile>:h/_<cfile>:t.scss<CR>
+
+imap <buffer> <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
