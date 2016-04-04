@@ -16,7 +16,7 @@ set ruler        " show the cursor position all the time
 set laststatus=2 " Always display the status line
 set autoread     " Reload files changed outside vim
 set autochdir    " Set working dir to the current file
-set cpoptions+=$ " When changing words append a $ sign
+" set cpoptions+=$ " When changing words append a $ sign
 set mouse=a      " Mouse Control
 set shortmess+=I " Turn off the intro
 set wildmenu     " Visual autocomplete for cmd menu
@@ -147,10 +147,12 @@ endif
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
 autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
-"Autosource the vimrc and vim files
-autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
+" "Autosource the vimrc and vim files
+" autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
 
-au! FileType css,scss setl iskeyword+=-
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
+autocmd FileType gitcommit setlocal spell spelllang=en_us
+autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 " Theme
 syntax enable
