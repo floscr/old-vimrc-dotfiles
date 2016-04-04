@@ -8,6 +8,11 @@ endfunction
 command! ToggleTodoListBrackets call ToggleTodoListBrackets()
 nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
 
+au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
+hi def  StrikeoutColor guifg=#2C3D48
+hi link StrikeoutMatch StrikeoutColor
+
+
 " let g:writersRoomIsEnabled = 0
 " function! WritersRoom()
 "   if g:writersRoomIsEnabled
