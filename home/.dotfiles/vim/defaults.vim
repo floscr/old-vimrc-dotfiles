@@ -6,23 +6,24 @@ match ErrorMsg '\s\+$'
 
 " Set the leader to spacebar
 let mapleader = "\<Space>"
-set vb t_vb= " Disable System Bell
 
-set hidden       " Enable switching buffers without saving
-set backspace=2  " Backspace deletes like most programs in insert mode
-set history=50   " 50 History Entries
-set ruler        " show the cursor position all the time
-set laststatus=2 " Always display the status line
-set autoread     " Reload files changed outside vim
-set autochdir    " Set working dir to the current file
+set vb t_vb=      " Disable System Bell
+set hidden        " Enable switching buffers without saving
+set backspace=2   " Backspace deletes like most programs in insert mode
+set history=50    " 50 History Entries
+set ruler         " show the cursor position all the time
+set laststatus=2  " Always display the status line
+set autoread      " Reload files changed outside vim
+set autochdir     " Set working dir to the current file
+set mouse=a       " Mouse Control
+set shortmess+=I  " Turn off the intro
+set wildmenu      " Visual autocomplete for cmd menu
+set noshowmatch   " Show matching tags
+                  " having this turned on will make the cursor jump around
+                  " weirdly
+set synmaxcol=800 " Turn off syntax highlighting for lines longer than 800 characters
+
 " set cpoptions+=$ " When changing words append a $ sign
-set mouse=a      " Mouse Control
-set shortmess+=I " Turn off the intro
-set wildmenu     " Visual autocomplete for cmd menu
-set noshowmatch  " Show matching tags
-                 " having this turned on will make the cursor jump around
-                 " weirdly
-
 
 " Do not show cursorline on inactive panes
 augroup CursorLine
