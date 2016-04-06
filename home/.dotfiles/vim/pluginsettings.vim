@@ -161,6 +161,15 @@ autocmd FileType vue setlocal commentstring=//\ %s
 let g:php_cs_fixer_enable_default_mapping = 0
 let g:php_cs_fixer_level = "psr2"
 
+" ----------
+" Tabularize
+" ----------
+
+map <Leader>= :Tabularize /=<cr>
+map <Leader>: :Tabularize /:<cr>
+map <Leader>, :Tabularize /,<cr>
+map <Leader>" :Tabularize /"<cr>
+
 " -------
 " AIRLINE
 " -------
