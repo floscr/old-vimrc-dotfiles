@@ -118,6 +118,12 @@ if filereadable($git_vimrc)
   source $git_vimrc
 endif
 
+" Textobjects for []
+onoremap ir i[
+onoremap ar a[
+vnoremap ir i[
+vnoremap ar a[
+
 " Scrolling
 " Save the scroll position when switching buffers
 function! AutoSaveWinView()
