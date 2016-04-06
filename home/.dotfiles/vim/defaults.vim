@@ -8,7 +8,6 @@ match ErrorMsg '\s\+$'
 let mapleader = "\<Space>"
 set vb t_vb= " Disable System Bell
 
-set cursorline   " highlight current line
 set hidden       " Enable switching buffers without saving
 set backspace=2  " Backspace deletes like most programs in insert mode
 set history=50   " 50 History Entries
@@ -23,6 +22,14 @@ set wildmenu     " Visual autocomplete for cmd menu
 set noshowmatch  " Show matching tags
                  " having this turned on will make the cursor jump around
                  " weirdly
+
+
+" Do not show cursorline on inactive panes
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " Workaround to get autochdir working again
 " https://github.com/vim/vim/issues/704
