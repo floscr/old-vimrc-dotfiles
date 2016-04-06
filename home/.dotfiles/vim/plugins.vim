@@ -36,24 +36,25 @@ Plug 'scrooloose/syntastic'
 Plug 'moll/vim-node'                " Open require statements with <gf>
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
-Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
+Plug 'posva/vim-vue', { 'for': ['vue'] }
 
 " JSON
-Plug 'elzr/vim-json'
+Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 
 " PHP
-Plug 'evidens/vim-twig'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'tokutake/twig-indent' " Fix indentation for twig
+Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
+Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
+Plug 'evidens/vim-twig', { 'for': ['twig'] }
+Plug 'tokutake/twig-indent', { 'for': ['twig'] } " Fix indentation for twig
 
 " MARKDOWN
-Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
-                            " <leader>am -> Link at the bottom
-                            " <leader>ac -> Fetch link URL
+" Lucky link expansion for markdown
+" <leader>am -> Link at the bottom
+" <leader>ac -> Fetch link URL
+Plug 'sampsyo/autolink.vim', { 'for': [ 'markdown' ] }
 
 " CSS
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'vue', 'css', 'sass', 'scss'] }
+Plug 'mattn/emmet-vim'
 
 " ------------------------------------------------------------------------------
 " Interface
