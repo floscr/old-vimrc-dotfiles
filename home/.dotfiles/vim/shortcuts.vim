@@ -15,6 +15,7 @@ if has("mac")
   nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
 endif
 
+
 " Create file under cursor
 nnoremap gF :e <cfile><cr>
 
@@ -99,6 +100,32 @@ noremap Q @q
 
 " PASTE Mode
 " nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" OpenChangedFiles (<Leader>O)---------------------- {{{
+" https://github.com/ignu/dotfiles2.0/blob/master/vimrc#L539
+function! OpenChangedFiles()
+  only " Close all windows, unless they're modified
+  let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
+  let filenames = split(status, "\n")
+
+  if len(filenames) < 1
+    let status = system('git show --pretty="format:" --name-only')
+    let filenames = split(status, "\n")
+  endif
+
+  exec "edit " . filenames[0]
+
+  for filename in filenames[1:]
+    if len(filenames) > 4
+      exec "tabedit " . filename
+    else
+      exec "sp " . filename
+    endif
+  endfor
+endfunction
+command! OpenChangedFiles :call OpenChangedFiles()
+noremap<Leader>O :OpenChangedFiles <CR>
+" }}}
 
 " Buffers
 map gn :bn<cr>
