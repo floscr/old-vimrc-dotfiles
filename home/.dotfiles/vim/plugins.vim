@@ -6,18 +6,17 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'          " Most common languages file types (syntax, indenting, etc.)
 Plug 'ervandew/supertab'             " Tab Expanding
-" Plug 'tpope/vim-commentary'          " Commenting support (gc)
 Plug 'tomtom/tcomment_vim'
 Plug 'duggiefresh/vim-easydir'       " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'       " Delete all buffers except the current one
 Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
 Plug 'jiangmiao/auto-pairs'
-" Plug 'cohama/lexima.vim'             " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
 Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'
+Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 
 " -----------------------------------------------------------------------------
 " Snippets
