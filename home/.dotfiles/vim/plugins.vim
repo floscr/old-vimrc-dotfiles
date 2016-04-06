@@ -53,7 +53,7 @@ Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
                             " <leader>ac -> Fetch link URL
 
 " CSS
-Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'vue', 'css', 'sass', 'scss'] }
 
 " ------------------------------------------------------------------------------
 " Interface
