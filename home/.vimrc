@@ -16,8 +16,8 @@ if has("gui_macvim")
   au GuiEnter * hi ErrorMsg NONE
 
   set guifont=Inconsolata:h18
-  set lines=40
-  set columns=120
+  " set lines=40
+  " set columns=120
   set colorcolumn=80
   set gcr=n:blinkon0 " Turn off blinking cursor in normal mode
   set guioptions-=e  " We don't want Gui tabs.

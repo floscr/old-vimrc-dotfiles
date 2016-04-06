@@ -72,10 +72,6 @@ nnoremap <space>gpl :Dispatch! git pull<CR>
 " SYTASTIC
 " --------
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
@@ -160,6 +156,15 @@ autocmd FileType vue setlocal commentstring=//\ %s
 
 let g:php_cs_fixer_enable_default_mapping = 0
 let g:php_cs_fixer_level = "psr2"
+
+" ----------
+" Tabularize
+" ----------
+
+map <Leader>= :Tabularize /=<cr>
+map <Leader>: :Tabularize /:<cr>
+map <Leader>, :Tabularize /,<cr>
+map <Leader>" :Tabularize /"<cr>
 
 " -------
 " AIRLINE

@@ -6,17 +6,17 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'          " Most common languages file types (syntax, indenting, etc.)
 Plug 'ervandew/supertab'             " Tab Expanding
-" Plug 'tpope/vim-commentary'          " Commenting support (gc)
 Plug 'tomtom/tcomment_vim'
 Plug 'duggiefresh/vim-easydir'       " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'       " Delete all buffers except the current one
 Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
 Plug 'jiangmiao/auto-pairs'
-" Plug 'cohama/lexima.vim'             " Automatically closing tags
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
 Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
+Plug 'tpope/vim-dispatch'
+Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -35,24 +35,25 @@ Plug 'scrooloose/syntastic'
 Plug 'moll/vim-node'                " Open require statements with <gf>
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
-Plug 'posva/vim-vue'                " Vue.JS Syntax Hightlighting
+Plug 'posva/vim-vue', { 'for': ['vue'] }
 
 " JSON
-Plug 'elzr/vim-json'
+Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 
 " PHP
-Plug 'evidens/vim-twig'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'tokutake/twig-indent' " Fix indentation for twig
+Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
+Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
+Plug 'evidens/vim-twig', { 'for': ['twig'] }
+Plug 'tokutake/twig-indent', { 'for': ['twig'] } " Fix indentation for twig
 
 " MARKDOWN
-Plug 'sampsyo/autolink.vim' " Lucky link expansion for markdown
-                            " <leader>am -> Link at the bottom
-                            " <leader>ac -> Fetch link URL
+" Lucky link expansion for markdown
+" <leader>am -> Link at the bottom
+" <leader>ac -> Fetch link URL
+Plug 'sampsyo/autolink.vim', { 'for': [ 'markdown' ] }
 
 " CSS
-Plug 'mattn/emmet-vim'              " Emmet CSS Expansions
+Plug 'mattn/emmet-vim'
 
 " ------------------------------------------------------------------------------
 " Interface

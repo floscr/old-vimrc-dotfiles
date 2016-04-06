@@ -6,23 +6,35 @@ match ErrorMsg '\s\+$'
 
 " Set the leader to spacebar
 let mapleader = "\<Space>"
-set vb t_vb= " Disable System Bell
 
-set cursorline   " highlight current line
-set hidden       " Enable switching buffers without saving
-set backspace=2  " Backspace deletes like most programs in insert mode
-set history=50   " 50 History Entries
-set ruler        " show the cursor position all the time
-set laststatus=2 " Always display the status line
-set autoread     " Reload files changed outside vim
-set autochdir    " Set working dir to the current file
-set cpoptions+=$ " When changing words append a $ sign
-set mouse=a      " Mouse Control
-set shortmess+=I " Turn off the intro
-set wildmenu     " Visual autocomplete for cmd menu
-set noshowmatch  " Show matching tags
-                 " having this turned on will make the cursor jump around
-                 " weirdly
+set vb t_vb=      " Disable System Bell
+set hidden        " Enable switching buffers without saving
+set backspace=2   " Backspace deletes like most programs in insert mode
+set history=50    " 50 History Entries
+set ruler         " show the cursor position all the time
+set laststatus=2  " Always display the status line
+set autoread      " Reload files changed outside vim
+set autochdir     " Set working dir to the current file
+set mouse=a       " Mouse Control
+set shortmess+=I  " Turn off the intro
+set wildmenu      " Visual autocomplete for cmd menu
+set noshowmatch   " Show matching tags
+                  " having this turned on will make the cursor jump around
+                  " weirdly
+set synmaxcol=800 " Turn off syntax highlighting for lines longer than 800 characters
+
+" set cpoptions+=$ " When changing words append a $ sign
+
+" Do not show cursorline on inactive panes
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+" Workaround to get autochdir working again
+" https://github.com/vim/vim/issues/704
+autocmd VimEnter * set autochdir
 
 " SEARCHING
 set incsearch  " do incremental searching
@@ -106,6 +118,12 @@ if filereadable($git_vimrc)
   source $git_vimrc
 endif
 
+" Textobjects for []
+onoremap ir i[
+onoremap ar a[
+vnoremap ir i[
+vnoremap ar a[
+
 " Scrolling
 " Save the scroll position when switching buffers
 function! AutoSaveWinView()
@@ -143,9 +161,12 @@ endif
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
 autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
-" AUTOCOMMANDS Files
-autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
-au! FileType css,scss setl iskeyword+=-
+" "Autosource the vimrc and vim files
+" autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
+
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
+autocmd FileType gitcommit setlocal spell spelllang=en_us
+autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 " Theme
 syntax enable
