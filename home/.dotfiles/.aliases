@@ -152,6 +152,7 @@ alias apacheStop='sudo apachectl stop'
 
 # Quick Server
 alias quickserver='python -m SimpleHTTPServer'
+alias server='browser-sync start --server --files="*.html, *.css, *.js"'
 
 # IP address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
