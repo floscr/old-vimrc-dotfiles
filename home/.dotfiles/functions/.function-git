@@ -239,6 +239,12 @@ git_branch_delete_and_push () {
   done
 }
 
+# Change the current origin remote url
+function git-change-remote () {
+ git remote remove origin
+ git remote add origin "$@"
+}
+
 # Quickly go to various branches
 function master () {
   gb master
