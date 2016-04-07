@@ -1,4 +1,3 @@
-bower
 dev-ip
 eslint
 babel-eslint
@@ -9,6 +8,5 @@ iectrl
 imageoptim-cli
 jshint
 mversion
-psdinfo
 outset
 browser-sync
