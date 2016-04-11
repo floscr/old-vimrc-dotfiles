@@ -134,8 +134,8 @@ nmap ghn <Plug>GitGutterNextHunk
 nmap ghp <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hu <Plug>GitGutterRevertHunk
+nmap gha <Plug>GitGutterStageHunk
+nmap ghu <Plug>GitGutterRevertHunk
 
 " ---------
 " LIMELIGHT
