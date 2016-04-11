@@ -23,3 +23,5 @@ sessions/
 
 # Ignore vims swap files
 *.swp
+
+home/.vim/spell
