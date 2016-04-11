@@ -4,6 +4,16 @@ class ${1:`vim_snippets#Filename()`} {
 }
 endsnippet
 
+# setter method
+snippet pf
+/**
+ * ${1:foo}
+ */
+${2:public} function ${5:$1}(${4}) {
+  ${3}
+}
+endsnippet
+
 snippet echo "echo" w
 <?php echo ${0}; ?>
 endsnippet
