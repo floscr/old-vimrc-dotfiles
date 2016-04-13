@@ -95,9 +95,11 @@ Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
 Plug 'wellle/targets.vim'                         " Additional text targets
 
 " Custom textobjects
-Plug 'kana/vim-textobj-user'
+
+Plug 'kana/vim-textobj-user'                  " Custom Text Objects
 Plug 'kana/vim-textobj-function'              " Function Text Object
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
+Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
 
 " -----------------------------------------------------------------------------
 " Color Scheme
