@@ -51,8 +51,8 @@ snippet vreq
 var ${1} = require('${2:$1}');$0
 endsnippet
 
-snippet me
-module.exports = function($0) {};
+snippet me "module.exports" b
+module.exports = ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('_'))`};$0
 endsnippet
 
 snippet shebang
