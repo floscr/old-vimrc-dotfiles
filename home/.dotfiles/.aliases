@@ -215,6 +215,9 @@ alias vvs='mvim --remote-send ":vs<CR>"; mvim --remote '
 alias nw="npm run watch"
 alias nb="npm run build"
 
+# Quit all gulp tasks
+alias pkg="pkill gulp"
+
 #==============================================================================#
 # Etc
 #==============================================================================#
