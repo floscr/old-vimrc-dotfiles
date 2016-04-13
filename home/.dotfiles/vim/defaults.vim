@@ -164,9 +164,9 @@ autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 " "Autosource the vimrc and vim files
 " autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC
 
-autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
-autocmd FileType gitcommit setlocal spell spelllang=en_us
-autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
+" autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
+" autocmd FileType gitcommit setlocal spell spelllang=en_us
+" autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 " Theme
 syntax enable
