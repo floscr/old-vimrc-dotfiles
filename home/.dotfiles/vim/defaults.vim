@@ -128,6 +128,10 @@ onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
+" buffer text-object
+xnoremap i% GoggV
+omap i% :<C-u>normal vi%<CR>
+
 " ----------------
 " Custom Functions
 " ----------------
