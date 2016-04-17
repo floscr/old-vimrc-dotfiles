@@ -118,11 +118,19 @@ if filereadable($git_vimrc)
   source $git_vimrc
 endif
 
+" -----------
+" Textobjects
+" -----------
+
 " Textobjects for []
 onoremap ir i[
 onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
+
+" ----------------
+" Custom Functions
+" ----------------
 
 " Scrolling
 " Save the scroll position when switching buffers
@@ -157,6 +165,10 @@ if v:version >= 700
     autocmd BufEnter * call AutoRestoreWinView()
 endif
 
+" ------------
+" Autocommands
+" ------------
+
 " AUTOCOMMANDS Filetypes
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
 autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
@@ -168,7 +180,7 @@ autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
 autocmd FileType gitcommit setlocal spell spelllang=en_us
 autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
-" Theme
+
 syntax enable
 set background=dark
 colorscheme OceanicNext
