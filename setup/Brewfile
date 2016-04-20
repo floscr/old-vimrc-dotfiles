@@ -48,6 +48,7 @@ brew 'tree'
 #===================================#
 
 brew 'ctags'
+brew 'editorconfig'
 
 # HowDoI
 # If the installation for howdoi fails execute this cmd:
