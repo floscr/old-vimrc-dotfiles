@@ -37,8 +37,6 @@ alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
 
 ## LIST
 
-# Recursive directory listing
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 
 # List all files colorized in long format
 alias l="ls -l \${colorflag}"
