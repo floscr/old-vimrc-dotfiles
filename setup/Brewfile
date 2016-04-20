@@ -20,6 +20,9 @@ brew 'nvm'
 brew 'wget'
 brew 'ffmpeg'
 
+# Better unix tools
+brew 'coreutils'
+
 # NeoVim
 tap 'neovim/neovim'
 
