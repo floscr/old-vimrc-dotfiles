@@ -38,11 +38,11 @@ alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
 ## LIST
 
 
-# List all files colorized in long format
-alias l="ls -l \${colorflag}"
+# List files in color with directories first
+alias l="/usr/local/bin/gls --color -lah --group-directories-first"
 
-# List all files colorized in long format, including dot files
-alias la="ls -la \${colorflag}"
+# Same as l alias, but with hidden files
+alias la="/usr/local/bin/gls --color -lah --group-directories-first"
 
 # List only directories
 alias lsd='ls -l | grep "^d"'
