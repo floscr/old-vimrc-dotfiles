@@ -46,13 +46,6 @@ alias la="/usr/local/bin/gls --color -lah --group-directories-first"
 
 # List only directories
 alias lsd='ls -l | grep "^d"'
-
-# Always use color output for `ls`
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-    alias ls="command ls -G"
-else
-    alias ls="command ls --color"
-fi
 alias ld='lsd'
 
 # Find and replace aliases like in alfred
