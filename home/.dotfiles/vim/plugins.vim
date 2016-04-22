@@ -44,7 +44,7 @@ Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 Plug 'evidens/vim-twig', { 'for': ['twig'] }
-Plug 'tokutake/twig-indent', { 'for': ['twig'] } " Fix indentation for twig
+" Plug 'tokutake/twig-indent', { 'for': ['twig'] } " Fix indentation for twig
 
 " MARKDOWN
 " Lucky link expansion for markdown
