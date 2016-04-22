@@ -10,3 +10,4 @@ jshint
 mversion
 outset
 browser-sync
+stylefmt
