@@ -45,6 +45,8 @@ brew 'youtube-dl'
 brew 'fzf'
 # Tree folder architecture
 brew 'tree'
+# Better ack
+brew 'the_silver_searcher'
 
 #===================================#
 # Coding
