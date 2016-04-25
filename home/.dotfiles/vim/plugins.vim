@@ -63,7 +63,7 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
-Plug 'junegunn/vim-peekaboo'     " Shwo register sidebar when pasting
+" Plug 'junegunn/vim-peekaboo'     " Shwo register sidebar when pasting
 Plug 'junegunn/limelight.vim'    " Syntax highlighting only on current paragraph
 Plug 'junegunn/goyo.vim'         " Focus Mode
 
