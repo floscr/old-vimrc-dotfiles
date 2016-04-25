@@ -4,8 +4,11 @@ nnoremap gF :e <cfile><cr>
 " Enter command by pressing enter
 nnoremap <Cr> :
 
+" Make * star work in visual mode
+vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
+
 " Break line on cursor
-function! BreakHere()
+function! s:BreakHere()
   s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
   call histdel("/", -1)
 endfunction
