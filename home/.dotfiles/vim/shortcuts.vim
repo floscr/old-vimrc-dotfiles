@@ -70,7 +70,11 @@ nnoremap <C-c> :q<return>
 
 " Quickly open/reload vim
 nnoremap <leader>ev :e ~/.homesick/repos/dotfiles/home/.vimrc<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Reload .vimrc
+" This would cause the last search to be highlighted,
+" Workaround to disable this.
+nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
