@@ -1,13 +1,15 @@
-
-
 " Create file under cursor
 nnoremap gF :e <cfile><cr>
 
 " Enter command by pressing enter
 nnoremap <Cr> :
 
-" Split lines / opposite of J
-nnoremap S ht lr<cr>k$
+" Break line on cursor
+function! BreakHere()
+  s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
+  call histdel("/", -1)
+endfunction
+nnoremap K :call BreakHere()<CR>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
