@@ -1,19 +1,3 @@
-" Workaround for alt keys to work with mac
-" º = A-j
-" ∆ = A-k
-if has("mac")
-  nnoremap º :m .+1<CR>==
-  nnoremap ∆ :m .-2<CR>==
-  vnoremap º :m '>+1<CR>gv=gv
-  vnoremap ∆ :m '<-2<CR>gv=gv
-
-  " Number up/down
-  " ⌥ + a/x
-  nnoremap å <C-a>
-  nnoremap Å <C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a><C-a>
-  nnoremap ≈ <C-x>
-  nnoremap Ù <C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x><C-x>
-endif
 
 
 " Create file under cursor
