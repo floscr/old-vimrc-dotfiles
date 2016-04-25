@@ -7,6 +7,17 @@ nnoremap <Cr> :
 " Make * star work in visual mode
 vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 
+" Stop jump by paragraph ({}) poluting the jumplist
+function! s:KeepJumpsParagraphMotion(forward, count, visual)
+    execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
+endfunction
+nnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
+xnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 1)<CR>
+onoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
+nnoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 0)<CR>
+xnoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 1)<CR>
+onoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 0)<CR>
+
 " Break line on cursor
 function! s:BreakHere()
   s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
