@@ -155,6 +155,7 @@ alias vu="vagrant up"
 alias vup="vagrant up --provision"
 alias vssh="vagrant ssh"
 alias vh="vagrant halt"
+alias vs="vagrant suspend"
 alias vr="vagrant reload"
 
 #==============================================================================#
