@@ -12,6 +12,14 @@ function! MakeHeader()
     silent! normal k^w
   elseif &filetype == "markdown"
     silent! normal yypVr=o
+  elseif &filetype == "conf"
+    silent! normal ^
+    " Remove any comments on current line
+    silent! .s/^\/\+\s//g
+    " Paste our default header everywhere else
+    silent! normal O#=============================================================================#
+    silent! normal jo#=============================================================================#
+    silent! normal kI# l
   else
     silent! normal ^
     " Remove any comments on current line
