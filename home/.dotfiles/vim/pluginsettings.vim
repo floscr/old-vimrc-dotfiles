@@ -5,6 +5,8 @@
 
 if has("gui_running")
   " CTRLP
+  let g:ctrlp_max_depth = 30
+  let g:ctrlp_max_files = 0
   let g:ctrlp_user_command = [
         \ '.git', 'cd %s && git ls-files . --others -co --exclude-standard',
         \ 'find %s -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
@@ -133,7 +135,7 @@ nmap ghp <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
 nmap gha <Plug>GitGutterStageHunk
-nmap ghu <Plug>GitGutterRevertHunk
+nmap ghu <Plug>GitGutterUndoHunk
 
 " ---------
 " LIMELIGHT
