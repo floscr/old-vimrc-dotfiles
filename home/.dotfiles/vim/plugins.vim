@@ -17,6 +17,7 @@ Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
 Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'            " Async Execution
 Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
+Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -32,9 +33,9 @@ Plug 'SirVer/ultisnips'
 Plug 'scrooloose/syntastic'
 
 " JAVASCRIPT
-Plug 'moll/vim-node'                " Open require statements with <gf>
+Plug 'moll/vim-node'                      " Open require statements with <gf>
 Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax' " JS Syntax Highlighting
+Plug 'jelera/vim-javascript-syntax'       " JS Syntax Highlighting
 Plug 'posva/vim-vue', { 'for': ['vue'] }
 
 " JSON
