@@ -165,7 +165,15 @@ source $DOTFILES/.zsh-functions        # Functions
 # Plugins
 #==============================================================================#
 
-eval "$(fasd --init auto posix-alias zsh-hook)"
+
+fasd_cache="$HOME/.fasd-init-bash"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+  fasd --init auto posix-alias zsh-completions zsh-hook zsh-wcomp >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
+
+# eval "$(fasd --init auto posix-alias zsh-hook)"
 
 eval "$(scmpuff init -s --aliases=false)"
 
