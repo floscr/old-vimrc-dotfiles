@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "declaration-colon-space-after": "always-single-line",
+    "media-feature-colon-space-before": "always-single-line"
+  }
+}
