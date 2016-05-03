@@ -17,6 +17,7 @@ set autoread      " Reload files changed outside vim
 set autochdir     " Set working dir to the current file
 set mouse=a       " Mouse Control
 set shortmess+=I  " Turn off the intro
+set complete=.,b,u,]
 set wildmenu      " Visual autocomplete for cmd menu
 set noshowmatch   " Show matching tags
                   " having this turned on will make the cursor jump around
