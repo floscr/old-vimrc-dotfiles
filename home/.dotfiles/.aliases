@@ -209,6 +209,7 @@ alias nb="npm run build"
 
 # Quit all gulp tasks
 alias pkg="pkill gulp"
+alias killgulp="pkill gulp"
 
 #==============================================================================#
 # Etc
