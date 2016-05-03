@@ -85,7 +85,7 @@ ZSH=$DOTFILES_PLUGINS/oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # ZSH PlUGINS
-plugins=(git npm osx history-substring-search encode64)
+plugins=(git npm osx history-substring-search encode64 fasd)
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt
