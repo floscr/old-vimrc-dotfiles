@@ -185,11 +185,23 @@ autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 " autocmd FileType gitcommit setlocal spell spelllang=en_us
 " autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
+" ------
+" Colors
+" ------
 
 syntax enable
 set background=dark
-colorscheme OceanicNext
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme hybrid
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight SpecialKey ctermfg=66 guifg=#223843
+
+" Nicer guttercolors for hybrid theme
+if g:colors_name == "hybrid"
+  highlight GitGutterAdd guifg=#99C794
+  highlight GitGutterDelete guifg=#CC6665
+  highlight GitGutterChangeDelete guifg=#B294BB
+  highlight vertsplit guifg=#2E3C47
+endif
 
 source ~/.dotfiles/vim/shortcuts.vim
