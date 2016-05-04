@@ -162,7 +162,7 @@ let g:php_cs_fixer_level = "psr2"
 " ----------
 
 map <Leader>= :Tabularize /=<cr>
-map <Leader>: :Tabularize /:<cr>
+map <Leader>: :Tabularize /:\zs<cr>
 map <Leader>, :Tabularize /,<cr>
 map <Leader>" :Tabularize /"<cr>
 
