@@ -188,7 +188,8 @@ autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
 
 syntax enable
 set background=dark
-colorscheme OceanicNext
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme hybrid
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight SpecialKey ctermfg=66 guifg=#223843
 
