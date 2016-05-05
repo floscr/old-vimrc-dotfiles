@@ -22,6 +22,8 @@
 # FOLDER SHORTCUTS
 alias dek="cd ~/Desktop"
 alias down="cd ~/Downloads"
+alias rep="cd ~/Code/Repositories"
+alias co="cd ~/Code"
 
 # NAVIGATION
 alias ..="cd .."
@@ -221,9 +223,6 @@ alias docx_convert_to_markdown="pandoc -f docx -t markdown -o"
 
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
-
-# Alias for brew cask
-alias cask="brew cask"
 
 # Tab Completion for all open sessions
 alias tma="tmux switch-client -t"
