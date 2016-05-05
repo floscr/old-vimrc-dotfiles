@@ -18,6 +18,7 @@ Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'            " Async Execution
 Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
+Plug 'vim-scripts/vim-auto-save'
 
 " -----------------------------------------------------------------------------
 " Snippets
