@@ -170,6 +170,8 @@ if v:version >= 700
     autocmd BufEnter * call AutoRestoreWinView()
 endif
 
+command! -nargs=* Wrap set wrap linebreak nolist
+
 " ------------
 " Autocommands
 " ------------
