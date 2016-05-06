@@ -7,6 +7,9 @@ nnoremap <Cr> :
 " Make * star work in visual mode
 vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 
+" Toggle spelling
+nnoremap <silent> <leader>ss :set spell!<CR>
+
 " Stop jump by paragraph ({}) poluting the jumplist
 function! s:KeepJumpsParagraphMotion(forward, count, visual)
     execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
