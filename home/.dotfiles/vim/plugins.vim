@@ -108,7 +108,7 @@ Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
 " Color Scheme
 " -----------------------------------------------------------------------------
 
-" Plug 'floscr/oceanic-next'
+Plug 'floscr/oceanic-next'
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
