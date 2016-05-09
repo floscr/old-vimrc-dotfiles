@@ -35,7 +35,7 @@ augroup END
 
 " Workaround to get autochdir working again
 " https://github.com/vim/vim/issues/704
-autocmd VimEnter * set autochdir
+" autocmd VimEnter * set autochdir
 
 " SEARCHING
 set incsearch  " do incremental searching
