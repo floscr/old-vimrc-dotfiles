@@ -6,11 +6,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'          " Most common languages file types (syntax, indenting, etc.)
 Plug 'ervandew/supertab'             " Tab Expanding
-Plug 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'           " Commenting
 Plug 'duggiefresh/vim-easydir'       " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'       " Delete all buffers except the current one
 Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'          " Auto closing pairs
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
@@ -18,7 +18,8 @@ Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'            " Async Execution
 Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
-Plug 'vim-scripts/vim-auto-save'
+
+Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -64,8 +65,8 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
-Plug 'junegunn/limelight.vim'    " Syntax highlighting only on current paragraph
-Plug 'junegunn/goyo.vim'         " Focus Mode
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }   " Syntax highlighting only on current paragraph
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }         " Focus Mode
 
 Plug 'bling/vim-bufferline'      " Buffer bar in the lightline
 Plug 'vim-airline/vim-airline'
