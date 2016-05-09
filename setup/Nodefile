@@ -11,3 +11,4 @@ mversion
 outset
 browser-sync
 stylefmt
+jsonlint
