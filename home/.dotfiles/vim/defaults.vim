@@ -113,6 +113,9 @@ let sh_fold_enabled=1
 let vimsyn_folding='af'
 let xml_syntax_folding=1
 
+" NETRW
+let g:netrw_list_hide='^\.git/$'
+
 " " Load .vimrc in the base directory of a git repo, if it exists
 " let $git_vimrc= expand(system("echo -n $(git rev-parse --show-toplevel)/.lvimrc"))
 " if filereadable($git_vimrc)
