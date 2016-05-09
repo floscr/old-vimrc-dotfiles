@@ -46,7 +46,6 @@ Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 Plug 'evidens/vim-twig', { 'for': ['twig'] }
-" Plug 'tokutake/twig-indent', { 'for': ['twig'] } " Fix indentation for twig
 
 " MARKDOWN
 " Lucky link expansion for markdown
@@ -65,7 +64,6 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
-" Plug 'junegunn/vim-peekaboo'     " Shwo register sidebar when pasting
 Plug 'junegunn/limelight.vim'    " Syntax highlighting only on current paragraph
 Plug 'junegunn/goyo.vim'         " Focus Mode
 
@@ -109,7 +107,7 @@ Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
 " Color Scheme
 " -----------------------------------------------------------------------------
 
-Plug 'floscr/oceanic-next'
+" Plug 'floscr/oceanic-next'
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
