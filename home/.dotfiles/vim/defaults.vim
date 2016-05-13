@@ -101,17 +101,20 @@ set scrolloff=10 "Start scrolling when we're 10 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-" FOLDING
-set foldmethod=syntax
-set foldlevelstart=20
-let javaScript_fold=1
-let perl_fold=1
-let r_syntax_folding=1
-let php_folding=1
-let ruby_fold=1
-let sh_fold_enabled=1
-let vimsyn_folding='af'
-let xml_syntax_folding=1
+set foldmethod=indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+" " FOLDING
+" let javaScript_fold=1
+" let perl_fold=1
+" let r_syntax_folding=1
+" let php_folding=1
+" let ruby_fold=1
+" let sh_fold_enabled=1
+" let vimsyn_folding='af'
+" let xml_syntax_folding=1
 
 " NETRW
 let g:netrw_list_hide='^\.git/$'
