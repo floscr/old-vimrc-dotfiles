@@ -25,3 +25,4 @@ sessions/
 *.swp
 
 home/.vim/spell
+home/.vim/view
