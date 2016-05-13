@@ -12,10 +12,10 @@ if has("gui_running")
         \ 'find %s -maxdepth 4 -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
         \ ]
   nmap <D-p> :CtrlP<cr>
-  nmap <D-[> :CtrlPBuffer<cr>
+  nmap <D-r> :CtrlPBuffer<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
   nnoremap <leader>. :CtrlPTag<cr>
-  nmap <D-r> :CtrlPBufTag<cr>
+  nmap <D-[> :CtrlPBufTag<cr>
 else
   " FZF
   " Open files in a split
