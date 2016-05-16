@@ -30,7 +30,8 @@ function! s:BreakHere()
   s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
   call histdel("/", -1)
 endfunction
-nnoremap K :call BreakHere()<CR>
+command! BreakHere call s:BreakHere()
+nnoremap <silent> K :BreakHere<CR>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
