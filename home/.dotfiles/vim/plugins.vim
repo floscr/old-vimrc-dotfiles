@@ -6,11 +6,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'          " Most common languages file types (syntax, indenting, etc.)
 Plug 'ervandew/supertab'             " Tab Expanding
-Plug 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'           " Commenting
 Plug 'duggiefresh/vim-easydir'       " Create directories on save
 Plug 'vim-scripts/BufOnly.vim'       " Delete all buffers except the current one
 Plug 'tpope/vim-repeat'              " Repeat certain cmds like surround
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'          " Auto closing pairs
 Plug 'kurkale6ka/vim-pairs'          " CIQ to match any pairs
 Plug 'editorconfig/editorconfig-vim' " Editor config for vim
 Plug 'tpope/vim-unimpaired'          " ]q for :cnext [q for :cprevious
@@ -18,7 +18,8 @@ Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'            " Async Execution
 Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
-Plug 'vim-scripts/vim-auto-save'
+
+Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -46,7 +47,6 @@ Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 Plug 'evidens/vim-twig', { 'for': ['twig'] }
-" Plug 'tokutake/twig-indent', { 'for': ['twig'] } " Fix indentation for twig
 
 " MARKDOWN
 " Lucky link expansion for markdown
@@ -65,9 +65,8 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
-" Plug 'junegunn/vim-peekaboo'     " Shwo register sidebar when pasting
-Plug 'junegunn/limelight.vim'    " Syntax highlighting only on current paragraph
-Plug 'junegunn/goyo.vim'         " Focus Mode
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }   " Syntax highlighting only on current paragraph
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }         " Focus Mode
 
 Plug 'bling/vim-bufferline'      " Buffer bar in the lightline
 Plug 'vim-airline/vim-airline'
@@ -100,6 +99,7 @@ Plug 'wellle/targets.vim'                         " Additional text targets
 
 Plug 'kana/vim-textobj-user'                  " Custom Text Objects
 Plug 'kana/vim-textobj-function'              " Function Text Object
+Plug 'kana/vim-textobj-line'                  " Line text object
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}

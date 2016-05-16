@@ -9,13 +9,13 @@ if has("gui_running")
   let g:ctrlp_max_files = 0
   let g:ctrlp_user_command = [
         \ '.git', 'cd %s && git ls-files . --others -co --exclude-standard',
-        \ 'find %s -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
+        \ 'find %s -maxdepth 4 -type f | egrep -v "(node_modules/|dist/|dst/|.git/|bower_components/)"'
         \ ]
   nmap <D-p> :CtrlP<cr>
-  nmap <D-[> :CtrlPBuffer<cr>
+  nmap <D-r> :CtrlPBuffer<cr>
   nmap <D-e> :CtrlPMRUFiles<cr>
   nnoremap <leader>. :CtrlPTag<cr>
-  nmap <D-r> :CtrlPBufTag<cr>
+  nmap <D-[> :CtrlPBufTag<cr>
 else
   " FZF
   " Open files in a split

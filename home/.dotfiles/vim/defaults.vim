@@ -35,7 +35,7 @@ augroup END
 
 " Workaround to get autochdir working again
 " https://github.com/vim/vim/issues/704
-autocmd VimEnter * set autochdir
+" autocmd VimEnter * set autochdir
 
 " SEARCHING
 set incsearch  " do incremental searching
@@ -102,22 +102,23 @@ set sidescrolloff=15
 set sidescroll=1
 
 " FOLDING
-set foldmethod=syntax
-set foldlevelstart=20
-let javaScript_fold=1
-let perl_fold=1
-let r_syntax_folding=1
-let php_folding=1
-let ruby_fold=1
-let sh_fold_enabled=1
-let vimsyn_folding='af'
-let xml_syntax_folding=1
+set foldmethod=indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
 
-" Load .vimrc in the base directory of a git repo, if it exists
-let $git_vimrc= expand(system("echo -n $(git rev-parse --show-toplevel)/.lvimrc"))
-if filereadable($git_vimrc)
-  source $git_vimrc
-endif
+" Automatic fold saving
+autocmd BufWrite * mkview
+autocmd BufRead * silent loadview
+
+" NETRW
+let g:netrw_list_hide='^\.git/$'
+
+" " Load .vimrc in the base directory of a git repo, if it exists
+" let $git_vimrc= expand(system("echo -n $(git rev-parse --show-toplevel)/.lvimrc"))
+" if filereadable($git_vimrc)
+"   source $git_vimrc
+" endif
 
 " -----------
 " Textobjects
