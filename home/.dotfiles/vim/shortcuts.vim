@@ -10,6 +10,10 @@ vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 " Toggle spelling
 nnoremap <silent> <leader>ss :set spell!<CR>
 
+" INC/DEC by 10
+nnoremap <silent> <leader>a <c-a>9.
+nnoremap <silent> <leader>x <c-x>9.
+
 " Stop jump by paragraph ({}) poluting the jumplist
 function! s:KeepJumpsParagraphMotion(forward, count, visual)
     execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
