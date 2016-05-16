@@ -80,6 +80,7 @@ set noswapfile
 set expandtab
 set softtabstop=2
 set shiftwidth=2
+set noshiftround
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
 
