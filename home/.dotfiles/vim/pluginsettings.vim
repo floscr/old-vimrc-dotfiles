@@ -166,6 +166,13 @@ map <Leader>: :Tabularize /:\zs<cr>
 map <Leader>, :Tabularize /,<cr>
 map <Leader>" :Tabularize /"<cr>
 
+" --------
+" Sideways
+" --------
+
+nnoremap gan :SidewaysRight<cr>
+nnoremap gap :SidewaysLeft<cr>
+
 " -------
 " AIRLINE
 " -------
