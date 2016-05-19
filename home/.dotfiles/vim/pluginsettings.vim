@@ -42,6 +42,9 @@ endif
 " Fugitive
 " --------
 
+" Open quickfix window automatically after grepping
+autocmd QuickFixCmdPost *grep* cwindow
+
 set diffopt+=vertical " Always use vertical diffs
 
 nnoremap <silent> <space>gf :Git add %:p<CR><CR>
