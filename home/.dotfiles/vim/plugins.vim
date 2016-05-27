@@ -20,6 +20,8 @@ Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
 Plug 'AndrewRadev/sideways.vim' " Switch arg order
 
+Plug 'justinmk/vim-dirvish'
+
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
 
 
@@ -62,8 +64,6 @@ Plug 'mattn/emmet-vim'
 " ------------------------------------------------------------------------------
 " Interface
 " ------------------------------------------------------------------------------
-
-Plug 'tpope/vim-vinegar'
 
 " Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
