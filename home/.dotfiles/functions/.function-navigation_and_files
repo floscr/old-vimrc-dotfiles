@@ -19,7 +19,7 @@ function _open_location() {
   fi
 }
 
-function rename() {
+function rename_dir() {
   DIRNAME=$(dirname $1)
   mv "$1" "$DIRNAME/$2"
 }
