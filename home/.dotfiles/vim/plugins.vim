@@ -50,7 +50,8 @@ Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 " PHP
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
-Plug 'evidens/vim-twig', { 'for': ['twig'] }
+Plug 'evidens/vim-twig'
+Plug 'mitsuhiko/vim-jinja'
 
 " MARKDOWN
 " Lucky link expansion for markdown
