@@ -21,6 +21,7 @@ Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
 Plug 'AndrewRadev/sideways.vim' " Switch arg order
 
 Plug 'justinmk/vim-dirvish'
+Plug 'Toggle'
 
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
 
