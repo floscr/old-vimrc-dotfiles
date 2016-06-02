@@ -32,10 +32,51 @@
   </item>
 
   <item>
-      <name>Space to Control_L except for Adobe Apps</name>
-      <identifier>remap.space2controlLExceptAdobeApps</identifier>
-      <not>ADOBEAPPS, MODO</not>
-      <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SPACE, KeyCode::CONTROL_L, KeyCode::SPACE</autogen>
+    <name>Space to Control_L except for Adobe Apps</name>
+    <identifier>remap.space2controlLExceptAdobeApps</identifier>
+    <not>ADOBEAPPS, MODO</not>
+    <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SPACE, KeyCode::CONTROL_L, KeyCode::SPACE</autogen>
+  </item>
+
+  <!-- ======================================================== -->
+  <!-- Disable Sys Diagnose Shortcut -->
+  <!-- https://sayzlim.net/disable-sysdiagnose-key-combination/ -->
+  <!-- ======================================================== -->
+
+  <item>
+    <name>Disable Sysdiagnose DOT Key</name>
+    <appendix>Disable Sysdiagnose DOT Key</appendix>
+    <identifier>private.disable_sysdiagnose_dot_key</identifier>
+    <autogen>
+      --KeyToKey--
+      KeyCode::DOT,
+      ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+      KeyCode::VK_NONE
+    </autogen>
+  </item>
+
+  <item>
+    <name>Disable Sysdiagnose COMMA Key</name>
+    <appendix>Disable Sysdiagnose COMMA Key</appendix>
+    <identifier>private.disable_sysdiagnose_comma_key</identifier>
+    <autogen>
+      --KeyToKey--
+      KeyCode::COMMA,
+      ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+      KeyCode::VK_NONE
+    </autogen>
+  </item>
+
+  <item>
+    <name>Disable Sysdiagnose Foward Slash Key</name>
+    <appendix>Disable Sysdiagnose FORWARD SLASH Key</appendix>
+    <identifier>private.disable_sysdiagnose_forward_slash</identifier>
+    <autogen>
+      --KeyToKey--
+      KeyCode::SLASH,
+      ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+      KeyCode::VK_NONE
+    </autogen>
   </item>
 
 </root>
