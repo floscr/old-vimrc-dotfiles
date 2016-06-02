@@ -108,6 +108,7 @@ Plug 'kana/vim-textobj-line'                  " Line text object
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
+Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
 
 " -----------------------------------------------------------------------------
 " Color Scheme
