@@ -56,7 +56,8 @@ Plug 'evidens/vim-twig', { 'for': ['twig'] }
 " Lucky link expansion for markdown
 " <leader>am -> Link at the bottom
 " <leader>ac -> Fetch link URL
-Plug 'sampsyo/autolink.vim', { 'for': [ 'markdown' ] }
+" Plug 'sampsyo/autolink.vim', { 'for': [ 'markdown' ] }
+Plug 'avdgaag/vim-lucky-markdown', { 'for': [ 'markdown' ] }
 
 " CSS
 Plug 'mattn/emmet-vim'
