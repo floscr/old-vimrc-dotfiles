@@ -7,6 +7,11 @@
   </appdef>
 
   <appdef>
+    <appname>Sketch</appname>
+    <prefix>com.bohemiancoding.sketch3</prefix>
+  </appdef>
+
+  <appdef>
     <appname>MODO</appname>
     <equal>com.luxology.modo</equal>
   </appdef>
@@ -32,9 +37,9 @@
   </item>
 
   <item>
-      <name>Space to Control_L except for Adobe Apps</name>
+      <name>Space to Control_L except for Adobe Apps, Modo and Sketch</name>
       <identifier>remap.space2controlLExceptAdobeApps</identifier>
-      <not>ADOBEAPPS, MODO</not>
+      <not>ADOBEAPPS, MODO, Sketch</not>
       <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SPACE, KeyCode::CONTROL_L, KeyCode::SPACE</autogen>
   </item>
 
