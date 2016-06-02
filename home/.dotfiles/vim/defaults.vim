@@ -180,7 +180,7 @@ command! -nargs=* Wrap set wrap linebreak nolist
 
 " AUTOCOMMANDS Filetypes
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
-autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
+autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 
 " "Autosource the vimrc and vim files
 " autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC

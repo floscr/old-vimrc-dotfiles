@@ -21,6 +21,8 @@ Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
 Plug 'AndrewRadev/sideways.vim' " Switch arg order
 
 Plug 'justinmk/vim-dirvish'
+Plug 'Toggle' " Toggle booleans with +
+Plug 'maxbrunsfeld/vim-yankstack' " Yanked text history
 
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
 
@@ -50,7 +52,7 @@ Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 " PHP
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
-Plug 'evidens/vim-twig', { 'for': ['twig'] }
+Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 
 " MARKDOWN
 " Lucky link expansion for markdown
