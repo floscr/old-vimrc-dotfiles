@@ -1,0 +1,24 @@
+snippet if
+{% if ${1} %}
+  ${0}
+{% endif %}
+endsnippet
+
+snippet endif
+{% endif %}
+endsnippet
+
+snippet dump
+{{ dump(${0}) }}
+endsnippet
+
+snippet space
+{% spaceless %}
+  ${0}
+{% endspaceless %}
+endsnippet
+
+snippet for
+{% for item in ${1} %}
+{% endfor %}
+endsnippet
