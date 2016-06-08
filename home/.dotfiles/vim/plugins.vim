@@ -22,7 +22,7 @@ Plug 'AndrewRadev/sideways.vim' " Switch arg order
 
 Plug 'justinmk/vim-dirvish'
 Plug 'Toggle' " Toggle booleans with +
-Plug 'maxbrunsfeld/vim-yankstack' " Yanked text history
+" Plug 'maxbrunsfeld/vim-yankstack' " Yanked text history
 
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
 
