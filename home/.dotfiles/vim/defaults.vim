@@ -80,6 +80,7 @@ set noswapfile
 set expandtab
 set softtabstop=2
 set shiftwidth=2
+set noshiftround
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
 
@@ -171,13 +172,15 @@ if v:version >= 700
     autocmd BufEnter * call AutoRestoreWinView()
 endif
 
+command! -nargs=* Wrap set wrap linebreak nolist
+
 " ------------
 " Autocommands
 " ------------
 
 " AUTOCOMMANDS Filetypes
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
-autocmd BufNewFile,BufReadPost *.twig set syntax=jinja
+autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 
 " "Autosource the vimrc and vim files
 " autocmd! Bufwritepost .vimrc,*.vim source $MYVIMRC

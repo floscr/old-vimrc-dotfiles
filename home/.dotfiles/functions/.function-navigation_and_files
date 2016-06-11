@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Rename files in current directory to lowercase filenames
+# http://stackoverflow.com/a/13051934
+function files_to_lowercase {
+  for i in $(find . -type f -name "*[A-Z]*"); do
+    mv "$i" "$(echo $i | tr A-Z a-z)"
+  done
+}
+
 # Workaround for the 'o' alias
 # When no args are give it just opens the current location in finder
 # Otherwise use the give file/dir
@@ -11,7 +19,7 @@ function _open_location() {
   fi
 }
 
-function rename() {
+function rename_dir() {
   DIRNAME=$(dirname $1)
   mv "$1" "$DIRNAME/$2"
 }

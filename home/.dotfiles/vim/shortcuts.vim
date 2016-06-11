@@ -7,6 +7,13 @@ nnoremap <Cr> :
 " Make * star work in visual mode
 vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 
+" Toggle spelling
+nnoremap <silent> <leader>ss :set spell!<CR>
+
+" INC/DEC by 10
+nnoremap <silent> <leader>a <c-a>9.
+nnoremap <silent> <leader>x <c-x>9.
+
 " Stop jump by paragraph ({}) poluting the jumplist
 function! s:KeepJumpsParagraphMotion(forward, count, visual)
     execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
@@ -23,7 +30,8 @@ function! s:BreakHere()
   s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
   call histdel("/", -1)
 endfunction
-nnoremap K :call BreakHere()<CR>
+command! BreakHere call s:BreakHere()
+nnoremap <silent> K :BreakHere<CR>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
@@ -46,11 +54,11 @@ nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 " Yank from cursor to end of line
 map Y ^y$
 
-" Resize window with the arrow keys =)
-noremap <up> <C-W>+
-noremap <down> <C-W>-
-noremap <left> 3<C-W><
-noremap <right> 3<C-W>>
+" " Resize window with the arrow keys =)
+" noremap <up> <C-W>+
+" noremap <down> <C-W>-
+" noremap <left> 3<C-W><
+" noremap <right> 3<C-W>>
 
 " TABBING BEHAVIOUR
 " UnIndet with <shift-tab>
@@ -82,11 +90,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-""" SYSTEM CLIPBOARD COPY & PASTE SUPPORT
-" map <silent><Leader>p :set paste<CR><esc>"*p:set nopaste<cr>"
-" map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
-" map <silent><C-v> :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
@@ -101,9 +104,6 @@ endif
 
 " Run the q macro
 noremap Q @q
-
-" PASTE Mode
-" nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " OpenChangedFiles (<Leader>O)---------------------- {{{
 " https://github.com/ignu/dotfiles2.0/blob/master/vimrc#L539
@@ -130,7 +130,6 @@ endfunction
 command! OpenChangedFiles :call OpenChangedFiles()
 noremap<Leader>O :OpenChangedFiles <CR>
 " }}}
-
 
 " Delete buffer while keeping window layout (don't close buffer's windows).
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
@@ -205,7 +204,6 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call s:Bclose('<bang>', '<args>')
 " nnoremap <silent> <Leader>r :Bclose<CR>
-
 
 " Buffers
 map gn :bn<cr>

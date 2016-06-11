@@ -12,6 +12,11 @@ au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
 hi def  StrikeoutColor guifg=#2C3D48
 hi link StrikeoutMatch StrikeoutColor
 
+function! WritersRoom()
+  set background=light
+  colorscheme pencil
+endfunction
+command! WritersRoom call WritersRoom()
 
 " let g:writersRoomIsEnabled = 0
 " function! WritersRoom()

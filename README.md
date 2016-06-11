@@ -33,7 +33,7 @@ From time to time i will describe my custom functions and aliases here:
 
 ### Custom German Programming keyboard
 
-Since the US keyboard is much better when programming but I just can't shake some keys that are hardwired to my brain, I've created my own Frankenstein of a keyboard input for germand and english typing.    
+Since the US keyboard is much better when programming but I just can't shake some keys that are hardwired to my brain, I've created my own Frankenstein of a keyboard input for German and English typing.    
 
 It's pretty much the US keyboard, except for a few changes:    
 
@@ -41,7 +41,7 @@ It's pretty much the US keyboard, except for a few changes:
   *Just can't shake that*
   2. <kbd>^</kbd> replaces <kbd>§</kbd>    
   *Who needs that symbol ever.*
-  3. Umlaut are in the same position as in the german keyboard, but are triggered by pressing ⌥.    
+  3. Umlaut are in the same position as in the German keyboard, but are triggered by pressing ⌥.    
   example: <kbd>ALT</kbd> + <kbd>'</kbd> = <kbd>ä</kbd>    
   example: <kbd>ALT</kbd> + <kbd>SHIFT</kbd> + <kbd>'</kbd> = <kbd>Ä</kbd>
 

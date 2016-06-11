@@ -1,6 +1,30 @@
 # ---------
+# DOCUMENTS
+# ---------
+
+snippet c "Class" b
+/**
+ * $1
+ */
+class ${1:`!p snip.rv = snip.basename`} {
+
+  constructor() {
+    $0
+  }
+
+}
+export {$1}
+endsnippet
+
+# ---------
 # Functions
 # ---------
+
+snippet f
+function ${1:myFunction}(${2:args}) {
+$0
+}
+endsnippet
 
 snippet fun
 function ${1:myFunction}(${2:args}) {
@@ -12,6 +36,12 @@ snippet vfun
 var $1 = function($2) {
 $0
 }
+endsnippet
+
+snippet >
+=> ${1:{
+  $0
+}}
 endsnippet
 
 # -----
@@ -95,11 +125,19 @@ snippet me "module.exports" b
 module.exports = ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('_'))`};$0
 endsnippet
 
+snippet mef "module.exports function"
+module.exports = function() {
+  $0
+}
+endsnippet
+
 snippet shebang
 #!/usr/bin/env node
 endsnippet
 
-# Documentation
+# -------------
+# DOCUMENTATION
+# -------------
 
 # docstring
 snippet /**
@@ -118,7 +156,7 @@ endsnippet
 
 
 # --------------
-# Query selector
+# QUERY SELECTOR
 # --------------
 
 snippet get
@@ -179,7 +217,7 @@ console.dir(${0:obj});
 endsnippet
 
 # ------------
-# Task Runners
+# TASK RUNNERS
 # ------------
 
 snippet gulp
@@ -196,7 +234,7 @@ gulp.task('watch', function() {
 endsnippet
 
 # ----
-# Misc
+# MISC
 # ----
 
 snippet IFIE

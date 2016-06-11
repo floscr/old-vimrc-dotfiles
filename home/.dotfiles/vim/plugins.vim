@@ -18,8 +18,14 @@ Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'            " Async Execution
 Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
+Plug 'AndrewRadev/sideways.vim' " Switch arg order
+
+Plug 'justinmk/vim-dirvish'
+Plug 'Toggle' " Toggle booleans with +
+" Plug 'maxbrunsfeld/vim-yankstack' " Yanked text history
 
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
+
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -46,13 +52,14 @@ Plug 'elzr/vim-json', { 'for': [ 'json' ] }
 " PHP
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
-Plug 'evidens/vim-twig', { 'for': ['twig'] }
+Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 
 " MARKDOWN
 " Lucky link expansion for markdown
 " <leader>am -> Link at the bottom
 " <leader>ac -> Fetch link URL
-Plug 'sampsyo/autolink.vim', { 'for': [ 'markdown' ] }
+" Plug 'sampsyo/autolink.vim', { 'for': [ 'markdown' ] }
+Plug 'avdgaag/vim-lucky-markdown', { 'for': [ 'markdown' ] }
 
 " CSS
 Plug 'mattn/emmet-vim'
@@ -61,9 +68,7 @@ Plug 'mattn/emmet-vim'
 " Interface
 " ------------------------------------------------------------------------------
 
-Plug 'tpope/vim-vinegar'
-
-Plug 'vim-signature'             " Save marks in the gutter
+" Plug 'vim-signature'             " Save marks in the gutter
 Plug 'easymotion/vim-easymotion' " Letter Navigation
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }   " Syntax highlighting only on current paragraph
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }         " Focus Mode
@@ -103,6 +108,7 @@ Plug 'kana/vim-textobj-line'                  " Line text object
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
+Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
 
 " -----------------------------------------------------------------------------
 " Color Scheme
@@ -110,6 +116,7 @@ Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
 
 Plug 'floscr/oceanic-next'
 Plug 'w0ng/vim-hybrid'
+Plug 'reedes/vim-colors-pencil'
 
 call plug#end()
 

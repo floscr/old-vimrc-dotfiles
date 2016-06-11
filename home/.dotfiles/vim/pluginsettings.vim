@@ -42,6 +42,9 @@ endif
 " Fugitive
 " --------
 
+" Open quickfix window automatically after grepping
+autocmd QuickFixCmdPost *grep* cwindow
+
 set diffopt+=vertical " Always use vertical diffs
 
 nnoremap <silent> <space>gf :Git add %:p<CR><CR>
@@ -165,6 +168,13 @@ map <Leader>= :Tabularize /=<cr>
 map <Leader>: :Tabularize /:\zs<cr>
 map <Leader>, :Tabularize /,<cr>
 map <Leader>" :Tabularize /"<cr>
+
+" --------
+" Sideways
+" --------
+
+nnoremap gan :SidewaysRight<cr>
+nnoremap gap :SidewaysLeft<cr>
 
 " -------
 " AIRLINE
