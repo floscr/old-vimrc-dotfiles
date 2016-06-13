@@ -14,7 +14,7 @@ function! s:MakeHeader(type)
   elseif &filetype == "markdown"
     silent! normal yypVr=o
 
-  elseif &filetype == "conf"
+  elseif &filetype == "conf" || &filetype == "apache"
     silent! normal ^
     " Remove any comments on current line
     silent! .s/^\/\+\s//g
