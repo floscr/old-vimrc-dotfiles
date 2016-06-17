@@ -18,14 +18,14 @@ Plug 'rhysd/clever-f.vim'            " Repeat last F keyword with f
 Plug 'tpope/vim-dispatch'            " Async Execution
 Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
-Plug 'AndrewRadev/sideways.vim' " Switch arg order
+Plug 'AndrewRadev/sideways.vim'      " Switch arg order
+Plug 'Toggle'                        " Toggle booleans with +
 
-Plug 'justinmk/vim-dirvish'
-Plug 'Toggle' " Toggle booleans with +
+Plug 'scrooloose/nerdtree'
+" Plug 'justinmk/vim-dirvish'
 " Plug 'maxbrunsfeld/vim-yankstack' " Yanked text history
 
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
-
 
 " -----------------------------------------------------------------------------
 " Snippets
@@ -68,12 +68,12 @@ Plug 'mattn/emmet-vim'
 " Interface
 " ------------------------------------------------------------------------------
 
-" Plug 'vim-signature'             " Save marks in the gutter
-Plug 'easymotion/vim-easymotion' " Letter Navigation
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }   " Syntax highlighting only on current paragraph
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }         " Focus Mode
+" Plug 'vim-signature'                               " Save marks in the gutter
+Plug 'easymotion/vim-easymotion'                     " Letter Navigation
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Syntax highlighting only on current paragraph
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }           " Focus Mode
 
-Plug 'bling/vim-bufferline'      " Buffer bar in the lightline
+Plug 'bling/vim-bufferline'                          " Buffer bar in the lightline
 Plug 'vim-airline/vim-airline'
 
 if has("gui_macvim")
