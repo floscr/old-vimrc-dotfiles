@@ -178,6 +178,11 @@ command! -nargs=* Wrap set wrap linebreak nolist
 " Autocommands
 " ------------
 
+" Automatic path switching only for files
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+autocmd BufEnter * silent! lcd %:p:h
+
+
 " AUTOCOMMANDS Filetypes
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
