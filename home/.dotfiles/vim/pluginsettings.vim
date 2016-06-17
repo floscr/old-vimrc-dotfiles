@@ -72,6 +72,12 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 
 " --------
+" NERDTREE
+" --------
+
+map <C-n> :NERDTreeToggle<CR>
+
+" --------
 " SYTASTIC
 " --------
 
