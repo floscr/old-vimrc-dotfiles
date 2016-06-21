@@ -57,26 +57,25 @@ I've modified the keyboard with [ukulele.app](http://scripts.sil.org/cms/scripts
 
 To get NeoVim & tmux working with true color support you have to do the following things:
 
-1. **Download iTerm nightly:**    
-   [iTerm nightly]
+0. **Download [iTerm2](https://iterm2.com)
+0. brew update && brewn install tmux
+0. put this in your ~/.tmux.conf
 
-2. **Intall tmux with truecolor patch**    
+```txt
+set -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+```
 
-   ```bash
-   brew edit tmux
-   ```
+0. add this to your ~/.vimrc
 
-   Then, before `def install`, add this.
+```viml
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+```
 
-   ```ruby
-     option "with-truecolor", "Build with truecolor patch enabled"
-     patch do
-       url "https://gist.githubusercontent.com/zchee/9f6f2ca17acf49e04088/raw/0c9bf0d84e69cb49b5e59950dd6dde6ca265f9a1/tmux-truecolor.diff"
-       sha1 "8e91ab1c076899feba1340854e96594aafee55de"
-     end if build.with? "truecolor"
-   ```
+0. now you have tmux+nvim+iterm2 with full truecolor support.
 
-   Now you can run `brew install tmux --with-truecolor` and get all the colors for iterm nightly.
+* more info here: https://github.com/ninrod/tricks/blob/master/shell/tmux.md#the-standard-way-since-tmux-22
 
-[iTerm nightly]: https://iterm2.com/downloads/nightly/
 [homesick]: https://github.com/technicalpickles/homesick
