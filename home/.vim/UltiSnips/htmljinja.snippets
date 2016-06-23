@@ -29,6 +29,14 @@ snippet block
 {% endblock %}
 endsnippet
 
+snippet set
+{% set ${1:my_var} = $0 %}
+endsnippet
+
+snippet #
+{# $0 #}
+endsnippet
+
 snippet b
 {% block ${1:block_name} %}
   $0
