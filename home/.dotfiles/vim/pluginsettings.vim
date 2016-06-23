@@ -173,7 +173,7 @@ let g:php_cs_fixer_level = "psr2"
 " Match // Tabularize Comments after commands not at beginning of line
 map <Leader>/ :Tabularize /\s\zs\/\/<cr>
 map <Leader>= :Tabularize /=<cr>
-map <Leader>: :Tabularize /:\zs<cr>
+map <Leader>: :Tabularize /:\s\zs<cr>
 map <Leader>, :Tabularize /,<cr>
 map <Leader>" :Tabularize /\s\zs"<cr>
 
