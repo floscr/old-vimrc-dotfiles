@@ -26,6 +26,7 @@ Plug 'scrooloose/nerdtree'
 " Plug 'maxbrunsfeld/vim-yankstack' " Yanked text history
 
 Plug 'vim-scripts/vim-auto-save', { 'on': 'AutoSaveToggle' }
+Plug 'haya14busa/incsearch.vim'
 
 " -----------------------------------------------------------------------------
 " Snippets
