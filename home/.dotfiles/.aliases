@@ -92,6 +92,9 @@ alias fetch="git fetch"
 alias gru="git remote get-url origin"
 alias grini="rm -rf .git/; gini"
 
+# Amend a file without changing the commit message
+alias gamf="git commit --amend --no-edit"
+
 alias unassumeall="git unassumeall"
 alias assumeall="git assumeall"
 
