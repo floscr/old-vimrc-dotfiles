@@ -71,7 +71,6 @@ Plug 'mattn/emmet-vim'
 " Interface
 " ------------------------------------------------------------------------------
 
-" Plug 'vim-signature'                               " Save marks in the gutter
 Plug 'easymotion/vim-easymotion'                     " Letter Navigation
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Syntax highlighting only on current paragraph
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }           " Focus Mode
