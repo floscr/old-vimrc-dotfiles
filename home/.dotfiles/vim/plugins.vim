@@ -63,6 +63,8 @@ Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 Plug 'avdgaag/vim-lucky-markdown', { 'for': [ 'markdown' ] }
 
 " CSS
+Plug 'ap/vim-css-color'
+Plug 'iandoe/vim-osx-colorpicker'
 Plug 'mattn/emmet-vim'
 
 " ------------------------------------------------------------------------------
