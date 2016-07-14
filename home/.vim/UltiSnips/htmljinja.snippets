@@ -29,6 +29,12 @@ snippet block
 {% endblock %}
 endsnippet
 
+snippet macro
+{% macro ${1:macro_name}(${2:macro_variable}) %}
+  $0
+{% endmacro %}
+endsnippet
+
 snippet inc
 {% include '$0' %}
 endsnippet
