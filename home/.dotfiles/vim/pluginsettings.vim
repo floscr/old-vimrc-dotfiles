@@ -96,7 +96,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 " let b:syntastic_javascript_eslint_exec = StrTrim(system('npm-which eslint'))
 " let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
-let g:syntastic_mode_map = { 'passive_filetypes': ['twig'] } " Ignore linting for twig
+let g:syntastic_mode_map = { 'passive_filetypes': ['twig', 'html'] } " Ignore linting for twig
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
