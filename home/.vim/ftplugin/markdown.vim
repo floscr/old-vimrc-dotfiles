@@ -9,7 +9,7 @@ command! ToggleTodoListBrackets call ToggleTodoListBrackets()
 nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
 
 au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
-hi def  StrikeoutColor guifg=#2C3D48
+hi def  StrikeoutColor guifg=#2E3C47
 hi link StrikeoutMatch StrikeoutColor
 
 function! WritersRoom()
