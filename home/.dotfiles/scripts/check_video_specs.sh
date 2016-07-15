@@ -8,6 +8,7 @@ MIN_AUDIO_BIT_RATE='128' # Kbps
 if ! brew ls |  grep -q media-info; then
   echo "Install mediainfo brew package first!"
   echo "$: brew install mediainfo"
+  exit
 fi
 
 # Print a colorized text
