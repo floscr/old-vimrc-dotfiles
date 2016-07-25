@@ -20,6 +20,7 @@ Plug 'AndrewRadev/splitjoin.vim'     " Split and join lines with gS/gJ
 Plug 'christoomey/vim-sort-motion'   " Sort with motion sip
 Plug 'AndrewRadev/sideways.vim'      " Switch arg order
 Plug 'Toggle'                        " Toggle booleans with +
+Plug 'dyng/ctrlsf.vim'
 
 Plug 'scrooloose/nerdtree'
 " Plug 'justinmk/vim-dirvish'

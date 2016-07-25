@@ -38,6 +38,18 @@ else
   " imap <C-x><C-l> <plug>(fzf-complete-line)
 endif
 
+" ------
+" CtrlFS
+" ------
+
+let g:ctrlsf_default_root = 'project'
+
+nmap <C-F>f <Plug>CtrlSFPrompt
+nnoremap <C-F>t :CtrlSFToggle<CR>
+nmap <C-F>l <Plug>CtrlSFQuickfixPrompt
+
+
+
 " --------
 " Fugitive
 " --------
