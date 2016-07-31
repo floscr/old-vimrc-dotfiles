@@ -32,7 +32,9 @@ PATH=~/.composer/vendor/bin:$PATH
 
 # NVM
 export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
+if [[ -d $NVM_DIR ]]; then
+  . $(brew --prefix nvm)/nvm.sh
+fi
 
 # Color Setup
 export COLORTERM=xterm-256color
