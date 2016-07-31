@@ -1,15 +1,16 @@
 #compdef git_branch_delete_and_push
 
 _git_branch_delete_and_push () {
-  ref=$(git branch | cut -c 2)
-  if [[ -n $ref ]]; then
-    if (( CURRENT == 2 )); then
+  local curcontext="$curcontext" branch line
+  typeset -A opt_args
 
+  _arguments '*: :->branch'
+
+  case $branch in
+    *)
+      ref=$(git branch | cut -c 2)
       remotes=`git branch | cut -c 2- | sed "s/\|$//g"`
       compadd `echo $remotes | sed "s/ //g"`
-    fi
-  else;
-    _files
-fi
+  esac
 }
 

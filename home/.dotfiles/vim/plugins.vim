@@ -64,7 +64,7 @@ Plug 'avdgaag/vim-lucky-markdown', { 'for': [ 'markdown' ] }
 
 " CSS
 Plug 'ap/vim-css-color'
-Plug 'iandoe/vim-osx-colorpicker'
+Plug 'KabbAmine/vCoolor.vim'
 Plug 'mattn/emmet-vim'
 
 " ------------------------------------------------------------------------------
