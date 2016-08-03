@@ -13,8 +13,6 @@ function! s:MakeHeader(type)
 
   elseif &filetype == "markdown"
     silent! normal yypVr=o
-  elseif &filetype == "markdown"
-    silent! normal yypVr=o
 
   elseif &filetype == "conf" || &filetype == "apache" || &filetype == "sh"
     silent! normal ^
