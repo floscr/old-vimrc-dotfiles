@@ -3,6 +3,9 @@
 # Reduce Transparency
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
+# Turn off big cursor on mouse shake
+defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool YES
+
 #==============================================================================#
 # Finder                                                                       #
 # =============================================================================#
