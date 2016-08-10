@@ -45,10 +45,16 @@ endif
 let g:ctrlsf_default_root = 'project'
 
 nmap <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
 nnoremap <C-F>t :CtrlSFToggle<CR>
 nmap <C-F>l <Plug>CtrlSFQuickfixPrompt
 
+" ------
+" VColor
+" ------
 
+" Disable VColor default mappings
+let g:vcoolor_disable_mappings = 1
 
 " --------
 " Fugitive
