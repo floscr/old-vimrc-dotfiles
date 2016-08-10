@@ -68,6 +68,9 @@ Plug 'ap/vim-css-color'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'mattn/emmet-vim'
 
+" VUE
+Plug 'othree/html5.vim'
+
 " ------------------------------------------------------------------------------
 " Interface
 " ------------------------------------------------------------------------------

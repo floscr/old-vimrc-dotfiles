@@ -182,6 +182,7 @@ command! -nargs=* Wrap set wrap linebreak nolist
 " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 autocmd BufEnter * silent! lcd %:p:h
 
+au BufRead,BufNewFile *.vue set filetype=html
 
 " AUTOCOMMANDS Filetypes
 autocmd BufNewFile,BufReadPost *.md,*.txt set filetype=markdown
