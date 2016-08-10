@@ -194,6 +194,9 @@ alias wl="watson log"
 alias wx="watson stop"
 alias wst="watson status"
 
+# Visual studio code
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
 # Terminal Vim
 alias vim="nvim"
 alias vi="nvim"
