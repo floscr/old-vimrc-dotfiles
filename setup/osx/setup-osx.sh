@@ -50,6 +50,9 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Etc                                                                          #
 # =============================================================================#
 
+# Set default alert sound to Bottle
+defaults write com.apple.systemsound com.apple.sound.beep.sound /System/Library/Sounds/Bottle.aiff
+
 # Disable autocorrect
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 
