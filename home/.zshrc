@@ -24,7 +24,10 @@ export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin:/usr/bin:/bin:/usr/sbin:/s
 export PATH=$PATH:$HOME/.dotfiles/bin
 export PATH=$PATH:$HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:$/.dotfiles/bin
 export PATH="/usr/local/sbin:$PATH"
-PATH=~/.composer/vendor/bin:$PATH
+
+# Composer and Laravel
+export PATH="vendor/bin:$PATH"
+export PATH=~/.composer/vendor/bin:$PATH
 
 
 
