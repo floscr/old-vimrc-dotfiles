@@ -53,6 +53,10 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Etc                                                                          #
 # =============================================================================#
 
+# Set all F-keys to standard keys
+# Brightness keys have to be rebound with something like keybord-maestro
+defaults write -g com.apple.keyboard.fnState -bool true
+
 # Disable autocorrect
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 
