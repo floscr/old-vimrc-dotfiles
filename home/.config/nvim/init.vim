@@ -74,6 +74,7 @@ Plug 'wellle/targets.vim'
 Plug 'moll/vim-node' 
 " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'    
 " JSON syntax
 Plug 'sheerun/vim-json'
 " Vue support
@@ -151,14 +152,7 @@ Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
 " ---------------------------------------------------------------------------------------------------------------------
 " Hybrid
 Plug 'w0ng/vim-hybrid'
-" Badwolf
-Plug 'sjl/badwolf'
-" Molokai
-Plug 'tomasr/molokai'
-" Iceberg
-Plug 'cocopon/iceberg.vim'
-" Tender
-Plug 'jacoborus/tender.vim'
+Plug 'mhartington/oceanic-next'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -194,6 +188,20 @@ set nostartofline                           " Prevent cursor from moving to begi
 set nojoinspaces                            " No extra space when joining a line which ends with . ? !
 set suffixesadd+=.js,.rb                    " Add js and ruby files to suffixes
 set synmaxcol=160                           " Don't try to syntax highlight minified files
+
+ " For Neovim 0.1.3 and 0.1.4
+ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+ " Or if you have Neovim >= 0.1.5
+ if (has("termguicolors"))
+   set termguicolors
+ endif
+
+set background=dark
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme hybrid
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+highlight SpecialKey ctermfg=66 guifg=#223843
 
 " ---------------------------------------------------------------------------------------------------------------------
 " 2.1 Split settings (more natural) {{{
