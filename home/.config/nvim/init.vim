@@ -596,6 +596,8 @@ nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 
+let g:buftabline_numbers = 2
+
 " BufBar Theme Overrides
 if g:colors_name == "hybrid"
   highlight BufTabLineFill guibg=#2E3C47
