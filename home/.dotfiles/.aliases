@@ -194,19 +194,11 @@ alias wl="watson log"
 alias wx="watson stop"
 alias wst="watson status"
 
-# Terminal Vim
+# Vim 
 alias vim="nvim"
 alias vi="nvim"
-
-# GuiVim
-alias v="mvim"
+alias v="nvim"
 alias v.="v ."
-
-# Open given files / dir with macvim in current window in horizontal split
-alias vsv='mvim --remote-send ":sv<CR>"; mvim --remote '
-
-# Open given files / dir with macvim in current window in vertical split
-alias vvs='mvim --remote-send ":vs<CR>"; mvim --remote '
 
 # TASK RUNNER
 alias nw="npm run watch"

@@ -53,7 +53,6 @@ export DOTFILES_SCRIPTS="$DOTFILES/scripts"
 export DOTFILES_TEMP="$DOTFILES/temp"
 
 export GIT_EDITOR='nvim'
-
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
