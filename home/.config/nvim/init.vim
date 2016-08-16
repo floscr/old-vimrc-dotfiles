@@ -400,6 +400,23 @@ nnoremap J mzJ`z
 " nnoremap <silent> <F7> :set list!<CR> :set list?<CR>
 
 
+" -----------------------------------------------------
+" 3.5 Buffer & Window management
+" -----------------------------------------------------
+
+" Buffers
+map gn :bn<cr>
+map gp :bp<cr>
+map gb :b#<cr>
+map gdd :Bclose<cr>
+map gdo :Bonly<cr>
+map gl :ls<return>
+
+" Clear highlighting on escape in normal mode
+nnoremap <silent><esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
+
 " ======================================================================================================================
 " 4.0 Plugins settings
 " ======================================================================================================================
