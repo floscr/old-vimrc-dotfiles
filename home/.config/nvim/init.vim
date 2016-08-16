@@ -190,7 +190,6 @@ set showmatch                               " Show matching brackets when text i
 set nostartofline                           " Prevent cursor from moving to beginning of line when switching buffers
 set nojoinspaces                            " No extra space when joining a line which ends with . ? !
 set suffixesadd+=.js,.rb                    " Add js and ruby files to suffixes
-set synmaxcol=160                           " Don't try to syntax highlight minified files
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
@@ -215,6 +214,22 @@ highlight SpecialKey ctermfg=66 guifg=#223843
 " -----------------------------------------------------------------------------
 set splitbelow                              " Splitting a window will put the new window below the current
 set splitright                              " Splitting a window will put the new window right of the current
+"}}}
+
+" -----------------------------------------------------------------------------
+" 2.1 Wrap Settings
+" -----------------------------------------------------------------------------
+set colorcolumn=+1 " Add a colorized column tho show the maximal text length
+set textwidth=80   " Set the recommended text length to 80 characters
+set nowrap         " Don't wrap lines
+
+" -----------------------------------------------------------------------------
+" 2.2 Timeout settings {{{
+" -----------------------------------------------------------------------------
+" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely. (by Steve Losh)
+set notimeout
+set ttimeout
+set ttimeoutlen=10
 "}}}
 
 " -----------------------------------------------------------------------------
@@ -251,6 +266,16 @@ set list
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
 set showbreak=↪
 "}}}
+
+" -----------------------------------------------------------------------------
+" 2.6 Indentation
+" -----------------------------------------------------------------------------
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+set noshiftround
+set autoindent " Automatic indentation
+set copyindent " Copy previous indetation on autoindenting
 
 " -----------------------------------------------------------------------------
 " 2.7 Filetype settings {{{
