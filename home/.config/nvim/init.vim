@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
 " -----------------------------------------------------------------------------
 " Language agnostic plugins 
 " -----------------------------------------------------------------------------
+
 " Asynchronous maker and linter (needs linters to work)
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
 " Autocomplete
@@ -30,12 +31,13 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'tpope/vim-repeat'              
 " Repeat the last F keyword with f
 Plug 'rhysd/clever-f.vim'            
+" Automatically closing pair stuff
+Plug 'cohama/lexima.vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation 
 " -----------------------------------------------------------------------------
-" Automatically closing pair stuff
-Plug 'cohama/lexima.vim'
+
 " Split oneliners 
 Plug 'AndrewRadev/splitjoin.vim'     
 " Sort alphabetically gsa
@@ -54,6 +56,7 @@ Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
 " -----------------------------------------------------------------------------
 " Text Objects
 " -----------------------------------------------------------------------------
+
 Plug 'kana/vim-textobj-user'                  " Custom Text Objects
 Plug 'kana/vim-textobj-function'              " Function Text Object
 Plug 'kana/vim-textobj-line'                  " Line text object
@@ -68,6 +71,7 @@ Plug 'wellle/targets.vim'
 " -----------------------------------------------------------------------------
 " Javascript
 " -----------------------------------------------------------------------------
+
 " Open files with 'gf' without extensions
 Plug 'moll/vim-node' 
 " Modern JS support (indent, syntax, etc)
@@ -81,6 +85,7 @@ Plug 'posva/vim-vue', { 'for': ['vue'] }
 " -----------------------------------------------------------------------------
 " PHP
 " -----------------------------------------------------------------------------
+
 " Better indentation support for PHP files with HTML
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 " Twig support for vim
@@ -90,6 +95,7 @@ Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 " -----------------------------------------------------------------------------
 " HTML / CSS
 " -----------------------------------------------------------------------------
+
 " HTML5 syntax
 Plug 'othree/html5.vim'
 " Color highlighter
@@ -100,6 +106,7 @@ Plug 'mattn/emmet-vim'
 " -----------------------------------------------------------------------------
 " Interface improving 
 " -----------------------------------------------------------------------------
+
 " Lightline (simple status line)
 Plug 'itchyny/lightline.vim'
 " Buffers tabline
@@ -124,6 +131,7 @@ endif
 " -----------------------------------------------------------------------------
 " Focus Mode
 " -----------------------------------------------------------------------------
+
 " Syntax highlighting just on the current line
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 " Focus Mode
@@ -132,6 +140,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " -----------------------------------------------------------------------------
 " External tools integration plugins 
 " -----------------------------------------------------------------------------
+
 " Fugitive
 Plug 'tpope/vim-fugitive'
 " Gitgutter
@@ -142,6 +151,7 @@ Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
 " -----------------------------------------------------------------------------
 " Colorschemes 
 " -----------------------------------------------------------------------------
+
 " Hybrid
 Plug 'w0ng/vim-hybrid'
 " Hybrid lightline theme
@@ -150,6 +160,7 @@ Plug 'cocopon/lightline-hybrid.vim'
 " -----------------------------------------------------------------------------
 " Other 
 " -----------------------------------------------------------------------------
+
 " Easily expand selected region
 Plug 'terryma/vim-expand-region'
 " Matchit enhances jump motions
