@@ -48,6 +48,8 @@ Plug 'AndrewRadev/sideways.vim'
 Plug 'Toggle'                        
 " Change surrounding characters
 Plug 'tpope/vim-surround'                         
+" CIQ to match any pairs
+Plug 'kurkale6ka/vim-pairs'          
 " Easy alignment
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' } 
 "}}}
