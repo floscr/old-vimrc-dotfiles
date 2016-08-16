@@ -166,16 +166,20 @@ call plug#end()
 " =============================================================================
 " 2.0 Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults) 
 " =============================================================================
-set shell=/bin/zsh                          " Setting shell to zsh
-set number                                  " Line numbers on
-set showmode                                " Always show mode
-set hidden                                  " Enables to switch between unsaved buffers and keep undo history
-set noswapfile                              " New buffers will be loaded without creating a swapfile
-set lazyredraw                              " Don't redraw while executing macros (better performance)
-set showmatch                               " Show matching brackets when text indicator is over them
-set nostartofline                           " Prevent cursor from moving to beginning of line when switching buffers
-set nojoinspaces                            " No extra space when joining a line which ends with . ? !
-set suffixesadd+=.js,.rb                    " Add js and ruby files to suffixes
+
+set shell=/bin/zsh   " Setting shell to zsh
+set number           " Line numbers on
+set showmode         " Always show mode
+set hidden           " Enables to switch between unsaved buffers and keep undo history
+set noswapfile       " New buffers will be loaded without creating a swapfile
+set lazyredraw       " Don't redraw while executing macros (better performance)
+set showmatch        " Show matching brackets when text indicator is over them
+set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
+set nojoinspaces     " No extra space when joining a line which ends with . ? !
+set suffixesadd+=.js " Add js and ruby files to suffixes
+set autochdir        " Set working dir to the current file
+set shortmess+=I     " Turn off the intro
+set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 characters
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
