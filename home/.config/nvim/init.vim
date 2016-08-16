@@ -390,6 +390,19 @@ map gl :ls<return>
 nnoremap <silent><esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
+" -----------------------------------------------------
+" 3.5 Text Objects
+" -----------------------------------------------------
+
+" [] Brackets text object
+onoremap ir i[
+onoremap ar a[
+vnoremap ir i[
+vnoremap ar a[
+
+" Buffer text object
+xnoremap i% GoggV
+omap i% :<C-u>normal vi%<CR>
 
 " =============================================================================
 " 4.0 Plugins settings
