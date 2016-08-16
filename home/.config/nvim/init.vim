@@ -19,6 +19,8 @@ call plug#begin('~/.config/nvim/plugged')
 " -----------------------------------------------------------------------------
 " Asynchronous maker and linter (needs linters to work)
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
+" Autocomplete
+Plug 'Shougo/deoplete.nvim'
 " Snippet suport
 Plug 'SirVer/ultisnips'              
 " Toggle comment
@@ -219,9 +221,10 @@ set splitright                              " Splitting a window will put the ne
 " -----------------------------------------------------------------------------
 " 2.1 Wrap Settings
 " -----------------------------------------------------------------------------
-set colorcolumn=+1 " Add a colorized column tho show the maximal text length
-set textwidth=80   " Set the recommended text length to 80 characters
-set nowrap         " Don't wrap lines
+set colorcolumn=+1           " Add a colorized column tho show the maximal text length
+set textwidth=80             " Set the recommended text length to 80 characters
+set nowrap                   " Don't wrap lines
+set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 
 " -----------------------------------------------------------------------------
 " 2.2 Timeout settings {{{
@@ -460,6 +463,41 @@ nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
 " -----------------------------------------------------
+" Neomake
+" -----------------------------------------------------
+
+" Error mnemonic (Neomake uses location list)
+nnoremap ]e :lnext<CR>
+nnoremap [e :lprevious<CR>
+
+" -----------------------------------------------------
+" Deoplete
+" -----------------------------------------------------
+
+let g:deoplete#enable_at_startup=1
+let g:deoplete#enable_refresh_always=0
+let g:deoplete#file#enable_buffer_path=1
+
+let g:deoplete#sources={}
+let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
+let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+
+" Insert <TAB> or select next match
+inoremap <silent> <expr> <Tab> utils#tabComplete()
+
+" Manually trigger tag autocomplete
+inoremap <silent> <expr> <C-]> utils#manualTagComplete()
+
+" <C-h>, <BS>: close popup and delete backword char
+" inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+
+" -----------------------------------------------------
 " Fugitive
 " -----------------------------------------------------
 
@@ -590,3 +628,11 @@ endif
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
+
+" -----------------------------------------------------
+" 7.1 Run linters after save {{{
+" -----------------------------------------------------
+
+" npm install -g eslint
+autocmd BufWritePost *.js Neomake eslint
+
