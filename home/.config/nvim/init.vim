@@ -152,7 +152,8 @@ Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
 " ---------------------------------------------------------------------------------------------------------------------
 " Hybrid
 Plug 'w0ng/vim-hybrid'
-Plug 'mhartington/oceanic-next'
+" Hybrid lightline theme
+Plug 'cocopon/lightline-hybrid.vim'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
