@@ -348,7 +348,11 @@ xnoremap . :norm.<CR>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
-"
+
+" Quick Close
+nnoremap <C-c> :q<return>
+
+
 " " -----------------------------------------------------
 " " 3.4 Common tasks {{{
 " " -----------------------------------------------------
