@@ -538,6 +538,13 @@ map <Leader>, :Tabularize /,<cr>
 map <Leader>" :Tabularize /\s\zs"<cr>
 
 " -----------------------------------------------------
+" Emmet
+" -----------------------------------------------------
+
+" Remap emmet leader key
+let g:user_emmet_leader_key='<C-e>'
+
+" -----------------------------------------------------
 " Lightline settings {{{
 " -----------------------------------------------------
 let g:lightline = {}
