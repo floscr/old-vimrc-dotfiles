@@ -374,6 +374,14 @@ map <Tab> >>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
+" Prevent paragraph jumping from polluting the jump list
+nnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
+xnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 1)<CR>
+onoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
+nnoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 0)<CR>
+xnoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 1)<CR>
+onoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 0)<CR>
+
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------

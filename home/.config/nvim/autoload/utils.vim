@@ -11,6 +11,11 @@ function! OpenWithMarkedApp()
 endfunction
 command! Marked call OpenWithMarkedApp()
 
+" Stop jump by paragraph ({}) poluting the jumplist
+function! s:KeepJumpsParagraphMotion(forward, count, visual)
+    execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
+endfunction
+
 " Copy and paste function using xclip
 function! g:utils#clipboardYank() abort
   call system('xclip -i -selection clipboard', @@)
