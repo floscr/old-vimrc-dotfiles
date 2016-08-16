@@ -383,14 +383,6 @@ nnoremap <Cr> :
 " Open current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
 
-" Prevent paragraph jumping from polluting the jump list
-nnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
-xnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 1)<CR>
-onoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
-nnoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 0)<CR>
-xnoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 1)<CR>
-onoremap <silent> { :<C-u>call <SID>KeepJumpsParagraphMotion(0, v:count1, 0)<CR>
-
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------
@@ -404,8 +396,8 @@ map gdo :Bonly<cr>
 map gl :ls<return>
 
 " Clear highlighting on escape in normal mode
-nnoremap <silent><esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
+" nnoremap <silent><esc> :noh<return><esc>
+" nnoremap <esc>^[ <esc>^[
 
 " -----------------------------------------------------
 " 3.5 Text Objects
@@ -479,7 +471,6 @@ nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 " Deoplete
 " -----------------------------------------------------
 
-
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_refresh_always=0
 let g:deoplete#file#enable_buffer_path=1
@@ -549,8 +540,8 @@ let g:gitgutter_eager = 1
 let g:gitgutter_realtime = 0
 
 " Next/Prev Git Hunk and center
-nmap ghn <Plug>GitGutterNextHunk<CR>zz
-nmap ghp <Plug>GitGutterPrevHunk<CR>zz
+nmap ghn <Plug>GitGutterNextHunk
+nmap ghp <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
 nmap gha <Plug>GitGutterStageHunk
