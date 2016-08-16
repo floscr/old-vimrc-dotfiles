@@ -222,14 +222,6 @@ set ttimeout
 set ttimeoutlen=10
 
 " -----------------------------------------------------------------------------
-" 2.2 Timeout settings 
-" -----------------------------------------------------------------------------
-" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely. (by Steve Losh)
-set notimeout
-set ttimeout
-set ttimeoutlen=10
-
-" -----------------------------------------------------------------------------
 " 2.4 Search settings 
 " -----------------------------------------------------------------------------
 set incsearch                               " Incremental search
