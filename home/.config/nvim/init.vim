@@ -429,6 +429,23 @@ nnoremap ]e :lnext<CR>
 nnoremap [e :lprevious<CR>
 
 " -----------------------------------------------------
+" UltiSnips
+" -----------------------------------------------------
+
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+" Open the current filetype snippet file
+function! EditFileTypeSnippet()
+  execute 'edit ~/.homesick/repos/dotfiles/home/.config/nvim/UltiSnips/' . &filetype . '.snippets'
+  " if(&filetype == 'scss')
+  " endif
+endfunction
+nnoremap <leader>es :call EditFileTypeSnippet()<CR>
+
+" -----------------------------------------------------
 " Deoplete
 " -----------------------------------------------------
 
