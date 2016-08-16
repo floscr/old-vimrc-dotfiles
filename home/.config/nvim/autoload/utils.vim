@@ -5,6 +5,12 @@ function! g:utils#showToggles() abort
         \' <F12> This message'
 endfunction
 
+" Open with marked.app
+function! OpenWithMarkedApp()
+  silent! execute '!open "' . bufname("%") . '" -a /Applications/Marked\ 2.app'
+endfunction
+command! Marked call OpenWithMarkedApp()
+
 " Copy and paste function using xclip
 function! g:utils#clipboardYank() abort
   call system('xclip -i -selection clipboard', @@)
