@@ -375,6 +375,10 @@ nnoremap Q @q
 nnoremap c "xc
 xnoremap c "xc
 
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
 " Don't cancel visual select when shifting
 xnoremap <  <gv
 xnoremap >  >gv
