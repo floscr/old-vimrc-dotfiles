@@ -401,6 +401,14 @@ nnoremap J mzJ`z
 " Quick Close
 nnoremap <C-c> :q<return>
 
+" Indentation using tab
+" Normal tab is bound to Deoplete completion
+imap <S-Tab> <C-o><<
+map <S-Tab> <<
+map <Tab> >>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
 " -----------------------------------------------------
 " 3.6 F-key actions {{{
 " -----------------------------------------------------
