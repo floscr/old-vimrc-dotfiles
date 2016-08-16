@@ -520,32 +520,35 @@ map <Leader>" :Tabularize /\s\zs"<cr>
 " -----------------------------------------------------
 " Lightline settings {{{
 " -----------------------------------------------------
-let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'tab': {
-      \   'active': [ 'filename' ],
-      \   'inactive': [ 'filename' ]
-      \ },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
-      \ },
-      \ 'component_function': {
-      \   'mode': 'utils#lightLineMode',
-      \   'filename': 'utils#lightLineFilename',
-      \   'filetype': 'utils#lightLineFiletype',
-      \   'fileformat': 'utils#lightLineFileformat',
-      \   'fileencoding': 'utils#lightLineFileencoding'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&readonly)'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-"}}}
+let g:lightline = {}
+let g:lightline.colorscheme = 'hybrid'
+
+" let g:lightline = {
+"       \ 'colorscheme': 'powerline',
+"       \ 'tab': {
+"       \   'active': [ 'filename' ],
+"       \   'inactive': [ 'filename' ]
+"       \ },
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename' ] ],
+"       \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat' ] ]
+"       \ },
+"       \ 'component': {
+"       \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
+"       \ },
+"       \ 'component_function': {
+"       \   'mode': 'utils#lightLineMode',
+"       \   'filename': 'utils#lightLineFilename',
+"       \   'filetype': 'utils#lightLineFiletype',
+"       \   'fileformat': 'utils#lightLineFileformat',
+"       \   'fileencoding': 'utils#lightLineFileencoding'
+"       \ },
+"       \ 'component_visible_condition': {
+"       \   'readonly': '(&readonly)'
+"       \ },
+"       \ 'separator': { 'left': '', 'right': '' },
+"       \ 'subseparator': { 'left': '', 'right': '' }
+"       \ }
+" "}}}
 
 
