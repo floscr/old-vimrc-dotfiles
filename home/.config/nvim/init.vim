@@ -374,6 +374,15 @@ map <Tab> >>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
+" Create file under cursor
+nnoremap gF :e <cfile><cr>
+
+" Enter command by pressing enter
+nnoremap <Cr> :
+
+" Open current file in finder
+nnoremap <leader><cr> :silent !open .<cr>
+
 " Prevent paragraph jumping from polluting the jump list
 nnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 0)<CR>
 xnoremap <silent> } :<C-u>call <SID>KeepJumpsParagraphMotion(1, v:count1, 1)<CR>
