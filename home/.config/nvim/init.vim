@@ -448,6 +448,46 @@ nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
 " -----------------------------------------------------
+" Fugitive
+" -----------------------------------------------------
+
+" Open quickfix window automatically after grepping
+autocmd QuickFixCmdPost *grep* cwindow
+
+" Always use vertical diffs
+set diffopt+=vertical 
+
+" -------
+" Commits
+" -------
+
+" Add the current file to index
+nnoremap <silent> <leader>gf :Git add %:p<CR><CR>
+" Add all changes to index
+nnoremap <silent> <leader>ga :Git add .<CR><CR>
+" Git Status
+nnoremap <leader>gs :Gstatus<CR>
+" Commit added index
+nnoremap <leader>gc :Gcommit -v -q<CR>
+" Add and commit current file
+nnoremap <silent> <leader>gC :Git add %:p<CR><CR>:Gcommit -v -q<CR>
+
+" ---
+" Etc
+" ---
+
+" Diff current file
+nnoremap <leader>gd :Gdiff<CR>
+" Show the previus version of a file
+nnoremap <space>ge :Gedit<CR>
+" Hard reset all changes
+nnoremap <silent> <space>grh :silent! Git reset --hard<CR>
+" Reset current file
+nnoremap <silent> <space>grf :silent! Git checkout HEAD -- %<CR>
+" Git grep
+nnoremap <space>gp :Ggrep<Space>
+
+" -----------------------------------------------------
 " Tabularize
 " -----------------------------------------------------
 
