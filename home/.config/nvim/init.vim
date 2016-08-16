@@ -470,7 +470,7 @@ nnoremap <leader>gs :Gstatus<CR>
 " Commit added index
 nnoremap <leader>gc :Gcommit -v -q<CR>
 " Add and commit current file
-nnoremap <silent> <leader>gC :Git add %:p<CR><CR>:Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
 
 " ---
 " Etc
