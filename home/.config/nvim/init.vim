@@ -539,3 +539,6 @@ endif
 " =============================================================================
 " 7.0 Autocommands
 " =============================================================================
+
+" Activate htmljinja for twig files
+autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
