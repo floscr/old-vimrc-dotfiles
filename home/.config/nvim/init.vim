@@ -190,6 +190,10 @@ set nojoinspaces                            " No extra space when joining a line
 set suffixesadd+=.js,.rb                    " Add js and ruby files to suffixes
 set synmaxcol=160                           " Don't try to syntax highlight minified files
 
+" ---------------------------------------------------------------------------------------------------------------------
+" 2.1 Color Settings
+" ---------------------------------------------------------------------------------------------------------------------
+
  " For Neovim 0.1.3 and 0.1.4
  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -353,48 +357,10 @@ nnoremap J mzJ`z
 " Quick Close
 nnoremap <C-c> :q<return>
 
+" -----------------------------------------------------
+" 3.6 F-key actions {{{
+" -----------------------------------------------------
 
-" " -----------------------------------------------------
-" " 3.4 Common tasks {{{
-" " -----------------------------------------------------
-"
-" " Error mnemonic (Neomake uses location list)
-" nnoremap ]e :lnext<CR>
-" nnoremap [e :lprevious<CR>
-"
-" " [S]plit line (sister to [J]oin lines) S is covered by cc.
-" nnoremap S mzi<CR><ESC>`z
-"
-" " Reselect last-pasted text
-" nnoremap gp `[v`]
-"
-" " -----------------------------------------------------
-" " 3.5 Window / Buffer Management
-" " -----------------------------------------------------
-"
-" " Go to next buffer
-" map gn :bn<cr>
-" " Go to previous buffer
-" map gp :bp<cr>
-" " Switch to last buffer
-" map gb :b#<cr>
-" " Close all buffers
-" map gdd :Bclose<cr>
-" " Close all buffers except the current one
-" map gdo :Bonly<cr>
-"
-" " -----------------------------------------------------
-" " 3.5 Etc
-" " -----------------------------------------------------
-"
-" " Clear search highlights when tapping escape
-" nnoremap <silent><esc> :noh<return><esc>
-" nnoremap <esc>^[ <esc>^[
-"
-" " -----------------------------------------------------
-" " 3.6 F-key actions {{{
-" " -----------------------------------------------------
-"
 " " Toggle spelling
 " nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
 " " Source (reload configuration)
@@ -510,6 +476,14 @@ nmap ghp <Plug>GitGutterPrevHunk<CR>zz
 nmap gha <Plug>GitGutterStageHunk
 nmap ghu <Plug>GitGutterUndoHunk
 
+" Gutter Color Overrides
+if g:colors_name == "hybrid"
+  highlight GitGutterAdd guifg=#99C794
+  highlight GitGutterDelete guifg=#CC6665
+  highlight GitGutterChangeDelete guifg=#B294BB
+  highlight vertsplit guifg=#2E3C47
+endif
+
 " -----------------------------------------------------
 " Tabularize
 " -----------------------------------------------------
@@ -527,6 +501,12 @@ map <Leader>" :Tabularize /\s\zs"<cr>
 " -----------------------------------------------------
 let g:lightline = {}
 let g:lightline.colorscheme = 'hybrid'
+
+" BufBar Theme Overrides
+if g:colors_name == "hybrid"
+  highlight BufTabLineFill guibg=#2E3C47
+  highlight BufTabLineHidden guibg=#2E3C47
+endif
 
 " let g:lightline = {
 "       \ 'colorscheme': 'powerline',
