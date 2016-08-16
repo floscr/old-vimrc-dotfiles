@@ -162,7 +162,6 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#end()
 
-
 " =============================================================================
 " 2.0 Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults) 
 " =============================================================================
@@ -184,7 +183,6 @@ set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 ch
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
 " -----------------------------------------------------------------------------
-
  " For Neovim 0.1.3 and 0.1.4
  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -194,16 +192,15 @@ set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 ch
  endif
 
 set background=dark
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-highlight SpecialKey ctermfg=66 guifg=#223843
 
 " -----------------------------------------------------------------------------
 " 2.1 Split settings (more natural) 
 " -----------------------------------------------------------------------------
-set splitbelow                              " Splitting a window will put the new window below the current
-set splitright                              " Splitting a window will put the new window right of the current
+set splitbelow " Splitting a window will put the new window below the current
+set splitright " Splitting a window will put the new window right of the current
 
 " -----------------------------------------------------------------------------
 " 2.1 Wrap Settings
@@ -294,9 +291,9 @@ set sidescroll=1
 " 2.10 Neovim specific settings 
 " -----------------------------------------------------------------------------
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1         " Set an environment variable to use the t_SI/t_EI hack
-" let g:loaded_python_provider=1              " Disable python 2 interface
-" let g:python_host_skip_check=1              " Skip python 2 host check
-" let g:python3_host_prog='/usr/bin/python3'  " Set python 3 host program
+let g:loaded_python_provider = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python'    
 
 " -----------------------------------------------------
 " 2.12 True colors settings 
@@ -434,6 +431,7 @@ nnoremap [e :lprevious<CR>
 " -----------------------------------------------------
 " Deoplete
 " -----------------------------------------------------
+
 
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_refresh_always=0
