@@ -91,7 +91,6 @@ Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 " Twig support for vim
 Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 
-
 " -----------------------------------------------------------------------------
 " HTML / CSS
 " -----------------------------------------------------------------------------
@@ -143,6 +142,8 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " Fugitive
 Plug 'tpope/vim-fugitive'
+" Git log viewer (Gitv! for file mode)
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 " Gitgutter
 Plug 'airblade/vim-gitgutter'
 " Color picker
