@@ -537,8 +537,9 @@ map <Leader>" :Tabularize /\s\zs"<cr>
 let g:user_emmet_leader_key='<C-e>'
 
 " -----------------------------------------------------
-" Lightline settings 
+" Lightline
 " -----------------------------------------------------
+
 let g:lightline = {}
 let g:lightline.colorscheme = 'hybrid'
 
