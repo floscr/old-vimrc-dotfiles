@@ -305,6 +305,16 @@ set wildignore+=*.gem
 set wildignore+=tmp/**
 "}}}
 
+" -----------------------------------------------------------------------------
+" 3.0 Scrolloff
+" -----------------------------------------------------------------------------
+" Start scrolling: 
+" Bottom and Top: 10 Lines
+" Side: 15 lines
+set scrolloff=10 
+set sidescrolloff=15
+" Scroll one column on the side
+set sidescroll=1
 
 " -----------------------------------------------------------------------------
 " 2.10 Neovim specific settings {{{
