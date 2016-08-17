@@ -15,6 +15,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Language agnostic plugins 
 " -----------------------------------------------------------------------------
 
+" Editor config for vim
+Plug 'editorconfig/editorconfig-vim' 
 " Asynchronous maker and linter (needs linters to work)
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
 " Autocomplete
