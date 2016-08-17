@@ -488,6 +488,7 @@ nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_refresh_always=0
 let g:deoplete#file#enable_buffer_path=1
+" Trigger deoplete only when pressing tab
 let g:deoplete#disable_auto_complete=1
 
 let g:deoplete#sources={}
@@ -618,6 +619,16 @@ if g:colors_name == "hybrid"
   highlight BufTabLineFill guibg=#2E3C47
   highlight BufTabLineHidden guibg=#2E3C47
 endif
+
+" -----------------------------------------------------
+" Incsearch
+" -----------------------------------------------------
+
+" Set the default search mappings to incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
 
 " =============================================================================
 " 7.0 Autocommands
