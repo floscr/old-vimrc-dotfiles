@@ -1,7 +1,10 @@
 " python3 plugins
-call remote#host#RegisterPlugin('python3', '/Users/flo/.vim/plugged/deoplete.nvim/rplugin/python3/deoplete.py', [
-      \ {'sync': 1, 'name': 'DeopleteInitializePython', 'opts': {}, 'type': 'command'},
+call remote#host#RegisterPlugin('python3', '/Users/admin-imac3/.config/nvim/plugged/deoplete.nvim/rplugin/python3/deoplete', [
+      \ {'sync': v:true, 'name': '_deoplete', 'opts': {}, 'type': 'function'},
      \ ])
+
+
+" ruby plugins
 
 
 " python plugins
