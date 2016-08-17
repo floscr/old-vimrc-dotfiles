@@ -399,6 +399,12 @@ nnoremap <Cr> :
 " Open current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
 
+" Make * star work in visual mode
+vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
+
+" Use the last used search to use in replace command
+nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
+
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------
