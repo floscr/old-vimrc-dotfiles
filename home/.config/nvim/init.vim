@@ -100,6 +100,9 @@ Plug 'othree/html5.vim'
 " Color highlighter
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx'] }
 
+" Pug / Jade Syntax
+Plug 'digitaltoad/vim-pug'
+
 Plug 'mattn/emmet-vim'
 
 " -----------------------------------------------------------------------------
@@ -314,7 +317,6 @@ if has('termguicolors')
   set termguicolors " Turn on true colors support
 endif
 " Tmux still doesn't support this
-
 
 " =============================================================================
 " 3.0 Mapping settings
