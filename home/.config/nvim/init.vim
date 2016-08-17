@@ -488,6 +488,7 @@ nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_refresh_always=0
 let g:deoplete#file#enable_buffer_path=1
+let g:deoplete#disable_auto_complete=1
 
 let g:deoplete#sources={}
 let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
