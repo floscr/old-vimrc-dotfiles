@@ -410,8 +410,8 @@ map gdo :Bonly<cr>
 map gl :ls<return>
 
 " Clear highlighting on escape in normal mode
-" nnoremap <silent><esc> :noh<return><esc>
-" nnoremap <esc>^[ <esc>^[
+nnoremap <silent><esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
 
 " -----------------------------------------------------
 " 3.5 Text Objects
