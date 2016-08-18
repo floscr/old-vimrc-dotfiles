@@ -204,6 +204,10 @@ set suffixesadd+=.js " Add js and ruby files to suffixes
 set autochdir        " Set working dir to the current file
 set shortmess+=I     " Turn off the intro
 set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 characters
+set noshowmatch      " Show matching tags
+                     " having this turned on will make the cursor jump around
+                     " weirdly
+
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
