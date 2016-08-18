@@ -190,7 +190,7 @@ call plug#end()
 source ~/.config/nvim/custom-plugins/autowrite.vim
 
 " =============================================================================
-" 2.0 Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
+" 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
 set shell=/bin/zsh   " Setting shell to zsh
