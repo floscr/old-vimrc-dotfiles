@@ -2,7 +2,7 @@
 " 1.0 Plugin manager (Plug) settings
 " =============================================================================
 
-" Autoinstall 
+" Autoinstall
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -12,48 +12,48 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " -----------------------------------------------------------------------------
-" Language agnostic plugins 
+" Language agnostic plugins
 " -----------------------------------------------------------------------------
 
 " Editor config for vim
-Plug 'editorconfig/editorconfig-vim' 
+Plug 'editorconfig/editorconfig-vim'
 " Asynchronous maker and linter (needs linters to work)
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Snippet suport
-Plug 'SirVer/ultisnips'              
+Plug 'SirVer/ultisnips'
 " Toggle comment
-Plug 'tomtom/tcomment_vim'           
+Plug 'tomtom/tcomment_vim'
 " Create directories on save
-Plug 'duggiefresh/vim-easydir'       
+Plug 'duggiefresh/vim-easydir'
 " Delete all buffers except the current one
-Plug 'vim-scripts/BufOnly.vim'       
+Plug 'vim-scripts/BufOnly.vim'
 " More . repeat functionality
-Plug 'tpope/vim-repeat'              
+Plug 'tpope/vim-repeat'
 " Repeat the last F keyword with f
-Plug 'rhysd/clever-f.vim'            
+Plug 'rhysd/clever-f.vim'
 " Automatically closing pair stuff
 Plug 'cohama/lexima.vim'
 
 " -----------------------------------------------------------------------------
-" Text insertion/manipulation 
+" Text insertion/manipulation
 " -----------------------------------------------------------------------------
 
-" Split oneliners 
-Plug 'AndrewRadev/splitjoin.vim'     
+" Split oneliners
+Plug 'AndrewRadev/splitjoin.vim'
 " Sort alphabetically gsa
-Plug 'christoomey/vim-sort-motion'   
+Plug 'christoomey/vim-sort-motion'
 " Switch argument order
-Plug 'AndrewRadev/sideways.vim'      
+Plug 'AndrewRadev/sideways.vim'
 " Toggle booleans with '+'
-Plug 'Toggle'                        
+Plug 'Toggle'
 " Change surrounding characters
-Plug 'tpope/vim-surround'                         
+Plug 'tpope/vim-surround'
 " CIQ to match any pairs
-Plug 'kurkale6ka/vim-pairs'          
+Plug 'kurkale6ka/vim-pairs'
 " Easy alignment
-Plug 'godlygeek/tabular', { 'on':  'Tabularize' } 
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
 
 " -----------------------------------------------------------------------------
 " Text Objects
@@ -75,10 +75,10 @@ Plug 'wellle/targets.vim'
 " -----------------------------------------------------------------------------
 
 " Open files with 'gf' without extensions
-Plug 'moll/vim-node' 
+Plug 'moll/vim-node'
 " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'    
+Plug 'jelera/vim-javascript-syntax'
 " JSON syntax
 Plug 'sheerun/vim-json'
 " Vue support
@@ -108,7 +108,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'mattn/emmet-vim'
 
 " -----------------------------------------------------------------------------
-" Interface improving 
+" Interface improving
 " -----------------------------------------------------------------------------
 
 " Lightline (simple status line)
@@ -139,10 +139,10 @@ endif
 " Syntax highlighting just on the current line
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 " Focus Mode
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }   
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " -----------------------------------------------------------------------------
-" External tools integration plugins 
+" External tools integration plugins
 " -----------------------------------------------------------------------------
 
 " Fugitive
@@ -155,7 +155,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
 
 " -----------------------------------------------------------------------------
-" Colorschemes 
+" Colorschemes
 " -----------------------------------------------------------------------------
 
 " Hybrid
@@ -164,7 +164,7 @@ Plug 'w0ng/vim-hybrid'
 Plug 'cocopon/lightline-hybrid.vim'
 
 " -----------------------------------------------------------------------------
-" Other 
+" Other
 " -----------------------------------------------------------------------------
 
 " Easily expand selected region
@@ -177,10 +177,18 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 call plug#end()
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" 1.3 Custom plugins
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" Trim trailing whitespace when saving a buffer
+source ~/.config/nvim/custom-plugins/autowrite.vim
+
 " =============================================================================
-" 2.0 Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults) 
+" 2.0 Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
 set shell=/bin/zsh   " Setting shell to zsh
@@ -214,7 +222,7 @@ colorscheme hybrid
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " -----------------------------------------------------------------------------
-" 2.1 Split settings (more natural) 
+" 2.1 Split settings (more natural)
 " -----------------------------------------------------------------------------
 set splitbelow " Splitting a window will put the new window below the current
 set splitright " Splitting a window will put the new window right of the current
@@ -228,7 +236,7 @@ set nowrap                   " Don't wrap lines
 set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 
 " -----------------------------------------------------------------------------
-" 2.2 Timeout settings 
+" 2.2 Timeout settings
 " -----------------------------------------------------------------------------
 " Time out on key codes but not mappings. Basically this makes terminal Vim work sanely. (by Steve Losh)
 set notimeout
@@ -236,7 +244,7 @@ set ttimeout
 set ttimeoutlen=10
 
 " -----------------------------------------------------------------------------
-" 2.4 Search settings 
+" 2.4 Search settings
 " -----------------------------------------------------------------------------
 set incsearch                               " Incremental search
 set ignorecase                              " Ignore case by default
@@ -244,7 +252,7 @@ set smartcase                               " Make search case sensitive only if
 set wrapscan                                " Search again from top when reached the bottom
 
 " -----------------------------------------------------------------------------
-" 2.5 Persistent undo settings 
+" 2.5 Persistent undo settings
 " -----------------------------------------------------------------------------
 if has('persistent_undo')
   set undofile
@@ -252,7 +260,7 @@ if has('persistent_undo')
 endif
 
 " -----------------------------------------------------------------------------
-" 2.6 White characters settings 
+" 2.6 White characters settings
 " -----------------------------------------------------------------------------
 set list
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
@@ -269,13 +277,13 @@ set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
 
 " -----------------------------------------------------------------------------
-" 2.7 Filetype settings 
+" 2.7 Filetype settings
 " -----------------------------------------------------------------------------
 filetype plugin on
 filetype indent on
 
 " -----------------------------------------------------------------------------
-" 2.8 Folding settings 
+" 2.8 Folding settings
 " -----------------------------------------------------------------------------
 set foldmethod=indent " Fold by indentation
 set foldnestmax=2     " deepest fold is 10 levels
@@ -283,7 +291,7 @@ set nofoldenable      " dont fold by default
 set foldlevel=1       " this is just what i use
 
 " -----------------------------------------------------------------------------
-" 2.9 Omni completion settings 
+" 2.9 Omni completion settings
 " -----------------------------------------------------------------------------
 set completeopt-=preview                    " Don't show preview scratch buffers
 set wildignore=*.o,*.obj,*~
@@ -296,24 +304,24 @@ set wildignore+=tmp/**
 " -----------------------------------------------------------------------------
 " 3.0 Scrolloff
 " -----------------------------------------------------------------------------
-" Start scrolling: 
+" Start scrolling:
 " Bottom and Top: 10 Lines
 " Side: 15 lines
-set scrolloff=10 
+set scrolloff=10
 set sidescrolloff=15
 " Scroll one column on the side
 set sidescroll=1
 
 " -----------------------------------------------------------------------------
-" 2.10 Neovim specific settings 
+" 2.10 Neovim specific settings
 " -----------------------------------------------------------------------------
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1         " Set an environment variable to use the t_SI/t_EI hack
 let g:loaded_python_provider = 1
 let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python_host_prog = '/usr/bin/python'    
+let g:python_host_prog = '/usr/bin/python'
 
 " -----------------------------------------------------
-" 2.12 True colors settings 
+" 2.12 True colors settings
 " -----------------------------------------------------
 if has('termguicolors')
   set termguicolors " Turn on true colors support
@@ -325,7 +333,7 @@ endif
 " =============================================================================
 
 " -----------------------------------------------------
-" 3.1 Setting leader 
+" 3.1 Setting leader
 " -----------------------------------------------------
 let g:mapleader="\<space>"
 
@@ -335,10 +343,10 @@ let g:mapleader="\<space>"
 nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
 
 " -----------------------------------------------------
-" 3.3 Vim defaults overriding 
+" 3.3 Vim defaults overriding
 " -----------------------------------------------------
 
-" When cycling windows ignore NERDTree 
+" When cycling windows ignore NERDTree
 nmap <silent> <C-w><C-w> :call utils#intelligentCycling()<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -521,7 +529,7 @@ inoremap <silent> <expr> <C-]> utils#manualTagComplete()
 autocmd QuickFixCmdPost *grep* cwindow
 
 " Always use vertical diffs
-set diffopt+=vertical 
+set diffopt+=vertical
 
 " -------
 " Commits
@@ -646,7 +654,7 @@ map g/ <Plug>(incsearch-stay)
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 
 " -----------------------------------------------------
-" 7.1 Run linters after save 
+" 7.1 Run linters after save
 " -----------------------------------------------------
 
 " npm install -g eslint
