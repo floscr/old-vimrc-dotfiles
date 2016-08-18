@@ -5,6 +5,23 @@ function! g:utils#showToggles() abort
         \' <F12> This message'
 endfunction
 
+" Redir an excommand to a buffer
+" Useage: :TabMessage highlight
+function! BuffMessage(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  if empty(message)
+    echoerr "no output"
+  else
+    " use "new" instead of "tabnew" below if you prefer split windows instead of tabs
+    enew
+    setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
+
 " Open with marked.app
 function! OpenWithMarkedApp()
   silent! execute '!open "' . bufname("%") . '" -a /Applications/Marked\ 2.app'
