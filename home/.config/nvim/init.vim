@@ -37,6 +37,8 @@ Plug 'rhysd/clever-f.vim'
 Plug 'cohama/lexima.vim'
 " Close buffer
 Plug 'rbgrouleff/bclose.vim'
+" UNIX like commands for VIM
+Plug 'tpope/vim-eunuch'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
