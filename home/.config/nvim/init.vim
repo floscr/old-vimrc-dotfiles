@@ -35,6 +35,8 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/clever-f.vim'
 " Automatically closing pair stuff
 Plug 'cohama/lexima.vim'
+" Close buffer
+Plug 'rbgrouleff/bclose.vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
