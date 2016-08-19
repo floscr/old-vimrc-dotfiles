@@ -39,6 +39,8 @@ Plug 'cohama/lexima.vim'
 Plug 'rbgrouleff/bclose.vim'
 " UNIX like commands for VIM
 Plug 'tpope/vim-eunuch'
+" Ctags
+Plug 'craigemery/vim-autotag'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
@@ -468,7 +470,7 @@ let g:fzf_action = {
 " Search in current git index
 nnoremap <silent> <C-p> :GitFiles<CR>
 " Search Recent Files
-" nnoremap <silent> <C-e>:History<CR>
+nnoremap <silent> <C-i> :History<CR>
 " Search open buffers
 " Search available commands
 nnoremap <silent> <leader>c :Commands<CR>
@@ -661,6 +663,8 @@ map g/ <Plug>(incsearch-stay)
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
+" Set html5 syntax for vue files to fix broken indentation
+au BufRead,BufNewFile *.vue set filetype=html
 
 " -----------------------------------------------------
 " 7.1 Run linters after save
