@@ -1,11 +1,4 @@
-" Informative echo line
-function! g:utils#showToggles() abort
-  echom '<F1> NERDTree | <F2> Free | <F3> Free | <F4> Spellcheck | <F5> Reload rc | <F6> Search HL |' .
-        \' <F7> Whitechars | <F8> Built-in terminal | <F9> Fire REST Request | <F10> Free  | <F11> How do I |' .
-        \' <F12> This message'
-endfunction
-
-" Redir an excommand to a buffer
+" Redirect command output to a buffer
 " Useage: :TabMessage highlight
 function! BuffMessage(cmd)
   redir => message
@@ -22,7 +15,7 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
-" Open with marked.app
+" Open curent buffer with marked.app
 function! OpenWithMarkedApp()
   silent! execute '!open "' . bufname("%") . '" -a /Applications/Marked\ 2.app'
 endfunction
@@ -31,15 +24,6 @@ command! Marked call OpenWithMarkedApp()
 " Stop jump by paragraph ({}) poluting the jumplist
 function! s:KeepJumpsParagraphMotion(forward, count, visual)
     execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
-endfunction
-
-" Copy and paste function using xclip
-function! g:utils#clipboardYank() abort
-  call system('xclip -i -selection clipboard', @@)
-endfunction
-
-function! g:utils#clipboardPaste() abort
-  let @@ = system('xclip -o -selection clipboard')
 endfunction
 
 " Profile neovim and save results to profile.log
