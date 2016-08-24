@@ -639,6 +639,9 @@ map g/ <Plug>(incsearch-stay)
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 
+" Remove trailing whitespaces automatically before save
+autocmd BufWritePre * call utils#stripTrailingWhitespaces()
+
 " -----------------------------------------------------
 " 7.1 Run linters after save 
 " -----------------------------------------------------
