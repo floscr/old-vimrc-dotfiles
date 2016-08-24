@@ -123,6 +123,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'terryma/vim-multiple-cursors'
 " Undo Tree visualization
 Plug 'mbbill/undotree', { 'on': ['UndotreeToggle', 'UndotreeFocus', 'UndotreeHide', 'UndotreeShow'] }
+" Interactive Coding with vim
+Plug 'metakirby5/codi.vim', { 'on': ['Codi'] }
 
 " Search plugins
 if has("gui_macvim")
