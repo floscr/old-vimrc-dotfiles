@@ -654,6 +654,9 @@ autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 " Restore enter for the quickfix window
 autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
+" Exit FZF by pressing escape
+autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
+
 " -----------------------------------------------------
 " 7.1 Run linters after save
 " -----------------------------------------------------
