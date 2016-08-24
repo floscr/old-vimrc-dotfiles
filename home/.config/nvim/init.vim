@@ -651,6 +651,9 @@ autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 
+" Restore enter for the quickfix window
+autocmd FileType qf nnoremap <buffer> <CR> <CR>
+
 " -----------------------------------------------------
 " 7.1 Run linters after save
 " -----------------------------------------------------
