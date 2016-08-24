@@ -160,6 +160,8 @@ Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
 Plug 'w0ng/vim-hybrid'
 " Hybrid lightline theme
 Plug 'cocopon/lightline-hybrid.vim'
+" Papercolor Theme
+Plug 'NLKNguyen/papercolor-theme'
 
 " -----------------------------------------------------------------------------
 " Other 
