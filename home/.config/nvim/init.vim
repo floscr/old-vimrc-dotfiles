@@ -121,6 +121,8 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'haya14busa/incsearch.vim'
 " Multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
+" Undo Tree visualization
+Plug 'mbbill/undotree', { 'on': ['UndotreeToggle', 'UndotreeFocus', 'UndotreeHide', 'UndotreeShow'] }
 
 " Search plugins
 if has("gui_macvim")
@@ -630,6 +632,12 @@ endif
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+" -----------------------------------------------------
+" Undotree
+" -----------------------------------------------------
+
+nnoremap <silent> U :UndotreeToggle<Cr>
 
 " =============================================================================
 " 7.0 Autocommands
