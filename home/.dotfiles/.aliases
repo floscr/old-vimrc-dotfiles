@@ -194,7 +194,10 @@ alias wl="watson log"
 alias wx="watson stop"
 alias wst="watson status"
 
-# Vim 
+# Laravel
+alias art="php artisan"
+
+# Vim
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
