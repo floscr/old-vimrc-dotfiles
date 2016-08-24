@@ -33,6 +33,8 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/clever-f.vim'
 " Automatically closing pair stuff
 Plug 'cohama/lexima.vim'
+" Edit Macros
+Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
