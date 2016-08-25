@@ -35,6 +35,8 @@ Plug 'rhysd/clever-f.vim'
 Plug 'cohama/lexima.vim'
 " Edit Macros
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
+" Editorconfig loading
+Plug 'editorconfig/editorconfig-vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
