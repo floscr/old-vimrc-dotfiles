@@ -6,10 +6,16 @@ endsnippet
 
 snippet ife "if/else block" !
 @if (${1:condition})
-    ${VISUAL}$2
+  ${VISUAL}$2
 @else
-    $0
+  $0
 @endif
+endsnippet
+
+snippet sec "section block"
+@section('${1:sectionName}')
+  ${VISUAL}$0
+@endsection
 endsnippet
 
 snippet for "for block" !
@@ -27,12 +33,12 @@ endsnippet
 
 snippet else "else block" !
 @else
-    ${VISUAL}$0
+  ${VISUAL}$0
 endsnippet
 
 snippet elif "else if block" !
 @elseif ($1)
-    ${VISUAL}$0
+  ${VISUAL}$0
 endsnippet
 
 snippet unl "unless block"
