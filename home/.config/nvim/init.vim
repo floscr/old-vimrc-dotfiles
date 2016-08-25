@@ -466,7 +466,7 @@ nnoremap <silent> <leader>. :Lines<CR>
 " Search commits
 nnoremap <silent> <leader>gl :Commits<CR>
 " Search commits for current file
-nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>gL :BCommits<CR>
 
 " -----------------------------------------------------
 " Neomake
