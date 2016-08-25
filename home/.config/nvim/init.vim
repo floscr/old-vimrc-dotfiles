@@ -454,8 +454,9 @@ let g:fzf_action = {
 " Search in current git index
 nnoremap <silent> <C-p> :GitFiles<CR>
 " Search Recent Files
-nnoremap <silent> <C-i> :History<CR>
+nnoremap <silent> <leader>h :History<CR>
 " Search open buffers
+nnoremap <silent> <leader>l :Buffers<CR>
 " Search available commands
 nnoremap <silent> <leader>c :Commands<CR>
 " Search lines in all open buffers
