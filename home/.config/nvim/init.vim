@@ -181,6 +181,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'edsono/vim-matchit'
 " Delete all but current buffer
 Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
+" Delete current buffer
+Plug 'rbgrouleff/bclose.vim', { 'on': 'Bclose' }
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
