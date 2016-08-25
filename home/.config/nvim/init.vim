@@ -414,6 +414,12 @@ nnoremap <Cr> :
 " Open current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
 
+" Textobjects for []
+onoremap ir i[
+onoremap ar a[
+vnoremap ir i[
+vnoremap ar a[
+
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------
