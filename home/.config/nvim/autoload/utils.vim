@@ -149,7 +149,7 @@ function! g:utils#nerdWrapper() abort
   if &filetype ==# '' " Empty buffer
     :NERDTreeToggle
   elseif expand('%:t') =~? 'NERD_tree' " In NERD_tree buffer
-    wincmd w
+    :q
   else " Normal file buffer
     :NERDTreeFind
   endif
