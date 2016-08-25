@@ -183,8 +183,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'edsono/vim-matchit'
 " Delete all but current buffer
 Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
-" Delete current buffer
-Plug 'rbgrouleff/bclose.vim', { 'on': 'Bclose' }
+" Close Buffer
+Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -428,7 +428,7 @@ vnoremap ar a[
 map gn :bn<cr>
 map gp :bp<cr>
 map gb :b#<cr>
-map gdd :Bclose<cr>
+map gdd :Bdelete<cr>
 map gdo :Bonly<cr>
 map gl :ls<return>
 
