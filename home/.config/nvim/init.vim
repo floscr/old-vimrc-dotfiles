@@ -92,6 +92,8 @@ Plug 'posva/vim-vue', { 'for': ['vue'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 " Twig support for vim
 Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
+" Blade Syntax
+Plug 'jwalton512/vim-blade'
 
 " -----------------------------------------------------------------------------
 " HTML / CSS
