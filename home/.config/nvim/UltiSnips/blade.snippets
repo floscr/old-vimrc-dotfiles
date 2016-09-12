@@ -1,0 +1,56 @@
+snippet if "if block" !
+@if (${1:condition})
+  ${VISUAL}$0
+@endif
+endsnippet
+
+snippet ife "if/else block" !
+@if (${1:condition})
+  ${VISUAL}$2
+@else
+  $0
+@endif
+endsnippet
+
+snippet sec "section block"
+@section('${1:sectionName}')
+  ${VISUAL}$0
+@endsection
+endsnippet
+
+snippet for "for block" !
+@for (${1:$i = 0}; $2; ${3:$i++})
+  ${VISUAL}$0
+@endfor
+endsnippet
+
+snippet fore "foreach block" !
+@foreach ($${1:varname} as $${2:valName})
+  ${VISUAL}$0
+@endforeach
+endsnippet
+
+
+snippet else "else block" !
+@else
+  ${VISUAL}$0
+endsnippet
+
+snippet elif "else if block" !
+@elseif ($1)
+  ${VISUAL}$0
+endsnippet
+
+snippet unl "unless block"
+@unless (${1:condition})
+  ${VISUAL}$0
+@endunless
+endsnippet
+
+snippet inc "include"
+@include('${VISUAL}$1')
+endsnippet
+
+snippet ext "extends"
+@extends('${1:layouts.php}')
+endsnippet

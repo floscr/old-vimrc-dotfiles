@@ -24,8 +24,8 @@ export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin:/usr/bin:/bin:/usr/sbin:/s
 export PATH=$PATH:$HOME/.dotfiles/bin
 export PATH=$PATH:$HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:$/.dotfiles/bin
 export PATH="/usr/local/sbin:$PATH"
-PATH=~/.composer/vendor/bin:$PATH
-
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+export PATH=~/.composer/vendor/bin:$PATH
 
 
 ## Setup
@@ -86,7 +86,7 @@ ZSH=$DOTFILES_PLUGINS/oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # ZSH PlUGINS
-plugins=(git npm osx history-substring-search encode64 fasd)
+plugins=(git npm osx history-substring-search encode64 fasd laravel)
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt

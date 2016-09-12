@@ -1,2 +1,3 @@
 !cache/vim_undo/.gitkeep
 cache/**
+.init.vim-rplugin~

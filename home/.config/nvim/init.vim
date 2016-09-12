@@ -41,6 +41,10 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-eunuch'
 " Ctags
 Plug 'craigemery/vim-autotag'
+" Edit Macros
+Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
+" Editorconfig loading
+Plug 'editorconfig/editorconfig-vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
@@ -98,6 +102,8 @@ Plug 'posva/vim-vue', { 'for': ['vue'] }
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 " Twig support for vim
 Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
+" Blade Syntax
+Plug 'jwalton512/vim-blade'
 
 " -----------------------------------------------------------------------------
 " HTML / CSS
@@ -129,6 +135,10 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'haya14busa/incsearch.vim'
 " Multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
+" Undo Tree visualization
+Plug 'mbbill/undotree', { 'on': ['UndotreeToggle', 'UndotreeFocus', 'UndotreeHide', 'UndotreeShow'] }
+" Interactive Coding with vim
+Plug 'metakirby5/codi.vim', { 'on': ['Codi'] }
 
 " Search plugins
 if has("gui_macvim")
@@ -168,6 +178,8 @@ Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
 Plug 'w0ng/vim-hybrid'
 " Hybrid lightline theme
 Plug 'cocopon/lightline-hybrid.vim'
+" Papercolor Theme
+Plug 'NLKNguyen/papercolor-theme'
 
 " -----------------------------------------------------------------------------
 " Other
@@ -179,6 +191,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'edsono/vim-matchit'
 " Delete all but current buffer
 Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
+" Delete current buffer
+Plug 'rbgrouleff/bclose.vim', { 'on': 'Bclose' }
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -203,7 +217,6 @@ set showmode         " Always show mode
 set hidden           " Enables to switch between unsaved buffers and keep undo history
 set noswapfile       " New buffers will be loaded without creating a swapfile
 set lazyredraw       " Don't redraw while executing macros (better performance)
-set showmatch        " Show matching brackets when text indicator is over them
 set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
 set nojoinspaces     " No extra space when joining a line which ends with . ? !
 set suffixesadd+=.js " Add js and ruby files to suffixes
@@ -213,7 +226,6 @@ set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 ch
 set noshowmatch      " Show matching tags
                      " having this turned on will make the cursor jump around
                      " weirdly
-
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
@@ -330,6 +342,7 @@ let g:loaded_python_provider = 1
 let g:loaded_python_provider=1              " Disable python 2 interface
 let g:python_host_skip_check=1              " Skip python 2 host check
 let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
 
 " -----------------------------------------------------
 " 2.12 True colors settings
@@ -424,6 +437,12 @@ vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 " Use the last used search to use in replace command
 nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 
+" Textobjects for []
+onoremap ir i[
+onoremap ar a[
+vnoremap ir i[
+vnoremap ar a[
+
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------
@@ -470,8 +489,9 @@ let g:fzf_action = {
 " Search in current git index
 nnoremap <silent> <C-p> :GitFiles<CR>
 " Search Recent Files
-nnoremap <silent> <C-i> :History<CR>
+nnoremap <silent> <leader>h :History<CR>
 " Search open buffers
+nnoremap <silent> <leader>l :Buffers<CR>
 " Search available commands
 nnoremap <silent> <leader>c :Commands<CR>
 " Search lines in all open buffers
@@ -481,7 +501,14 @@ nnoremap <silent> <leader>. :Lines<CR>
 " Search commits
 nnoremap <silent> <leader>gl :Commits<CR>
 " Search commits for current file
-nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>gL :BCommits<CR>
+
+" -----------------------------------------------------
+" NERDTree
+" -----------------------------------------------------
+
+" Search commits for current file
+nnoremap <silent> <F3> :call utils#nerdWrapper()<CR>
 
 " -----------------------------------------------------
 " Neomake
@@ -656,6 +683,11 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" -----------------------------------------------------
+" Undotree
+" -----------------------------------------------------
+
+nnoremap <silent> U :UndotreeToggle<Cr>
 
 " =============================================================================
 " 7.0 Autocommands
@@ -665,6 +697,15 @@ map g/ <Plug>(incsearch-stay)
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 " Set html5 syntax for vue files to fix broken indentation
 au BufRead,BufNewFile *.vue set filetype=html
+
+" Remove trailing whitespaces automatically before save
+autocmd BufWritePre * call utils#stripTrailingWhitespaces()
+
+" Restore enter for the quickfix window
+autocmd FileType qf nnoremap <buffer> <CR> <CR>
+
+" Exit FZF by pressing escape
+autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
 
 " -----------------------------------------------------
 " 7.1 Run linters after save
