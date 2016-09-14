@@ -103,11 +103,9 @@ Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 " Twig support for vim
 Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 " Blade Syntax
-Plug 'jwalton512/vim-blade'
+Plug 'jwalton512/vim-blade', { 'for': ['php'] }
 " DocBlocks for PHP
-Plug 'tobyS/vmustache' " Required for pdv to work
-Plug 'tobyS/pdv'
-
+Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
 
 " -----------------------------------------------------------------------------
 " HTML / CSS
