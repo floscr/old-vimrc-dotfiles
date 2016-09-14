@@ -211,6 +211,9 @@ alias nb="npm run build"
 alias pkg="pkill gulp"
 alias killgulp="pkill gulp"
 
+# Sublime Bin Workaround to work in tmux
+alias subl='reattach-to-user-namespace subl'
+
 #==============================================================================#
 # Etc
 #==============================================================================#

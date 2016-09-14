@@ -415,6 +415,9 @@ xnoremap . :norm.<CR>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
+" Reverse join (Turn single line comments to inline comments)
+nnoremap ,J jddkPmzJ`z
+
 " Quick Close
 nnoremap <C-c> :q<return>
 
