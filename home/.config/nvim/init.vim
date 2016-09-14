@@ -254,7 +254,7 @@ set splitright " Splitting a window will put the new window right of the current
 " -----------------------------------------------------------------------------
 " 2.1 Wrap Settings
 " -----------------------------------------------------------------------------
-set colorcolumn=+1           " Add a colorized column tho show the maximal text length
+set colorcolumn=80           " Add a colorized column tho show the maximal text length
 set textwidth=80             " Set the recommended text length to 80 characters
 set nowrap                   " Don't wrap lines
 set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
