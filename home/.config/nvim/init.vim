@@ -15,6 +15,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Language agnostic plugins
 " -----------------------------------------------------------------------------
 
+" Editor config for vim
+Plug 'editorconfig/editorconfig-vim'
 " Asynchronous maker and linter (needs linters to work)
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
 " Autocomplete
@@ -33,6 +35,12 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/clever-f.vim'
 " Automatically closing pair stuff
 Plug 'cohama/lexima.vim'
+" Close buffer
+Plug 'rbgrouleff/bclose.vim'
+" UNIX like commands for VIM
+Plug 'tpope/vim-eunuch'
+" Ctags
+Plug 'craigemery/vim-autotag'
 " Edit Macros
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 " Editorconfig loading
@@ -189,10 +197,18 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 call plug#end()
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" 1.3 Custom plugins
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" Trim trailing whitespace when saving a buffer
+source ~/.config/nvim/custom-plugins/autowrite.vim
+
 " =============================================================================
-" 2.0 Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
+" 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
 set shell=/bin/zsh   " Setting shell to zsh
@@ -210,7 +226,6 @@ set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 ch
 set noshowmatch      " Show matching tags
                      " having this turned on will make the cursor jump around
                      " weirdly
-" set showmatch        " Show matching brackets when text indicator is over them
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
@@ -324,6 +339,8 @@ set sidescroll=1
 " -----------------------------------------------------------------------------
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1         " Set an environment variable to use the t_SI/t_EI hack
 let g:loaded_python_provider = 1
+let g:loaded_python_provider=1              " Disable python 2 interface
+let g:python_host_skip_check=1              " Skip python 2 host check
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
 
@@ -413,6 +430,12 @@ nnoremap <Cr> :
 
 " Open current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
+
+" Make * star work in visual mode
+vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
+
+" Use the last used search to use in replace command
+nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 
 " Textobjects for []
 onoremap ir i[
@@ -672,6 +695,8 @@ nnoremap <silent> U :UndotreeToggle<Cr>
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
+" Set html5 syntax for vue files to fix broken indentation
+au BufRead,BufNewFile *.vue set filetype=html
 
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
