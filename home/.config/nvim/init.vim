@@ -698,8 +698,8 @@ nnoremap <silent> U :UndotreeToggle<Cr>
 " PDV - PHP Documentor for VIM - 2
 " -----------------------------------------------------
 
-let g:pdv_template_dir = $HOME . '/.config/nvim/plugged/pdv/templates_snip/'
-nnoremap <buffer> ,p :call pdv#DocumentWithSnip()<CR>
+let g:pdv_template_dir = $HOME . '/.config/nvim/plugged/pdv/templates_snip'
+nnoremap <silent> ,p :call pdv#DocumentWithSnip()<CR>
 
 " =============================================================================
 " 7.0 Autocommands
