@@ -96,6 +96,10 @@ Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 " Blade Syntax
 Plug 'jwalton512/vim-blade'
+" DocBlocks for PHP
+Plug 'tobyS/vmustache' " Required for pdv to work
+Plug 'tobyS/pdv'
+
 
 " -----------------------------------------------------------------------------
 " HTML / CSS
@@ -666,6 +670,13 @@ map g/ <Plug>(incsearch-stay)
 
 nnoremap <silent> U :UndotreeToggle<Cr>
 
+" -----------------------------------------------------
+" PDV - PHP Documentor for VIM - 2
+" -----------------------------------------------------
+
+let g:pdv_template_dir = $HOME . '/.config/nvim/plugged/pdv/templates_snip/'
+nnoremap <buffer> ,p :call pdv#DocumentWithSnip()<CR>
+
 " =============================================================================
 " 7.0 Autocommands
 " =============================================================================
@@ -689,3 +700,4 @@ autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
 " npm install -g eslint
 autocmd BufWritePost *.js Neomake eslint
 
+source ~/.config/nvim/autoload/utils.vim
