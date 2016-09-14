@@ -117,7 +117,7 @@ Plug 'othree/html5.vim'
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx'] }
 
 " Pug / Jade Syntax
-Plug 'digitaltoad/vim-pug', { 'for'; ['jade', 'pug'] }
+Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 Plug 'mattn/emmet-vim'
 
