@@ -87,7 +87,7 @@ Plug 'wellle/targets.vim'
 " Open files with 'gf' without extensions
 Plug 'moll/vim-node'
 " Modern JS support (indent, syntax, etc)
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'branch', 'develop' }
 Plug 'jelera/vim-javascript-syntax'
 " JSON syntax
 Plug 'sheerun/vim-json'
