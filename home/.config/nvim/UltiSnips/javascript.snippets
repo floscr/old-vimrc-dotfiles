@@ -2,6 +2,16 @@
 # DOCUMENTS
 # ---------
 
+# Import
+snippet im
+  import ${1:foo} from '${2:bar}'
+endsnippet
+
+# Export
+snippet ex
+  export ${1:default} ${2:bar}
+endsnippet
+
 snippet exf "Export Function"
 export default function ${1:`!p snip.rv = snip.basename`}() {
   $0
@@ -42,9 +52,9 @@ $0
 endsnippet
 
 snippet >
-=> ${1:{
-  $0
-}}
+(${1}) => {
+  ${2}
+}
 endsnippet
 
 # -----
@@ -60,6 +70,13 @@ endsnippet
 snippet for
 for (let i = 0; i < ${1:var.length}; ${2:i++}) {
   $0
+}
+endsnippet
+
+# For of loop
+snippet forof
+for (let ${1:s} of ${2:sequence}) {
+  ${3}
 }
 endsnippet
 
