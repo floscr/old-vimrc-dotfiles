@@ -22,6 +22,7 @@ function! GetBufferList()
   return buflist
 endfunction
 
+" Toggle the location list
 function! ToggleList(bufname, pfx)
   let buflist = GetBufferList()
   for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
@@ -42,9 +43,25 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+" Fix Linting Error Locationlist jumping when there is only one error
+" Has the nice side efect of being able to loop through errorlist
+function! LocationPrevious()
+  try
+    lprev
+  catch /^Vim\%((\a\+)\)\=:E553/
+    llast
+  endtry
+endfunction
+command! LocationPrevious call LocationPrevious()
 
-
+function! LocationNext()
+  try
+    lnext
+  catch /^Vim\%((\a\+)\)\=:E553/
+    lfirst
+  endtry
+endfunctio
+command! LocationNext call LocationNext()
 
 " Open curent buffer with marked.app
 function! OpenWithMarkedApp()
