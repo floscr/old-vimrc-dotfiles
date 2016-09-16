@@ -116,7 +116,8 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
 Plug 'othree/html5.vim'
 " Color highlighter
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx'] }
-
+" Show matching tag
+Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript', 'blade', 'php', 'twig'] }
 " Pug / Jade Syntax
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
