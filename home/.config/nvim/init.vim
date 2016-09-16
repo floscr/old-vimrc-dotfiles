@@ -72,6 +72,7 @@ Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
 Plug 'kana/vim-textobj-user'                  " Custom Text Objects
 Plug 'kana/vim-textobj-function'              " Function Text Object
 Plug 'kana/vim-textobj-line'                  " Line text object
+Plug 'kana/vim-textobj-entire'                " Entire Buffer ae
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
