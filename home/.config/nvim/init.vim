@@ -99,6 +99,8 @@ Plug 'posva/vim-vue', { 'for': ['vue'] }
 " PHP
 " -----------------------------------------------------------------------------
 
+" Better PHP Syntax
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 " Better indentation support for PHP files with HTML
 Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 " Twig support for vim
@@ -113,7 +115,7 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
 " -----------------------------------------------------------------------------
 
 " CSS3 Syntax
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'html', 'vue'] }
 " HTML5 syntax
 Plug 'othree/html5.vim'
 " Color highlighter
@@ -721,6 +723,21 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 let g:pdv_template_dir = $HOME . '/.config/nvim/plugged/pdv/templates_snip'
 nnoremap <silent> ,p :call pdv#DocumentWithSnip()<CR>
+
+" -----------------------------------------------------
+" PHP Syntax Plugin
+" -----------------------------------------------------
+
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+" Load the better syntax highlighting support
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
 
 " =============================================================================
 " 7.0 Autocommands
