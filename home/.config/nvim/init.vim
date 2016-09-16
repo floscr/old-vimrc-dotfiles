@@ -369,7 +369,7 @@ let g:mapleader="\<space>"
 nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
 
 " -----------------------------------------------------
-" 3.3 Vim defaults overriding
+" 3.3 Keyboard shortcuts / bindings
 " -----------------------------------------------------
 
 " When cycling windows ignore NERDTree
@@ -447,6 +447,9 @@ onoremap ir i[
 onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
+
+" Toggle the error list
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
