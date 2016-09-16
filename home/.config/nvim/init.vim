@@ -523,8 +523,8 @@ nnoremap <silent> <F3> :call utils#nerdWrapper()<CR>
 " -----------------------------------------------------
 
 " Error mnemonic (Neomake uses location list)
-nmap <silent> ]e :LocationPrevious<CR>
-nmap <silent> [e :LocationNext<CR>
+nmap <silent> [e :LocationPrevious<CR>
+nmap <silent> ]e :LocationNext<CR>
 
 " nnoremap ]e :lnext<CR>
 " nnoremap [e :lprevious<CR>
