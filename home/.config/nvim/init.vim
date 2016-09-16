@@ -516,8 +516,7 @@ nnoremap <silent> <leader>gL :BCommits<CR>
 " NERDTree
 " -----------------------------------------------------
 
-" Search commits for current file
-nnoremap <silent> <F3> :call utils#nerdWrapper()<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " -----------------------------------------------------
 " Neomake
