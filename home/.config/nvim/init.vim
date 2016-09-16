@@ -459,6 +459,12 @@ vnoremap ar a[
 " Toggle the error list
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 
+" Workaround for ctrl-h to work
+" workaround for https://github.com/neovim/neovim/issues/2048
+ if has('nvim')
+   nmap <BS> <C-W>h
+ endif
+
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------
