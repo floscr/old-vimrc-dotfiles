@@ -513,7 +513,7 @@ nnoremap <silent> <C-p> :GitFiles<CR>
 " Search Recent Files
 nnoremap <silent> <leader>h :History<CR>
 " Search open buffers
-nnoremap <silent> <leader>l :Buffers<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 " Search available commands
 nnoremap <silent> <leader>c :Commands<CR>
 " Search lines in all open buffers
