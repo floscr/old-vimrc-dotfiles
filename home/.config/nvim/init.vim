@@ -517,6 +517,7 @@ nnoremap <silent> <leader>gL :BCommits<CR>
 " -----------------------------------------------------
 
 map <leader>n :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
 
 " -----------------------------------------------------
 " Neomake
