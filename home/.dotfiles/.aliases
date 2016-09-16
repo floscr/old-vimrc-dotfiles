@@ -194,22 +194,13 @@ alias wl="watson log"
 alias wx="watson stop"
 alias wst="watson status"
 
-# Visual studio code
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+# Laravel
 
-# Terminal Vim
+# Vim
 alias vim="nvim"
 alias vi="nvim"
-
-# GuiVim
-alias v="mvim"
+alias v="nvim"
 alias v.="v ."
-
-# Open given files / dir with macvim in current window in horizontal split
-alias vsv='mvim --remote-send ":sv<CR>"; mvim --remote '
-
-# Open given files / dir with macvim in current window in vertical split
-alias vvs='mvim --remote-send ":vs<CR>"; mvim --remote '
 
 # TASK RUNNER
 alias nw="npm run watch"
@@ -218,6 +209,9 @@ alias nb="npm run build"
 # Quit all gulp tasks
 alias pkg="pkill gulp"
 alias killgulp="pkill gulp"
+
+# Sublime Bin Workaround to work in tmux
+alias subl='reattach-to-user-namespace subl'
 
 #==============================================================================#
 # Etc

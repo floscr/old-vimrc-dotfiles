@@ -3,6 +3,9 @@
 # Reduce Transparency
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
+# Turn off big cursor on mouse shake
+defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool YES
+
 #==============================================================================#
 # Finder                                                                       #
 # =============================================================================#
@@ -50,8 +53,9 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Etc                                                                          #
 # =============================================================================#
 
-# Set default alert sound to Bottle
-defaults write com.apple.systemsound com.apple.sound.beep.sound /System/Library/Sounds/Bottle.aiff
+# Set all F-keys to standard keys
+# Brightness keys have to be rebound with something like keybord-maestro
+defaults write -g com.apple.keyboard.fnState -bool true
 
 # Disable autocorrect
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false

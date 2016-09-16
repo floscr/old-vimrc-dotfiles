@@ -26,3 +26,5 @@ sessions/
 
 home/.vim/spell
 home/.vim/view
+tmp/
+.init.vim-rplugin~
