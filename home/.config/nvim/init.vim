@@ -659,7 +659,11 @@ let g:user_emmet_leader_key='<C-e>'
 " Lightline
 " -----------------------------------------------------
 
-let g:lightline = {}
+let g:lightline = {
+  \ 'component': {
+  \   'filename': '%n: %t'
+  \ }
+  \ }
 let g:lightline.colorscheme = 'hybrid'
 
 " -----------------------------------------------------
