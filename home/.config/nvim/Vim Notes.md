@@ -1,6 +1,11 @@
 Vim Notes
 =========
 
+## Notes
+
+When the marks plugin starts getting messy again, look at:
+https://github.com/xsunsmile/showmarks
+
 ## Shorcuts
 
 ### Neomake
