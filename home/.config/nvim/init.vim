@@ -220,21 +220,22 @@ source ~/.config/nvim/custom-plugins/autowrite.vim
 " 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
-set shell=/bin/zsh   " Setting shell to zsh
-set number           " Line numbers on
-set showmode         " Always show mode
-set hidden           " Enables to switch between unsaved buffers and keep undo history
-set noswapfile       " New buffers will be loaded without creating a swapfile
-set lazyredraw       " Don't redraw while executing macros (better performance)
-set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
-set nojoinspaces     " No extra space when joining a line which ends with . ? !
-set suffixesadd+=.js " Add js and ruby files to suffixes
-set autochdir        " Set working dir to the current file
-set shortmess+=I     " Turn off the intro
-set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 characters
-set noshowmatch      " Show matching tags
-                     " having this turned on will make the cursor jump around
-                     " weirdly
+set shell=/bin/zsh             " Setting shell to zsh
+set number                     " Line numbers on
+set showmode                   " Always show mode
+set hidden                     " Enables to switch between unsaved buffers and keep undo history
+set noswapfile                 " New buffers will be loaded without creating a swapfile
+set lazyredraw                 " Don't redraw while executing macros (better performance)
+set nostartofline              " Prevent cursor from moving to beginning of line when switching buffers
+set nojoinspaces               " No extra space when joining a line which ends with . ? !
+set suffixesadd+=.js           " Add js and ruby files to suffixes
+set autochdir                  " Set working dir to the current file
+set shortmess+=I               " Turn off the intro
+set synmaxcol=800              " Turn off syntax highlighting for lines longer than 800 characters
+set noshowmatch                " Show matching tags
+                               " having this turned on will make the cursor jump around
+                               " weirdly
+set backspace=indent,eol,start " Better backspace
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
