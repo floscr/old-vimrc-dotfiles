@@ -125,6 +125,7 @@ Plug 'mattn/emmet-vim'
 " Interface improving
 " -----------------------------------------------------------------------------
 
+Plug 'kshenoy/vim-signature'
 " Lightline (simple status line)
 Plug 'itchyny/lightline.vim'
 " Buffers tabline
