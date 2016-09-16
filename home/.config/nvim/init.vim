@@ -17,8 +17,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Editor config for vim
 Plug 'editorconfig/editorconfig-vim'
-" Asynchronous maker and linter (needs linters to work)
-Plug 'benekastah/neomake', { 'on': ['Neomake'] }
+" Async Linting, Use project .eslintrc first
+Plug 'benekastah/neomake', { 'on': ['Neomake'] } | Plug 'jaawerth/neomake-local-eslint-first'
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Snippet suport
@@ -693,6 +693,12 @@ map g/ <Plug>(incsearch-stay)
 " -----------------------------------------------------
 
 nnoremap <silent> U :UndotreeToggle<Cr>
+
+" -----------------------------------------------------
+" NeoMake
+" -----------------------------------------------------
+
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 " -----------------------------------------------------
 " PDV - PHP Documentor for VIM - 2
