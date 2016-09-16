@@ -465,6 +465,8 @@ nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
    nmap <BS> <C-W>h
  endif
 
+nnoremap ,ocf :OpenChangedFiles<CR>
+
 " -----------------------------------------------------
 " 3.5 Buffer & Window management
 " -----------------------------------------------------

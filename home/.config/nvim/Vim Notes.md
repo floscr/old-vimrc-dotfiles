@@ -6,6 +6,12 @@ Vim Notes
 When the marks plugin starts getting messy again, look at:
 https://github.com/xsunsmile/showmarks
 
+Maybe look at markdown code block syntax highlighting
+https://github.com/jtratner/vim-flavored-markdown
+
+Finally replace Sublime Text as search and replace tool?
+https://github.com/skwp/greplace.vim
+
 ## Shorcuts
 
 ### Neomake
