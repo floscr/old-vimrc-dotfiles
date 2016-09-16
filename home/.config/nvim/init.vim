@@ -112,6 +112,8 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
 " HTML / CSS
 " -----------------------------------------------------------------------------
 
+" CSS3 Syntax
+Plug 'hail2u/vim-css3-syntax'
 " HTML5 syntax
 Plug 'othree/html5.vim'
 " Color highlighter
@@ -120,7 +122,7 @@ Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xde
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript', 'blade', 'php', 'twig'] }
 " Pug / Jade Syntax
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
-
+" Emmet
 Plug 'mattn/emmet-vim'
 
 " -----------------------------------------------------------------------------
