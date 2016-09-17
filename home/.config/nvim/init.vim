@@ -607,13 +607,6 @@ endif
 
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
-" let g:deoplete#sources={}
-" let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-" let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-" let g:deoplete#sources['javascript.jsx'] = ['tern', 'buffer', 'file', 'ultisnips']
-" let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-" let g:deoplete#sources.scss = ['tern', 'buffer', 'member', 'file', 'omni', 'ultisnips']
-" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
 " Insert <TAB> or select next match
 inoremap <silent> <expr> <Tab> utils#tabComplete()
