@@ -514,6 +514,12 @@ let g:fzf_action = {
 	\ 'ctrl-x': 'split',
 	\ 'ctrl-v': 'vsplit' }
 
+" Reverse to find if not in git root
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+command! ProjectFiles execute 'Files' s:find_git_root()
+
 " Search in current git index
 nnoremap <silent> <C-p> :GitFiles<CR>
 " Search Recent Files
