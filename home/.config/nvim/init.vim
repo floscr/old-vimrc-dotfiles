@@ -86,14 +86,18 @@ Plug 'wellle/targets.vim'
 " -----------------------------------------------------------------------------
 
 " Open files with 'gf' without extensions
-Plug 'moll/vim-node'
+Plug 'moll/vim-node', { 'for': ['js', 'vue'] }
 " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
 Plug 'jelera/vim-javascript-syntax'
 " JSON syntax
-Plug 'sheerun/vim-json'
+Plug 'sheerun/vim-json', { 'for': ['json'] }
 " Vue support
 Plug 'posva/vim-vue', { 'for': ['vue'] }
+
+Plug 'carlitux/deoplete-ternjs',  { 'do': 'npm install --cache-min Infinity --loglevel http -g tern' }
+Plug 'ternjs/tern_for_vim',       { 'do': 'npm install --cache-min Infinity --loglevel http' }
+
 
 " -----------------------------------------------------------------------------
 " PHP
@@ -566,19 +570,41 @@ nnoremap <leader>es :call EditFileTypeSnippet()<CR>
 " Deoplete
 " -----------------------------------------------------
 
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
+
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_refresh_always=0
 let g:deoplete#file#enable_buffer_path=1
 " Trigger deoplete only when pressing tab
-let g:deoplete#disable_auto_complete=1
+" let g:deoplete#disable_auto_complete=1
 
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType scsss setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
+
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+" let g:deoplete#sources={}
+" let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+" let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+" let g:deoplete#sources['javascript.jsx'] = ['tern', 'buffer', 'file', 'ultisnips']
+" let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+" let g:deoplete#sources.scss = ['tern', 'buffer', 'member', 'file', 'omni', 'ultisnips']
+" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
 " Insert <TAB> or select next match
 inoremap <silent> <expr> <Tab> utils#tabComplete()
@@ -725,6 +751,16 @@ nnoremap <silent> U :UndotreeToggle<Cr>
 " -----------------------------------------------------
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_verbose=0
+let g:neomake_warning_sign = {
+      \ 'text': '❯',
+      \ 'texthl': 'WarningMsg',
+      \ }
+let g:neomake_error_sign = {
+      \ 'text': '❯',
+      \ 'texthl': 'ErrorMsg',
+      \ }
+"}}}
 
 " -----------------------------------------------------
 " PDV - PHP Documentor for VIM - 2
