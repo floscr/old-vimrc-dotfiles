@@ -521,7 +521,7 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 
 " Search in current git index
-nnoremap <silent> <C-p> :GitFiles<CR>
+nnoremap <silent> <C-p> :ProjectFiles<CR>
 " Search Recent Files
 nnoremap <silent> <leader>h :History<CR>
 " Search open buffers
