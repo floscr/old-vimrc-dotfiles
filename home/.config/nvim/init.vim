@@ -537,6 +537,9 @@ nnoremap <silent> <leader>gl :Commits<CR>
 " Search commits for current file
 nnoremap <silent> <leader>gL :BCommits<CR>
 
+" Filename completion with fzf
+imap <c-x><c-f> <plug>(fzf-complete-path)
+
 " -----------------------------------------------------
 " NERDTree
 " -----------------------------------------------------
