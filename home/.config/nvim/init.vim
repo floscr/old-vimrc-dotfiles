@@ -516,9 +516,13 @@ let g:fzf_action = {
 
 " Reverse to find if not in git root
 function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+  let isGitProject = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+  if (system('git rev-parse --show-toplevel 2> /dev/null')[:-2])
+    return 'GitFiles'
+  endif
+  return 'Files'
 endfunction
-command! ProjectFiles execute 'Files' s:find_git_root()
+command! ProjectFiles execute s:find_git_root()
 
 " Search in current git index
 nnoremap <silent> <C-p> :ProjectFiles<CR>
