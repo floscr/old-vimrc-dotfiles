@@ -516,8 +516,7 @@ let g:fzf_action = {
 
 " Reverse to find if not in git root
 function! s:find_git_root()
-  let isGitProject = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-  if (system('git rev-parse --show-toplevel 2> /dev/null')[:-2])
+  if system('git rev-parse --show-toplevel 2> /dev/null') != ''
     return 'GitFiles'
   endif
   return 'Files'
@@ -632,24 +631,16 @@ autocmd QuickFixCmdPost *grep* cwindow
 " Always use vertical diffs
 set diffopt+=vertical
 
-" -------
-" Commits
-" -------
-
 " Add the current file to index
 nnoremap <silent> <leader>gf :Git add %:p<CR><CR>
 " Add all changes to index
-nnoremap <silent> <leader>ga :Git add .<CR><CR>
+nnoremap <silent> <leader>ga :Git add .<CR><CR><CR>
 " Git Status
 nnoremap <leader>gs :Gstatus<CR>
 " Commit added index
 nnoremap <leader>gc :Gcommit -v -q<CR>
 " Add and commit current file
 nnoremap <space>gt :Gcommit -v -q %:p<CR>
-
-" ---
-" Etc
-" ---
 
 " Diff current file
 nnoremap <leader>gd :Gdiff<CR>
