@@ -709,7 +709,7 @@ let g:lightline = {
       \ 'colorscheme': 'hybrid',
       \ 'active': {
       \	'left': [
-      \		[ 'mode', 'paste' ],
+      \		[ 'mode' ],
       \		[ 'fugitive', 'filename' ],
       \	]
       \ },
