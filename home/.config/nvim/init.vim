@@ -544,6 +544,10 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 " NERDTree
 " -----------------------------------------------------
 
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git$', '\.hg', '\.svn', '\.bzr']
+let NERDTreeShowHidden=1
+let NERDTreeMouseMode=2
+
 map <leader>n :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
