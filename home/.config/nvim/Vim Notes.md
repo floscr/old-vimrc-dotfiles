@@ -3,9 +3,6 @@ Vim Notes
 
 ## Notes
 
-When the marks plugin starts getting messy again, look at:
-https://github.com/xsunsmile/showmarks
-
 Maybe look at markdown code block syntax highlighting
 https://github.com/jtratner/vim-flavored-markdown
 
