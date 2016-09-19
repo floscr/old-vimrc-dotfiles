@@ -839,11 +839,11 @@ nnoremap <silent> U :UndotreeToggle<Cr>
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_verbose=0
 let g:neomake_warning_sign = {
-      \ 'text': '❯',
+      \ 'text': '⚠',
       \ 'texthl': 'WarningMsg',
       \ }
 let g:neomake_error_sign = {
-      \ 'text': '❯',
+      \ 'text': '✘',
       \ 'texthl': 'ErrorMsg',
       \ }
 "}}}
