@@ -53,3 +53,4 @@ Thumbs.db
 *.sublime-workspace
 node_modules/
 bower_components/
+.tern-project
