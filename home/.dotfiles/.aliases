@@ -187,15 +187,6 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 # Development
 #==============================================================================#
 
-# Watson
-alias w="watson"
-alias ws="watson start"
-alias wl="watson log"
-alias wx="watson stop"
-alias wst="watson status"
-
-# Laravel
-
 # Vim
 alias vim="nvim"
 alias vi="nvim"
