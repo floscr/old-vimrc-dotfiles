@@ -20,9 +20,11 @@ set mouse-scroll      = 3 # Number of lines to scroll via the mouse
 # Views
 #=============================================================================#
 
-set main-view   = author:no line-number:no,interval=5 id:yes date:short author:full commit-title:yes,graph,refs,overflow=no
+set main-view   = author:no line-number:no,interval=5 id:yes date:default author:abbreviated commit-title:yes,graph,refs,overflow=no
 set stash-view  = line-number:no,interval=5 id:no date:default author:full commit-title
 set tree-view   = line-number:no,interval=5 mode author:full file-size date:default id:no file-name
 set status-view = line-number:no,interval=5 status:short file-name
+
+set main-view-date = custom
 
 set diff-view   = line-number:no,interval=5 text:yes,commit-title-overflow=no
