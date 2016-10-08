@@ -204,6 +204,9 @@ alias killgulp="pkill gulp"
 # Sublime Bin Workaround to work in tmux
 alias subl='reattach-to-user-namespace subl'
 
+# Open git repository in tower app, even when in subdir
+alias tower='gittower "$(git rev-parse --show-toplevel)"'
+
 #==============================================================================#
 # Etc
 #==============================================================================#
