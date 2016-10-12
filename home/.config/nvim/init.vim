@@ -400,6 +400,10 @@ nnoremap <silent> N :norm! Nzz<CR>
 vnoremap <silent> n :norm! nzz<CR>
 vnoremap <silent> N :norm! Nzz<CR>
 
+" Quickfix list
+nnoremap ]q :cn<CR>
+nnoremap [q :cp<CR>
+
 " Quick replay 'q' macro
 nnoremap Q @q
 
