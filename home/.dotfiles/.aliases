@@ -193,6 +193,9 @@ alias vi="nvim"
 alias v="nvim"
 alias v.="v ."
 
+# Open all changed files in git
+alias gv="vim $(echo $(git status --porcelain | sed s/^...//))"
+
 # TASK RUNNER
 alias nw="npm run watch"
 alias nb="npm run build"
