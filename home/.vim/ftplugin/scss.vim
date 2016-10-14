@@ -2,6 +2,8 @@
 autocmd FileType css,scss setl iskeyword+=-
 autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
 
+autocmd FileType scss set iskeyword+=-
+
 " Quickly navigate classes in css
 nmap <silent> <buffer> <leader>{ ?{<CR>
 nmap <silent> <buffer> <leader>} ?}<CR>
