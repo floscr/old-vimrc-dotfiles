@@ -174,23 +174,6 @@ function! g:utils#stripTrailingWhitespaces() abort
   call cursor(l:line, l:col)
 endfunction
 
-" Set SK keyboard layout with qwerty
-function! g:utils#setSKKBLayout() abort
-  silent !setxkbmap sk -variant qwerty
-endfunction
-
-" Set US keyboard layout with qwerty
-function! g:utils#setUSKBLayout() abort
-  silent !setxkbmap us
-endfunction
-
-" Generate ctags and put them into tags directory
-" gem install starscope
-function! g:utils#generateCtags() abort
-  silent execute '!starscope -e ctags'
-  echom 'Tags generated into tags file!'
-endfunction
-
 " Tab wrapper
 function! g:utils#tabComplete() abort
   let l:col = col('.') - 1
