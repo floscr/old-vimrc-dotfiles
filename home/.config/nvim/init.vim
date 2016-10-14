@@ -119,7 +119,9 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
 " -----------------------------------------------------------------------------
 
 " CSS3 Syntax
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'html', 'vue'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html', 'vue'] }
+" SCSS Syntax
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }
 " HTML5 syntax
 Plug 'othree/html5.vim'
 " Color highlighter
