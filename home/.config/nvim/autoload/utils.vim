@@ -369,21 +369,6 @@ function! g:utils#lightLineFilename() abort
         \ ('' !=# l:fname ? l:fname : '[No Name]')
 endfunction
 
-" Howdoi integration
-" Needs: `pip install howdoi`
-function! g:utils#howDoI() abort
-  let l:command_prefix = 'read '
-  let l:howdoi = '!howdoi '
-
-  call inputsave()
-  let l:query = input('How do I: ')
-  call inputrestore()
-
-  if l:query !=# ''
-    execute l:command_prefix . l:howdoi . l:query
-  endif
-endfunction
-
 " Reset tabs to 4 spaces
 function! g:utils#retabToFourSpaces() abort
   setlocal tabstop=4 shiftwidth=4 expandtab
