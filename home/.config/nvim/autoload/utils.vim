@@ -15,6 +15,7 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+" Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
 if (has('nvim'))
   " Async push / pull
   function! s:Push()
