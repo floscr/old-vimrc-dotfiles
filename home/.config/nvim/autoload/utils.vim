@@ -15,6 +15,65 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+function! s:MakeHeader(type)
+  if &filetype == "vim"
+    " Special short header for vim files
+    " Yank current line into t register
+    silent! normal "tyy
+    " Replace pasted comment letters with -
+    silent! normal "tpwv$r-
+    " Paste above comment line
+    silent! normal "tyykP
+    " Go back to comment word
+    silent! normal k^w
+
+  elseif &filetype == "markdown"
+    silent! normal yypVr=o
+
+  elseif &filetype == "conf" || &filetype == "apache" || &filetype == "sh"
+    silent! normal ^
+    " Remove any comments on current line
+    silent! .s/^\/\+\s//g
+    " Paste our default header everywhere else
+    silent! normal O#=============================================================================#
+    silent! normal jo#=============================================================================#
+    silent! normal kI# l
+
+  else
+    silent! normal ^
+    " Remove any comments on current line
+    silent! .s/^\/\+\s//g
+
+    " Store the virtual edit setting for later restore
+    let old_virtual_edit=&virtualedit
+    set virtualedit=all
+
+    " Comment out the current line
+    silent! normal gcc
+    " Copy the commented line above and delete the word
+    silent! normal yyPwd$
+    " Visually select from the comment start to the column marker
+    silent! normal 080lhhvgEll
+    " Replace with dashes
+    silent! normal r-
+    " Yank the comment block below the original comment
+    silent! normal yyjp
+    " Go back to the original comment
+    silent! normal kw
+
+    " Restore the virtualedit setting and delete the temporary variable
+    let &virtualedit=old_virtual_edit
+    unlet old_virtual_edit
+  endif
+endfunction
+
+command! -nargs=1 MakeHeader call s:MakeHeader(<f-args>)
+
+nnoremap gmh :MakeHeader small<cr>
+nnoremap gmH :MakeHeader large<cr>
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OpenChangedFiles COMMAND
 " Open a split for each dirty file in git
