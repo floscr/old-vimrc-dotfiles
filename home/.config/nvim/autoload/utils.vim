@@ -15,6 +15,23 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+if (has('nvim'))
+  " Async push / pull
+  function! s:Push()
+    function! s:JobHandler(job_id, data, event)
+      echo "Push done!"
+    endfunction
+    let s:callbacks = {
+    \ 'on_stdout': function('s:JobHandler'),
+    \ 'on_stderr': function('s:JobHandler'),
+    \ 'on_exit': function('s:JobHandler')
+    \ }
+    call jobstart(split(&shell) + split(&shellcmdflag) + ['{git push}'], s:callbacks)
+  endfunction
+  command! Push :call s:Push()
+endif
+
+" Make header
 function! s:MakeHeader(type)
   if &filetype == "vim"
     " Special short header for vim files
