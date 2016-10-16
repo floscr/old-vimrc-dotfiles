@@ -1,5 +1,19 @@
 extends javascript
 
+snippet com
+computed: {
+  ${1:computedProp} (${2:args}) {
+    return $0
+  },
+},
+endsnippet
+
+snippet p
+props: [
+  '$0'
+],
+endsnippet
+
 snippet m
 methods: {
   ${1:method} (${2:args}) {
