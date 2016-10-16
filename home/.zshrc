@@ -107,6 +107,11 @@ zstyle ':completion:*' menu select=2
 # Shell Settings
 #==============================================================================#
 
+# Fixes the perl error on uberspace
+# Setting for the new UTF-8 terminal support in Lion
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
