@@ -259,6 +259,9 @@ set noshowmatch                 " Show matching tags
 set backspace=indent,eol,start  " Better backspace
 set mouse=a                     " Enable Mouse Mode
 
+" Disable Netrw
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
 
 " -----------------------------------------------------------------------------
 " 2.1 Color Settings
