@@ -222,6 +222,8 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 " Close Buffer
 Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
+Plug 'idbrii/vim-dirvish', { 'branch': 'dev' }
+
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -250,7 +252,7 @@ set lazyredraw                  " Don't redraw while executing macros (better pe
 set nostartofline               " Prevent cursor from moving to beginning of line when switching buffers
 set nojoinspaces                " No extra space when joining a line which ends with . ? !
 set suffixesadd+=.js            " Add js and ruby files to suffixes
-set autochdir                   " Set working dir to the current file
+" set autochdir                   " Set working dir to the current file
 set shortmess+=I                " Turn off the intro
 set synmaxcol=800               " Turn off syntax highlighting for lines longer than 800 characters
 set noshowmatch                 " Show matching tags
@@ -894,6 +896,13 @@ augroup END
 " =============================================================================
 " 7.0 Autocommands
 " =============================================================================
+
+" autocmd BufEnter dirvish set noautochdir
+
+" autocmd BufEnter * set autochdir
+" autocmd FileType dirvish set noautochdir
+autocmd FileType dirvish call fugitive#detect(@%)
+
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
