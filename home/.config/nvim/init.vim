@@ -897,12 +897,8 @@ augroup END
 " 7.0 Autocommands
 " =============================================================================
 
-" autocmd BufEnter dirvish set noautochdir
-
-" autocmd BufEnter * set autochdir
-" autocmd FileType dirvish set noautochdir
-autocmd FileType dirvish call fugitive#detect(@%)
-
+" autochdir alternative
+autocmd BufRead,BufEnter,BufNew * silent! lcd %:p:h
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
