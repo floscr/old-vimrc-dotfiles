@@ -224,6 +224,7 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
 Plug 'idbrii/vim-dirvish', { 'branch': 'dev' }
 
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -409,11 +410,11 @@ nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
 " -----------------------------------------------------
 
 " When cycling windows ignore NERDTree
-nmap <silent> <C-w><C-w> :call utils#intelligentCycling()<CR>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" nmap <silent> <C-w><C-w> :call utils#intelligentCycling()<CR>
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 " When jump to next match also center screen
 " Note: Use :norm! to make it count as one command. (i.e. for i_CTRL-o)
