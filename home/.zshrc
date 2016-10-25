@@ -86,7 +86,6 @@ ZSH_CUSTOM=$DOTFILES/zsh/themes
 # ~/.oh-my-zsh/themes/
 ZSH_THEME="floscr"
 
-
 # ZSH PlUGINS
 plugins=(git npm osx history-substring-search encode64 fasd laravel)
 
