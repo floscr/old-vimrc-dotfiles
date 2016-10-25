@@ -169,6 +169,9 @@ alias vr="vagrant reload"
 
 alias chrome="/usr/bin/open -a /Applications/Google\ Chrome\ Canary.app --new"
 
+# Start a new ssh connection that is kept alive for an hour
+alias ssh_keep_alive="ssh -o ServerAliveInterval=600"
+
 #==============================================================================#
 # SYSTEM
 #==============================================================================#
