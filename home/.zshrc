@@ -80,10 +80,12 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 ZSH=$DOTFILES_PLUGINS/oh-my-zsh
+ZSH_CUSTOM=$DOTFILES/zsh/themes
 
 # ZSH THEME
 # ~/.oh-my-zsh/themes/
-ZSH_THEME="robbyrussell"
+ZSH_THEME="floscr"
+
 
 # ZSH PlUGINS
 plugins=(git npm osx history-substring-search encode64 fasd laravel)
