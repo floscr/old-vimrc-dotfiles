@@ -114,7 +114,6 @@ Plug 'maksimr/vim-jsbeautify'
 " Plug 'carlitux/deoplete-ternjs',  { 'do': 'npm install --cache-min Infinity --loglevel http -g tern' }
 " Plug 'ternjs/tern_for_vim',       { 'do': 'npm install --cache-min Infinity --loglevel http' }
 
-
 " -----------------------------------------------------------------------------
 " PHP
 " -----------------------------------------------------------------------------
@@ -896,6 +895,23 @@ augroup phpSyntaxOverride
   autocmd!
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
+
+" -----------------------------------------------------
+" JsBeautify
+" -----------------------------------------------------
+
+autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+autocmd FileType html,twig noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType css,scss,sass noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+" Visual Range Beautify
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
 " =============================================================================
 " 7.0 Autocommands
