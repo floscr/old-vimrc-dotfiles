@@ -108,6 +108,9 @@ Plug 'sheerun/vim-json', { 'for': ['json'] }
 " Vue support
 Plug 'posva/vim-vue', { 'for': ['vue'] }
 
+" Beautify files
+Plug 'maksimr/vim-jsbeautify'
+
 " Plug 'carlitux/deoplete-ternjs',  { 'do': 'npm install --cache-min Infinity --loglevel http -g tern' }
 " Plug 'ternjs/tern_for_vim',       { 'do': 'npm install --cache-min Infinity --loglevel http' }
 
