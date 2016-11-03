@@ -924,6 +924,7 @@ autocmd BufRead,BufEnter,BufNew * silent! lcd %:p:h
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 " Set html5 syntax for vue files to fix broken indentation
 au BufRead,BufNewFile *.vue set filetype=html
+au BufRead,BufNewFile *.zsh* set filetype=zsh
 
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()

@@ -80,7 +80,7 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 ZSH=$DOTFILES_PLUGINS/oh-my-zsh
-ZSH_CUSTOM=$DOTFILES/zsh/themes
+ZSH_CUSTOM=$DOTFILES/zsh/custom
 
 # ZSH THEME
 # ~/.oh-my-zsh/themes/
