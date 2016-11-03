@@ -98,6 +98,9 @@ alias gamf="git commit --amend --no-edit"
 alias unassumeall="git unassumeall"
 alias assumeall="git assumeall"
 
+# Add git tag from the package.json
+alias npmtag="git tag "v$(node -pe 'JSON.parse(process.argv[1]).version' "$(cat package.json)")""
+
 # Tig Aliases
 alias ts="tig status"
 
