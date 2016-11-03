@@ -20,7 +20,7 @@ export ${1:default} ${2:bar}
 endsnippet
 
 snippet exf "Export Function"
-export default function ${1:`!p snip.rv = snip.basename`}() {
+export default function ${1:`!p snip.rv = snip.basename`} () {
   $0
 }
 endsnippet
@@ -53,7 +53,7 @@ $0
 endsnippet
 
 snippet vfun
-var $1 = function($2) {
+var $1 = function ($2) {
 $0
 }
 endsnippet
@@ -153,7 +153,7 @@ module.exports = ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', ''
 endsnippet
 
 snippet mef "module.exports function"
-module.exports = function() {
+module.exports = function () {
   $0
 }
 endsnippet
@@ -248,14 +248,14 @@ endsnippet
 # ------------
 
 snippet gulp
-gulp.task('${1:task}', function() {
+gulp.task('${1:task}', function () {
   return gulp.src('${2:src}')
     .pipe(gulp.dest('${3:dst}'));
 });
 endsnippet
 
 snippet gulpwatch
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   return gulp.watch('${1:./src/*}', ['${2:task}']);
 });
 endsnippet
@@ -281,7 +281,7 @@ setTimeout(function () {${0}}${2}, ${1:10});
 endsnippet
 
 snippet onkey
-document.onkeydown = function(event) {
+document.onkeydown = function (event) {
 $1
 }
 endsnippet
