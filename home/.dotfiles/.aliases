@@ -199,6 +199,10 @@ alias vi="nvim"
 alias v="nvim"
 alias v.="v ."
 
+alias y="yarn"
+alias ya="yarn add"
+alias yad="yarn add --dev"
+
 # Open all changed files in git
 alias gv="vim $(echo $(git status --porcelain | sed s/^...//))"
 
