@@ -913,6 +913,13 @@ autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
+" -----------------------------------------------------
+" Sideways
+" -----------------------------------------------------
+
+nmap <leader>] <Plug>SidewaysRight
+nmap <leader>[ <Plug>SidewaysLeft
+
 " =============================================================================
 " 7.0 Autocommands
 " =============================================================================
