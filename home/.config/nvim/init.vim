@@ -255,7 +255,7 @@ set lazyredraw                  " Don't redraw while executing macros (better pe
 set nostartofline               " Prevent cursor from moving to beginning of line when switching buffers
 set nojoinspaces                " No extra space when joining a line which ends with . ? !
 set suffixesadd+=.js            " Add js and ruby files to suffixes
-" set autochdir                   " Set working dir to the current file
+set autochdir                   " Set working dir to the current file
 set shortmess+=I                " Turn off the intro
 set synmaxcol=800               " Turn off syntax highlighting for lines longer than 800 characters
 set noshowmatch                 " Show matching tags
@@ -918,7 +918,7 @@ autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 " =============================================================================
 
 " autochdir alternative
-autocmd BufRead,BufEnter,BufNew * silent! lcd %:p:h
+" autocmd BufRead,BufEnter,BufNew * silent! lcd %:p:h
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
