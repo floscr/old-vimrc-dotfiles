@@ -58,6 +58,8 @@ Plug 'craigemery/vim-autotag'
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 " Editorconfig loading
 Plug 'editorconfig/editorconfig-vim'
+" Search and Replace Tool
+Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
