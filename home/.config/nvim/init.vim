@@ -60,6 +60,8 @@ Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 Plug 'editorconfig/editorconfig-vim'
 " Search and Replace Tool
 Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
+" Plug 'ddrscott/vim-side-search'
+Plug 'dyng/ctrlsf.vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
@@ -228,7 +230,7 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
 " Lightweight File Explorer
 " Like dirvish, but supports autochdir
-Plug 'jeetsukumaran/vim-filebeagle'
+" Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
@@ -942,6 +944,18 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
+
+" How should we execute the search?
+" --heading and --stats are required!
+let g:side_search_prg = 'ag --word-regexp'
+  \. " --ignore='*.js.map'"
+  \. " --heading --stats -B 1 -A 4"
+
+" Can use `vnew` or `new`
+let g:side_search_splitter = 'vnew'
+
+" I like 40% splits, change it if you don't
+let g:side_search_split_pct = 0.4
 
 " -----------------------------------------------------
 " 7.1 Run linters after save
