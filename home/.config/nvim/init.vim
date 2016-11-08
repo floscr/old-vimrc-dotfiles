@@ -90,6 +90,7 @@ Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
 Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
+Plug 'jasonlong/vim-textobj-css'              " CSS Class caf
 
 " Improved targets line cin) next parens
 Plug 'wellle/targets.vim'
