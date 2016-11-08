@@ -224,7 +224,7 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 " Close Buffer
 Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
-Plug 'idbrii/vim-dirvish', { 'branch': 'dev' }
+Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
@@ -923,9 +923,6 @@ nmap <leader>[ <Plug>SidewaysLeft
 " =============================================================================
 " 7.0 Autocommands
 " =============================================================================
-
-" autochdir alternative
-" autocmd BufRead,BufEnter,BufNew * silent! lcd %:p:h
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
