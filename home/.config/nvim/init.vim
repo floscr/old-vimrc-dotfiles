@@ -224,6 +224,8 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 " Close Buffer
 Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
+" Lightweight File Explorer
+" Like dirvish, but supports autochdir
 Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
