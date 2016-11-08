@@ -63,8 +63,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Text insertion/manipulation
 " -----------------------------------------------------------------------------
 
-" Split oneliners
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim' " Split oneliners
 " Sort alphabetically gsa
 Plug 'christoomey/vim-sort-motion'
 " Switch argument order
@@ -458,7 +457,7 @@ xnoremap . :norm.<CR>
 nnoremap J mzJ`z
 
 " Reverse join (Turn single line comments to inline comments)
-nnoremap ,J jddkPmzJ`z
+nnoremap K jddkPmzJ`z
 
 " Quick Close
 nnoremap <C-c> :q<return>
