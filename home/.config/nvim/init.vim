@@ -102,18 +102,13 @@ Plug 'wellle/targets.vim'
 " Javascript
 " -----------------------------------------------------------------------------
 
-" Open files with 'gf' without extensions
-Plug 'moll/vim-node', { 'for': ['js', 'vue'] }
-" Modern JS support (indent, syntax, etc)
-Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
-Plug 'jelera/vim-javascript-syntax'
-" JSON syntax
-Plug 'sheerun/vim-json', { 'for': ['json'] }
-" Vue support
-Plug 'posva/vim-vue', { 'for': ['vue'] }
-
-" Beautify files
-Plug 'maksimr/vim-jsbeautify'
+Plug 'moll/vim-node', { 'for': ['js', 'vue'] }          " Open files with 'gf' without extensions
+Plug 'pangloss/vim-javascript', { 'branch': 'develop' } " Modern JS support (indent, syntax, etc)
+Plug 'jelera/vim-javascript-syntax'                     " More Syntax highlighting?
+Plug 'sheerun/vim-json', { 'for': ['json'] }            " JSON syntax
+Plug 'posva/vim-vue', { 'for': ['vue'] }                " Vue support
+Plug 'heavenshell/vim-jsdoc', { 'on', ['JsDoc'] }       " Js Doc Blcok
+Plug 'maksimr/vim-jsbeautify'                           " Beautify files
 
 " Plug 'carlitux/deoplete-ternjs',  { 'do': 'npm install --cache-min Infinity --loglevel http -g tern' }
 " Plug 'ternjs/tern_for_vim',       { 'do': 'npm install --cache-min Infinity --loglevel http' }
