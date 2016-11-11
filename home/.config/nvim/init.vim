@@ -107,7 +107,7 @@ Plug 'pangloss/vim-javascript', { 'branch': 'develop' } " Modern JS support (ind
 Plug 'jelera/vim-javascript-syntax'                     " More Syntax highlighting?
 Plug 'sheerun/vim-json', { 'for': ['json'] }            " JSON syntax
 Plug 'posva/vim-vue', { 'for': ['vue'] }                " Vue support
-Plug 'heavenshell/vim-jsdoc', { 'on', ['JsDoc'] }       " Js Doc Blcok
+Plug 'heavenshell/vim-jsdoc'                            " Js Doc Blcok
 Plug 'maksimr/vim-jsbeautify'                           " Beautify files
 
 " Plug 'carlitux/deoplete-ternjs',  { 'do': 'npm install --cache-min Infinity --loglevel http -g tern' }
@@ -918,8 +918,17 @@ autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 " Sideways
 " -----------------------------------------------------
 
+" Move function argument to the left/right
 nmap <leader>] <Plug>SidewaysRight
 nmap <leader>[ <Plug>SidewaysLeft
+
+" -----------------------------------------------------
+" JsDoc
+" -----------------------------------------------------
+
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_enable_es6=1
 
 " =============================================================================
 " 7.0 Autocommands
