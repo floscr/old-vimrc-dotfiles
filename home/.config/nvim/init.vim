@@ -58,13 +58,16 @@ Plug 'craigemery/vim-autotag'
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 " Editorconfig loading
 Plug 'editorconfig/editorconfig-vim'
+" Search and Replace Tool
+Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
+" Plug 'ddrscott/vim-side-search'
+Plug 'dyng/ctrlsf.vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
 " -----------------------------------------------------------------------------
 
-" Split oneliners
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim' " Split oneliners
 " Sort alphabetically gsa
 Plug 'christoomey/vim-sort-motion'
 " Switch argument order
@@ -90,6 +93,7 @@ Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'vim-scripts/ReplaceWithRegister'        " Replace motion with gr{motion}
 Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
+Plug 'jasonlong/vim-textobj-css'              " CSS Class caf
 
 " Improved targets line cin) next parens
 Plug 'wellle/targets.vim'
@@ -98,18 +102,13 @@ Plug 'wellle/targets.vim'
 " Javascript
 " -----------------------------------------------------------------------------
 
-" Open files with 'gf' without extensions
-Plug 'moll/vim-node', { 'for': ['js', 'vue'] }
-" Modern JS support (indent, syntax, etc)
-Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
-Plug 'jelera/vim-javascript-syntax'
-" JSON syntax
-Plug 'sheerun/vim-json', { 'for': ['json'] }
-" Vue support
-Plug 'posva/vim-vue', { 'for': ['vue'] }
-
-" Beautify files
-Plug 'maksimr/vim-jsbeautify'
+Plug 'moll/vim-node', { 'for': ['js', 'vue'] }          " Open files with 'gf' without extensions
+Plug 'pangloss/vim-javascript', { 'branch': 'develop' } " Modern JS support (indent, syntax, etc)
+Plug 'jelera/vim-javascript-syntax'                     " More Syntax highlighting?
+Plug 'sheerun/vim-json', { 'for': ['json'] }            " JSON syntax
+Plug 'posva/vim-vue', { 'for': ['vue'] }                " Vue support
+Plug 'heavenshell/vim-jsdoc'                            " Js Doc Blcok
+Plug 'maksimr/vim-jsbeautify'                           " Beautify files
 
 " Plug 'carlitux/deoplete-ternjs',  { 'do': 'npm install --cache-min Infinity --loglevel http -g tern' }
 " Plug 'ternjs/tern_for_vim',       { 'do': 'npm install --cache-min Infinity --loglevel http' }
@@ -224,7 +223,9 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 " Close Buffer
 Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
-Plug 'idbrii/vim-dirvish', { 'branch': 'dev' }
+" Lightweight File Explorer
+" Like dirvish, but supports autochdir
+" Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
@@ -457,7 +458,7 @@ xnoremap . :norm.<CR>
 nnoremap J mzJ`z
 
 " Reverse join (Turn single line comments to inline comments)
-nnoremap ,J jddkPmzJ`z
+nnoremap K jddkPmzJ`z
 
 " Quick Close
 nnoremap <C-c> :q<return>
@@ -917,15 +918,21 @@ autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 " Sideways
 " -----------------------------------------------------
 
+" Move function argument to the left/right
 nmap <leader>] <Plug>SidewaysRight
 nmap <leader>[ <Plug>SidewaysLeft
+
+" -----------------------------------------------------
+" JsDoc
+" -----------------------------------------------------
+
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_enable_es6=1
 
 " =============================================================================
 " 7.0 Autocommands
 " =============================================================================
-
-" autochdir alternative
-" autocmd BufRead,BufEnter,BufNew * silent! lcd %:p:h
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
@@ -941,6 +948,18 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
+
+" How should we execute the search?
+" --heading and --stats are required!
+let g:side_search_prg = 'ag --word-regexp'
+  \. " --ignore='*.js.map'"
+  \. " --heading --stats -B 1 -A 4"
+
+" Can use `vnew` or `new`
+let g:side_search_splitter = 'vnew'
+
+" I like 40% splits, change it if you don't
+let g:side_search_split_pct = 0.4
 
 " -----------------------------------------------------
 " 7.1 Run linters after save

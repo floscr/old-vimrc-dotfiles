@@ -1,5 +1,13 @@
 extends javascript
 
+snippet d
+data: () {
+  return {
+    ${1:varable}: '$2',
+  }
+},
+endsnippet
+
 snippet com
 computed: {
   ${1:computedProp} (${2:args}) {
