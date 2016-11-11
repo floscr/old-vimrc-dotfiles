@@ -949,6 +949,9 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
 
+" Preview quickfix result
+autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
+
 " How should we execute the search?
 " --heading and --stats are required!
 let g:side_search_prg = 'ag --word-regexp'
