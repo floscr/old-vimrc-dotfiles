@@ -48,6 +48,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
 " Plug 'ddrscott/vim-side-search'
 Plug 'dyng/ctrlsf.vim'
+" Session Management
+Plug 'tpope/vim-obsession'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation

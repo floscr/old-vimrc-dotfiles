@@ -25,31 +25,28 @@ source ~/.config/nvim/custom-plugins/autowrite.vim
 " 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
-set shell=/bin/zsh              " Setting shell to zsh
-set number                      " Line numbers on
-set showmode                    " Always show mode
-set hidden                      " Enables to switch between unsaved buffers and keep undo history
-set noswapfile                  " New buffers will be loaded without creating a swapfile
-set lazyredraw                  " Don't redraw while executing macros (better performance)
-set nostartofline               " Prevent cursor from moving to beginning of line when switching buffers
-set nojoinspaces                " No extra space when joining a line which ends with . ? !
-set suffixesadd+=.js            " Add js and ruby files to suffixes
-set autochdir                   " Set working dir to the current file
-set shortmess+=I                " Turn off the intro
-set synmaxcol=800               " Turn off syntax highlighting for lines longer than 800 characters
-set noshowmatch                 " Show matching tags
-                                " having this turned on will make the cursor jump around
-                                " weirdly
-set backspace=indent,eol,start  " Better backspace
-set mouse=a                     " Enable Mouse Mode
+set shell=/bin/zsh               " Setting shell to zsh
+set number                       " Line numbers on
+set showmode                     " Always show mode
+set hidden                       " Enables to switch between unsaved buffers and keep undo history
+set noswapfile                   " New buffers will be loaded without creating a swapfile
+set lazyredraw                   " Don't redraw while executing macros (better performance)
+set nostartofline                " Prevent cursor from moving to beginning of line when switching buffers
+set nojoinspaces                 " No extra space when joining a line which ends with . ? !
+set suffixesadd+=.js             " Add js and ruby files to suffixes
+set autochdir                    " Set working dir to the current file
+set shortmess+=I                 " Turn off the intro
+set synmaxcol=800                " Turn off syntax highlighting for lines longer than 800 characters
+set noshowmatch                  " Show matching tags
+                                 " having this turned on will make the cursor jump around
+                                 " weirdly
+set backspace=indent,eol,start   " Better backspace
+set mouse=a                      " Enable Mouse Mode
+set foldopen-=block              " Disable fold opening when jumping paragraphs
 
 " Disable Netrw
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
-
-" Disable fold opening when jumping paragraphs
-set foldopen-=block
-
 
 let g:vim_markdown_folding_disabled = 1
 
@@ -102,8 +99,17 @@ autocmd FileType coffee setl foldmethod=indent
 
 " autocmd BufWinLeave .* mkview
 " autocmd BufWinEnter .* silent loadview
-autocmd BufWinLeave *.* mkview!
-autocmd BufWinEnter *.* silent loadview
+" autocmd BufWinLeave *.* mkview!
+" autocmd BufWinEnter *.* silent loadview
+
+set sessionoptions-=options
+" set viewoptions=folds,cursor,unix,slash
+
+augroup autosave_buffer
+ autocmd!
+ autocmd BufWinLeave *.* mkview
+ autocmd BufWinEnter *.* silent! loadview
+augroup END
 
 " http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
 set viewoptions-=options
