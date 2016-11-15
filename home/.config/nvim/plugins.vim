@@ -46,10 +46,12 @@ Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 Plug 'editorconfig/editorconfig-vim'
 " Search and Replace Tool
 Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
-" Plug 'ddrscott/vim-side-search'
-Plug 'dyng/ctrlsf.vim'
+" " Plug 'ddrscott/vim-side-search'
+" Plug 'dyng/ctrlsf.vim'
 " Session Management
 Plug 'tpope/vim-obsession'
+" Better replacement
+Plug 'tpope/vim-abolish'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
