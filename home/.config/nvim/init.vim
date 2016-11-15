@@ -192,16 +192,20 @@ set copyindent " Copy previous indetation on autoindenting
 " -----------------------------------------------------------------------------
 " 2.7 Filetype settings
 " -----------------------------------------------------------------------------
+
 filetype plugin on
 filetype indent on
 
 " -----------------------------------------------------------------------------
 " 2.8 Folding settings
 " -----------------------------------------------------------------------------
+
 set foldmethod=indent " Fold by indentation
 set foldnestmax=2     " deepest fold is 10 levels
 set nofoldenable      " dont fold by default
 set foldlevel=1       " this is just what i use
+set foldlevelstart=99 " Open folds on beginning of file
+set foldcolumn=0      " Disable fold column
 
 " -----------------------------------------------------------------------------
 " 2.9 Omni completion settings
