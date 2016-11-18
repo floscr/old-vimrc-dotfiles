@@ -2,15 +2,13 @@
 
 # Rename files in current directory to lowercase filenames
 # http://stackoverflow.com/a/13051934
-function files_to_lowercase {
+function rename_all_files_to_lowercase {
   for i in $(find . -type f -name "*[A-Z]*"); do
     mv "$i" "$(echo $i | tr A-Z a-z)"
   done
 }
 
-# Workaround for the 'o' alias
-# When no args are give it just opens the current location in finder
-# Otherwise use the give file/dir
+# Open current location or given file in finder/default app
 alias o="_open_location"
 function _open_location() {
   if [[ -z "$@" ]]; then
@@ -20,14 +18,9 @@ function _open_location() {
   fi
 }
 
-function rename_dir() {
-  DIRNAME=$(dirname $1)
-  mv "$1" "$DIRNAME/$2"
-}
-
 # Return octal file rights
 # http://askubuntu.com/questions/152001/how-can-i-get-octal-file-permissions-from-command-line
-function rights () {
+function permissions() {
   if [[ ! -z "$@" ]]; then
     FILES="$@"
     stat -f '%A %a %N' $FILES
@@ -40,83 +33,4 @@ function rights () {
 function mkcd() {
   mkdir "$1"
   cd "$1"
-}
-
-# Get the full path of a relatively given directory name
-# http://stackoverflow.com/questions/17577093/how-do-i-get-the-absolute-directory-of-a-file-in-bash
-function realpath() {
-  (
-  cd $(dirname $1)         # or  cd ${1%/*}
-  echo $PWD/$(basename $1) # or  echo $PWD/${1##*/}
-  )
-}
-
-# Symlink wrapper around the realpath function
-function fulllink() {
-  ln -s $(realpath "$1") "$2"
-}
-
-# Copy w/ progress
-rcp () {
-  if [[ -z "$@" ]]; then
-    echo "Rsync with a progress bar"
-    echo "Useage: rcp SRC DST"
-    return
-  fi
-  rsync -WavP --human-readable --progress $1 $2
-}
-
-# Remove folder recursivly
-rmf() {
-  if [[ -z "$@" ]]; then
-    echo "Remove Files & Folder recursivly"
-    echo "Useage: rmf FOLDER"
-    return
-  fi
-  rm -rf $1
-}
-
-# Sort a file alphabetically
-sortalph() {
-
-  if [[ -z $1 || ! -f $1 ]]; then
-    source $DOTFILES_SCRIPTS/colors.sh
-    error "sortalph: No input file given"
-    return
-  fi
-
-  local file=$1
-
-  # Either sort in the currnen file or in a new file
-  if [[ ! -z $2 ]]; then
-    local output=$2
-    sort $file -o $output
-  else
-    sort $file -o $file
-  fi
-
-}
-
-# Recursive find and replace string in a file name
-find_and_replace() {
-
-  if [[ -z "$@" ]]; then
-    echo "find_and_replace:"
-    echo "  \$1: Search Term"
-    echo "  \$2: Replacement String"
-  fi
-
-  # Remove the glob star for the replacement string
-  find_term=`echo "$1" | sed -e "s/*//g"`
-  replace_with="$2"
-
-  # Find and replace
-  for file in `find . -name $1`; do
-    if [[ ! -z "$2" ]]; then
-      new_file=`echo $file | sed -e "s/$find_term/$replace_with/g"`
-      mv "$file" "$new_file"
-    else
-      echo "$file"
-    fi
-  done
 }
