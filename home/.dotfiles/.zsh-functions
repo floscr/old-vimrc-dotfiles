@@ -12,9 +12,21 @@ local functions_path="$dotfiles_dir/home/.dotfiles/functions/"
 . "$functions_path.function-osx"
 . "$functions_path.function-coding"
 
-#==============================================================================#
-# TMUX
-#==============================================================================#
+# -----------------------------------------------------------------------------
+# Helpers
+# -----------------------------------------------------------------------------
+
+# Check if a command exists
+# Example
+# if _command_exists nvim; then echo 'Nvim exists!'; fi
+# http://stackoverflow.com/a/3931779
+_command_exists() {
+  type "$1" &> /dev/null ;
+}
+
+# -----------------------------------------------------------------------------
+# Tmux
+# -----------------------------------------------------------------------------
 
 # Close other panes and open gulp in new split
 # Also has the nice side effect of closing the pane after the gulp task has ended
@@ -27,9 +39,9 @@ function tgulp() {
   tmux resize-pane -D 10 # Add a bit more space to the non-gulp pane
 }
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Etc
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
 # Uses tree - install first
 # brew install tree
