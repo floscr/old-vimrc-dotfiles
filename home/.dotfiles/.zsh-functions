@@ -11,7 +11,6 @@ local functions_path="$dotfiles_dir/home/.dotfiles/functions/"
 . "$functions_path.function-server"
 . "$functions_path.function-osx"
 . "$functions_path.function-coding"
-. "$functions_path.function-mercurial"
 
 #==============================================================================#
 # TMUX
@@ -83,12 +82,6 @@ function xhash() {
 
   # Create a numeric x character long hash
   cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w $digit | head -n 1
-}
-
-function panmd () {
-  local src=$1
-  local dst=$2
-  pandoc -s "$1" -t markdown -o "$2"
 }
 
 # Fix the asepsis control after updating

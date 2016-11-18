@@ -9,10 +9,6 @@ function winzip {
   fi
 }
 
-function safezip() {
-    zip -er $1 $2
-}
-
 # Extract archives - use: extract <file>
 # Credits to http://dotfiles.org/~pseup/.bashrc
 function extract() {
