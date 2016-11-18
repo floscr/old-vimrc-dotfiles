@@ -32,7 +32,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~"
 alias -- -="cd -"
-alias o="_open_location"
 
 # BROWSING
 alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook

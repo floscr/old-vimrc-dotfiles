@@ -11,6 +11,7 @@ function files_to_lowercase {
 # Workaround for the 'o' alias
 # When no args are give it just opens the current location in finder
 # Otherwise use the give file/dir
+alias o="_open_location"
 function _open_location() {
   if [[ -z "$@" ]]; then
     open .
