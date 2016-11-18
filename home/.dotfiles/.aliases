@@ -186,7 +186,8 @@ alias b="bash"
 # http://brettterpstra.com/2014/11/18/solve-command-line-mysteries-with-type/
 alias what="whence -favs"
 
-alias copydir="basename $(pwd) | pbcopy"
+# Copy the dir name of the current location
+alias copydir='basename "$(pwd)" | pbcopy'
 
 #Empty the Mail folder which gets created from local woocommerce for instance
 alias emptymail="sudo rm -rf /private/var/mail/\$USER"
