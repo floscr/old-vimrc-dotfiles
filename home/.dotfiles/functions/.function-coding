@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Silent simple irb shortut
-function sirb () {
+function sirb() {
   irb --simple-prompt --noecho
 }
 
-function vscode () {
+function vscode() {
   VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args "$*";
 }
 
@@ -13,7 +13,7 @@ function vscode () {
 # Quicky open sublime project in the current repository
 # Workaround for the non working sublime cli
 # alias subl="slt"
-function slt () {
+function slt() {
   # Check if the sublime cli is installed
   sublime_cli="subl"
   command -v $sublime_cli >/dev/null 2>&1 || {
@@ -59,7 +59,7 @@ open -a "Sublime Text" .
 }
 
 # Quickly generate md5 hash
-function md5 () {
+function md5() {
   if [[ -z $@ ]]; then
     echo "md5 Your String or Password"
     echo "Use two spaces before the command to hide from history"
@@ -68,32 +68,32 @@ function md5 () {
   echo -n "$@" | openssl md5
 }
 
-function ie11 () {
+function ie11() {
   iectrl open --start "IE11 - Win7" $@
 }
 
-function ie10 () {
+function ie10() {
   iectrl open --start "IE10 - Win7" $@
 }
 
-function ie9 () {
+function ie9() {
   iectrl open --start "IE9 - Win7" $@
 }
 
-function ie8 () {
+function ie8() {
   iectrl open --start "IE8 - WinXP" $@
 }
 
-function ie7 () {
+function ie7() {
   iectrl open --start "IE7 - WinXP" $@
 }
 
-function ie6 () {
+function ie6() {
   iectrl open --start "IE6 - WinXP" $@
 }
 
 # Download kirby cms, switch to latest branch and load all submodules
-function getkirby () {
+function getkirby() {
   if [[ ! -z "$1" ]]; then
     dir="$1"
   else
