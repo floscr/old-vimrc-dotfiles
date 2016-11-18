@@ -5,6 +5,23 @@ function sirb() {
   irb --simple-prompt --noecho
 }
 
+# List npm scripts from package json using jq tool
+function npm_scripts() {
+  # If jq doesnt exist install via brew
+  if ! _command_exists jq; then
+    echo "Installing jq via brew"
+    brew install jq
+  fi
+
+  # Exit if there is no package.json in the current directory
+  if [[ ! -f package.json ]]; then
+    echo "No package.json in the current directory"
+    exit
+  fi
+
+  cat package.json | jq '.scripts'
+}
+
 function vscode() {
   VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args "$*";
 }
