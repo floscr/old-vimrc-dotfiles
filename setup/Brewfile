@@ -67,3 +67,6 @@ brew install https://raw.github.com/gleitz/howdoi/master/howdoi.rb
 brew 'CMake'
 brew 'shellcheck'
 brew 'phplint'
+
+# Command line json parser
+brew 'jq'
