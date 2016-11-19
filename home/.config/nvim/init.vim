@@ -25,25 +25,24 @@ source ~/.config/nvim/custom-plugins/autowrite.vim
 " 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
-set shell=/bin/zsh                " Setting shell to zsh
-set number                        " Line numbers on
-set showmode                      " Always show mode
-set hidden                        " Enables to switch between unsaved buffers and keep undo history
-set noswapfile                    " New buffers will be loaded without creating a swapfile
-set lazyredraw                    " Don't redraw while executing macros (better performance)
-set nostartofline                 " Prevent cursor from moving to beginning of line when switching buffers
-set nojoinspaces                  " No extra space when joining a line which ends with . ? !
-set suffixesadd+=.js              " Add js and ruby files to suffixes
-set autochdir                     " Set working dir to the current file
-set shortmess+=I                  " Turn off the intro
-set synmaxcol=800                 " Turn off syntax highlighting for lines longer than 800 characters
-set noshowmatch                   " Show matching tags
-                                  " having this turned on will make the cursor jump around
-                                  " weirdly
-set backspace=indent,eol,start    " Better backspace
-set mouse=a                       " Enable Mouse Mode
-set foldopen-=block               " Disable fold opening when jumping paragraphs
-set relativenumber                " Relative Numbers
+set shell=/bin/zsh             " Setting shell to zsh
+set number                     " Line numbers on
+set showmode                   " Always show mode
+set hidden                     " Enables to switch between unsaved buffers and keep undo history
+set noswapfile                 " New buffers will be loaded without creating a swapfile
+set lazyredraw                 " Don't redraw while executing macros (better performance)
+set nostartofline              " Prevent cursor from moving to beginning of line when switching buffers
+set nojoinspaces               " No extra space when joining a line which ends with . ? !
+set suffixesadd+=.js           " Add js and ruby files to suffixes
+set autochdir                  " Set working dir to the current file
+set shortmess+=I               " Turn off the intro
+set synmaxcol=800              " Turn off syntax highlighting for lines longer than 800 characters
+set noshowmatch                " Show matching tags
+set backspace=indent,eol,start " Better backspace
+set mouse=a                    " Enable Mouse Mode
+set foldopen-=block            " Disable fold opening when jumping paragraphs
+set relativenumber             " Relative Numbers
+set autoread                   " Automatically read changed file
 
 " Disable Netrw
 let g:loaded_netrw       = 1
@@ -160,10 +159,10 @@ set ttimeoutlen=10
 " -----------------------------------------------------------------------------
 " 2.4 Search settings
 " -----------------------------------------------------------------------------
-set incsearch                               " Incremental search
-set ignorecase                              " Ignore case by default
-set smartcase                               " Make search case sensitive only if it contains uppercase letters
-set wrapscan                                " Search again from top when reached the bottom
+set incsearch  " Incremental search
+set ignorecase " Ignore case by default
+set smartcase  " Make search case sensitive only if it contains uppercase letters
+set wrapscan   " Search again from top when reached the bottom
 
 " -----------------------------------------------------------------------------
 " 2.5 Persistent undo settings
