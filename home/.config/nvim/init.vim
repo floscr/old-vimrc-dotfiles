@@ -290,6 +290,9 @@ nnoremap Q @q
 nnoremap c "xc
 xnoremap c "xc
 
+" Toggle spellcheck
+nmap <silent> <leader>ss :set spell!<cr>
+
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
