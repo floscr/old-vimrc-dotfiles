@@ -15,6 +15,18 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+" Open a split for each dirty file in git
+function! OpenChangedFiles()
+  only " Close all windows, unless they're modified
+  let status = system('git status -s | grep "^ \?\(M\|A\|UU\|??\)" | sed "s/^.\{3\}//"')
+  let filenames = split(status, "\n")
+  exec "edit " . filenames[0]
+  for filename in filenames[1:]
+    exec "vs " . filename
+  endfor
+endfunction
+command! OpenChangedFiles :call OpenChangedFiles()
+
 " Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
 if (has('nvim'))
   " Async push / pull
