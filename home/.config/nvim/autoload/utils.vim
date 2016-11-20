@@ -251,6 +251,12 @@ endfunction
 " Strip trailing spaces
 function! g:utils#stripTrailingWhitespaces() abort
   " Preparation: save last search, and cursor position.
+
+  " Exclude Markdown
+  if &ft =~ 'markdown\|md'
+    return
+  endif
+
   let l:lastSearch = @/
   let l:line = line('.')
   let l:col = col('.')
