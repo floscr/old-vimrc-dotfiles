@@ -10,3 +10,9 @@ function! ${1:function_name}()
 endfunction
 endsnippet
 
+snippet c "Command Snippet"
+function! ${1:function_name}()
+  $0
+endfunction
+command! $1 :call $1()
+endsnippet
