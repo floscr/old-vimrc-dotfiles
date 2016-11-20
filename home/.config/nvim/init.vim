@@ -768,6 +768,14 @@ autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
+" Hardcode the Beautifier config here
+" ~/.editorconfig doesnt seem to be working
+let g:config_Beautifier = {}
+let g:config_Beautifier['js'] = {}
+let g:config_Beautifier['js'].indent_size = '2'
+let g:config_Beautifier['css'] = {}
+let g:config_Beautifier['css'].indent_size = '2'
+
 " -----------------------------------------------------
 " Sideways
 " -----------------------------------------------------
