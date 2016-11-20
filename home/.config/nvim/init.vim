@@ -261,6 +261,9 @@ let g:mapleader="\<space>"
 " Workaround to disable this.
 nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
 
+" Source current file
+nmap <silent> <leader>sf :source %<cr>
+
 " -----------------------------------------------------
 " 3.3 Keyboard shortcuts / bindings
 " -----------------------------------------------------
