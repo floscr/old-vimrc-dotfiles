@@ -11,30 +11,22 @@ local functions_path="$dotfiles_dir/home/.dotfiles/functions/"
 . "$functions_path.function-server"
 . "$functions_path.function-osx"
 . "$functions_path.function-coding"
-. "$functions_path.function-mercurial"
 
-#==============================================================================#
-# Time Management
-#==============================================================================#
+# -----------------------------------------------------------------------------
+# Helpers
+# -----------------------------------------------------------------------------
 
-# Watson report for each day of the week
-# TODO: Make this less repetitive ;)
-function wreport() {
-  mon=$(date -v -Mon "+%Y-%m-%d")
-  tue=$( date -v -Tue "+%Y-%m-%d" )
-  wed=$( date -v -Wed "+%Y-%m-%d" )
-  thu=$( date -v -Thu "+%Y-%m-%d" )
-  fri=$( date -v -Fri "+%Y-%m-%d" )
-  watson report --from $mon --to $mon
-  watson report --from $tue --to $tue
-  watson report --from $wed --to $wed
-  watson report --from $thu --to $thu
-  watson report --from $fri --to $fri
+# Check if a command exists
+# Example
+# if _command_exists nvim; then echo 'Nvim exists!'; fi
+# http://stackoverflow.com/a/3931779
+_command_exists() {
+  type "$1" &> /dev/null ;
 }
 
-#==============================================================================#
-# TMUX
-#==============================================================================#
+# -----------------------------------------------------------------------------
+# Tmux
+# -----------------------------------------------------------------------------
 
 # Close other panes and open gulp in new split
 # Also has the nice side effect of closing the pane after the gulp task has ended
@@ -47,9 +39,9 @@ function tgulp() {
   tmux resize-pane -D 10 # Add a bit more space to the non-gulp pane
 }
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Etc
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
 # Uses tree - install first
 # brew install tree
@@ -68,10 +60,15 @@ function sman() {
 }
 
 
-# [npmls]:
-# Show node packages without dependencies
+# List global installed packages
+# npm ls -g can be super slow so this is a workaround
+# Requires node to be installed via nvm
+#
+# The Official way, which is way to slow:
+# npm ls --depth=0 -g "$@" 2>/dev/null
 function npmls() {
-  npm ls --depth=0 -g "$@" 2>/dev/null
+  # Workaround for a fast global package listing
+  ls -1 ~/.nvm/versions/node/$(node -v)/lib/node_modules
 }
 
 # [numhash]:
@@ -102,12 +99,6 @@ function xhash() {
 
   # Create a numeric x character long hash
   cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w $digit | head -n 1
-}
-
-function panmd () {
-  local src=$1
-  local dst=$2
-  pandoc -s "$1" -t markdown -o "$2"
 }
 
 # Fix the asepsis control after updating

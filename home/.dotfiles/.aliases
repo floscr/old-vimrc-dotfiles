@@ -32,7 +32,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~"
 alias -- -="cd -"
-alias o="_open_location"
 
 # BROWSING
 alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
@@ -185,6 +184,9 @@ alias b="bash"
 # Describe terminal commands, aliases, functions
 # http://brettterpstra.com/2014/11/18/solve-command-line-mysteries-with-type/
 alias what="whence -favs"
+
+# Copy the dir name of the current location
+alias copydir='basename "$(pwd)" | pbcopy'
 
 #Empty the Mail folder which gets created from local woocommerce for instance
 alias emptymail="sudo rm -rf /private/var/mail/\$USER"
