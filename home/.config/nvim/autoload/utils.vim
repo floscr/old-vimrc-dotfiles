@@ -15,6 +15,10 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+" Clear messages
+" http://stackoverflow.com/a/36777563/2298462
+command! ClearMessages for n in range(200) | echom "" | endfor
+
 " Open a split for each dirty file in git
 function! OpenChangedFiles()
   only " Close all windows, unless they're modified
