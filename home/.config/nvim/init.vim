@@ -546,8 +546,10 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_map_keys = 0
 
 " Next/Prev Git Hunk and center
-nmap ghn <Plug>GitGutterNextHunk
-nmap ghp <Plug>GitGutterPrevHunk
+nnoremap <silent> [c <Esc>:GitGutterPrevHunk<CR>zMzvzz
+nnoremap <silent> ]c <Esc>:GitGutterNextHunk<CR>zMzvzz
+" nmap ghn <Plug>GitGutterNextHunk
+" nmap ghp <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
 nmap gha <Plug>GitGutterStageHunk
