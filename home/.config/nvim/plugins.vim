@@ -215,7 +215,7 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
 " Lightweight File Explorer
 " Like dirvish, but supports autochdir
-" Plug 'jeetsukumaran/vim-filebeagle'
+Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
