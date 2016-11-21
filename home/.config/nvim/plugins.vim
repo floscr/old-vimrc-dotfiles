@@ -52,6 +52,8 @@ Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
 Plug 'tpope/vim-obsession'
 " Better replacement
 Plug 'tpope/vim-abolish'
+" Ctags
+Plug 'ludovicchabant/vim-gutentags'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
@@ -218,6 +220,8 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'wellle/tmux-complete.vim'
+
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
 
 Plug 'floscr/regex-bookmarks'
