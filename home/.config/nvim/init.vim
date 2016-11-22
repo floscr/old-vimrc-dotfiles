@@ -74,12 +74,9 @@ function! JavaScriptFold() "{{{
   syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
 endfunction "}}}
 
-set foldtext=MyFoldText()
-
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
-autocmd FileType vim setlocal fdc=1
 set foldlevel=99
 " Space to toggle folds.
 autocmd FileType vim setlocal foldmethod=marker
