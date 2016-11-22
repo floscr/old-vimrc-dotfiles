@@ -401,9 +401,9 @@ omap i% :<C-u>normal vi%<CR>
 " -----------------------------------------------------
 
 let g:fzf_action = {
-	\ 'ctrl-t': 'tab split',
-	\ 'ctrl-x': 'split',
-	\ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 " Reverse to find if not in git root
 function! s:find_git_root()
