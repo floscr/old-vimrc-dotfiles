@@ -97,6 +97,7 @@ Plug 'wellle/targets.vim'
 Plug 'moll/vim-node', { 'for': ['js', 'vue'] }          " Open files with 'gf' without extensions
 Plug 'pangloss/vim-javascript', { 'branch': 'develop' } " Modern JS support (indent, syntax, etc)
 Plug 'jelera/vim-javascript-syntax'                     " More Syntax highlighting?
+Plug 'othree/jspc.vim'
 Plug 'sheerun/vim-json', { 'for': ['json'] }            " JSON syntax
 Plug 'posva/vim-vue', { 'for': ['vue'] }                " Vue support
 Plug 'heavenshell/vim-jsdoc'                            " Js Doc Blcok
