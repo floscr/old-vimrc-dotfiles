@@ -36,8 +36,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'cohama/lexima.vim'
 " UNIX like commands for VIM
 Plug 'tpope/vim-eunuch'
-" Ctags
-Plug 'craigemery/vim-autotag'
 " Edit Macros
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 " Editorconfig loading
