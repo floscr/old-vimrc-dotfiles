@@ -31,5 +31,9 @@
 
       "@m": "@media screen and (max-width:${1}) {\n\t${0}\n}"
     }
+  },
+
+  "vue": {
+    "extends": "html"
   }
 }
