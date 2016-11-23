@@ -286,7 +286,7 @@ function! g:utils#tabComplete()
 
   if pumvisible()
     return "\<C-n>"
-  elseif &filetype =~ 'html\|css' && emmet#isExpandable() && index(s:tags, s:realtag()) != -1
+  elseif &filetype =~ 'html\|css' && emmet#isExpandable()
     return "\<plug>(emmet-expand-abbr)"
   else
     if !l:col || getline('.')[l:col - 1] !~# '\k'
