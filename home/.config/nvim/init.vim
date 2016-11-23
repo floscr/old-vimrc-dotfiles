@@ -490,6 +490,7 @@ let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
 " Insert <TAB> or select next match
 inoremap <silent> <expr> <Tab> utils#tabComplete()
+imap <silent> <expr> <Tab> utils#tabComplete()
 
 " use tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
