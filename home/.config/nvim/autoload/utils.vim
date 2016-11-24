@@ -15,21 +15,9 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
-" Clear messages
+" Clear messages list
 " http://stackoverflow.com/a/36777563/2298462
 command! ClearMessages for n in range(200) | echom "" | endfor
-
-" Open a split for each dirty file in git
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\|UU\|??\)" | sed "s/^.\{3\}//"')
-  let filenames = split(status, "\n")
-  exec "edit " . filenames[0]
-  for filename in filenames[1:]
-    exec "vs " . filename
-  endfor
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
 
 " Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
 if (has('nvim'))
@@ -105,55 +93,6 @@ command! -nargs=1 MakeHeader call s:MakeHeader(<f-args>)
 
 nnoremap gmh :MakeHeader small<cr>
 nnoremap gmH :MakeHeader large<cr>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OpenChangedFiles COMMAND
-" Open a split for each dirty file in git
-"
-" Shamelessly stolen from Gary Bernhardt: https://github.com/garybernhardt/dotfiles
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
-  let filenames = split(status, "\n")
-  if len(filenames) > 0
-    exec "edit " . filenames[0]
-    for filename in filenames[1:]
-      exec "sp " . filename
-    endfor
-  end
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
-
-function! GetBufferList()
-  redir =>buflist
-  silent! ls!
-  redir END
-  return buflist
-endfunction
-
-" Toggle the location list
-function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
-      return
-    endif
-  endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
-  let winnr = winnr()
-  exec(a:pfx.'open')
-  if winnr() != winnr
-    wincmd p
-  endif
-endfunction
 
 " Fix Linting Error Locationlist jumping when there is only one error
 " Has the nice side efect of being able to loop through errorlist
