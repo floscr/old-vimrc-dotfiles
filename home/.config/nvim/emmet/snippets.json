@@ -15,6 +15,8 @@
       "tdu": "text-decoration:underline;",
       "ttu": "text-transform:uppercase;",
 
+      "lstn": "list-style-type:none;",
+
       "curp": "cursor:pointer",
       "cur": "cursor:${1:default};",
       "lz": "letter-spacing:|;",
