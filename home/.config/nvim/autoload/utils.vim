@@ -116,7 +116,7 @@ command! LocationNext call LocationNext()
 
 " Open curent buffer with marked.app
 function! OpenWithMarkedApp()
-  silent! execute '!open "' . bufname("%") . '" -a /Applications/Marked\ 2.app'
+  silent! execute '!open "' . bufname("%") . '" -a "Marked 2"'
 endfunction
 command! Marked call OpenWithMarkedApp()
 
