@@ -34,24 +34,20 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/clever-f.vim'
 " Automatically closing pair stuff
 Plug 'cohama/lexima.vim'
-" Close buffer
-Plug 'rbgrouleff/bclose.vim'
 " UNIX like commands for VIM
 Plug 'tpope/vim-eunuch'
-" Ctags
-Plug 'craigemery/vim-autotag'
 " Edit Macros
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 " Editorconfig loading
 Plug 'editorconfig/editorconfig-vim'
 " Search and Replace Tool
-Plug 'wincent/ferret', { 'on': ['Ack', 'Lack', 'Acks'] }
-" " Plug 'ddrscott/vim-side-search'
-" Plug 'dyng/ctrlsf.vim'
+Plug 'wincent/ferret'
 " Session Management
 Plug 'tpope/vim-obsession'
 " Better replacement
 Plug 'tpope/vim-abolish'
+" Ctags
+Plug 'ludovicchabant/vim-gutentags'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
@@ -95,7 +91,8 @@ Plug 'wellle/targets.vim'
 Plug 'moll/vim-node', { 'for': ['js', 'vue'] }          " Open files with 'gf' without extensions
 Plug 'pangloss/vim-javascript', { 'branch': 'develop' } " Modern JS support (indent, syntax, etc)
 Plug 'jelera/vim-javascript-syntax'                     " More Syntax highlighting?
-Plug 'sheerun/vim-json', { 'for': ['json'] }            " JSON syntax
+Plug 'othree/jspc.vim'
+" Plug 'sheerun/vim-json', { 'for': ['json'] }            " JSON syntax
 Plug 'posva/vim-vue', { 'for': ['vue'] }                " Vue support
 Plug 'heavenshell/vim-jsdoc'                            " Js Doc Blcok
 Plug 'maksimr/vim-jsbeautify'                           " Beautify files
@@ -215,10 +212,14 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
 " Lightweight File Explorer
 " Like dirvish, but supports autochdir
-" Plug 'jeetsukumaran/vim-filebeagle'
+Plug 'jeetsukumaran/vim-filebeagle'
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'wellle/tmux-complete.vim'
+
 Plug 'floscr/FZF-cdnj' | Plug 'mattn/webapi-vim'
+
+Plug 'floscr/regex-bookmarks'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration

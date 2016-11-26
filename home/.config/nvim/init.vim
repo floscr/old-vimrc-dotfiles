@@ -19,31 +19,30 @@ source ~/.config/nvim/plugins.vim
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " Trim trailing whitespace when saving a buffer
-source ~/.config/nvim/custom-plugins/autowrite.vim
+" source ~/.config/nvim/custom-plugins/autowrite.vim
 
 " =============================================================================
 " 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 " =============================================================================
 
-set shell=/bin/zsh                " Setting shell to zsh
-set number                        " Line numbers on
-set showmode                      " Always show mode
-set hidden                        " Enables to switch between unsaved buffers and keep undo history
-set noswapfile                    " New buffers will be loaded without creating a swapfile
-set lazyredraw                    " Don't redraw while executing macros (better performance)
-set nostartofline                 " Prevent cursor from moving to beginning of line when switching buffers
-set nojoinspaces                  " No extra space when joining a line which ends with . ? !
-set suffixesadd+=.js              " Add js and ruby files to suffixes
-set autochdir                     " Set working dir to the current file
-set shortmess+=I                  " Turn off the intro
-set synmaxcol=800                 " Turn off syntax highlighting for lines longer than 800 characters
-set noshowmatch                   " Show matching tags
-                                  " having this turned on will make the cursor jump around
-                                  " weirdly
-set backspace=indent,eol,start    " Better backspace
-set mouse=a                       " Enable Mouse Mode
-set foldopen-=block               " Disable fold opening when jumping paragraphs
-set relativenumber                " Relative Numbers
+set shell=/bin/zsh             " Setting shell to zsh
+set number                     " Line numbers on
+set showmode                   " Always show mode
+set hidden                     " Enables to switch between unsaved buffers and keep undo history
+set noswapfile                 " New buffers will be loaded without creating a swapfile
+set lazyredraw                 " Don't redraw while executing macros (better performance)
+set nostartofline              " Prevent cursor from moving to beginning of line when switching buffers
+set nojoinspaces               " No extra space when joining a line which ends with . ? !
+set suffixesadd+=.js           " Add js and ruby files to suffixes
+set autochdir                  " Set working dir to the current file
+set shortmess+=I               " Turn off the intro
+set synmaxcol=800              " Turn off syntax highlighting for lines longer than 800 characters
+set noshowmatch                " Show matching tags
+set backspace=indent,eol,start " Better backspace
+set mouse=a                    " Enable Mouse Mode
+set foldopen-=block            " Disable fold opening when jumping paragraphs
+set relativenumber             " Relative Numbers
+set autoread                   " Automatically read changed file
 
 " Disable Netrw
 let g:loaded_netrw       = 1
@@ -75,12 +74,9 @@ function! JavaScriptFold() "{{{
   syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
 endfunction "}}}
 
-set foldtext=MyFoldText()
-
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
-autocmd FileType vim setlocal fdc=1
 set foldlevel=99
 " Space to toggle folds.
 autocmd FileType vim setlocal foldmethod=marker
@@ -160,10 +156,10 @@ set ttimeoutlen=10
 " -----------------------------------------------------------------------------
 " 2.4 Search settings
 " -----------------------------------------------------------------------------
-set incsearch                               " Incremental search
-set ignorecase                              " Ignore case by default
-set smartcase                               " Make search case sensitive only if it contains uppercase letters
-set wrapscan                                " Search again from top when reached the bottom
+set incsearch  " Incremental search
+set ignorecase " Ignore case by default
+set smartcase  " Make search case sensitive only if it contains uppercase letters
+set wrapscan   " Search again from top when reached the bottom
 
 " -----------------------------------------------------------------------------
 " 2.5 Persistent undo settings
@@ -262,6 +258,9 @@ let g:mapleader="\<space>"
 " Workaround to disable this.
 nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
 
+" Source current file
+nmap <silent> <leader>sf :source %<cr>
+
 " -----------------------------------------------------
 " 3.3 Keyboard shortcuts / bindings
 " -----------------------------------------------------
@@ -290,6 +289,9 @@ nnoremap Q @q
 " Don't yank to default register when changing something
 nnoremap c "xc
 xnoremap c "xc
+
+" Toggle spellcheck
+nmap <silent> <leader>ss :set spell!<cr>
 
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
@@ -396,9 +398,9 @@ omap i% :<C-u>normal vi%<CR>
 " -----------------------------------------------------
 
 let g:fzf_action = {
-	\ 'ctrl-t': 'tab split',
-	\ 'ctrl-x': 'split',
-	\ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 " Reverse to find if not in git root
 function! s:find_git_root()
@@ -488,6 +490,7 @@ let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
 " Insert <TAB> or select next match
 inoremap <silent> <expr> <Tab> utils#tabComplete()
+imap <silent> <expr> <Tab> utils#tabComplete()
 
 " use tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
@@ -541,8 +544,10 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_map_keys = 0
 
 " Next/Prev Git Hunk and center
-nmap ghn <Plug>GitGutterNextHunk
-nmap ghp <Plug>GitGutterPrevHunk
+nnoremap <silent> [c <Esc>:GitGutterPrevHunk<CR>zMzvzz
+nnoremap <silent> ]c <Esc>:GitGutterNextHunk<CR>zMzvzz
+" nmap ghn <Plug>GitGutterNextHunk
+" nmap ghp <Plug>GitGutterPrevHunk
 
 " Add/Revert Hunks
 nmap gha <Plug>GitGutterStageHunk
@@ -574,6 +579,7 @@ map <Leader>" :Tabularize /\s\zs"<cr>
 
 " Remap emmet leader key
 let g:user_emmet_leader_key='<C-e>'
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.config/nvim/emmet/snippets.json')), "\n"))
 
 " -----------------------------------------------------
 " Lightline
@@ -706,6 +712,16 @@ map g/ <Plug>(incsearch-stay)
 
 nnoremap <silent> U :UndotreeToggle<Cr>
 
+let g:undotree_WindowLayout = 4
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_SplitWidth = 60
+
+function! g:Undotree_CustomMap()
+  nmap <buffer> k <plug>UndotreeGoNextState
+  nmap <buffer> j <plug>UndotreeGoPreviousState
+  nmap <buffer> <Esc> <plug>UndotreeClose
+endfunction
+
 " -----------------------------------------------------
 " NeoMake
 " -----------------------------------------------------
@@ -791,6 +807,10 @@ nmap <leader>[ <Plug>SidewaysLeft
 let g:jsdoc_allow_input_prompt=1
 let g:jsdoc_input_description=1
 let g:jsdoc_enable_es6=1
+
+" Filebeagle
+let g:filebeagle_suppress_keymaps = 1
+map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 
 " =============================================================================
 " 7.0 Autocommands

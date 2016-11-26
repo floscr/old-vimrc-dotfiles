@@ -15,6 +15,22 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+" Clear messages
+" http://stackoverflow.com/a/36777563/2298462
+command! ClearMessages for n in range(200) | echom "" | endfor
+
+" Open a split for each dirty file in git
+function! OpenChangedFiles()
+  only " Close all windows, unless they're modified
+  let status = system('git status -s | grep "^ \?\(M\|A\|UU\|??\)" | sed "s/^.\{3\}//"')
+  let filenames = split(status, "\n")
+  exec "edit " . filenames[0]
+  for filename in filenames[1:]
+    exec "vs " . filename
+  endfor
+endfunction
+command! OpenChangedFiles :call OpenChangedFiles()
+
 " Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
 if (has('nvim'))
   " Async push / pull
@@ -239,6 +255,12 @@ endfunction
 " Strip trailing spaces
 function! g:utils#stripTrailingWhitespaces() abort
   " Preparation: save last search, and cursor position.
+
+  " Exclude Markdown
+  if &ft =~ 'markdown\|md'
+    return
+  endif
+
   let l:lastSearch = @/
   let l:line = line('.')
   let l:col = col('.')
@@ -251,19 +273,40 @@ function! g:utils#stripTrailingWhitespaces() abort
   call cursor(l:line, l:col)
 endfunction
 
+let s:html_tags = ['!DOCTYPE','a','abbr','acronym','address','applet','area','article','aside','audio','b','base','basefont','bdi','bdo','big','blockquote','body','br','button','canvas','caption','center','cite','code','col','colgroup','datalist','dd','del','details','dfn','dialog','dir','div','dl','dt','em','embed','fieldset','figcaption','figure','font','footer','form','frame','frameset','h1','head','header','hr','html','i','iframe','img','input','ins','kbd','keygen','label','legend','li','link','main','map','mark','menu','menuitem','meta','meter','nav','noframes','noscript','object','ol','optgroup','option','output','p','param','pre','progress','q','rp','rt','ruby','s','samp','script','section','select','small','source','span','strike','strong','style','sub','summary','sup','table','tbody','td','textarea','tfoot','th','thead','time','title','tr','track','tt','u','ul','var','video','wbr']
+
+function! s:realtag()
+  return matchstr(getline('.')[:col('.')], '\(\S\+\)$')
+endfunction
+
+function! IsEmmetExpandable()
+  if !emmet#isExpandable() | return 0 | endif
+  if emmet#getFileType() == 'html' && index(s:html_tags, s:realtag()) == -1
+    return 0
+  endif
+  return 1
+endfunction
+
 " Tab wrapper
-function! g:utils#tabComplete() abort
+function! g:utils#tabComplete()
   let l:col = col('.') - 1
 
   if pumvisible()
     return "\<C-n>"
+
+  " In html or css expand emmet abbreviation
+  elseif &filetype =~ 'html\|css' && IsEmmetExpandable()
+    return "\<plug>(emmet-expand-abbr)"
+
   else
     if !l:col || getline('.')[l:col - 1] !~# '\k'
       return "\<TAB>"
     else
       return "\<C-n>"
     endif
+
   endif
+
 endfunction
 
 " Manual Tag complete

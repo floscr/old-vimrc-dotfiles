@@ -1,0 +1,39 @@
+{
+  "html": {
+    "profile": "html",
+    "snippets": {
+      "!": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"UTF-8\" />\n\t<title>${1:Document}</title>\n</head>\n<body>\n$2\n</body>\n</html>"
+    }
+  },
+  "css": {
+    "profile": "html",
+    "snippets": {
+      "m0a": "margin:0 auto;",
+      "db": "display:block;",
+      "di": "display:inline-block;",
+
+      "tdu": "text-decoration:underline;",
+      "ttu": "text-transform:uppercase;",
+
+      "curp": "cursor:pointer",
+      "cur": "cursor:${1:default};",
+      "lz": "letter-spacing:|;",
+
+      "ai": "align-items:|;",
+      "aic": "align-items:center;",
+      "ais": "align-items:flex-start;",
+      "aie": "align-items:flex-end;",
+      "jc": "justify-content:|;",
+      "jcc": "justify-content:center;",
+      "jcsb": "justify-content:space-between;",
+      "jcsa": "justify-content:space-around;",
+      "fl": "flex:|;",
+
+      "@m": "@media screen and (max-width:${1}) {\n\t${0}\n}"
+    }
+  },
+
+  "vue": {
+    "extends": "html"
+  }
+}

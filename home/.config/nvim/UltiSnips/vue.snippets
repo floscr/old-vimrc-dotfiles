@@ -1,1 +1,59 @@
-extends javascript
+# -----------------------------------------------------------------------------
+# Vuex
+# -----------------------------------------------------------------------------
+
+snippet xa
+export const ${1:function} = ({ commit, state }) => {
+  commit(types.${2:mutation})
+}
+endsnippet
+
+# -----------------------------------------------------------------------------
+# Vue Snippets
+# -----------------------------------------------------------------------------
+
+snippet m
+methods: {
+  ${1:method} (${2:args}) {
+    $0
+  },
+},
+endsnippet
+
+snippet p
+props: [
+  '$0'
+],
+endsnippet
+
+snippet com
+computed: {
+  ${1:computedProp} (${2:args}) {
+    return $0
+  },
+},
+endsnippet
+
+snippet d
+data () {
+  return {
+    ${1:varable}: '$2',
+  }
+},
+endsnippet
+
+# Import
+snippet v
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  $0
+}
+</script>
+endsnippet
+
