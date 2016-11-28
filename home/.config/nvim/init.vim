@@ -20,12 +20,9 @@ source ~/.config/nvim/plugins.vim
 " =============================================================================
 
 set autochdir                  " Set working dir to the current file
-set autoread                   " Automatically read changed file
-set backspace=indent,eol,start " Better backspace
 set foldopen-=block            " Disable fold opening when jumping paragraphs
 set hidden                     " Enables to switch between unsaved buffers and keep undo history
 set lazyredraw                 " Don't redraw while executing macros (better performance)
-set mouse=a                    " Enable Mouse Mode
 set nojoinspaces               " No extra space when joining a line which ends with . ? !
 set noshowmatch                " Show matching tags
 set nostartofline              " Prevent cursor from moving to beginning of line when switching buffers
@@ -35,7 +32,7 @@ set relativenumber             " Relative Numbers
 set shell=/bin/zsh             " Setting shell to zsh
 set shortmess+=I               " Turn off the intro
 set showmode                   " Always show mode
-set suffixesadd+=.js           " Add js and ruby files to suffixes
+set suffixesadd+=.js           " Add js suffixes
 set synmaxcol=800              " Turn off syntax highlighting for lines longer than 800 characters
 
 " Disable Netrw
