@@ -28,7 +28,7 @@ set nostartofline    " Prevent cursor from moving to beginning of line when swit
 set noswapfile       " Dont create swapfiles
 set number           " Show Line numbers
 set relativenumber   " Show Relative Numbers
-set shell=/bin/zsh   " Setting shell to zsh
+set shell=$SHELL     " Setting shell to zsh
 set shortmess+=I     " Turn off the intro message
 set showmode         " Always show mode
 set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
