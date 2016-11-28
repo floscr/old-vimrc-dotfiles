@@ -21,9 +21,9 @@ methods: {
 endsnippet
 
 snippet p
-props: [
+props: {
   '$0'
-],
+},
 endsnippet
 
 snippet com
@@ -41,11 +41,9 @@ components: {
 endsnippet
 
 snippet d
-data () {
-  return {
-    ${1:varable}: '$2',
-  }
-},
+data: () => ({
+  ${1:varable}: '$2',
+}),
 endsnippet
 
 # Import

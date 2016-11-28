@@ -48,6 +48,10 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-abolish'
 " Ctags
 Plug 'ludovicchabant/vim-gutentags'
+" Open URL
+Plug 'dhruvasagar/vim-open-url'
+" Make Header
+Plug 'floscr/MakeHeader.vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation

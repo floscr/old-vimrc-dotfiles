@@ -15,21 +15,9 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
-" Clear messages
+" Clear messages list
 " http://stackoverflow.com/a/36777563/2298462
 command! ClearMessages for n in range(200) | echom "" | endfor
-
-" Open a split for each dirty file in git
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\|UU\|??\)" | sed "s/^.\{3\}//"')
-  let filenames = split(status, "\n")
-  exec "edit " . filenames[0]
-  for filename in filenames[1:]
-    exec "vs " . filename
-  endfor
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
 
 " Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
 if (has('nvim'))
@@ -47,113 +35,6 @@ if (has('nvim'))
   endfunction
   command! Push :call s:Push()
 endif
-
-" Make header
-function! s:MakeHeader(type)
-  if &filetype == "vim"
-    " Special short header for vim files
-    " Yank current line into t register
-    silent! normal "tyy
-    " Replace pasted comment letters with -
-    silent! normal "tpwv$r-
-    " Paste above comment line
-    silent! normal "tyykP
-    " Go back to comment word
-    silent! normal k^w
-
-  elseif &filetype == "markdown"
-    silent! normal yypVr=o
-
-  elseif &filetype == "conf" || &filetype == "apache" || &filetype == "sh"
-    silent! normal ^
-    " Remove any comments on current line
-    silent! .s/^\/\+\s//g
-    " Paste our default header everywhere else
-    silent! normal O#=============================================================================#
-    silent! normal jo#=============================================================================#
-    silent! normal kI# l
-
-  else
-    silent! normal ^
-    " Remove any comments on current line
-    silent! .s/^\/\+\s//g
-
-    " Store the virtual edit setting for later restore
-    let old_virtual_edit=&virtualedit
-    set virtualedit=all
-
-    " Comment out the current line
-    silent! normal gcc
-    " Copy the commented line above and delete the word
-    silent! normal yyPwd$
-    " Visually select from the comment start to the column marker
-    silent! normal 080lhhvgEll
-    " Replace with dashes
-    silent! normal r-
-    " Yank the comment block below the original comment
-    silent! normal yyjp
-    " Go back to the original comment
-    silent! normal kw
-
-    " Restore the virtualedit setting and delete the temporary variable
-    let &virtualedit=old_virtual_edit
-    unlet old_virtual_edit
-  endif
-endfunction
-
-command! -nargs=1 MakeHeader call s:MakeHeader(<f-args>)
-
-nnoremap gmh :MakeHeader small<cr>
-nnoremap gmH :MakeHeader large<cr>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OpenChangedFiles COMMAND
-" Open a split for each dirty file in git
-"
-" Shamelessly stolen from Gary Bernhardt: https://github.com/garybernhardt/dotfiles
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenChangedFiles()
-  only " Close all windows, unless they're modified
-  let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
-  let filenames = split(status, "\n")
-  if len(filenames) > 0
-    exec "edit " . filenames[0]
-    for filename in filenames[1:]
-      exec "sp " . filename
-    endfor
-  end
-endfunction
-command! OpenChangedFiles :call OpenChangedFiles()
-
-function! GetBufferList()
-  redir =>buflist
-  silent! ls!
-  redir END
-  return buflist
-endfunction
-
-" Toggle the location list
-function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
-      return
-    endif
-  endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
-  let winnr = winnr()
-  exec(a:pfx.'open')
-  if winnr() != winnr
-    wincmd p
-  endif
-endfunction
 
 " Fix Linting Error Locationlist jumping when there is only one error
 " Has the nice side efect of being able to loop through errorlist
@@ -177,7 +58,7 @@ command! LocationNext call LocationNext()
 
 " Open curent buffer with marked.app
 function! OpenWithMarkedApp()
-  silent! execute '!open "' . bufname("%") . '" -a /Applications/Marked\ 2.app'
+  silent! execute '!open "' . bufname("%") . '" -a "Marked 2"'
 endfunction
 command! Marked call OpenWithMarkedApp()
 
