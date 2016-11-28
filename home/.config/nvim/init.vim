@@ -19,78 +19,28 @@ source ~/.config/nvim/plugins.vim
 " Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 " =============================================================================
 
-set autochdir        " Set working dir to path of the current file
-set hidden           " Enables to switch between unsaved buffers and keep undo history
-set lazyredraw       " Don't redraw while executing macros (better performance)
-set nojoinspaces     " No extra space when joining a line which ends with . ? !
-set noshowmatch      " Show matching tags
-set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
-set noswapfile       " Dont create swapfiles
-set number           " Show Line numbers
-set relativenumber   " Show Relative Numbers
-set shell=$SHELL     " Setting shell to zsh
-set shortmess+=I     " Turn off the intro message
-set showmode         " Always show mode
-set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
-set synmaxcol=1500   " Turn off syntax highlighting after X lines
+set autochdir               " Set working dir to path of the current file
+set hidden                  " Enables to switch between unsaved buffers and keep undo history
+set lazyredraw              " Don't redraw while executing macros (better performance)
+set nojoinspaces            " No extra space when joining a line which ends with . ? !
+set noshowmatch             " Show matching tags
+set nostartofline           " Prevent cursor from moving to beginning of line when switching buffers
+set noswapfile              " Dont create swapfiles
+set number                  " Show Line numbers
+set relativenumber          " Show Relative Numbers
+set sessionoptions-=options " Disable options for session saving
+set shell=$SHELL            " Setting shell to zsh
+set shortmess+=I            " Turn off the intro message
+set showmode                " Always show mode
+set suffixesadd+=.js        " Automatically add suffic when pressing gf to go to a file
+set synmaxcol=1500          " Turn off syntax highlighting after X lines
 
 " Disable Netrw
+" Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
-let g:vim_markdown_folding_disabled = 1
 
-function! MyFoldText() " {{{
-  let line = getline(v:foldstart)
-
-  let nucolwidth = &fdc + &number * &numberwidth
-  let windowwidth = winwidth(0) - nucolwidth - 3
-  let foldedlinecount = v:foldend - v:foldstart
-
-  " expand tabs into spaces
-  let onetab = strpart('          ', 0, &tabstop)
-  let line = substitute(line, '\t', onetab, 'g')
-
-  let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-  let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-  return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction " }}}
-
-function! JavaScriptFold() "{{{
-  " syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-  setlocal foldmethod=syntax
-  setlocal foldlevel=99
-  echo "hello"
-  syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
-endfunction "}}}
-
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
-set foldlevel=99
-" Space to toggle folds.
-autocmd FileType vim setlocal foldmethod=marker
-autocmd FileType vim setlocal foldlevel=0
-
-" au FileType html call HTMLFold()
-" autocmd FileType html setlocal foldmethod=syntax
-autocmd FileType html setlocal fdl=99
-
-" autocmd FileType javascript call JavaScriptFold()
-autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
-autocmd FileType javascript,typescript,css,scss,json setlocal foldmethod=marker
-autocmd FileType javascript,typescript,css,scss,json setlocal foldmarker={,}
-autocmd FileType coffee setl foldmethod=indent
-" au FileType html nnoremap <buffer> <leader>F zfat
-" }}}
-
-" autocmd BufWinLeave .* mkview
-" autocmd BufWinEnter .* silent loadview
-" autocmd BufWinLeave *.* mkview!
-" autocmd BufWinEnter *.* silent loadview
-
-set sessionoptions-=options
-" set viewoptions=folds,cursor,unix,slash
 
 augroup autosave_buffer
  autocmd!
@@ -194,6 +144,49 @@ set nofoldenable      " dont fold by default
 set foldlevel=1       " this is just what i use
 set foldlevelstart=99 " Open folds on beginning of file
 set foldcolumn=0      " Disable fold column
+
+let g:vim_markdown_folding_disabled = 1
+
+function! MyFoldText() " {{{
+  let line = getline(v:foldstart)
+
+  let nucolwidth = &fdc + &number * &numberwidth
+  let windowwidth = winwidth(0) - nucolwidth - 3
+  let foldedlinecount = v:foldend - v:foldstart
+
+  " expand tabs into spaces
+  let onetab = strpart('          ', 0, &tabstop)
+  let line = substitute(line, '\t', onetab, 'g')
+
+  let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+  let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+  return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+set foldlevel=99
+" Space to toggle folds.
+autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType vim setlocal foldlevel=0
+
+" au FileType html call HTMLFold()
+" autocmd FileType html setlocal foldmethod=syntax
+autocmd FileType html setlocal fdl=99
+
+" autocmd FileType javascript call JavaScriptFold()
+autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmethod=marker
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmarker={,}
+autocmd FileType coffee setl foldmethod=indent
+" au FileType html nnoremap <buffer> <leader>F zfat
+" }}}
+
+" autocmd BufWinLeave .* mkview
+" autocmd BufWinEnter .* silent loadview
+" autocmd BufWinLeave *.* mkview!
+" autocmd BufWinEnter *.* silent loadview
 
 " -----------------------------------------------------------------------------
 " 2.9 Omni completion settings
