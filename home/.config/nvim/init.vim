@@ -211,32 +211,26 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
 
 " =============================================================================
-" 3.0 Mapping settings
+" Keyboard Mappings / Shortcuts
 " =============================================================================
 
-" -----------------------------------------------------
-" 3.1 Setting leader
-" -----------------------------------------------------
+" Set leader to Space
 let g:mapleader="\<space>"
 
 " Reload .vimrc
-" This would cause the last search to be highlighted,
-" Workaround to disable this.
+" When sourcing files, the last seach gets highlighted
+" This mapping auto disables the highlight
 nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
+
+" Clear highlighting on escape in normal mode
+nnoremap <silent><esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
+" Quit current buffer
+nnoremap <C-c> :q<return>
 
 " Source current file
 nmap <silent> <leader>sf :source %<cr>
-
-" -----------------------------------------------------
-" 3.3 Keyboard shortcuts / bindings
-" -----------------------------------------------------
-
-" When cycling windows ignore NERDTree
-" nmap <silent> <C-w><C-w> :call utils#intelligentCycling()<CR>
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
 
 " When jump to next match also center screen
 " Note: Use :norm! to make it count as one command. (i.e. for i_CTRL-o)
@@ -245,16 +239,12 @@ nnoremap <silent> N :norm! Nzz<CR>
 vnoremap <silent> n :norm! nzz<CR>
 vnoremap <silent> N :norm! Nzz<CR>
 
-" Quickfix list
+" Quickfix next/previous
 nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
 
-" Quick replay 'q' macro
+" Replay last Macro
 nnoremap Q @q
-
-" Don't yank to default register when changing something
-nnoremap c "xc
-xnoremap c "xc
 
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<cr>
@@ -263,11 +253,8 @@ nmap <silent> <leader>ss :set spell!<cr>
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 
-" Don't cancel visual select when shifting
-xnoremap <  <gv
-xnoremap >  >gv
-
-" Terminal mode mappings
+" Neovim Terminal
+" Press escape to exit insert mode
 if has('nvim')
   tnoremap <ESC> <C-\><C-n>
   tnoremap ,<ESC> <ESC>
@@ -282,11 +269,11 @@ nnoremap J mzJ`z
 " Reverse join (Turn single line comments to inline comments)
 nnoremap K jddkPmzJ`z
 
-" Quick Close
-nnoremap <C-c> :q<return>
+" Keep selection when tabbing
+xnoremap <  <gv
+xnoremap >  >gv
 
 " Indentation using tab
-" Normal tab is bound to Deoplete completion
 imap <S-Tab> <C-o><<
 map <S-Tab> <<
 map <Tab> >>
@@ -299,7 +286,7 @@ nnoremap gF :e <cfile><cr>
 " Enter command by pressing enter
 nnoremap <Cr> :
 
-" Open current file in finder
+" Show current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
 
 " Make * star work in visual mode
@@ -308,42 +295,42 @@ vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 " Use the last used search to use in replace command
 nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 
+" Toggle the error list
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+
+" Workaround for ctrl-h to work
+" https://github.com/neovim/neovim/issues/2048
+if has('nvim')
+  nmap <BS> <C-W>h
+endif
+
+" -----------------------------------------------------------------------------
+" Custom Text Objects
+" -----------------------------------------------------------------------------
+
 " Textobjects for []
 onoremap ir i[
 onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
-" Toggle the error list
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+" -----------------------------------------------------------------------------
+" Buffer & Window management
+" -----------------------------------------------------------------------------
 
-" Workaround for ctrl-h to work
-" workaround for https://github.com/neovim/neovim/issues/2048
- if has('nvim')
-   nmap <BS> <C-W>h
- endif
-
-nnoremap ,ocf :OpenChangedFiles<CR>
-
-" -----------------------------------------------------
-" 3.5 Buffer & Window management
-" -----------------------------------------------------
-
-" Buffers
+" Buffer switching and terminalion
 map gn :bn<cr>
 map gp :bp<cr>
 map gb :b#<cr>
 map gdd :Bdelete<cr>
 map gdo :Bonly<cr>
+
+" Buffer list
 map gl :ls<return>
 
-" Clear highlighting on escape in normal mode
-nnoremap <silent><esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
-
-" -----------------------------------------------------
-" 3.5 Text Objects
-" -----------------------------------------------------
+" -----------------------------------------------------------------------------
+" Text Objects
+" -----------------------------------------------------------------------------
 
 " [] Brackets text object
 onoremap ir i[
@@ -351,12 +338,8 @@ onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
-" Buffer text object
-xnoremap i% GoggV
-omap i% :<C-u>normal vi%<CR>
-
 " =============================================================================
-" 4.0 Plugins settings
+" Plugin settings
 " =============================================================================
 
 " -----------------------------------------------------
