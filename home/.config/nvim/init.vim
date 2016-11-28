@@ -58,6 +58,10 @@ augroup END
 " Color Settings
 " -----------------------------------------------------------------------------
 
+if has('termguicolors')
+  set termguicolors
+endif
+
 set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
@@ -118,7 +122,7 @@ set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
 
 " -----------------------------------------------------------------------------
-" 2.8 Folding settings
+" Folding settings
 " -----------------------------------------------------------------------------
 
 set foldopen-=block   " Disable fold opening when jumping paragraphs
@@ -173,9 +177,10 @@ autocmd FileType coffee setl foldmethod=indent
 " autocmd BufWinEnter *.* silent loadview
 
 " -----------------------------------------------------------------------------
-" 2.9 Omni completion settings
+"  Omni completion
 " -----------------------------------------------------------------------------
-set completeopt-=preview                    " Don't show preview scratch buffers
+
+set completeopt-=preview " Don't show preview scratch buffers
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -184,8 +189,9 @@ set wildignore+=*.gem
 set wildignore+=tmp/**
 
 " -----------------------------------------------------------------------------
-" 3.0 Scrolloff
+" Scrolloff
 " -----------------------------------------------------------------------------
+
 " Start scrolling:
 " Bottom and Top: 10 Lines
 " Side: 15 lines
@@ -195,22 +201,14 @@ set sidescrolloff=15
 set sidescroll=1
 
 " -----------------------------------------------------------------------------
-" 2.10 Neovim specific settings
+" Neovim specific settings
 " -----------------------------------------------------------------------------
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1         " Set an environment variable to use the t_SI/t_EI hack
-let g:loaded_python_provider = 1
-let g:loaded_python_provider=1              " Disable python 2 interface
-let g:python_host_skip_check=1              " Skip python 2 host check
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let g:loaded_python_provider=1 " Disable python 2 interface
+let g:python_host_skip_check=1 " Skip python 2 host check
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
-
-" -----------------------------------------------------
-" 2.12 True colors settings
-" -----------------------------------------------------
-if has('termguicolors')
-  set termguicolors " Turn on true colors support
-endif
-" Tmux still doesn't support this
 
 " =============================================================================
 " 3.0 Mapping settings
