@@ -220,7 +220,7 @@ let g:mapleader="\<space>"
 " Reload .vimrc
 " When sourcing files, the last seach gets highlighted
 " This mapping auto disables the highlight
-nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
+nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>:echo "Vimrc reloaded!"<CR>
 
 " Clear highlighting on escape in normal mode
 nnoremap <silent><esc> :noh<return><esc>
@@ -395,12 +395,9 @@ map <leader>f :NERDTreeFind<CR>
 " Neomake
 " -----------------------------------------------------
 
-" Error mnemonic (Neomake uses location list)
+" Scroll through error list
 nmap <silent> [e :LocationPrevious<CR>
 nmap <silent> ]e :LocationNext<CR>
-
-" nnoremap ]e :lnext<CR>
-" nnoremap [e :lprevious<CR>
 
 " -----------------------------------------------------
 " UltiSnips
