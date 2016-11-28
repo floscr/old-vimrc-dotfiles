@@ -220,7 +220,7 @@ let g:mapleader="\<space>"
 " Reload .vimrc
 " When sourcing files, the last seach gets highlighted
 " This mapping auto disables the highlight
-nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>:echo "Vimrc reloaded!"<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>:echo "Vimrc reloaded!"<CR>
 
 " Clear highlighting on escape in normal mode
 nnoremap <silent><esc> :noh<return><esc>
