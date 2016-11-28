@@ -31,6 +31,8 @@ set relativenumber   " Show Relative Numbers
 set shell=$SHELL     " Setting shell to zsh
 set shortmess+=I     " Turn off the intro message
 set showmode         " Always show mode
+set splitbelow       " Split new window below current window
+set splitright       " Split new window right of current window
 set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
 set synmaxcol=1500   " Turn off syntax highlighting after X lines
 
@@ -60,10 +62,6 @@ set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 
-" 2.1 Split settings (more natural)
-" -----------------------------------------------------------------------------
-set splitbelow " Splitting a window will put the new window below the current
-set splitright " Splitting a window will put the new window right of the current
 
 " -----------------------------------------------------------------------------
 " 2.1 Wrap Settings
