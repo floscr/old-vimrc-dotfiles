@@ -50,6 +50,8 @@ Plug 'tpope/vim-abolish'
 Plug 'ludovicchabant/vim-gutentags'
 " Open URL
 Plug 'dhruvasagar/vim-open-url'
+" Make Header
+Plug 'floscr/MakeHeader.vim'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
