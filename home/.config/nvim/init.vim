@@ -15,7 +15,8 @@
 source ~/.config/nvim/plugins.vim
 
 " =============================================================================
-" 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
+" Default Settings
+" Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 " =============================================================================
 
 set shell=/bin/zsh             " Setting shell to zsh
