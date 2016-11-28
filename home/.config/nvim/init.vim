@@ -15,31 +15,123 @@
 source ~/.config/nvim/plugins.vim
 
 " =============================================================================
-" 2.0 Default Settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
+" Default Settings
+" Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 " =============================================================================
 
-set shell=/bin/zsh             " Setting shell to zsh
-set number                     " Line numbers on
-set showmode                   " Always show mode
-set hidden                     " Enables to switch between unsaved buffers and keep undo history
-set noswapfile                 " New buffers will be loaded without creating a swapfile
-set lazyredraw                 " Don't redraw while executing macros (better performance)
-set nostartofline              " Prevent cursor from moving to beginning of line when switching buffers
-set nojoinspaces               " No extra space when joining a line which ends with . ? !
-set suffixesadd+=.js           " Add js and ruby files to suffixes
-set autochdir                  " Set working dir to the current file
-set shortmess+=I               " Turn off the intro
-set synmaxcol=800              " Turn off syntax highlighting for lines longer than 800 characters
-set noshowmatch                " Show matching tags
-set backspace=indent,eol,start " Better backspace
-set mouse=a                    " Enable Mouse Mode
-set foldopen-=block            " Disable fold opening when jumping paragraphs
-set relativenumber             " Relative Numbers
-set autoread                   " Automatically read changed file
+set autochdir        " Set working dir to path of the current file
+set hidden           " Enables to switch between unsaved buffers and keep undo history
+set lazyredraw       " Don't redraw while executing macros (better performance)
+set nojoinspaces     " No extra space when joining a line which ends with . ? !
+set noshowmatch      " Show matching tags
+set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
+set noswapfile       " Dont create swapfiles
+set number           " Show Line numbers
+set relativenumber   " Show Relative Numbers
+set shell=$SHELL     " Setting shell to zsh
+set shortmess+=I     " Turn off the intro message
+set showmode         " Always show mode
+set splitbelow       " Split new window below current window
+set splitright       " Split new window right of current window
+set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
+set synmaxcol=1500   " Turn off syntax highlighting after X lines
 
 " Disable Netrw
+" Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
+
+" -----------------------------------------------------------------------------
+" Sessions
+" -----------------------------------------------------------------------------
+
+" Autosaving Buffer Options like folds
+set sessionoptions-=options " Disable options for session saving
+set viewoptions-=options    " http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
+augroup autosave_buffer
+ autocmd!
+ autocmd BufWinLeave *.* mkview
+ autocmd BufWinEnter *.* silent! loadview
+augroup END
+
+" -----------------------------------------------------------------------------
+" Color Settings
+" -----------------------------------------------------------------------------
+
+if has('termguicolors')
+  set termguicolors
+endif
+
+set background=dark
+let g:hybrid_reduced_contrast = 1
+colorscheme hybrid
+
+" -----------------------------------------------------------------------------
+" Wrap Settings
+" -----------------------------------------------------------------------------
+
+set colorcolumn=80           " Add a colorized column tho show the maximal text length
+set textwidth=80             " Set the recommended text length to 80 characters
+set nowrap                   " Don't wrap lines
+set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
+
+" -----------------------------------------------------------------------------
+" Timeout settings
+" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely.
+" -----------------------------------------------------------------------------
+
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
+" -----------------------------------------------------------------------------
+" Search settings
+" -----------------------------------------------------------------------------
+
+set incsearch  " Incremental search
+set ignorecase " Ignore case by default
+set smartcase  " Make search case sensitive only if it contains uppercase letters
+set wrapscan   " Search again from top when reached the bottom
+
+" -----------------------------------------------------------------------------
+" Persistent undo settings
+" -----------------------------------------------------------------------------
+
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.config/nvim/tmp/undo//
+endif
+
+" -----------------------------------------------------------------------------
+" Hidden characters settings
+" -----------------------------------------------------------------------------
+
+set list
+set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
+set showbreak=↪
+
+" -----------------------------------------------------------------------------
+" Indentation
+" -----------------------------------------------------------------------------
+
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+set noshiftround
+set autoindent " Automatic indentation
+set copyindent " Copy previous indetation on autoindenting
+
+" -----------------------------------------------------------------------------
+" Folding settings
+" -----------------------------------------------------------------------------
+
+set foldopen-=block   " Disable fold opening when jumping paragraphs
+set foldmethod=indent " Fold by indentation
+set foldnestmax=2     " deepest fold is 10 levels
+set nofoldenable      " dont fold by default
+set foldlevel=1       " this is just what i use
+set foldlevelstart=99 " Open folds on beginning of file
+set foldcolumn=0      " Disable fold column
 
 let g:vim_markdown_folding_disabled = 1
 
@@ -58,14 +150,6 @@ function! MyFoldText() " {{{
   let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
   return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction " }}}
-
-function! JavaScriptFold() "{{{
-  " syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-  setlocal foldmethod=syntax
-  setlocal foldlevel=99
-  echo "hello"
-  syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
-endfunction "}}}
 
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
@@ -92,115 +176,11 @@ autocmd FileType coffee setl foldmethod=indent
 " autocmd BufWinLeave *.* mkview!
 " autocmd BufWinEnter *.* silent loadview
 
-set sessionoptions-=options
-" set viewoptions=folds,cursor,unix,slash
-
-augroup autosave_buffer
- autocmd!
- autocmd BufWinLeave *.* mkview
- autocmd BufWinEnter *.* silent! loadview
-augroup END
-
-" http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
-set viewoptions-=options
-
-
-" au BufWinLeave * mkview
-" au BufWinEnter * silent loadview
-
 " -----------------------------------------------------------------------------
-" 2.1 Color Settings
-" -----------------------------------------------------------------------------
- " For Neovim 0.1.3 and 0.1.4
- let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
- " Or if you have Neovim >= 0.1.5
- if (has("termguicolors"))
-   set termguicolors
- endif
-
-set background=dark
-let g:hybrid_reduced_contrast = 1
-colorscheme hybrid
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" -----------------------------------------------------------------------------
-" 2.1 Split settings (more natural)
-" -----------------------------------------------------------------------------
-set splitbelow " Splitting a window will put the new window below the current
-set splitright " Splitting a window will put the new window right of the current
-
-" -----------------------------------------------------------------------------
-" 2.1 Wrap Settings
-" -----------------------------------------------------------------------------
-set colorcolumn=80           " Add a colorized column tho show the maximal text length
-set textwidth=80             " Set the recommended text length to 80 characters
-set nowrap                   " Don't wrap lines
-set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
-
-" -----------------------------------------------------------------------------
-" 2.2 Timeout settings
-" -----------------------------------------------------------------------------
-" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely. (by Steve Losh)
-set notimeout
-set ttimeout
-set ttimeoutlen=10
-
-" -----------------------------------------------------------------------------
-" 2.4 Search settings
-" -----------------------------------------------------------------------------
-set incsearch  " Incremental search
-set ignorecase " Ignore case by default
-set smartcase  " Make search case sensitive only if it contains uppercase letters
-set wrapscan   " Search again from top when reached the bottom
-
-" -----------------------------------------------------------------------------
-" 2.5 Persistent undo settings
-" -----------------------------------------------------------------------------
-if has('persistent_undo')
-  set undofile
-  set undodir=~/.config/nvim/tmp/undo//
-endif
-
-" -----------------------------------------------------------------------------
-" 2.6 White characters settings
-" -----------------------------------------------------------------------------
-set list
-set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
-set showbreak=↪
-
-" -----------------------------------------------------------------------------
-" 2.6 Indentation
-" -----------------------------------------------------------------------------
-set expandtab
-set softtabstop=2
-set shiftwidth=2
-set noshiftround
-set autoindent " Automatic indentation
-set copyindent " Copy previous indetation on autoindenting
-
-" -----------------------------------------------------------------------------
-" 2.7 Filetype settings
+"  Omni completion
 " -----------------------------------------------------------------------------
 
-filetype plugin on
-filetype indent on
-
-" -----------------------------------------------------------------------------
-" 2.8 Folding settings
-" -----------------------------------------------------------------------------
-
-set foldmethod=indent " Fold by indentation
-set foldnestmax=2     " deepest fold is 10 levels
-set nofoldenable      " dont fold by default
-set foldlevel=1       " this is just what i use
-set foldlevelstart=99 " Open folds on beginning of file
-set foldcolumn=0      " Disable fold column
-
-" -----------------------------------------------------------------------------
-" 2.9 Omni completion settings
-" -----------------------------------------------------------------------------
-set completeopt-=preview                    " Don't show preview scratch buffers
+set completeopt-=preview " Don't show preview scratch buffers
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -209,8 +189,9 @@ set wildignore+=*.gem
 set wildignore+=tmp/**
 
 " -----------------------------------------------------------------------------
-" 3.0 Scrolloff
+" Scrolloff
 " -----------------------------------------------------------------------------
+
 " Start scrolling:
 " Bottom and Top: 10 Lines
 " Side: 15 lines
@@ -220,50 +201,36 @@ set sidescrolloff=15
 set sidescroll=1
 
 " -----------------------------------------------------------------------------
-" 2.10 Neovim specific settings
+" Neovim specific settings
 " -----------------------------------------------------------------------------
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1         " Set an environment variable to use the t_SI/t_EI hack
-let g:loaded_python_provider = 1
-let g:loaded_python_provider=1              " Disable python 2 interface
-let g:python_host_skip_check=1              " Skip python 2 host check
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let g:loaded_python_provider=1 " Disable python 2 interface
+let g:python_host_skip_check=1 " Skip python 2 host check
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
 
-" -----------------------------------------------------
-" 2.12 True colors settings
-" -----------------------------------------------------
-if has('termguicolors')
-  set termguicolors " Turn on true colors support
-endif
-" Tmux still doesn't support this
-
 " =============================================================================
-" 3.0 Mapping settings
+" Keyboard Mappings / Shortcuts
 " =============================================================================
 
-" -----------------------------------------------------
-" 3.1 Setting leader
-" -----------------------------------------------------
+" Set leader to Space
 let g:mapleader="\<space>"
 
 " Reload .vimrc
-" This would cause the last search to be highlighted,
-" Workaround to disable this.
-nnoremap <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>
+" When sourcing files, the last seach gets highlighted
+" This mapping auto disables the highlight
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<CR><esc>:echo "Vimrc reloaded!"<CR>
+
+" Clear highlighting on escape in normal mode
+nnoremap <silent><esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
+" Quit current buffer
+nnoremap <C-c> :q<return>
 
 " Source current file
-nmap <silent> <leader>sf :source %<cr>
-
-" -----------------------------------------------------
-" 3.3 Keyboard shortcuts / bindings
-" -----------------------------------------------------
-
-" When cycling windows ignore NERDTree
-" nmap <silent> <C-w><C-w> :call utils#intelligentCycling()<CR>
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
+nmap <silent> <leader>sf :source %<CR><ESC>:echo "Current file sourced!"<CR>
 
 " When jump to next match also center screen
 " Note: Use :norm! to make it count as one command. (i.e. for i_CTRL-o)
@@ -272,16 +239,12 @@ nnoremap <silent> N :norm! Nzz<CR>
 vnoremap <silent> n :norm! nzz<CR>
 vnoremap <silent> N :norm! Nzz<CR>
 
-" Quickfix list
+" Quickfix next/previous
 nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
 
-" Quick replay 'q' macro
+" Replay last Macro
 nnoremap Q @q
-
-" Don't yank to default register when changing something
-nnoremap c "xc
-xnoremap c "xc
 
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<cr>
@@ -290,11 +253,8 @@ nmap <silent> <leader>ss :set spell!<cr>
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 
-" Don't cancel visual select when shifting
-xnoremap <  <gv
-xnoremap >  >gv
-
-" Terminal mode mappings
+" Neovim Terminal
+" Press escape to exit insert mode
 if has('nvim')
   tnoremap <ESC> <C-\><C-n>
   tnoremap ,<ESC> <ESC>
@@ -309,11 +269,11 @@ nnoremap J mzJ`z
 " Reverse join (Turn single line comments to inline comments)
 nnoremap K jddkPmzJ`z
 
-" Quick Close
-nnoremap <C-c> :q<return>
+" Keep selection when tabbing
+xnoremap <  <gv
+xnoremap >  >gv
 
 " Indentation using tab
-" Normal tab is bound to Deoplete completion
 imap <S-Tab> <C-o><<
 map <S-Tab> <<
 map <Tab> >>
@@ -326,7 +286,7 @@ nnoremap gF :e <cfile><cr>
 " Enter command by pressing enter
 nnoremap <Cr> :
 
-" Open current file in finder
+" Show current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
 
 " Make * star work in visual mode
@@ -335,42 +295,42 @@ vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 " Use the last used search to use in replace command
 nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 
+" Toggle the error list
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+
+" Workaround for ctrl-h to work
+" https://github.com/neovim/neovim/issues/2048
+if has('nvim')
+  nmap <BS> <C-W>h
+endif
+
+" -----------------------------------------------------------------------------
+" Custom Text Objects
+" -----------------------------------------------------------------------------
+
 " Textobjects for []
 onoremap ir i[
 onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
-" Toggle the error list
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+" -----------------------------------------------------------------------------
+" Buffer & Window management
+" -----------------------------------------------------------------------------
 
-" Workaround for ctrl-h to work
-" workaround for https://github.com/neovim/neovim/issues/2048
- if has('nvim')
-   nmap <BS> <C-W>h
- endif
-
-nnoremap ,ocf :OpenChangedFiles<CR>
-
-" -----------------------------------------------------
-" 3.5 Buffer & Window management
-" -----------------------------------------------------
-
-" Buffers
+" Buffer switching and terminalion
 map gn :bn<cr>
 map gp :bp<cr>
 map gb :b#<cr>
 map gdd :Bdelete<cr>
 map gdo :Bonly<cr>
+
+" Buffer list
 map gl :ls<return>
 
-" Clear highlighting on escape in normal mode
-nnoremap <silent><esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
-
-" -----------------------------------------------------
-" 3.5 Text Objects
-" -----------------------------------------------------
+" -----------------------------------------------------------------------------
+" Text Objects
+" -----------------------------------------------------------------------------
 
 " [] Brackets text object
 onoremap ir i[
@@ -378,12 +338,8 @@ onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
-" Buffer text object
-xnoremap i% GoggV
-omap i% :<C-u>normal vi%<CR>
-
 " =============================================================================
-" 4.0 Plugins settings
+" Plugin settings
 " =============================================================================
 
 " -----------------------------------------------------
@@ -439,12 +395,9 @@ map <leader>f :NERDTreeFind<CR>
 " Neomake
 " -----------------------------------------------------
 
-" Error mnemonic (Neomake uses location list)
+" Scroll through error list
 nmap <silent> [e :LocationPrevious<CR>
 nmap <silent> ]e :LocationNext<CR>
-
-" nnoremap ]e :lnext<CR>
-" nnoremap [e :lprevious<CR>
 
 " -----------------------------------------------------
 " UltiSnips
@@ -455,13 +408,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
-" Open the current filetype snippet file
-function! EditFileTypeSnippet()
-  execute 'edit ~/.homesick/repos/dotfiles/home/.config/nvim/UltiSnips/' . &filetype . '.snippets'
-  " if(&filetype == 'scss')
-  " endif
-endfunction
-nnoremap <leader>es :call EditFileTypeSnippet()<CR>
+" Open the snippets file for the current filetype
+nnoremap <leader>es :UltiSnipsEdit<CR>
 
 " -----------------------------------------------------
 " Deoplete
