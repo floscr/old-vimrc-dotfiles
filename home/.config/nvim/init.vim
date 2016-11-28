@@ -19,59 +19,47 @@ source ~/.config/nvim/plugins.vim
 " Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 " =============================================================================
 
-set autochdir               " Set working dir to path of the current file
-set hidden                  " Enables to switch between unsaved buffers and keep undo history
-set lazyredraw              " Don't redraw while executing macros (better performance)
-set nojoinspaces            " No extra space when joining a line which ends with . ? !
-set noshowmatch             " Show matching tags
-set nostartofline           " Prevent cursor from moving to beginning of line when switching buffers
-set noswapfile              " Dont create swapfiles
-set number                  " Show Line numbers
-set relativenumber          " Show Relative Numbers
-set sessionoptions-=options " Disable options for session saving
-set shell=$SHELL            " Setting shell to zsh
-set shortmess+=I            " Turn off the intro message
-set showmode                " Always show mode
-set suffixesadd+=.js        " Automatically add suffic when pressing gf to go to a file
-set synmaxcol=1500          " Turn off syntax highlighting after X lines
+set autochdir        " Set working dir to path of the current file
+set hidden           " Enables to switch between unsaved buffers and keep undo history
+set lazyredraw       " Don't redraw while executing macros (better performance)
+set nojoinspaces     " No extra space when joining a line which ends with . ? !
+set noshowmatch      " Show matching tags
+set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
+set noswapfile       " Dont create swapfiles
+set number           " Show Line numbers
+set relativenumber   " Show Relative Numbers
+set shell=$SHELL     " Setting shell to zsh
+set shortmess+=I     " Turn off the intro message
+set showmode         " Always show mode
+set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
+set synmaxcol=1500   " Turn off syntax highlighting after X lines
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
+" -----------------------------------------------------------------------------
+" Sessions
+" -----------------------------------------------------------------------------
 
-
+" Autosaving Buffer Options like folds
+set sessionoptions-=options " Disable options for session saving
+set viewoptions-=options    " http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
 augroup autosave_buffer
  autocmd!
  autocmd BufWinLeave *.* mkview
  autocmd BufWinEnter *.* silent! loadview
 augroup END
 
-" http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
-set viewoptions-=options
-
-
-" au BufWinLeave * mkview
-" au BufWinEnter * silent loadview
-
 " -----------------------------------------------------------------------------
-" 2.1 Color Settings
+" Color Settings
 " -----------------------------------------------------------------------------
- " For Neovim 0.1.3 and 0.1.4
- let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
- " Or if you have Neovim >= 0.1.5
- if (has("termguicolors"))
-   set termguicolors
- endif
 
 set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" -----------------------------------------------------------------------------
 " 2.1 Split settings (more natural)
 " -----------------------------------------------------------------------------
 set splitbelow " Splitting a window will put the new window below the current
