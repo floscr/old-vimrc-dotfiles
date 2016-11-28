@@ -48,6 +48,8 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-abolish'
 " Ctags
 Plug 'ludovicchabant/vim-gutentags'
+" Open URL
+Plug 'dhruvasagar/vim-open-url'
 
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
