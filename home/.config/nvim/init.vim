@@ -62,62 +62,60 @@ set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 
+" -----------------------------------------------------------------------------
+" Wrap Settings
+" -----------------------------------------------------------------------------
 
-" -----------------------------------------------------------------------------
-" 2.1 Wrap Settings
-" -----------------------------------------------------------------------------
 set colorcolumn=80           " Add a colorized column tho show the maximal text length
 set textwidth=80             " Set the recommended text length to 80 characters
 set nowrap                   " Don't wrap lines
 set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 
 " -----------------------------------------------------------------------------
-" 2.2 Timeout settings
+" Timeout settings
+" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely.
 " -----------------------------------------------------------------------------
-" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely. (by Steve Losh)
+
 set notimeout
 set ttimeout
 set ttimeoutlen=10
 
 " -----------------------------------------------------------------------------
-" 2.4 Search settings
+" Search settings
 " -----------------------------------------------------------------------------
+
 set incsearch  " Incremental search
 set ignorecase " Ignore case by default
 set smartcase  " Make search case sensitive only if it contains uppercase letters
 set wrapscan   " Search again from top when reached the bottom
 
 " -----------------------------------------------------------------------------
-" 2.5 Persistent undo settings
+" Persistent undo settings
 " -----------------------------------------------------------------------------
+
 if has('persistent_undo')
   set undofile
   set undodir=~/.config/nvim/tmp/undo//
 endif
 
 " -----------------------------------------------------------------------------
-" 2.6 White characters settings
+" Hidden characters settings
 " -----------------------------------------------------------------------------
+
 set list
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
 set showbreak=↪
 
 " -----------------------------------------------------------------------------
-" 2.6 Indentation
+" Indentation
 " -----------------------------------------------------------------------------
+
 set expandtab
 set softtabstop=2
 set shiftwidth=2
 set noshiftround
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
-
-" -----------------------------------------------------------------------------
-" 2.7 Filetype settings
-" -----------------------------------------------------------------------------
-
-filetype plugin on
-filetype indent on
 
 " -----------------------------------------------------------------------------
 " 2.8 Folding settings
