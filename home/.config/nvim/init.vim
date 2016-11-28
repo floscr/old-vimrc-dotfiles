@@ -19,20 +19,20 @@ source ~/.config/nvim/plugins.vim
 " Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 " =============================================================================
 
-set autochdir        " Set working dir to the current file
+set autochdir        " Set working dir to path of the current file
 set hidden           " Enables to switch between unsaved buffers and keep undo history
 set lazyredraw       " Don't redraw while executing macros (better performance)
 set nojoinspaces     " No extra space when joining a line which ends with . ? !
 set noshowmatch      " Show matching tags
 set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
-set noswapfile       " New buffers will be loaded without creating a swapfile
-set number           " Line numbers on
-set relativenumber   " Relative Numbers
+set noswapfile       " Dont create swapfiles
+set number           " Show Line numbers
+set relativenumber   " Show Relative Numbers
 set shell=/bin/zsh   " Setting shell to zsh
-set shortmess+=I     " Turn off the intro
+set shortmess+=I     " Turn off the intro message
 set showmode         " Always show mode
-set suffixesadd+=.js " Add js suffixes
-set synmaxcol=800    " Turn off syntax highlighting for lines longer than 800 characters
+set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
+set synmaxcol=1500   " Turn off syntax highlighting after X lines
 
 " Disable Netrw
 let g:loaded_netrw       = 1
