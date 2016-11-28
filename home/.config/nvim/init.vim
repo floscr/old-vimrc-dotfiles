@@ -220,7 +220,7 @@ let g:mapleader="\<space>"
 " Reload .vimrc
 " When sourcing files, the last seach gets highlighted
 " This mapping auto disables the highlight
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<return><esc>:echo "Vimrc reloaded!"<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<CR><esc>:echo "Vimrc reloaded!"<CR>
 
 " Clear highlighting on escape in normal mode
 nnoremap <silent><esc> :noh<return><esc>
@@ -230,7 +230,7 @@ nnoremap <esc>^[ <esc>^[
 nnoremap <C-c> :q<return>
 
 " Source current file
-nmap <silent> <leader>sf :source %<cr>
+nmap <silent> <leader>sf :source %<CR><ESC>:echo "Current file sourced!"<CR>
 
 " When jump to next match also center screen
 " Note: Use :norm! to make it count as one command. (i.e. for i_CTRL-o)
