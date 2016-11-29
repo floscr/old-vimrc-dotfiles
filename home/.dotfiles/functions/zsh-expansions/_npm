@@ -31,11 +31,14 @@ _npm() {
             fi
           fi
 
+          # Get all script keys from package.json and remove quotes
           scripts=$(cat "$PACKAGE_JSON" | jq ".scripts | keys[]" | sed 's/["]//g')
 
+          # Add all matches as completions
           while read -r line; do
             compadd "$@" $line
           done <<< "$scripts"
+
           ;;
         *)
           _files
