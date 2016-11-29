@@ -209,10 +209,6 @@ alias run="npm run"
 # Open all changed files in git
 alias gv='vim $(echo $(git status --porcelain | sed s/^...//))'
 
-# TASK RUNNER
-alias nw="npm run watch"
-alias nb="npm run build"
-
 # Quit all gulp tasks
 alias pkg="pkill gulp"
 alias killgulp="pkill gulp"
