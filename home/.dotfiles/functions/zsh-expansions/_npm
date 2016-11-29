@@ -1,21 +1,21 @@
 #compdef npm
 
+# Completion Script taken from
+# https://askql.wordpress.com/2011/01/11/zsh-writing-own-completion/
 _npm() {
   local curcontext="$curcontext" state line
   typeset -A opt_args
 
   _arguments \
-    '1: :->country'\
-    '*: :->city'
+    '1: :->methods'
 
   case $state in
-    country)
-      _arguments '1:Commands:(run)'
+    methods)
+      _arguments '1:Commands:(run install)' \
       ;;
     *)
       case $words[2] in
         run)
-
           PACKAGE_JSON="package.json"
           GIT_ROOT="$(git rev-parse --show-toplevel)"
           GIT_ROOT_PACKAGE_JSON="$GIT_ROOT/$PACKAGE_JSON"
