@@ -61,8 +61,14 @@ endsnippet
 # LOOPS
 # -----
 
-snippet fe
+snippet fe "Foreach loop - no existing variable"
 ${1:arr}.forEach((${2}) => {
+  $0
+});
+endsnippet
+
+snippet fe "Foreach loop - no existing variable" "re.match('^.*\w+\.', snip.buffer[snip.line])" ie
+forEach((${2}) => {
   $0
 });
 endsnippet
