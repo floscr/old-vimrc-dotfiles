@@ -183,6 +183,7 @@ _group_lazy_load $HOME/.nvm/nvm.sh \
   gulp \
   vue \
   browser-sync
+
 # Old NVM Load
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
