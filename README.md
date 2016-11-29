@@ -1,16 +1,16 @@
-Florians Dotfiles
-=================
+Dotfiles
+========
 
-Dotfiles for my setup using zsh, tmux and neovim
+## Installation
 
-## Setup
+### Homesick
 
-### Installation
-
-I clone my dotfiles using using [homesick]
-
+[Homesick] is a ruby gem to manage your dotfiles.
 ```bash
+# Install homesick, clone the repo and symlink all files in ./home to ~
 gem install homesick
 homesick clone https://github.com/floscr/Dotfiles
 homesick symlink
 ```
+
+[Homesick]: https://github.com/technicalpickles/homesick
