@@ -452,7 +452,8 @@ set diffopt+=vertical
 " Add the current file to index
 nnoremap <silent> <leader>gf :Git add %:p<CR><CR>
 " Add all changes to index
-nnoremap <silent> <leader>ga :Git add .<CR><CR><CR>
+" `:Git add .` would return a message with [Process Exited 0]
+nnoremap <silent> <leader>ga :silent !git add .<CR>:echo "Added all files to index."<CR>
 " Git Status
 nnoremap <leader>gs :Gstatus<CR>
 " Commit added index
