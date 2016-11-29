@@ -15,10 +15,27 @@ _npm() {
     *)
       case $words[2] in
         run)
-          ref=$(cat package.json | jq ".scripts | keys[]" | sed 's/["]//g')
+
+          PACKAGE_JSON="package.json"
+          GIT_ROOT="$(git rev-parse --show-toplevel)"
+          GIT_ROOT_PACKAGE_JSON="$GIT_ROOT/$PACKAGE_JSON"
+
+          # When no package.json is in the current directory to read the scripts
+          # from, try to load the package.json in the git_root
+          # When this doesnt exists, exit
+          if [[ ! -f "$PACKAGE_JSON" ]]; then
+            if [[ -f "$GIT_ROOT_PACKAGE_JSON" ]]; then
+              PACKAGE_JSON="$GIT_ROOT_PACKAGE_JSON"
+            else
+              return 0
+            fi
+          fi
+
+          scripts=$(cat "$PACKAGE_JSON" | jq ".scripts | keys[]" | sed 's/["]//g')
+
           while read -r line; do
             compadd "$@" $line
-          done <<< "$ref"
+          done <<< "$scripts"
           ;;
         *)
           _files
