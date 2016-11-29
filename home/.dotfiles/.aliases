@@ -233,7 +233,4 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 # Tab Completion for all open sessions
 alias tma="tmux switch-client -t"
 
-# Create a new session from the current dir
-alias ntmx='tmux new -s $(basename $(pwd))'
-
 alias check_video_specs='bash ~/.dotfiles/scripts/check_video_specs.sh'
