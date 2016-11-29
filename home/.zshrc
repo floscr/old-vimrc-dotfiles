@@ -174,6 +174,7 @@ export NVM_DIR="$HOME/.nvm"
 # Lazy load nvm, nvm gets lazy loaded when first executing a node task
 # This shaves of 0.64 seconds of startup time
 _group_lazy_load $HOME/.nvm/nvm.sh nvm node npm npmls yarn iectrl gulp vue
+# Old NVM Load
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 fasd_cache="$HOME/.fasd-init-bash"
