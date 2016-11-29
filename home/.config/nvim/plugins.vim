@@ -164,7 +164,7 @@ Plug 'metakirby5/codi.vim', { 'on': ['Codi'] }
 if has("gui_macvim")
   Plug 'ctrlpvim/ctrlp.vim'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
   Plug 'junegunn/fzf.vim'
 endif
 
