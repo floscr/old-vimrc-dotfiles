@@ -47,6 +47,16 @@ function gitexport() {
 
 # Add all files and ammend to last commit
 function gam () {
+
+  CURRENT_COMMIT_SHA="$(git rev-parse HEAD)"
+
+  # Failsafe when the last commit was already pushed
+  if [[ $(git branch -r --contains $CURRENT_COMMIT_SHA) ]]; then
+    SHORT_HASH=$(git rev-parse --short $CURRENT_COMMIT_SHA)
+    _error_msg "The last commit $SHORT_HASH was already pushed!"
+    return 1
+  fi
+
   if [[ -z "$1" ]]; then
     # When no argument is passed
     # Amend everything without a message change
@@ -141,26 +151,6 @@ function unskip () {
   git update-index --no-skip-worktree "$@"
 }
 
-# Assumes all files specified in the file ".gitassume"
-# function assumefiles_from_file () {
-#   local toggle=$1
-#   local rcfile=".gitassume"
-#   cd "$(git rev-parse --show-toplevel)" # Cd into the root git folder
-#   if [[ -f $rcfile ]]; then
-#     while read line
-#     do
-#         local name=$line
-#         if [[ $toggle == true ]]; then
-#           echo "Assuming: $name"
-#           assume "$name"
-#         else
-#           echo "Unassuming: $name"
-#           unassume "$name"
-#         fi
-#     done < $rcfile
-#   fi
-# }
-
 function ass () {
   assumefiles_from_file true
 }
@@ -172,22 +162,6 @@ function unass () {
 function unassume () {
     git update-index --no-assume-unchanged "$@"
 }
-
-# # Toggle assumed files
-# function toggleassumed () {
-
-#   # Get the assumed files from the assumed function
-#   assumed_files="$(assumed)"
-
-#   # If the current input is not empty
-#   # Either unassume the file when the file is found in the assumed files list
-#   # Or assume when it's not fout
-#   if [[ ! -z "$*" && -f "$1" ]]; then
-#     echo "$assumed_files" | grep "$1" && unassume "$1" || assume "$1"
-#   elif [[ ! -f $1 ]]; then
-#     echo "Not a file!"
-#   fi
-# }
 
 function clonecd {
     url=$1;
