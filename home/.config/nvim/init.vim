@@ -512,6 +512,7 @@ map <Leader>= :Tabularize /=<cr>
 map <Leader>: :Tabularize /:\s\zs<cr>
 map <Leader>, :Tabularize /,<cr>
 map <Leader>" :Tabularize /\s\zs"<cr>
+map <Leader># :Tabularize /\s\zs#<cr>
 
 " -----------------------------------------------------
 " Emmet
