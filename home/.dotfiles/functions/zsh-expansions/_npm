@@ -1,0 +1,29 @@
+#compdef npm
+
+_npm() {
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments \
+    '1: :->country'\
+    '*: :->city'
+
+  case $state in
+    country)
+      _arguments '1:Commands:(run)'
+      ;;
+    *)
+      case $words[2] in
+        run)
+          ref=$(cat package.json | jq -jM ".scripts" | grep -o "\".*\":" | sed 's/[":]//g')
+          while read -r line; do
+            compadd "$@" $line
+          done <<< "$ref"
+          ;;
+        *)
+          _files
+      esac
+  esac
+}
+
+_npm "$@"
