@@ -15,6 +15,13 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+function! LuckyLink()
+  let wordUnderCursor = expand("<cword>")
+  let link = system('echo $(googler ' . wordUnderCursor . ' -n 1 --nocolor --np | grep http)')
+  put=''.link
+endfunction
+command! LuckyLink call LuckyLink()
+
 " Clear messages list
 " http://stackoverflow.com/a/36777563/2298462
 command! ClearMessages for n in range(200) | echom "" | endfor
