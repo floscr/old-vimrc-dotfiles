@@ -469,8 +469,6 @@ nnoremap <space>ge :Gedit<CR>
 nnoremap <silent> <space>grh :silent! Git reset --hard<CR>
 " Reset current file
 nnoremap <silent> <space>grf :silent! Git checkout HEAD -- %<CR>
-" Git grep
-nnoremap <space>gp :Ggrep<Space>
 
 " -----------------------------------------------------
 " GitGutter
