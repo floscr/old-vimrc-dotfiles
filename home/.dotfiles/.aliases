@@ -207,7 +207,7 @@ alias yad="yarn add --dev"
 alias run="npm run"
 
 # Open all changed files in git
-alias gv="vim $(echo $(git status --porcelain | sed s/^...//))"
+alias gv='vim $(echo $(git status --porcelain | sed s/^...//))'
 
 # TASK RUNNER
 alias nw="npm run watch"
@@ -221,7 +221,7 @@ alias killgulp="pkill gulp"
 alias subl='reattach-to-user-namespace subl'
 
 # Open git repository in tower app, even when in subdir
-alias tower='gittower "$(git rev-parse --show-toplevel)"'
+alias tower='gittower $(git rev-parse --show-toplevel)'
 
 #==============================================================================#
 # Etc
