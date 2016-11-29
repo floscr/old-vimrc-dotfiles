@@ -30,8 +30,6 @@ export PATH=~/.composer/vendor/bin:$PATH
 
 ## Setup
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Color Setup
 export COLORTERM=xterm-256color
@@ -162,13 +160,17 @@ unsetopt correct_all
 
 # Configurations
 source $DOTFILES/.aliases              # Aliases
-# source $DOTFILES_SCRIPTS/colors.sh     # Colorful shell output
 source $DOTFILES/.zsh-functions        # Functions
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Plugins
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
+export NVM_DIR="$HOME/.nvm"
+# Lazy load nvm, nvm gets lazy loaded when first executing a node task
+# This shaves of 0.64 seconds of startup time
+_group_lazy_load $HOME/.nvm/nvm.sh nvm node npm
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
