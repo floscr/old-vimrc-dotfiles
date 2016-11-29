@@ -107,6 +107,7 @@ alias gitpup="git pull && git submodule init && git submodule update && git subm
 
 # Nice short summary of the recent commits
 alias gl="git log --oneline --graph --all --decorate"
+alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %s %C(#6A787E)- %an%C(reset)' --all"
 
 # Git log for a file
 alias glf="git log -p"
