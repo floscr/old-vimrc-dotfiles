@@ -1,30 +1,20 @@
-# ---------
-# Vue
-# ---------
-
 extends vue
 
-# ---------
-# DOCUMENTS
-# ---------
-
-# Import
-snippet im
+snippet im "ES6 Import"
 import ${1:foo} from './$1';
 endsnippet
 
-# Export
-snippet ex
+snippet ex "ES6 Export Variable"
 export ${1:default} ${2:bar}
 endsnippet
 
-snippet exf "Export Function"
+snippet exf "ES6 Export Function"
 export default function ${1:`!p snip.rv = snip.basename`} () {
   $0
 }
 endsnippet
 
-snippet exc "Export default class" b
+snippet exc "ES6 Export default class" b
 export default class ${1:`!p snip.rv = snip.basename`} {
 
   constructor () {
@@ -34,7 +24,7 @@ export default class ${1:`!p snip.rv = snip.basename`} {
 }
 endsnippet
 
-snippet c "Class" b
+snippet c "ES6 Class" b
 class ${1:`!p snip.rv = snip.basename`} {
 
   constructor () {
@@ -49,15 +39,9 @@ endsnippet
 # Functions
 # ---------
 
-snippet f
+snippet "f(un)?" "Function Declaration" r
 function ${1:myFunction} (${2:args}) {
-$0
-}
-endsnippet
-
-snippet fun
-function ${1:myFunction} (${2:args}) {
-$0
+  $0
 }
 endsnippet
 
