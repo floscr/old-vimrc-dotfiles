@@ -1,35 +1,36 @@
 #!/bin/sh
-# -----------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------
 # ZSHRC
-# -----------------------------------------------------------------------------#
-# Exports
+# -----------------------------------------------------------------------------
+# Exports & Path Variable
 # Oh-my-zsh Settings
 # Shell Settings
 # Configurations
 # Plugins
-# -----------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# Exports
+# Exports & PATH Variable
 # -----------------------------------------------------------------------------
 
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
+# Default Path Variable
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
+
+# Custom binaries
+export PATH=$PATH:$HOME/.dotfiles/bin
+
+# Android Tools
 export ANDROID_TOOLS="~/Library/Android/sdk/tools"
 export ANDROID_PLATFORM_TOOLS="~/Library/Android/sdk/platform-tools"
-# Path Variable
-export PATH='/usr/local/bin:$PATH'
-export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-export PATH=$PATH:$HOME/.dotfiles/bin
-export PATH=$PATH:$HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:$/.dotfiles/bin
-export PATH="/usr/local/sbin:$PATH"
-export PATH="vendor/bin:$PATH"
+export PATH=$PATH:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS
+
+# PHP & Composer
 export PATH="/usr/local/opt/php70/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
-
-## Setup
-
 
 # Color Setup
 export COLORTERM=xterm-256color
