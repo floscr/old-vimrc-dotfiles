@@ -1,17 +1,17 @@
 #!/bin/sh
-#==============================================================================#
-# ZSHRC                                                                        #
-# =============================================================================#
+# -----------------------------------------------------------------------------#
+# ZSHRC
+# -----------------------------------------------------------------------------#
 # Exports
 # Oh-my-zsh Settings
 # Shell Settings
 # Configurations
 # Plugins
-#==============================================================================#
+# -----------------------------------------------------------------------------#
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Exports
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
@@ -62,9 +62,9 @@ export GREP_COLOR='1;35;40'
 export COLOR_ECI="/Library/Application Support/Adobe/Color/Profiles/Recommended/eciRGB_v2.icc"
 export COLOR_SRGB="/Library/Application Support/Adobe/Color/Profiles/Recommended/sRGB Color Space Profile.icm"
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Oh-my-zsh Settings
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
 # Tab Completion
 autoload -U compinit
@@ -99,9 +99,9 @@ compinit
 # show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Shell Settings
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
 # Fixes the perl error on uberspace
 # Setting for the new UTF-8 terminal support in Lion
@@ -154,9 +154,9 @@ setopt complete_in_word # Allow completion from within a word/phrase
 setopt prompt_subst # Enable parameter expansion, command substitution, and arithmetic expansion in the prompt
 unsetopt correct_all
 
-#==============================================================================#
+# -----------------------------------------------------------------------------
 # Configurations
-#==============================================================================#
+# -----------------------------------------------------------------------------
 
 # Configurations
 source $DOTFILES/.aliases              # Aliases
@@ -166,6 +166,7 @@ source $DOTFILES/.zsh-functions        # Functions
 # Plugins
 # -----------------------------------------------------------------------------
 
+# NVM
 export NVM_DIR="$HOME/.nvm"
 # Lazy load nvm, nvm gets lazy loaded when first executing a node task
 # This shaves of 0.64 seconds of startup time
