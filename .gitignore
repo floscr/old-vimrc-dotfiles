@@ -15,6 +15,9 @@ Thumbs.db
 sessions/
 home/.config/nvim/view
 
+home/.config/nvim/autoload/plug.vim
+home/.config/nvim/autoload/plug.vim.old
+
 #==============================================================================#
 # App Generated Files
 #==============================================================================#
