@@ -1,6 +1,8 @@
 Dotfiles
 ========
 
+My configuration files for vim, tmux and zsh.
+
 ## Installation
 
 ### Homesick
