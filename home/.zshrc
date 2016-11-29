@@ -25,8 +25,8 @@ export PATH=$PATH:$HOME/.dotfiles/bin
 export PATH=$PATH:$HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:$/.dotfiles/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH="vendor/bin:$PATH"
-export PATH="/usr/local/opt/php70/bin:$PATH" # PHP
-export PATH=~/.composer/vendor/bin:$PATH # Compose
+export PATH="/usr/local/opt/php70/bin:$PATH"
+export PATH=~/.composer/vendor/bin:$PATH
 
 ## Setup
 
