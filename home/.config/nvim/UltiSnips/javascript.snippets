@@ -1,5 +1,9 @@
 extends vue
 
+# -----------------------------------------------------------------------------
+# ES6
+# -----------------------------------------------------------------------------
+
 snippet im "ES6 Import"
 import ${1:foo} from './$1';
 endsnippet
@@ -35,9 +39,9 @@ class ${1:`!p snip.rv = snip.basename`} {
 export default $1
 endsnippet
 
-# ---------
+# -----------------------------------------------------------------------------
 # Functions
-# ---------
+# -----------------------------------------------------------------------------
 
 snippet "f(un)?" "Function Declaration" r
 function ${1:myFunction} (${2:args}) {
@@ -182,76 +186,74 @@ snippet id "Get element by Id to new Variable"
 ${3:const} ${2:name} = document.getElementById('${1:selector}')
 endsnippet
 
-# Expand on .fe on existing obejct/array
 snippet id "Foreach loop on Existing" "re.match('^.*\.', snip.buffer[snip.line])" ie
 getElementById('${1:selector}')
 endsnippet
 
+snippet qs "Queryselector"
+${3:const} ${2:name} = document.querySelector('${1:selector}')
+endsnippet
 
-# snippet ife "If Else Statement"
-# if (${1:true}) {
-#   ${2}
-# } else {
-#   ${0}
-# }
-# endsnippet
+snippet qs "Queryselector dot match" "re.match('^.*\.', snip.buffer[snip.line])" ie
+querySelector('${1:selector}')
+endsnippet
 
+snippet qsa "Queryselectorall"
+${3:const} ${2:name} = document.querySelectorAll('${1:selector}')
+endsnippet
 
-# ---------
+snippet qsa "Queryselector dot match" "re.match('^.*\.', snip.buffer[snip.line])" ie
+querySelectorAll('${1:selector}')
+endsnippet
+
+# -----------------------------------------------------------------------------
 # Debugging
-# ---------
-snippet de
+# -----------------------------------------------------------------------------
+
+snippet de "Debugger"
 debugger;
 endsnippet
-# console.log
-snippet cl
+
+snippet cl "Console Log"
 console.log(${0})
 endsnippet
-# console.debug
-snippet cd
-console.debug(${0});
-endsnippet
-# console.error
-snippet ce
+
+snippet ce "Console Error Log"
 console.error(${0});
 endsnippet
-# console.trace
-snippet ct
-console.trace(${0:label});
+
+snippet ct "Console Trace Log"
+console.trace(${0:label})
 endsnippet
-# console.time
-snippet ctime
+
+snippet ctime "Console Time Log"
 console.time(${0:label});
 endsnippet
-# console.assert
-snippet ca
-console.assert(${1:expression}, ${0:obj});
-endsnippet
-# console.dir
-snippet cdir
+
+snippet cdir "Console Dir Log"
 console.dir(${0:obj});
 endsnippet
 
-# ------------
-# TASK RUNNERS
-# ------------
+# -----------------------------------------------------------------------------
+# Gulp
+# -----------------------------------------------------------------------------
 
-snippet gulp
-gulp.task('${1:task}', function () {
-  return gulp.src('${2:src}')
-    .pipe(gulp.dest('${3:dst}'));
-});
+snippet gulp "Gulp task"
+gulp.task('${1:task}', () => gulp
+  .src('${2:src}')
+  .pipe(gulp.dest('${3:dst}'))
+})
 endsnippet
 
-snippet gulpwatch
-gulp.task('watch', function () {
-  return gulp.watch('${1:./src/*}', ['${2:task}']);
-});
+snippet gulpwatch "Gulp watch task"
+gulp.task('watch', () => gulp
+  .watch('${1:./src/*}', ['${2:task}'])
+})
 endsnippet
 
-# ----
-# MISC
-# ----
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
 
 snippet IFIE
 (function() {
@@ -259,18 +261,10 @@ snippet IFIE
 })();
 endsnippet
 
-# 'use strict';
-snippet us
+snippet us "Use Strict"
 'use strict';
 endsnippet
 
-# setTimeout function
-snippet timeout
-setTimeout(function () {${0}}${2}, ${1:10});
-endsnippet
-
-snippet onkey
-document.onkeydown = function (event) {
-$1
-}
+snippet timeout "Timeout function"
+setTimeout(function () {${0}}${2}, ${1:10})
 endsnippet
