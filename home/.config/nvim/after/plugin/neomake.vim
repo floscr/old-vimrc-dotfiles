@@ -12,4 +12,6 @@ let g:neomake_error_sign = {
       \ 'text': '✘',
       \ 'texthl': 'ErrorMsg',
       \ }
-"}}}
+
+" npm install -g eslint
+autocmd BufWritePost *.js Neomake eslint
