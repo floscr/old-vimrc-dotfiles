@@ -16,6 +16,8 @@ autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 let g:config_Beautifier = {}
 let g:config_Beautifier['js'] = {}
 let g:config_Beautifier['js'].indent_size = '2'
+let g:config_Beautifier['html'] = {}
+let g:config_Beautifier['html'].indent_size = '2'
 let g:config_Beautifier['json'] = {}
 let g:config_Beautifier['json'].indent_size = '2'
 let g:config_Beautifier['css'] = {}
