@@ -333,9 +333,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
-" =============================================================================
-" 7.0 Autocommands
-" =============================================================================
+" -----------------------------------------------------------------------------
+" Autocommands
+" -----------------------------------------------------------------------------
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
@@ -355,23 +355,8 @@ autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
 " Preview quickfix result
 autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
 
-" How should we execute the search?
-" --heading and --stats are required!
-let g:side_search_prg = 'ag --word-regexp'
-  \. " --ignore='*.js.map'"
-  \. " --heading --stats -B 1 -A 4"
-
-" Can use `vnew` or `new`
-let g:side_search_splitter = 'vnew'
-
-" I like 40% splits, change it if you don't
-let g:side_search_split_pct = 0.4
-
 " -----------------------------------------------------
-" 7.1 Run linters after save
+" Run linters after save
 " -----------------------------------------------------
-
-" npm install -g eslint
-autocmd BufWritePost *.js Neomake eslint
 
 source ~/.config/nvim/autoload/utils.vim
