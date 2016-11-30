@@ -1,36 +1,9 @@
-# -----------------------------------------------------------------------------
-# OS Generated Files
-# -----------------------------------------------------------------------------
-
-# OSX
-.DS_Store
-.Spotlight-V100
-.Trashes
-
-# Windows
-ehthumbs.db
-Thumbs.db
-
-# -----------------------------------------------------------------------------
-# App Generated Files
-# -----------------------------------------------------------------------------
-
 # Vim
-*.swp
 sessions/
 home/.config/nvim/view
-tags*
+home/.config/nvim/tmp
 .init.vim-rplugin~
 
 # Vim - Plug
 home/.config/nvim/autoload/plug.vim
 home/.config/nvim/autoload/plug.vim.old
-
-# Sublime
-*.sublime-workspace
-
-# -----------------------------------------------------------------------------
-# Etc
-# -----------------------------------------------------------------------------
-
-tmp/
