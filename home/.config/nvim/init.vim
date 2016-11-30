@@ -359,4 +359,3 @@ autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
 " Run linters after save
 " -----------------------------------------------------
 
-source ~/.config/nvim/autoload/utils.vim
