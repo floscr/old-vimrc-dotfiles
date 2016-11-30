@@ -333,3 +333,10 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Preview quickfix result
 autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
+
+" -----------------------------------------------------------------------------
+" Utilities
+" -----------------------------------------------------------------------------
+
+" Source the utils.vim because we need the functions in global scope
+source ~/.config/nvim/autoload/utils.vim
