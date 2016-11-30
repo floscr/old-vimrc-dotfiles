@@ -15,6 +15,16 @@ function! BuffMessage(cmd)
 endfunction
 command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 
+" Get the syntax highlighting group under the cursor
+" :call SynStack()
+" http://stackoverflow.com/a/9464929
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 function! LuckyLink()
   let wordUnderCursor = expand("<cword>")
   let link = system('echo $(googler ' . wordUnderCursor . ' -n 1 --nocolor --np | grep http)')
