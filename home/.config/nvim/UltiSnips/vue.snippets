@@ -2,6 +2,14 @@
 # Vuex
 # -----------------------------------------------------------------------------
 
+snippet xm "Vuex Mutation Type"
+export const $1 = '`!p snip.rv = t[1].upper()`'
+endsnippet
+
+snippet xg "Vuex Getter"
+export const ${1:getter} = state => state.${2:store}
+endsnippet
+
 snippet xa "Vuex Action"
 export const ${1:function} = ({ commit, state }) => {
   commit(types.${2:mutation})
