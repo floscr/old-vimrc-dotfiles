@@ -313,17 +313,6 @@ map gdo :Bonly<cr>
 map gl :ls<return>
 
 " -----------------------------------------------------------------------------
-" Ultisnips Shortcut Settings
-" Must be loaded before plugin for the shortcut to work,
-" so it wont go in after/plugin/...
-" -----------------------------------------------------------------------------
-
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-
-" -----------------------------------------------------------------------------
 " Autocommands
 " -----------------------------------------------------------------------------
 
