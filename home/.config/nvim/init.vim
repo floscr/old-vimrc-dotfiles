@@ -411,6 +411,9 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " Open the snippets file for the current filetype
 nnoremap <leader>es :UltiSnipsEdit<CR>
 
+" Remove the red color indentation highlight
+highlight snipLeadingSpaces
+
 " -----------------------------------------------------
 " Deoplete
 " -----------------------------------------------------
