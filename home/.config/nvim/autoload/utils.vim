@@ -1,3 +1,7 @@
+" -----------------------------------------------------------------------------
+" Logging
+" -----------------------------------------------------------------------------
+
 " Get the syntax highlighting group under the cursor
 " :call SynStack()
 " http://stackoverflow.com/a/9464929
@@ -7,6 +11,43 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" Clear messages list
+" http://stackoverflow.com/a/36777563/2298462
+command! ClearMessages for n in range(200) | echom "" | endfor
+
+" -----------------------------------------------------------------------------
+" Keyboard Trigger Enhancements
+" -----------------------------------------------------------------------------
+
+" Stop jump by paragraph ({}) poluting the jumplist
+function! s:KeepJumpsParagraphMotion(forward, count, visual)
+    execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
+endfunction
+
+" Fix Linting Error Locationlist jumping when there is only one error
+" Has the nice side efect of being able to loop through errorlist
+function! LocationPrevious()
+  try
+    lprev
+  catch /^Vim\%((\a\+)\)\=:E553/
+    llast
+  endtry
+endfunction
+command! LocationPrevious call LocationPrevious()
+
+function! LocationNext()
+  try
+    lnext
+  catch /^Vim\%((\a\+)\)\=:E553/
+    lfirst
+  endtry
+endfunctio
+command! LocationNext call LocationNext()
+
+" -----------------------------------------------------------------------------
+" LuckyLink
+" -----------------------------------------------------------------------------
 
 function! LuckyLink()
   let wordUnderCursor = expand("<cword>")
@@ -32,9 +73,9 @@ function! LuckyLink()
 endfunction
 command! LuckyLink call LuckyLink()
 
-" Clear messages list
-" http://stackoverflow.com/a/36777563/2298462
-command! ClearMessages for n in range(200) | echom "" | endfor
+" -----------------------------------------------------------------------------
+" Git
+" -----------------------------------------------------------------------------
 
 " Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
 if (has('nvim'))
@@ -53,25 +94,9 @@ if (has('nvim'))
   command! Push :call s:Push()
 endif
 
-" Fix Linting Error Locationlist jumping when there is only one error
-" Has the nice side efect of being able to loop through errorlist
-function! LocationPrevious()
-  try
-    lprev
-  catch /^Vim\%((\a\+)\)\=:E553/
-    llast
-  endtry
-endfunction
-command! LocationPrevious call LocationPrevious()
-
-function! LocationNext()
-  try
-    lnext
-  catch /^Vim\%((\a\+)\)\=:E553/
-    lfirst
-  endtry
-endfunctio
-command! LocationNext call LocationNext()
+" -----------------------------------------------------------------------------
+" OSX Commands
+" -----------------------------------------------------------------------------
 
 " Open curent buffer with marked.app
 function! OpenWithMarkedApp()
