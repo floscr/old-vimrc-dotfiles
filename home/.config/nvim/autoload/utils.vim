@@ -175,3 +175,17 @@ function! g:utils#retabToTwoSpaces() abort
   retab
 endfunction
 
+" Strip trailing spaces
+function! g:utils#stripTrailingWhitespaces() abort
+  " Preparation: save last search, and cursor position.
+  let l:lastSearch = @/
+  let l:line = line('.')
+  let l:col = col('.')
+
+  " Do the business:
+  execute '%s/\s\+$//e'
+
+  " Clean up: restore previous search history, and cursor position
+  let @/ = l:lastSearch
+  call cursor(l:line, l:col)
+endfunction
