@@ -125,17 +125,21 @@ set copyindent " Copy previous indetation on autoindenting
 " Folding settings
 " -----------------------------------------------------------------------------
 
+set foldmethod=indent
+set foldlevelstart=99
 set foldopen-=block   " Disable fold opening when jumping paragraphs
-set foldmethod=indent " Fold by indentation
-set foldnestmax=2     " deepest fold is 10 levels
-set nofoldenable      " dont fold by default
-set foldlevel=1       " this is just what i use
-set foldlevelstart=99 " Open folds on beginning of file
-set foldcolumn=0      " Disable fold column
 
-let g:vim_markdown_folding_disabled = 1
+" set foldmethod=manual " Fold by indentation
+" set foldnestmax=2     " Maximum fold level
+" set nofoldenable      " dont fold by default
+" set foldlevel=1       " Fold by Levels
+" " set foldlevel=99
+" set foldlevelstart=99 " Open folds on beginning of file
+" set foldcolumn=0      " Disable fold column
 
-function! MyFoldText() " {{{
+" let g:vim_markdown_folding_disabled = 1
+
+function! MyFoldText()
   let line = getline(v:foldstart)
 
   let nucolwidth = &fdc + &number * &numberwidth
@@ -149,32 +153,12 @@ function! MyFoldText() " {{{
   let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
   let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
   return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction " }}}
+endfunction
+set foldtext=MyFoldText()
 
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+" " Restore the fold method
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=indent | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
-set foldlevel=99
-" Space to toggle folds.
-autocmd FileType vim setlocal foldmethod=marker
-autocmd FileType vim setlocal foldlevel=0
-
-" au FileType html call HTMLFold()
-" autocmd FileType html setlocal foldmethod=syntax
-autocmd FileType html setlocal fdl=99
-
-" autocmd FileType javascript call JavaScriptFold()
-autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
-autocmd FileType javascript,typescript,css,scss,json setlocal foldmethod=marker
-autocmd FileType javascript,typescript,css,scss,json setlocal foldmarker={,}
-autocmd FileType coffee setl foldmethod=indent
-" au FileType html nnoremap <buffer> <leader>F zfat
-" }}}
-
-" autocmd BufWinLeave .* mkview
-" autocmd BufWinEnter .* silent loadview
-" autocmd BufWinLeave *.* mkview!
-" autocmd BufWinEnter *.* silent loadview
 
 " -----------------------------------------------------------------------------
 "  Omni completion
