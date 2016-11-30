@@ -412,7 +412,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 nnoremap <leader>es :UltiSnipsEdit<CR>
 
 " Remove the red color indentation highlight
-highlight snipLeadingSpaces
+highlight snipLeadingSpaces guifg=#2E3C47
 
 " -----------------------------------------------------
 " Deoplete
