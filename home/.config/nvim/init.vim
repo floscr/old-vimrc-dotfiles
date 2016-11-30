@@ -313,16 +313,6 @@ map gdo :Bonly<cr>
 map gl :ls<return>
 
 " -----------------------------------------------------------------------------
-" Text Objects
-" -----------------------------------------------------------------------------
-
-" [] Brackets text object
-onoremap ir i[
-onoremap ar a[
-vnoremap ir i[
-vnoremap ar a[
-
-" -----------------------------------------------------------------------------
 " Ultisnips Shortcut Settings
 " Must be loaded before plugin for the shortcut to work,
 " so it wont go in after/plugin/...
