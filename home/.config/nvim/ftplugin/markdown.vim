@@ -8,6 +8,8 @@ endfunction
 command! ToggleTodoListBrackets call ToggleTodoListBrackets()
 nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
 
+nmap <buffer> <silent> <leader>L :LuckyLink<CR>
+
 au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
 hi def  StrikeoutColor guifg=#2E3C47
 hi link StrikeoutMatch StrikeoutColor

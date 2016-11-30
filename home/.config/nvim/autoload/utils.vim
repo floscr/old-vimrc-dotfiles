@@ -18,7 +18,24 @@ command! -nargs=+ -complete=command BuffMessage call BuffMessage(<q-args>)
 function! LuckyLink()
   let wordUnderCursor = expand("<cword>")
   let link = system('echo $(googler ' . wordUnderCursor . ' -n 1 --nocolor --np | grep http)')
-  put=''.link
+  if &filetype == 'markdown'
+    let save_cursor = getcurpos()
+    execute 'norm j'
+    let pattern = '\[' . wordUnderCursor . '\]\?[:]\s*$'
+    let search_result = search(pattern)
+
+    if empty(search_result)
+      execute 'norm G'
+      put='['. wordUnderCursor .']: ' . link
+    else
+      put=''.link
+      execute 'norm kJ'
+    endif
+
+    call setpos('.', save_cursor)
+  else
+    put=''.link
+  endif
 endfunction
 command! LuckyLink call LuckyLink()
 
