@@ -2,7 +2,7 @@
 # Vuex
 # -----------------------------------------------------------------------------
 
-snippet xa
+snippet xa "Vuex Action"
 export const ${1:function} = ({ commit, state }) => {
   commit(types.${2:mutation})
 }
@@ -12,7 +12,7 @@ endsnippet
 # Vue Snippets
 # -----------------------------------------------------------------------------
 
-snippet m
+snippet m "Methods Attribute"
 methods: {
   ${1:method} (${2:args}) {
     $0
@@ -20,13 +20,13 @@ methods: {
 },
 endsnippet
 
-snippet p
+snippet p "Props Attribute"
 props: {
   '$0'
 },
 endsnippet
 
-snippet com
+snippet com "Computed Attribute"
 computed: {
   ${1:computedProp} (${2:args}) {
     return $0
@@ -34,20 +34,20 @@ computed: {
 },
 endsnippet
 
-snippet coo
+snippet coo "Component Attribute"
 components: {
   '$1',
 },
 endsnippet
 
-snippet d
+snippet d "Data Attribute"
 data: () => ({
   ${1:varable}: '$2',
 }),
 endsnippet
 
 # Import
-snippet v
+snippet v "Default Vue Template"
 <template>
   <div>
 
@@ -60,4 +60,3 @@ export default {
 }
 </script>
 endsnippet
-
