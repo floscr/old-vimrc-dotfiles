@@ -65,7 +65,7 @@ endfunction
 
 function! LuckyLink()
   let wordUnderCursor = expand("<cword>")
-  let link = system('echo $(googler ' . wordUnderCursor . ' -n 1 --nocolor --np | grep http)')
+  let link = system('echo $(googler ' . wordUnderCursor . ' --nocolor --np | grep http)')
   if &filetype == 'markdown'
     let save_cursor = getcurpos()
     execute 'norm j'
@@ -86,6 +86,15 @@ function! LuckyLink()
   endif
 endfunction
 command! LuckyLink call LuckyLink()
+
+" inoremap <F5> <C-R>=LuckyLinkComplete()<CR>
+" func! LuckyLinkComplete()
+"   " let wordUnderCursor = expand("<cword>")
+"   let link = system('echo $(googler ' . 'test' . ' --nocolor --np | grep http)')
+"   let linkArray = split(link)
+"   call complete(col('.'), linkArray)
+"   return ''
+" endfunc
 
 " -----------------------------------------------------------------------------
 " Git
