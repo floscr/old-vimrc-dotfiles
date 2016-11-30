@@ -79,19 +79,6 @@ function! OpenWithMarkedApp()
 endfunction
 command! Marked call OpenWithMarkedApp()
 
-" Stop jump by paragraph ({}) poluting the jumplist
-function! s:KeepJumpsParagraphMotion(forward, count, visual)
-    execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
-endfunction
-
-" Profile neovim and save results to profile.log
-function! g:utils#profile() abort
-  execute 'profile start profile.log'
-  execute 'profile func *'
-  execute 'profile file *'
-  echom 'Profiling started (will last until you quit neovim).'
-endfunction
-
 " When cycling ignore NERDTree and Tagbar
 function! g:utils#intelligentCycling() abort
   " Cycle firstly
