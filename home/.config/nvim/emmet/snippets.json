@@ -17,6 +17,7 @@
 
       "lstn": "list-style-type:none;",
 
+      "on": "outline: none",
       "curp": "cursor:pointer",
       "cur": "cursor:${1:default};",
       "lz": "letter-spacing:|;",
