@@ -48,11 +48,11 @@ let g:loaded_netrwPlugin = 1
 " Autosaving Buffer Options like folds
 set sessionoptions-=options " Disable options for session saving
 set viewoptions-=options    " http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
-augroup autosave_buffer
- autocmd!
- autocmd BufWinLeave *.* mkview
- autocmd BufWinEnter *.* silent! loadview
-augroup END
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent! loadview
+" augroup autosave_buffer
+"  autocmd!
+" augroup END
 
 " -----------------------------------------------------------------------------
 " Color Settings
@@ -157,8 +157,8 @@ endfunction
 set foldtext=MyFoldText()
 
 " " Restore the fold method
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=indent | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+" autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=indent | endif
+" autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
 " -----------------------------------------------------------------------------
 "  Omni completion
@@ -333,6 +333,8 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Preview quickfix result
 autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
+
+let g:user_emmet_leader_key='<C-e>'
 
 " -----------------------------------------------------------------------------
 " Utilities
