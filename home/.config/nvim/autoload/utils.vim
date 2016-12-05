@@ -132,18 +132,26 @@ command! Marked call OpenWithMarkedApp()
 " -----------------------------------------------------------------------------
 
 " Allowed html tags to expand on tab
-let s:html_tags = ['!DOCTYPE','a','abbr','acronym','address','applet','area','article','aside','audio','b','base','basefont','bdi','bdo','big','blockquote','body','br','button','canvas','caption','center','cite','code','col','colgroup','datalist','dd','del','details','dfn','dialog','dir','div','dl','dt','em','embed','fieldset','figcaption','figure','font','footer','form','frame','frameset','h1','head','header','hr','html','i','iframe','img','input','ins','kbd','keygen','label','legend','li','link','main','map','mark','menu','menuitem','meta','meter','nav','noframes','noscript','object','ol','optgroup','option','output','p','param','pre','progress','q','rp','rt','ruby','s','samp','script','section','select','small','source','span','strike','strong','style','sub','summary','sup','table','tbody','td','textarea','tfoot','th','thead','time','title','tr','track','tt','u','ul','var','video','wbr']
+" let s:html_tags = ['!DOCTYPE','a','abbr','acronym','address','applet','area','article','aside','audio','b','base','basefont','bdi','bdo','big','blockquote','body','br','button','canvas','caption','center','cite','code','col','colgroup','datalist','dd','del','details','dfn','dialog','dir','div','dl','dt','em','embed','fieldset','figcaption','figure','font','footer','form','frame','frameset','h1','head','header','hr','html','i','iframe','img','input','ins','kbd','keygen','label','legend','li','link','main','map','mark','menu','menuitem','meta','meter','nav','noframes','noscript','object','ol','optgroup','option','output','p','param','pre','progress','q','rp','rt','ruby','s','samp','script','section','select','small','source','span','strike','strong','style','sub','summary','sup','table','tbody','td','textarea','tfoot','th','thead','time','title','tr','track','tt','u','ul','var','video','wbr']
 
-function! s:realtag()
-  return matchstr(getline('.')[:col('.')], '\(\S\+\)$')
+let s:html_tags = ['a','div','b','br','i','abbr']
+
+function! IsEmmetExpandableTag()
+  let expr = matchstr(getline('.')[:col('.')], '\(\S\+\)$')
+  return expr =~ '[.#>+*]' || index(s:html_tags, expr) >= 0
 endfunction
 
 function! IsEmmetExpandable()
-  if !emmet#isExpandable() | return 0 | endif
-  if emmet#getFileType() == 'html' && index(s:html_tags, s:realtag()) == -1
-    return 0
+  if emmet#getFileType() == 'css'
+    if emmet#isExpandable() | return 1 | endif
   endif
-  return 1
+
+  if emmet#getFileType() == 'html'
+    let expr = matchstr(getline('.')[:col('.')], '\(\S\+\)$')
+    return expr =~ '[.#>+*]' || index(s:html_tags, expr) >= 0
+  endif
+
+  return 0
 endfunction
 
 " Tab wrapper
