@@ -47,7 +47,7 @@ Plug 'tpope/vim-obsession'
 " Better replacement
 Plug 'tpope/vim-abolish'
 " Ctags
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 " Open URL
 Plug 'dhruvasagar/vim-open-url'
 " Make Header
