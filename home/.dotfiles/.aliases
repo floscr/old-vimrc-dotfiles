@@ -201,6 +201,8 @@ alias vi="nvim"
 alias v="nvim"
 alias v.="v ."
 
+alias art="php artisan"
+
 alias y="yarn"
 alias ya="yarn add"
 alias yad="yarn add --dev"
