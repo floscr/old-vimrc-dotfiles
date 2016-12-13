@@ -73,9 +73,10 @@ function run (input, parameters) {
 
   const fileString = files.join(' ')
 
+
   // Open file in either existing vim instance in fron
   // or in a new tmux window
-  if (!windowName.indexOf('vim')) {
+  if (windowName.indexOf('vim') === -1) {
     session.write({text: `tmux new-window nvim ${fileString}` })
   } else {
     session.write({text: `:e ${input[0]}` })
