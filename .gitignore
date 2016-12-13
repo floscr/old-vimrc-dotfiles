@@ -3,6 +3,9 @@ sessions/
 home/.config/nvim/view
 home/.config/nvim/tmp
 .init.vim-rplugin~
+home/.config/nvim/.cache
+home/.config/nvim/.netrwhist
+home/.config/nvim/plugged
 
 # Vim - Plug
 home/.config/nvim/autoload/plug.vim
