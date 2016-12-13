@@ -35,3 +35,11 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
 
+" AG in git root
+function! s:with_git_root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  return v:shell_error ? {} : {'dir': root}
+endfunction
+
+command! -nargs=* Rag
+  \ call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
