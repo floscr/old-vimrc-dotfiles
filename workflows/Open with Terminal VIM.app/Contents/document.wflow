@@ -51,41 +51,23 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>// 1. Open Automator.
-// 2. Create new application at "~/bin/Open in Terminal Vim.js".
-// 3. Paste in this code.
-// 4. Set all JS files to open via this app.
-// 5. Profit.
+					<string>function run (input, parameters) {
 
+  const iTerm = Application('iTerm2')
+  iTerm.activate()
 
-
-function run(input, parameters) {
-  
-var app = Application.currentApplication()
-app.includeStandardAdditions = true
- 
-var dialogText = "The current date and time is " + (app.currentDate())
-app.displayDialog(quotedForm(input[0]))
-
-
-  var iTerm = Application('iTerm2');
-  iTerm.activate();
-  var windows = iTerm.windows();
-  var window;
-  var tab;
-  if (windows.length) {
-    window = iTerm.currentWindow();
-    tab = window.createTabWithDefaultProfile();
-  } else {
-    window = iTerm.createWindowWithDefaultProfile();
-    tab = window.currentTab();
-  }
+  const windows = iTerm.windows()
+  var window = iTerm.currentWindow()
+  var tab = window.currentTab()
   var session = tab.currentSession();
-  var files = [];
+
+  var files = [] 
   for (var i = 0; i &lt; input.length; i++) {
-    files.push(quotedForm(input[i]));
+    files.push(quotedForm(input[i]))
   }
-  session.write({text: 'vim ' + files.join(' ')});
+
+  session.write({text: `tmux new-window nvim ${files.join(' ')}` });
+
 }
 
 function quotedForm(path) {
