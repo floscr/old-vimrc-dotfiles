@@ -1,4 +1,14 @@
-autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" Get the syntax highlighting group under the cursor
+" :call SynStack()
+" http://stackoverflow.com/a/9464929
+function! JsFix()
+  call JsBeautify()
+  " Remove semicolons
+  exec 'silent! %s/;//g'
+  echo 'Javascript cleaned up!'
+endfunc
+
+autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsFix()<cr>
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
 autocmd FileType html,twig,blade noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css,scss,sass noremap <buffer> <c-f> :call CSSBeautify()<cr>
