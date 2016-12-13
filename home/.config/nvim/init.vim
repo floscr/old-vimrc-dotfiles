@@ -167,6 +167,9 @@ set wildignore+=*DS_Store*
 set wildignore+=*.gem
 set wildignore+=tmp/**
 
+" Remove tags from complete
+set complete=.,w,b,u
+
 " -----------------------------------------------------------------------------
 " Scrolloff
 " -----------------------------------------------------------------------------
