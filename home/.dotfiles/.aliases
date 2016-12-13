@@ -149,7 +149,7 @@ alias apacheRestart='sudo apachectl restart'
 alias apacheStop='sudo apachectl stop'
 
 # Quick Server
-alias quickserver='python -m SimpleHTTPServer'
+alias quickserver='python -m SimpleHTTPServer & open -a "Google Chrome" http://localhost:8000'
 alias server='browser-sync start --server --files="*.html, *.css, *.js"'
 
 # IP address
