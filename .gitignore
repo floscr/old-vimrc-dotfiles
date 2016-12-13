@@ -6,6 +6,7 @@ home/.config/nvim/tmp
 home/.config/nvim/.cache
 home/.config/nvim/.netrwhist
 home/.config/nvim/plugged
+home/.config/nvim/plugins
 
 # Vim - Plug
 home/.config/nvim/autoload/plug.vim
