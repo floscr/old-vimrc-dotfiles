@@ -30,7 +30,7 @@ nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>gL :BCommits<CR>
 
 " Filename completion with fzf
-imap <c-x><c-f> <plug>(fzf-complete-path)
+" imap <c-x><c-f> <plug>(fzf-complete-path)
 
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
