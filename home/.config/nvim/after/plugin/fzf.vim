@@ -3,16 +3,18 @@ let g:fzf_action = {
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit' }
 
-" Reverse to find if not in git root
+" Check if the current file is inside git root
 function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''
-    return 'GitFiles'
+    " Show all git indexed files plus new none staged files
+    " Exclude image formats from the search
+    return 'GFiles -o --exclude-standard -c --exclude=\*.{jpg,png,gif,psd}'
   endif
   return 'Files'
 endfunction
 command! ProjectFiles execute s:find_git_root()
 
-" Search in current git index
+" Search either current Files by Git index or just file system
 nnoremap <silent> <C-p> :ProjectFiles<CR>
 " Search Recent Files
 nnoremap <silent> <leader>h :History<CR>
@@ -28,9 +30,6 @@ nnoremap <silent> <leader>. :Lines<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 " Search commits for current file
 nnoremap <silent> <leader>gL :BCommits<CR>
-
-" Filename completion with fzf
-" imap <c-x><c-f> <plug>(fzf-complete-path)
 
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
