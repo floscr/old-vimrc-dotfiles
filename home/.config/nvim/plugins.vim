@@ -53,7 +53,12 @@ Plug 'dhruvasagar/vim-open-url'
 " Make Header
 Plug 'floscr/MakeHeader.vim'
 
+" Local .vimrc files
+" Plug 'krisajenkins/vim-projectlocal'
+
 Plug 'janko-m/vim-test'
+Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
+
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
 " -----------------------------------------------------------------------------
