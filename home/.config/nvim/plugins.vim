@@ -195,6 +195,8 @@ Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 Plug 'airblade/vim-gitgutter'
 " Color picker
 Plug 'KabbAmine/vCoolor.vim', { 'on': ['VCoolor', 'VCase'] }
+" Project Root File Creation
+Plug 'dbakker/vim-projectroot'
 
 " -----------------------------------------------------------------------------
 " Colorschemes
