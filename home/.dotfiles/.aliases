@@ -195,6 +195,9 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 # Development
 # -----------------------------------------------------------------------------
 
+# Use brew ctags
+alias ctags="`brew --prefix`/bin/ctags"
+
 # Vim
 alias vim="nvim"
 alias vi="nvim"
