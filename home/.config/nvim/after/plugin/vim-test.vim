@@ -1,0 +1,1 @@
+nmap <silent> † :TestNearest<CR>
