@@ -43,7 +43,9 @@ endsnippet
 # Functions
 # -----------------------------------------------------------------------------
 
-snippet "[^i]f(un)?" "Function Declaration" r
+# \b - word boundary
+# match string f or fun for function snippet
+snippet "\bf(un)?" "Function Declaration" r
 function ${1:myFunction} (${2:args}) {
   $0
 }
