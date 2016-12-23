@@ -53,6 +53,7 @@ Plug 'dhruvasagar/vim-open-url'
 " Make Header
 Plug 'floscr/MakeHeader.vim'
 
+Plug 'janko-m/vim-test'
 " -----------------------------------------------------------------------------
 " Text insertion/manipulation
 " -----------------------------------------------------------------------------
