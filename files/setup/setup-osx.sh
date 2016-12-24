@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+# Install command line tools
+# This speeds up brew gcc upgrading massively
+xcode-select --install
+
 # Reduce Transparency
 defaults write com.apple.universalaccess reduceTransparency -bool true
 

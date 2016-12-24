@@ -23,6 +23,11 @@ brew 'ffmpeg'
 # Better unix tools
 brew 'coreutils'
 
+# Better rename using
+# Example: Rename extension
+# $ rename 's/(.*)/new-ext/' *.old-ext
+brew 'rename'
+
 # NeoVim
 tap 'neovim/neovim'
 
