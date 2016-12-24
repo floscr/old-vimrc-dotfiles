@@ -4,6 +4,19 @@ class ${1:`vim_snippets#Filename()`} {
 }
 endsnippet
 
+snippet testcase "testcase" b
+<?php
+
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class ${1:`p snip.rv = ''.join(x.title() for x in re.sub('\.php$', '', snip.basename))`}Test extends TestCase
+{
+    $0
+}
+endsnippet
+
 # setter method
 snippet pf
 ${2:public} function ${1:function_name}(${4})
