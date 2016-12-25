@@ -172,151 +172,22 @@ let g:python_host_prog = '/usr/bin/python'"}}}
 " }}}2
 
 " }}}1
+" =============================================================================
+
+" Plugin settings {{{1
 " ==========================================================================
 
-" =============================================================================
-" Keyboard Mappings / Shortcuts
-" =============================================================================
-
-
-" Reload .vimrc
-" When sourcing files, the last seach gets highlighted
-" This mapping auto disables the highlight
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<CR><esc>:echo "Vimrc reloaded!"<CR>
-
-" Clear highlighting on escape in normal mode
-nnoremap <silent><esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
-
-" Quit current buffer
-nnoremap <C-c> :q<return>
-
-" Source current file
-nmap <silent> <leader>sf :source %<CR><ESC>:echo "Current file sourced!"<CR>
-
-" When jump to next match also center screen
-" Note: Use :norm! to make it count as one command. (i.e. for i_CTRL-o)
-nnoremap <silent> n :norm! nzz<CR>
-nnoremap <silent> N :norm! Nzz<CR>
-vnoremap <silent> n :norm! nzz<CR>
-vnoremap <silent> N :norm! Nzz<CR>
-
-" Quickfix next/previous
-nnoremap ]q :cn<CR>
-nnoremap [q :cp<CR>
-
-" Replay last Macro
-nnoremap Q @q
-
-" Toggle spellcheck
-nmap <silent> <leader>ss :set spell!<cr>
-
-" Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
-
-" Neovim Terminal
-" Press escape to exit insert mode
-if has('nvim')
-  tnoremap <ESC> <C-\><C-n>
-  tnoremap ,<ESC> <ESC>
-endif
-
-" Make . work with visually selected lines
-xnoremap . :norm.<CR>
-
-" Keep the cursor in place while joining lines
-nnoremap J mzJ`z
-
-" Reverse join (Turn single line comments to inline comments)
-nnoremap K jddkPmzJ`z
-
-" Keep selection when tabbing
-xnoremap <  <gv
-xnoremap >  >gv
-
-" Indentation using tab
-imap <S-Tab> <C-o><<
-map <S-Tab> <<
-map <Tab> >>
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
-
-" Create file under cursor
-nnoremap gF :e <cfile><cr>
-
-" Enter command by pressing enter
-nnoremap <Cr> :
-
-" Show current file in finder
-nnoremap <leader><cr> :silent !open .<cr>
-
-" Make * star work in visual mode
-vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
-
-" Use the last used search to use in replace command
-nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
-
-" Toggle the error list
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-
-" Workaround for ctrl-h to work
-" https://github.com/neovim/neovim/issues/2048
-if has('nvim')
-  nmap <BS> <C-W>h
-endif
-
+" Emmet {{{2
 " -----------------------------------------------------------------------------
-" Custom Text Objects
-" -----------------------------------------------------------------------------
-
-" Textobjects for []
-onoremap ir i[
-onoremap ar a[
-vnoremap ir i[
-vnoremap ar a[
-
-" -----------------------------------------------------------------------------
-" Buffer & Window management
-" -----------------------------------------------------------------------------
-
-" Buffer switching and terminalion
-map gn :bn<cr>
-map gp :bp<cr>
-map gb :b#<cr>
-map gdd :Bdelete<cr>
-map gdo :Bonly<cr>
-
-" Buffer list
-map gl :ls<return>
-
-" -----------------------------------------------------------------------------
-" Autocommands
-" -----------------------------------------------------------------------------
-
-" Activate htmljinja for twig files
-autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
-
-" Set html5 syntax for vue files to fix broken indentation
-au BufRead,BufNewFile *.vue set filetype=html
-
-" Fix ZSH filetype
-au BufRead,BufNewFile *.zsh* set filetype=zsh
-
-" Remove trailing whitespaces automatically before save
-autocmd BufWritePre * call utils#stripTrailingWhitespaces()
-
-" Restore enter for the quickfix window
-autocmd FileType qf nnoremap <buffer> <CR> <CR>
-
-" Preview quickfix result
-autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
 
 let g:user_emmet_leader_key='<C-e>'
+" }}}
 
-" -----------------------------------------------------------------------------
-" Utilities
+" }}}1
+
+" Utilities"{{{
 " -----------------------------------------------------------------------------
 
 " Source the utils.vim because we need the functions in global scope
 source ~/.config/nvim/autoload/utils.vim
+"}}}
