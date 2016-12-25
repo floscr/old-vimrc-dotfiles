@@ -11,9 +11,12 @@
 source ~/.config/nvim/plugins.vim
 
 " =============================================================================
-" Default Settings
+" Default Settings {{{1
 " Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults
 " =============================================================================
+
+" Set leader to Space
+let g:mapleader="\<space>"
 
 set autochdir        " Set working dir to path of the current file
 set hidden           " Enables to switch between unsaved buffers and keep undo history
@@ -37,8 +40,7 @@ set synmaxcol=1500   " Turn off syntax highlighting after X lines
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
-" -----------------------------------------------------------------------------
-" Sessions
+" Sessions {{{2
 " -----------------------------------------------------------------------------
 
 " Autosaving Buffer Options like folds
@@ -46,97 +48,77 @@ set sessionoptions-=options " Disable options for session saving
 set viewoptions-=options    " http://stackoverflow.com/questions/26917336/vim-specific-mkview-and-loadview-in-order-to-avoid-issues
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent! loadview
-" augroup autosave_buffer
-"  autocmd!
-" augroup END
+" }}}2
 
-" -----------------------------------------------------------------------------
-" Color Settings
+" Color Settings {{{2
 " -----------------------------------------------------------------------------
 
+" Enable Multicolor support
 if has('termguicolors')
   set termguicolors
 endif
 
+" Dark hybrid theme low contrast mode
+" https://github.com/w0ng/vim-hybrid
 set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
+"}}}2
 
-" -----------------------------------------------------------------------------
-" Wrap Settings
+" Wrap Settings {{{2
 " -----------------------------------------------------------------------------
 
 set colorcolumn=80           " Add a colorized column tho show the maximal text length
 set textwidth=80             " Set the recommended text length to 80 characters
 set nowrap                   " Don't wrap lines
-set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)
+set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)"}}}
+"}}}2
 
-" -----------------------------------------------------------------------------
-" Timeout settings
-" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely.
-" -----------------------------------------------------------------------------
-
-set notimeout
-set ttimeout
-set ttimeoutlen=10
-
-" -----------------------------------------------------------------------------
-" Search settings
+" Search settings {{{2
 " -----------------------------------------------------------------------------
 
 set incsearch  " Incremental search
 set ignorecase " Ignore case by default
 set smartcase  " Make search case sensitive only if it contains uppercase letters
 set wrapscan   " Search again from top when reached the bottom
+"}}}2
 
-" -----------------------------------------------------------------------------
-" Persistent undo settings
+" Persistent undo {{{2
 " -----------------------------------------------------------------------------
 
 if has('persistent_undo')
   set undofile
   set undodir=~/.config/nvim/tmp/undo//
 endif
+" }}}
 
+" Hidden characters settings {{{2
 " -----------------------------------------------------------------------------
-" Hidden characters settings
-" -----------------------------------------------------------------------------
-
 set list
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
 set showbreak=↪
+"}}}
 
+" Indentation"{{{2
 " -----------------------------------------------------------------------------
-" Indentation
-" -----------------------------------------------------------------------------
-
 set expandtab
 set softtabstop=2
 set shiftwidth=2
 set noshiftround
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
+"}}}
 
-" -----------------------------------------------------------------------------
-" Folding settings
+" Folding settings {{{2
 " -----------------------------------------------------------------------------
 
-set foldmethod=indent
-set foldlevelstart=99
+set foldmethod=indent " Fold by indentation
 set foldopen-=block   " Disable fold opening when jumping paragraphs
+set foldlevelstart=99 " start unfolded
+set foldnestmax=2     " Maximum fold nesting level
 
-" set foldmethod=manual " Fold by indentation
-" set foldnestmax=2     " Maximum fold level
-" set nofoldenable      " dont fold by default
-" set foldlevel=1       " Fold by Levels
-" set foldlevel=99
-" set foldlevelstart=99 " Open folds on beginning of file
-" set foldcolumn=0      " Disable fold column
-" let g:vim_markdown_folding_disabled = 1
-
-function! MyFoldText()
-  let line = getline(v:foldstart)
-
+function! MyFoldText() "{{{3
+let line = getline(v:foldstart)
   let nucolwidth = &fdc + &number * &numberwidth
   let windowwidth = winwidth(0) - nucolwidth - 3
   let foldedlinecount = v:foldend - v:foldstart
@@ -149,14 +131,11 @@ function! MyFoldText()
   let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
   return line . '...' . repeat(" ",fillcharcount) . foldedlinecount . '...' . ' '
 endfunction
-set foldtext=MyFoldText()
+set foldtext=MyFoldText() "}}}3
 
-" " Restore the fold method
-" autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=indent | endif
-" autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+" }}}2
 
-" -----------------------------------------------------------------------------
-"  Omni completion
+"  Omni completion {{{2
 " -----------------------------------------------------------------------------
 
 set completeopt-=preview " Don't show preview scratch buffers
@@ -169,9 +148,9 @@ set wildignore+=tmp/**
 
 " Remove tags from complete
 set complete=.,w,b,u
+" }}}2
 
-" -----------------------------------------------------------------------------
-" Scrolloff
+" Scrolloff {{{2
 " -----------------------------------------------------------------------------
 
 " Start scrolling:
@@ -181,23 +160,24 @@ set scrolloff=10
 set sidescrolloff=15
 " Scroll one column on the side
 set sidescroll=1
+"}}}2
 
-" -----------------------------------------------------------------------------
-" Neovim specific settings
+" Python"{{{2
 " -----------------------------------------------------------------------------
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let g:loaded_python_provider=1 " Disable python 2 interface
 let g:python_host_skip_check=1 " Skip python 2 host check
 let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python_host_prog = '/usr/bin/python'
+let g:python_host_prog = '/usr/bin/python'"}}}
+" }}}2
+
+" }}}1
+" ==========================================================================
 
 " =============================================================================
 " Keyboard Mappings / Shortcuts
 " =============================================================================
 
-" Set leader to Space
-let g:mapleader="\<space>"
 
 " Reload .vimrc
 " When sourcing files, the last seach gets highlighted
