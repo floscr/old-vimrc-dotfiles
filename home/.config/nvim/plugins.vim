@@ -166,7 +166,7 @@ Plug 'kana/vim-textobj-function'              " Function Text Object
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
-Plug 'jasonlong/vim-textobj-css'              " CSS Class caf
+" Plug 'jasonlong/vim-textobj-css'              " CSS Class caf
 
 " }}}
 " Autocomplete {{{
