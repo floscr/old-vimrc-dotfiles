@@ -1,12 +1,3 @@
-" Only load gitgutter when the file is loaded/saved
-" This increases the speed in tab switching
-let g:gitgutter_max_signs=9999
-let g:gitgutter_eager = 1
-let g:gitgutter_realtime = 0
-
-" Disable default Keyboard mappings
-let g:gitgutter_map_keys = 0
-
 " Next/Prev Git Hunk and center
 nnoremap <silent> [c <Esc>:GitGutterPrevHunk<CR>zMzvzz
 nnoremap <silent> ]c <Esc>:GitGutterNextHunk<CR>zMzvzz

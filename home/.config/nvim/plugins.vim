@@ -61,9 +61,7 @@ Plug 'dbmrq/vim-chalk', {
 
 " Lightweight File Explorer
 " Like dirvish, but supports autochdir
-Plug 'jeetsukumaran/vim-filebeagle', {
-      \ 'on': ['FileBeagler', 'FileBeagleOpenCurrentBufferDir'],
-      \ }
+Plug 'jeetsukumaran/vim-filebeagle'
 
 
 " Undo Tree visualization
