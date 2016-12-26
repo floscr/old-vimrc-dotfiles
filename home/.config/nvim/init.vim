@@ -184,11 +184,27 @@ let g:python_host_prog = '/usr/bin/python'"}}}
 " Use external Editorconfig
 let g:EditorConfig_core_mode = 'external_command'
 
+" }}}2
+
 " Emmet {{{2
 " -----------------------------------------------------------------------------
 
 let g:user_emmet_leader_key='<C-e>'
-" }}}
+" }}}2
+
+" GitGutter {{{2
+" -----------------------------------------------------------------------------
+
+" Only load gitgutter when the file is loaded/saved
+" This increases the speed in tab switching
+let g:gitgutter_max_signs=9999
+let g:gitgutter_eager = 1
+let g:gitgutter_realtime = 0
+
+" Disable default Keyboard mappings
+let g:gitgutter_map_keys = 0
+
+" }}}2
 
 " }}}1
 
