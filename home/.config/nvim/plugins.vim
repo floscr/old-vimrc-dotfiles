@@ -134,6 +134,9 @@ Plug 'AndrewRadev/sideways.vim', {
 " Text Editing {{{
 " --------------------------------------------------------------------------
 
+" Emmet
+Plug 'mattn/emmet-vim'
+
 " Multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
 
