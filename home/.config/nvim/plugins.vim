@@ -267,7 +267,7 @@ Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
 Plug 'moll/vim-node', { 'for': ['js', 'vue'] }
 
  " Modern JS support (indent, syntax, etc)
-Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
+Plug 'pangloss/vim-javascript'
 " More javascript syntax highlighting
 Plug 'jelera/vim-javascript-syntax'
 
