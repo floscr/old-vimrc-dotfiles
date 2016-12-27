@@ -39,10 +39,13 @@ Plug 'tpope/vim-eunuch'
 " Edit Macros
 Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 
-" Create directories on save
+" Create non-existing directories on save
 Plug 'duggiefresh/vim-easydir'
 
 " Open URLs in Browser
+" <gB>: Open url under cursor in the default web browser
+" <gG>: Google search word under cursor in the default web browser
+" <gW>: Wiki search word under cursor in the default web browser
 Plug 'dhruvasagar/vim-open-url'
 
 "}}}
@@ -50,19 +53,11 @@ Plug 'dhruvasagar/vim-open-url'
 " --------------------------------------------------------------------------
 
 " Marker named fold nesting
-Plug 'dbmrq/vim-chalk', {
-      \ 'on': ['Neomake']
-      \ }
-
-" Marker named fold nesting
-Plug 'dbmrq/vim-chalk', {
-      \ 'on': ['Neomake']
-      \ }
+Plug 'dbmrq/vim-chalk'
 
 " Lightweight File Explorer
 " Like dirvish, but supports autochdir
 Plug 'jeetsukumaran/vim-filebeagle'
-
 
 " Undo Tree visualization
 Plug 'mbbill/undotree', {
@@ -103,7 +98,6 @@ Plug 'haya14busa/incsearch.vim'
 " <ciq> -> 'Text to be changed' || \"Text to be changed\"
 Plug 'kurkale6ka/vim-pairs'
 
-
 " Replace instance with Register with gr{motion}
 " <griq> -> Replace content in quotes with register
 Plug 'vim-scripts/ReplaceWithRegister'
@@ -113,7 +107,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'tpope/vim-surround'
 
 " clever-f.vim extends f, F, t and T mappings for more convenience
-" nstead of <;,> <f> is available to repeat
+" instead of <;,> - <f> is available to repeat
 Plug 'rhysd/clever-f.vim'
 
 " Split/Join single/multiple line statments
@@ -147,14 +141,11 @@ Plug 'tomtom/tcomment_vim'
 " Visualy Align text blocks by a character
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
 
-" Make Header
+" Make comment block header
 Plug 'floscr/MakeHeader.vim'
 
 " Automatically closing pairs
 Plug 'cohama/lexima.vim'
-
-" Edit Macros
-Plug 'dohsimpson/vim-macroeditor', { 'on': ['MacroEdit'] }
 
 " }}}
 " Text Objects {{{
@@ -185,9 +176,12 @@ Plug 'SirVer/ultisnips'
 
 " Async Linting, Use project .eslintrc first
 Plug 'benekastah/neomake', {
-      \ 'on': ['Neomake']
+      \ 'on': ['Neomake'],
       \ }
-      \ | Plug 'jaawerth/neomake-local-eslint-first'
+
+" Use project .eslintrc before the ~/.eslintrc
+Plug 'jaawerth/neomake-local-eslint-first'
+
 " }}}
 " Focus Mode {{{
 " --------------------------------------------------------------------------
@@ -223,9 +217,9 @@ Plug 'w0ng/vim-hybrid'
 
 " Git commands
 Plug 'tpope/vim-fugitive'
-" Gitgutter
+" Show git diff signs on column bar
 Plug 'airblade/vim-gitgutter'
-" Project Root File Creation
+" Create file from the project root
 Plug 'dbakker/vim-projectroot'
 " }}}
 
@@ -247,7 +241,7 @@ Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
 Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
 
 " Blade Syntax
-Plug 'jwalton512/vim-blade', { 'for': ['php'] }
+Plug 'jwalton512/vim-blade', { 'for': ['php', 'blade'] }
 
 " DocBlocks for PHP
 Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
