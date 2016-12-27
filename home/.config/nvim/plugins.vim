@@ -249,6 +249,8 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
 " Testing commands
 Plug 'janko-m/vim-test', { 'for': ['php', 'blade'] }
 
+Plug 'noahfrederick/vim-laravel', { 'for': ['php', 'blade'] }
+
 " Automatic namespace creation on <leader>u
 Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
 
