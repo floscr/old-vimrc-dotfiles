@@ -54,3 +54,13 @@ endsnippet
 snippet ext "extends"
 @extends('${1:layouts.php}')
 endsnippet
+
+snippet valid "Errors list"
+@if (count($errors) > 0)
+  <ul>
+    @foreach($errors->all() as $error)
+      <li class="notification">{{ $error }}</li>
+    @endforeach
+  </ul>
+@endif
+endsnippet
