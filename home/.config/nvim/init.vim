@@ -185,13 +185,11 @@ let g:python_host_prog = '/usr/bin/python'"}}}
 let g:EditorConfig_core_mode = 'external_command'
 
 " }}}2
-
 " Emmet {{{2
 " -----------------------------------------------------------------------------
 
 let g:user_emmet_leader_key='<C-e>'
 " }}}2
-
 " GitGutter {{{2
 " -----------------------------------------------------------------------------
 
@@ -203,6 +201,14 @@ let g:gitgutter_realtime = 0
 
 " Disable default Keyboard mappings
 let g:gitgutter_map_keys = 0
+
+" }}}2
+" Vim-Javascript {{{2
+" -----------------------------------------------------------------------------
+
+" Enable syntax highlighting for jsdoc
+let g:javascript_plugin_jsdoc = 1
+
 
 " }}}2
 
