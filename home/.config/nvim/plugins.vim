@@ -276,7 +276,7 @@ Plug 'othree/jspc.vim'
 " Vue syntax highlighting
 Plug 'posva/vim-vue', { 'for': ['vue'] }
 
-" JsDoc Syntax highlighting
+" generates JSDoc block comments based on a function signature
 Plug 'heavenshell/vim-jsdoc'
 
 " Beautify JS Files
