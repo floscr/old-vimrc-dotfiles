@@ -259,7 +259,6 @@ Plug 'janko-m/vim-test', { 'for': ['php', 'blade'] }
 Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
 
 " }}}2
-
 " Javascript {{{2
 " --------------------------------------------------------------------------
 
@@ -287,7 +286,6 @@ Plug 'maksimr/vim-jsbeautify', {
       \ }
 
 " }}}2
-
 " HTML / CSS {{{2
 " --------------------------------------------------------------------------
 
@@ -312,7 +310,6 @@ Plug 'gregsexton/MatchTag', {
 Plug 'floscr/FZF-cdnj'
 
 " }}}2
-
 " }}}1
 
 " Plug end {{{1
