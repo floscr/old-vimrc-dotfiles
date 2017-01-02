@@ -32,6 +32,9 @@ export PATH=$PATH:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS
 export PATH="/usr/local/opt/php70/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
+# MySQL
+export PATH=/usr/local/mysql/bin:$PATH
+
 # Color Setup
 export COLORTERM=xterm-256color
 export TERM=xterm-256color
