@@ -164,14 +164,14 @@ function! IsEmmetExpandableTag()
 endfunction
 
 function! IsEmmetExpandable()
-  if emmet#getFileType() == 'css'
+  if emmet#getFileType() =~ 'css\|scss'
     if emmet#isExpandable() | return 1 | endif
   endif
 
-  if emmet#getFileType() == 'html'
-    let expr = matchstr(getline('.')[:col('.')], '\(\S\+\)$')
-    return expr =~ '[.#>+*]' || index(s:html_tags, expr) >= 0
-  endif
+  " if emmet#getFileType() == 'html'
+  "   let expr = matchstr(getline('.')[:col('.')], '\(\S\+\)$')
+  "   return expr =~ '[.#>+*]' || index(s:html_tags, expr) >= 0
+  " endif
 
   return 0
 endfunction
