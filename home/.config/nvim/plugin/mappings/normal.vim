@@ -65,3 +65,12 @@ nnoremap <Cr> :
 
 " Create file under cursor
 nnoremap gF :e <cfile><cr>
+
+" Manual fold around the current bracket pair
+" Example: (Javascript, | represents the cursor)
+" function | () {
+"   console.log('Hello world')
+" }
+" <zfaf>
+" fucntion () {...}
+nnoremap <silent> zfaf V$%$zf
