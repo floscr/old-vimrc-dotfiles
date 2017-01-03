@@ -1,3 +1,5 @@
+set foldmethod=marker
+
 vmap zf <Plug>Chalk          " Create fold at visual selection
 nmap zf <Plug>Chalk          " Create fold at operator movement
 nmap zF <Plug>ChalkRange     " Create fold for specified number of lines
