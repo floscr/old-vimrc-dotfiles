@@ -1,18 +1,3 @@
-# docstring
-snippet /**
-/**
- * ${0:description}
- */
-endsnippet
-
-snippet @par
-@param {${1:type}} ${2:name} ${0:description}
-endsnippet
-
-snippet @ret
-@return {${1:type}} ${0:description}
-endsnippet
-
 snippet bp
 @media #{${2:min-width}('${1:mobile}')} {
   $0
@@ -32,4 +17,8 @@ top: 0;
 right: 0;
 left: 0;
 bottom: 0;
+endsnippet
+
+snippet grad
+background-image: linear-gradient(${1:#000} 0%, ${2:#FFF} 100%);
 endsnippet
