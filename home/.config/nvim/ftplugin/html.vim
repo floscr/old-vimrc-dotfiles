@@ -1,3 +1,6 @@
+" Set - as part of the word in css
+autocmd FileType html setl iskeyword+=-
+
 "HTML Editing
 setlocal matchpairs+=<:>
 
