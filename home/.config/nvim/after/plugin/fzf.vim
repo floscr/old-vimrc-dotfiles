@@ -9,7 +9,10 @@ function! s:find_git_root()
     " Show all git indexed files plus new none staged files
     " Exclude image formats from the search
     " --exclude or -x dont seem to work
-    return 'GFiles "*[^.jpg|.png|.gif]" -o --exclude-standard -c'
+    " Direct file name would not work either very well (png would exclude
+    " json...)
+    " so we're down to grep regex...
+    return 'GFiles -o --exclude-standard -c | grep -ov "\.jpg\|\.png\|\.gif$"'
   endif
   return 'Files'
 endfunction
