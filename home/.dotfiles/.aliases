@@ -148,9 +148,9 @@ alias apacheStart='sudo apachectl start'
 alias apacheRestart='sudo apachectl restart'
 alias apacheStop='sudo apachectl stop'
 
-# Quick Server
-alias quickserver='python -m SimpleHTTPServer & open -a "Google Chrome" http://localhost:8000'
-alias server='browser-sync start --server --files="*.html, *.css, *.js"'
+# Launch a browser-sync server
+alias quickserver='browser-sync start --server --no-ui --files="*.html, *.css, *.js" --no-notify'
+alias server='quickserver'
 
 # IP address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
