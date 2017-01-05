@@ -8,7 +8,8 @@ function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''
     " Show all git indexed files plus new none staged files
     " Exclude image formats from the search
-    return 'GFiles -o --exclude-standard -c --exclude=\*.{jpg,png,gif,psd}'
+    " --exclude or -x dont seem to work
+    return 'GFiles "*[^.jpg|.png|.gif]" -o --exclude-standard -c'
   endif
   return 'Files'
 endfunction
