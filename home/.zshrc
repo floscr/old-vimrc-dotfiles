@@ -160,6 +160,14 @@ setopt complete_in_word # Allow completion from within a word/phrase
 setopt prompt_subst # Enable parameter expansion, command substitution, and arithmetic expansion in the prompt
 unsetopt correct_all
 
+# Edit the current command in vim
+# https://jordanelver.co.uk/blog/2015/02/02/editing-the-commandline-in-vim/
+# To edit current command: <ESC><v>
+# :wq will return you to the command line
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # -----------------------------------------------------------------------------
 # Configurations
 # -----------------------------------------------------------------------------
