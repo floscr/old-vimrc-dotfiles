@@ -40,6 +40,8 @@
 # Git log lists
 # -----------------------------------------------------------------------------
 
+
+
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graphgl # Short git message with date, commit author,
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # Log with the changed files
   lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short # List showing date stamps
@@ -77,4 +79,6 @@
 # -----------------------------------------------------------------------------
 
 # Show last tag
+  feat = "!f() { _git_feature }; f"
+
   lasttag = describe --tags --abbrev=0
