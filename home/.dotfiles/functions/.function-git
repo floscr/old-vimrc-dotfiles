@@ -1,5 +1,39 @@
 #!/bin/bash
 
+function gfeat() {
+  if [[ -z "$@" ]]; then
+    echo "git feature name"
+  fi
+
+  if [[ $1 == "feature" && ! -z $2 ]]; then
+    gbc "feature/$2"
+  fi
+
+  if [[ $1 == "fix" && ! -z $2 ]]; then
+    gbc "fix/$2"
+  fi
+
+  if [[ $1 == "finish" ]]; then
+
+    feature_branch=$(git symbolic-ref --short HEAD)
+
+    # When no second argument is given
+    # Merge into master branch
+    if [[ -z $2 ]]; then
+      gb master
+    elif [[ ! -n $(git show-ref refs/heads/$2) ]]; then
+      echo "The given branch '$2' doesnt exist!"
+      exit
+    else
+      gb $2
+    fi
+
+    git merge -
+    gbda $feature_branch
+  fi
+
+}
+
 # Quick first initialize, adding all files & folders and making the first commit.
 function gini {
   git init
