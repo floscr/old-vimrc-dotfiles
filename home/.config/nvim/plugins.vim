@@ -289,7 +289,7 @@ Plug 'maksimr/vim-jsbeautify', {
 Plug 'othree/html5.vim'
 
 " CSS3 Syntax
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html', 'vue'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss', 'sass', 'html', 'vue'] }
 " SCSS Syntax
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }
 
