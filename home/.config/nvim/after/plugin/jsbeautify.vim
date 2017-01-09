@@ -1,10 +1,6 @@
-" Get the syntax highlighting group under the cursor
-" :call SynStack()
-" http://stackoverflow.com/a/9464929
+" Fix js files using eslint
 function! JsFix()
-  call JsBeautify()
-  " Remove semicolons
-  exec 'silent! %s/;//g'
+  execute('!eslint --fix %')
   echo 'Javascript cleaned up!'
 endfunc
 
