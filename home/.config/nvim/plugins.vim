@@ -153,12 +153,13 @@ Plug 'cohama/lexima.vim'
 
 Plug 'kana/vim-textobj-user'                  " Custom Text Objects
 Plug 'kana/vim-textobj-function'              " Function Text Object
-" Plug 'kana/vim-textobj-line'                  " Line text object
-" Plug 'kana/vim-textobj-entire'                " Entire Buffer ae
+" Plug 'kana/vim-textobj-line'                " Line text object
+" Plug 'kana/vim-textobj-entire'              " Entire Buffer ae
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
-" Plug 'jasonlong/vim-textobj-css'              " CSS Class caf
+" Plug 'jasonlong/vim-textobj-css'            " CSS Class caf
+Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 
 " }}}
 " Autocomplete {{{
