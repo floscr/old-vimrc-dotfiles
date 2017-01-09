@@ -1,6 +1,8 @@
 " Fix js files using eslint
 function! JsFix()
-  execute('!eslint --fix %')
+  " Use local node_modules fixer
+  " TODO: Check if in git repo, otherwise use local eslintrc
+  execute('!$(git rev-parse --show-toplevel)/node_modules/eslint/bin/eslint.js --fix %')
   echo 'Javascript cleaned up!'
 endfunc
 
