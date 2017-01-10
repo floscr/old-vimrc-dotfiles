@@ -37,6 +37,8 @@ vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 " Use the last used search to use in replace command
 nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 
+" Trigger over.vim
+map <C-_> :OverCommandLine<CR>%s/
 " Indentation using tab
 imap <S-Tab> <C-o><<
 map <S-Tab> <<

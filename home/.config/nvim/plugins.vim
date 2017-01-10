@@ -198,6 +198,9 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " incrementally highlights ALL pattern matches unlike default 'incsearch'.
 Plug 'haya14busa/incsearch.vim'
 
+" Interactive search and replace
+Plug 'osyo-manga/vim-over', { 'on': 'OverCommandLine' }
+
 " Fuzzy File Finders
 " For MacVim install Ctrlp
 " For Terminal install FZF
