@@ -16,8 +16,11 @@
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
-# Default Path Variable
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+# Homebrew bins
+export PATH=/usr/local/bin:/usr/local/sbin
+# Default bins
+export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
+# Ruby bins
 export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
 
 # Custom binaries
