@@ -28,6 +28,9 @@ brew 'coreutils'
 # $ rename 's/(.*)/new-ext/' *.old-ext
 brew 'rename'
 
+# Move to trash cli
+brew 'trash'
+
 # NeoVim
 tap 'neovim/neovim'
 
