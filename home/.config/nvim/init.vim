@@ -49,7 +49,6 @@ set viewoptions-=options    " http://stackoverflow.com/questions/26917336/vim-sp
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent! loadview
 " }}}2
-
 " Color Settings {{{2
 " -----------------------------------------------------------------------------
 
@@ -64,7 +63,6 @@ set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 "}}}2
-
 " Wrap Settings {{{2
 " -----------------------------------------------------------------------------
 
@@ -73,7 +71,6 @@ set textwidth=80             " Set the recommended text length to 80 characters
 set nowrap                   " Don't wrap lines
 set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)"}}}
 "}}}2
-
 " Search settings {{{2
 " -----------------------------------------------------------------------------
 
@@ -82,7 +79,6 @@ set ignorecase " Ignore case by default
 set smartcase  " Make search case sensitive only if it contains uppercase letters
 set wrapscan   " Search again from top when reached the bottom
 "}}}2
-
 " Persistent undo {{{2
 " -----------------------------------------------------------------------------
 
@@ -91,14 +87,12 @@ if has('persistent_undo')
   set undodir=~/.config/nvim/tmp/undo//
 endif
 " }}}
-
 " Hidden characters settings {{{2
 " -----------------------------------------------------------------------------
 set list
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
 set showbreak=↪
 "}}}
-
 " Indentation"{{{2
 " -----------------------------------------------------------------------------
 set expandtab
@@ -108,7 +102,6 @@ set noshiftround
 set autoindent " Automatic indentation
 set copyindent " Copy previous indetation on autoindenting
 "}}}
-
 " Folding settings {{{2
 " -----------------------------------------------------------------------------
 
@@ -134,7 +127,6 @@ endfunction
 set foldtext=MyFoldText() "}}}3
 
 " }}}2
-
 "  Omni completion {{{2
 " -----------------------------------------------------------------------------
 
@@ -149,7 +141,6 @@ set wildignore+=tmp/**
 " Remove tags from complete
 set complete=.,w,b,u
 " }}}2
-
 " Scrolloff {{{2
 " -----------------------------------------------------------------------------
 
@@ -161,7 +152,6 @@ set sidescrolloff=15
 " Scroll one column on the side
 set sidescroll=1
 "}}}2
-
 " Python"{{{2
 " -----------------------------------------------------------------------------
 
