@@ -55,6 +55,8 @@ brew 'fzf'
 brew 'tree'
 # Better ack
 brew 'the_silver_searcher'
+# Faster newer version of 'Ag'
+brew 'ripgrep'
 
 #===================================#
 # Coding
