@@ -134,7 +134,8 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Toggle comments
 " <gcc> To togglecomment
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 
 " Visualy Align text blocks by a character
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
