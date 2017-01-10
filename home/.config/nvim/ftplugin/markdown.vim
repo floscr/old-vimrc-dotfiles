@@ -1,3 +1,5 @@
+call functions#plaintext()
+
 " function! ToggleTodoListBrackets()
 "   if getline('.')=~#'.*\[\s\]'
 "     .s/.*\[\zs\s\ze\]/x/
