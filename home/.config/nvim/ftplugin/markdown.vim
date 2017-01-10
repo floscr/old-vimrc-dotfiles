@@ -1,24 +1,24 @@
-function! ToggleTodoListBrackets()
-  if getline('.')=~#'.*\[\s\]'
-    .s/.*\[\zs\s\ze\]/x/
-  else
-    .s/.*\[\zsx\ze\]/ /
-  endif
-endfunction
-command! ToggleTodoListBrackets call ToggleTodoListBrackets()
-nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
+call functions#plaintext()
 
-nmap <buffer> <silent> <leader>L :LuckyLink<CR>
+" function! ToggleTodoListBrackets()
+"   if getline('.')=~#'.*\[\s\]'
+"     .s/.*\[\zs\s\ze\]/x/
+"   else
+"     .s/.*\[\zsx\ze\]/ /
+"   endif
+" endfunction
+" command! ToggleTodoListBrackets call ToggleTodoListBrackets()
+" nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
 
-au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
-hi def  StrikeoutColor guifg=#2E3C47
-hi link StrikeoutMatch StrikeoutColor
+" nmap <buffer> <silent> <leader>L :LuckyLink<CR>
 
-function! WritersRoom()
-  set background=light
-  colorscheme pencil
-endfunction
-command! WritersRoom call WritersRoom()
+" au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
+" hi def  StrikeoutColor guifg=#2E3C47
+" hi link StrikeoutMatch StrikeoutColor
+"   set background=light
+"   colorscheme pencil
+" endfunction
+" command! WritersRoom call WritersRoom()
 
 " let g:writersRoomIsEnabled = 0
 " function! WritersRoom()
