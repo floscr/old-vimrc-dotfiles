@@ -86,8 +86,6 @@ Plug 'KabbAmine/vCoolor.vim'
 " Nerdtree file browser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 
-" incrementally highlights ALL pattern matches unlike default 'incsearch'.
-Plug 'haya14busa/incsearch.vim'
 
 " }}}
 " Motions {{{
@@ -195,6 +193,9 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " }}}
 " Search Utilities {{{
 " --------------------------------------------------------------------------
+
+" incrementally highlights ALL pattern matches unlike default 'incsearch'.
+Plug 'haya14busa/incsearch.vim'
 
 " Fuzzy File Finders
 " For MacVim install Ctrlp
