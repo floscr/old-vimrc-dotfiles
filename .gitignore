@@ -11,3 +11,8 @@ home/.config/nvim/plugins
 # Vim - Plug
 home/.config/nvim/autoload/plug.vim
 home/.config/nvim/autoload/plug.vim.old
+
+# Ranger
+home/.config/ranger/bookmarks
+home/.config/ranger/history
+home/.config/ranger/tagged
