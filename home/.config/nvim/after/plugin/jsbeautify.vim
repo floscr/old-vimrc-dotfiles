@@ -6,6 +6,16 @@ function! JsFix()
   echo 'Javascript cleaned up!'
 endfunc
 
+" Convert file to ES6
+function! JsLebab()
+  execute('!lebab --replace % --transform template')
+  execute('!lebab --replace % --transform let')
+  execute('!lebab --replace % --transform arrow')
+  execute('edit')
+  echo 'Javascript transformed to ES6!'
+endfunction
+command! JsLebab call JsLebab()
+
 autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsFix()<cr>
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
 autocmd FileType html,twig,blade noremap <buffer> <c-f> :call HtmlBeautify()<cr>
@@ -28,4 +38,3 @@ let g:config_Beautifier['json'] = {}
 let g:config_Beautifier['json'].indent_size = '2'
 let g:config_Beautifier['css'] = {}
 let g:config_Beautifier['css'].indent_size = '2'
-
