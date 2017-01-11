@@ -25,13 +25,25 @@ command! JsPrettier call JsPrettier()
 
 " Convert file to ES6
 function! JsLebab()
-  execute('!lebab --replace % --transform template')
-  execute('!lebab --replace % --transform let')
-  execute('!lebab --replace % --transform arrow')
+  execute('!lebab --replace % --transform template,let,arrow')
   execute('edit')
   echo 'Javascript transformed to ES6!'
 endfunction
 command! JsLebab call JsLebab()
+
+" Call all the fixers >:D
+function! JsFixAll()
+  silent call JsPrettier()
+  execute('edit!')
+  execute('write')
+  silent call JsLebab()
+  execute('edit!')
+  execute('write')
+  silent call JsEslintFix()
+  execute('edit!')
+  echo 'Fixed JS!'
+endfunction
+command! JsFixAll call JsFixAll()
 
 autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsEslintFix()<cr>
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
