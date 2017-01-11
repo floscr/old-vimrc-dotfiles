@@ -18,4 +18,4 @@ let g:neomake_error_sign = {
 highlight WarningMsg ctermfg=167 guifg=#E9C864
 
 " npm install -g eslint
-autocmd BufWritePost *.js Neomake eslint
+autocmd BufWritePost *.js Neomake eslint_d
