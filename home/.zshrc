@@ -195,6 +195,7 @@ _group_lazy_load $HOME/.nvm/nvm.sh \
   yarn \
   iectrl \
   gulp \
+  lebab \
   vue \
   browser-sync
 
