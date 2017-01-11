@@ -29,3 +29,11 @@ function! DesiredCol()
     return col + 1
 endfunction
 autocmd! InsertLeave * call cursor(getpos('.')[1], DesiredCol())
+
+augroup MakeQuickFixPrettier
+    autocmd!
+    autocmd BufRead * if &buftype == 'quickfix'
+                \| setlocal colorcolumn=
+                \| setlocal nolist
+                \| endif
+augroup END
