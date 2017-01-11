@@ -201,6 +201,11 @@ let g:javascript_plugin_jsdoc = 1
 
 
 " }}}2
+" Over.vim {{{2
+" -----------------------------------------------------------------------------
+let g:over_enable_auto_nohlsearch = 1
+let g:over_enable_cmd_window = 1
+" }}}2
 
 " }}}1
 

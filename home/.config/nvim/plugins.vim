@@ -134,7 +134,8 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Toggle comments
 " <gcc> To togglecomment
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 
 " Visualy Align text blocks by a character
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
@@ -152,7 +153,7 @@ Plug 'cohama/lexima.vim'
 Plug 'kana/vim-textobj-user'                  " Custom Text Objects
 Plug 'kana/vim-textobj-function'              " Function Text Object
 " Plug 'kana/vim-textobj-line'                " Line text object
-" Plug 'kana/vim-textobj-entire'              " Entire Buffer ae
+Plug 'kana/vim-textobj-entire'                " Entire Buffer ae
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
 Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
@@ -196,6 +197,9 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " incrementally highlights ALL pattern matches unlike default 'incsearch'.
 Plug 'haya14busa/incsearch.vim'
+
+" Interactive search and replace
+Plug 'osyo-manga/vim-over', { 'on': 'OverCommandLine' }
 
 " Fuzzy File Finders
 " For MacVim install Ctrlp

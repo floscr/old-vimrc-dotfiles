@@ -5,6 +5,8 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR><esc> :let @/ = ""<CR><esc>:ech
 
 " Source current file
 nmap <silent> <leader>sf :source %<CR><ESC>:echo "Current file sourced!"<CR>
+" Source current file and Install plugins
+nmap <silent> <leader>sp :source %<CR><ESC>:PlugInstall<CR>
 
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<cr>
