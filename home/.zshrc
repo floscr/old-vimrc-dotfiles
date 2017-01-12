@@ -188,6 +188,8 @@ export NVM_DIR="$HOME/.nvm"
 # Lazy load nvm, nvm gets lazy loaded when first executing a node task
 # This shaves of 0.64 seconds of startup time
 _group_lazy_load $HOME/.nvm/nvm.sh \
+  eslint \
+  eslint_d \
   nvm \
   node \
   npm \
