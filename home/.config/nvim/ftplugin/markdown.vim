@@ -12,9 +12,9 @@ call functions#plaintext()
 
 " nmap <buffer> <silent> <leader>L :LuckyLink<CR>
 
-map <C-b> ysaW*.
-map ]] <Plug>Markdown_MoveToNextHeader
-map [[ <Plug>Markdown_MoveToPreviousHeader
+map <buffer> <C-b> ysaW*.
+map <buffer> ]] <Plug>Markdown_MoveToNextHeader
+map <buffer> [[ <Plug>Markdown_MoveToPreviousHeader
 
 let g:writersRoomIsEnabled = 0
 function! WritersRoom()
