@@ -317,6 +317,13 @@ Plug 'gregsexton/MatchTag', {
 Plug 'floscr/FZF-cdnj'
 
 " }}}2
+" Markdown {{{2
+" --------------------------------------------------------------------------
+
+" Extended Markdown
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+
+" }}}2
 " }}}1
 
 " Plug end {{{1
