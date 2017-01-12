@@ -1,7 +1,7 @@
 " Switch to plaintext mode with: call functions#plaintext()
 function! functions#plaintext() abort
   setlocal nolist
-  " setlocal spell
+  setlocal spell
   setlocal textwidth=0
   setlocal wrap
   setlocal wrapmargin=0

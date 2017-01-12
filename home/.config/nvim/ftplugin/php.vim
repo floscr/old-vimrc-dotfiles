@@ -4,6 +4,7 @@
 
 " Lint php files
 autocmd BufWritePost,BufEnter *.php Neomake
+autocmd BufWritePost,BufEnter *.php setlocal commentstring=//%s
 
 nnoremap <buffer><silent><leader>pf :call PhpCsFixerFixFile()<CR>
 

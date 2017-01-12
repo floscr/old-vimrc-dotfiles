@@ -12,26 +12,20 @@ call functions#plaintext()
 
 " nmap <buffer> <silent> <leader>L :LuckyLink<CR>
 
-" au BufRead,BufNewFile *.md,*.txt syntax match StrikeoutMatch /^.*\[x\].*$/
-" hi def  StrikeoutColor guifg=#2E3C47
-" hi link StrikeoutMatch StrikeoutColor
-"   set background=light
-"   colorscheme pencil
-" endfunction
-" command! WritersRoom call WritersRoom()
+map <buffer> <C-b> ysaW*.
+map <buffer> ]] <Plug>Markdown_MoveToNextHeader
+map <buffer> [[ <Plug>Markdown_MoveToPreviousHeader
 
-" let g:writersRoomIsEnabled = 0
-" function! WritersRoom()
-"   if g:writersRoomIsEnabled
-"     source $MYVIMRC
-"     execute Goyo
-"     let g:writersRoomIsEnabled = 0
-"   else
-"     set background=light
-"     call goyo#execute()
-"     highlight Cursor guibg=#4DBCFB
-"     let g:writersRoomIsEnabled = 1
-"   endif
-" endfunction
-" command! WritersRoom call WritersRoom()
-
+let g:writersRoomIsEnabled = 0
+function! WritersRoom()
+  if g:writersRoomIsEnabled
+    set background=dark
+    colorscheme hybrid
+    let g:writersRoomIsEnabled = 0
+  else
+    set background=light
+    colorscheme PaperColor
+    let g:writersRoomIsEnabled = 1
+  endif
+endfunction
+command! WritersRoom call WritersRoom()

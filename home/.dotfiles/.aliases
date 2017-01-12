@@ -214,10 +214,6 @@ alias run="npm run"
 # Open all changed files in git
 alias gv='vim $(echo $(git status --porcelain | sed s/^...//))'
 
-# Quit all gulp tasks
-alias pkg="pkill gulp"
-alias killgulp="pkill gulp"
-
 # Sublime Bin Workaround to work in tmux
 alias subl='reattach-to-user-namespace subl'
 

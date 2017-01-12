@@ -146,6 +146,9 @@ Plug 'floscr/MakeHeader.vim'
 " Automatically closing pairs
 Plug 'cohama/lexima.vim'
 
+" Format text files
+Plug 'sbdchd/neoformat'
+
 " }}}
 " Text Objects {{{
 " --------------------------------------------------------------------------
@@ -217,6 +220,8 @@ endif
 
 " Hybrid
 Plug 'w0ng/vim-hybrid'
+Plug 'NLKNguyen/papercolor-theme'
+
 " }}}
 " Git {{{
 " --------------------------------------------------------------------------
@@ -310,6 +315,16 @@ Plug 'gregsexton/MatchTag', {
 
 " Find CDN asset links with FZF
 Plug 'floscr/FZF-cdnj'
+
+" Stylus support
+Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
+
+" }}}2
+" Markdown {{{2
+" --------------------------------------------------------------------------
+
+" Extended Markdown
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 
 " }}}2
 " }}}1

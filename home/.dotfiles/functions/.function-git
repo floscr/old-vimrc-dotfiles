@@ -34,6 +34,22 @@ function gfeat() {
 
 }
 
+function delete_merged_git_branches() {
+  # Remove already deleted branches on repo host
+  git fetch --prune;
+
+  # Check if arguments were passed
+  if [[ -z "$@" ]]; then
+    echo "delete_merged_git_branches BRANCH_NAME"
+    exit 0
+  fi
+
+  # Delete branches that are merged into the branch that was passed as an argument
+  # https://gist.github.com/schacon/942899#gistcomment-1940407
+  git branch -r --merged | grep rigin | grep -v '>' | grep -v "$1" | xargs -L1 | awk '{sub(/origin\//,"");print}' | xargs git branch -D
+  git branch -r --merged | grep rigin | grep -v '>' | grep -v "$1" | xargs -L1 | awk '{sub(/origin\//,"");print}' | xargs git push origin --delete
+}
+
 # Quick first initialize, adding all files & folders and making the first commit.
 function gini {
   git init

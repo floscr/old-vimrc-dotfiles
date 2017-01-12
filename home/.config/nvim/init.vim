@@ -34,6 +34,7 @@ set splitbelow       " Split new window below current window
 set splitright       " Split new window right of current window
 set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
 set synmaxcol=1500   " Turn off syntax highlighting after X lines
+set updatetime=750   " make vim update more rapidly
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
@@ -188,6 +189,9 @@ let g:user_emmet_leader_key='<C-e>'
 let g:gitgutter_max_signs=9999
 let g:gitgutter_eager = 1
 let g:gitgutter_realtime = 0
+
+" Always show sign column to prevent editor jumps
+let g:gitgutter_sign_column_always = 1
 
 " Disable default Keyboard mappings
 let g:gitgutter_map_keys = 0

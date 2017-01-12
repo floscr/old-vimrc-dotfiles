@@ -1,12 +1,51 @@
 " Fix js files using eslint
-function! JsFix()
-  " Use local node_modules fixer
-  " TODO: Check if in git repo, otherwise use local eslintrc
-  execute('!$(git rev-parse --show-toplevel)/node_modules/eslint/bin/eslint.js --fix %')
+function! JsEslintFix ()
+  let localEslintExecutable = system("echo $(git rev-parse --show-toplevel)/node_modules/eslint/bin/eslint.js")
+
+  " Remove new lines from command
+  let localEslintExecutable = substitute(localEslintExecutable, '\n', '', '')
+
+  " When a local eslint executable is installed, use that one
+  " Otherwise use global eslint
+  let eslint = filereadable(localEslintExecutable) ? localEslintExecutable : 'eslint'
+
+  execute('!' . eslint . ' --fix %')
+
   echo 'Javascript cleaned up!'
 endfunc
+command! JsEslintFix call JsEslintFix()
 
-autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsFix()<cr>
+" Convert file to ES6
+function! JsPrettier()
+  execute('!prettier --write % --single-quote --trailing-comma')
+  execute('edit')
+  echo 'Prettyfied JS!'
+endfunction
+command! JsPrettier call JsPrettier()
+
+" Convert file to ES6
+function! JsLebab()
+  execute('!lebab --replace % --transform template,let,arrow')
+  execute('edit')
+  echo 'Javascript transformed to ES6!'
+endfunction
+command! JsLebab call JsLebab()
+
+" Call all the fixers >:D
+function! JsFixAll()
+  silent call JsPrettier()
+  execute('edit!')
+  execute('write')
+  silent call JsLebab()
+  execute('edit!')
+  execute('write')
+  silent call JsEslintFix()
+  execute('edit!')
+  echo 'Fixed JS!'
+endfunction
+command! JsFixAll call JsFixAll()
+
+autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsEslintFix()<cr>
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
 autocmd FileType html,twig,blade noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css,scss,sass noremap <buffer> <c-f> :call CSSBeautify()<cr>
@@ -28,4 +67,3 @@ let g:config_Beautifier['json'] = {}
 let g:config_Beautifier['json'].indent_size = '2'
 let g:config_Beautifier['css'] = {}
 let g:config_Beautifier['css'].indent_size = '2'
-

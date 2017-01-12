@@ -2,6 +2,10 @@
 " Normal Maps
 " -----------------------------------------------------------------------------
 
+" Increase / Decrease number
+nnoremap <Up> <c-a>
+nnoremap <Down> <c-x>
+
 " Replay last Macro
 nnoremap Q @q
 

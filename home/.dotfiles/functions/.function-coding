@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Clone repo in my general repository directory
+function gccd() {
+  cd ~/Code/Repositories
+  ccd "$@"
+}
+
 # Silent simple irb shortut
 function sirb() {
   irb --simple-prompt --noecho
