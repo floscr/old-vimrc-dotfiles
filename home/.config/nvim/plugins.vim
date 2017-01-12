@@ -316,6 +316,9 @@ Plug 'gregsexton/MatchTag', {
 " Find CDN asset links with FZF
 Plug 'floscr/FZF-cdnj'
 
+" Stylus support
+Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
+
 " }}}2
 " Markdown {{{2
 " --------------------------------------------------------------------------
