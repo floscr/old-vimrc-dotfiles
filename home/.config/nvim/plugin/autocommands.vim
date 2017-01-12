@@ -5,6 +5,8 @@ autocmd BufRead,BufNewFile,BufReadPost *.njk set ft=htmljinja
 " Set html5 syntax for vue files to fix broken indentation
 au BufRead,BufNewFile *.vue set filetype=html
 
+autocmd FileType help setlocal nospell
+
 " Fix ZSH filetype
 au BufRead,BufNewFile *.zsh* set filetype=zsh
 
