@@ -8,6 +8,8 @@ au BufRead,BufNewFile *.vue set filetype=html
 " Fix ZSH filetype
 au BufRead,BufNewFile *.zsh* set filetype=zsh
 
+au BufNewFile,BufRead *.txt set filetype=markdown
+
 " Config files
 au BufRead,BufNewFile *.conf set filetype=conf
 
@@ -19,6 +21,7 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Preview quickfix result
 autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
+
 
 " don't move the cursor back when exiting from insert mode
 function! DesiredCol()
