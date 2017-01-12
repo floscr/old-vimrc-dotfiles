@@ -220,6 +220,8 @@ endif
 
 " Hybrid
 Plug 'w0ng/vim-hybrid'
+Plug 'NLKNguyen/papercolor-theme'
+
 " }}}
 " Git {{{
 " --------------------------------------------------------------------------
