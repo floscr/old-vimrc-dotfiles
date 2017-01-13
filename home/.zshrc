@@ -188,18 +188,19 @@ export NVM_DIR="$HOME/.nvm"
 # Lazy load nvm, nvm gets lazy loaded when first executing a node task
 # This shaves of 0.64 seconds of startup time
 _group_lazy_load $HOME/.nvm/nvm.sh \
+  browser-sync \
+  cordova \
   eslint \
   eslint_d \
-  nvm \
+  gulp \
+  iectrl \
+  lebab \
   node \
   npm \
   npmls \
-  yarn \
-  iectrl \
-  gulp \
-  lebab \
+  nvm \
   vue \
-  browser-sync
+  yarn
 
 # Old NVM Load
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
