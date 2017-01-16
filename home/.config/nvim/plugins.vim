@@ -292,6 +292,10 @@ Plug 'maksimr/vim-jsbeautify', {
       \ 'do': 'git submodule update --init --recursive',
       \ }
 
+" Advanced javascript motions
+" Use [[ to navigate between methods
+Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript'] }
+
 " }}}2
 " HTML / CSS {{{2
 " --------------------------------------------------------------------------
