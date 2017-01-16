@@ -82,6 +82,7 @@ Plug 'tpope/vim-obsession'
 
 " Native colorpicker
 Plug 'KabbAmine/vCoolor.vim'
+let g:vcoolor_disable_mappings = 1
 
 " Nerdtree file browser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
