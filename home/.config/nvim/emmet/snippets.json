@@ -26,6 +26,7 @@
       "aic": "align-items:center;",
       "aicc": "align-items:center;",
       "ais": "align-items:flex-start;",
+      "aic": "align-items:center;",
       "aie": "align-items:flex-end;",
       "jc": "justify-content:|;",
       "jcc": "justify-content:center;",
