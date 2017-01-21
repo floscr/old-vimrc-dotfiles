@@ -17,6 +17,10 @@ I liked the Idea of never having to touch the mouse and I wanted to
 
 Long before I used Vim I've installed the [Vimium]() Extension for Chrome.
 
-
-
 I wanted to do quicker browsing without
+
+## Plugins to consider
+
+  + [rstacruz/vim-xtract](https://github.com/rstacruz/vim-xtract)
+    Extract the selection into a new file
+    Could be good for refactoring
