@@ -11,6 +11,12 @@ call plug#begin('~/.config/nvim/plugged')
 
 " }}}
 
+" Plugins to consider: {{{1
+"   - rstacruz/vim-xtract
+"     Extact visual selection to new files
+"     Good for refactoring
+"}}}1
+
 " Defaults {{{1
 " --------------------------------------------------------------------------
 
