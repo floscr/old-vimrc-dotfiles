@@ -24,6 +24,7 @@
 
       "ai": "align-items:|;",
       "aic": "align-items:center;",
+      "aicc": "align-items:center;",
       "ais": "align-items:flex-start;",
       "aie": "align-items:flex-end;",
       "jc": "justify-content:|;",

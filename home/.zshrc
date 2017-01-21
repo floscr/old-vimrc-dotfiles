@@ -99,12 +99,6 @@ DISABLE_AUTO_UPDATE=true
 
 fpath=($DOTFILES/functions/zsh-expansions /usr/local/share/zsh-completions $fpath)
 
-# # Restore when running into problems
-# # Compinit is for advanced zsh completion
-# # But it adds 25ms to the startup time
-# autoload -U compinit
-# compinit
-
 # show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2
 
@@ -188,18 +182,19 @@ export NVM_DIR="$HOME/.nvm"
 # Lazy load nvm, nvm gets lazy loaded when first executing a node task
 # This shaves of 0.64 seconds of startup time
 _group_lazy_load $HOME/.nvm/nvm.sh \
+  browser-sync \
+  cordova \
   eslint \
   eslint_d \
-  nvm \
+  gulp \
+  iectrl \
+  lebab \
   node \
   npm \
   npmls \
-  yarn \
-  iectrl \
-  gulp \
-  lebab \
+  nvm \
   vue \
-  browser-sync
+  yarn
 
 # Old NVM Load
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
