@@ -13,4 +13,6 @@ function! functions#plaintext() abort
   setlocal spelllang=de_de
   setlocal spellfile=$HOME/.config/nvim/spell/de.utf-8.add
   setlocal complete+=kspell
+
+  setlocal spell!
 endfunction
