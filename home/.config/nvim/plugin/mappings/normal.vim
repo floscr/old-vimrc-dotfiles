@@ -7,7 +7,6 @@ nnoremap <Up> <c-a>
 nnoremap <Down> <c-x>
 
 nnoremap Y ^"*y$
-nnoremap <c-v> "*p
 
 " Replay last Macro
 nnoremap Q @q
