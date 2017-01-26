@@ -1,4 +1,5 @@
+" Strings are limegreen in hybrid theme so we match it to that Group
+hi link MarkdownStrikeoutMatch String
 " Highlighting for tasks
-hi def  MarkdownStrikeoutColor guifg=#2C3D48
-hi link MarkdownStrikeoutMatch MarkdownStrikeoutColor
+" hi def  MarkdownStrikeoutColor guifg=LightGreen
 au BufRead,BufNewFile *.md,*.txt syntax match MarkdownStrikeoutMatch /^.*\[x\].*$/
