@@ -20,10 +20,10 @@ Long before I used Vim I've installed the [Vimium]() Extension for Chrome.
 I wanted to do quicker browsing without
 
 ## Todo
-  + Turn off automatic spelling on Markdown Files
   + Fix edit git filed (:Gedit from fugitve wont work...)
   + Steal cmake settings from vim-wordpress
   + Fix markdown fold settings, to fold on the header not the first line below
+  + Add syntax highlighting for todo sections in markdown
 
 ### Ideas
   + FZF Git log of current file to edit during that git history state
