@@ -337,6 +337,9 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 " with <leader>tt
 Plug 'jkramer/vim-checkbox', { 'for': ['markdown'] }
 
+" Does not work because vim-markdonw overrides syntax
+" Plug 'gonzaloserrano/vim-markdown-todo', { 'for': ['markdown'] }
+
 " }}}2
 " }}}1
 
