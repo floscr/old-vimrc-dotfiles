@@ -1,18 +1,9 @@
 call functions#plaintext()
 
-" function! ToggleTodoListBrackets()
-"   if getline('.')=~#'.*\[\s\]'
-"     .s/.*\[\zs\s\ze\]/x/
-"   else
-"     .s/.*\[\zsx\ze\]/ /
-"   endif
-" endfunction
-" command! ToggleTodoListBrackets call ToggleTodoListBrackets()
-" nmap <buffer> <silent> <leader>x :call ToggleTodoListBrackets()<cr>
-
-" nmap <buffer> <silent> <leader>L :LuckyLink<CR>
-
+" Set word bold
 map <buffer> <C-b> ysaW*.
+
+" Markdown Header Movements
 map <buffer> ]] <Plug>Markdown_MoveToNextHeader
 map <buffer> [[ <Plug>Markdown_MoveToPreviousHeader
 
