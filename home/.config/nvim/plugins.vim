@@ -236,6 +236,10 @@ Plug 'airblade/vim-gitgutter'
 " Create file from the project root
 Plug 'dbakker/vim-projectroot'
 " }}}
+" Notes {{{
+" --------------------------------------------------------------------------
+Plug 'Alok/notational-fzf-vim'
+" }}}
 
 " Syntax {{{1
 " --------------------------------------------------------------------------
