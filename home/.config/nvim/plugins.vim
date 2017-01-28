@@ -337,6 +337,9 @@ Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 " Extended Markdown
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 
+" Markdown folding
+Plug 'nelstrom/vim-markdown-folding'
+
 " Checklist toggle for markdown
 " with <leader>tt
 Plug 'jkramer/vim-checkbox', { 'for': ['markdown'] }
