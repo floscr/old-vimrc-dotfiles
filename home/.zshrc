@@ -22,6 +22,9 @@ export PATH=/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 # Ruby bins
 export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
+# Custom Ruby gem path
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
 
 # Custom binaries
 export PATH=$PATH:$HOME/.dotfiles/bin
