@@ -82,6 +82,7 @@ Plug 'tpope/vim-obsession'
 
 " Native colorpicker
 Plug 'KabbAmine/vCoolor.vim'
+let g:vcoolor_disable_mappings = 1
 
 " Nerdtree file browser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
@@ -134,8 +135,10 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Toggle comments
 " <gcc> To togglecomment
-" Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-commentary'
+" tpope/vim-commentary wont recognise comment type in files with multiple
+" filetypes...
+Plug 'tomtom/tcomment_vim'
+" Plug 'tpope/vim-commentary'
 
 " Visualy Align text blocks by a character
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
@@ -233,6 +236,10 @@ Plug 'airblade/vim-gitgutter'
 " Create file from the project root
 Plug 'dbakker/vim-projectroot'
 " }}}
+" Notes {{{
+" --------------------------------------------------------------------------
+Plug 'Alok/notational-fzf-vim'
+" }}}
 
 " Syntax {{{1
 " --------------------------------------------------------------------------
@@ -292,6 +299,10 @@ Plug 'maksimr/vim-jsbeautify', {
       \ 'do': 'git submodule update --init --recursive',
       \ }
 
+" Advanced javascript motions
+" Use [[ to navigate between methods
+Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript'] }
+
 " }}}2
 " HTML / CSS {{{2
 " --------------------------------------------------------------------------
@@ -325,6 +336,13 @@ Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 
 " Extended Markdown
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+
+" Checklist toggle for markdown
+" with <leader>tt
+Plug 'jkramer/vim-checkbox', { 'for': ['markdown'] }
+
+" Does not work because vim-markdonw overrides syntax
+" Plug 'gonzaloserrano/vim-markdown-todo', { 'for': ['markdown'] }
 
 " }}}2
 " }}}1

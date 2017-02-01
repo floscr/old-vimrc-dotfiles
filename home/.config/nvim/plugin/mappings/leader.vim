@@ -11,12 +11,10 @@ nmap <silent> <leader>sp :source %<CR><ESC>:PlugInstall<CR>
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<cr>
 
-" Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
-
 " Show current file in finder
 nnoremap <leader><cr> :silent !open .<cr>
 
 " Toggle the error list
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+
+nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>

@@ -21,7 +21,10 @@ export PATH=/usr/local/bin:/usr/local/sbin
 # Default bins
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 # Ruby bins
-export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
+# export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
+# Custom Ruby gem path
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
 
 # Custom binaries
 export PATH=$PATH:$HOME/.dotfiles/bin
@@ -60,7 +63,6 @@ export EDITOR="$VISUAL"
 
 # Hide commands from history with two spaces
 export HISTIGNORE='  *'
-
 # Grep Colors
 export GREP_OPTIONS='--color=always'
 export GREP_COLOR='1;35;40'
@@ -68,6 +70,12 @@ export GREP_COLOR='1;35;40'
 # Color Profiles
 export COLOR_ECI="/Library/Application Support/Adobe/Color/Profiles/Recommended/eciRGB_v2.icc"
 export COLOR_SRGB="/Library/Application Support/Adobe/Color/Profiles/Recommended/sRGB Color Space Profile.icm"
+
+# Go
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings

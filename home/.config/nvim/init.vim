@@ -41,6 +41,10 @@ set updatetime=750   " make vim update more rapidly
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
+" Clipboard {{{2
+" -----------------------------------------------------------------------------
+set clipboard=unnamed
+" }}}2
 " Sessions {{{2
 " -----------------------------------------------------------------------------
 
@@ -210,6 +214,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
 " }}}2
+let g:nv_directories = ['~/Dropbox/Notes']
 
 " }}}1
 
