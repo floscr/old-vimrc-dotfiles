@@ -214,7 +214,10 @@ let g:javascript_plugin_jsdoc = 1
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
 " }}}2
+" NVAlt {{{2
+" -----------------------------------------------------------------------------
 let g:nv_directories = ['~/Dropbox/Notes']
+" }}}2
 
 " }}}1
 
