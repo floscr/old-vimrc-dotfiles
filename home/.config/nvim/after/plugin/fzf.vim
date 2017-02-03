@@ -4,11 +4,11 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit' }
 
 
-hi FZFHighlight guifg=#f0c674 guibg=#232C31
+hi FZFHighlight guibg=#171D20
 let g:fzf_colors = {
       \ 'pointer': ['bg', 'Search'],
       \ 'bg':     ['bg', 'IncSearch', 'NonText'],
-      \ 'fg+':     ['fg', 'FZFHighlight'],
+      \ 'fg+':     ['fg', 'IncSearch'],
       \ 'bg+':     ['bg', 'FZFHighlight'],
       \ 'header':  ['bg', 'Search'],
       \ 'marker':  ['fg', 'String'],
