@@ -8,6 +8,7 @@ map <buffer> ]] <Plug>Markdown_MoveToNextHeader
 map <buffer> [[ <Plug>Markdown_MoveToPreviousHeader
 
 nnoremap <buffer> <leader>p :MarkdownChromeTabLink<CR>
+nnoremap <buffer> <leader>m :Marked<CR>
 
 let g:writersRoomIsEnabled = 0
 function! WritersRoom()
