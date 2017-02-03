@@ -196,7 +196,6 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
-alias v.="v ."
 
 alias art="php artisan"
 
