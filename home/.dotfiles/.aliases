@@ -192,9 +192,6 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 # Development
 # -----------------------------------------------------------------------------
 
-# Use brew ctags
-alias ctags="`brew --prefix`/bin/ctags"
-
 # Vim
 alias vim="nvim"
 alias vi="nvim"
@@ -208,9 +205,11 @@ alias ya="yarn add"
 alias yad="yarn add --dev"
 alias run="npm run"
 
+# Use brew ctags
+# alias ctags="`brew --prefix`/bin/ctags"
 # .ctags file doesn not expand ~ or $HOME
 # Workaround to load the .ctagsignore from home dir
-alias ctags="ctags --exclude=@$HOME/.ctagsignore"
+alias ctags="$(brew --prefix)/bin/ctags --exclude=@$HOME/.ctagsignore"
 
 # Open all changed files in git
 alias gv='vim $(echo $(git status --porcelain | sed s/^...//))'
