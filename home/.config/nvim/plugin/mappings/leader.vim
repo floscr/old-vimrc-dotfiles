@@ -8,14 +8,14 @@ nmap <silent> <leader>sf :source %<CR><ESC>:echo "Current file sourced!"<CR>
 " Source current file and Install plugins
 nmap <silent> <leader>sp :source %<CR><ESC>:PlugInstall<CR>
 
-" Color Picker
+" Color Picker.
 nnoremap <leader>v :VCoolor<CR>
 
 " Toggle spellcheck
-nmap <silent> <leader>ss :set spell!<cr>
+nmap <silent> <leader>ss :set spell!<CR>
 
 " Show current file in finder
-nnoremap <leader><cr> :silent !open .<cr>
+nnoremap <leader><CR> :silent !open .<CR>
 
 " Toggle the error list
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
