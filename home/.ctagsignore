@@ -8,3 +8,5 @@ vendors
 .git
 .tmp
 .sass-cache
+cordova
+.eslintrc*
