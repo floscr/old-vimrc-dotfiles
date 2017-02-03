@@ -1,16 +1,16 @@
 #!/bin/bash
 
 local dotfiles_dir="/Users/$(whoami)/.homesick/repos/dotfiles"
-local functions_path="$dotfiles_dir/home/.dotfiles/functions/"
+local functions_path="$dotfiles_dir/home/.dotfiles/functions"
 
-. "$functions_path.function-navigation_and_files"
-. "$functions_path.function-compression"
-. "$functions_path.function-audio"
-. "$functions_path.function-git"
-. "$functions_path.function-images"
-. "$functions_path.function-server"
-. "$functions_path.function-osx"
-. "$functions_path.function-coding"
+. "$functions_path/function-navigation_and_files.zsh"
+. "$functions_path/function-compression.zsh"
+. "$functions_path/function-audio.zsh"
+. "$functions_path/function-git.zsh"
+. "$functions_path/function-images.zsh"
+. "$functions_path/function-server.zsh"
+. "$functions_path/function-osx.zsh"
+. "$functions_path/function-coding.zsh"
 
 # -----------------------------------------------------------------------------
 # Helpers
