@@ -221,6 +221,8 @@ let g:nv_directories = ['~/Dropbox/Notes']
 
 " }}}1
 
+hi VertSplit guibg=#232C31
+
 " Utilities"{{{
 " -----------------------------------------------------------------------------
 
