@@ -218,6 +218,11 @@ let g:over_enable_cmd_window = 1
 " -----------------------------------------------------------------------------
 let g:nv_directories = ['~/Dropbox/Notes']
 " }}}2
+" Vim Markdown {{{2
+" -----------------------------------------------------------------------------
+" Add aliases for markdown syntax highlighted blocks
+let g:vim_markdown_fenced_languages = ['js=javascript']
+" }}}2
 
 " }}}1
 
