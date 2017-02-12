@@ -1,5 +1,4 @@
 -R
---exclude=@/Users/admin-imac3/.ctagsignore
 --fields=+l
 --langdef=js
 --langmap=js:.js.vue

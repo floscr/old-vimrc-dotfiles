@@ -97,7 +97,7 @@ ZSH_CUSTOM=$DOTFILES/zsh/custom
 ZSH_THEME="floscr"
 
 # ZSH PlUGINS
-plugins=(git osx history-substring-search encode64 fasd laravel)
+plugins=(git osx history-substring-search encode64 fasd laravel web-search)
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt

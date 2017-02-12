@@ -68,7 +68,7 @@ Plug 'mbbill/undotree', {
 " Light Status bar
 Plug 'itchyny/lightline.vim'
 " Hybrid lightline theme
-Plug 'cocopon/lightline-hybrid.vim'
+Plug 'floscr/lightline-hybrid.vim'
 " Buffers tabline
 Plug 'ap/vim-buftabline'
 
@@ -222,7 +222,7 @@ endif
 " --------------------------------------------------------------------------
 
 " Hybrid
-Plug 'w0ng/vim-hybrid'
+Plug 'floscr/vim-hybrid'
 Plug 'NLKNguyen/papercolor-theme'
 
 " }}}
@@ -317,7 +317,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }
 
 
 " Add Colorized background to CSS color values
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx'] }
+Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx', 'vim'] }
 
 " Show matching html tag
 Plug 'gregsexton/MatchTag', {

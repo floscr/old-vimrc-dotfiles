@@ -3,6 +3,17 @@ let g:fzf_action = {
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit' }
 
+
+hi FZFHighlight guibg=#171D20
+let g:fzf_colors = {
+      \ 'pointer': ['bg', 'Search'],
+      \ 'bg':     ['bg', 'IncSearch', 'NonText'],
+      \ 'fg+':     ['fg', 'IncSearch'],
+      \ 'bg+':     ['bg', 'FZFHighlight'],
+      \ 'header':  ['bg', 'Search'],
+      \ 'marker':  ['fg', 'String'],
+      \ }
+
 " Check if the current file is inside git root
 function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''

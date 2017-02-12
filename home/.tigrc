@@ -25,6 +25,6 @@ set stash-view  = line-number:no,interval=5 id:no date:default author:full commi
 set tree-view   = line-number:no,interval=5 mode author:full file-size date:default id:no file-name
 set status-view = line-number:no,interval=5 status:short file-name
 
-set main-view-date = custom
+# set main-view-date = custom
 
 set diff-view   = line-number:no,interval=5 text:yes,commit-title-overflow=no

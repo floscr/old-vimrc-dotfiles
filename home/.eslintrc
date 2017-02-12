@@ -2,6 +2,7 @@
   extends: 'standard',
   rules: {
     'comma-dangle': [ 1, 'only-multiline' ],
+    'no-undef': 0,
     'no-unused-vars': 0,
     "no-multiple-empty-lines": [1, { "max": 1 }],
   },

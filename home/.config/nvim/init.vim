@@ -35,7 +35,6 @@ set splitright       " Split new window right of current window
 set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
 set synmaxcol=1500   " Turn off syntax highlighting after X lines
 set updatetime=750   " make vim update more rapidly
-set cursorline       " Highlight the current cursor line
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
@@ -231,6 +230,8 @@ let g:markdown_fold_override_foldtext = 0
 " }}}2
 
 " }}}1
+
+hi VertSplit guibg=#232C31
 
 " Utilities"{{{
 " -----------------------------------------------------------------------------

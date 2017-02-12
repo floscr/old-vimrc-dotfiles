@@ -5,6 +5,7 @@ function! functions#plaintext() abort
   setlocal textwidth=0
   setlocal wrap
   setlocal wrapmargin=0
+  set foldlevel=2
 
   nnoremap <buffer> j gj
   nnoremap <buffer> k gk
