@@ -3,6 +3,17 @@ let g:fzf_action = {
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit' }
 
+
+hi FZFHighlight guibg=#171D20
+let g:fzf_colors = {
+      \ 'pointer': ['bg', 'Search'],
+      \ 'bg':     ['bg', 'IncSearch', 'NonText'],
+      \ 'fg+':     ['fg', 'IncSearch'],
+      \ 'bg+':     ['bg', 'FZFHighlight'],
+      \ 'header':  ['bg', 'Search'],
+      \ 'marker':  ['fg', 'String'],
+      \ }
+
 " Check if the current file is inside git root
 function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''
@@ -56,3 +67,16 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"   * Preview script requires Ruby
+"   * Install Highlight or CodeRay to enable syntax highlighting
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+autocmd VimEnter * command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)

@@ -48,9 +48,6 @@ alias la="/usr/local/bin/gls --color -lah --group-directories-first"
 alias lsd='ls -l | grep "^d"'
 alias ld='lsd'
 
-# Find and replace aliases like in alfred
-alias regd="find_and_replace"
-
 # -----------------------------------------------------------------------------
 # GIT Alias
 # -----------------------------------------------------------------------------
@@ -195,14 +192,10 @@ alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 # Development
 # -----------------------------------------------------------------------------
 
-# Use brew ctags
-alias ctags="`brew --prefix`/bin/ctags"
-
 # Vim
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
-alias v.="v ."
 
 alias art="php artisan"
 
@@ -210,6 +203,12 @@ alias y="yarn"
 alias ya="yarn add"
 alias yad="yarn add --dev"
 alias run="npm run"
+
+# Use brew ctags
+# alias ctags="`brew --prefix`/bin/ctags"
+# .ctags file doesn not expand ~ or $HOME
+# Workaround to load the .ctagsignore from home dir
+alias ctags="$(brew --prefix)/bin/ctags --exclude=@$HOME/.ctagsignore"
 
 # Open all changed files in git
 alias gv='vim $(echo $(git status --porcelain | sed s/^...//))'

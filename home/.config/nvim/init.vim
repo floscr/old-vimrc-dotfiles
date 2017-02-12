@@ -41,6 +41,10 @@ set updatetime=750   " make vim update more rapidly
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
+" Clipboard {{{2
+" -----------------------------------------------------------------------------
+set clipboard=unnamed
+" }}}2
 " Sessions {{{2
 " -----------------------------------------------------------------------------
 
@@ -210,8 +214,24 @@ let g:javascript_plugin_jsdoc = 1
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
 " }}}2
+" NV {{{2
+" -----------------------------------------------------------------------------
+let g:nv_directories = ['~/Dropbox/Notes']
+" }}}2
+" Vim-Markdown {{{2
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_default_key_mappings = 1
+" }}}2
+" vim-markdown-folding {{{2
+" Fold at the Header instead just folding the content
+let g:markdown_fold_style = 'nested'
+" Dont override my fold style with the plugin fold style
+let g:markdown_fold_override_foldtext = 0
+" }}}2
 
 " }}}1
+
+hi VertSplit guibg=#232C31
 
 " Utilities"{{{
 " -----------------------------------------------------------------------------

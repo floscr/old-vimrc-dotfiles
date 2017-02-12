@@ -1,6 +1,10 @@
-snippet	class
-class ${1:`vim_snippets#Filename()`} {
-  ${0}
+snippet	c "Class" b
+<?php
+
+class ${1:`!p snip.rv = snip.basename`} {
+
+  $0
+
 }
 endsnippet
 

@@ -1,5 +1,8 @@
 macmenu File.Print key=<nop>
 
+" Copy to system clipboard
+set clipboard=unnamed
+
 " -----------------------------------------------------------
 " SUBLIME LIKE COMMANDS
 " Because they're sometimes way less work
