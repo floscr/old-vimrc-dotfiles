@@ -8,6 +8,7 @@
   "css": {
     "profile": "html",
     "snippets": {
+      "an": "appearance:none;",
       "m0a": "margin:0 auto;",
       "db": "display:block;",
       "di": "display:inline-block;",
