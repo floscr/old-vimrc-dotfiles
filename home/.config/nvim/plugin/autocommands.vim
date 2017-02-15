@@ -31,3 +31,16 @@ augroup MakeQuickFixPrettier
                 \| setlocal nolist
                 \| endif
 augroup END
+
+augroup suffixes
+  autocmd!
+
+  let associations = [
+        \["javascript", ".js,.javascript,.es,.esx,.json"],
+        \["html", ".vue,.js"],
+        \]
+
+  for ft in associations
+    execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
+  endfor
+augroup END
