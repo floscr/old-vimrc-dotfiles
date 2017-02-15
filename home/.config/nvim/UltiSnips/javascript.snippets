@@ -12,8 +12,20 @@ snippet ex "ES6 Export Variable"
 export ${1:default} ${2:bar}
 endsnippet
 
+snippet exdf "ES6 Export default Function"
+export function ${1:`!p snip.rv = snip.basename`} () {
+  $0
+}
+endsnippet
+
 snippet exf "ES6 Export Function"
-export default function ${1:`!p snip.rv = snip.basename`} () {
+export function ${1:`!p snip.rv = snip.basename`} () {
+  $0
+}
+endsnippet
+
+snippet exo "ES6 Export Function"
+export default {
   $0
 }
 endsnippet
