@@ -5,7 +5,7 @@ local functions_path="$dotfiles_dir/home/.dotfiles/functions"
 
 . "$functions_path/function-navigation_and_files.zsh"
 . "$functions_path/function-compression.zsh"
-. "$functions_path/function-audio.zsh"
+. "$functions_path/function-video_and_audio.zsh"
 . "$functions_path/function-git.zsh"
 . "$functions_path/function-images.zsh"
 . "$functions_path/function-server.zsh"
