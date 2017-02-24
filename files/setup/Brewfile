@@ -57,6 +57,9 @@ brew 'tree'
 brew 'the_silver_searcher'
 # Faster newer version of 'Ag'
 brew 'ripgrep'
+# Pipe to vim
+# echo 'text' | vipe
+brew 'moreutils'
 
 #===================================#
 # Coding
