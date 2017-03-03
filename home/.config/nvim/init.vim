@@ -232,6 +232,14 @@ let g:markdown_fold_override_foldtext = 0
 " }}}1
 
 hi VertSplit guibg=#232C31
+" let g:ale_linters = {'javascript': ['eslint_d']}
+
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+
+let g:ale_lint_on_enter = 0
+" let g:ale_linters = {'vue.html.javascript.css': ['eslint']}
+" let g:ale_linter_aliases = {'vue.html.javascript.css': 'css'}
 
 " Utilities"{{{
 " -----------------------------------------------------------------------------
