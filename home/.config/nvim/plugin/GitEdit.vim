@@ -6,8 +6,10 @@ function! GitEdit()
 
   vnew __test__
   normal! ggdG
-  setlocal buftype=nowrite nomodified
+  setlocal buftype=nowrite nomodified " bufhidden=delete nobuflisted
   " read !date
+
+
   call append(0, split(gitFileContent, '\v\n'))
   execute lineNumber
 endfunction
