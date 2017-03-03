@@ -180,13 +180,6 @@ Plug 'SirVer/ultisnips'
 " Linting {{{
 " --------------------------------------------------------------------------
 
-" Async Linting, Use project .eslintrc first
-Plug 'benekastah/neomake', {
-      \ 'on': ['Neomake'],
-      \ }
-
-" Use project .eslintrc before the ~/.eslintrc
-Plug 'jaawerth/neomake-local-eslint-first'
 
 " }}}
 " Focus Mode {{{
