@@ -207,7 +207,10 @@ Plug 'osyo-manga/vim-over', { 'on': 'OverCommandLine' }
 if has("gui_macvim")
   Plug 'ctrlpvim/ctrlp.vim'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
+  Plug 'junegunn/fzf', {
+        \ 'dir': '~/.fzf',
+        \ 'do': './install --all --no-update-rc'
+        \ }
   Plug 'junegunn/fzf.vim'
 endif
 
