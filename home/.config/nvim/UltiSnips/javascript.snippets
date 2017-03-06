@@ -83,14 +83,14 @@ endsnippet
 snippet fe "Foreach loop - no existing variable"
 ${1:arr}.forEach((${2}) => {
   $0
-});
+})
 endsnippet
 
 # Expand on .fe on existing obejct/array
 snippet fe "Foreach loop on Existing" "re.match('^.*\.', snip.buffer[snip.line])" ie
 forEach((${2}) => {
   $0
-});
+})
 endsnippet
 
 snippet for "For loop"
