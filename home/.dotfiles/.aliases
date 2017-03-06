@@ -216,6 +216,9 @@ alias gv='vim $(echo $(git status --porcelain | sed s/^...//))'
 # Sublime Bin Workaround to work in tmux
 alias subl='reattach-to-user-namespace subl'
 
+alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
+alias notify='terminal-notifier -timeout 5 -message'
+
 # Open git repository in tower app, even when in subdir
 alias tower='gittower $(git rev-parse --show-toplevel)'
 

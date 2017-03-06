@@ -60,6 +60,8 @@ brew 'ripgrep'
 # Pipe to vim
 # echo 'text' | vipe
 brew 'moreutils'
+# Notifications
+brew 'terminal-notifier'
 
 #===================================#
 # Coding
