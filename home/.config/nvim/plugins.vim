@@ -207,9 +207,11 @@ Plug 'osyo-manga/vim-over', { 'on': 'OverCommandLine' }
 if has("gui_macvim")
   Plug 'ctrlpvim/ctrlp.vim'
 else
+  " Skip FZF installation via plugin
+  " FZF should be managed via brew
+  " \ 'do': './install --all --no-update-rc'
   Plug 'junegunn/fzf', {
         \ 'dir': '~/.fzf',
-        \ 'do': './install --all --no-update-rc'
         \ }
   Plug 'junegunn/fzf.vim'
 endif
