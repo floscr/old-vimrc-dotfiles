@@ -67,3 +67,4 @@ let g:config_Beautifier['json'] = {}
 let g:config_Beautifier['json'].indent_size = '2'
 let g:config_Beautifier['css'] = {}
 let g:config_Beautifier['css'].indent_size = '2'
+let g:config_Beautifier['jsx'] = {}
