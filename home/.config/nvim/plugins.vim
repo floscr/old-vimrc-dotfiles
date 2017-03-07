@@ -78,7 +78,7 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 
 " Session Management
-Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-obsession'
 
 " Native colorpicker
 Plug 'KabbAmine/vCoolor.vim'
