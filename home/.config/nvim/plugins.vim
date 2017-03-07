@@ -310,7 +310,7 @@ Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript'] }
 Plug 'othree/html5.vim'
 
 " CSS3 Syntax
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss', 'sass', 'html', 'vue.html.javascript.css'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss', 'sass', 'html'] }
 " SCSS Syntax
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue.html.javascript.css'] }
 
