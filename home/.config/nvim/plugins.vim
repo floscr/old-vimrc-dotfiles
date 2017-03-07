@@ -186,7 +186,7 @@ Plug 'w0rp/ale'
 " Refactoring {{{
 " --------------------------------------------------------------------------
 
-Plug 'floscr/vim-xtract'
+Plug 'floscr/vim-xtract', { 'branch': 'feature/vue-extract' }
 
 " }}}
 " Focus Mode {{{
