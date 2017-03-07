@@ -239,6 +239,11 @@ Plug 'dbakker/vim-projectroot'
 " --------------------------------------------------------------------------
 Plug 'Alok/notational-fzf-vim'
 " }}}
+" Debugging {{{
+" --------------------------------------------------------------------------
+" Debug startuptime with :StartupTime
+Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
+" }}}
 
 " Syntax {{{1
 " --------------------------------------------------------------------------
