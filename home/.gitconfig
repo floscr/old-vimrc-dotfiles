@@ -79,6 +79,6 @@
 # -----------------------------------------------------------------------------
 
 # Show last tag
-  feat = "!f() { _git_feature }; f"
+# feat = "!f() { _git_feature }; f"
 
   lasttag = describe --tags --abbrev=0
