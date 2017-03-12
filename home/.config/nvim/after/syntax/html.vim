@@ -7,6 +7,9 @@ syntax include @HTML $VIMRUNTIME/syntax/html.vim
 " Vue template highlighting
 syntax keyword htmlTagName slot contained
 
+syn region mustache matchgroup=mustacheDelimiter start="@\@<!{{" end="}}" keepend
+hi def link mustacheDelimiter Function
+
 syntax keyword htmlVueFlowOps in of contained
 syntax keyword htmlVueKeyword true false typeof null this instanceof contained
 
