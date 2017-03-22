@@ -257,6 +257,13 @@ Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
 " Editor config for vim
 Plug 'editorconfig/editorconfig-vim'
 
+
+" GO {{{2
+" --------------------------------------------------------------------------
+
+Plug 'cespare/vim-toml', { 'for': [ 'toml' ] }
+
+" }}}2
 " PHP {{{2
 " --------------------------------------------------------------------------
 
