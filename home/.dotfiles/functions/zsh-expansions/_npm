@@ -36,7 +36,9 @@ _npm() {
 
           # Add all matches as completions
           while read -r line; do
-            compadd "$@" $line
+            if [[ $line != '//' ]]; then
+              compadd "$@" $line
+            fi
           done <<< "$scripts"
 
           ;;
