@@ -302,13 +302,16 @@ Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 
 " Expand JavaScript Parameter Omni Complete
-Plug 'othree/jspc.vim'
+Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+
+" Flow typing
+" Plug 'flowtype/vim-flow'
 
 " Vue syntax highlighting
 Plug 'posva/vim-vue', { 'for': ['vue.html.javascript.css'] }
 
 " generates JSDoc block comments based on a function signature
-Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'vue.html.javascript.css'] }
 
 " Beautify JS Files
 " Update submodules after plugin install
@@ -318,7 +321,7 @@ Plug 'maksimr/vim-jsbeautify', {
 
 " Advanced javascript motions
 " Use [[ to navigate between methods
-Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript'] }
+Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javascript.css'] }
 
 " }}}2
 " HTML / CSS {{{2
