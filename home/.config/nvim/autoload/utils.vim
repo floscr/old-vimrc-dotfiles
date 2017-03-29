@@ -164,8 +164,16 @@ function! IsEmmetExpandableTag()
 endfunction
 
 function! IsEmmetExpandable()
-  if emmet#getFileType() =~ 'css\|scss'
-    if emmet#isExpandable() | return 1 | endif
+  if emmet#getFileType() =~ 'css\|scss\|sass\|less'
+    " When the line beginst with one of these characters '#.['
+    " It means we are in a name attribute and should not expand emmet
+    let s:isDefinitionName = matchstr(getline('.'), '\([\.\[#]\).*$')
+    if s:isDefinitionName != ''
+      return 0
+    endif
+
+    " Expand emmet if possible
+    return emmet#isExpandable()
   endif
 
   " if emmet#getFileType() == 'html'
@@ -176,10 +184,13 @@ function! IsEmmetExpandable()
   return 0
 endfunction
 
-" Tab wrapper
+" Tab Completion
+" Figure out which tab completion to apply
+" For html & css use emmet, but only in specific use cases
 function! g:utils#tabComplete()
-  let l:col = col('.') - 1
+  let s:currentLine = col('.') - 1
 
+  " Select next item when the completion menu is open
   if pumvisible()
     return "\<C-n>"
 
@@ -187,15 +198,15 @@ function! g:utils#tabComplete()
   elseif &filetype =~ 'html\|css' && IsEmmetExpandable()
     return "\<plug>(emmet-expand-abbr)"
 
+  " When a white space character is before the cursor, do a tab indent
+  elseif !s:currentLine || getline('.')[s:currentLine - 1] !~# '\k'
+    return "\<TAB>"
+
+  " Trigger word complete
   else
-    if !l:col || getline('.')[l:col - 1] !~# '\k'
-      return "\<TAB>"
-    else
-      return "\<C-n>"
-    endif
+    return "\<C-n>"
 
   endif
-
 endfunction
 
 " -----------------------------------------------------------------------------
