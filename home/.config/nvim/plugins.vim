@@ -349,6 +349,7 @@ Plug 'floscr/FZF-cdnj'
 
 " Stylus support
 Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
+Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 " }}}2
 " Markdown {{{2
