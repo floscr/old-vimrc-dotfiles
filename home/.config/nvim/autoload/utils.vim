@@ -164,8 +164,16 @@ function! IsEmmetExpandableTag()
 endfunction
 
 function! IsEmmetExpandable()
-  if emmet#getFileType() =~ 'css\|scss'
-    if emmet#isExpandable() | return 1 | endif
+  if emmet#getFileType() =~ 'css\|scss\|sass\|less'
+    " When the line beginst with one of these characters '#.['
+    " It means we are in a name attribute and should not expand emmet
+    let s:isDefinitionName = matchstr(getline('.'), '\([\.\[#]\).*$')
+    if s:isDefinitionName != ''
+      return 0
+    endif
+
+    " Expand emmet if possible
+    return emmet#isExpandable()
   endif
 
   " if emmet#getFileType() == 'html'
