@@ -167,7 +167,7 @@ function! IsEmmetExpandable()
   if emmet#getFileType() =~ 'css\|scss\|sass\|less'
     " When the line beginst with one of these characters '#.['
     " It means we are in a name attribute and should not expand emmet
-    let s:isDefinitionName = matchstr(getline('.'), '\([\.\[#]\).*$')
+    let s:isDefinitionName = matchstr(getline('.'), '\([\.\[#&]\).*$')
     if s:isDefinitionName != ''
       return 0
     endif
