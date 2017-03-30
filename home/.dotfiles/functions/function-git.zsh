@@ -248,8 +248,8 @@ function git_push () {
 }
 
 function _git_branch_delete_and_push () {
-  branches=`git branch -a --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | uniq -u`
-  compadd `echo $branch | sed "s/ //g"`
+  branches=`git branch -a --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | sed "/HEAD.*/d" | sed "/\*.*/d" | uniq -u`
+  compadd `echo $branches | sed "s/ //g"`
 }
 
 # [git_branch_delete_and_push]:
