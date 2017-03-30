@@ -247,6 +247,10 @@ function git_push () {
   fi
 }
 
+function _git_branch_delete_and_push () {
+  branches=`git branch -a --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | uniq -u`
+  compadd `echo $branch | sed "s/ //g"`
+}
 
 # [git_branch_delete_and_push]:
 # Deletes remote and local git branch
@@ -262,6 +266,8 @@ git_branch_delete_and_push () {
     git push origin ":$var"
   done
 }
+
+compdef _git_branch_delete_and_push git_branch_delete_and_push
 
 # Change the current origin remote url
 function git-change-remote () {
