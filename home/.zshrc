@@ -16,6 +16,9 @@
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
+# Mysql
+export PATH=/usr/local/mysql/bin:$PATH
+
 # Homebrew bins
 export PATH=/usr/local/bin:/usr/local/sbin
 # Default bins

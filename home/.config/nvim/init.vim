@@ -67,6 +67,10 @@ endif
 set background=dark
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
+
+" Fix the vertical split bar background color
+hi VertSplit guibg=#232C31
+
 "}}}2
 " Wrap Settings {{{2
 " -----------------------------------------------------------------------------
@@ -184,6 +188,20 @@ let g:EditorConfig_core_mode = 'external_command'
 " -----------------------------------------------------------------------------
 
 let g:user_emmet_leader_key='<C-e>'
+
+" }}}2
+" ALE Linter {{{2
+" -----------------------------------------------------------------------------
+
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+" let g:ale_lint_delay = 500
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \ 'html': [],
+      \}
+
 " }}}2
 " GitGutter {{{2
 " -----------------------------------------------------------------------------
@@ -207,42 +225,38 @@ let g:gitgutter_map_keys = 0
 " Enable syntax highlighting for jsdoc
 let g:javascript_plugin_jsdoc = 1
 
-
 " }}}2
 " Over.vim {{{2
+" Interactive Search and replace
 " -----------------------------------------------------------------------------
+
 let g:over_enable_auto_nohlsearch = 1
 let g:over_enable_cmd_window = 1
+
 " }}}2
 " NV {{{2
 " -----------------------------------------------------------------------------
+
 let g:nv_directories = ['~/Dropbox/Notes']
+
 " }}}2
 " Vim-Markdown {{{2
+" -----------------------------------------------------------------------------
+
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_default_key_mappings = 1
 " }}}2
 " vim-markdown-folding {{{2
+" -----------------------------------------------------------------------------
+
 " Fold at the Header instead just folding the content
 let g:markdown_fold_style = 'nested'
 " Dont override my fold style with the plugin fold style
 let g:markdown_fold_override_foldtext = 0
+
 " }}}2
 
 " }}}1
-
-hi VertSplit guibg=#232C31
-" let g:ale_linters = {'javascript': ['eslint_d']}
-
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
-" let g:ale_lint_delay = 500
-let g:ale_linters = {
-      \ 'javascript': ['eslint'],
-      \ 'html': [],
-      \}
-
 
 " Utilities"{{{
 " -----------------------------------------------------------------------------

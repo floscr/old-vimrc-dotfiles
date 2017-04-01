@@ -1,38 +1,34 @@
 #!/bin/bash
 
-function gfeat() {
-  if [[ -z "$@" ]]; then
-    echo "git feature name"
-  fi
+function _gfeat () {
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
 
-  if [[ $1 == "feature" && ! -z $2 ]]; then
-    gbc "feature/$2"
-  fi
+  _arguments \
+    '1: :->method'\
+    '*: :->city'
 
-  if [[ $1 == "fix" && ! -z $2 ]]; then
-    gbc "fix/$2"
-  fi
-
-  if [[ $1 == "finish" ]]; then
-
-    feature_branch=$(git symbolic-ref --short HEAD)
-
-    # When no second argument is given
-    # Merge into master branch
-    if [[ -z $2 ]]; then
-      gb master
-    elif [[ ! -n $(git show-ref refs/heads/$2) ]]; then
-      echo "The given branch '$2' doesnt exist!"
-      exit
-    else
-      gb $2
-    fi
-
-    git merge -
-    gbda $feature_branch
-  fi
-
+  case $state in
+    method)
+      _arguments '1:Methods:(feature fix hotfix chore close)'
+      ;;
+  esac
 }
+
+function gfeat () {
+  if [[ $1 == "close" ]]; then
+    if [[ $2 == "-" || -z $2 ]]; then
+      branchToBeDeleted="$(git rev-parse --abbrev-ref -q HEAD)"
+      gb -
+      git merge -
+      gbda "$branchToBeDeleted"
+    fi
+  else
+    gbc $1/$2
+  fi
+}
+
+compdef _gfeat gfeat
 
 function delete_merged_git_branches() {
   # Remove already deleted branches on repo host
@@ -97,7 +93,6 @@ function gitexport() {
 
 # Add all files and ammend to last commit
 function gam () {
-
   CURRENT_COMMIT_SHA="$(git rev-parse HEAD)"
 
   # Failsafe when the last commit was already pushed
@@ -247,21 +242,30 @@ function git_push () {
   fi
 }
 
+function _git_branch_delete_and_push () {
+  branches=`git branch -a --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | sed "/HEAD.*/d" | sed "/\*.*/d" | uniq -u`
+  compadd `echo $branches | sed "s/ //g"`
+}
 
 # [git_branch_delete_and_push]:
 # Deletes remote and local git branch
 # @1: [branch]
 git_branch_delete_and_push () {
   if [[ -z "$@" ]]; then
-    tip "[gbda]:"
+    echo "tip [gbda]:"
     echo "Deletes remote and local git branch"
     echo "@1: {branchname}"
   fi
   for var in "$@"; do
     git branch -D "$var"
-    git push origin ":$var"
+    # Delete remote branch if one exists
+    if [[ $(git branch -a | egrep 'remotes/origin/$var') ]]; then
+      git push origin ":$var"
+    fi
   done
 }
+
+compdef _git_branch_delete_and_push git_branch_delete_and_push
 
 # Change the current origin remote url
 function git-change-remote () {

@@ -35,12 +35,9 @@
 [push]
   default = matching
 [alias]
-
-# -----------------------------------------------------------------------------
-# Git log lists
-# -----------------------------------------------------------------------------
-
-
+  # ---------------------------------------------------------------------------
+  # Git log lists
+  # ---------------------------------------------------------------------------
 
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graphgl # Short git message with date, commit author,
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # Log with the changed files
@@ -50,35 +47,41 @@
 
   fl = log -u # Show the history of a file
 
-# -----------------------------------------------------------------------------
-# Commit
-# -----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
+  # Commit
+  # ---------------------------------------------------------------------------
 
-# Assume
+  # Assume
   assume = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
   assumed = "!git ls-files -v | grep ^h | cut -c 3-"
   unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
   assumeall = "!git status -s | awk {'print $2'} | xargs git assume"
 
-# Easily solve merge conflicts from the command line
-# [merge - Simple tool to 'accept theirs' or 'accept mine' on a whole file using git - Stack Overflow]
-# (http://stackoverflow.com/questions/914939/simple-tool-to-accept-theirs-or-accept-mine-on-a-whole-file-using-git/11843922#11843922)
+  # Easily solve merge conflicts from the command line
+  # [merge - Simple tool to 'accept theirs' or 'accept mine' on a whole file using git - Stack Overflow]
+  # (http://stackoverflow.com/questions/914939/simple-tool-to-accept-theirs-or-accept-mine-on-a-whole-file-using-git/11843922#11843922)
   accept-ours = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --ours -- $files; git add -u $files; }; f"
   accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
 
-# -----------------------------------------------------------------------------
-# Fetch / Clone
-# -----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
+  # Fetch / Clone
+  # ---------------------------------------------------------------------------
 
-# Execute a fetch on all the remotes you have configured
+  # Execute a fetch on all the remotes you have configured
   fetchall = !bash -c 'source /etc/bash_completion.d/git &amp;&amp; __git_remotes | xargs --no-run-if-empty -t -n1 git fetch $*' -
 
-# -----------------------------------------------------------------------------
-# Etc
-# -----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
+  # Git Extras
+  # ---------------------------------------------------------------------------
 
-# Show last tag
-  feat = "!f() { _git_feature }; f"
+  feat = feature
+
+  # ---------------------------------------------------------------------------
+  # Etc
+  # ---------------------------------------------------------------------------
+
+  # Show last tag
+  # feat = "!f() { _git_feature }; f"
 
   lasttag = describe --tags --abbrev=0
