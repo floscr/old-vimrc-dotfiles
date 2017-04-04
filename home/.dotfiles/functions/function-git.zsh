@@ -20,7 +20,7 @@ function gfeat () {
     if [[ $2 == "-" || -z $2 ]]; then
       branchToBeDeleted="$(git rev-parse --abbrev-ref -q HEAD)"
       gb -
-      git merge -
+      git merge "${@:3}" -
       gbda "$branchToBeDeleted"
     fi
   else
