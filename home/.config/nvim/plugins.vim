@@ -339,6 +339,8 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue.html.javascript
 " Add Colorized background to CSS color values
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx', 'vim'] }
 
+Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
+
 " Show matching html tag
 Plug 'gregsexton/MatchTag', {
       \ 'for': ['html', 'javascript', 'blade', 'php', 'twig'],
