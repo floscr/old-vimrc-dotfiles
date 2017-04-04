@@ -259,7 +259,7 @@ git_branch_delete_and_push () {
   for var in "$@"; do
     git branch -D "$var"
     # Delete remote branch if one exists
-    if [[ $(git branch -a | egrep 'remotes/origin/$var') ]]; then
+    if [[ $(git branch -a | egrep "remotes/origin/$var") ]]; then
       git push origin ":$var"
     fi
   done
