@@ -294,7 +294,7 @@ Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
 " --------------------------------------------------------------------------
 
 " Open files with 'gf' without extensions
-Plug 'moll/vim-node', { 'for': ['js', 'vue'] }
+Plug 'moll/vim-node', { 'for': ['javascript', 'vue'] }
 
  " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript'
