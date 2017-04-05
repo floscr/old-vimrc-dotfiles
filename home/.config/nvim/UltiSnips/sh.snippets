@@ -2,6 +2,12 @@ snippet !
 #!/usr/bin/env bash
 endsnippet
 
+snippet "Filename without extension"
+filename=$(basename "$fullfile")
+extension="${filename##*.}"
+filename="${filename%.*}"
+endsnippet
+
 snippet fun "function"
 function ${1:function_name}() {
   $0;
