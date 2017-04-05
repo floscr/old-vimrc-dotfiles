@@ -170,6 +170,17 @@ let g:python3_host_skip_check = 1
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'"}}}
 " }}}2
+" Local VimRC Whitelist "{{{2
+" -----------------------------------------------------------------------------
+
+" To allow all local configurations for certain projects put them in
+" a whitelist.vim file in the current dir in this format:
+" let g:localvimrc_whitelist=['/home/user/project1/', '/opt/project2/', '/usr/local/projects/vim-[^/]*/']
+if filereadable('./whitelist.vim')
+  source whitelist.vim
+endif
+
+" }}}2
 
 " }}}1
 " =============================================================================
