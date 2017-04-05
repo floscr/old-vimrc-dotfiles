@@ -1,5 +1,20 @@
 #!/bin/bash
 
+function _vim_template () {
+  # List all template files without extension
+  templates=`ls -1 ~/.config/nvim/templates | sed -e 's/\.vim$//'`
+  compadd `echo $templates | sed "s/ //g"`
+}
+
+# Copy template lvimrc from templates directory
+function vim_template() {
+  if [[ -f .lvimrc ]]; then
+    echo ".lvimrc exists in current path!"
+  fi
+  cp ~/.config/nvim/templates/$0.vim .lvimrc
+}
+compdef _vim_template vim_template
+
 # Clone repo in my general repository directory
 function gccd() {
   cd ~/Code/Repositories
