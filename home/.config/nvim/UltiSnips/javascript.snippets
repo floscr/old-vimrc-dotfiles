@@ -1,7 +1,7 @@
 extends vue
+extends javascript.testing
 
-# -----------------------------------------------------------------------------
-# ES6
+# ES6 {{{
 # -----------------------------------------------------------------------------
 
 snippet im "ES6 Import"
@@ -24,13 +24,13 @@ export function ${1:`!p snip.rv = snip.basename`} () {
 }
 endsnippet
 
-snippet exo "ES6 Export Function"
+snippet exo "ES6 Export Default Object"
 export default {
   $0
 }
 endsnippet
 
-snippet exc "ES6 Export default class" b
+snippet exc "ES6 Export Default Class" b
 export default class ${1:`!p snip.rv = snip.basename`} {
 
   constructor () {
@@ -40,7 +40,7 @@ export default class ${1:`!p snip.rv = snip.basename`} {
 }
 endsnippet
 
-snippet c "ES6 Class" b
+snippet c "ES6 Class Templates" b
 class ${1:`!p snip.rv = snip.basename`} {
 
   constructor () {
@@ -51,8 +51,8 @@ class ${1:`!p snip.rv = snip.basename`} {
 export default $1
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Functions
+# }}}
+# Functions {{{
 # -----------------------------------------------------------------------------
 
 # \b - word boundary
@@ -75,8 +75,8 @@ snippet > "Arrow Function"
 }
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Loops
+# }}}
+# Loops {{{
 # -----------------------------------------------------------------------------
 
 # Expand to new foreach loop
@@ -105,8 +105,8 @@ for (let ${1:s} of ${2:sequence}) {
 }
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Conditionals
+# }}}
+# Conditionals {{{
 # -----------------------------------------------------------------------------
 
 snippet if "Single if statement"
@@ -127,18 +127,18 @@ snippet ter "Ternary Statement"
 ${1:/* condition */} ? ${2:/* if true */} : ${0:/* if false */}
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Dom
+# }}}
+# Dom {{{
 # -----------------------------------------------------------------------------
 
-snippet domr
+snippet domr "Document Ready Vanilla Javascript"
 document.addEventListener('DOMContentLoaded', () => {
   $0
 });
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Node
+# }}}
+# Node {{{
 # -----------------------------------------------------------------------------
 
 snippet re "require" b
@@ -169,12 +169,22 @@ module.exports = function ${1:`!p snip.rv = snip.basename`} () {
 }
 endsnippet
 
-snippet shebang
+snippet !
 #!/usr/bin/env node
 endsnippet
 
+# }}}
+# Promise {{{
 # -----------------------------------------------------------------------------
-# Documentation
+
+snippet Promw "Promise Wrapper Functions"
+return new Promise((resolve, reject) => {
+  $0
+})
+endsnippet
+
+# }}}
+# Documentation {{{
 # -----------------------------------------------------------------------------
 
 # docstring
@@ -220,8 +230,8 @@ snippet qsa "Queryselector dot match" "re.match('^.*\.', snip.buffer[snip.line])
 querySelectorAll('${1:selector}')
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Debugging
+# }}}
+# Debugging {{{
 # -----------------------------------------------------------------------------
 
 snippet de "Debugger"
@@ -252,8 +262,8 @@ snippet esi "Eslint Ignore File"
 /* eslint-disable */
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Gulp
+# }}}
+# Gulp {{{
 # -----------------------------------------------------------------------------
 
 snippet gulp "Gulp task"
@@ -269,8 +279,8 @@ gulp.task('watch', () => gulp
 })
 endsnippet
 
-# -----------------------------------------------------------------------------
-# Misc
+# }}}
+# Misc {{{
 # -----------------------------------------------------------------------------
 
 snippet IFIE
@@ -286,3 +296,5 @@ endsnippet
 snippet timeout "Timeout function"
 setTimeout(function () {${0}}${2}, ${1:10})
 endsnippet
+
+# }}}
