@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Complete local and remote branches
+function _branch_complete () {
+  branches=`git branch -a --sort=-committerdate --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | sed "/HEAD.*/d" | sed "/\*.*/d" | uniq -u`
+  compadd `echo $branches | sed "s/ //g"`
+}
+
 function _gfeat () {
   local curcontext="$curcontext" state line
   typeset -A opt_args
@@ -155,6 +161,9 @@ function gitswitchbranch () {
   fi
 }
 
+compdef _branch_complete gitswitchbranch
+
+
 function sap () {
   stashes="$(git stash list 2>/dev/null)"
   if [[ ! -z "$stashes" ]]; then
@@ -242,10 +251,6 @@ function git_push () {
   fi
 }
 
-function _git_branch_delete_and_push () {
-  branches=`git branch -a --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | sed "/HEAD.*/d" | sed "/\*.*/d" | uniq -u`
-  compadd `echo $branches | sed "s/ //g"`
-}
 
 # [git_branch_delete_and_push]:
 # Deletes remote and local git branch
@@ -265,7 +270,7 @@ git_branch_delete_and_push () {
   done
 }
 
-compdef _git_branch_delete_and_push git_branch_delete_and_push
+compdef _branch_complete git_branch_delete_and_push
 
 # Change the current origin remote url
 function git-change-remote () {
