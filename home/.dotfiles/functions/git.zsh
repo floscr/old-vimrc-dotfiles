@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Complete local and remote branches
-function _branch_complete () {
+function _branch_complete() {
   branches=`git branch -a --sort=-committerdate --no-color | sed "s/\(remotes\/[^\/]*\/\)//g" | sed "/HEAD.*/d" | sed "/\*.*/d" | uniq -u`
   compadd `echo $branches | sed "s/ //g"`
 }
@@ -12,7 +12,7 @@ function gccd() {
   ccd "$@"
 }
 
-function _gfeat () {
+function _gfeat() {
   local curcontext="$curcontext" state line
   typeset -A opt_args
 
@@ -27,7 +27,7 @@ function _gfeat () {
   esac
 }
 
-function gfeat () {
+function gfeat() {
   if [[ $1 == "close" ]]; then
     if [[ $2 == "-" || -z $2 ]]; then
       branchToBeDeleted="$(git rev-parse --abbrev-ref -q HEAD)"
@@ -105,7 +105,7 @@ function gitexport() {
 }
 
 # Amend all changes to the last commit, if it has not been pushed yet
-function gam () {
+function gam() {
   CURRENT_COMMIT_SHA="$(git rev-parse HEAD)"
 
   # Failsafe when the last commit was already pushed
@@ -140,7 +140,7 @@ function gam () {
 # Switch to a branch
 # Create the branch automatically when trying to switch to a remote branch
 # and the local one does not exist yet
-function gitswitchbranch () {
+function gitswitchbranch() {
   # Show branch list if there were no input parameters
   if [[ -z "$@" ]]; then
     git branch
@@ -171,7 +171,7 @@ compdef _branch_complete gitswitchbranch
 
 # Stash all changes
 # when a stash exists, delete that stash and apply it to the HEAD
-function sap () {
+function sap() {
   stashes="$(git stash list 2>/dev/null)"
   if [[ ! -z "$stashes" ]]; then
     echo "Applying & Dropping Stash!"
@@ -185,7 +185,7 @@ function sap () {
 }
 
 # Check out the latest branch
-function glat () {
+function glat() {
   # Return branches sorted by commitdate and reduce the count to one
   # Samples local and remote branches
   # http://stackoverflow.com/a/5972362
@@ -194,32 +194,32 @@ function glat () {
 }
 
 # List worktree skipping files
-function skipped () {
+function skipped() {
   git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^[S]"
 }
 
 # List unchanged assumed files
-function assumed () {
+function assumed() {
   git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^[a-z]"
 }
 
 # Skip a file
-function skip () {
+function skip() {
   git update-index --skip-worktree "$@"
 }
 
 # Unskip a file
-function unskip () {
+function unskip() {
   git update-index --no-skip-worktree "$@"
 }
 
 # Assume a file
-function ass () {
+function ass() {
   assumefiles_from_file true
 }
 
 # UnAssume a file
-function unass () {
+function unass() {
   assumefiles_from_file false
 }
 
@@ -237,12 +237,12 @@ function clonecd {
 }
 
 # Go to the top level dir of the repository
-function groot () {
+function groot() {
   cd "$(git rev-parse --show-toplevel)"
 }
 
 # Delete local branch
-function gbd () {
+function gbd() {
   if [[ "$1" == "-" ]]; then
     git branch -D @{-1}
   else
@@ -251,7 +251,7 @@ function gbd () {
 }
 
 # Either push current branch or given branch
-function git_push () {
+function git_push() {
   if [[ -z "$@" ]]; then
     git push -u origin HEAD --tags
   elif [[ "$@" == "--all" || "$@" == "-a" ]]; then
@@ -280,13 +280,13 @@ git_branch_delete_and_push () {
 compdef _branch_complete git_branch_delete_and_push
 
 # Change the current origin remote url
-function git-change-remote () {
+function git-change-remote() {
   git remote remove origin
   git remote add origin "$@"
 }
 
 # Set the current or defined branch to the upstream
-function gset () {
+function gset() {
   if [[ -z $1 ]]; then
     branch=$(git rev-parse --abbrev-ref HEAD)
   else
@@ -296,13 +296,13 @@ function gset () {
 }
 
 # Reset and clean everything
-function grha () {
+function grha() {
   git reset --hard
   git clean -f -d
 }
 
 # Copy changed files between two Commit SHAs
-function gcopy () {
+function gcopy() {
   if [[ -z $@ ]]; then
     echo "gitcopy SHA-FROM SHA-TIL Destination"
     echo "Copy the changed files between two commits"
@@ -313,7 +313,7 @@ function gcopy () {
 
 # Commit all staged files
 # When no files are stages, commit all files
-function git_check_staged () {
+function git_check_staged() {
   staged_files="$(git diff --staged --name-only)"
 
   if [[ ! -z "$staged_files" ]] || [[ ! -z "$2" ]]; then

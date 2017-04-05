@@ -15,6 +15,6 @@ function server() {
 
 # Return the public ip
 # http://askubuntu.com/questions/95910/command-for-determining-my-public-ip
-function publicip () {
+function publicip() {
   curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
 }

@@ -4,7 +4,7 @@ function isac() {
   youtube-dl -f 18+140 "$@"
 }
 
-function youtube-mp3 () {
+function youtube-mp3() {
   if [[ -z "$@" ]]; then
     echo "Pass an youtube url!"
     exit 0

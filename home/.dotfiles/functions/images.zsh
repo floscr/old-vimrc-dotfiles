@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Convert psds in a folder to jpgs and save them to the Screens Folder
-function convert_psds () {
+function convert_psds() {
   if [[ ! -d Screens/ ]]; then
     mkdir Screens/
   fi
@@ -28,7 +28,7 @@ function convert_to_pdf() {
 
 }
 
-function andresize () {
+function andresize() {
 
     # Getting the res folder location from the private location.lst
     # Res folder saved und $res variable
