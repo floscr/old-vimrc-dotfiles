@@ -176,8 +176,8 @@ let g:python_host_prog = '/usr/bin/python'"}}}
 " To allow all local configurations for certain projects put them in
 " a whitelist.vim file in the current dir in this format:
 " let g:localvimrc_whitelist=['/home/user/project1/', '/opt/project2/', '/usr/local/projects/vim-[^/]*/']
-if filereadable('./whitelist.vim')
-  source whitelist.vim
+if filereadable(expand('~/.config/nvim/whitelist.vim'))
+  source ~/.config/nvim/whitelist.vim
 endif
 
 " }}}2
