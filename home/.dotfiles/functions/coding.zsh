@@ -146,3 +146,33 @@ function getkirby() {
   git clone --recursive https://github.com/getkirby/starterkit.git $dir
   cd $dir
 }
+
+# Opens a man page as a pdf in preview
+function pman() {
+  man -t $1 | open -f -a /Applications/Preview.app
+ }
+
+# List global installed packages
+# npm ls -g can be super slow so this is a workaround
+# Requires node to be installed via nvm
+#
+# The Official way, which is way to slow:
+# npm ls --depth=0 -g "$@" 2>/dev/null
+function npmls() {
+  # Workaround for a fast global package listing
+  ls -1 ~/.nvm/versions/node/$(node -v)/lib/node_modules
+}
+
+# [numhash]:
+# Create a numeric hash with x digits
+function numhash() {
+  if [[ -z $1 ]]; then
+    # If there is no parameter passed create a 32 character hash
+    local digit=32
+  else
+    local digit="$1"
+  fi
+
+  # Create a numeric x character long hash
+  cat /dev/urandom | env LC_CTYPE=C tr -dc '0-9' | fold -w $digit | head -n 1
+}
