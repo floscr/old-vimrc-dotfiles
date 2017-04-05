@@ -5,6 +5,7 @@
 SCRIPT_DIR=`dirname $(realpath $0)`
 
 . $SCRIPT_DIR/functions/coding.zsh
+. $SCRIPT_DIR/functions/navigation_and_files.zsh
 . $SCRIPT_DIR/functions/compression.zsh
 . $SCRIPT_DIR/functions/git.zsh
 . $SCRIPT_DIR/functions/helpers.zsh
