@@ -11,7 +11,7 @@ function vim_template() {
   if [[ -f .lvimrc ]]; then
     echo ".lvimrc exists in current path!"
   fi
-  cp ~/.config/nvim/templates/$0.vim .lvimrc
+  cp ~/.config/nvim/templates/$1.vim .lvimrc
 }
 compdef _vim_template vim_template
 
