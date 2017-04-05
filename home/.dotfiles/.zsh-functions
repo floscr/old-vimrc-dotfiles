@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Function bootstrap loader
+# Loads all needed functions for my setup
 
 . ./functions/coding.zsh
 . ./functions/compression.zsh
