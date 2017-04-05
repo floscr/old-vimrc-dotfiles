@@ -60,12 +60,14 @@ export DOTFILES_PLUGINS="$DOTFILES/plugins"
 export DOTFILES_SCRIPTS="$DOTFILES/scripts"
 export DOTFILES_TEMP="$DOTFILES/temp"
 
+# Set VIM as editor
 export GIT_EDITOR='nvim'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Hide commands from history with two spaces
 export HISTIGNORE='  *'
+
 # Grep Colors
 export GREP_OPTIONS='--color=always'
 export GREP_COLOR='1;35;40'
@@ -79,6 +81,9 @@ export GOPATH=$HOME/golang
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+
+# Enable a different cursor in NVIM in insert mode
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings
@@ -106,8 +111,10 @@ plugins=(git osx history-substring-search encode64 fasd laravel web-search)
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt
 DISABLE_AUTO_UPDATE=true
 
+# Load up oh-my-zsh
 . $ZSH/oh-my-zsh.sh
 
+# Add custom completions to oh-my-zsh
 fpath=($DOTFILES/functions/zsh-expansions /usr/local/share/zsh-completions $fpath)
 
 # show completion menu when number of options is at least 2
@@ -207,9 +214,7 @@ _group_lazy_load $HOME/.nvm/nvm.sh \
   vue \
   yarn
 
-# Old NVM Load
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
+# Init fasd aka z
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
   fasd --init auto posix-alias zsh-completions zsh-hook zsh-wcomp >| "$fasd_cache"
@@ -217,12 +222,8 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 
-# eval "$(fasd --init auto posix-alias zsh-hook)"
-
+# Init scmpuff
 eval "$(scmpuff init -s --aliases=false)"
-
-# Enable a different cursor in NVIM in insert mode
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 # Quickly Switch between vim and shell by hitting CTRL-Z
 fancy-ctrl-z () {
