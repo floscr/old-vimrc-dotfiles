@@ -1,10 +1,4 @@
-#!/bin/bash
-
-function _vim_template () {
-  # List all template files without extension
-  templates=`ls -1 ~/.config/nvim/templates | sed -e 's/\.vim$//'`
-  compadd `echo $templates | sed "s/ //g"`
-}
+#!/usr/bin/env bash
 
 # Copy template lvimrc from templates directory
 function vim_template() {
@@ -13,6 +7,13 @@ function vim_template() {
   fi
   cp ~/.config/nvim/templates/$1.vim .lvimrc
 }
+
+function _vim_template() {
+  # List all files in templates directory without .vim extension
+  templates=`ls -1 ~/.config/nvim/templates | sed -e 's/\.vim$//'`
+  compadd `echo $templates | sed "s/ //g"`
+}
+
 compdef _vim_template vim_template
 
 # Clone repo in my general repository directory
@@ -21,36 +22,8 @@ function gccd() {
   ccd "$@"
 }
 
-# Silent simple irb shortut
-function sirb() {
-  irb --simple-prompt --noecho
-}
-
-# List npm scripts from package json using jq tool
-function npm_scripts() {
-  # If jq doesnt exist install via brew
-  if ! _command_exists jq; then
-    echo "Installing jq via brew"
-    brew install jq
-  fi
-
-  # Exit if there is no package.json in the current directory
-  if [[ ! -f package.json ]]; then
-    echo "No package.json in the current directory"
-    exit
-  fi
-
-  cat package.json | jq '.scripts'
-}
-
-function vscode() {
-  VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args "$*";
-}
-
-# [slt]:
-# Quicky open sublime project in the current repository
-# Workaround for the non working sublime cli
-# alias subl="slt"
+# The sublime bin does not work on all of my systems
+# Workaround to fix this
 function slt() {
   # Check if the sublime cli is installed
   sublime_cli="subl"
