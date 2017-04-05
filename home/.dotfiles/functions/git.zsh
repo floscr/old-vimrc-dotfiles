@@ -12,7 +12,6 @@ function gccd() {
   ccd "$@"
 }
 
-
 function _gfeat () {
   local curcontext="$curcontext" state line
   typeset -A opt_args
@@ -43,11 +42,11 @@ function gfeat () {
 
 compdef _gfeat gfeat
 
+# Delete all branches that are merged in the current branch
 function delete_merged_git_branches() {
   # Remove already deleted branches on repo host
   git fetch --prune;
 
-  # Check if arguments were passed
   if [[ -z "$@" ]]; then
     echo "delete_merged_git_branches BRANCH_NAME"
     exit 0
@@ -70,6 +69,7 @@ function gini {
   fi
 }
 
+# Stage either all files or single files
 function git_add() {
   if [[ -z "$@" ]]; then
     git add --all :/
@@ -84,27 +84,27 @@ function git_add() {
 function gh() {
   giturl=$(git config --get remote.origin.url)
   if [ "$giturl" == "" ]
-    then
-     echo "Not a git repository or no remote.origin.url set"
-     exit 1;
+  then
+    echo "Not a git repository or no remote.origin.url set"
+    exit 1;
   fi
 
   giturl=${giturl/git\@github\.com\:/https://github.com/}
   giturl=${giturl/\.git/\/tree/}
   branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
-  branch="(unnamed branch)"     # detached HEAD
+    branch="(unnamed branch)"     # detached HEAD
   branch=${branch##refs/heads/}
   giturl=$giturl/tree/$branch
   open "$giturl"
 }
 
-# take this repo and copy it to somewhere else minus the .git stuff.
+# Copy the current directory somewhere else without the .git directory
 function gitexport() {
   mkdir -p "$1"
   git archive master | tar -x -C "$1"
 }
 
-# Add all files and ammend to last commit
+# Amend all changes to the last commit, if it has not been pushed yet
 function gam () {
   CURRENT_COMMIT_SHA="$(git rev-parse HEAD)"
 
@@ -137,10 +137,9 @@ function gam () {
   git commit --amend --no-edit "$msg"
 }
 
-# [bb]
-# git branch that creates a branch if it doesn't exist in the local
-# repo but does in the origin branch
-# note: gb is set by default for some reason
+# Switch to a branch
+# Create the branch automatically when trying to switch to a remote branch
+# and the local one does not exist yet
 function gitswitchbranch () {
   # Show branch list if there were no input parameters
   if [[ -z "$@" ]]; then
@@ -170,7 +169,8 @@ function gitswitchbranch () {
 
 compdef _branch_complete gitswitchbranch
 
-
+# Stash all changes
+# when a stash exists, delete that stash and apply it to the HEAD
 function sap () {
   stashes="$(git stash list 2>/dev/null)"
   if [[ ! -z "$stashes" ]]; then
@@ -203,42 +203,45 @@ function assumed () {
   git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^[a-z]"
 }
 
-# Assume a file
+# Skip a file
 function skip () {
   git update-index --skip-worktree "$@"
 }
 
+# Unskip a file
 function unskip () {
   git update-index --no-skip-worktree "$@"
 }
 
+# Assume a file
 function ass () {
   assumefiles_from_file true
 }
 
+# UnAssume a file
 function unass () {
   assumefiles_from_file false
 }
 
-function unassume () {
-    git update-index --no-assume-unchanged "$@"
+# Quickly clone a repo
+function clonecd {
+  url=$1;
+  # If there is no user input name the repo folder after the repo name
+  if [[ -z "$2" ]]; then
+    reponame=$(echo "$url" | awk -F/ '{print $NF}' | sed -e 's/.git$//');
+  else
+    reponame="$2"
+  fi
+  git clone --recursive "$url" "$reponame";
+  cd "$reponame";
 }
 
-function clonecd {
-    url=$1;
-    # If there is no user input name the repo folder after the repo name
-    if [[ -z "$2" ]]; then
-      reponame=$(echo "$url" | awk -F/ '{print $NF}' | sed -e 's/.git$//');
-    else
-      reponame="$2"
-    fi
-    git clone --recursive "$url" "$reponame";
-    cd "$reponame";
-}
+# Go to the top level dir of the repository
 function groot () {
   cd "$(git rev-parse --show-toplevel)"
 }
 
+# Delete local branch
 function gbd () {
   if [[ "$1" == "-" ]]; then
     git branch -D @{-1}
@@ -258,10 +261,7 @@ function git_push () {
   fi
 }
 
-
-# [git_branch_delete_and_push]:
-# Deletes remote and local git branch
-# @1: [branch]
+# Delete local and remote branch
 git_branch_delete_and_push () {
   if [[ -z "$@" ]]; then
     echo "tip [gbda]:"
@@ -281,16 +281,8 @@ compdef _branch_complete git_branch_delete_and_push
 
 # Change the current origin remote url
 function git-change-remote () {
- git remote remove origin
- git remote add origin "$@"
-}
-
-# Quickly go to various branches
-function master () {
-  gb master
-}
-function dev () {
-  gb dev
+  git remote remove origin
+  git remote add origin "$@"
 }
 
 # Bitbucket Sevices
@@ -324,73 +316,19 @@ function grha () {
   git clean -f -d
 }
 
+# Copy changed files between two Commit SHAs
 function gcopy () {
-
   if [[ -z $@ ]]; then
     echo "gitcopy SHA-FROM SHA-TIL Destination"
     echo "Copy the changed files between two commits"
     return
   fi
-
   rsync -R "$(git diff --name-only "$1" "$2")" "$3"
 }
 
-function gignore () {
-
-  if [[ -z $@ ]]; then
-    echo "Remove a file from a repository and write it to the .gitignore"
-    return
-  fi
-
-  git rm --cached "$1"
-  groot
-  echo -en "\n$1" >> .gitignore
-  cd -
-
-}
-
-function gup () {
-  git checkout "HEAD^"
-}
-
-function gashd () {
-  git stash apply
-  git stash drop
-}
-
-# Remove and ignore a file by it's file type (or just the specific file)
-function g_ignore_and_remove () {
-  if [[ -z "$@" ]]; then
-    echo "Remove and ignore a file by it's file type (or just the specific file)"
-    echo "git_remove_and_ignore \"file\""
-    return
-  fi
-  echo "$1" >> .gitignore
-  git rm --cached "$1"
-}
-
-function git_log_full_screen_no_pager() {
-  clear
-  git --no-pager log --oneline -n $(($(tput lines)/2)) --graph --all --decorate
-}
-function igl() {
-  groot # cd into git root dir
-  git_log_full_screen_no_pager
-  fswatch .git/refs/heads | (while read; do git_log_full_screen_no_pager; done)
-  cd -
-}
-
-# Rebase from current branch
-function grb () {
-  dst_branch="$(git rev-parse --abbrev-ref HEAD)"
-  git checkout "$1"
-  git rebase "$dst_branch"
-  git checkout "$dst_branch"
-}
-
+# Commit all staged files
+# When no files are stages, commit all files
 function git_check_staged () {
-
-  # Get th
   staged_files="$(git diff --staged --name-only)"
 
   if [[ ! -z "$staged_files" ]] || [[ ! -z "$2" ]]; then
@@ -398,5 +336,4 @@ function git_check_staged () {
   else
     git commit -am "$@"
   fi
-
 }
