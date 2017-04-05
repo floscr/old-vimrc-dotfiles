@@ -6,6 +6,13 @@ function _branch_complete () {
   compadd `echo $branches | sed "s/ //g"`
 }
 
+# Clone repo in my general repository directory
+function gccd() {
+  cd ~/Code/Repositories
+  ccd "$@"
+}
+
+
 function _gfeat () {
   local curcontext="$curcontext" state line
   typeset -A opt_args

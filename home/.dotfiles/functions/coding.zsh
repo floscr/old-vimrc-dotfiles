@@ -16,12 +16,6 @@ function _vim_template() {
 
 compdef _vim_template vim_template
 
-# Clone repo in my general repository directory
-function gccd() {
-  cd ~/Code/Repositories
-  ccd "$@"
-}
-
 # Quickly generate md5 hash
 function md5() {
   if [[ -z $@ ]]; then
