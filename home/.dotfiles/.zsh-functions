@@ -87,9 +87,8 @@ function npmls() {
 # [numhash]:
 # Create a numeric hash with x digits
 function numhash() {
-
-  # If there is no parameter passed create a 32 character hash
   if [[ -z $1 ]]; then
+    # If there is no parameter passed create a 32 character hash
     local digit=32
   else
     local digit="$1"
@@ -97,25 +96,4 @@ function numhash() {
 
   # Create a numeric x character long hash
   cat /dev/urandom | env LC_CTYPE=C tr -dc '0-9' | fold -w $digit | head -n 1
-}
-
-# [xhash]:
-# Create a numeric hash with x digits
-function xhash() {
-
-  # If there is no parameter passed create a 32 character hash
-  if [[ -z $1 ]]; then
-    local digit=32
-  else
-    local digit="$1"
-  fi
-
-  # Create a numeric x character long hash
-  cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w $digit | head -n 1
-}
-
-# Fix the asepsis control after updating
-function ds_store_update_cleaner () {
-  asepsisctl uninstall_wrapper
-  asepsisctl install_wrapper
 }
