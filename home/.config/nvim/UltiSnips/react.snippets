@@ -1,0 +1,20 @@
+extends javascript
+
+snippet rcc "React Class Based Component"
+import React, { PropTypes, Component } from 'react';
+
+class ${1:`!p snip.rv = snip.basename`} extends Component {
+
+  render() {
+    return (
+      ${0:<div />}
+    );
+  }
+}
+
+$1.propTypes = {
+
+};
+
+export default $1;
+endsnippet
