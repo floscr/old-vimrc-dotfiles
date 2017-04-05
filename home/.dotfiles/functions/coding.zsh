@@ -22,53 +22,6 @@ function gccd() {
   ccd "$@"
 }
 
-# The sublime bin does not work on all of my systems
-# Workaround to fix this
-function slt() {
-  # Check if the sublime cli is installed
-  sublime_cli="subl"
-  command -v $sublime_cli >/dev/null 2>&1 || {
-  echo >&2 "The $sublime_cli cli is not installed. Aborting"
-  return 1
-}
-
-# If there are arguments given, just open those in sublime and exit the script
-if [[ ! -z "$@" ]]; then
-  open -a "Sublime Text" "$@"
-  return 1
-fi
-
-# Check if sublime is in the process list
-# http://stackoverflow.com/questions/1821886/check-if-mac-process-is-running-using-bash-by-process-name
-sublime_is_running=$(ps aux | grep "Sublime Text" | wc -l)
-
-# Open sublime in the background if its not running
-if [[ ! $sublime_is_running -gt 1 ]]; then
-  subl --background
-  # Wait 0.1 second to circumvent sublime only opening the project file
-  sleep 0.1
-fi
-
-# Open sublime project file if there is one in the current directory
-project_in_current_dir=$(find . -maxdepth 1 -name '*.sublime-project' -print -quit)
-if [[ ! -z "$project_in_current_dir" ]]; then
-  open -a "Sublime Text" "$project_in_current_dir"
-  return 1
-fi
-
-# When in a git repository, check if there is a sublime project file at the root
-git_root=$(git rev-parse --show-toplevel 2> /dev/null)
-if [[ ! -z "$git_root" ]]; then
-  project_in_repo_root=$(find $git_root -maxdepth 1 -name '*.sublime-project' -print -quit)
-  if [[ ! -z "$project_in_repo_root" ]]; then
-    open "$project_in_repo_root"
-    return 1
-  fi
-fi
-
-open -a "Sublime Text" .
-}
-
 # Quickly generate md5 hash
 function md5() {
   if [[ -z $@ ]]; then
