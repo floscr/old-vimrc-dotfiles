@@ -3,13 +3,6 @@ Dotfiles
 
 My configuration files for vim, tmux and zsh.
 
-## Table of contents
-
-1. [ZSH Setup](./files/documents/zsh-setup.md)
-  + [Keyboard Shortcuts](./files/documents/zsh-setup.md#keyboard-shortcuts)
-
-## Installation
-
 ### Homesick
 
 [Homesick] is a ruby gem to manage your dotfiles.
@@ -20,3 +13,4 @@ homesick clone https://github.com/floscr/Dotfiles
 homesick symlink
 ```
 
+[Homesick]: https://github.com/technicalpickles/homesick
