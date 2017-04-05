@@ -2,11 +2,13 @@
 # Function bootstrap loader
 # Loads all needed functions for my setup
 
-. ./functions/coding.zsh
-. ./functions/compression.zsh
-. ./functions/git.zsh
-. ./functions/helpers.zsh
-. ./functions/images.zsh
-. ./functions/osx.zsh
-. ./functions/server.zsh
-. ./functions/video_and_audio.zsh
+SCRIPT_DIR=`dirname $(realpath $0)`
+
+. $SCRIPT_DIR/functions/coding.zsh
+. $SCRIPT_DIR/functions/compression.zsh
+. $SCRIPT_DIR/functions/git.zsh
+. $SCRIPT_DIR/functions/helpers.zsh
+. $SCRIPT_DIR/functions/images.zsh
+. $SCRIPT_DIR/functions/osx.zsh
+. $SCRIPT_DIR/functions/server.zsh
+. $SCRIPT_DIR/functions/video_and_audio.zsh
