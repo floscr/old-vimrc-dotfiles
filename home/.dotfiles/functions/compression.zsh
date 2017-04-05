@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Makes a zip archive without *DS_Store
 function winzip {

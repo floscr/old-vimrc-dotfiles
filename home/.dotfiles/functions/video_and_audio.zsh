@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# Download preset for binding of isaac youtube channel videos
 function isac() {
   youtube-dl -f 18+140 "$@"
 }
 
+# Download youtube clip as mp3
 function youtube-mp3() {
   if [[ -z "$@" ]]; then
     echo "Pass an youtube url!"

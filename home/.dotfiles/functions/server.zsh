@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# Return the local network ID
 function devip() {
   ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'
 }

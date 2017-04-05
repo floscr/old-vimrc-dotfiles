@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Rename files in current directory to lowercase filenames
 # http://stackoverflow.com/a/13051934
@@ -9,7 +9,6 @@ function rename_all_files_to_lowercase {
 }
 
 # Open current location or given file in finder/default app
-alias o="_open_location"
 function _open_location() {
   if [[ -z "$@" ]]; then
     open .
@@ -17,6 +16,7 @@ function _open_location() {
     open "$@"
   fi
 }
+alias o="_open_location"
 
 # Return octal file rights
 # http://askubuntu.com/questions/152001/how-can-i-get-octal-file-permissions-from-command-line

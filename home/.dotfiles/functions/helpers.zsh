@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Check if a command exists
 # Example
 # if _command_exists nvim; then echo 'Nvim exists!'; fi

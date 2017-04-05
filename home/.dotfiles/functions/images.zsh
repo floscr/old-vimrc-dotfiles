@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Convert psds in a folder to jpgs and save them to the Screens Folder
 function convert_psds() {
@@ -10,7 +10,7 @@ function convert_psds() {
   done
 }
 
-# Convert files from any format to a pdf
+# Convert all jpgs in current path to single pdf
 function convert_to_pdf() {
 
   if [[ -z "$@" ]]; then
@@ -28,8 +28,8 @@ function convert_to_pdf() {
 
 }
 
+# Resize icon for android
 function andresize() {
-
     # Getting the res folder location from the private location.lst
     # Res folder saved und $res variable
     source ~/Dotfiles/locations.lst
