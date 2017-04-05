@@ -73,12 +73,6 @@ function pman() {
   man -t $1 | open -f -a /Applications/Preview.app
  }
 
-# Opens man page in Sublime
-function sman() {
- man "${1}" | col -b | open -f -a /Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text
-}
-
-
 # List global installed packages
 # npm ls -g can be super slow so this is a workaround
 # Requires node to be installed via nvm
