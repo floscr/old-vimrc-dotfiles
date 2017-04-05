@@ -285,21 +285,6 @@ function git-change-remote () {
   git remote add origin "$@"
 }
 
-# Bitbucket Sevices
-# Has to have bitbucket CLI installed
-
-# Creates a bitbucket repo
-# bbcreate Repository-Name
-# $1: The name of the Repo, that you want to create
-function bbcreate () {
-  # Check if there is a name given for the repo
-  if [[ -z $1 ]]; then
-    echo "Please insert a name for the repository"
-    exit
-  fi
-  bb create_from_local --username artish --protocol ssh artish "$1"
-}
-
 # Set the current or defined branch to the upstream
 function gset () {
   if [[ -z $1 ]]; then
