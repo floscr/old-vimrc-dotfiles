@@ -18,6 +18,12 @@ if !has('nvim')
   Plug 'noahfrederick/vim-neovim-defaults'
 endif
 
+" }}}
+" VIM Extending Plugins {{{1
+
+" Load local .lvimrc
+Plug 'embear/vim-localvimrc'
+
 " Vim/TMUX seamless split navigation
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -28,7 +34,8 @@ Plug 'tpope/vim-repeat'
 " Used in:
 "   + Emmet - To load custom snippets.json
 Plug 'mattn/webapi-vim'
-" }}}
+
+" }}}1
 " Commands {{{
 " --------------------------------------------------------------------------
 
