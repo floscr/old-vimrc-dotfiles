@@ -8,6 +8,13 @@ extension="${filename##*.}"
 filename="${filename%.*}"
 endsnippet
 
+snippet z "If no arguments have been passed"
+if [[ -z $@ ]]; then
+  echo "$1"
+  return
+fi
+endsnippet
+
 snippet fun "function"
 function ${1:function_name}() {
   $0;
