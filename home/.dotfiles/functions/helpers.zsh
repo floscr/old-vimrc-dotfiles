@@ -16,6 +16,14 @@ _error_msg() {
   echo "${RED}$@${NC}"
 }
 
+# Echo yellow info message
+# _error_msg "Error message"
+_info_msg() {
+  YELLOW='\033[0;33m'
+  NC='\033[0m' # No Color
+  echo "${YELLOW}ℹ: $@${NC}"
+}
+
 # Lazyloading programs so they wont slow down shell startup
 # https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0
 _lazy_load() {
