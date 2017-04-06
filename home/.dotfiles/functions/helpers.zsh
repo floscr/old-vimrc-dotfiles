@@ -9,7 +9,7 @@ _command_exists() {
 }
 
 # Echo red error message
-# _error_msg "Error message"
+# _error_msg "My Message"
 _error_msg() {
   RED='\033[0;31m'
   NC='\033[0m' # No Color
@@ -17,11 +17,19 @@ _error_msg() {
 }
 
 # Echo yellow info message
-# _error_msg "Error message"
+# _info_msg "My Message"
 _info_msg() {
   YELLOW='\033[0;33m'
   NC='\033[0m' # No Color
   echo "${YELLOW}ℹ: $@${NC}"
+}
+
+# Echo green success message
+# _success_msg "My Message"
+_success_msg() {
+  YELLOW='\033[0;32m'
+  NC='\033[0m' # No Color
+  echo "${YELLOW}✔  $@${NC}"
 }
 
 # Lazyloading programs so they wont slow down shell startup
