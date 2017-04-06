@@ -85,3 +85,8 @@
   # feat = "!f() { _git_feature }; f"
 
   lasttag = describe --tags --abbrev=0
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
