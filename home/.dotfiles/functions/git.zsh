@@ -281,8 +281,14 @@ compdef _branch_complete git_branch_delete_and_push
 
 # Change the current origin remote url
 function git-change-remote() {
-  git remote remove origin
-  git remote add origin "$@"
+  if [[ -z $@ ]]; then
+    _info_msg "Change the current origin Remote"
+    echo "   git-change-remote https://my-new-url.git"
+    return
+  fi
+  git remote rm origin
+  git remote add origin "$1"
+  _success_msg "Changed origin remote to $1"
 }
 
 # Set the current or defined branch to the upstream
