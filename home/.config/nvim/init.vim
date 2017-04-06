@@ -194,6 +194,9 @@ endif
 " Use external Editorconfig
 let g:EditorConfig_core_mode = 'external_command'
 
+" Dont use editorconfig with fugitive or ssh
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
 " }}}2
 " Emmet {{{2
 " -----------------------------------------------------------------------------
