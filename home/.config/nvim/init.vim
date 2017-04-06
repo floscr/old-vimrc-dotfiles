@@ -98,18 +98,23 @@ endif
 " }}}
 " Hidden characters settings {{{2
 " -----------------------------------------------------------------------------
+
 set list
 set listchars=tab:⋅⋅,trail:●,extends:#,nbsp:.
 set showbreak=↪
+
 "}}}
 " Indentation"{{{2
 " -----------------------------------------------------------------------------
+
 set expandtab
-set softtabstop=2
+set softtabstop=2 " Indent using 2 spaces
+set tabstop=2     " Display tabs as 2 spaces
 set shiftwidth=2
 set noshiftround
-set autoindent " Automatic indentation
-set copyindent " Copy previous indetation on autoindenting
+set autoindent    " Automatic indentation
+set copyindent    " Copy previous indetation on autoindenting
+
 "}}}
 " Folding settings {{{2
 " -----------------------------------------------------------------------------
