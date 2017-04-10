@@ -3,6 +3,9 @@ Dotfiles
 
 My configuration files for vim, tmux and zsh.
 
+### Vim
+  + [Project specific Settings with .lvimrc](./files/documents/vim-docs.md)
+
 ### Homesick
 
 [Homesick] is a ruby gem to manage your dotfiles.
