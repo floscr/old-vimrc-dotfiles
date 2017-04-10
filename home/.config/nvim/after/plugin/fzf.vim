@@ -14,6 +14,10 @@ let g:fzf_colors = {
       \ 'marker':  ['fg', 'String'],
       \ }
 
+" Add preview window via coderay
+let g:fzf_files_options =
+      \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
 " Check if the current file is inside git root
 function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''
