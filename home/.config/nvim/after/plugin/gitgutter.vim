@@ -1,6 +1,6 @@
 " Next/Prev Git Hunk and center
-nnoremap <silent> [c <Esc>:GitGutterPrevHunk<CR>zMzvzz
-nnoremap <silent> ]c <Esc>:GitGutterNextHunk<CR>zMzvzz
+nnoremap <silent> [c <Esc>:GitGutterPrevHunk<CR>
+nnoremap <silent> ]c <Esc>:GitGutterNextHunk<CR>
 " nmap ghn <Plug>GitGutterNextHunk
 " nmap ghp <Plug>GitGutterPrevHunk
 
