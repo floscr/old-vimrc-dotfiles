@@ -12,15 +12,14 @@ set line-graphics     = utf-8
 set show-changes      = yes # Show changes commits in the main view?
 
 
-set mouse             = yes # Enable mouse support?
-set mouse-scroll      = 3 # Number of lines to scroll via the mouse
-
+set mouse = yes
+set mouse-scroll = 3
 
 #=============================================================================#
 # Views
 #=============================================================================#
 
-set main-view   = author:no line-number:no,interval=5 id:yes date:default author:abbreviated commit-title:yes,graph,refs,overflow=no
+set main-view   = author:no line-number:no,interval=5 id:yes date:default author:abbreviated commit-title:yes,graph:v1,refs,overflow=no
 set stash-view  = line-number:no,interval=5 id:no date:default author:full commit-title
 set tree-view   = line-number:no,interval=5 mode author:full file-size date:default id:no file-name
 set status-view = line-number:no,interval=5 status:short file-name
