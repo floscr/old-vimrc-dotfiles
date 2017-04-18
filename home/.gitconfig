@@ -3,10 +3,10 @@
 # -----------------------------------------------------------------------------
 
 [use]
-  name = Florian Schroedl Home
+  name = Florian Schroedl
 [user]
-  email = flo.schroedl@gmail.com
-  name = Florian Schroedl Home
+  email = hello@florianschroedl.com
+  name = Florian Schroedl
 [color]
   diff = auto
   status = auto
