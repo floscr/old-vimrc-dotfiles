@@ -245,10 +245,16 @@ Plug 'NLKNguyen/papercolor-theme'
 
 " Git commands
 Plug 'tpope/vim-fugitive'
+
 " Show git diff signs on column bar
 Plug 'airblade/vim-gitgutter'
+
 " Create file from the project root
 Plug 'dbakker/vim-projectroot'
+
+" Show diff preview when doing an interactive rebase
+Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
+
 " }}}
 " Notes {{{
 " --------------------------------------------------------------------------
