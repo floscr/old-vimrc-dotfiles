@@ -4,7 +4,7 @@ Dotfiles
 My configuration files for vim, tmux and zsh.
 
 ### Vim
-  + [Project specific Settings with .lvimrc](./files/documents/vim-docs.md)
+  + [Project specific Settings with .lvimrc](./files/documents/vim-docs.md#project-specific-settings-with-lvimrc)
 
 ### Homesick
 
