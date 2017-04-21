@@ -18,6 +18,9 @@ let g:fzf_colors = {
 let g:fzf_files_options =
       \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
+" autocmd! VimEnter * command! -nargs=* -complete=file Files :call fzf#vim#ag_raw(<q-args>, fzf#wrap('ag-raw',
+" \ {'options': "--preview 'coderay $(cut -d: -f1 <<< {}) 2> /dev/null | sed -n $(cut -d: -f2 <<< {}),\\$p | head -".&lines."'"}))
+
 " Check if the current file is inside git root
 function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''
