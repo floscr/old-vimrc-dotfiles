@@ -26,3 +26,9 @@ nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>
 " Splits
 nnoremap <silent> <leader>\| :vsplit<CR>
 nnoremap <silent> <leader>- :split<CR>
+
+" Prompt for a command to run
+map <Leader>xc :VimuxPromptCommand<CR>
+
+" Rerun last Vimux command
+map <Leader>xx :VimuxRunLastCommand<CR>

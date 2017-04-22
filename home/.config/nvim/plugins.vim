@@ -27,6 +27,9 @@ Plug 'embear/vim-localvimrc'
 " Vim/TMUX seamless split navigation
 Plug 'christoomey/vim-tmux-navigator'
 
+" Interact with tmux
+Plug 'benmills/vimux'
+
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
 
