@@ -20,4 +20,9 @@ nnoremap <leader><CR> :silent !open .<CR>
 " Toggle the error list
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 
+" Git Grep
 nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>
+
+" Splits
+nnoremap <silent> <leader>\| :vsplit<CR>
+nnoremap <silent> <leader>- :split<CR>
