@@ -72,6 +72,8 @@ Plug 'mbbill/undotree', {
       \   'UndotreeToggle', 'UndotreeFocus', 'UndotreeHide', 'UndotreeShow'
       \ ]}
 
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
 " Light Status bar
 Plug 'itchyny/lightline.vim'
 " Hybrid lightline theme
