@@ -38,6 +38,9 @@ Plug 'tpope/vim-repeat'
 "   + Emmet - To load custom snippets.json
 Plug 'mattn/webapi-vim'
 
+" Asynchronous Command Execution
+Plug 'skywind3000/asyncrun.vim'
+
 " }}}1
 " Commands {{{
 " --------------------------------------------------------------------------

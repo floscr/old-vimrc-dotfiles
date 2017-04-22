@@ -9,9 +9,9 @@ function! JsEslintFix ()
   " Otherwise use global eslint
   let eslint = filereadable(localEslintExecutable) ? localEslintExecutable : 'eslint'
 
-  execute('!' . eslint . ' --fix %')
+  " execute('silent !' . eslint . ' --fix %')
+  execute 'silent AsyncRun ' . eslint . ' --fix ' . expand('%') | execute 'AsyncRun sleep 1' | edit
 
-  echo 'Javascript cleaned up!'
 endfunc
 command! JsEslintFix call JsEslintFix()
 
