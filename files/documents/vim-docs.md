@@ -8,7 +8,24 @@ I use [embear/vim-localvimrc](https://github.com/embear/vim-localvimrc) to load 
 To create project specific settings or vim modifiactions in a specific project,
 create a `.lvimrc` file in your git root.
 
-Example for modifying default FZF behaviour:
+### Disable Warning
+
+To disable the ProjectFiles warning on the launch of the project,
+add your project to the `home/.config/nvim/whitelist.vim` like this:
+
+```vim
+" Whitelisted projects
+let g:localvimrc_whitelist=[
+      \ '/Users/my-user/Code/my-project',
+      \ ]
+
+" Allow non sandbox modifications
+let g:localvimrc_sandbox=0
+```
+
+### Examples
+
+#### Modifying default FZF behaviour
 
 ```vim
 " Exclude app/ directory from search
@@ -20,14 +37,9 @@ command! ProjectFiles execute s:gitFiles()
 
 This would ignore the `app` directory from your FZF Search.
 
-To disable the ProjectFiles warning on the launch of the project,
-add your project to the `home/.config/nvim/whitelist.vim` like this:
+#### Custom vimux actions
 
 ```vim
-" Whitelisted projects
-let g:localvimrc_whitelist=[
-      \ '/Users/my-user/Code/my-project',
-      \ ]
-" Allow non sandbox modifications
-let g:localvimrc_sandbox=0
+" Rerun last Vimux command
+map <Leader>xy :call VimuxRunCommand('echo "hello world"')<CR>
 ```
