@@ -28,6 +28,12 @@ function _gfeat() {
 }
 
 function gfeat() {
+  # Exit if the index is dirty
+  if [[ -n $(git status --porcelain) ]]; then
+    echo 'Your index is dirty, exiting…'
+    return
+  fi
+
   if [[ $1 == "close" ]]; then
     if [[ $2 == "-" || -z $2 ]]; then
       branchToBeDeleted="$(git rev-parse --abbrev-ref -q HEAD)"
