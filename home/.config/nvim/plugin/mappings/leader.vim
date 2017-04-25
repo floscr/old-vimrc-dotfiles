@@ -28,7 +28,7 @@ nnoremap <silent> <leader>\| :vsplit<CR>
 nnoremap <silent> <leader>- :split<CR>
 
 " Prompt for a command to run
-map <Leader>xc :VimuxPromptCommand<CR>
+map <Leader>xc :VimuxInterruptRunner<CR>:VimuxPromptCommand<CR>
 
 " Rerun last Vimux command
-map <Leader>xx :VimuxRunLastCommand<CR>
+map <Leader>xx :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
