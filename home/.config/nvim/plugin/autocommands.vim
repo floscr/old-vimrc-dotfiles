@@ -10,6 +10,9 @@ autocmd FileType help setlocal nospell
 " Fix ZSH filetype
 au BufRead,BufNewFile *.zsh* set filetype=zsh
 
+" rc files
+au BufRead,BufNewFile *.*rc set filetype=json
+
 au BufNewFile,BufRead *.txt set filetype=markdown
 
 " Config files
