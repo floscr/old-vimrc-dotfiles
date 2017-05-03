@@ -1,5 +1,8 @@
 call functions#plaintext()
 
+" Disable double space matching
+let g:lexima_enable_space_rules=0
+
 " Set word bold
 map <buffer> <C-b> ysaW*.
 
