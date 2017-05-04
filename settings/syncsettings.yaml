@@ -1,0 +1,6 @@
+symlink:
+
+hardlink:
+  - title: Karabiner
+    src: ./all/karabiner/private.xml
+    dst: ~/Library/Application Support/Karabiner/private.xml
