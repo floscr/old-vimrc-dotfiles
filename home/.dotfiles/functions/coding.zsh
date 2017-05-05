@@ -50,11 +50,6 @@ function ie6() {
   iectrl open --start "IE6 - WinXP" $@
 }
 
-# Open a chromium instance that allows cross site post from localhost
-function chromium_unsafe() {
-  /Applications/Chromium.app/Contents/MacOS/Chromium --args --disable-web-security --user-data-dir -–allow-file-access-from-files
-}
-
 # Download kirby cms, switch to latest branch and load all submodules
 function getkirby() {
   if [[ ! -z "$1" ]]; then

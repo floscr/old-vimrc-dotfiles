@@ -154,6 +154,8 @@ alias vr="vagrant reload"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+# Unsafe chromium instance that allows XHR and cross site scripting
+alias chromium_unsafe="chromium --args --disable-web-security --user-data-dir -–allow-file-access-from-files"
 
 # Start a new ssh connection that is kept alive for an hour
 alias ssh_keep_alive="ssh -o ServerAliveInterval=600"
