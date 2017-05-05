@@ -51,7 +51,7 @@ function ie6() {
 }
 
 # Open a chromium instance that allows cross site post from localhost
-function chromium() {
+function chromium_unsafe() {
   /Applications/Chromium.app/Contents/MacOS/Chromium --args --disable-web-security --user-data-dir -–allow-file-access-from-files
 }
 
