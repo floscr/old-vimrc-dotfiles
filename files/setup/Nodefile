@@ -7,7 +7,6 @@ eslint-config-standard
 eslint-plugin-promise
 eslint-plugin-standard
 eslint_d
-gulp
 iectrl
 lebab
 stylefmt
