@@ -1,6 +1,6 @@
-cordova
 babel-eslint
 browser-sync
+cordova
 dev-ip
 eslint
 eslint-config-standard
@@ -9,6 +9,7 @@ eslint-plugin-standard
 eslint_d
 iectrl
 lebab
+ramda-destruct
 stylefmt
 vue-cli
 yarn
