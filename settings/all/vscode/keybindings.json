@@ -1,0 +1,5 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    { "key": "g n", "command": "workbench.action.nextEditor", "when": "editorTextFocus" },
+    { "key": "g b", "command": "workbench.action.previousEditor", "when": "editorTextFocus" }
+]
