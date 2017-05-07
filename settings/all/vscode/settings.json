@@ -7,7 +7,8 @@
     "editor.fontFamily": "Inconsolata",
     "editor.lineHeight": 32,
 
-    "emmet.syntaxProfiles":{"javascript": "css"},
-
-    "workbenchntSize": 3.visible": false
+    "emmet.syntaxProfiles": {
+        "javascript": "css"
+    },
+    "workbench.colorTheme": "One Dark Pro"
 }
