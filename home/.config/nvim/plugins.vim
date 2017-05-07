@@ -266,7 +266,11 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 " }}}
 " Notes {{{
 " --------------------------------------------------------------------------
+
 Plug 'Alok/notational-fzf-vim'
+
+Plug 'vimwiki/vimwiki'
+
 " }}}
 " Debugging {{{
 " --------------------------------------------------------------------------
@@ -383,7 +387,7 @@ Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 " --------------------------------------------------------------------------
 
 " Extended Markdown
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'vimwiki'] }
 
 " Markdown folding
 Plug 'nelstrom/vim-markdown-folding'
