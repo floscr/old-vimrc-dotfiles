@@ -16,6 +16,22 @@ endfunc
 " http://stackoverflow.com/a/36777563/2298462
 command! ClearMessages for n in range(200) | echom "" | endfor
 
+function! SetColorScheme(colors)
+  if (a:colors == 'PaperLight')
+    " Set the colorscheme
+    colorscheme PaperColor
+    set background=light
+    " Set the lightline colors
+    let g:lightline.colorscheme = 'PaperColor'
+    call lightline#init()
+    call lightline#update()
+  else
+    source $MYVIMRC
+    call lightline#init()
+    call lightline#update()
+  endif
+endfunction
+
 " -----------------------------------------------------------------------------
 " Keyboard Trigger Enhancements
 " -----------------------------------------------------------------------------
