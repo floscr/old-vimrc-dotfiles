@@ -255,3 +255,11 @@ function! g:utils#stripTrailingWhitespaces() abort
   let @/ = l:lastSearch
   call cursor(l:line, l:col)
 endfunction
+
+function! CopyMatches(reg)
+	let hits = []
+	%s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+	let reg = empty(a:reg) ? '+' : a:reg
+	execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)<Paste>
