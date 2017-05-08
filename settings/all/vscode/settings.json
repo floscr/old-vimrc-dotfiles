@@ -1,32 +1,35 @@
 // Place your settings in this file to overwrite the default settings
 {
   // Theme
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Kimbie Dark",
   "workbench.iconTheme": "material-theme-icons",
   "editor.roundedSelection": false,
-
+  "vim.searchHighlightColor": "rgba(246, 200, 108, 0.3)",
   // Terminal
   "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.lineHeight": 1.8,
   "terminal.integrated.shell.osx": "/bin/zsh",
-
   // General
   "window.zoomLevel": 0,
   "editor.cursorBlinking": "solid",
-
   // Font
   "editor.fontFamily": "Fira Code",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
   "editor.lineHeight": 31,
   "editor.tabSize": 2,
-
+  "vim.easymotionMarkerFontSize": 14,
+  "vim.easymotionMarkerFontFamily": "Fira Code",
+  "vim.easymotionMarkerHeight": 20,
+  "vim.easymotionMarkerBackgroundColor": "#F6C86C",
+  "vim.easymotionMarkerForegroundColorOneChar": "#212C39",
+  "vim.easymotionMarkerForegroundColorTwoChar": "#212C39",
+  "vim.easymotionMarkerYOffset": 15,
   // Emmet
   "emmet.syntaxProfiles": {
     "javascript": "css"
   },
-
   // Vim Settings
   "vim.leader": "<space>",
   "vim.useCtrlKeys": true,
@@ -37,28 +40,24 @@
   // Vim Shortcuts
   "vim.otherModesKeyBindingsNonRecursive": [
     {
-      "before": [
-        "g",
-        "n"
-      ],
-      "after": [],
-      "commands": [
-        {
-          "command": "workbench.action.nextEditor"
-        }
-      ]
+      "before": ["g", "n"],
+      "commands": [{ "command": "workbench.action.nextEditor" }]
     },
     {
-      "before": [
-        "g",
-        "p"
-      ],
-      "after": [],
-      "commands": [
-        {
-          "command": "workbench.action.previousEditor"
-        }
-      ]
+      "before": ["g", "p"],
+      "commands": [{ "command": "workbench.action.previousEditor" }]
+    },
+    {
+      "before": ["g", "c"],
+      "after": ["g", "b"]
+    },
+    {
+      "before": ["g", "C"],
+      "after": ["g", "B"]
+    },
+    {
+      "before": ["z", "a"],
+      "commands": [{ "command": "dakara-foldplus.levelAtCursor" }]
     }
   ]
 }
