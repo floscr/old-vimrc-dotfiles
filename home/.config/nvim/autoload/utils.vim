@@ -135,27 +135,6 @@ endfunction
 command! LuckyLink call LuckyLink()
 
 " -----------------------------------------------------------------------------
-" Git
-" -----------------------------------------------------------------------------
-
-" Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
-if (has('nvim'))
-  " Async push / pull
-  function! s:Push()
-    function! s:JobHandler(job_id, data, event)
-      echo "Push done!"
-    endfunction
-    let s:callbacks = {
-    \ 'on_stdout': function('s:JobHandler'),
-    \ 'on_stderr': function('s:JobHandler'),
-    \ 'on_exit': function('s:JobHandler')
-    \ }
-    call jobstart(split(&shell) + split(&shellcmdflag) + ['{git push}'], s:callbacks)
-  endfunction
-  command! Push :call s:Push()
-endif
-
-" -----------------------------------------------------------------------------
 " OSX Commands
 " -----------------------------------------------------------------------------
 
