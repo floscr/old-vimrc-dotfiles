@@ -33,6 +33,9 @@ Plug 'benmills/vimux'
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
 
+" Lots of word manipulations plugins
+Plug 'tpope/vim-abolish'
+
 " Ability to load json files for vim
 " Used in:
 "   + Emmet - To load custom snippets.json
