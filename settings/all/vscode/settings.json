@@ -1,14 +1,42 @@
 // Place your settings in this file to overwrite the default settings
 {
     "window.zoomLevel": 0,
+    "editor.cursorBlinking": "solid",
 
     // Controls the font size in pixels.
-    "editor.fontSize": 16,
-    "editor.fontFamily": "Inconsolata",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 15,
+    "editor.fontLigatures": true,
     "editor.lineHeight": 32,
-
     "emmet.syntaxProfiles": {
         "javascript": "css"
     },
-    "workbench.colorTheme": "One Dark Pro"
-}
+    "workbench.colorTheme": "One Dark Pro",
+
+    "vim.leader": "<space>",
+    "vim.otherModesKeyBindingsNonRecursive": [
+      {
+        "before": [ "g", "n" ],
+        "after": [],
+        "commands": [
+          {
+            "command": "workbench.action.nextEditor"
+          }
+        ]
+      },
+      {
+        "before": [ "g", "p" ],
+        "after": [],
+        "commands": [
+          {
+            "command": "workbench.action.previousEditor"
+          }
+        ]
+      },
+    ],
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.incsearch": true,
+    "vim.easymotion": true
+  }
