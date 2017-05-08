@@ -397,7 +397,7 @@ Plug 'nelstrom/vim-markdown-folding'
 
 " Checklist toggle for markdown
 " with <leader>tt
-Plug 'jkramer/vim-checkbox', { 'for': ['markdown'] }
+Plug 'floscr/vim-checkbox', { 'for': ['markdown'] }
 
 " Does not work because vim-markdonw overrides syntax
 " Plug 'gonzaloserrano/vim-markdown-todo', { 'for': ['markdown'] }
