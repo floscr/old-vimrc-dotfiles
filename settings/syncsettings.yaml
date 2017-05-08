@@ -1,7 +1,7 @@
 symlink:
   - title: VSCode
-  - dst: ~/Library/Application\ Support/Code/User
-  - src:
+    dst: ~/Library/Application\ Support/Code/User
+    src:
       - ./all/vscode/keybindings.json
       - ./all/vscode/settings.json
       - ./all/vscode/snippets
