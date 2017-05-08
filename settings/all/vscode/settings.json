@@ -1,42 +1,64 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "window.zoomLevel": 0,
-    "editor.cursorBlinking": "solid",
+  // Theme
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-theme-icons",
+  "editor.roundedSelection": false,
 
-    // Controls the font size in pixels.
-    "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 15,
-    "editor.fontLigatures": true,
-    "editor.lineHeight": 32,
-    "emmet.syntaxProfiles": {
-        "javascript": "css"
+  // Terminal
+  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.lineHeight": 1.8,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+
+  // General
+  "window.zoomLevel": 0,
+  "editor.cursorBlinking": "solid",
+
+  // Font
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 31,
+  "editor.tabSize": 2,
+
+  // Emmet
+  "emmet.syntaxProfiles": {
+    "javascript": "css"
+  },
+
+  // Vim Settings
+  "vim.leader": "<space>",
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.incsearch": true,
+  "vim.easymotion": true,
+  // Vim Shortcuts
+  "vim.otherModesKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "g",
+        "n"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.nextEditor"
+        }
+      ]
     },
-    "workbench.colorTheme": "One Dark Pro",
-
-    "vim.leader": "<space>",
-    "vim.otherModesKeyBindingsNonRecursive": [
-      {
-        "before": [ "g", "n" ],
-        "after": [],
-        "commands": [
-          {
-            "command": "workbench.action.nextEditor"
-          }
-        ]
-      },
-      {
-        "before": [ "g", "p" ],
-        "after": [],
-        "commands": [
-          {
-            "command": "workbench.action.previousEditor"
-          }
-        ]
-      },
-    ],
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.incsearch": true,
-    "vim.easymotion": true
-  }
+    {
+      "before": [
+        "g",
+        "p"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.previousEditor"
+        }
+      ]
+    }
+  ]
+}
