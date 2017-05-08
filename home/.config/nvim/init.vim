@@ -274,6 +274,13 @@ let g:markdown_fold_style = 'nested'
 let g:markdown_fold_override_foldtext = 0
 
 " }}}2
+" AsyncRun {{{2
+
+" Enable Async Fugitive GPush/Gpull
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+" }}}2
+
 
 " }}}1
 
