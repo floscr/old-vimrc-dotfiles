@@ -46,6 +46,10 @@
       "commands": [{ "command": "workbench.action.nextEditor" }]
     },
     {
+      "before": ["g", "o"],
+      "commands": [{ "command": "workbench.action.closeOtherEditors" }]
+    },
+    {
       "before": ["g", "p"],
       "commands": [{ "command": "workbench.action.previousEditor" }]
     },
