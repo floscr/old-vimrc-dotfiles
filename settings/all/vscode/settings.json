@@ -1,7 +1,7 @@
 // Place your settings in this file to overwrite the default settings
 {
   // Theme
-  "workbench.colorTheme": "Kimbie Dark",
+  "workbench.colorTheme": "Material Theme",
   "workbench.iconTheme": "material-theme-icons",
   "editor.roundedSelection": false,
   "vim.searchHighlightColor": "rgba(246, 200, 108, 0.3)",
