@@ -5,6 +5,8 @@
   "workbench.iconTheme": "material-theme-icons",
   "editor.roundedSelection": false,
   "vim.searchHighlightColor": "rgba(246, 200, 108, 0.3)",
+  "guides.normal.color.dark": "rgba(255, 255, 255, 0.1)",
+  "guides.active.color.dark": "rgba(255, 255, 255, 0.15)",
   // Terminal
   "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 14,
