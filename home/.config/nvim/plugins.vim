@@ -191,7 +191,11 @@ Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 " --------------------------------------------------------------------------
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/deoplete.nvim'
+
+Plug 'floscr/tscompletejob' | Plug 'prabirshrestha/asyncomplete.vim'
+let g:tscompletejob_node_cmd = expand('~/.nvm/versions/node/v6.3.1/bin/node')
+let g:tscompletejob_autoload_filetypes = ['ts', 'tsx', 'javascript', 'js']
 
 " Snippet suport
 Plug 'SirVer/ultisnips'
