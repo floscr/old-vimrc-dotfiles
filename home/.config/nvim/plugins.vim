@@ -193,6 +193,10 @@ Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 " Autocomplete
 " Plug 'Shougo/deoplete.nvim'
 
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
+
 Plug 'floscr/tscompletejob' | Plug 'prabirshrestha/asyncomplete.vim'
 let g:tscompletejob_node_cmd = expand('~/.nvm/versions/node/v6.3.1/bin/node')
 let g:tscompletejob_autoload_filetypes = ['ts', 'tsx', 'javascript', 'js']
