@@ -37,6 +37,12 @@ tap 'neovim/neovim'
 # To support colorprofile conversion install imagemagick with little-cms
 brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
+# Fonts --------------------------------------------------------------------{{{
+
+brew cask install font-fira-code
+
+# }}}
+
 #===================================#
 # Tools
 #===================================#

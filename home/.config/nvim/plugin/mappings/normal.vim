@@ -55,6 +55,8 @@ nnoremap gF :e <cfile><cr>
 " fucntion () {...}
 nnoremap <silent> zfaf V$%$zf
 
+map <F5> :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
+
 " -----------------------------------------------------------------------------
 " Control Maps
 " -----------------------------------------------------------------------------

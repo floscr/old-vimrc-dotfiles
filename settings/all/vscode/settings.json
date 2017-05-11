@@ -1,0 +1,89 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "editor.snippetSuggestions": "top",
+  "extension-manager.extensions": [
+    "EditorConfig.EditorConfig",
+    "Equinusocio.vsc-material-theme",
+    "FallenMax.mithril-emmet",
+    "Rubymaniac.vscode-paste-and-indent",
+    "andys8.jest-snippets",
+    "anseki.vscode-color",
+    "christian-kohler.path-intellisense",
+    "dakara.dakara-foldplus",
+    "donjayamanne.githistory",
+    "felipecaputo.git-project-manager",
+    "jpoissonnier.vscode-styled-components",
+    "octref.vetur",
+    "spywhere.guides",
+    "tomphilbin.gruvbox-themes",
+    "vincaslt.highlight-matching-tag",
+    "vscodevim.vim",
+    "zhuangtongfa.Material-theme"
+  ],
+  // Theme
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-theme-icons",
+  "editor.roundedSelection": false,
+  "vim.searchHighlightColor": "rgba(246, 200, 108, 0.3)",
+  "guides.normal.color.dark": "rgba(255, 255, 255, 0.1)",
+  "guides.active.color.dark": "rgba(255, 255, 255, 0.15)",
+  // Terminal
+  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.lineHeight": 1.8,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  // General
+  "window.zoomLevel": 0,
+  "editor.cursorBlinking": "solid",
+  // Font
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 15,
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 31,
+  "editor.tabSize": 2,
+  "vim.easymotionMarkerFontSize": 14,
+  "vim.easymotionMarkerFontFamily": "Fira Code",
+  "vim.easymotionMarkerHeight": 20,
+  "vim.easymotionMarkerBackgroundColor": "#F6C86C",
+  "vim.easymotionMarkerForegroundColorOneChar": "#212C39",
+  "vim.easymotionMarkerForegroundColorTwoChar": "#212C39",
+  "vim.easymotionMarkerYOffset": 15,
+  // Emmet
+  "emmet.syntaxProfiles": {
+    "javascript": "css"
+  },
+  // Vim Settings
+  "vim.leader": "<space>",
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.incsearch": true,
+  "vim.easymotion": true,
+  // Vim Shortcuts
+  "vim.otherModesKeyBindingsNonRecursive": [
+    {
+      "before": ["g", "n"],
+      "commands": [{ "command": "workbench.action.nextEditor" }]
+    },
+    {
+      "before": ["g", "o"],
+      "commands": [{ "command": "workbench.action.closeOtherEditors" }]
+    },
+    {
+      "before": ["g", "p"],
+      "commands": [{ "command": "workbench.action.previousEditor" }]
+    },
+    {
+      "before": ["g", "c"],
+      "after": ["g", "b"]
+    },
+    {
+      "before": ["g", "C"],
+      "after": ["g", "B"]
+    },
+    {
+      "before": ["z", "a"],
+      "commands": [{ "command": "dakara-foldplus.levelAtCursor" }]
+    }
+  ]
+}

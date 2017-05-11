@@ -32,3 +32,5 @@ map <Leader>xc :VimuxInterruptRunner<CR>:VimuxPromptCommand<CR>
 
 " Rerun last Vimux command
 map <Leader>xx :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
+
+nnoremap <silent> <Leader>td :e ~/Dropbox/VimWiki/Tasks.md<CR>

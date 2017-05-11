@@ -33,6 +33,9 @@ Plug 'benmills/vimux'
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
 
+" Lots of word manipulations plugins
+Plug 'tpope/vim-abolish'
+
 " Ability to load json files for vim
 " Used in:
 "   + Emmet - To load custom snippets.json
@@ -266,7 +269,11 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 " }}}
 " Notes {{{
 " --------------------------------------------------------------------------
+
 Plug 'Alok/notational-fzf-vim'
+
+Plug 'vimwiki/vimwiki'
+
 " }}}
 " Debugging {{{
 " --------------------------------------------------------------------------
@@ -317,7 +324,7 @@ Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
 " --------------------------------------------------------------------------
 
 " Open files with 'gf' without extensions
-Plug 'moll/vim-node', { 'for': ['javascript', 'vue'] }
+Plug 'moll/vim-node'
 
  " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript'
@@ -383,14 +390,14 @@ Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 " --------------------------------------------------------------------------
 
 " Extended Markdown
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'vimwiki'] }
 
 " Markdown folding
 Plug 'nelstrom/vim-markdown-folding'
 
 " Checklist toggle for markdown
 " with <leader>tt
-Plug 'jkramer/vim-checkbox', { 'for': ['markdown'] }
+Plug 'floscr/vim-checkbox', { 'for': ['markdown'] }
 
 " Does not work because vim-markdonw overrides syntax
 " Plug 'gonzaloserrano/vim-markdown-todo', { 'for': ['markdown'] }

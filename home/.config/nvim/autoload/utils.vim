@@ -16,6 +16,22 @@ endfunc
 " http://stackoverflow.com/a/36777563/2298462
 command! ClearMessages for n in range(200) | echom "" | endfor
 
+function! SetColorScheme(colors)
+  if (a:colors == 'PaperLight')
+    " Set the colorscheme
+    colorscheme PaperColor
+    set background=light
+    " Set the lightline colors
+    let g:lightline.colorscheme = 'PaperColor'
+    call lightline#init()
+    call lightline#update()
+  else
+    source $MYVIMRC
+    call lightline#init()
+    call lightline#update()
+  endif
+endfunction
+
 " -----------------------------------------------------------------------------
 " Keyboard Trigger Enhancements
 " -----------------------------------------------------------------------------
@@ -119,27 +135,6 @@ endfunction
 command! LuckyLink call LuckyLink()
 
 " -----------------------------------------------------------------------------
-" Git
-" -----------------------------------------------------------------------------
-
-" Async git push, Fugitive Gpush doesnt work with neovim without dispatch...
-if (has('nvim'))
-  " Async push / pull
-  function! s:Push()
-    function! s:JobHandler(job_id, data, event)
-      echo "Push done!"
-    endfunction
-    let s:callbacks = {
-    \ 'on_stdout': function('s:JobHandler'),
-    \ 'on_stderr': function('s:JobHandler'),
-    \ 'on_exit': function('s:JobHandler')
-    \ }
-    call jobstart(split(&shell) + split(&shellcmdflag) + ['{git push}'], s:callbacks)
-  endfunction
-  command! Push :call s:Push()
-endif
-
-" -----------------------------------------------------------------------------
 " OSX Commands
 " -----------------------------------------------------------------------------
 
@@ -239,3 +234,11 @@ function! g:utils#stripTrailingWhitespaces() abort
   let @/ = l:lastSearch
   call cursor(l:line, l:col)
 endfunction
+
+function! CopyMatches(reg)
+	let hits = []
+	%s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+	let reg = empty(a:reg) ? '+' : a:reg
+	execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)<Paste>

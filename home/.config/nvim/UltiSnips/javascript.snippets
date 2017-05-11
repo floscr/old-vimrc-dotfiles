@@ -174,12 +174,16 @@ snippet !
 #!/usr/bin/env node
 endsnippet
 
+snippet px "Kill Process"
+process.exit()
+endsnippet
+
 # }}}
 # Promise {{{
 # -----------------------------------------------------------------------------
 
-snippet p "Promise"
-return Promise((resolve, reject) => {
+snippet P "Promise"
+return new Promise((resolve, reject) => {
   $0
 })
 endsnippet

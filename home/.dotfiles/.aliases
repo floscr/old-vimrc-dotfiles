@@ -1,22 +1,7 @@
-#!/bin/sh
-# -----------------------------------------------------------------------------
-# ALIASES
-# -----------------------------------------------------------------------------
-# Navigation
-# Application Shortcuts
-# GIT Alias
-# File & Folder Manipulation
-# Local Server
-# Internet & Server
-# System
-# Development
-# Etc
-# -----------------------------------------------------------------------------
-# Unused
-# -----------------------------------------------------------------------------
+#!/usr/bin/env bash
+# vim:foldmethod=marker
 
-# -----------------------------------------------------------------------------
-# Navigation
+# Navigations {{{
 # -----------------------------------------------------------------------------
 
 # FOLDER SHORTCUTS
@@ -48,8 +33,8 @@ alias la="/usr/local/bin/gls --color -lah --group-directories-first"
 alias lsd='ls -l | grep "^d"'
 alias ld='lsd'
 
-# -----------------------------------------------------------------------------
-# GIT Alias
+# }}}
+# GIT Alias {{{
 # -----------------------------------------------------------------------------
 
 # Git Shortcuts
@@ -126,8 +111,8 @@ alias gh2="git checkout \"HEAD~2\""
 alias gh3="git checkout \"HEAD~3\""
 alias gh4="git checkout \"HEAD~4\""
 
-# -----------------------------------------------------------------------------
-# File & Folder Manipulation
+# }}}
+# File & Folder Manipulation {{{
 # -----------------------------------------------------------------------------
 
 # Recursively delete `.DS_Store` files
@@ -136,8 +121,8 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 # File size
 alias fs="stat -f \"%z bytes\""
 
-# -----------------------------------------------------------------------------
-# Local Server
+# }}}
+# Local Server {{{
 # -----------------------------------------------------------------------------
 
 # Apache
@@ -162,17 +147,21 @@ alias vh="vagrant halt"
 alias vs="vagrant suspend"
 alias vr="vagrant reload"
 
-# -----------------------------------------------------------------------------
-# Internet & Server
+# }}}
+# Internet & Server {{{
 # -----------------------------------------------------------------------------
 
-alias chrome="/usr/bin/open -a /Applications/Google\ Chrome\ Canary.app --new"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+# Unsafe chromium instance that allows XHR and cross site scripting
+alias chromium_unsafe="chromium --args --disable-web-security --user-data-dir -–allow-file-access-from-files"
 
 # Start a new ssh connection that is kept alive for an hour
 alias ssh_keep_alive="ssh -o ServerAliveInterval=600"
 
-# -----------------------------------------------------------------------------
-# SYSTEM
+# }}}
+# System {{{
 # -----------------------------------------------------------------------------
 
 alias bootmac="sudo bless -mount /volumes/macintosh\ hd -setboot"
@@ -188,8 +177,8 @@ alias copydir='basename "$(pwd)" | pbcopy'
 #Empty the Mail folder which gets created from local woocommerce for instance
 alias emptymail="sudo rm -rf /private/var/mail/\$USER"
 
-# -----------------------------------------------------------------------------
-# Development
+# }}}
+# Development {{{
 # -----------------------------------------------------------------------------
 
 # Vim
@@ -222,8 +211,8 @@ alias notify='terminal-notifier -timeout 5 -message'
 # Open git repository in tower app, even when in subdir
 alias tower='gittower $(git rev-parse --show-toplevel)'
 
-# -----------------------------------------------------------------------------
-# Etc
+# }}}
+# Etc {{{
 # -----------------------------------------------------------------------------
 
 # Document Coverter
@@ -237,3 +226,5 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 alias tma="tmux switch-client -t"
 
 alias check_video_specs='bash ~/.dotfiles/scripts/check_video_specs.sh'
+
+# }}}
