@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>org.sil.ukelele.keyboardlayout.devkeyboardus</string>
+	<string>org.sil.ukelele.keyboardlayout.unsavedukeleledocument</string>
 	<key>CFBundleName</key>
-	<string>DEV Keyboard US</string>
+	<string>Unsaved Ukelele Document</string>
 	<key>CFBundleVersion</key>
 	<string></string>
-	<key>KLInfo_U.S. YZ Switched</key>
+	<key>KLInfo_US DEVELOPER</key>
 	<dict>
 		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout.devkeyboardus.u.s.yzswitched</string>
+		<string>org.sil.ukelele.keyboardlayout.unsavedukeleledocument.usdeveloper</string>
 		<key>TISIntendedLanguage</key>
 		<string>en</string>
 	</dict>
