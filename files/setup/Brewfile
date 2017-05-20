@@ -39,6 +39,7 @@ brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 # Applications -------------------------------------------------------------{{{
 
 brew cask install marked
+brew cask install appcleaner
 
 #}}}
 # Tools --------------------------------------------------------------------{{{
