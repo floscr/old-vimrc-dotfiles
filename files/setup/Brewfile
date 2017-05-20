@@ -40,6 +40,7 @@ brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
 brew cask install marked
 brew cask install appcleaner
+brew cask install hammerspoon
 
 #}}}
 # Tools --------------------------------------------------------------------{{{
