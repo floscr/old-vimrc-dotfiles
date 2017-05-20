@@ -35,6 +35,7 @@ set splitright       " Split new window right of current window
 set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
 set synmaxcol=1500   " Turn off syntax highlighting after X lines
 set updatetime=750   " make vim update more rapidly
+set mouse=a          " Mouse mode
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
