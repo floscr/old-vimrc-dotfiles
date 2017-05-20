@@ -24,8 +24,15 @@
             "name": "Default profile",
             "one_to_many_mappings": {},
             "selected": true,
+            "one_to_many_mappings": {
+              "caps_lock": [
+                "left_control",
+                "left_shift",
+                "left_option",
+                "left_command"
+              ]
+            },
             "simple_modifications": {
-                "caps_lock": "left_control",
                 "spacebar": "left_control"
             },
             "standalone_keys": {
