@@ -39,7 +39,7 @@ brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
 # Fonts --------------------------------------------------------------------{{{
 
-brew cask install font-fira-code
+brew cask install marked
 
 # }}}
 
