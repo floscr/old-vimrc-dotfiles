@@ -1,6 +1,4 @@
-#===================================#
-# Defaults
-#===================================#
+# General ------------------------------------------------------------------{{{
 
 # Git
 brew 'git'
@@ -37,15 +35,13 @@ tap 'neovim/neovim'
 # To support colorprofile conversion install imagemagick with little-cms
 brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
-# Fonts --------------------------------------------------------------------{{{
+#}}}
+# Applications -------------------------------------------------------------{{{
 
 brew cask install marked
 
-# }}}
-
-#===================================#
-# Tools
-#===================================#
+#}}}
+# Tools --------------------------------------------------------------------{{{
 
 # Z Alternative
 brew 'fasd'
@@ -69,25 +65,23 @@ brew 'moreutils'
 # Notifications
 brew 'terminal-notifier'
 
-#===================================#
-# Coding
-#===================================#
+#}}}
+# Coding -------------------------------------------------------------------{{{
 
 brew 'ctags'
 brew 'editorconfig'
+
+# JSON Parser
+brew 'jq'
 
 # HowDoI
 # If the installation for howdoi fails execute this cmd:
 # sudo chmod -R go+w /Library/Python/2.7/site-packages/
 brew install https://raw.github.com/gleitz/howdoi/master/howdoi.rb
 
-#===================================#
-# LINTERS
-#===================================#
-
+# Linters
 brew 'CMake'
 brew 'shellcheck'
 brew 'phplint'
 
-# Command line json parser
-brew 'jq'
+#}}}
