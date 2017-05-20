@@ -35,13 +35,36 @@ tap 'neovim/neovim'
 # To support colorprofile conversion install imagemagick with little-cms
 brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
+# Tool to manage the osx dock
+brew "dockutil"
+
+# Mac appstore command line tool
+brew "mas"
+
+# Neovim
+brew "neovim/neovim/neovim", args: ["HEAD"]
+
 #}}}
 # Applications -------------------------------------------------------------{{{
 
-brew cask install marked
-brew cask install appcleaner
-brew cask install hammerspoon
-
+cask "1password"
+cask "alfred"
+cask "appcleaner"
+cask "arduino"
+cask "bartender"
+cask "bettertouchtool"
+cask "default-folder-x"
+cask "dropbox"
+cask "google-chrome"
+cask "hammerspoon"
+cask "iterm2-beta"
+cask "iterm2-nightly"
+cask "karabiner-elements"
+cask "keyboard-maestro"
+cask "marked"
+cask "nvalt"
+cask "steam"
+cask "xtrafinder"
 #}}}
 # Tools --------------------------------------------------------------------{{{
 
@@ -85,5 +108,10 @@ brew install https://raw.github.com/gleitz/howdoi/master/howdoi.rb
 brew 'CMake'
 brew 'shellcheck'
 brew 'phplint'
+
+#}}}
+# Coding -------------------------------------------------------------------{{{
+
+mas "Moom", id: 419330170
 
 #}}}
