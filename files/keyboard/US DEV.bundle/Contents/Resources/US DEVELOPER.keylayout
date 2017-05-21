@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
-<!--Last edited by Ukelele version 3.2.5.180 on 2017-05-20 at 21:58 (GMT+2)-->
+<!--Last edited by Ukelele version 3.2.5.180 on 2017-05-21 at 12:02 (GMT+2)-->
 <keyboard group="0" id="11368" name="US DEVELOPER" maxout="1">
 	<layouts>
 		<layout first="0" last="17" mapSet="16c" modifiers="f4"/>
@@ -423,13 +423,14 @@
 			<key code="44" output="÷"/>
 			<key code="45" action="4"/>
 			<key code="46" output="µ"/>
-			<key code="47" output="≥"/>
+			<key code="47" output="…"/>
 			<key code="48" output="&#x0009;"/>
 			<key code="49" output=" "/>
 			<key code="50" action="1"/>
 			<key code="51" output="&#x0008;"/>
 			<key code="52" output="&#x0003;"/>
 			<key code="53" output="&#x001B;"/>
+			<key code="64" output=""/>
 			<key code="65" output="."/>
 			<key code="66" output="&#x001D;"/>
 			<key code="67" output="*"/>
@@ -441,6 +442,8 @@
 			<key code="76" output="&#x0003;"/>
 			<key code="77" output="&#x001E;"/>
 			<key code="78" output="-"/>
+			<key code="79" output=""/>
+			<key code="80" output=""/>
 			<key code="81" output="="/>
 			<key code="82" output="0"/>
 			<key code="83" output="1"/>
