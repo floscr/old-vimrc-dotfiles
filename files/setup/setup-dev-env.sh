@@ -17,4 +17,5 @@ fi
 if [ ! -d ~/.nvm ]; then
   _info_msg "Installing NVM…"
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+  nvm install 6.3.1
 fi
