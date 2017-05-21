@@ -78,6 +78,7 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 SCREENSHOTS_DIR=~/Pictures/Screenshots
 if [[ ! -d $SCREENSHOTS_DIR ]]; then
   mkdir -p $SCREENSHOTS_DIR
+  mkdir -p $SCREENSHOTS_DIR/.old
 fi
 defaults write com.apple.screencapture location $SCREENSHOTS_DIR
 
