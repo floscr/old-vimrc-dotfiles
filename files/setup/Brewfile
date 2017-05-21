@@ -67,6 +67,7 @@ cask "nvalt"
 cask "sequel-pro"
 cask "spotify"
 cask "steam"
+cask "trickster"
 cask "visual-studio-code"
 cask "xtrafinder"
 
