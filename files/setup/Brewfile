@@ -65,6 +65,7 @@ cask "keyboard-maestro"
 cask "marked"
 cask "nvalt"
 cask "steam"
+cask "visual-studio-code"
 cask "xtrafinder"
 
 #}}}
