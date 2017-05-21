@@ -57,6 +57,7 @@ cask "default-folder-x"
 cask "dropbox"
 cask "google-chrome"
 cask "hammerspoon"
+cask "hazel"
 cask "iterm2-beta"
 cask "iterm2-nightly"
 cask "karabiner-elements"
@@ -65,6 +66,7 @@ cask "marked"
 cask "nvalt"
 cask "steam"
 cask "xtrafinder"
+
 #}}}
 # Tools --------------------------------------------------------------------{{{
 
@@ -113,5 +115,6 @@ brew 'phplint'
 # Coding -------------------------------------------------------------------{{{
 
 mas "Moom", id: 419330170
+mas "Xcode", id: 497799835
 
 #}}}
