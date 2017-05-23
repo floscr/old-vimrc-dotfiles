@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
-<!--Last edited by Ukelele version 3.2.5.180 on 2017-05-21 at 12:02 (GMT+2)-->
-<keyboard group="0" id="11368" name="US DEVELOPER" maxout="1">
+<!--Last edited by Ukelele version 3.2.5.180 on 2017-05-23 at 14:07 (GMT+2)-->
+<keyboard group="126" id="-9481" name="US DEVELOPER" maxout="1">
 	<layouts>
 		<layout first="0" last="17" mapSet="16c" modifiers="f4"/>
 		<layout first="18" last="18" mapSet="984" modifiers="f4"/>
@@ -409,15 +409,15 @@
 			<key code="30" output="‘"/>
 			<key code="31" output="ø"/>
 			<key code="32" action="3"/>
-			<key code="33" output="“"/>
+			<key code="33" output="ü"/>
 			<key code="34" action="2"/>
 			<key code="35" output="π"/>
 			<key code="36" output="&#x000D;"/>
 			<key code="37" output="¬"/>
 			<key code="38" output="∆"/>
-			<key code="39" output="æ"/>
+			<key code="39" output="ä"/>
 			<key code="40" output="˚"/>
-			<key code="41" output="…"/>
+			<key code="41" output="ö"/>
 			<key code="42" output="«"/>
 			<key code="43" output="≤"/>
 			<key code="44" output="÷"/>
@@ -521,15 +521,15 @@
 			<key code="30" output="’"/>
 			<key code="31" output="Ø"/>
 			<key code="32" output="¨"/>
-			<key code="33" output="”"/>
+			<key code="33" output="Ü"/>
 			<key code="34" output="ˆ"/>
 			<key code="35" output="∏"/>
 			<key code="36" output="&#x000D;"/>
 			<key code="37" output="Ò"/>
 			<key code="38" output="Ô"/>
-			<key code="39" output="Æ"/>
+			<key code="39" output="Ä"/>
 			<key code="40" output=""/>
-			<key code="41" output="Ú"/>
+			<key code="41" output="Ö"/>
 			<key code="42" output="»"/>
 			<key code="43" output="¯"/>
 			<key code="44" output="¿"/>
@@ -542,6 +542,7 @@
 			<key code="51" output="&#x0008;"/>
 			<key code="52" output="&#x0003;"/>
 			<key code="53" output="&#x001B;"/>
+			<key code="64" output=""/>
 			<key code="65" output="."/>
 			<key code="66" output="*"/>
 			<key code="67" output="*"/>
@@ -553,6 +554,8 @@
 			<key code="76" output="&#x0003;"/>
 			<key code="77" output="/"/>
 			<key code="78" output="-"/>
+			<key code="79" output=""/>
+			<key code="80" output=""/>
 			<key code="81" output="="/>
 			<key code="82" output="0"/>
 			<key code="83" output="1"/>
