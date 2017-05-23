@@ -278,8 +278,6 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 " Notes {{{
 " --------------------------------------------------------------------------
 
-Plug 'Alok/notational-fzf-vim'
-
 Plug 'vimwiki/vimwiki'
 
 " }}}
