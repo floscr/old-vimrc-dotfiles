@@ -22,3 +22,6 @@ home/.config/ranger/tagged
 
 # NPM configstore
 home/.config/configstore
+
+# Etc
+home/.dotfiles/bin/arduino
