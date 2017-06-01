@@ -43,3 +43,13 @@ This would ignore the `app` directory from your FZF Search.
 " Rerun last Vimux command
 map <Leader>xy :call VimuxRunCommand('echo "hello world"')<CR>
 ```
+
+#### Set jsx filetype for React projects
+
+We dont want to load jsx on all filetypes, except in React projects.
+
+```vim
+au BufRead,BufNewFile *.js set filetype=javascript.jsx
+```
+
+**This needs sandbox mode to be disabled**
