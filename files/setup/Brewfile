@@ -44,6 +44,8 @@ brew "mas"
 # Neovim
 brew "neovim/neovim/neovim", args: ["HEAD"]
 
+brew 'reattach-to-user-namespace'
+
 #}}}
 # Applications -------------------------------------------------------------{{{
 
