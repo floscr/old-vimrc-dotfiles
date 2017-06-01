@@ -110,11 +110,6 @@ brew 'editorconfig'
 # JSON Parser
 brew 'jq'
 
-# HowDoI
-# If the installation for howdoi fails execute this cmd:
-# sudo chmod -R go+w /Library/Python/2.7/site-packages/
-brew install https://raw.github.com/gleitz/howdoi/master/howdoi.rb
-
 # Linters
 brew 'CMake'
 brew 'shellcheck'
