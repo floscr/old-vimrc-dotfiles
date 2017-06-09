@@ -182,7 +182,8 @@ Plug 'kana/vim-textobj-function'              " Function Text Object
 Plug 'kana/vim-textobj-entire'                " Entire Buffer ae
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
-Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
+Plug 'trungdq88/vim-textobj-xmlattr'          " XML Attribute Textobject X
+                                              " -> fork that supports jsx
 " Plug 'jasonlong/vim-textobj-css'            " CSS Class caf
 Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 
