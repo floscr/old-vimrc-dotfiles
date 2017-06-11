@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # -----------------------------------------------------------------------------
 # ZSHRC
 # -----------------------------------------------------------------------------
@@ -16,11 +16,16 @@
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
+# RVM
+export PATH=$HOME/.gem/bin:$PATH
+export PATH=$PATH:$HOME/.rvm/bin
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+
 # Mysql
 export PATH=/usr/local/mysql/bin:$PATH
 
 # Homebrew bins
-export PATH=/usr/local/bin:/usr/local/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # Default bins
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 # Ruby bins
