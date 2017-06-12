@@ -15,3 +15,5 @@ node_modules
 tags*
 .tags
 .lvimrc
+
+yarn.lock
