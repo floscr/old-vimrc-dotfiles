@@ -1,5 +1,7 @@
 // Place your settings in this file to overwrite the default settings
 {
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/local/bin/nvim",
   "editor.snippetSuggestions": "top",
   "extension-manager.extensions": [
     "EditorConfig.EditorConfig",
