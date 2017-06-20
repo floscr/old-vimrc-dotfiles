@@ -64,10 +64,16 @@ function ${1:myFunction} (${2:args}) {
 }
 endsnippet
 
-snippet vfun "Function Expression"
-var $1 = function ($2) {
+snippet "\bcf(un)?" "Function Expression" r
+const $1 = function ($2) {
 $0
 }
+endsnippet
+
+snippet r "Function return"
+return (
+$0
+);
 endsnippet
 
 snippet > "Arrow Function"
