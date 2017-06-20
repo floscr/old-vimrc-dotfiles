@@ -12,6 +12,11 @@ function gccd() {
   ccd "$@"
 }
 
+# Create a dated branch YY-MM-MyBranchName
+function gdbc() {
+  gbc $(date +%y-%m)-$1
+}
+
 function _gfeat() {
   local curcontext="$curcontext" state line
   typeset -A opt_args
