@@ -292,20 +292,20 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+" imap <c-space> <Plug>(asyncomplete_force_refresh)
 
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
+" call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+"     \ 'name': 'buffer',
+"     \ 'whitelist': ['*'],
+"     \ 'blacklist': ['go'],
+"     \ 'completor': function('asyncomplete#sources#buffer#completor'),
+"     \ }))
 
-call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
-    \ 'name': 'tscompletejob',
-    \ 'whitelist': ['typescript', 'javascript'],
-    \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
-    \ }))
+" call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
+"     \ 'name': 'tscompletejob',
+"     \ 'whitelist': ['typescript', 'javascript'],
+"     \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+"     \ }))
 
 " }}}1
 
