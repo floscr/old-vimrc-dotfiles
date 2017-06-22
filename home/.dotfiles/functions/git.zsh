@@ -6,6 +6,11 @@ function _branch_complete() {
   compadd `echo $branches | sed "s/ //g"`
 }
 
+# Open all staged files in vim
+function vim_staged_files() {
+  vim $(git status --porcelain | awk '{print $2}')
+}
+
 # Clone repo in my general repository directory
 function gccd() {
   cd ~/Code/Repositories
