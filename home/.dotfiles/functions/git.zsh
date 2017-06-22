@@ -13,8 +13,13 @@ function gccd() {
 }
 
 # Create a dated branch YY-MM-MyBranchName
-function gdbc() {
+function gbcd() {
   gbc $(date +%y-%m)-$1
+}
+
+# Push a dated branch to origin from the current branch
+function push_dated() {
+  git push -u origin $(git symbolic-ref --short HEAD):$(date +"%y-%m")-$(git symbolic-ref --short HEAD)
 }
 
 function _gfeat() {

@@ -3,6 +3,7 @@
   "editor.renderLineHighlight": "none",
   "vim.enableNeovim": true,
   "vim.neovimPath": "/usr/local/bin/nvim",
+  "workbench.editor.enablePreview": false,
   "editor.snippetSuggestions": "top",
   "extension-manager.extensions": [
     "EditorConfig.EditorConfig",
