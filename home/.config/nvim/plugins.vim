@@ -192,7 +192,7 @@ Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 " --------------------------------------------------------------------------
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 
 " Plug 'prabirshrestha/asyncomplete.vim'
