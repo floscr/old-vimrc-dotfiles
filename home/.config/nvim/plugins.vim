@@ -361,6 +361,8 @@ Plug 'maksimr/vim-jsbeautify', {
 " Use [[ to navigate between methods
 Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javascript.css'] }
 
+Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
+
 " }}}2
 " HTML / CSS {{{2
 " --------------------------------------------------------------------------
