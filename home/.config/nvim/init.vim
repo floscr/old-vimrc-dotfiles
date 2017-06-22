@@ -213,9 +213,9 @@ let g:user_emmet_leader_key='<C-e>'
 " ALE Linter {{{2
 " -----------------------------------------------------------------------------
 
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_text_changed = 0
+" let g:ale_lint_on_enter = 0
 " let g:ale_lint_delay = 500
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
