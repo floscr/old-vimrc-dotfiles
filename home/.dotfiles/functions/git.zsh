@@ -13,7 +13,7 @@ function gccd() {
 }
 
 # Create a dated branch YY-MM-MyBranchName
-function gdbc() {
+function gbcd() {
   gbc $(date +%y-%m)-$1
 }
 
