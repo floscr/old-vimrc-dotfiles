@@ -44,6 +44,8 @@ Plug 'mattn/webapi-vim'
 " Asynchronous Command Execution
 Plug 'skywind3000/asyncrun.vim'
 
+Plug 'tpope/vim-unimpaired'
+
 " }}}1
 " Commands {{{
 " --------------------------------------------------------------------------
