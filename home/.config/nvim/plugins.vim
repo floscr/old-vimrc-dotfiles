@@ -365,6 +365,16 @@ Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javas
 
 Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Plug 'mitermayer/vim-prettier', {
+"       \ 'do': 'yarn install',
+"       \ 'for': ['javascript', 'javascript.jsx', 'typescript', 'css', 'less', 'scss'] }
+"
+" let g:prettier#config#trailing_comma = 'none'
+" let g:prettier#config#print_width = 100
+" let g:prettier#config#tab_width = 4
+" let g:prettier#config#use_tabs = 'false'
+" let g:prettier#config#bracket_spacing = 'true'
+
 " }}}2
 " HTML / CSS {{{2
 " --------------------------------------------------------------------------
