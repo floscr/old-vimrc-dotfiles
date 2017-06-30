@@ -347,7 +347,7 @@ Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 " Plug 'flowtype/vim-flow'
 
 " Vue syntax highlighting
-Plug 'posva/vim-vue', { 'for': ['vue.html.javascript.css'] }
+Plug 'posva/vim-vue', { 'for': ['vue'] }
 
 " generates JSDoc block comments based on a function signature
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'vue.html.javascript.css'] }
