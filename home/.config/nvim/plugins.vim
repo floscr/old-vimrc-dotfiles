@@ -338,8 +338,6 @@ Plug 'moll/vim-node'
 
  " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript'
-" More javascript syntax highlighting
-Plug 'jelera/vim-javascript-syntax'
 
 " Expand JavaScript Parameter Omni Complete
 Plug 'othree/jspc.vim', { 'for': ['javascript'] }
