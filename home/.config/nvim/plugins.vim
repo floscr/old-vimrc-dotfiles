@@ -260,6 +260,7 @@ endif
 
 " Hybrid
 Plug 'floscr/vim-hybrid'
+Plug 'rakr/vim-one'
 Plug 'NLKNguyen/papercolor-theme'
 
 " }}}
