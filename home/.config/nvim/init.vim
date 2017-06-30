@@ -72,6 +72,24 @@ colorscheme hybrid
 " Fix the vertical split bar background color
 hi VertSplit guibg=#232C31
 
+" Terminal colors in pairs normal/bright
+let g:terminal_color_0  = '#18252C'
+let g:terminal_color_8  = '#66737D'
+let g:terminal_color_1  = '#E9636A'
+let g:terminal_color_9  = '#E9636A'
+let g:terminal_color_2  = '#9BC696'
+let g:terminal_color_10 = '#9BC696'
+let g:terminal_color_3  = '#F8C76C'
+let g:terminal_color_11 = '#F8C76C'
+let g:terminal_color_4  = '#699ACA'
+let g:terminal_color_12 = '#699ACA'
+let g:terminal_color_5  = '#C496C4'
+let g:terminal_color_13 = '#C496C4'
+let g:terminal_color_6  = '#63B2B2'
+let g:terminal_color_14 = '#63B2B2'
+let g:terminal_color_7  = '#FFFFFF'
+let g:terminal_color_15 = '#FFFFFF'
+
 "}}}2
 " Wrap Settings {{{2
 " -----------------------------------------------------------------------------
