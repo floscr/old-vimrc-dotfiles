@@ -284,6 +284,19 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 " --------------------------------------------------------------------------
 
 Plug 'vimwiki/vimwiki'
+" Use .markdown extension so vimwiki wont mess with other markdown files
+let g:vimwiki_list = [{
+      \ 'path': '~/Dropbox/VimWiki',
+      \ 'template_path': '~/Dropbox/VimWiki/template/',
+      \ 'template_default': 'default',
+      \ 'template_ext': '.tpl',
+      \ 'syntax': 'markdown',
+      \ 'ext': '.markdown',
+      \ 'custom_wiki2html': 'vimwiki_markdown',
+      \ }]
+
+let g:vimwiki_folding='expr'
+" let g:local_wiki.nested_syntaxes  = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'bash': 'sh', 'r': 'R', 'R': 'R', 'vim': 'vim', 'objc': 'objc', 'xml': 'html', 'html': 'html', 'jscript': 'javascript', 'javascript': 'javascript', 'css': 'css', 'ascript': 'applescript', 'mkd': 'markdown'}
 
 " }}}
 " Debugging {{{
@@ -412,14 +425,14 @@ Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 " --------------------------------------------------------------------------
 
 " Extended Markdown
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'vimwiki'] }
+Plug 'plasticboy/vim-markdown'
 
 " Markdown folding
 Plug 'nelstrom/vim-markdown-folding'
 
 " Checklist toggle for markdown
 " with <leader>tt
-Plug 'floscr/vim-checkbox', { 'for': ['markdown'] }
+" Plug 'floscr/vim-checkbox', { 'for': ['markdown'] }
 
 " Does not work because vim-markdonw overrides syntax
 " Plug 'gonzaloserrano/vim-markdown-todo', { 'for': ['markdown'] }
