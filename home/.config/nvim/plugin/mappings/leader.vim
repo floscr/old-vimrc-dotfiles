@@ -18,7 +18,7 @@ nmap <silent> <leader>ss :set spell!<CR>
 nmap <silent> <leader>we :e ~/Dropbox/VimWiki/todo/Einkaufsliste.markdown<CR>
 
 " Open Vim Notes
-nmap <silent> <leader>wv :e ~/Dropbox/VimWiki/todo/dotfiles/Vim.markdown<CR>
+nmap <silent> <leader>wf :e ~/Dropbox/VimWiki/todo/Workflows.markdown<CR>
 
 " Show current file in finder
 nnoremap <leader><CR> :silent execute('!open ' . expand('%:p:h'))<CR>
