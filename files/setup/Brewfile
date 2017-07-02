@@ -108,6 +108,7 @@ brew 'terminal-notifier'
 
 brew 'ctags'
 brew 'editorconfig'
+brew 'cheat'
 
 # JSON Parser
 brew 'jq'
@@ -118,7 +119,7 @@ brew 'shellcheck'
 brew 'phplint'
 
 #}}}
-# Coding -------------------------------------------------------------------{{{
+# AppStore -----------------------------------------------------------------{{{
 
 mas "Moom", id: 419330170
 mas "Xcode", id: 497799835
