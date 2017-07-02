@@ -94,6 +94,8 @@ export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 # Enable colors for cheat
 export CHEATCOLORS=true
 
+export CHEATPATH='~/Dropbox/Snippets'
+
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings
 # -----------------------------------------------------------------------------
