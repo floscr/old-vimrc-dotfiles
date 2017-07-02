@@ -14,8 +14,11 @@ defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationM
 # Finder                                                                       #
 # =============================================================================#
 
-# Show hidden files
+# Show hidden files in finder
 defaults write com.apple.finder AppleShowAllFiles true
+
+# Show hidden files in finder in open dialogs
+defaults write -g AppleShowAllFiles -bool true
 
 # Show File Extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
