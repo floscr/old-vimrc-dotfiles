@@ -285,18 +285,36 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 
 Plug 'vimwiki/vimwiki'
 " Use .markdown extension so vimwiki wont mess with other markdown files
-let g:vimwiki_list = [{
-      \ 'path': '~/Dropbox/VimWiki',
-      \ 'template_path': '~/Dropbox/VimWiki/template/',
-      \ 'template_default': 'default',
-      \ 'template_ext': '.tpl',
-      \ 'syntax': 'markdown',
-      \ 'ext': '.markdown',
-      \ 'custom_wiki2html': 'vimwiki_markdown',
-      \ }]
 
+let wiki = {}
+let wiki.path = '~/Dropbox/VimWiki'
+
+" Syntax
+let wiki.syntax = 'markdown'
+" Workaround - vimwiki messes up the markdown syntax...
+" So i chose the least commonly used extension for my vimwiki files
+let wiki.ext = '.markdown'
+
+" HTML exporting
+let wiki.template_path = '~/Dropbox/VimWiki/template/'
+let wiki.template_default = 'default'
+let wiki.template_ext = '.tpl'
+let wiki.custom_wiki2html = 'vimwiki_markdown'
+
+" Add all syntax filetypes you want highlighted in your vimwiki files here
+let wiki.nested_syntaxes = {
+      \ 'sh': 'sh',
+      \ 'bash': 'sh',
+      \ 'vim': 'vim',
+      \ 'javascript': 'javascript',
+      \ 'js': 'javascript',
+      \ }
+
+" Assign dictionary to settings
+let g:vimwiki_list = [wiki]
+
+" Enable folding
 let g:vimwiki_folding='expr'
-" let g:local_wiki.nested_syntaxes  = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'bash': 'sh', 'r': 'R', 'R': 'R', 'vim': 'vim', 'objc': 'objc', 'xml': 'html', 'html': 'html', 'jscript': 'javascript', 'javascript': 'javascript', 'css': 'css', 'ascript': 'applescript', 'mkd': 'markdown'}
 
 " }}}
 " Debugging {{{
