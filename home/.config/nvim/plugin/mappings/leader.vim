@@ -14,6 +14,9 @@ nnoremap <leader>v :VCoolor<CR>
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<CR>
 
+" Open Einkaufsliste
+nmap <silent> <leader>we :e ~/Dropbox/VimWiki/todo/Einkaufsliste.markdown<CR>
+
 " Show current file in finder
 nnoremap <leader><CR> :silent execute('!open ' . expand('%:p:h'))<CR>
 
