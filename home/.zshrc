@@ -91,6 +91,9 @@ export PATH=$PATH:$GOROOT/bin
 # Enable a different cursor in NVIM in insert mode
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+# Enable colors for cheat
+export CHEATCOLORS=true
+
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings
 # -----------------------------------------------------------------------------
