@@ -1,6 +1,4 @@
-#===================================#
-# Defaults
-#===================================#
+# General ------------------------------------------------------------------{{{
 
 # Git
 brew 'git'
@@ -37,15 +35,51 @@ tap 'neovim/neovim'
 # To support colorprofile conversion install imagemagick with little-cms
 brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
-# Fonts --------------------------------------------------------------------{{{
+# Tool to manage the osx dock
+brew "dockutil"
 
-brew cask install font-fira-code
+# Mac appstore command line tool
+brew "mas"
 
-# }}}
+# Neovim
+brew "neovim/neovim/neovim", args: ["HEAD"]
 
-#===================================#
-# Tools
-#===================================#
+brew 'reattach-to-user-namespace'
+
+#}}}
+# Applications -------------------------------------------------------------{{{
+
+cask "1password"
+cask "alfred"
+cask "appcleaner"
+cask "arduino"
+cask "bartender"
+cask "bettertouchtool"
+cask "boom"
+cask "default-folder-x"
+cask "dropbox"
+cask "fantastical"
+cask "google-chrome"
+cask "hammerspoon"
+cask "hazel"
+cask "iterm2-beta"
+cask "iterm2-nightly"
+cask "karabiner-elements"
+cask "keyboard-maestro"
+cask "mailmate"
+cask "marked"
+cask "mplayerx"
+cask "nvalt"
+cask "sequel-pro"
+cask "spotify"
+cask "steam"
+cask "trickster"
+cask "virtualbox"
+cask "visual-studio-code"
+cask "xtrafinder"
+
+#}}}
+# Tools --------------------------------------------------------------------{{{
 
 # Z Alternative
 brew 'fasd'
@@ -69,25 +103,24 @@ brew 'moreutils'
 # Notifications
 brew 'terminal-notifier'
 
-#===================================#
-# Coding
-#===================================#
+#}}}
+# Coding -------------------------------------------------------------------{{{
 
 brew 'ctags'
 brew 'editorconfig'
 
-# HowDoI
-# If the installation for howdoi fails execute this cmd:
-# sudo chmod -R go+w /Library/Python/2.7/site-packages/
-brew install https://raw.github.com/gleitz/howdoi/master/howdoi.rb
+# JSON Parser
+brew 'jq'
 
-#===================================#
-# LINTERS
-#===================================#
-
+# Linters
 brew 'CMake'
 brew 'shellcheck'
 brew 'phplint'
 
-# Command line json parser
-brew 'jq'
+#}}}
+# Coding -------------------------------------------------------------------{{{
+
+mas "Moom", id: 419330170
+mas "Xcode", id: 497799835
+
+#}}}

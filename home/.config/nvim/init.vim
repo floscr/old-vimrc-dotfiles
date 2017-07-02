@@ -18,7 +18,7 @@ source ~/.config/nvim/plugins.vim
 " Set leader to Space
 let g:mapleader="\<space>"
 
-set autochdir        " Set working dir to path of the current file
+" set autochdir        " Set working dir to path of the current file
 set hidden           " Enables to switch between unsaved buffers and keep undo history
 set lazyredraw       " Don't redraw while executing macros (better performance)
 set nojoinspaces     " No extra space when joining a line which ends with . ? !
@@ -35,6 +35,7 @@ set splitright       " Split new window right of current window
 set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
 set synmaxcol=1500   " Turn off syntax highlighting after X lines
 set updatetime=750   " make vim update more rapidly
+set mouse=a          " Mouse mode
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
@@ -70,6 +71,24 @@ colorscheme hybrid
 
 " Fix the vertical split bar background color
 hi VertSplit guibg=#232C31
+
+" Terminal colors in pairs normal/bright
+let g:terminal_color_0  = '#18252C'
+let g:terminal_color_8  = '#66737D'
+let g:terminal_color_1  = '#E9636A'
+let g:terminal_color_9  = '#E9636A'
+let g:terminal_color_2  = '#9BC696'
+let g:terminal_color_10 = '#9BC696'
+let g:terminal_color_3  = '#F8C76C'
+let g:terminal_color_11 = '#F8C76C'
+let g:terminal_color_4  = '#699ACA'
+let g:terminal_color_12 = '#699ACA'
+let g:terminal_color_5  = '#C496C4'
+let g:terminal_color_13 = '#C496C4'
+let g:terminal_color_6  = '#63B2B2'
+let g:terminal_color_14 = '#63B2B2'
+let g:terminal_color_7  = '#FFFFFF'
+let g:terminal_color_15 = '#FFFFFF'
 
 "}}}2
 " Wrap Settings {{{2
@@ -212,14 +231,21 @@ let g:user_emmet_leader_key='<C-e>'
 " ALE Linter {{{2
 " -----------------------------------------------------------------------------
 
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_text_changed = 0
+" let g:ale_lint_on_enter = 0
 " let g:ale_lint_delay = 500
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'html': [],
       \}
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = [
+      \ 'eslint',
+      \]
+
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '✔']
 
 " }}}2
 " GitGutter {{{2

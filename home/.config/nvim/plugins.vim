@@ -44,6 +44,8 @@ Plug 'mattn/webapi-vim'
 " Asynchronous Command Execution
 Plug 'skywind3000/asyncrun.vim'
 
+Plug 'tpope/vim-unimpaired'
+
 " }}}1
 " Commands {{{
 " --------------------------------------------------------------------------
@@ -182,7 +184,8 @@ Plug 'kana/vim-textobj-function'              " Function Text Object
 Plug 'kana/vim-textobj-entire'                " Entire Buffer ae
 Plug 'thinca/vim-textobj-function-javascript' " Function Text Object for JS
 Plug 'michaeljsmith/vim-indent-object'        " Indentation Text Object
-Plug 'whatyouhide/vim-textobj-xmlattr'        " XML Attribute Textobject X
+Plug 'trungdq88/vim-textobj-xmlattr'          " XML Attribute Textobject X
+                                              " -> fork that supports jsx
 " Plug 'jasonlong/vim-textobj-css'            " CSS Class caf
 Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 
@@ -191,7 +194,16 @@ Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 " --------------------------------------------------------------------------
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-buffer.vim'
+" Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
+
+" Plug 'floscr/tscompletejob' | Plug 'prabirshrestha/asyncomplete.vim'
+" let g:tscompletejob_node_cmd = expand('~/.nvm/versions/node/v6.10.3/bin/node')
+" let g:tscompletejob_autoload_filetypes = ['ts', 'tsx', 'javascript', 'js']
 
 " Snippet suport
 Plug 'SirVer/ultisnips'
@@ -248,6 +260,7 @@ endif
 
 " Hybrid
 Plug 'floscr/vim-hybrid'
+Plug 'rakr/vim-one'
 Plug 'NLKNguyen/papercolor-theme'
 
 " }}}
@@ -269,8 +282,6 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 " }}}
 " Notes {{{
 " --------------------------------------------------------------------------
-
-Plug 'Alok/notational-fzf-vim'
 
 Plug 'vimwiki/vimwiki'
 
@@ -328,8 +339,6 @@ Plug 'moll/vim-node'
 
  " Modern JS support (indent, syntax, etc)
 Plug 'pangloss/vim-javascript'
-" More javascript syntax highlighting
-Plug 'jelera/vim-javascript-syntax'
 
 " Expand JavaScript Parameter Omni Complete
 Plug 'othree/jspc.vim', { 'for': ['javascript'] }
@@ -338,7 +347,7 @@ Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 " Plug 'flowtype/vim-flow'
 
 " Vue syntax highlighting
-Plug 'posva/vim-vue', { 'for': ['vue.html.javascript.css'] }
+Plug 'posva/vim-vue', { 'for': ['vue'] }
 
 " generates JSDoc block comments based on a function signature
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'vue.html.javascript.css'] }
@@ -352,6 +361,18 @@ Plug 'maksimr/vim-jsbeautify', {
 " Advanced javascript motions
 " Use [[ to navigate between methods
 Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javascript.css'] }
+
+Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
+
+" Plug 'mitermayer/vim-prettier', {
+"       \ 'do': 'yarn install',
+"       \ 'for': ['javascript', 'javascript.jsx', 'typescript', 'css', 'less', 'scss'] }
+"
+" let g:prettier#config#trailing_comma = 'none'
+" let g:prettier#config#print_width = 100
+" let g:prettier#config#tab_width = 4
+" let g:prettier#config#use_tabs = 'false'
+" let g:prettier#config#bracket_spacing = 'true'
 
 " }}}2
 " HTML / CSS {{{2
@@ -370,8 +391,9 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue.html.javascript
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx', 'vim', 'vue.html.javascript.css'] }
 
 " React
-Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript.jsx'] }
-Plug 'fleischie/vim-styled-components', { 'for': ['javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript.jsx', 'javascript'] }
+let g:jsx_ext_required = 0
+" Plug 'fleischie/vim-styled-components', { 'for': ['javascript.jsx'] }
 
 " Show matching html tag
 Plug 'gregsexton/MatchTag', {

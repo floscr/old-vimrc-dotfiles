@@ -15,10 +15,12 @@ nnoremap <leader>v :VCoolor<CR>
 nmap <silent> <leader>ss :set spell!<CR>
 
 " Show current file in finder
-nnoremap <leader><CR> :silent !open .<CR>
+nnoremap <leader><CR> :silent execute('!open ' . expand('%:p:h'))<CR>
+
+nnoremap <silent> <leader>lt :ALEToggle<CR>
 
 " Toggle the error list
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+" nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 
 " Git Grep
 nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>

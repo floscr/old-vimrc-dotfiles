@@ -42,6 +42,7 @@ nnoremap <silent> <C-p> :ProjectFiles<CR>
 nnoremap <silent> <leader>h :History<CR>
 " Search open buffers
 nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <C-b> :Buffers<CR>
 " Search available commands
 nnoremap <silent> <leader>c :Commands<CR>
 " Search lines in all open buffers

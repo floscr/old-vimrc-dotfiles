@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # -----------------------------------------------------------------------------
 # ZSHRC
 # -----------------------------------------------------------------------------
@@ -13,14 +13,20 @@
 # Exports & PATH Variable
 # -----------------------------------------------------------------------------
 
+export PATH=$HOME/.gem/bin:$PATH
+
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
+
+# RVM
+export PATH=$PATH:$HOME/.rvm/bin
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # Mysql
 export PATH=/usr/local/mysql/bin:$PATH
 
 # Homebrew bins
-export PATH=/usr/local/bin:/usr/local/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # Default bins
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 # Ruby bins
@@ -106,6 +112,13 @@ ZSH_THEME="floscr"
 
 # ZSH PlUGINS
 plugins=(git osx history-substring-search encode64 fasd laravel web-search)
+
+# Lazy load zsh nvm plugin
+ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+if [[ -f "$ZSH_NVM_PLUGIN" ]]; then
+  export NVM_LAZY_LOAD=true
+  source ~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+fi
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt
@@ -196,23 +209,23 @@ source $DOTFILES/.zsh-functions        # Functions
 # -----------------------------------------------------------------------------
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-# Lazy load nvm, nvm gets lazy loaded when first executing a node task
-# This shaves of 0.64 seconds of startup time
-_group_lazy_load $HOME/.nvm/nvm.sh \
-  browser-sync \
-  cordova \
-  eslint \
-  eslint_d \
-  gulp \
-  iectrl \
-  lebab \
-  node \
-  npm \
-  npmls \
-  nvm \
-  vue \
-  yarn
+# export NVM_DIR="$HOME/.nvm"
+# # Lazy load nvm, nvm gets lazy loaded when first executing a node task
+# # This shaves of 0.64 seconds of startup time
+# _group_lazy_load $HOME/.nvm/nvm.sh \
+#   browser-sync \
+#   cordova \
+#   eslint \
+#   eslint_d \
+#   gulp \
+#   iectrl \
+#   lebab \
+#   node \
+#   npm \
+#   npmls \
+#   nvm \
+#   vue \
+#   yarn
 
 # Init fasd aka z
 fasd_cache="$HOME/.fasd-init-bash"

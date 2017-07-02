@@ -6,10 +6,25 @@ function _branch_complete() {
   compadd `echo $branches | sed "s/ //g"`
 }
 
+# Open all staged files in vim
+function vim_staged_files() {
+  vim $(git status --porcelain | awk '{print $2}')
+}
+
 # Clone repo in my general repository directory
 function gccd() {
   cd ~/Code/Repositories
   ccd "$@"
+}
+
+# Create a dated branch YY-MM-MyBranchName
+function gbcd() {
+  gbc $(date +%y-%m)-$1
+}
+
+# Push a dated branch to origin from the current branch
+function push_dated() {
+  git push -u origin $(git symbolic-ref --short HEAD):$(date +"%y-%m")-$(git symbolic-ref --short HEAD)
 }
 
 function _gfeat() {

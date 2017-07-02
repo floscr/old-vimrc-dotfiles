@@ -45,7 +45,7 @@ function! JsFixAll()
 endfunction
 command! JsFixAll call JsFixAll()
 
-autocmd FileType javascript,vue noremap <buffer>  <c-f> :call JsEslintFix()<cr>
+" autocmd FileType javascript,vue noremap <buffer><c-f> :call JsEslintFix()<cr>
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
 autocmd FileType html,twig,blade noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css,scss,sass noremap <buffer> <c-f> :call CSSBeautify()<cr>

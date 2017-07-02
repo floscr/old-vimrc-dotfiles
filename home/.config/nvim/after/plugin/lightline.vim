@@ -3,7 +3,7 @@ let g:lightline = {
       \ 'active': {
       \	'left': [
       \		[ 'mode' ],
-      \		[ 'fugitive', 'filename' ],
+      \		[ 'fugitive', 'filename', 'ale' ],
       \	]
       \ },
       \ 'component_function': {
@@ -17,10 +17,21 @@ let g:lightline = {
       \ 'component': {
       \	'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
+  \   'component_expand': {
+  \     'ale': 'ALEGetStatusLine'
+  \   },
+  \   'component_type': {
+  \     'ale': 'error'
+  \   },
       \ 'component_visible_condition': {
       \	'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ }
       \ }
+
+augroup LightLineOnALE
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END
 
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

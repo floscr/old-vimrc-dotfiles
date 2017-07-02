@@ -1,5 +1,9 @@
 // Place your settings in this file to overwrite the default settings
 {
+  "editor.renderLineHighlight": "none",
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "workbench.editor.enablePreview": false,
   "editor.snippetSuggestions": "top",
   "extension-manager.extensions": [
     "EditorConfig.EditorConfig",
@@ -37,9 +41,9 @@
   "editor.cursorBlinking": "solid",
   // Font
   "editor.fontFamily": "Fira Code",
-  "editor.fontSize": 15,
+  "editor.fontSize": 13,
   "editor.fontLigatures": true,
-  "editor.lineHeight": 31,
+  "editor.lineHeight": 26,
   "editor.tabSize": 2,
   "vim.easymotionMarkerFontSize": 14,
   "vim.easymotionMarkerFontFamily": "Fira Code",
@@ -59,12 +63,9 @@
   "vim.useSystemClipboard": true,
   "vim.incsearch": true,
   "vim.easymotion": true,
+  "vim.foldfix": true,
   // Vim Shortcuts
   "vim.otherModesKeyBindingsNonRecursive": [
-    {
-      "before": ["g", "n"],
-      "commands": [{ "command": "workbench.action.nextEditor" }]
-    },
     {
       "before": ["g", "o"],
       "commands": [{ "command": "workbench.action.closeOtherEditors" }]
@@ -82,8 +83,15 @@
       "after": ["g", "B"]
     },
     {
+      "before": ["g", "C"],
+      "after": ["g", "B"]
+    },
+    {
       "before": ["z", "a"],
       "commands": [{ "command": "dakara-foldplus.levelAtCursor" }]
     }
-  ]
+  ],
+  "editor.renderIndentGuides": false,
+  "vim.disableAnnoyingNeovimMessage": true,
+  "typescript.check.npmIsInstalled": false
 }
