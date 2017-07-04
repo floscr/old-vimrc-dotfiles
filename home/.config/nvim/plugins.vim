@@ -322,8 +322,17 @@ let g:vimwiki_folding='expr'
 " }}}
 " Debugging {{{
 " --------------------------------------------------------------------------
+
 " Debug startuptime with :StartupTime
 Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
+
+" }}}
+" For the LOLs {{{
+" --------------------------------------------------------------------------
+
+" Vim Breakout Game with your code lines
+" Plug 'johngrib/vim-game-code-break', { 'on': ['VimGameCodeBreak'] }
+
 " }}}
 
 " Syntax {{{1
