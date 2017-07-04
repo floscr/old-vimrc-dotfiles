@@ -119,6 +119,9 @@ Plug 'wincent/ferret'
 " <ciq> -> 'Text to be changed' || \"Text to be changed\"
 Plug 'kurkale6ka/vim-pairs'
 
+" Move by indent
+Plug 'jeetsukumaran/vim-indentwise'
+
 " Replace instance with Register with gr{motion}
 " <griq> -> Replace content in quotes with register
 Plug 'vim-scripts/ReplaceWithRegister'
