@@ -246,6 +246,7 @@ let g:ale_fixers.javascript = [
       \]
 
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '✔']
+let g:ale_warn_about_trailing_whitespace = 0
 
 " }}}2
 " GitGutter {{{2
