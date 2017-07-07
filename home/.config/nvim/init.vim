@@ -18,7 +18,7 @@ source ~/.config/nvim/plugins.vim
 " Set leader to Space
 let g:mapleader="\<space>"
 
-" set autochdir        " Set working dir to path of the current file
+set autochdir        " Set working dir to path of the current file
 set hidden           " Enables to switch between unsaved buffers and keep undo history
 set lazyredraw       " Don't redraw while executing macros (better performance)
 set nojoinspaces     " No extra space when joining a line which ends with . ? !
