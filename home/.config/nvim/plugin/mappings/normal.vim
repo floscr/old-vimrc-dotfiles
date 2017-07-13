@@ -41,7 +41,7 @@ nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
 
 " Enter command by pressing enter
-nnoremap <Cr> :
+" nnoremap <Cr> :
 
 " Create file under cursor
 nnoremap gF :e <cfile><cr>
