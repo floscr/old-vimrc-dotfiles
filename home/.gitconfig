@@ -47,6 +47,10 @@
 
   fl = log -u # Show the history of a file
 
+  # Git Stats
+  stats = shortlog -sn --all --no-merges
+  quarterstats = shortlog -sn --since='10 weeks' --until='2 weeks'
+
   # ---------------------------------------------------------------------------
   # Commit
   # ---------------------------------------------------------------------------
