@@ -44,9 +44,20 @@
 
   fl = log -u # Show the history of a file
 
-  # Git Stats
+  # Git Commit Stats
   stats = shortlog -sn --all --no-merges
   quarterstats = shortlog -sn --since='10 weeks' --until='2 weeks'
+
+  # 10 last worked on branches
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+
+  # What everybody has been doing in the last 2 weeks
+  overview = log --all --since='2 weeks' --oneline --no-merges
+
+  # What you have been doing in the last 2 weeks
+  recap = "!git log --all --oneline --no-merges --author=$(git config user.email)"
+
+  today = "! git log --since=00:00:00 --all --no-merges --oneline --author=$(git config user.email)"
 
   # }}}2
   # Commit {{{2
