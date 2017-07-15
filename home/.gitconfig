@@ -1,7 +1,4 @@
-# -----------------------------------------------------------------------------
-# Settings
-# -----------------------------------------------------------------------------
-
+# Settings {{{1
 [use]
   name = Florian Schroedl
 [user]
@@ -34,10 +31,10 @@
   tool = Kaleidoscope
 [push]
   default = matching
+# }}} 1
+# Aliases # {{{1
 [alias]
-  # ---------------------------------------------------------------------------
-  # Git log lists
-  # ---------------------------------------------------------------------------
+  # Git log / analytics {{{2
 
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graphgl # Short git message with date, commit author,
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # Log with the changed files
@@ -47,9 +44,23 @@
 
   fl = log -u # Show the history of a file
 
-  # ---------------------------------------------------------------------------
-  # Commit
-  # ---------------------------------------------------------------------------
+  # Git Commit Stats
+  stats = shortlog -sn --all --no-merges
+  quarterstats = shortlog -sn --since='10 weeks' --until='2 weeks'
+
+  # 10 last worked on branches
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+
+  # What everybody has been doing in the last 2 weeks
+  overview = log --all --since='2 weeks' --oneline --no-merges
+
+  # What you have been doing in the last 2 weeks
+  recap = "!git log --all --oneline --no-merges --author=$(git config user.email)"
+
+  today = "! git log --since=00:00:00 --all --no-merges --oneline --author=$(git config user.email)"
+
+  # }}}2
+  # Commit {{{2
 
   # Assume
   assume = update-index --assume-unchanged
@@ -64,29 +75,23 @@
   accept-ours = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --ours -- $files; git add -u $files; }; f"
   accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
 
-  # ---------------------------------------------------------------------------
-  # Fetch / Clone
-  # ---------------------------------------------------------------------------
+  # }}}2
+  # Fetch / Clone {{{2
 
   # Execute a fetch on all the remotes you have configured
   fetchall = !bash -c 'source /etc/bash_completion.d/git &amp;&amp; __git_remotes | xargs --no-run-if-empty -t -n1 git fetch $*' -
 
-  # ---------------------------------------------------------------------------
-  # Git Extras
-  # ---------------------------------------------------------------------------
+  # }}}2
+  # Git Extras {{{2
 
   feat = feature
 
-  # ---------------------------------------------------------------------------
-  # Etc
-  # ---------------------------------------------------------------------------
-
-  # Show last tag
-  # feat = "!f() { _git_feature }; f"
-
-  lasttag = describe --tags --abbrev=0
+  # }}}2
+# }}}1
+# LFS # {{{1
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+# }}}1
