@@ -348,32 +348,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'cespare/vim-toml', { 'for': [ 'toml' ] }
 
 " }}}2
-" PHP {{{2
-" --------------------------------------------------------------------------
-
-" Better PHP Syntax
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-" Better indentation support for PHP files with HTML
-Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
-
-" Twig support for vim
-Plug 'mitsuhiko/vim-jinja', { 'for': ['htmljinja'] }
-
-" Blade Syntax
-Plug 'jwalton512/vim-blade', { 'for': ['php', 'blade'] }
-
-" DocBlocks for PHP
-Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', { 'for': ['php'] }
-
-" Testing commands
-Plug 'janko-m/vim-test', { 'for': ['php', 'blade'] }
-
-Plug 'noahfrederick/vim-laravel', { 'for': ['php', 'blade'] }
-
-" Automatic namespace creation on <leader>u
-Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
-
-" }}}2
 " Javascript {{{2
 " --------------------------------------------------------------------------
 
