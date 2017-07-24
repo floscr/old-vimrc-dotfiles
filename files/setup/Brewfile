@@ -106,6 +106,9 @@ brew 'terminal-notifier'
 #}}}
 # Coding -------------------------------------------------------------------{{{
 
+# Golang
+brew 'go', args: ["cross-compile-common"]
+
 brew 'ctags'
 brew 'editorconfig'
 brew 'cheat'
