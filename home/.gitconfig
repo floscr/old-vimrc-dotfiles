@@ -87,6 +87,12 @@
   feat = feature
 
   # }}}2
+  # Vim {{{2
+
+  # Open files in index in vim
+  openChanged = "! nvim `git status -s -uno --porcelain |awk '{print $2}'`"
+
+  # }}}2
 # }}}1
 # LFS # {{{1
 [filter "lfs"]
