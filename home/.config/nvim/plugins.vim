@@ -44,6 +44,15 @@ Plug 'mattn/webapi-vim'
 " Asynchronous Command Execution
 Plug 'skywind3000/asyncrun.vim'
 
+" Pairs of handy bracket mappings {{{2
+" [ / ] + <Space> - Adds Newlines
+" [ / ] + x       - Encoding HTML Characters
+" [ / ] + u       - Encoding HTML Urls
+" [ / ] + f       - Next/Previous File in Dir
+" [ / ] + b       - Buffer switching
+" [ / ] + os      - Toggle Spelling
+" [ / ] + ox      - Toggle cursorLine
+" }}}2
 Plug 'tpope/vim-unimpaired'
 
 " }}}1
