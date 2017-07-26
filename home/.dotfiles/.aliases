@@ -187,9 +187,15 @@ alias v="nvim"
 
 alias art="php artisan"
 
+# yarn
 alias y="yarn"
 alias ya="yarn add"
 alias yad="yarn add --dev"
+
+# npm
+alias n="n"
+alias na="npm i -S"
+alias yad="npm i -D"
 alias run="npm run"
 
 # Use brew ctags
