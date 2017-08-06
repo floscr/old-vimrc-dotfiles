@@ -1,3 +1,4 @@
+# vim:foldmethod=marker
 # General ------------------------------------------------------------------{{{
 
 # Git
@@ -81,6 +82,8 @@ cask "xtrafinder"
 #}}}
 # Tools --------------------------------------------------------------------{{{
 
+# ls Alternative
+brew 'exa'
 # Z Alternative
 brew 'fasd'
 # Quickly copy ssh keys

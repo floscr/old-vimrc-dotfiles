@@ -3,6 +3,7 @@
 
 # Navigations {{{1
 # -----------------------------------------------------------------------------
+
 # FOLDER SHORTCUTS {{{2
 
 alias dek="cd ~/Desktop"
@@ -20,6 +21,12 @@ alias .....="cd ../../../.."
 alias ~="cd ~"
 alias -- -="cd -"
 
+# exa alias - Simpler replacement for ls
+# https://the.exa.website/
+# Already colorized, grouped and human readable file size
+# installable via brew
+alias e="exa"
+
 # }}}2
 # BROWSING {{{2
 
@@ -28,7 +35,7 @@ alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
 # }}}2
 ## LIST {{{2
 
-# List files in color with directories first
+# Lishttps://the.exa.website/t files in color with directories first
 alias l="/usr/local/bin/gls --color -lah --group-directories-first"
 
 # Same as l alias, but with hidden files
