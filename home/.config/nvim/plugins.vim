@@ -348,6 +348,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'cespare/vim-toml', { 'for': [ 'toml' ] }
 
 " }}}2
+" Haskell {{{2
+" --------------------------------------------------------------------------
+
+Plug 'neovimhaskell/haskell-vim', { 'for': [ 'haskell' ] }
+" Plug 'jaspervdj/stylish-haskell', { 'for': [ 'haskell' ] }
+" Plug 'commercialhaskell/hindent', { 'for': [ 'haskell' ] }
+
+" }}}2
 " Javascript {{{2
 " --------------------------------------------------------------------------
 
