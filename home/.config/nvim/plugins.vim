@@ -21,17 +21,11 @@ endif
 " }}}
 " VIM Extending Plugins {{{1
 
-" Load local .lvimrc
-Plug 'embear/vim-localvimrc'
-
 " Vim/TMUX seamless split navigation
 Plug 'christoomey/vim-tmux-navigator'
 
 " Interact with tmux
 Plug 'benmills/vimux'
-
-" More . repeat functionality
-Plug 'tpope/vim-repeat'
 
 " Lots of word manipulations plugins
 Plug 'tpope/vim-abolish'
@@ -44,7 +38,26 @@ Plug 'mattn/webapi-vim'
 " Asynchronous Command Execution
 Plug 'skywind3000/asyncrun.vim'
 
+" Pairs of handy bracket mappings {{{2
+" [ / ] + <Space> - Adds Newlines
+" [ / ] + x       - Encoding HTML Characters
+" [ / ] + u       - Encoding HTML Urls
+" [ / ] + f       - Next/Previous File in Dir
+" [ / ] + b       - Buffer switching
+" [ / ] + os      - Toggle Spelling
+" [ / ] + ox      - Toggle cursorLine
+" }}}2
 Plug 'tpope/vim-unimpaired'
+
+" More . repeat functionality
+Plug 'tpope/vim-repeat'
+
+" }}}1
+" Project Management {{{1
+" --------------------------------------------------------------------------
+
+" Load local .lvimrc
+Plug 'embear/vim-localvimrc'
 
 " }}}1
 " Commands {{{
