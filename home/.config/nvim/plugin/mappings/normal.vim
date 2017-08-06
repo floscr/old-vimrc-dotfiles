@@ -55,6 +55,9 @@ nnoremap gF :e <cfile><cr>
 " fucntion () {...}
 nnoremap <silent> zfaf V$%$zf
 
+" Close all folds except the current one
+nnoremap <silent> zO zMzo
+
 map <F5> :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
 
 " -----------------------------------------------------------------------------
