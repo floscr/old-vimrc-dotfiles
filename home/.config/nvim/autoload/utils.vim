@@ -1,5 +1,4 @@
-" -----------------------------------------------------------------------------
-" Logging
+" Logging {{{1
 " -----------------------------------------------------------------------------
 
 " Get the syntax highlighting group under the cursor
@@ -32,13 +31,13 @@ function! SetColorScheme(colors)
   endif
 endfunction
 
-" -----------------------------------------------------------------------------
-" Keyboard Trigger Enhancements
+"}}}1
+" Keyboard Trigger Enhancements {{{1
 " -----------------------------------------------------------------------------
 
 " Stop jump by paragraph ({}) poluting the jumplist
 function! s:KeepJumpsParagraphMotion(forward, count, visual)
-    execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
+  execute 'keepjumps normal! ' . (a:visual ? 'gv' : '') . a:count . (a:forward ? '}' : '{')
 endfunction
 
 " Fix Linting Error Locationlist jumping when there is only one error
@@ -75,8 +74,8 @@ function! g:utils#intelligentCycling() abort
   endif
 endfunction
 
-" -----------------------------------------------------------------------------
-" External Commands
+"}}}1
+" External Commands {{{1
 " -----------------------------------------------------------------------------
 
 " Redirect output of external command to a new empty buffer
@@ -106,8 +105,8 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
-" -----------------------------------------------------------------------------
-" LuckyLink
+"}}}1
+" LuckyLink {{{1
 " -----------------------------------------------------------------------------
 
 function! LuckyLink()
@@ -134,8 +133,8 @@ function! LuckyLink()
 endfunction
 command! LuckyLink call LuckyLink()
 
-" -----------------------------------------------------------------------------
-" OSX Commands
+"}}}1
+" OSX Commands {{{1
 " -----------------------------------------------------------------------------
 
 " Open curent buffer with marked.app
@@ -144,8 +143,8 @@ function! OpenWithMarkedApp()
 endfunction
 command! Marked call OpenWithMarkedApp()
 
-" -----------------------------------------------------------------------------
-" Tab Completion & Emmet
+"}}}1
+" Tab Completion & Emmet {{{1
 " -----------------------------------------------------------------------------
 
 " Allowed html tags to expand on tab
@@ -189,23 +188,23 @@ function! g:utils#tabComplete()
   if pumvisible()
     return "\<C-n>"
 
-  " In html or css expand emmet abbreviation
+    " In html or css expand emmet abbreviation
   elseif &filetype =~ 'html\|css' && IsEmmetExpandable()
     return "\<plug>(emmet-expand-abbr)"
 
-  " When a white space character is before the cursor, do a tab indent
+    " When a white space character is before the cursor, do a tab indent
   elseif !s:currentLine || getline('.')[s:currentLine - 1] !~# '\k'
     return "\<TAB>"
 
-  " Trigger word complete
+    " Trigger word complete
   else
     return "\<C-n>"
 
   endif
 endfunction
 
-" -----------------------------------------------------------------------------
-" Indentation
+"}}}1
+" Indentation {{{1
 " -----------------------------------------------------------------------------
 
 " Reset tabs to 4 spaces
