@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# Download youtbe video and notify
+alias y='__youtube_dl_notify'
+function __youtube_dl_notify() {
+  youtube-dl $@
+  title="$(youtube-dl --get-title $@)"
+  terminal-notifier \
+    -title "Video Downloaded" \
+    -message "$title" \
+    -sound Submarine
+}
+
 # Download preset for binding of isaac youtube channel videos
 function isac() {
   youtube-dl -f 18+140 "$@"
