@@ -40,6 +40,9 @@ nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
 nnoremap ]q :cn<CR>
 nnoremap [q :cp<CR>
 
+" Open alternate contorller/component
+nnoremap ]1 :silent OpenAlternateControlller<CR>
+
 " Enter command by pressing enter
 " nnoremap <Cr> :
 

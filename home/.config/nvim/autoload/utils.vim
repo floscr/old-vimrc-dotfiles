@@ -235,9 +235,25 @@ function! g:utils#stripTrailingWhitespaces() abort
 endfunction
 
 function! CopyMatches(reg)
-	let hits = []
-	%s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
-	let reg = empty(a:reg) ? '+' : a:reg
-	execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)<Paste>
+
+" }}}1
+" Work {{{1
+" -----------------------------------------------------------------------------
+
+function! OpenAlternateControlller()
+  let s:currentFilePath = expand('%:t')
+  if s:currentFilePath == 'controller.js'
+    execute('e %:p:h/component.js')
+  elseif s:currentFilePath == 'component.js'
+    execute('e %:p:h/controller.js')
+  endif
+endfunction
+command! OpenAlternateControlller call OpenAlternateControlller()
+
+" }}}1
