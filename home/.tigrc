@@ -1,29 +1,52 @@
-#=============================================================================#
-# Basic Config
-#=============================================================================#
+# Basic Config {{{
+# -----------------------------------------------------------------------------
 
 set vertical-split    = no
 set tab-size          = 4
 set horizontal-scroll = 33%
-set wrap-lines        = yes # Wrap long lines in pager views?
+set wrap-lines        = yes
 
 set git-colors        = yes
 set line-graphics     = utf-8
-set show-changes      = yes # Show changes commits in the main view?
+set show-changes      = yes # Show changes commits in the main view
 
 
 set mouse = yes
 set mouse-scroll = 3
 
-#=============================================================================#
-# Views
-#=============================================================================#
+# }}}
+# Views {{{
+# -----------------------------------------------------------------------------
 
-set main-view   = author:no line-number:no,interval=5 id:yes date:relative author:abbreviated commit-title:yes,graph:v1,refs,overflow=no
-set stash-view  = line-number:no,interval=5 id:no date:default author:full commit-title
-set tree-view   = line-number:no,interval=5 mode author:full file-size date:default id:no file-name
-set status-view = line-number:no,interval=5 status:short file-name
+set main-view = \
+  author:no \
+  line-number:no,interval=5 \
+  id:yes \
+  date:relative \
+  author:abbreviated \
+  commit-title:yes,graph:v1,refs,overflow=no
 
-# set main-view-date = custom
+set stash-view = \
+  line-number:no,interval=5 \
+  id:no \
+  date:default \
+  author:full commit-title
 
-set diff-view   = line-number:no,interval=5 text:yes,commit-title-overflow=no
+set tree-view = \
+  line-number:no,interval=5 \
+  mode \
+  author:full \
+  file-size \
+  date:default id:no file-name
+
+set status-view = \
+  line-number:no,interval=5 \
+  status:short \
+  file-name
+
+set diff-view = \
+  line-number:no,interval=5 \
+  text:yes,commit-title-overflow=no
+
+# \
+# }}}
