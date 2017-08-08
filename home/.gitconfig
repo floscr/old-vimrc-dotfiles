@@ -85,6 +85,7 @@
   # Git Extras {{{2
 
   feat = feature
+  set-url = remote set-url origin
 
   # }}}2
   # Vim {{{2

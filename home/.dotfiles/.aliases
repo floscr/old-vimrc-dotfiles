@@ -209,6 +209,7 @@ alias yad="yarn add --dev"
 # npm
 alias n="n"
 alias na="npm i -S"
+alias nad="npm i -S"
 alias yad="npm i -D"
 alias run="npm run"
 
