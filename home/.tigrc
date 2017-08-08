@@ -10,7 +10,6 @@ set git-colors        = yes
 set line-graphics     = utf-8
 set show-changes      = yes # Show changes commits in the main view
 
-
 set mouse = yes
 set mouse-scroll = 3
 
@@ -48,5 +47,16 @@ set diff-view = \
   line-number:no,interval=5 \
   text:yes,commit-title-overflow=no
 
-# \
+# }}}
+# Views {{{
+# -----------------------------------------------------------------------------
+
+# Vim Key bindings
+bind generic g  none
+bind generic gg move-first-line
+bind generic gn view-next
+
+bind main    G move-last-line
+bind generic G move-last-line
+
 # }}}
