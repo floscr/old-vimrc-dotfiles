@@ -368,6 +368,10 @@ Plug 'cespare/vim-toml', { 'for': [ 'toml' ] }
 " --------------------------------------------------------------------------
 
 Plug 'neovimhaskell/haskell-vim', { 'for': [ 'haskell' ] }
+" Completion Plugin
+Plug 'eagletmt/neco-ghc', { 'for': [ 'haskell' ] }
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " Plug 'jaspervdj/stylish-haskell', { 'for': [ 'haskell' ] }
 " Plug 'commercialhaskell/hindent', { 'for': [ 'haskell' ] }
 
