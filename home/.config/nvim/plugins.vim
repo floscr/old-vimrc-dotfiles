@@ -295,6 +295,9 @@ Plug 'dbakker/vim-projectroot'
 " Show diff preview when doing an interactive rebase
 Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 
+" Interactive Git
+Plug 'jreybert/vimagit', { 'on': ['Magit'] }
+
 " }}}
 " Notes {{{
 " --------------------------------------------------------------------------
