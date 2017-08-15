@@ -259,7 +259,8 @@ let g:gitgutter_eager = 1
 let g:gitgutter_realtime = 0
 
 " Always show sign column to prevent editor jumps
-let g:gitgutter_sign_column_always = 1
+" let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 
 " Disable default Keyboard mappings
 let g:gitgutter_map_keys = 0
@@ -308,6 +309,9 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " }}}2
 
+" Light color mode
+" colorscheme one
+" set background=light
 
 " }}}1
 

@@ -50,6 +50,9 @@ export PATH=~/.composer/vendor/bin:$PATH
 # MySQL
 export PATH=/usr/local/mysql/bin:$PATH
 
+# Haskell
+export PATH=$HOME/.local/bin:$PATH
+
 # Color Setup
 export COLORTERM=xterm-256color
 export TERM=xterm-256color
