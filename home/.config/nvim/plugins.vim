@@ -376,6 +376,12 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " Plug 'commercialhaskell/hindent', { 'for': [ 'haskell' ] }
 
 " }}}2
+" Purescript {{{2
+" --------------------------------------------------------------------------
+
+Plug 'purescript-contrib/purescript-vim', { 'for': [ 'purescript' ] }
+
+" }}}2
 " Javascript {{{2
 " --------------------------------------------------------------------------
 
