@@ -105,6 +105,8 @@ brew 'ripgrep'
 brew 'moreutils'
 # Notifications
 brew 'terminal-notifier'
+# File manager
+brew 'ranger'
 
 #}}}
 # Coding -------------------------------------------------------------------{{{
@@ -118,6 +120,9 @@ brew 'cheat'
 
 # JSON Parser
 brew 'jq'
+
+# Syntax highlighting for ranger
+brew 'highlight'
 
 # Linters
 brew 'CMake'
