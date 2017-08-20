@@ -327,6 +327,7 @@ let wiki.nested_syntaxes = {
       \ 'vim': 'vim',
       \ 'javascript': 'javascript',
       \ 'js': 'javascript',
+      \ 'hs': 'haskell',
       \ }
 
 " Assign dictionary to settings
