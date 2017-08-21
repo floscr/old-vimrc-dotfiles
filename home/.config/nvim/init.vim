@@ -231,6 +231,9 @@ let g:user_emmet_leader_key='<C-e>'
 " ALE Linter {{{2
 " -----------------------------------------------------------------------------
 
+" Autofix on save
+let g:ale_fix_on_save=1
+
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'html': [],
@@ -243,9 +246,6 @@ let g:ale_fixers.javascript = ['eslint']
 " Which is way faster that local eslint pacakge
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
-
-" autofix on save
-autocmd BufWritePost *.js ALEFix
 
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '✔']
 let g:ale_warn_about_trailing_whitespace = 0
