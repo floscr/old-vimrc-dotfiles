@@ -307,18 +307,32 @@ endsnippet
 # }}}
 # Emmet {{{
 
-# \b - word boundary
-# match string f or fun for function snippet
-snippet "\b([wh])(\d*)?" "Function Declaration" r
-.${2:`!p
-snip.rv = {
-'w': 'width',
-'h': 'height',
-}.get(match.group(1), '')
-`}('${1:`!p
-snip.rv = match.group(2) or ''
-`}')
-endsnippet
 
+# match string f or fun for function snippet
+snippet "\b(\.)?([whs]|[pm][btlrhv])(\d*)" "Function Declaration" r
+${2:`!p
+snip.rv = {
+  'pb': 'paddingBottom',
+  'pt': 'paddingTop',
+  'pl': 'paddingLeft',
+  'pr': 'paddingRight',
+  'ph': 'paddingHorizontal',
+  'pv': 'paddingVertical',
+
+  'mb': 'marginBottom',
+  'mt': 'marginTop',
+  'ml': 'marginLeft',
+  'mr': 'marginRight',
+  'mh': 'marginHorizontal',
+  'mv': 'marginVertical',
+
+  's': 'size',
+  'w': 'width',
+  'h': 'height',
+}.get(match.group(2), '')
+`}(${1:`!p
+snip.rv = match.group(3) or ''
+`})
+endsnippet
 
 # }}}
