@@ -15,7 +15,7 @@ nnoremap <leader>v :VCoolor<CR>
 nmap <silent> <leader>ss :set spell!<CR>
 
 " Open Einkaufsliste
-nmap <silent> <leader>we :e ~/Dropbox/VimWiki/todo/Einkaufsliste.markdown<CR>
+nmap <silent> <leader>we :e ~/Dropbox/VimWiki/Einkaufsliste.markdown<CR>
 
 " Open Vim Notes
 nmap <silent> <leader>wv :e ~/Dropbox/VimWiki/todo/Workflows.markdown<CR>
