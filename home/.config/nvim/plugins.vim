@@ -141,6 +141,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 
 " Change surrounding characters under cursor
 " <cs'"> -> Change surrounding ' to "
+" <ysst> -> Surround Line with tag
 Plug 'tpope/vim-surround'
 
 " clever-f.vim extends f, F, t and T mappings for more convenience
