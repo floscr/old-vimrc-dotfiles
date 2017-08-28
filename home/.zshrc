@@ -13,6 +13,8 @@
 # Exports & PATH Variable
 # -----------------------------------------------------------------------------
 
+export SHELL=zsh
+
 export PATH=$HOME/.gem/bin:$PATH
 
 # Set architecture flags
