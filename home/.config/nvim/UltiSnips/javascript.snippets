@@ -307,11 +307,23 @@ endsnippet
 # }}}
 # Emmet {{{
 
-
-# match string f or fun for function snippet
-snippet "\b(\.)?([whs]|[pm][btlrhv])(\d*)" "Function Declaration" r
-${2:`!p
+snippet "\b(\.)?(brdrd|fz|[whs]|[fpmbtrbl][btlrhvwgs]?)(\d*)" "Style with Number Units" r
+.${2:`!p
 snip.rv = {
+  'fg': 'flexGrow',
+  'fs': 'flexShrink',
+
+  't': 'top',
+  'r': 'right',
+  'b': 'bottom',
+  'l': 'left',
+
+  'fz': 'fontSize',
+
+  'brdrd': 'borderRadius',
+  'bw': 'borderWidth',
+
+  'p': 'padding',
   'pb': 'paddingBottom',
   'pt': 'paddingTop',
   'pl': 'paddingLeft',
@@ -319,12 +331,16 @@ snip.rv = {
   'ph': 'paddingHorizontal',
   'pv': 'paddingVertical',
 
+  'm': 'margin',
   'mb': 'marginBottom',
   'mt': 'marginTop',
   'ml': 'marginLeft',
   'mr': 'marginRight',
   'mh': 'marginHorizontal',
   'mv': 'marginVertical',
+
+  'mw': 'maxWidth',
+  'mh': 'maxHeight',
 
   's': 'size',
   'w': 'width',
@@ -333,6 +349,28 @@ snip.rv = {
 `}(${1:`!p
 snip.rv = match.group(3) or ''
 `})
+endsnippet
+
+snippet "\b(\.)?(brdcl?|bgc|bc)" "Style with color" r
+.${2:`!p
+snip.rv = {
+  'bgc': 'backgroundColor',
+  'brdcl': 'borderColor',
+  'bc': 'borderColor',
+}.get(match.group(2), '')
+`}($1)
+endsnippet
+
+snippet "\b(\.)?(pos[rfsa])" "Style with color" r
+.position('$0${2:`!p
+snip.rv = {
+  'pos': '',
+  'posr': 'relative',
+  'posa': 'absolute',
+  'posf': 'fixed',
+  'poss': 'static',
+}.get(match.group(2), '')
+`}')
 endsnippet
 
 # }}}
