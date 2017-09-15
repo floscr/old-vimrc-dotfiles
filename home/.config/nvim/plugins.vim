@@ -352,6 +352,12 @@ Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
 " Plug 'johngrib/vim-game-code-break', { 'on': ['VimGameCodeBreak'] }
 
 " }}}
+" Work {{{
+" --------------------------------------------------------------------------
+
+Plug 'git@bitbucket.org:artish/vim-meistersnippet.git'
+
+" }}}
 
 " Syntax {{{1
 " --------------------------------------------------------------------------
