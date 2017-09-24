@@ -1,3 +1,6 @@
+" Automatically load changes in file
+autocmd WinEnter,BufWinEnter,FocusGained * checktime
+
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
 autocmd BufRead,BufNewFile,BufReadPost *.njk set ft=htmljinja
