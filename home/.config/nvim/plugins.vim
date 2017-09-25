@@ -367,6 +367,12 @@ Plug 'git@bitbucket.org:artish/vim-meistersnippet.git'
 Plug 'editorconfig/editorconfig-vim'
 
 
+" Swift {{{2
+" --------------------------------------------------------------------------
+
+Plug 'keith/swift.vim', { 'for': [ 'swift' ] }
+
+" }}}2
 " GO {{{2
 " --------------------------------------------------------------------------
 
