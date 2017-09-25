@@ -418,6 +418,7 @@ Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javas
 " Split/Join Arrow Functions
 Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
 
+" {{{3 Prettier
 " Plug 'mitermayer/vim-prettier', {
 "       \ 'do': 'yarn install',
 "       \ 'for': ['javascript', 'javascript.jsx', 'typescript', 'css', 'less', 'scss'] }
@@ -427,6 +428,7 @@ Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'
 " let g:prettier#config#tab_width = 4
 " let g:prettier#config#use_tabs = 'false'
 " let g:prettier#config#bracket_spacing = 'true'
+" }}}3
 
 " }}}2
 " HTML / CSS {{{2
