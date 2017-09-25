@@ -405,9 +405,6 @@ Plug 'pangloss/vim-javascript'
 " Expand JavaScript Parameter Omni Complete
 Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 
-" Flow typing
-" Plug 'flowtype/vim-flow'
-
 " Vue syntax highlighting
 Plug 'posva/vim-vue', { 'for': ['vue'] }
 
@@ -417,6 +414,9 @@ Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javas
 
 " Split/Join Arrow Functions
 Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
+
+" Flow typing
+" Plug 'flowtype/vim-flow'
 
 " {{{3 Prettier
 " Plug 'mitermayer/vim-prettier', {
