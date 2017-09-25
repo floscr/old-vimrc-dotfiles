@@ -411,9 +411,6 @@ Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 " Vue syntax highlighting
 Plug 'posva/vim-vue', { 'for': ['vue'] }
 
-" generates JSDoc block comments based on a function signature
-Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'vue.html.javascript.css'] }
-
 " Advanced javascript motions
 " Use [[ to navigate between methods
 Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javascript.css'] }
