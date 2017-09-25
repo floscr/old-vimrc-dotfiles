@@ -161,6 +161,8 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'AndrewRadev/sideways.vim', {
       \ 'on': ['SidewaysLeft', 'SidewaysRight']
       \ }
+nnoremap ,> :silent SidewaysRight<CR>
+nnoremap ,< :silent SidewaysLeft<CR>
 
 " }}}
 " Text Editing {{{
@@ -409,27 +411,20 @@ Plug 'pangloss/vim-javascript'
 " Expand JavaScript Parameter Omni Complete
 Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 
-" Flow typing
-" Plug 'flowtype/vim-flow'
-
 " Vue syntax highlighting
 Plug 'posva/vim-vue', { 'for': ['vue'] }
-
-" generates JSDoc block comments based on a function signature
-Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'vue.html.javascript.css'] }
-
-" Beautify JS Files
-" Update submodules after plugin install
-Plug 'maksimr/vim-jsbeautify', {
-      \ 'do': 'git submodule update --init --recursive',
-      \ }
 
 " Advanced javascript motions
 " Use [[ to navigate between methods
 Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javascript.css'] }
 
+" Split/Join Arrow Functions
 Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Flow typing
+" Plug 'flowtype/vim-flow'
+
+" {{{3 Prettier
 " Plug 'mitermayer/vim-prettier', {
 "       \ 'do': 'yarn install',
 "       \ 'for': ['javascript', 'javascript.jsx', 'typescript', 'css', 'less', 'scss'] }
@@ -439,6 +434,7 @@ Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'
 " let g:prettier#config#tab_width = 4
 " let g:prettier#config#use_tabs = 'false'
 " let g:prettier#config#bracket_spacing = 'true'
+" }}}3
 
 " }}}2
 " HTML / CSS {{{2
