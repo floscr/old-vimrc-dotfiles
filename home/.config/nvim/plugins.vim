@@ -424,6 +424,7 @@ Plug 'maksimr/vim-jsbeautify', {
 " Use [[ to navigate between methods
 Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javascript.css'] }
 
+" Split/Join Arrow Functions
 Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Plug 'mitermayer/vim-prettier', {
