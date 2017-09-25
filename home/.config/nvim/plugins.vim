@@ -161,6 +161,8 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'AndrewRadev/sideways.vim', {
       \ 'on': ['SidewaysLeft', 'SidewaysRight']
       \ }
+nnoremap ,> :silent SidewaysRight<CR>
+nnoremap ,< :silent SidewaysLeft<CR>
 
 " }}}
 " Text Editing {{{
