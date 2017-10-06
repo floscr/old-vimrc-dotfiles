@@ -332,6 +332,7 @@ let wiki.nested_syntaxes = {
       \ 'js': 'javascript',
       \ 'hs': 'haskell',
       \ 'rb': 'ruby',
+      \ 'py': 'python',
       \ }
 
 " Assign dictionary to settings
