@@ -6,6 +6,9 @@ brew 'git'
 brew 'tig'
 brew 'scmpuff'
 
+# Github CLI
+brew 'hub'
+
 # Bunch of cool git extras
 brew 'git-extras'
 
