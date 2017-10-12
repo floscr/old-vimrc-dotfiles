@@ -123,6 +123,9 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Search and Replace
 Plug 'wincent/ferret'
 
+" Zoom Split <C-W>m
+Plug 'dhruvasagar/vim-zoom'
+
 " }}}
 " Motions {{{
 " --------------------------------------------------------------------------
