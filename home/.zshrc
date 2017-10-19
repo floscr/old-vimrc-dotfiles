@@ -55,6 +55,9 @@ export PATH=/usr/local/mysql/bin:$PATH
 # Haskell
 export PATH=$HOME/.local/bin:$PATH
 
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
+
 # Color Setup
 export COLORTERM=xterm-256color
 export TERM=xterm-256color
