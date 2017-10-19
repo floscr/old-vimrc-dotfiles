@@ -28,6 +28,20 @@ let g:lightline = {
       \ }
       \ }
 
+let g:lightline.mode_map = {
+      \ 'n' : 'N',
+      \ 'i' : 'I',
+      \ 'R' : 'R',
+      \ 'v' : 'V',
+      \ 'V' : 'V',
+      \ "\<C-v>": 'VB',
+      \ 'c' : 'C',
+      \ 's' : 'S',
+      \ 'S' : 'S',
+      \ "\<C-s>": 'SB',
+      \ 't': 'T',
+      \ }
+
 augroup LightLineOnALE
   autocmd!
   autocmd User ALELint call lightline#update()
