@@ -292,6 +292,9 @@ Plug 'NLKNguyen/papercolor-theme'
 " Git commands
 Plug 'tpope/vim-fugitive'
 
+" Make :Gbrowse work for github repos
+Plug 'tpope/vim-rhubarb'
+
 " Show git diff signs on column bar
 Plug 'airblade/vim-gitgutter'
 
