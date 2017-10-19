@@ -39,8 +39,8 @@ set mouse=a          " Mouse mode
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
+" let g:loaded_netrw       = 1
+" let g:loaded_netrwPlugin = 1
 
 " Clipboard {{{2
 " -----------------------------------------------------------------------------
