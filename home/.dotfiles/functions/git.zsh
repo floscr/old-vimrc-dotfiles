@@ -215,6 +215,11 @@ function glat() {
   gitswitchbranch "${branch##origin/}" # Remove the origin from the branch name
 }
 
+# Rebase against the origin of the currently active branch
+function rebase_origin() {
+  git rebase -i `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
+}
+
 # List worktree skipping files
 function skipped() {
   git ls-files -v "$(git rev-parse --show-toplevel)" | grep "^[S]"
