@@ -1,30 +1,30 @@
 let g:lightline = {
       \ 'colorscheme': 'hybrid',
       \ 'active': {
-      \	'left': [
-      \		[ 'mode' ],
-      \		[ 'fugitive', 'filename', 'ale' ],
-      \	]
+      \ 'left': [
+      \  [ 'mode' ],
+      \  [ 'fugitive', 'filename', 'ale' ],
+      \ ]
       \ },
       \ 'component_function': {
-      \	'fugitive': 'LightlineFugitive',
-      \	'filename': 'LightlineFilename',
-      \	'fileformat': 'LightlineFileformat',
-      \	'filetype': 'LightlineFiletype',
-      \	'fileencoding': 'LightlineFileencoding',
-      \	'mode': 'LightlineMode',
+      \ 'fugitive': 'LightlineFugitive',
+      \ 'filename': 'LightlineFilename',
+      \ 'fileformat': 'LightlineFileformat',
+      \ 'filetype': 'LightlineFiletype',
+      \ 'fileencoding': 'LightlineFileencoding',
+      \ 'mode': 'LightlineMode',
       \ },
       \ 'component': {
-      \	'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ 'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
-  \   'component_expand': {
-  \     'ale': 'ALEGetStatusLine'
-  \   },
-  \   'component_type': {
-  \     'ale': 'error'
-  \   },
+      \   'component_expand': {
+      \     'ale': 'ALEGetStatusLine'
+      \   },
+      \   'component_type': {
+      \     'ale': 'error'
+      \   },
       \ 'component_visible_condition': {
-      \	'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ 'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ }
       \ }
 
@@ -82,8 +82,8 @@ function! LightlineMode()
 endfunction
 
 let g:ctrlp_status_func = {
-      \	'main': 'LightlineCtrlPStatusFunc_1',
-      \	'prog': 'LightlineCtrlPStatusFunc_2',
+      \ 'main': 'LightlineCtrlPStatusFunc_1',
+      \ 'prog': 'LightlineCtrlPStatusFunc_2',
       \ }
 
 function! LightlineCtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
