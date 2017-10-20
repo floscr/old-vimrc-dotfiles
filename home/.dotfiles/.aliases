@@ -59,6 +59,7 @@ alias gac="git_commit"
 alias c="git commit -am"
 alias gs='scmpuff_status' # npm i -g scmpuff
 alias gbda='git_branch_delete_and_push'
+alias gbD='git branch -D'
 alias stash="git stash"
 alias gbc="git checkout -b"
 alias gb="gitswitchbranch"
