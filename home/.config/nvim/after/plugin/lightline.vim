@@ -3,7 +3,9 @@ let g:lightline = {
       \ 'active': {
       \ 'left': [
       \  [ 'mode' ],
-      \  [ 'fugitive', 'filename', 'ale' ],
+      \  [ 'fugitive' ],
+      \  [ 'filename' ],
+      \  [ 'ale' ],
       \ ]
       \ },
       \ 'component_function': {
