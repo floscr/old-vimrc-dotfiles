@@ -366,6 +366,7 @@ Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
 " --------------------------------------------------------------------------
 
 Plug 'git@bitbucket.org:artish/vim-meistersnippet.git'
+Plug 'git@bitbucket.org:artish/meisterlabs.vim.git'
 
 " }}}
 

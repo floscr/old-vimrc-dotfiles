@@ -243,17 +243,3 @@ endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)<Paste>
 
 " }}}1
-" Work {{{1
-" -----------------------------------------------------------------------------
-
-function! OpenAlternateControlller()
-  let s:currentFilePath = expand('%:t')
-  if s:currentFilePath == 'controller.js'
-    execute('e %:p:h/component.js')
-  elseif s:currentFilePath == 'component.js'
-    execute('e %:p:h/controller.js')
-  endif
-endfunction
-command! OpenAlternateControlller call OpenAlternateControlller()
-
-" }}}1
