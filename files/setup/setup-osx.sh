@@ -63,6 +63,9 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 '<dic
 # Etc                                                                          #
 # =============================================================================#
 
+# Set keyboard speed
+. ./scripts/keyboard-speed.sh
+
 # Set all F-keys to standard keys
 # Brightness keys have to be rebound with something like keybord-maestro
 defaults write -g com.apple.keyboard.fnState -bool true
