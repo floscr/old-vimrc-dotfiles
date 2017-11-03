@@ -309,6 +309,35 @@ snippet tap "Bitap"
 endsnippet
 
 # }}}
+# React {{{
+# -----------------------------------------------------------------------------
+
+snippet rc "React Class Component"
+class ${0:Component} extends React.Component {
+
+    static propTypes = {
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+    }
+
+    componentWillUnmount() {
+    }
+
+    render() {
+        return (
+            $0;
+        );
+    }
+
+}
+endsnippet
+
+# }}}
 # Emmet {{{
 
 snippet "\b(\.)?(brdrd|fz|[whs]|[fpmbtrbl][btlrhvwgs]?)(\d*)" "Style with Number Units" r
