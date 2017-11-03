@@ -429,6 +429,12 @@ Plug 'okcompute/vim-javascript-motions', { 'for': ['javascript', 'vue.html.javas
 " Split/Join Arrow Functions
 Plug 'mvolkmann/vim-js-arrow-function', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Required
+" npm i -g import-js
+Plug 'galooshi/vim-import-js', {
+      \ 'for': ['javascript', 'javascript.jsx']
+      \ }
+
 " Flow typing
 " Plug 'flowtype/vim-flow'
 
