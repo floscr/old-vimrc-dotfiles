@@ -1,5 +1,5 @@
 let s:agOptions = {
-      \ 'dir': '~/Dropbox/Notes',
+      \ 'dir': '~/Dropbox/VimWiki',
       \ 'down': '~40%',
       \ }
 
