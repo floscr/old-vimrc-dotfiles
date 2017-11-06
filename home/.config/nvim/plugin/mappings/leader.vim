@@ -14,12 +14,6 @@ nnoremap <leader>v :VCoolor<CR>
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<CR>
 
-" Open Einkaufsliste
-nmap <silent> <leader>we :e ~/Dropbox/VimWiki/Einkaufsliste.markdown<CR>
-
-" Open Vim Notes
-nmap <silent> <leader>wm :e ~/Dropbox/VimWiki/todo/Work.markdown<CR>
-
 " Show current file in finder
 nnoremap <leader><CR> :silent execute('!open ' . expand('%:p:h'))<CR>
 
@@ -41,4 +35,10 @@ map <Leader>xc :VimuxInterruptRunner<CR>:VimuxPromptCommand<CR>
 " Rerun last Vimux command
 map <Leader>xx :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
 
-nnoremap <silent> <Leader>td :e ~/Dropbox/VimWiki/Tasks.md<CR>
+" {{{ Vimwiki
+
+nmap <silent> <leader>we :e ~/Dropbox/VimWiki/Einkaufsliste.markdown<CR>
+nmap <silent> <leader>wm :e ~/Dropbox/VimWiki/todo/Work.markdown<CR>
+nnoremap <silent> <Leader>wk :e ~/Dropbox/VimWiki/collections/cooking/index.markdown<CR>
+
+" Vimwiki }}}
