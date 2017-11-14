@@ -407,6 +407,12 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 Plug 'purescript-contrib/purescript-vim', { 'for': [ 'purescript' ] }
 
 " }}}2
+" Elixir {{{2
+" --------------------------------------------------------------------------
+
+Plug 'elixir-editors/vim-elixir'
+
+" }}}2
 " Javascript {{{2
 " --------------------------------------------------------------------------
 
