@@ -193,9 +193,6 @@ Plug 'floscr/MakeHeader.vim'
 " Automatically closing pairs
 Plug 'cohama/lexima.vim'
 
-" Format text files
-Plug 'sbdchd/neoformat'
-
 " }}}
 " Text Objects {{{
 " --------------------------------------------------------------------------
