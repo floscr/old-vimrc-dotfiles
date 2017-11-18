@@ -98,6 +98,7 @@ set colorcolumn=80           " Add a colorized column tho show the maximal text 
 set textwidth=80             " Set the recommended text length to 80 characters
 set nowrap                   " Don't wrap lines
 set textwidth=0 wrapmargin=0 " this turns off physical line wrapping (ie: automatic insertion of newlines)"}}}
+
 "}}}2
 " Search settings {{{2
 " -----------------------------------------------------------------------------
@@ -106,6 +107,8 @@ set incsearch  " Incremental search
 set ignorecase " Ignore case by default
 set smartcase  " Make search case sensitive only if it contains uppercase letters
 set wrapscan   " Search again from top when reached the bottom
+set gdefault   " Allways use 'g' flag when using subvert, can be inversed by using 'g' flag
+
 "}}}2
 " Persistent undo {{{2
 " -----------------------------------------------------------------------------
