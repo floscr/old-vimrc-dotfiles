@@ -322,15 +322,15 @@ let wiki.custom_wiki2html = 'vimwiki_markdown'
 
 " Add all syntax filetypes you want highlighted in your vimwiki files here
 let wiki.nested_syntaxes = {
-      \ 'sh': 'sh',
       \ 'bash': 'sh',
-      \ 'vim': 'vim',
+      \ 'ex': 'ex',
+      \ 'hs': 'haskell',
       \ 'javascript': 'javascript',
       \ 'js': 'javascript',
-      \ 'hs': 'haskell',
-      \ 'rb': 'ruby',
       \ 'py': 'python',
-      \ 'ex': 'ex',
+      \ 'rb': 'ruby',
+      \ 'sh': 'sh',
+      \ 'vim': 'vim',
       \ }
 
 " Assign dictionary to settings
