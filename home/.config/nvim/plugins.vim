@@ -114,7 +114,7 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 " Plug 'tpope/vim-obsession'
 
 " Native colorpicker
-Plug 'KabbAmine/vCoolor.vim'
+Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
 let g:vcoolor_disable_mappings = 1
 
 " Nerdtree file browser
