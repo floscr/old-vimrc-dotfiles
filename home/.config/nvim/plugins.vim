@@ -234,12 +234,6 @@ Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 
 " }}}
-" Refactoring {{{
-" --------------------------------------------------------------------------
-
-Plug 'floscr/vim-xtract', { 'branch': 'feature/vue-extract' }
-
-" }}}
 " Focus Mode {{{
 " --------------------------------------------------------------------------
 
