@@ -163,7 +163,7 @@ endfunction
 set foldtext=MyFoldText() "}}}3
 
 " }}}2
-"  Omni completion {{{2
+" Omni completion {{{2
 " -----------------------------------------------------------------------------
 
 set completeopt-=preview " Don't show preview scratch buffers
