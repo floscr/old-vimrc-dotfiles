@@ -177,6 +177,19 @@ set wildignore+=tmp/**
 " Remove tags from complete
 set complete=.,w,b,u
 " }}}2
+" Command Line {{{2
+" -----------------------------------------------------------------------------
+
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-n> <Right>
+cnoremap <C-s-b> <S-Left>
+cnoremap <C-s-n> <S-Right>
+
+" }}}2
 " Scrolloff {{{2
 " -----------------------------------------------------------------------------
 
