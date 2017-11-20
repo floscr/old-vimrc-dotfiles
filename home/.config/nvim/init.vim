@@ -189,6 +189,18 @@ cnoremap <C-n> <Right>
 cnoremap <C-s-b> <S-Left>
 cnoremap <C-s-n> <S-Right>
 
+" Stuff that commonly is mystyped in the command line
+cnoreabbrev W! w!
+cnoreabbrev W w
+cnoreabbrev Q! q!
+cnoreabbrev Q q
+cnoreabbrev Qa! qa!
+cnoreabbrev QA! qa!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+
 " }}}2
 " Scrolloff {{{2
 " -----------------------------------------------------------------------------
