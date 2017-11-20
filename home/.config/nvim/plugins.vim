@@ -114,7 +114,7 @@ Plug 'moll/vim-bbye', { 'on': 'Bdelete' }
 " Plug 'tpope/vim-obsession'
 
 " Native colorpicker
-Plug 'KabbAmine/vCoolor.vim'
+Plug 'KabbAmine/vCoolor.vim', { 'on': 'VCoolor' }
 let g:vcoolor_disable_mappings = 1
 
 " Nerdtree file browser
@@ -193,9 +193,6 @@ Plug 'floscr/MakeHeader.vim'
 " Automatically closing pairs
 Plug 'cohama/lexima.vim'
 
-" Format text files
-Plug 'sbdchd/neoformat'
-
 " }}}
 " Text Objects {{{
 " --------------------------------------------------------------------------
@@ -235,12 +232,6 @@ Plug 'SirVer/ultisnips'
 " --------------------------------------------------------------------------
 
 Plug 'w0rp/ale'
-
-" }}}
-" Refactoring {{{
-" --------------------------------------------------------------------------
-
-Plug 'floscr/vim-xtract', { 'branch': 'feature/vue-extract' }
 
 " }}}
 " Focus Mode {{{
@@ -331,14 +322,15 @@ let wiki.custom_wiki2html = 'vimwiki_markdown'
 
 " Add all syntax filetypes you want highlighted in your vimwiki files here
 let wiki.nested_syntaxes = {
-      \ 'sh': 'sh',
       \ 'bash': 'sh',
-      \ 'vim': 'vim',
+      \ 'ex': 'ex',
+      \ 'hs': 'haskell',
       \ 'javascript': 'javascript',
       \ 'js': 'javascript',
-      \ 'hs': 'haskell',
-      \ 'rb': 'ruby',
       \ 'py': 'python',
+      \ 'rb': 'ruby',
+      \ 'sh': 'sh',
+      \ 'vim': 'vim',
       \ }
 
 " Assign dictionary to settings
@@ -405,6 +397,12 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " --------------------------------------------------------------------------
 
 Plug 'purescript-contrib/purescript-vim', { 'for': [ 'purescript' ] }
+
+" }}}2
+" Elixir {{{2
+" --------------------------------------------------------------------------
+
+Plug 'elixir-editors/vim-elixir'
 
 " }}}2
 " Javascript {{{2
