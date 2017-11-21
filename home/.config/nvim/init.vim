@@ -194,8 +194,15 @@ cnoreabbrev W! w!
 cnoreabbrev W w
 cnoreabbrev Q! q!
 cnoreabbrev Q q
+
+cnoreabbrev qa1 qa!
+cnoreabbrev Qa1 qa!
+cnoreabbrev qA1 qa!
+cnoreabbrev QA1 qa!
+
 cnoreabbrev Qa! qa!
 cnoreabbrev QA! qa!
+
 cnoreabbrev Wq wq
 cnoreabbrev Wa wa
 cnoreabbrev wQ wq
