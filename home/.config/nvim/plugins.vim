@@ -347,6 +347,13 @@ let g:vimwiki_folding='expr'
 Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
 
 " }}}
+" Documentation {{{
+" --------------------------------------------------------------------------
+
+" Show man page inside vim help
+Plug 'vim-utils/vim-man', { 'on': ['Man', 'Vman'] }
+
+" }}}
 " For the LOLs {{{
 " --------------------------------------------------------------------------
 
