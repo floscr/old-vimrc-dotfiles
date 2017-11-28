@@ -400,14 +400,42 @@ snip.rv = {
   'pos': '',
   'posr': 'relative',
   'posa': 'absolute',
+  'posab': 'absolute',
   'posf': 'fixed',
   'poss': 'static',
 }.get(match.group(2), '')
 `}')
 endsnippet
 
-snippet bi "Bifold"
+# }}}
+# Work {{{
+
+snippet bi "Bitap"
 .bifold(console.log, console.log)
+endsnippet
+
+snippet *E "Bitap"
+
+/** EXTERNALS **/
+
+endsnippet
+
+snippet *L "Bitap"
+
+/** LOCALS **/
+
+endsnippet
+
+snippet *H "Bitap"
+
+/** HELPERS **/
+
+endsnippet
+
+snippet *M "Bitap"
+
+/** MAIN **/
+
 endsnippet
 
 # }}}
