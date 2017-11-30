@@ -14,13 +14,13 @@ export ${1:default} ${2:bar}
 endsnippet
 
 snippet exdf "ES6 Export default Function"
-export default function ${1:`!p snip.rv = snip.basename`} () {
+export default function ${1:`!p snip.rv = snip.basename`}() {
   $0
 }
 endsnippet
 
 snippet exf "ES6 Export Function"
-export function ${1:`!p snip.rv = snip.basename`} () {
+export function ${1:`!p snip.rv = snip.basename`}() {
   $0
 }
 endsnippet
@@ -34,7 +34,7 @@ endsnippet
 snippet exc "ES6 Export Default Class" b
 export default class ${1:`!p snip.rv = snip.basename`} {
 
-  constructor () {
+  constructor() {
     $0
   }
 
@@ -44,7 +44,7 @@ endsnippet
 snippet c "ES6 Class Templates" b
 class ${1:`!p snip.rv = snip.basename`} {
 
-  constructor () {
+  constructor() {
     $0
   }
 
@@ -59,13 +59,13 @@ endsnippet
 # \b - word boundary
 # match string f or fun for function snippet
 snippet "\bf(un)?" "Function Declaration" r
-function ${1:myFunction} (${2:args}) {
+function ${1:myFunction}(${2:args}) {
   $0
 }
 endsnippet
 
 snippet "\bcf(un)?" "Function Expression" r
-const $1 = function ($2) {
+const $1 = function($2) {
 $0
 }
 endsnippet
@@ -167,7 +167,7 @@ module.exports = ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', ''
 endsnippet
 
 snippet mef "module.exports function"
-module.exports = function ${1:`!p snip.rv = snip.basename`} () {
+module.exports = function ${1:`!p snip.rv = snip.basename`}() {
   $0
 }
 endsnippet
@@ -301,7 +301,7 @@ snippet us "Use Strict"
 endsnippet
 
 snippet timeout "Timeout function"
-setTimeout(function () {${0}}${2}, ${1:10})
+setTimeout(function() {${0}}${2}, ${1:10})
 endsnippet
 
 snippet tap "Bitap"
@@ -394,7 +394,7 @@ snip.rv = {
 `}($1)
 endsnippet
 
-snippet "\b(\.)?(pos[rfsa])" "Style with color" r
+snippet "\b(\.)?(pos[rfsa])" "Position" r
 .position('$0${2:`!p
 snip.rv = {
   'pos': '',
@@ -406,6 +406,19 @@ snip.rv = {
 }.get(match.group(2), '')
 `}')
 endsnippet
+
+snippet "\b(\.)?(fdc)" "flexBox direction" r
+.flexDirection('column')
+endsnippet
+
+snippet "\b(\.)?(aic)" "flexBox direction" r
+.alignItems('center')
+endsnippet
+
+snippet "\b(\.)?(jcc)" "flexBox direction" r
+.justifyContent('center')
+endsnippet
+
 
 # }}}
 # Work {{{
