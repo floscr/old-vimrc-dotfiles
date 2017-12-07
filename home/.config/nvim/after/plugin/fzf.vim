@@ -7,7 +7,7 @@ let g:fzf_action = {
 hi FZFHighlight guibg=#171D20
 let g:fzf_colors = {
       \ 'pointer': ['bg', 'Search'],
-      \ 'bg':     ['bg', 'IncSearch', 'NonText'],
+      \ 'bg':      ['bg', 'IncSearch', 'NonText'],
       \ 'fg+':     ['fg', 'IncSearch'],
       \ 'bg+':     ['bg', 'FZFHighlight'],
       \ 'header':  ['bg', 'Search'],
@@ -88,3 +88,8 @@ autocmd VimEnter * command! -bang -nargs=* Ag
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+
+autocmd VimEnter * command! -bang -nargs=* BCommits
+  \ call fzf#vim#buffer_commits({
+  \ 'down': '~80%',
+  \ })
