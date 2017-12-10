@@ -34,7 +34,7 @@ nnoremap <silent><esc> :noh<return><esc>
 vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 
 " Use the last used search to use in replace command
-nmap <expr> M ':%s/' . @/ . '//g<LEFT><LEFT>'
+nmap <expr> M ':%s/' . @/ . '//<LEFT>'
 
 " Quickfix next/previous
 nnoremap ]q :cn<CR>
