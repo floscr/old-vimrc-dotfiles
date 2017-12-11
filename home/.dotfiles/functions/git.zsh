@@ -6,6 +6,13 @@ function _branch_complete() {
   compadd `echo $branches | sed "s/ //g"`
 }
 
+
+# Open a file that contains all changed files in the current branch
+# Nice little helper to check all files before doing a PR
+function vim_open_changed_files_in_branch() {
+  git --no-pager diff --name-only $(git rev-parse --abbrev-ref HEAD) maplist | vim
+}
+
 # Open all staged files in vim
 function vim_staged_files() {
   vim $(git status --porcelain | awk '{print $2}')
