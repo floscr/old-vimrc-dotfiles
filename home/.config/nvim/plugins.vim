@@ -188,7 +188,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
 
 " Make comment block header
-Plug 'floscr/MakeHeader.vim'
+" Plug 'floscr/MakeHeader.vim'
 
 " Automatically closing pairs
 Plug 'cohama/lexima.vim'
