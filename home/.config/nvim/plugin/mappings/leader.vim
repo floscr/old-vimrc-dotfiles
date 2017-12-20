@@ -39,6 +39,7 @@ map <Leader>xx :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
 
 nmap <silent> <leader>we :e ~/Dropbox/VimWiki/Einkaufsliste.markdown<CR>
 nmap <silent> <leader>wm :e ~/Dropbox/VimWiki/todo/Work.markdown<CR>
+nmap <silent> <leader>wh :e ~/Dropbox/VimWiki/learn/Haskell\ Programming\ Ebook.markdown<CR>
 nnoremap <silent> <Leader>wk :e ~/Dropbox/VimWiki/collections/cooking/index.markdown<CR>
 
 " Vimwiki }}}
