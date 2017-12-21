@@ -1,6 +1,6 @@
-extends vue
+# extends vue
+# extends javascript.testing
 extends react
-extends javascript.testing
 
 # ES6 {{{
 # -----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ function ${1:myFunction}(${2:args}) {
 endsnippet
 
 snippet "\bcf(un)?" "Function Expression" r
-const $1 = function($2) {
+const $1 = ($2) => {
 $0
 }
 endsnippet
@@ -340,7 +340,7 @@ endsnippet
 # }}}
 # Emmet {{{
 
-snippet "\b(\.)?(brdrd|fz|[whs]|[fpmbtrbl][btlrhvwgs]?)(\d*)" "Style with Number Units" r
+snippet "\.?\b(brdrd|fz|[whs]|[fpmbtrbl][btlrhvwgs]?)(\d*)" "Style with Number Units" r
 .${2:`!p
 snip.rv = {
   'fg': 'flexGrow',
@@ -378,23 +378,23 @@ snip.rv = {
   's': 'size',
   'w': 'width',
   'h': 'height',
-}.get(match.group(2), '')
+}.get(match.group(1), '')
 `}(${1:`!p
-snip.rv = match.group(3) or ''
+snip.rv = match.group(2) or ''
 `})
 endsnippet
 
-snippet "\b(\.)?(brdcl?|bgc|bc)" "Style with color" r
+snippet "\.?\b(brdcl?|bgc|bc)" "Style with color" r
 .${2:`!p
 snip.rv = {
   'bgc': 'backgroundColor',
   'brdcl': 'borderColor',
   'bc': 'borderColor',
-}.get(match.group(2), '')
+}.get(match.group(1), '')
 `}($1)
 endsnippet
 
-snippet "\b(\.)?(pos[rfsa])" "Position" r
+snippet "\.?\b(pos[rfsa])" "Position" r
 .position('$0${2:`!p
 snip.rv = {
   'pos': '',
@@ -403,19 +403,26 @@ snip.rv = {
   'posab': 'absolute',
   'posf': 'fixed',
   'poss': 'static',
-}.get(match.group(2), '')
+}.get(match.group(1), '')
 `}')
 endsnippet
 
-snippet "\b(\.)?(fdc)" "flexBox direction" r
+snippet "\.?\b(fdc)" "flexBox direction" r
 .flexDirection('column')
 endsnippet
 
-snippet "\b(\.)?(aic)" "flexBox direction" r
+snippet "\.?\b(ccw)" "concatWhen" r
+.concatWhen(
+  ${1:prop},
+  Rules$0
+)
+endsnippet
+
+snippet "\.?\b(aic)" "flexBox direction" r
 .alignItems('center')
 endsnippet
 
-snippet "\b(\.)?(jcc)" "flexBox direction" r
+snippet "\.?\b(jcc)" "flexBox direction" r
 .justifyContent('center')
 endsnippet
 
@@ -458,3 +465,11 @@ snippet *M "Main Comment Header"
 endsnippet
 
 # }}}
+
+
+snippet S "Style function"
+${1:root}: Style(function({ ${2:prop} }, Rules) {
+  return Rules
+    $0
+})
+endsnippet
