@@ -95,4 +95,4 @@ autocmd VimEnter * command! -bang -nargs=* BCommits
   \ })
 
 " Fix colors for fzf
-autocmd FileType fzf hi! IncSearch term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
+" autocmd FileType fzf hi! IncSearch term=bold ctermfg=Cyan guifg=#80a0ff gui=bold guibg=#ffffff
