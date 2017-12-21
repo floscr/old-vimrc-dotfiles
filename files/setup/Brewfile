@@ -80,7 +80,6 @@ cask "steam"
 cask "trickster"
 cask "virtualbox"
 cask "visual-studio-code"
-cask "xtrafinder"
 cask "selfcontrol"
 
 #}}}
