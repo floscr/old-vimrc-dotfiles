@@ -458,3 +458,11 @@ snippet *M "Main Comment Header"
 endsnippet
 
 # }}}
+
+
+snippet S "Style function"
+${1:root}: Style(function({ ${2:prop} }, Rules) {
+  return Rules
+    $0
+})
+endsnippet
