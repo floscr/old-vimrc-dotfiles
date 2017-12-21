@@ -110,6 +110,9 @@ brew 'moreutils'
 brew 'terminal-notifier'
 # File manager
 brew 'ranger'
+# Spreadsheet Editor
+brew tap nickolasburr/pfa
+brew install sc-im
 
 #}}}
 # Coding -------------------------------------------------------------------{{{
