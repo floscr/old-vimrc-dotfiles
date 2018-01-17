@@ -305,6 +305,10 @@ Plug 'jreybert/vimagit', { 'on': ['Magit'] }
 Plug 'vimwiki/vimwiki'
 " Use .markdown extension so vimwiki wont mess with other markdown files
 
+let blogwiki = {}
+let blogwiki.path = '~/Dropbox/Blog'
+let blogwiki.ext = '.markdown'
+
 let wiki = {}
 let wiki.path = '~/Dropbox/VimWiki'
 
@@ -334,7 +338,7 @@ let wiki.nested_syntaxes = {
       \ }
 
 " Assign dictionary to settings
-let g:vimwiki_list = [wiki]
+let g:vimwiki_list = [wiki, blogwiki]
 
 " Enable folding
 let g:vimwiki_folding='expr'
