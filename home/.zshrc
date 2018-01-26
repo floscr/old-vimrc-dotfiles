@@ -125,7 +125,7 @@ ZSH_CUSTOM=$DOTFILES/zsh/custom
 ZSH_THEME="floscr"
 
 # ZSH PlUGINS
-plugins=(git osx history-substring-search encode64 fasd laravel web-search)
+plugins=(git osx history-substring-search encode64 fasd web-search fast-syntax-highlighting)
 
 # Lazy load zsh nvm plugin
 ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
