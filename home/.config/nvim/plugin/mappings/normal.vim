@@ -73,6 +73,12 @@ nnoremap <C-c> :q<return>
 " Trigger over.vim
 map <C-_> :OverCommandLine<CR>%s/
 
+" Copy current path to clipboard
+" Relative to repo
+nnoremap yp :let @* = expand('%')<CR>
+" Absolute path
+nnoremap yP :let @* = expand('%:p')<CR>
+
 " -----------------------------------------------------------------------------
 " Tab Maps
 " -----------------------------------------------------------------------------
