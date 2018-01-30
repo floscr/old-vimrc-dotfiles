@@ -75,9 +75,9 @@ map <C-_> :OverCommandLine<CR>%s/
 
 " Copy current path to clipboard
 " Relative to repo
-nnoremap yp :let @* = expand('%')<CR>
+nnoremap <silent>yp :let @* = expand('%')<CR>
 " Absolute path
-nnoremap yP :let @* = expand('%:p')<CR>
+nnoremap <silent>yP :let @* = expand('%:p')<CR>
 
 " -----------------------------------------------------------------------------
 " Tab Maps
