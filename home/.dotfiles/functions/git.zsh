@@ -363,9 +363,8 @@ function git_check_staged() {
   fi
 }
 fbr() {
-  local branches branch
-  branches=$(git branch --all --sort=committerdate | tail -r | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+  local branches branch format
+  format='%(color:green)%(refname:short) %(color:reset)(%(committerdate:relative))'
+  branches=$(git branch --all --sort=committerdate --format=$format --color | tail -r | grep -v HEAD) &&
+    branch=$(echo "$branches" | fzf-tmux --ansi && git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##"))
 }
