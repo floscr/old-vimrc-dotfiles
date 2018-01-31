@@ -362,6 +362,9 @@ function git_check_staged() {
     git commit -am "$@"
   fi
 }
+
+# Switch branch via tmux pane select
+# Does not support branch names with '/' in name (so no origin/feature/branch_name)
 fbr() {
   local branches branch format
   format='%(color:green)%(refname:short) %(color:reset)(%(committerdate:relative))'
