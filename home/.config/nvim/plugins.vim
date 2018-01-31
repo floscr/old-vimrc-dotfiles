@@ -305,6 +305,10 @@ Plug 'jreybert/vimagit', { 'on': ['Magit'] }
 Plug 'vimwiki/vimwiki'
 " Use .markdown extension so vimwiki wont mess with other markdown files
 
+let blogwiki = {}
+let blogwiki.path = '~/Dropbox/Blog'
+let blogwiki.ext = '.markdown'
+
 let wiki = {}
 let wiki.path = '~/Dropbox/VimWiki'
 
@@ -334,7 +338,7 @@ let wiki.nested_syntaxes = {
       \ }
 
 " Assign dictionary to settings
-let g:vimwiki_list = [wiki]
+let g:vimwiki_list = [wiki, blogwiki]
 
 " Enable folding
 let g:vimwiki_folding='expr'
@@ -394,8 +398,6 @@ Plug 'cespare/vim-toml', { 'for': [ 'toml' ] }
 Plug 'neovimhaskell/haskell-vim', { 'for': [ 'haskell' ] }
 " Completion Plugin
 Plug 'eagletmt/neco-ghc', { 'for': [ 'haskell' ] }
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " Plug 'jaspervdj/stylish-haskell', { 'for': [ 'haskell' ] }
 " Plug 'commercialhaskell/hindent', { 'for': [ 'haskell' ] }
 
