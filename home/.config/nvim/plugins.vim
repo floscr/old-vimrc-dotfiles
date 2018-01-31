@@ -380,6 +380,20 @@ Plug 'git@bitbucket.org:artish/meisterlabs.vim.git'
 Plug 'editorconfig/editorconfig-vim'
 
 
+" Reason {{{2
+" --------------------------------------------------------------------------
+
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
+" }}}2
 " Swift {{{2
 " --------------------------------------------------------------------------
 
