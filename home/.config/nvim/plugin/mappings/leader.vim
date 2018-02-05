@@ -25,6 +25,9 @@ nnoremap <silent> <leader>lt :ALEToggle<CR>
 " Git Grep
 nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>
 
+" Search all lines in all open buffers
+nmap <silent> <leader>L :FZFLines<CR>
+
 " Splits
 nnoremap <silent> <leader>\| :vsplit<CR>
 nnoremap <silent> <leader>- :split<CR>
