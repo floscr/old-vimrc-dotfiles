@@ -413,10 +413,22 @@ snip.rv = {
   'ta': 'center',
   'tac': 'center',
   'tal': 'left',
-  'talr': 'right',
+  'tar': 'right',
 }.get(match.group(1), '')
 `}')
 endsnippet
+
+snippet "\.?\b(co[rg]?)" "Position" r
+.color($0${2:`!p
+snip.rv = {
+  'co': '',
+  'cog': 'colors.grey',
+  'cor': '\'red\'',
+  'cow': '\'white'',
+}.get(match.group(1), '')
+`})
+endsnippet
+
 
 snippet "\.?\b(fdc)" "flexBox direction" r
 .flexDirection('column')
