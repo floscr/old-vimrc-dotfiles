@@ -340,7 +340,7 @@ endsnippet
 # }}}
 # Emmet {{{
 
-snippet "\.?\b(brdrd|fz|[whs]|[fpmbtrbl][btlrhvwgs]?)(\d*)" "Style with Number Units" r
+snippet "\.?\b(brdrd|fz|[whs]|[f][gsz]|[pmbtrbl][btlrhvwgs]?)(\d*)" "Style with Number Units" r
 .${2:`!p
 snip.rv = {
   'fg': 'flexGrow',
@@ -403,6 +403,16 @@ snip.rv = {
   'posab': 'absolute',
   'posf': 'fixed',
   'poss': 'static',
+}.get(match.group(1), '')
+`}')
+endsnippet
+
+snippet "\.?\b(fw[hn]?)" "FontWeight" r
+.fontWeight('$0${2:`!p
+snip.rv = {
+  'fw': '',
+  'fwh': 'heavy',
+  'fwn': 'normal',
 }.get(match.group(1), '')
 `}')
 endsnippet
