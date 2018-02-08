@@ -407,6 +407,17 @@ snip.rv = {
 `}')
 endsnippet
 
+snippet "\.?\b(ta[clr]?)" "Position" r
+.textAlign('$0${2:`!p
+snip.rv = {
+  'ta': 'center',
+  'tac': 'center',
+  'tal': 'left',
+  'talr': 'right',
+}.get(match.group(1), '')
+`}')
+endsnippet
+
 snippet "\.?\b(fdc)" "flexBox direction" r
 .flexDirection('column')
 endsnippet
