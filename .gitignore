@@ -27,3 +27,4 @@ home/.config/fontforge
 # Etc
 home/.dotfiles/bin/arduino
 settings/all/vscode/extensions
+home/.config/hub
