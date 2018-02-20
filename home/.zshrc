@@ -127,12 +127,12 @@ ZSH_THEME="floscr"
 # ZSH PlUGINS
 plugins=(git osx history-substring-search encode64 fasd web-search fast-syntax-highlighting)
 
-# Lazy load zsh nvm plugin
-ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-if [[ -f "$ZSH_NVM_PLUGIN" ]]; then
-  export NVM_LAZY_LOAD=true
-  source ~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-fi
+# # Lazy load zsh nvm plugin
+# ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+# if [[ -f "$ZSH_NVM_PLUGIN" ]]; then
+#   export NVM_LAZY_LOAD=true
+#   source ~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+# fi
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt
