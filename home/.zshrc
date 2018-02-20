@@ -59,8 +59,8 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 
 # Color Setup
-export COLORTERM=xterm-256color
-export TERM=xterm-256color
+# export COLORTERM=xterm-256color
+# export TERM=xterm-256color
 
 # Language
 export LANG="en_US.UTF-8"
