@@ -222,25 +222,6 @@ source $DOTFILES/.zsh-functions        # Functions
 # Plugins
 # -----------------------------------------------------------------------------
 
-# NVM
-# export NVM_DIR="$HOME/.nvm"
-# # Lazy load nvm, nvm gets lazy loaded when first executing a node task
-# # This shaves of 0.64 seconds of startup time
-# _group_lazy_load $HOME/.nvm/nvm.sh \
-#   browser-sync \
-#   cordova \
-#   eslint \
-#   eslint_d \
-#   gulp \
-#   iectrl \
-#   lebab \
-#   node \
-#   npm \
-#   npmls \
-#   nvm \
-#   vue \
-#   yarn
-
 # Init fasd aka z
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
