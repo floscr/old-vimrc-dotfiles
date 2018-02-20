@@ -192,7 +192,7 @@ unsetopt  BEEP                # No beeps on error
 unsetopt  HIST_BEEP           # No history beeps
 unsetopt  LIST_BEEP           # No list beeps
 
-unsetopt  CHASE_LINKS         # don't resolve symbolic links in cd
+unsetopt  CHASE_LINKS         # dont resolve symbolic links in cd
 
 # COMPLETION
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
