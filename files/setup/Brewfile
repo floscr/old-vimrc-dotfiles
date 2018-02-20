@@ -113,6 +113,10 @@ brew 'ranger'
 brew tap nickolasburr/pfa
 brew install sc-im
 
+# Switch audio source in osx
+# For alfred:
+brew 'switchaudio-osx'
+
 #}}}
 # Coding -------------------------------------------------------------------{{{
 
