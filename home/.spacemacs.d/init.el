@@ -52,6 +52,7 @@ values."
      org
      spacemacs-org
      helm
+     chrome
      auto-completion
      better-defaults
      ;; spell-checking
