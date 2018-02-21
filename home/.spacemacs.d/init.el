@@ -52,7 +52,10 @@ values."
      org
      spacemacs-org
      helm
+
      chrome
+     emoji
+
      auto-completion
      better-defaults
      ;; spell-checking
