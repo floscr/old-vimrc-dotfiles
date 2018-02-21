@@ -41,7 +41,6 @@ values."
      ;; ruby
      floscr
      markdown
-     org
      emacs-lisp
      ;; shell
      (shell :variables
@@ -49,7 +48,9 @@ values."
             shell-default-term-shell "/bin/zsh"
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; emacs
+     ;; Core Layers
+     org
+     spacemacs-org
      helm
      auto-completion
      better-defaults
