@@ -2,7 +2,7 @@
 (global-set-key (kbd "C-x M-1") (lambda() (interactive)(find-file "~/Dropbox/org/")))
 
 (with-eval-after-load 'org
-  (setq org-agenda-files '("~/Dropbox/org/"))
+  (setq org-agenda-files list("~/Dropbox/org/home.org"))
   (setq org-agenda-custom-commands
         '(("c" "Simple agenda view"
            ((agenda "")
