@@ -56,7 +56,12 @@ values."
      chrome
      emoji
 
-     auto-completion
+
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t)
      better-defaults
      ;; spell-checking
      syntax-checking
