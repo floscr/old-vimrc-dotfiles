@@ -2,6 +2,10 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 (setq
+ ;; Fix helm always maximizing splits to full view
+ ;; (Fixed in develop)
+ ;; https://github.com/syl20bnr/spacemacs/issues/9984
+ helm-always-two-windows nil
  projectile-enable-caching t)
 
 (defvar desktop? (= 1440 (display-pixel-height))
