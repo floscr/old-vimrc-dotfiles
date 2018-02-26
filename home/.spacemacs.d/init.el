@@ -298,6 +298,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(org-agenda-files (quote ("~/Dropbox/org/home.org"
                             "~/Dropbox/org/notes.org"
+                            "~/Dropbox/org/projects.org"
                             "~/Dropbox/org/refile-beorg.org")))
  '(package-selected-packages
    (quote
