@@ -304,10 +304,6 @@ snippet timeout "Timeout function"
 setTimeout(function() {${0}}${2}, ${1:10})
 endsnippet
 
-snippet tap "Bitap"
-.bitap(console.error, console.log)
-endsnippet
-
 # }}}
 # React {{{
 # -----------------------------------------------------------------------------
@@ -462,6 +458,10 @@ endsnippet
 
 # }}}
 # Work {{{
+
+snippet tap "Tap"
+.tap(console.log)
+endsnippet
 
 snippet bi "Bitap"
 .bitap(console.log, console.log)
