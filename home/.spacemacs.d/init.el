@@ -12,7 +12,6 @@
   "Am I on my desktop? For determining font size.")
 
 
-
 (defun dotspacemacs/layers ()
   (setq-default
    ;; Default Packages
@@ -293,6 +292,7 @@ you should place your code here."
   (if (file-readable-p "~/.spacemacs.d/org-config.el") (load "~/.spacemacs.d/keyboard-shortcuts.el"))
   )
 
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -301,7 +301,6 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files (quote ("~/Dropbox/org/home.org"
-                            "~/Dropbox/org/notes.org"
                             "~/Dropbox/org/projects.org"
                             "~/Dropbox/org/refile-beorg.org")))
  '(package-selected-packages
