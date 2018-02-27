@@ -26,6 +26,7 @@
 
    dotspacemacs-configuration-layers
    '(
+     html
      ;; System
      better-defaults
      helm
