@@ -52,6 +52,7 @@ This function should only modify configuration layer settings."
      ;; System
      osx
      auto-completion
+     version-control
      git
      neotree
      ;; (shell :variables
