@@ -56,7 +56,6 @@ This function should only modify configuration layer settings."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
      )
 
    ;; List of additional packages that will be installed without being
@@ -102,6 +101,8 @@ It should only modify the values of Spacemacs settings."
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'. (default 'emacs-version)
    dotspacemacs-elpa-subdirectory 'emacs-version
+
+   dotspacemacs-editing-style 'vim
 
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
