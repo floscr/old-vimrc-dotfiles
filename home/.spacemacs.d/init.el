@@ -22,7 +22,11 @@ This function should only modify configuration layer settings."
 
      ;; System
      osx
-     auto-completion
+     (auto-completion
+      :variables
+      auto-completion-enable-snippets-in-popup t
+      auto-completion-tab-key-behavior 'cycle
+      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
      version-control
      git
      neotree
