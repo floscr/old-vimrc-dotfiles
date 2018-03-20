@@ -22,8 +22,9 @@ nnoremap <silent> <leader>lt :ALEToggle<CR>
 " Toggle the error list
 " nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 
-" Git Grep
+" Fugitive
 nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
 
 " Search all lines in all open buffers
 nmap <silent> <leader>L :FZFLines<CR>

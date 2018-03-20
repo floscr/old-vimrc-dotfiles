@@ -367,7 +367,7 @@ function git_check_staged() {
 # Does not support branch names with '/' in name (so no origin/feature/branch_name)
 fbr() {
   local branches branch format
-  format='%(color:green)%(refname:short) %(color:reset)(%(committerdate:relative))'
+  format='%(color:green)%(refname:short) %(color:yellow)%(authorname) %(color:reset)(%(committerdate:relative))'
   branches=$(git branch --all --sort=committerdate --format=$format --color | tail -r | grep -v HEAD) &&
     branch=$(echo "$branches" | fzf-tmux --ansi) &&
     gb $(echo "$branch" | perl -pe 's#.*/(.*?)\s.*#\1#')

@@ -59,8 +59,8 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 
 # Color Setup
-export COLORTERM=xterm-256color
-export TERM=xterm-256color
+# export COLORTERM=xterm-256color
+# export TERM=xterm-256color
 
 # Language
 export LANG="en_US.UTF-8"
@@ -127,12 +127,12 @@ ZSH_THEME="floscr"
 # ZSH PlUGINS
 plugins=(git osx history-substring-search encode64 fasd web-search fast-syntax-highlighting)
 
-# Lazy load zsh nvm plugin
-ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-if [[ -f "$ZSH_NVM_PLUGIN" ]]; then
-  export NVM_LAZY_LOAD=true
-  source ~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-fi
+# # Lazy load zsh nvm plugin
+# ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+# if [[ -f "$ZSH_NVM_PLUGIN" ]]; then
+#   export NVM_LAZY_LOAD=true
+#   source ~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+# fi
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt
@@ -192,7 +192,7 @@ unsetopt  BEEP                # No beeps on error
 unsetopt  HIST_BEEP           # No history beeps
 unsetopt  LIST_BEEP           # No list beeps
 
-unsetopt  CHASE_LINKS         # don't resolve symbolic links in cd
+unsetopt  CHASE_LINKS         # dont resolve symbolic links in cd
 
 # COMPLETION
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
@@ -221,25 +221,6 @@ source $DOTFILES/.zsh-functions        # Functions
 # -----------------------------------------------------------------------------
 # Plugins
 # -----------------------------------------------------------------------------
-
-# NVM
-# export NVM_DIR="$HOME/.nvm"
-# # Lazy load nvm, nvm gets lazy loaded when first executing a node task
-# # This shaves of 0.64 seconds of startup time
-# _group_lazy_load $HOME/.nvm/nvm.sh \
-#   browser-sync \
-#   cordova \
-#   eslint \
-#   eslint_d \
-#   gulp \
-#   iectrl \
-#   lebab \
-#   node \
-#   npm \
-#   npmls \
-#   nvm \
-#   vue \
-#   yarn
 
 # Init fasd aka z
 fasd_cache="$HOME/.fasd-init-bash"
