@@ -10,9 +10,13 @@ This function should only modify configuration layer settings."
    dotspacemacs-enable-lazy-installation 'unused
 
    dotspacemacs-configuration-layers
-   '(javascript
+   '(
+     ;; Syntax
+     javascript
      html
-     emacs-lisp
+
+     floscr-git
+
      markdown
      helm
 
