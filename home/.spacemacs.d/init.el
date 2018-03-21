@@ -24,6 +24,7 @@ This function should only modify configuration layer settings."
      osx
      (auto-completion
       :variables
+      auto-completion-idle-delay 0.05
       auto-completion-enable-snippets-in-popup t
       auto-completion-tab-key-behavior 'cycle
       auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
