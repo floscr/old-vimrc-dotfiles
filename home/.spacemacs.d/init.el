@@ -41,7 +41,8 @@ This function should only modify configuration layer settings."
 
    dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '(evil-escape)
+   dotspacemacs-excluded-packages '(evil-escape
+                                    vi-tilde-fringe)
    ))
 
 (defun dotspacemacs/init ()
