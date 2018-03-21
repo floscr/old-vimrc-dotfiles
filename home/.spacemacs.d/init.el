@@ -41,13 +41,14 @@ This function should only modify configuration layer settings."
      ;; Emacs
      (auto-completion
       :variables
+      auto-completion-enable-sort-by-usage t
       auto-completion-idle-delay 0.05
       auto-completion-enable-snippets-in-popup t
       auto-completion-tab-key-behavior 'cycle
       auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
-     version-control
-     git
      neotree
+
+     ;; Terminal
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh"
@@ -246,7 +247,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'origami
+   dotspacemacs-folding-method 'evil
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
