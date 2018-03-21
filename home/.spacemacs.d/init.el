@@ -26,6 +26,19 @@ This function should only modify configuration layer settings."
 
      ;; System
      osx
+
+     ;; Version Control
+     (version-control
+      :variables
+      version-control-global-margin t
+      version-control-diff-tool     'git-gutter
+      )
+     (git
+      :variables
+      git-gutter-use-fringe t
+     )
+
+     ;; Emacs
      (auto-completion
       :variables
       auto-completion-idle-delay 0.05
