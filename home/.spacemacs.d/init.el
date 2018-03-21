@@ -320,10 +320,15 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq org-agenda-files (list "~/Dropbox/org/home.org"
-                               "~/Dropbox/org/projects.org"
-                               "~/Dropbox/org/refile-beorg.org"
-                               "~/Dropbox/org/Work/Work.org"))
+  (setq
+   ;; ScrollOff 10 lines
+   scroll-conservatively 10
+   scroll-margin 10
+
+   org-agenda-files (list "~/Dropbox/org/home.org"
+                          "~/Dropbox/org/projects.org"
+                          "~/Dropbox/org/refile-beorg.org"
+                          "~/Dropbox/org/Work/Work.org"))
 
   )
 
