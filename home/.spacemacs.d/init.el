@@ -321,6 +321,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (global-company-mode t)
+
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
