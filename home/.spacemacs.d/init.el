@@ -335,7 +335,7 @@ before packages are loaded."
    ;; ScrollOff 10 lines
    scroll-conservatively 10
    scroll-margin 10
-
+   org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))
    org-agenda-files (list "~/Dropbox/org/home.org"
                           "~/Dropbox/org/projects.org"
                           "~/Dropbox/org/refile-beorg.org"
