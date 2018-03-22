@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      )
 
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(editorconfig)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(evil-escape
                                     vi-tilde-fringe)
