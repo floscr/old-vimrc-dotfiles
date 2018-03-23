@@ -11,6 +11,8 @@ nmap <silent> <leader>sp :source %<CR><ESC>:PlugInstall<CR>
 " Color Picker.
 nnoremap <leader>v :VCoolor<CR>
 
+nnoremap <silent> <leader><TAB> :b#<CR>
+
 " Toggle spellcheck
 nmap <silent> <leader>ss :set spell!<CR>
 
