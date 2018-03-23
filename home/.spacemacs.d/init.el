@@ -1,5 +1,3 @@
-;; -*- mode: emacs-lisp -*-
-
 (defun dotspacemacs/layers ()
   "Layer configuration:
 This function should only modify configuration layer settings."
