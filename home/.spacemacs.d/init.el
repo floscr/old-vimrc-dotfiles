@@ -55,7 +55,7 @@ This function should only modify configuration layer settings."
     ;; spell-checking
      )
 
-   dotspacemacs-additional-packages '(editorconfig)
+   dotspacemacs-additional-packages '(editorconfig helm-ls-git)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(evil-escape
                                     vi-tilde-fringe)
