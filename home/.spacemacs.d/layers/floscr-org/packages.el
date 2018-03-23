@@ -1,7 +1,7 @@
 (defconst floscr-org-packages
-  '(org spacemacs-org))
+  '(org spacemacs-org spacemacs-journal))
 
-(defun mfa-org/post-init-org ()
+(defun floscr-org/post-init-org ()
   (setq
    ;; automatically indent org sections.
    org-startup-indented t
@@ -12,7 +12,13 @@
                           "~/Dropbox/org/projects.org"
                           "~/Dropbox/org/refile-beorg.org"
                           "~/Dropbox/org/Einkaufsliste.org"
-                          "~/Dropbox/org/Work/Work.org"))
+                          "~/Dropbox/org/Work/Work.org")
+   org-journal-dir "~/Dropbox/org/journal"
+   org-journal-file-format "%Y-%m-%d"
+   org-journal-date-prefix "#+TITLE: "
+   org-journal-date-format "%A, %B %d %Y"
+   org-journal-time-prefix "* "
+   org-journal-time-format "")
 
   ;; additional leader key bindings for org functionality.
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
