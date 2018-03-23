@@ -1,0 +1,2 @@
+(defconst floscr-defaults-packages
+  '())
