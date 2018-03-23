@@ -7,7 +7,8 @@
    org-startup-indented t
    ;; Add files to refile targets
    ;; , s r - to retarget a section
-   org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))
+   org-refile-targets '((nil :maxlevel . 3)
+                        (org-agenda-files :maxlevel . 3))
    org-agenda-files (list "~/Dropbox/org/home.org"
                           "~/Dropbox/org/projects.org"
                           "~/Dropbox/org/refile-beorg.org"
