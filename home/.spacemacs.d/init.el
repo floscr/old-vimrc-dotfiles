@@ -14,14 +14,11 @@ This function should only modify configuration layer settings."
      html
 
      ;; floscr-git
+     floscr-org
      itome-react
 
      markdown
      helm
-
-     ;; Org
-     org
-     spacemacs-org
 
      ;; System
      osx
@@ -332,15 +329,7 @@ before packages are loaded."
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
-   scroll-margin 10
-   org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))
-   org-agenda-files (list "~/Dropbox/org/home.org"
-                          "~/Dropbox/org/projects.org"
-                          "~/Dropbox/org/refile-beorg.org"
-                          "~/Dropbox/org/Einkaufsliste.org"
-                          "~/Dropbox/org/Work/Work.org"))
-
-  )
+   scroll-margin 10))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
