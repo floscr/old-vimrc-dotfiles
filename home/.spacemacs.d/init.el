@@ -51,7 +51,8 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
 
-     ;; spell-checking
+     syntax-checking
+    ;; spell-checking
      )
 
    dotspacemacs-additional-packages '(editorconfig)
