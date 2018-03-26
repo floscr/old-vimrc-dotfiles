@@ -24,6 +24,9 @@ This function should only modify configuration layer settings."
      ;; System
      osx
 
+     spacemacs-org
+     org
+
      ;; Version Control
      (version-control
       :variables
