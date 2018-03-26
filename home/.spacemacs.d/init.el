@@ -45,7 +45,8 @@ This function should only modify configuration layer settings."
       auto-completion-idle-delay 0.05
       auto-completion-enable-snippets-in-popup t
       auto-completion-tab-key-behavior 'cycle
-      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
+      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/"
+      :disabled-for org spacemacs-org)
      neotree
 
      ;; Terminal
