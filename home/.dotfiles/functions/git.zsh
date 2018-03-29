@@ -163,7 +163,7 @@ function gam() {
       fi
     done
   fi
-  git commit --amend --no-edit "$msg"
+  git commit --amend --no-edit . "$msg"
 }
 
 # Switch to a branch
