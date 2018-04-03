@@ -50,3 +50,7 @@ augroup suffixes
     execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
   endfor
 augroup END
+
+" Magit
+autocmd FileType magit nmap <buffer> <Tab> <C-n>
+autocmd FileType magit nmap <buffer> <S-Tab> <C-p>
