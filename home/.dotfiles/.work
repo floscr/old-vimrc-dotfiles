@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# vim:foldmethod=marker
+
+function renpm() {
+  groot
+  rm -rf .happypack node_modules
+  npm i
+  terminal-notifier -message "Done"
+}
+
+function rerails() {
+  bundle exec rake load
+  bundle exec rake db:migrate
+  rails server -p 3001
+}

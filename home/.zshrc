@@ -215,8 +215,9 @@ bindkey -M vicmd v edit-command-line
 # -----------------------------------------------------------------------------
 
 # Configurations
-source $DOTFILES/.aliases              # Aliases
-source $DOTFILES/.zsh-functions        # Functions
+source $DOTFILES/.aliases       # Aliases
+source $DOTFILES/.work          # Work
+source $DOTFILES/.zsh-functions # Functions
 
 # -----------------------------------------------------------------------------
 # Plugins
