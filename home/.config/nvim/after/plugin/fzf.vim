@@ -68,7 +68,7 @@ endfunction
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \ 'git grep --line-number ' . shellescape(<q-args>), 1,
-  \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%'),
+  \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:40%'),
   \ <bang>0)
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
