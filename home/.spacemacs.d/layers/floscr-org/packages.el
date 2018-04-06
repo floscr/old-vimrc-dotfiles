@@ -3,8 +3,6 @@
 
 (defun floscr-org/post-init-org ()
   (setq
-   ;; automatically indent org sections.
-   org-startup-indented t
    ;; Add files to refile targets
    ;; , s r - to retarget a section
    org-refile-targets '((nil :maxlevel . 3)
