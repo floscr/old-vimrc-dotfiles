@@ -20,7 +20,7 @@ let g:lightline = {
       \ 'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
       \   'component_expand': {
-      \     'ale': 'ALEGetStatusLine'
+      \     'ale': 'ale#statusline#Count()'
       \   },
       \   'component_type': {
       \     'ale': 'error'
