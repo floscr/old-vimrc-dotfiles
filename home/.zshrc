@@ -162,6 +162,7 @@ COMPLETION_WAITING_DOTS="true"
 # set editing-mode vi # Set vi mode for zsh
 bindkey -v          # Fix vi mode for tmux
 export KEYTIMEOUT=1 # Remove the timeout
+export DISABLE_AUTO_TITLE=true
 
 bindkey '^P' up-history
 bindkey '^N' down-history
