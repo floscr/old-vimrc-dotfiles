@@ -6,6 +6,12 @@ function _branch_complete() {
   compadd `echo $branches | sed "s/ //g"`
 }
 
+# Tig Log for the current branch only without merge commits
+function tigbonly() {
+  first_commit_sha_of_branch=`git log maplist..maplist-invite_dialog_autocomplete  --oneline --no-merges | tail -1 | awk '{print $1;}'`
+  current_branch=`git rev-parse --abbrev-ref HEAD`
+  tig --first-parent --no-merges $first_commit_sha_of_branch..$current_branch
+}
 
 # Open a file that contains all changed files in the current branch
 # Nice little helper to check all files before doing a PR
