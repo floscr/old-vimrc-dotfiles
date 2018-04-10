@@ -26,7 +26,8 @@ nnoremap <silent> <leader>lt :ALEToggle<CR>
 
 " Fugitive
 nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
+" Gitblame with ignoring whitespace changes
+nnoremap <silent> <leader>gb :Gblame -w<CR>
 
 " Search all lines in all open buffers
 nmap <silent> <leader>L :FZFLines<CR>
