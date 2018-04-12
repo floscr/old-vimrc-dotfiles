@@ -1,10 +1,19 @@
+" Global {{{
+" -----------------------------------------------------------------------------
+
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-v': 'vsplit',
+      \ }
 
+" }}}
+" Theme {{{
+" -----------------------------------------------------------------------------
 
+" Fix the color mismatch for FZF buffers
 hi FZFHighlight guibg=#171D20
+
 let g:fzf_colors = {
       \ 'pointer': ['bg', 'Search'],
       \ 'bg':      ['bg', 'IncSearch', 'NonText'],
@@ -15,12 +24,14 @@ let g:fzf_colors = {
       \ }
 
 " Add preview window via coderay
-let g:fzf_files_options =
-      \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
-" autocmd! VimEnter * command! -nargs=* -complete=file Files :call fzf#vim#ag_raw(<q-args>, fzf#wrap('ag-raw',
-" \ {'options': "--preview 'coderay $(cut -d: -f1 <<< {}) 2> /dev/null | sed -n $(cut -d: -f2 <<< {}),\\$p | head -".&lines."'"}))
+" Fix colors for fzf
+" autocmd FileType fzf hi! IncSearch term=bold ctermfg=Cyan guifg=#80a0ff gui=bold guibg=#ffffff
 
+" }}}
+" Ctrl-P {{{
+" -----------------------------------------------------------------------------
 " Check if the current file is inside git root
 function! s:find_git_root()
   if system('git rev-parse --show-toplevel 2> /dev/null') != ''
@@ -35,27 +46,34 @@ function! s:find_git_root()
   return 'Files'
 endfunction
 command! ProjectFiles execute s:find_git_root()
-
-" Search either current Files by Git index or just file system
 nnoremap <silent> <C-p> :ProjectFiles<CR>
-" Search Recent Files
+
+" }}}
+" Shortcuts {{{
+" -----------------------------------------------------------------------------
+
+" Recent Files
 nnoremap <silent> <leader>h :History<CR>
-" Search open buffers
+" open buffers
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
-" Search available commands
+" available commands
 nnoremap <silent> <leader>c :Commands<CR>
-" Search lines in all open buffers
+" lines in all open buffers
 nnoremap <silent> <leader>; :BLines<CR>
-" Search lines in current file
+" lines in current file
 nnoremap <silent> <leader>. :Lines<CR>
-" Search commits
+" commits
 nnoremap <silent> <leader>gl :Commits<CR>
-" Search commits for current file
+" commits for current file
 nnoremap <silent> <leader>gL :BCommits<CR>
 
 " Exit FZF by pressing escape
 autocmd! FileType fzf tnoremap <buffer> <esc> <C-c>
+
+" }}}
+" Commands {{{
+" -----------------------------------------------------------------------------
 
 " AG in git root
 function! s:with_git_root()
@@ -96,9 +114,9 @@ autocmd VimEnter * command! -bang -nargs=* BCommits
   \ call fzf#vim#buffer_commits({
   \ 'down': '~80%',
   \ })
-
-" Fix colors for fzf
-" autocmd FileType fzf hi! IncSearch term=bold ctermfg=Cyan guifg=#80a0ff gui=bold guibg=#ffffff
+" }}}
+" FZFLines: Search in all open buffer lines {{{
+" -----------------------------------------------------------------------------
 
 function! s:line_handler(l)
   let keys = split(a:l, ':\t')
@@ -121,3 +139,5 @@ command! FZFLines call fzf#run({
       \ 'options': '--extended --nth=3..',
       \ 'down':    '60%',
       \ })
+
+" }}}
