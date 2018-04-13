@@ -7,10 +7,24 @@ function _branch_complete() {
 }
 
 # Tig Log for the current branch only without merge commits
+# $2: To which branch to show the commits
 function tigbonly() {
-  first_commit_sha_of_branch=`git log maplist..maplist-invite_dialog_autocomplete  --oneline --no-merges | tail -1 | awk '{print $1;}'`
-  current_branch=`git rev-parse --abbrev-ref HEAD`
-  tig --first-parent --no-merges $first_commit_sha_of_branch..$current_branch
+  if [[ -z $1 ]]; then
+    _error_msg "Error: Please specify base branch in \$1"
+    return
+  fi
+
+  if [[ -z $2 ]]; then
+    curent_branch=`git rev-parse --abbrev-ref HEAD`
+    to_branch=$current_branch
+  else
+    to_branch=$2
+  fi
+
+  first_commit_sha_of_branch=`git log $1..$to_branch  --oneline --no-merges | tail -1 | awk '{print $1;}'`
+  tig --first-parent --no-merges $first_commit_sha_of_branch..$to_branch
+}
+
 }
 
 # Open a file that contains all changed files in the current branch
