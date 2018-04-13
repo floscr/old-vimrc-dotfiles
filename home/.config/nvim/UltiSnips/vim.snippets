@@ -16,3 +16,12 @@ function! ${1:function_name}()
 endfunction
 command! $1 :call $1()
 endsnippet
+
+snippet < "Comment Header Start"
+" $0 {{{
+" -----------------------------------------------------------------------------
+endsnippet
+
+snippet > "Comment Header End"
+" }}}
+endsnippet
