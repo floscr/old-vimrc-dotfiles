@@ -114,6 +114,7 @@ autocmd VimEnter * command! -bang -nargs=* BCommits
   \ call fzf#vim#buffer_commits({
   \ 'down': '~80%',
   \ })
+
 " }}}
 " FZFLines: Search in all open buffer lines {{{
 " -----------------------------------------------------------------------------
