@@ -23,4 +23,5 @@ nnoremap <space>ge :Gedit<CR>
 " Hard reset all changes
 nnoremap <silent> <leader>grh :silent! Git reset --hard<CR>
 " Reset current file
-nnoremap <silent> <leader>grf :silent! Git checkout HEAD -- %<CR>:e!<CR>
+" nnoremap <silent> <leader>grf :silent! Git checkout HEAD -- %<CR>:e!<CR>
+nnoremap <silent> <leader>grf :Gread HEAD:%<CR>
