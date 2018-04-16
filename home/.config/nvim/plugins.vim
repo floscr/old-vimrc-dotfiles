@@ -53,14 +53,12 @@ Plug 'tpope/vim-unimpaired'
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
 
-" }}}1
 " Project Management {{{1
 " --------------------------------------------------------------------------
 
 " Load local .lvimrc
 Plug 'embear/vim-localvimrc'
 
-" }}}1
 " Commands {{{
 " --------------------------------------------------------------------------
 
@@ -80,7 +78,6 @@ Plug 'duggiefresh/vim-easydir'
 " <gW>: Wiki search word under cursor in the default web browser
 Plug 'dhruvasagar/vim-open-url'
 
-"}}}
 " User Interface {{{
 " --------------------------------------------------------------------------
 
@@ -127,7 +124,6 @@ Plug 'wincent/ferret'
 " Zoom Split <C-W>m
 Plug 'dhruvasagar/vim-zoom'
 
-" }}}
 " Motions {{{
 " --------------------------------------------------------------------------
 
@@ -168,7 +164,6 @@ Plug 'AndrewRadev/sideways.vim', {
 nnoremap ,> :silent SidewaysRight<CR>
 nnoremap ,< :silent SidewaysLeft<CR>
 
-" }}}
 " Text Editing {{{
 " --------------------------------------------------------------------------
 
@@ -194,7 +189,6 @@ Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
 " Automatically closing pairs
 Plug 'cohama/lexima.vim'
 
-" }}}
 " Text Objects {{{
 " --------------------------------------------------------------------------
 
@@ -209,7 +203,6 @@ Plug 'trungdq88/vim-textobj-xmlattr'          " XML Attribute Textobject X
 " Plug 'jasonlong/vim-textobj-css'            " CSS Class caf
 Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 
-" }}}
 " Autocomplete {{{
 " --------------------------------------------------------------------------
 
@@ -228,13 +221,11 @@ let g:deoplete#enable_at_startup = 1
 " Snippet suport
 Plug 'SirVer/ultisnips'
 
-" }}}
 " Linting {{{
 " --------------------------------------------------------------------------
 
 Plug 'w0rp/ale'
 
-" }}}
 " Focus Mode {{{
 " --------------------------------------------------------------------------
 
@@ -243,7 +234,6 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 " Focus Mode
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
-" }}}
 " Search Utilities {{{
 " --------------------------------------------------------------------------
 
@@ -268,7 +258,6 @@ else
   Plug 'junegunn/fzf.vim'
 endif
 
-" }}}
 " Colorschemes {{{
 " --------------------------------------------------------------------------
 
@@ -277,7 +266,6 @@ Plug 'floscr/vim-hybrid'
 Plug 'rakr/vim-one'
 Plug 'NLKNguyen/papercolor-theme'
 
-" }}}
 " Git {{{
 " --------------------------------------------------------------------------
 
@@ -299,7 +287,6 @@ Plug 'hotwatermorning/auto-git-diff', { 'for': [ 'gitrebase' ] }
 " Interactive Git
 Plug 'jreybert/vimagit', { 'on': ['Magit'] }
 
-" }}}
 " Notes {{{
 " --------------------------------------------------------------------------
 
@@ -344,42 +331,35 @@ let g:vimwiki_list = [wiki, blogwiki]
 " Enable folding
 let g:vimwiki_folding='expr'
 
-" }}}
 " Debugging {{{
 " --------------------------------------------------------------------------
 
 " Debug startuptime with :StartupTime
 Plug 'tweekmonster/startuptime.vim', { 'on': ['StartupTime'] }
 
-" }}}
 " Documentation {{{
 " --------------------------------------------------------------------------
 
 " Show man page inside vim help
 Plug 'vim-utils/vim-man', { 'on': ['Man', 'Vman'] }
 
-" }}}
 " For the LOLs {{{
 " --------------------------------------------------------------------------
 
 " Vim Breakout Game with your code lines
 " Plug 'johngrib/vim-game-code-break', { 'on': ['VimGameCodeBreak'] }
 
-" }}}
 " Work {{{
 " --------------------------------------------------------------------------
 
 Plug 'git@bitbucket.org:artish/vim-meistersnippet.git'
 Plug 'git@bitbucket.org:artish/meisterlabs.vim.git'
 
-" }}}
-
 " Syntax {{{1
 " --------------------------------------------------------------------------
 
 " Editor config for vim
 Plug 'editorconfig/editorconfig-vim'
-
 
 " Reason {{{2
 " --------------------------------------------------------------------------
@@ -394,19 +374,16 @@ let g:LanguageClient_serverCommands = {
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ }
 
-" }}}2
 " Swift {{{2
 " --------------------------------------------------------------------------
 
 Plug 'keith/swift.vim', { 'for': [ 'swift' ] }
 
-" }}}2
 " GO {{{2
 " --------------------------------------------------------------------------
 
 Plug 'cespare/vim-toml', { 'for': [ 'toml' ] }
 
-" }}}2
 " Haskell {{{2
 " --------------------------------------------------------------------------
 
@@ -416,19 +393,16 @@ Plug 'eagletmt/neco-ghc', { 'for': [ 'haskell' ] }
 " Plug 'jaspervdj/stylish-haskell', { 'for': [ 'haskell' ] }
 " Plug 'commercialhaskell/hindent', { 'for': [ 'haskell' ] }
 
-" }}}2
 " Purescript {{{2
 " --------------------------------------------------------------------------
 
 Plug 'purescript-contrib/purescript-vim', { 'for': [ 'purescript' ] }
 
-" }}}2
 " Elixir {{{2
 " --------------------------------------------------------------------------
 
 Plug 'elixir-editors/vim-elixir'
 
-" }}}2
 " Javascript {{{2
 " --------------------------------------------------------------------------
 
@@ -471,8 +445,6 @@ Plug 'galooshi/vim-import-js', {
 " let g:prettier#config#use_tabs = 'false'
 " let g:prettier#config#bracket_spacing = 'true'
 " }}}3
-
-" }}}2
 " HTML / CSS {{{2
 " --------------------------------------------------------------------------
 
@@ -505,7 +477,6 @@ Plug 'floscr/FZF-cdnj'
 Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
-" }}}2
 " Markdown {{{2
 " --------------------------------------------------------------------------
 
@@ -522,10 +493,7 @@ Plug 'nelstrom/vim-markdown-folding'
 " Does not work because vim-markdonw overrides syntax
 " Plug 'gonzaloserrano/vim-markdown-todo', { 'for': ['markdown'] }
 
-" }}}2
-" }}}1
-
 " Plug end {{{1
 " --------------------------------------------------------------------------
+
 call plug#end()
-" }}}
