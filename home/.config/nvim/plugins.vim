@@ -9,8 +9,6 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" }}}
-
 " Defaults {{{1
 " --------------------------------------------------------------------------
 
@@ -18,8 +16,16 @@ if !has('nvim')
   Plug 'noahfrederick/vim-neovim-defaults'
 endif
 
-" }}}
+" Dependencies {{{1
+" --------------------------------------------------------------------------
+
+" Ability to load json files for vim
+" Used in:
+"   + Emmet - To load custom snippets.json
+Plug 'mattn/webapi-vim'
+
 " VIM Extending Plugins {{{1
+" --------------------------------------------------------------------------
 
 " Vim/TMUX seamless split navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -29,11 +35,6 @@ Plug 'benmills/vimux'
 
 " Lots of word manipulations plugins
 Plug 'tpope/vim-abolish'
-
-" Ability to load json files for vim
-" Used in:
-"   + Emmet - To load custom snippets.json
-Plug 'mattn/webapi-vim'
 
 " Asynchronous Command Execution
 Plug 'skywind3000/asyncrun.vim'
