@@ -34,6 +34,16 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 
 " Lots of word manipulations plugins
+" Case conversion: {{{2
+" crs        -  snake_case
+" crm        -  MixedCase
+" crc        -  camelCase
+" cru        -  UPPER_CASE
+" cr-        -  dash-case
+" cr.        -  dot.case
+" cr<space>  -  space case
+" crT        -  Title Case
+" }}}2
 Plug 'tpope/vim-abolish'
 
 " Asynchronous Command Execution
