@@ -1,6 +1,7 @@
 " Global {{{
 " -----------------------------------------------------------------------------
 
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-x': 'split',
