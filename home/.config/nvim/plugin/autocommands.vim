@@ -1,3 +1,6 @@
+" FocusGained {{{1
+" -----------------------------------------------------------------------------
+
 " Auto Load Buffer Except for Command Line Buffers
 function! s:checkTimeOnEditableBuffers()
   if expand('%') !=# '[Command Line]'
@@ -9,6 +12,9 @@ augroup checktime_update
   au!
   au FocusGained,BufEnter,CursorHold * call s:checkTimeOnEditableBuffers()
 augroup END
+
+" FileTypes {{{1
+" -----------------------------------------------------------------------------
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
@@ -33,7 +39,10 @@ au BufRead,BufNewFile *.conf set filetype=conf
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 
-augroup qf " QuickFix {{{
+" QuickFix {{{1
+" -----------------------------------------------------------------------------
+
+augroup qf
   autocmd!
   " Preview quickfix result
   autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
@@ -50,7 +59,10 @@ augroup qf " QuickFix {{{
 
   " Restore enter for the quickfix window
   autocmd FileType qf nnoremap <buffer> <CR> <CR>
-augroup END "}}}
+augroup END
+
+" Suffixes {{{1
+" -----------------------------------------------------------------------------
 
 augroup suffixes
   autocmd!
@@ -64,6 +76,9 @@ augroup suffixes
     execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
   endfor
 augroup END
+
+" Magit {{{1
+" -----------------------------------------------------------------------------
 
 " Magit
 autocmd FileType magit nmap <buffer> <Tab> <C-n>
