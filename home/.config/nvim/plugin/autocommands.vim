@@ -14,6 +14,14 @@ augroup update_buffer
   au BufEnter * execute('silent! GitGutter')
 augroup END
 
+augroup cmd_win_enter
+  au!
+  au CmdwinEnter * nnoremap <buffer> <silent> q :q<CR>
+  au CmdwinEnter * nnoremap <buffer> <silent> <ESC> :q<CR>
+  au CmdwinEnter * setlocal relativenumber!
+  au CmdwinEnter * setlocal cursorline
+augroup END
+
 " FileTypes {{{1
 " -----------------------------------------------------------------------------
 
