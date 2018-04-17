@@ -24,19 +24,24 @@ au BufRead,BufNewFile *.conf set filetype=conf
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 
-" Restore enter for the quickfix window
-autocmd FileType qf nnoremap <buffer> <CR> <CR>
+augroup qf " QuickFix {{{
+  autocmd!
+  " Preview quickfix result
+  autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
 
-" Preview quickfix result
-autocmd FileType qf nnoremap <buffer> <Tab> <Enter><C-W>j
+  " Remove quickfix from the buffer list
+  autocmd FileType qf set nobuflisted
 
-augroup MakeQuickFixPrettier
-    autocmd!
-    autocmd BufRead * if &buftype == 'quickfix'
-                \| setlocal colorcolumn=
-                \| setlocal nolist
-                \| endif
-augroup END
+  " Make quickfix prettier
+  autocmd BufRead * if &buftype == 'quickfix'
+        \| setlocal colorcolumn=
+        \| setlocal nolist
+        \| setlocal number!
+        \| endif
+
+  " Restore enter for the quickfix window
+  autocmd FileType qf nnoremap <buffer> <CR> <CR>
+augroup END "}}}
 
 augroup suffixes
   autocmd!
