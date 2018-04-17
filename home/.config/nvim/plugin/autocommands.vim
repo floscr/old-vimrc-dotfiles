@@ -11,6 +11,7 @@ endfunction
 augroup checktime_update
   au!
   au FocusGained,BufEnter,CursorHold * call s:checkTimeOnEditableBuffers()
+  au BufEnter * execute('silent! GitGutter')
 augroup END
 
 " FileTypes {{{1
