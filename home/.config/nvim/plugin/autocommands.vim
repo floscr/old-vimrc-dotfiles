@@ -1,5 +1,14 @@
-" Automatically load changes in file
-autocmd WinEnter,BufWinEnter,FocusGained * checktime
+" Auto Load Buffer Except for Command Line Buffers
+function! s:checkTimeOnEditableBuffers()
+  if expand('%') !=# '[Command Line]'
+    silent! checktime
+  endif
+endfunction
+
+augroup checktime_update
+  au!
+  au FocusGained,BufEnter,CursorHold * call s:checkTimeOnEditableBuffers()
+augroup END
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja
