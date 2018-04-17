@@ -8,7 +8,7 @@ function! s:checkTimeOnEditableBuffers()
   endif
 endfunction
 
-augroup checktime_update
+augroup update_buffer
   au!
   au FocusGained,BufEnter,CursorHold * call s:checkTimeOnEditableBuffers()
   au BufEnter * execute('silent! GitGutter')
