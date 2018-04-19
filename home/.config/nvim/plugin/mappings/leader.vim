@@ -35,6 +35,7 @@ nmap <silent> <leader>L :FZFLines<CR>
 " Splits
 nnoremap <silent> <leader>\| :vsplit<CR>
 nnoremap <silent> <leader>- :split<CR>
+nnoremap <leader>tc :tabclose<CR>
 
 " Prompt for a command to run
 map <Leader>xc :VimuxInterruptRunner<CR>:VimuxPromptCommand<CR>
