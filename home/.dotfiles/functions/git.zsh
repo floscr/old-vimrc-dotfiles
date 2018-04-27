@@ -25,8 +25,6 @@ function tigbonly() {
   tig --first-parent --no-merges $first_commit_sha_of_branch..$to_branch
 }
 
-}
-
 # Open a file that contains all changed files in the current branch
 # Nice little helper to check all files before doing a PR
 function vim_open_changed_files_in_branch() {
