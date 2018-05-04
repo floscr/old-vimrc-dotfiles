@@ -486,7 +486,7 @@ Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 Plug 'plasticboy/vim-markdown'
 
 " Editor config for vim
-Plug 'floscr/todo.vim'
+Plug 'https://bitbucket.org/artish/orgwiki'
 
 " Markdown folding
 Plug 'nelstrom/vim-markdown-folding'
