@@ -220,14 +220,6 @@ Plug 'b4winckler/vim-angry'                   " Function Argument Text objects
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-buffer.vim'
-" Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
-
-" Plug 'floscr/tscompletejob' | Plug 'prabirshrestha/asyncomplete.vim'
-" let g:tscompletejob_node_cmd = expand('~/.nvm/versions/node/v6.10.3/bin/node')
-" let g:tscompletejob_autoload_filetypes = ['ts', 'tsx', 'javascript', 'js']
-
 " Snippet suport
 Plug 'SirVer/ultisnips'
 
