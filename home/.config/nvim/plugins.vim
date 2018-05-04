@@ -367,14 +367,14 @@ Plug 'editorconfig/editorconfig-vim'
 " --------------------------------------------------------------------------
 
 Plug 'reasonml-editor/vim-reason-plus'
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-" let g:LanguageClient_serverCommands = {
-"     \ 'reason': ['ocaml-language-server', '--stdio'],
-"     \ 'ocaml': ['ocaml-language-server', '--stdio'],
-"     \ }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
 
 " Swift {{{2
 " --------------------------------------------------------------------------
