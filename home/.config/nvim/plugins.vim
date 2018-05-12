@@ -63,6 +63,12 @@ Plug 'tpope/vim-unimpaired'
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
 
+" Complete from Buffer in the commandline {{{2
+" <c-x> Complete from buffer forward
+" <c-y> Complete from buffer backward
+" 2}}}
+Plug 'floscr/CmdlineComplete'
+
 " Project Management {{{1
 " --------------------------------------------------------------------------
 
