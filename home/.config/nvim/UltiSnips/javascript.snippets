@@ -523,3 +523,39 @@ ${1:root}: Style(function({ ${2:prop} }, Rules) {
     $0
 })
 endsnippet
+
+snippet "Sw(itch)?" "Switch" r
+Switch
+    .of($0)
+    .case(
+        $1
+    )
+    .default(
+        $2
+    )
+    .get();
+endsnippet
+
+snippet "May(be)?" "Maybe" r
+Maybe
+    .of($0)
+    .get();
+endsnippet
+
+snippet "Obj" "Obj"
+Obj
+    .of({ $0 })
+    .get();
+endsnippet
+
+snippet "Str" "Str"
+Str
+    .of($0)
+    .get();
+endsnippet
+
+snippet "Str" "Str"
+Str
+    .of($0)
+    .get();
+endsnippet

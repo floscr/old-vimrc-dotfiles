@@ -19,11 +19,13 @@ augroup cmd_win_enter
   au CmdwinEnter * nnoremap <buffer> <silent> q :q<CR>
   au CmdwinEnter * nnoremap <buffer> <silent> <ESC> :q<CR>
   au CmdwinEnter * setlocal relativenumber!
-  au CmdwinEnter * setlocal cursorline
+  au CmdwinEnter * setlocal cursorline!
 augroup END
 
 " FileTypes {{{1
 " -----------------------------------------------------------------------------
+
+autocmd BufNewFile,BufRead *.json set ft=javascript.jsx
 
 " Activate htmljinja for twig files
 autocmd BufRead,BufNewFile,BufReadPost *.twig set ft=htmljinja

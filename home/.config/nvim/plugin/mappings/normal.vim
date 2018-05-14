@@ -35,6 +35,8 @@ vnoremap <silent> * y:let @/=@"<cr>:set hlsearch<cr>n
 
 " Use the last used search to use in replace command
 nmap <expr> M ':%s/' . @/ . '//<LEFT>'
+" Replace in line
+nmap <expr> L ':s/' . @/ . '//<LEFT>'
 
 " Replace word under cursor in current line
 nnoremap ( vE:/<C-R><C-W>//<LEFT>
