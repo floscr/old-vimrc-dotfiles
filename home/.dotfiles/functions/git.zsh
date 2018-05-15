@@ -25,6 +25,15 @@ function tigbonly() {
   tig --first-parent --no-merges $first_commit_sha_of_branch..$to_branch
 }
 
+# List all changed Files in a branch including unstaged and freshly added files
+function git_changed_files() {
+  current_branch="$(git rev-parse --abbrev-ref HEAD)"
+  (
+    git --no-pager diff --no-renames --name-only --no-merges $current_branch master;
+    git ls-files -om --exclude-standard
+  ) | cat
+}
+
 # Open a file that contains all changed files in the current branch
 # Nice little helper to check all files before doing a PR
 function vim_open_changed_files_in_branch() {
