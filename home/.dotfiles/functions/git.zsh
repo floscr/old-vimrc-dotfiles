@@ -31,7 +31,7 @@ function git_changed_files() {
   (
     git --no-pager diff --no-renames --name-only --no-merges $current_branch master;
     git ls-files -om --exclude-standard
-  ) | cat
+  ) | uniq | cat
 }
 
 # Open a file that contains all changed files in the current branch
