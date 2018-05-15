@@ -91,3 +91,7 @@ function numhash() {
   # Create a numeric x character long hash
   cat /dev/urandom | env LC_CTYPE=C tr -dc '0-9' | fold -w $digit | head -n 1
 }
+
+function eslint_changed_files() {
+  eslint_d $(git_changed_files | egrep '\.js$') $@
+}
