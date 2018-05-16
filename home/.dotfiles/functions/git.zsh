@@ -34,6 +34,12 @@ function git_changed_files() {
   ) | uniq | cat
 }
 
+function git_cleanup() {
+  git fetch --prune
+  git pull --all
+  git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
+}
+
 # Open a file that contains all changed files in the current branch
 # Nice little helper to check all files before doing a PR
 function vim_open_changed_files_in_branch() {
