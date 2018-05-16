@@ -13,5 +13,5 @@ let g:deoplete#file#enable_buffer_path=1
 
 " Fix flickering
 " https://github.com/Shougo/deoplete.nvim/issues/726
-call deoplete#custom#option('num_processes', 5)
+" call deoplete#custom#option('num_processes', 5)
 call deoplete#custom#option('refresh_always', 1)
