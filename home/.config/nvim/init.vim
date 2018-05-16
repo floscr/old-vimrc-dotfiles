@@ -281,9 +281,15 @@ let g:ale_fixers.reason = ['refmt']
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
 
+function! s:fixWhenALEIsEnabled()
+  if (g:ale_enabled)
+    execute('ALEFix')
+  endif
+endfunction
+
 " autofix on save
 " let g:ale_fix_on_save=1 leads to errors
-autocmd BufWritePost *.js,*.re ALEFix
+autocmd BufWritePost *.js,*.re call s:fixWhenALEIsEnabled()
 
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '✔']
 let g:ale_warn_about_trailing_whitespace = 0
