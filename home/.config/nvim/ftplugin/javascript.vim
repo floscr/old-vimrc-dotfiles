@@ -7,5 +7,3 @@
 
 " Crate docblock header
 noremap <buffer> ,p :JsDoc<CR>
-
-nnoremap <buffer><C-f> :ALEFix<cr>
