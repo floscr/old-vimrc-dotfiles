@@ -59,6 +59,7 @@ Plug 'skywind3000/asyncrun.vim'
 " [ / ] + ox      - Toggle cursorLine
 " }}}2
 Plug 'tpope/vim-unimpaired'
+let g:nremap= {"[e": "", "]e": ""}
 
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
