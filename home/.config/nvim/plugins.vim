@@ -466,7 +466,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue.html.javascript
 
 
 " Add Colorized background to CSS color values
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx', 'vim', 'vue.html.javascript.css'] }
+" Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xdefaults', 'javascript', 'javascript.jsx', 'vim', 'vue.html.javascript.css'] }
 
 " React
 Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript.jsx', 'javascript'] }
