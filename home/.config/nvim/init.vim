@@ -18,25 +18,26 @@ source ~/.config/nvim/plugins.vim
 " Set leader to Space
 let g:mapleader="\<space>"
 
-set autochdir        " Set working dir to path of the current file
-set hidden           " Enables to switch between unsaved buffers and keep undo history
-set lazyredraw       " Don't redraw while executing macros (better performance)
-set nojoinspaces     " No extra space when joining a line which ends with . ? !
-set noshowmatch      " Show matching tags
-set nostartofline    " Prevent cursor from moving to beginning of line when switching buffers
-set noswapfile       " Dont create swapfiles
-set number           " Show Line numbers
-set relativenumber   " Show Relative Numbers
-set shell=$SHELL     " Setting shell to zsh
-set shortmess+=I     " Turn off the intro message
-set showmode         " Always show mode
-set splitbelow       " Split new window below current window
-set splitright       " Split new window right of current window
-set suffixesadd+=.js " Automatically add suffic when pressing gf to go to a file
-set synmaxcol=1500   " Turn off syntax highlighting after X lines
-set updatetime=750   " make vim update more rapidly
-set mouse=a          " Mouse mode
-set isfname-=:       " Allow using linenumbers for gf
+set autochdir          " Set working dir to path of the current file
+set hidden             " Enables to switch between unsaved buffers and keep undo history
+set lazyredraw         " Don't redraw while executing macros (better performance)
+set nojoinspaces       " No extra space when joining a line which ends with . ? !
+set noshowmatch        " Show matching tags
+set nostartofline      " Prevent cursor from moving to beginning of line when switching buffers
+set noswapfile         " Dont create swapfiles
+set number             " Show Line numbers
+set relativenumber     " Show Relative Numbers
+set shell=$SHELL       " Setting shell to zsh
+set shortmess+=I       " Turn off the intro message
+set showmode           " Always show mode
+set splitbelow         " Split new window below current window
+set splitright         " Split new window right of current window
+set suffixesadd+=.js   " Automatically add suffic when pressing gf to go to a file
+set synmaxcol=1500     " Turn off syntax highlighting after X lines
+set updatetime=750     " make vim update more rapidly
+set mouse=a            " Mouse mode
+set isfname-=:         " Allow using linenumbers for gf
+set inccommand=nosplit " Live search-and-replace
 
 " Disable Netrw
 " Netrw is the default filebrowser plugin for vim which I replace with FileBeagle
