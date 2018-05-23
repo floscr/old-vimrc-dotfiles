@@ -26,7 +26,6 @@ set noshowmatch        " Show matching tags
 set nostartofline      " Prevent cursor from moving to beginning of line when switching buffers
 set noswapfile         " Dont create swapfiles
 set number             " Show Line numbers
-set relativenumber     " Show Relative Numbers
 set shell=$SHELL       " Setting shell to zsh
 set shortmess+=I       " Turn off the intro message
 set showmode           " Always show mode
