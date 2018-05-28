@@ -336,6 +336,9 @@ before packages are loaded."
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
 
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
+
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
