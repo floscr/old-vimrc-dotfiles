@@ -28,15 +28,11 @@ This function should only modify configuration layer settings."
      org
 
      ;; Version Control
-     (version-control
-      :variables
-      version-control-global-margin t
-      version-control-diff-tool     'git-gutter
-      )
-     (git
-      :variables
-      git-gutter-use-fringe t
-     )
+     (version-control :variables
+                      version-control-global-margin t
+                      version-control-diff-tool     'git-gutter
+                      )
+     git
 
      ;; Emacs
      (auto-completion
@@ -342,7 +338,8 @@ before packages are loaded."
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
-   scroll-margin 10))
+   scroll-margin 10)
+)
 
 (setq custom-file "~/.emacs.d/.cache/.custom-settings")
 (load custom-file)
