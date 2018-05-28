@@ -60,7 +60,7 @@ This function should only modify configuration layer settings."
     ;; spell-checking
      )
 
-   dotspacemacs-additional-packages '(editorconfig helm-ls-git image-dired-thumbnail-mode evil-replace-with-register)
+   dotspacemacs-additional-packages '(editorconfig helm-ls-git evil-replace-with-register)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(evil-escape
                                     vi-tilde-fringe)
