@@ -268,9 +268,10 @@ let g:user_emmet_leader_key='<C-e>'
 " -----------------------------------------------------------------------------
 
 let g:ale_linters = {
-      \ 'javascript': ['eslint'],
-      \ 'html': [],
-      \}
+        \ 'javascript': ['eslint'],
+        \ 'reason': '',
+        \ 'html': [],
+        \}
 
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
