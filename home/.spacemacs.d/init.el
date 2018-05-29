@@ -344,6 +344,27 @@ before packages are loaded."
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+  ;; Enable Gitgutter with fringe
+  (use-package git-gutter-fringe
+    :ensure t
+    :hook (after-init . global-git-gutter-mode)
+    :config
+    (require 'git-gutter)
+    (setq git-gutter-fr:side 'left-fringe
+          git-gutter:separator-sign "|"
+          git-gutter:lighter ""
+          git-gutter:update-interval 1)
+    (set-face-foreground  'git-gutter:separator "yellow")
+    (fringe-helper-define 'git-gutter-fr:modified nil
+      "X"
+      "X"
+      "X"
+      "X"
+      "X"
+      "X"
+      "X"
+      "X"))
+
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
