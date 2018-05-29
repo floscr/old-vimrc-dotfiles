@@ -335,6 +335,12 @@ before packages are loaded."
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
 
+  ;; Transparent titlebar
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+
+  ;; Hide the title
+  (setq frame-title-format nil)
+
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
