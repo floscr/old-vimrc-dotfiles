@@ -280,6 +280,7 @@ let g:ale_fixers.reason = ['refmt']
 " Which is way faster that local eslint pacakge
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
+let g:ale_reasonml_refmt_options = '-w 160'
 
 function! s:fixWhenALEIsEnabled()
   if (g:ale_enabled)
