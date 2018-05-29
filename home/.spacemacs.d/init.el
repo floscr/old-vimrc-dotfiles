@@ -241,7 +241,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   ;; dotspacemacs-line-numbers 'relative
 
 
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -334,6 +334,9 @@ before packages are loaded."
 
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
+
+  (add-hook 'text-mode-hook 'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
   (setq
    ;; ScrollOff 10 lines
