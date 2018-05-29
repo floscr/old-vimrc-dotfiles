@@ -17,6 +17,7 @@ This function should only modify configuration layer settings."
      floscr-defaults
      floscr-org
      itome-react
+     ; floscr-reason
 
      markdown
      helm
@@ -329,9 +330,11 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-company-mode t)
 
+  ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
 
+  ;; Hide errors for js2
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
 
@@ -369,7 +372,7 @@ before packages are loaded."
    ;; ScrollOff 10 lines
    scroll-conservatively 10
    scroll-margin 10)
-)
+  )
 
 (setq custom-file "~/.emacs.d/.cache/.custom-settings")
 (load custom-file)
