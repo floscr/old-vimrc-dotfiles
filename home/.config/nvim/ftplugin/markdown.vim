@@ -3,6 +3,8 @@ call functions#plaintext()
 " Disable double space matching
 let g:lexima_enable_space_rules=0
 
+nmap <silent> <buffer> <cr> <Plug>Markdown_OpenUrlUnderCursor
+
 " Set word bold
 map <buffer> <C-b> ysaW*.
 
