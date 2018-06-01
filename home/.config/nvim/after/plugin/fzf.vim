@@ -24,14 +24,14 @@ let g:fzf_action = {
 " Fix the color mismatch for FZF buffers
 hi FZFHighlight guibg=#171D20
 
-let g:fzf_colors = {
-      \ 'pointer': ['bg', 'Search'],
-      \ 'bg':      ['bg', 'IncSearch', 'NonText'],
-      \ 'fg+':     ['fg', 'IncSearch'],
-      \ 'bg+':     ['bg', 'FZFHighlight'],
-      \ 'header':  ['bg', 'Search'],
-      \ 'marker':  ['fg', 'String'],
-      \ }
+" let g:fzf_colors = {
+"       \ 'pointer': ['bg', 'Search'],
+"       \ 'bg':      ['bg', 'IncSearch', 'NonText'],
+"       \ 'fg+':     ['fg', 'IncSearch'],
+"       \ 'bg+':     ['bg', 'FZFHighlight'],
+"       \ 'header':  ['bg', 'Search'],
+"       \ 'marker':  ['fg', 'String'],
+"       \ }
 
 " Add preview window via coderay
 let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
