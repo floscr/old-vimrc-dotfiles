@@ -29,6 +29,9 @@ nmap <silent> <leader>gg :Gcd<CR>:GGrep<CR>
 " Gitblame with ignoring whitespace changes
 nnoremap <silent> <leader>gb :Gblame -w<CR>
 
+" Gitblame with ignoring whitespace changes
+nnoremap <silent> <leader>mg :Magit<CR>
+
 " Search all lines in all open buffers
 nmap <silent> <leader>L :FZFLines<CR>
 
