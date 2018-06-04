@@ -334,6 +334,9 @@ before packages are loaded."
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
 
+  ;; Make the fringe background same as the linenumber
+  (set-face-attribute 'fringe nil :background (face-attribute 'mode-line :background))
+
   ;; Hide errors for js2
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
