@@ -13,6 +13,9 @@ This function should only modify configuration layer settings."
      javascript
      html
 
+     (ranger :variables
+             ranger-show-preview t)
+
      ;; floscr-git
      floscr-defaults
      floscr-org
