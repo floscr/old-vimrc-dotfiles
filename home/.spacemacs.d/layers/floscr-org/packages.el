@@ -1,5 +1,9 @@
 (defconst floscr-org-packages
-  '(org spacemacs-org spacemacs-journal))
+  '(
+     org
+     spacemacs-org
+     spacemacs-journal
+     ))
 
 (defun floscr-org/post-init-org ()
   (setq
