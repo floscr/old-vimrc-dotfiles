@@ -9,6 +9,7 @@
                         (org-agenda-files :maxlevel . 3))
    org-agenda-files (list "~/Dropbox/org/home.org"
                           "~/Dropbox/org/projects.org"
+                          "~/.org-annotate-file.org"
                           "~/Dropbox/org/refile-beorg.org"
                           "~/Dropbox/org/Einkaufsliste.org"
                           "~/Dropbox/org/Work/Work.org")
