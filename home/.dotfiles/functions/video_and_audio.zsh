@@ -2,7 +2,15 @@
 
 # Download youtbe video and notify
 alias y='__youtube_dl_notify'
+
 function __youtube_dl_notify() {
+  dst="$HOME/Movies/Youtube"
+  if [[ ! -d $dst ]]; then
+    mkdir -p $dst
+  fi
+
+  cd $dst
+
   youtube-dl $@
   title="$(youtube-dl --get-title $@)"
   terminal-notifier \
