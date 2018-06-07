@@ -60,7 +60,13 @@ This function should only modify configuration layer settings."
     ;; spell-checking
      )
 
-   dotspacemacs-additional-packages '(editorconfig helm-ls-git evil-replace-with-register)
+   dotspacemacs-additional-packages '(
+                                      editorconfig
+                                      evil-replace-with-register
+                                      helm-ls-git
+                                      org-preview-html
+                                      )
+
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(evil-escape
                                     vi-tilde-fringe)
@@ -339,8 +345,6 @@ before packages are loaded."
 
   ;; Make the fringe background same as the linenumber
   (set-face-attribute 'fringe nil :background (face-attribute 'mode-line :background))
-
-  (add-to-list 'exec-path "~/.nvm/versions/node/v8.8.1/bin")
 
   ;; Hide errors for js2
   (setq js2-mode-show-parse-errors nil)
