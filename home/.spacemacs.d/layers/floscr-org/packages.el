@@ -23,7 +23,7 @@
   (setq floscr/home-dir (expand-file-name "~"))
   (setq org-directory (concat floscr/home-dir "/Dropbox/org"))
 
-  (setq org-default-notes-file (concat org-directory "inbox.org"))
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
   ;; capture
   (setq org-capture-templates
