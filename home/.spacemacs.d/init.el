@@ -13,6 +13,7 @@ This function should only modify configuration layer settings."
      javascript
      html
      yaml
+     vimscript
 
      (ranger :variables
              ranger-show-preview t)
