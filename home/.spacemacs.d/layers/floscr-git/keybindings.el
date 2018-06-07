@@ -1,2 +1,6 @@
 (spacemacs/set-leader-keys "gt" 'floscr-git/magit-stage-and-commit-current-buffer)
 (spacemacs/set-leader-keys "gT" 'time-machine-transient-state)
+(spacemacs/set-leader-keys "gc" 'magit-commit)
+(spacemacs/set-leader-keys "gha" 'git-gutter:stage-hunk)
+(spacemacs/set-leader-keys "ghn" 'git-gutter:next-hunk)
+(spacemacs/set-leader-keys "ghp" 'git-gutter:previous-hunk)
