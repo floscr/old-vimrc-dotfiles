@@ -25,6 +25,18 @@
 
   (setq org-default-notes-file (concat org-directory "inbox.org"))
 
+  ;; capture
+  (setq org-capture-templates
+        (quote (("t" "todo" entry (file org-default-notes-file)
+                 "* TODO %?\n%U\n%a\n")
+                ("m" "meeting" entry (file org-default-notes-file)
+                 "* MEETING with %? :MEETING:\n%U")
+                ("i" "idea" entry (file org-default-notes-file)
+                 "* %? :IDEA:\n%U\n%a\n")
+                ("n" "note" entry (file org-default-notes-file)
+                 "* %? :NOTE:\n%U\n%a\n")
+                ("h" "habit" entry (file rae/org-default-notes-file)
+                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
   (setq
    ;; Add files to refile targets
    ;; , s r - to retarget a section
