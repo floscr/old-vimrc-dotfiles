@@ -1,5 +1,5 @@
 function! MarkdownChromeTabLink()
-  read !osascript ~/.homesick/repos/dotfiles/files/workflows/Get\ current\ Chrome\ Tab\ Markdown\ Link.scpt
+  read !osascript ~/.homesick/repos/dotfiles/files/workflows/chrome-tab-markdown-link.scpt
   execute('norm kJ')
 endfunction
 command! MarkdownChromeTabLink call MarkdownChromeTabLink()

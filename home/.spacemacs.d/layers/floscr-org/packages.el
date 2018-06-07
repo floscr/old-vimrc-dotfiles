@@ -5,7 +5,38 @@
      spacemacs-journal
      ))
 
+(defun floscr-org/insert-key (key)
+  "Interactive enter a keybinding and automatically insert it into <kbd> tags"
+  (interactive "kType key sequence: ")
+  (let* ((is-org-mode (derived-mode-p 'org-mode))
+         (tag (if is-org-mode
+                  "@@html:<kbd>%s</kbd>@@"
+                "<kbd>%s</kbd>")))
+    (if (null (equal key "\r"))
+        (insert
+         (format tag (help-key-description key nil)))
+      (insert (format tag ""))
+      (forward-char (if is-org-mode -8 -6)))))
+
 (defun floscr-org/post-init-org ()
+  ;; Org directories
+  (setq floscr/home-dir (expand-file-name "~"))
+  (setq org-directory (concat floscr/home-dir "/Dropbox/org"))
+
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+
+  ;; capture
+  (setq org-capture-templates
+        (quote (("t" "todo" entry (file org-default-notes-file)
+                 "* TODO %?\n%U\n%a\n")
+                ("m" "meeting" entry (file org-default-notes-file)
+                 "* MEETING with %? :MEETING:\n%U")
+                ("i" "idea" entry (file org-default-notes-file)
+                 "* %? :IDEA:\n%U\n%a\n")
+                ("n" "note" entry (file org-default-notes-file)
+                 "* %? :NOTE:\n%U\n%a\n")
+                ("h" "habit" entry (file rae/org-default-notes-file)
+                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
   (setq
    ;; Add files to refile targets
    ;; , s r - to retarget a section
@@ -22,11 +53,12 @@
    org-journal-date-prefix "#+TITLE: "
    org-journal-date-format "%A, %B %d %Y"
    org-journal-time-prefix "* "
-   org-journal-time-format "")
+   org-journal-time-format ""
+
 
   ;; additional leader key bindings for org functionality.
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "oy" #'org-copy-special
     "oc" #'org-cut-special
     "op" #'org-paste-special)
-  )
+  ))

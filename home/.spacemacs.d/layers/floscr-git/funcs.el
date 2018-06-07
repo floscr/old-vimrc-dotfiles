@@ -1,6 +1,7 @@
-(defun floscr-git/stage-and-commit-current-buffer ()
-  "Stage and commit the current file"
+(defun floscr-git/magit-stage-and-commit-current-buffer ()
+  "Save, stage and commit the current buffer"
   (interactive)
-  (magit-stage-file)
-  ;; (magit-commit)
+  (save-buffer)
+  (magit-stage-file buffer-file-name)
+  (magit-commit)
   )
