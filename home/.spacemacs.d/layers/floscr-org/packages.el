@@ -5,6 +5,19 @@
      spacemacs-journal
      ))
 
+(defun floscr-org/insert-key (key)
+  "Interactive enter a keybinding and automatically insert it into <kbd> tags"
+  (interactive "kType key sequence: ")
+  (let* ((is-org-mode (derived-mode-p 'org-mode))
+         (tag (if is-org-mode
+                  "@@html:<kbd>%s</kbd>@@"
+                "<kbd>%s</kbd>")))
+    (if (null (equal key "\r"))
+        (insert
+         (format tag (help-key-description key nil)))
+      (insert (format tag ""))
+      (forward-char (if is-org-mode -8 -6)))))
+
 (defun floscr-org/post-init-org ()
   (setq
    ;; Add files to refile targets
