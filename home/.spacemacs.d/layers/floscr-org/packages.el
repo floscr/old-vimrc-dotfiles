@@ -53,11 +53,12 @@
    org-journal-date-prefix "#+TITLE: "
    org-journal-date-format "%A, %B %d %Y"
    org-journal-time-prefix "* "
-   org-journal-time-format "")
+   org-journal-time-format ""
+
 
   ;; additional leader key bindings for org functionality.
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "oy" #'org-copy-special
     "oc" #'org-cut-special
     "op" #'org-paste-special)
-  )
+  ))
