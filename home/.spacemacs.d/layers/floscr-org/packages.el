@@ -37,28 +37,25 @@
                  "* %? :NOTE:\n%U\n%a\n")
                 ("h" "habit" entry (file rae/org-default-notes-file)
                  "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
-  (setq
-   ;; Add files to refile targets
-   ;; , s r - to retarget a section
-   org-refile-targets '((nil :maxlevel . 3)
-                        (org-agenda-files :maxlevel . 3))
-   org-agenda-files (list "~/Dropbox/org/home.org"
-                          "~/Dropbox/org/projects.org"
-                          "~/.org-annotate-file.org"
-                          "~/Dropbox/org/refile-beorg.org"
-                          "~/Dropbox/org/Einkaufsliste.org"
-                          "~/Dropbox/org/Work/Work.org")
-   org-journal-dir "~/Dropbox/org/journal"
-   org-journal-file-format "%Y-%m-%d"
-   org-journal-date-prefix "#+TITLE: "
-   org-journal-date-format "%A, %B %d %Y"
-   org-journal-time-prefix "* "
-   org-journal-time-format ""
 
+  ;; refile
+  (setq org-refile-targets '(
+                              (nil :maxlevel . 3)
+                              (org-agenda-files :maxlevel . 3)
+                              ))
 
-  ;; additional leader key bindings for org functionality.
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "oy" #'org-copy-special
-    "oc" #'org-cut-special
-    "op" #'org-paste-special)
-  ))
+  (setq org-agenda-files (list "~/Dropbox/org/home.org"
+                            "~/Dropbox/org/projects.org"
+                            "~/.org-annotate-file.org"
+                            "~/Dropbox/org/refile-beorg.org"
+                            "~/Dropbox/org/Einkaufsliste.org"
+                            "~/Dropbox/org/Work/Work.org"
+                            ))
+   (setq org-journal-dir "~/Dropbox/org/journal")
+   (setq org-journal-file-format "%Y-%m-%d")
+   (setq org-journal-date-prefix "#+TITLE: ")
+   (setq org-journal-date-format "%A, %B %d %Y")
+   (setq org-journal-time-prefix "* ")
+   (setq org-journal-time-format "")
+
+  )
