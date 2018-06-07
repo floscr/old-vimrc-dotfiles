@@ -12,6 +12,7 @@ This function should only modify configuration layer settings."
      ;; Syntax
      javascript
      html
+     yaml
 
      (ranger :variables
              ranger-show-preview t)
@@ -64,6 +65,7 @@ This function should only modify configuration layer settings."
                                       editorconfig
                                       evil-replace-with-register
                                       helm-ls-git
+                                      helm-org-rifle
                                       org-preview-html
                                       )
 
@@ -345,6 +347,8 @@ before packages are loaded."
 
   ;; Make the fringe background same as the linenumber
   (set-face-attribute 'fringe nil :background (face-attribute 'mode-line :background))
+
+  (add-to-list 'exec-path "~/.nvm/versions/node/v8.8.1/bin")
 
   ;; Hide errors for js2
   (setq js2-mode-show-parse-errors nil)
