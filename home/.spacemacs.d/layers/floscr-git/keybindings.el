@@ -4,3 +4,4 @@
 (spacemacs/set-leader-keys "gha" 'git-gutter:stage-hunk)
 (spacemacs/set-leader-keys "ghn" 'git-gutter:next-hunk)
 (spacemacs/set-leader-keys "ghp" 'git-gutter:previous-hunk)
+(spacemacs/set-leader-keys "ghu" 'git-gutter:revert-hunk)
