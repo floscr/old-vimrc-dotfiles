@@ -19,6 +19,12 @@
       (forward-char (if is-org-mode -8 -6)))))
 
 (defun floscr-org/post-init-org ()
+  ;; Org directories
+  (setq floscr/home-dir (expand-file-name "~"))
+  (setq org-directory (concat floscr/home-dir "/Dropbox/org"))
+
+  (setq org-default-notes-file (concat org-directory "inbox.org"))
+
   (setq
    ;; Add files to refile targets
    ;; , s r - to retarget a section
