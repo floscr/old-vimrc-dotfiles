@@ -25,6 +25,12 @@
 
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
+
+  ;; Allow blank lines before and after headlines
+  (custom-set-variables
+   '(org-blank-before-new-entry 
+     (quote ((heading) (plain-list-item))))
+
   ;; capture
   (setq org-capture-templates
         (quote (("t" "todo" entry (file org-default-notes-file)
