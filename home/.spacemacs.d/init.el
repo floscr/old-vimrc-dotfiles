@@ -345,6 +345,11 @@ before packages are loaded."
   (add-text-properties (point-min) (point-max)
     '(line-spacing 0.12 line-height 1.22))
 
+  (require 'org-projectile)
+  (setq org-projectile-per-project-filepath "Tasks/tasks.org")
+  (push (org-projectile-project-todo-entry) org-capture-templates)
+  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+
   ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
