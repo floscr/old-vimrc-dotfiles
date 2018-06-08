@@ -342,13 +342,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-company-mode t)
 
-  (cond
-   ((= (display-pixel-width)) 1920)
-   )
-
-  (add-text-properties if(equal (display-pixel-width) )
-   ((point-min) (point-max)
-    '(line-spacing 0.1 line-height 1.2)))
+  (add-text-properties (point-min) (point-max)
+    '(line-spacing 0.12 line-height 1.22))
 
   ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
