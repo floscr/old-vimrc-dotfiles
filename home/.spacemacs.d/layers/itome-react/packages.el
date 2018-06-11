@@ -1,3 +1,19 @@
+(defconst my-javascript-packages
+  '(add-node-modules-path
+    flycheck
+    rjsx-mode))
+
+(defun itome-react/post-init-add-node-modules-path ()
+  (with-eval-after-load 'rjsx-mode
+    (add-hook 'rjsx-mode-hook #'add-node-modules-path)))
+
+(defun itome-react/post-init-flycheck ()
+  (with-eval-after-load 'flycheck
+    (push 'javascript-jshint flycheck-disabled-checkers)
+    (push 'json-jsonlint flycheck-disabled-checkers))
+  (spacemacs/enable-flycheck 'rjsx-mode))
+;; (spacemacs/add-flycheck-hook 'rjsx-mode))
+
 (setq itome-react-packages
       '(
         rjsx-mode
