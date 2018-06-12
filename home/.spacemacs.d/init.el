@@ -65,6 +65,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       editorconfig
                                       evil-replace-with-register
+                                      eslintd-fix
                                       helm-ls-git
                                       helm-org-rifle
                                       org-preview-html
