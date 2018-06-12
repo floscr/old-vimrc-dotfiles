@@ -381,7 +381,7 @@ before packages are loaded."
     :ensure t
     :config
     (add-hook 'after-init-hook 'global-flycheck-mode)
-    (add-hook 'flycheck-mode-hook 'jc/use-eslint-from-node-modules)
+    (add-hook 'flycheck-mode-hook 'itome-react/use-eslint-from-node-modules)
     (add-to-list 'flycheck-checkers 'proselint)
     (setq-default flycheck-highlighting-mode 'lines)
     ;; Define fringe indicator / warning levels
@@ -418,17 +418,6 @@ before packages are loaded."
       :overlay-category 'flycheck-info-overlay
       :fringe-bitmap 'flycheck-fringe-bitmap-ball
       :fringe-face 'flycheck-fringe-info))
-
-  (defun jc/use-eslint-from-node-modules ()
-    "Set local eslint if available."
-    (let* ((root (locate-dominating-file
-                  (or (buffer-file-name) default-directory)
-                  "node_modules"))
-           (eslint (and root
-                        (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                          root))))
-      (when (and eslint (file-executable-p eslint))
-        (setq-local flycheck-javascript-eslint-executable eslint))))
 
   ;; Enable Gitgutter with fringe
   (use-package git-gutter-fringe
