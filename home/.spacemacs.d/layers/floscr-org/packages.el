@@ -24,19 +24,20 @@
   (setq org-directory (concat floscr/home-dir "/Dropbox/org"))
 
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
 
 
   ;; Allow blank lines before and after headlines
   (custom-set-variables
    '(org-blank-before-new-entry 
-     (quote ((heading) (plain-list-item))))
+     (quote ((heading) (plain-list-item)))))
 
   ;; capture
   (setq org-capture-templates
         (quote (("t" "todo" entry (file org-default-notes-file)
                  "* TODO %?\n%U\n%a\n")
-                ("m" "meeting" entry (file org-default-notes-file)
-                 "* MEETING with %? :MEETING:\n%U")
+                ("s" "shoppinglist" entry (file org-shopping-list)
+                 "* Supermarkt\n\t- [ ] %?")
                 ("i" "idea" entry (file org-default-notes-file)
                  "* %? :IDEA:\n%U\n%a\n")
                 ("n" "note" entry (file org-default-notes-file)
