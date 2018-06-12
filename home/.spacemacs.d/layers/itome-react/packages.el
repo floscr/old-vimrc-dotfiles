@@ -1,11 +1,14 @@
 (defconst my-javascript-packages
   '(add-node-modules-path
     flycheck
+    eslintd-fix
     rjsx-mode))
 
 (defun itome-react/post-init-add-node-modules-path ()
   (with-eval-after-load 'rjsx-mode
     (add-hook 'rjsx-mode-hook #'add-node-modules-path)))
+
+(add-hook 'js2-mode-hook 'eslintd-fix-mode)
 
 (defun itome-react/post-init-flycheck ()
   (with-eval-after-load 'flycheck
