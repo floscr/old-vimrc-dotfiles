@@ -50,6 +50,8 @@ au BufRead,BufNewFile *.conf set filetype=conf
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+
 " QuickFix {{{1
 " -----------------------------------------------------------------------------
 
