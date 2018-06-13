@@ -14,7 +14,8 @@ This function should only modify configuration layer settings."
      html
      yaml
      vimscript
-     react
+     (react :variables
+            node-add-modules-path t)
 
      (ranger :variables
              ranger-show-preview t)
@@ -22,8 +23,6 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
-     ;; itome-react
-     ;; floscr-reason
      floscr-react
 
      markdown
@@ -382,12 +381,22 @@ before packages are loaded."
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+  ;; (eval-after-load 'web-mode
+  ;;   '(progn
+  ;;      (add-hook 'web-mode-hook #'add-node-modules-path)))
+
+  (eval-after-load 'react-mode
+    '(progn
+       (add-hook 'react-mode-hook #'add-node-modules-path)))
+
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
   (use-package flycheck
     :ensure t
     :config
     (add-hook 'after-init-hook 'global-flycheck-mode)
-    (add-hook 'flycheck-mode-hook 'itome-react/use-eslint-from-node-modules)
-    (add-to-list 'flycheck-checkers 'proselint)
+    (add-hook 'flycheck-mode-hook #'add-node-modules-path)
     (setq-default flycheck-highlighting-mode 'lines)
     ;; Define fringe indicator / warning levels
     (define-fringe-bitmap 'flycheck-fringe-bitmap-ball
