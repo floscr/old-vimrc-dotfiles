@@ -14,6 +14,7 @@ This function should only modify configuration layer settings."
      html
      yaml
      vimscript
+     react
 
      (ranger :variables
              ranger-show-preview t)
@@ -21,8 +22,9 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
-     itome-react
-     ; floscr-reason
+     ;; itome-react
+     ;; floscr-reason
+     floscr-react
 
      markdown
      helm
@@ -343,8 +345,11 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-company-mode t)
 
-  (add-text-properties (point-min) (point-max)
-    '(line-spacing 0.12 line-height 1.22))
+  (setq-default line-spacing 0.12)
+  (setq-default line-height 1.22)
+
+  ;; (add-text-properties (point-min) (point-max)
+  ;;   '(line-spacing 0.12 line-height 1.22))
 
   (require 'org-projectile)
   (setq org-projectile-per-project-filepath "Tasks/tasks.org")
