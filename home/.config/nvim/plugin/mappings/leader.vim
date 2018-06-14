@@ -46,6 +46,7 @@ map <Leader>xc :VimuxInterruptRunner<CR>:VimuxPromptCommand<CR>
 " Rerun last Vimux command
 map <Leader>xx :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
 
+
 " {{{ Vimwiki
 
 nmap <silent> <leader>we :e ~/Dropbox/VimWiki/Einkaufsliste.markdown<CR>
