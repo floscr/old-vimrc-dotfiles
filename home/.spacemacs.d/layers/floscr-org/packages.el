@@ -47,15 +47,14 @@
 
   ;; refile
   (setq org-refile-targets '(
-                              (nil :maxlevel . 3)
+                              (org-directory :maxlevel . 3)
                               (org-agenda-files :maxlevel . 3)
                               ))
 
   (setq org-agenda-files (list "~/Dropbox/org/home.org"
-                            "~/Dropbox/org/projects.org"
                             "~/.org-annotate-file.org"
                             "~/Dropbox/org/refile-beorg.org"
-                            "~/Dropbox/org/Einkaufsliste.org"
+                            "~/Dropbox/org/shoppinglist.org"
                             "~/Dropbox/org/Work/Work.org"
                             ))
    (setq org-journal-dir "~/Dropbox/org/journal")
