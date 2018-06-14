@@ -23,6 +23,7 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
+     react
      floscr-react
 
      markdown
