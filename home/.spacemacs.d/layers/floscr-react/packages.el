@@ -4,7 +4,6 @@
     flycheck
     eslintd-fix
     evil-matchit
-    react-mode
     ))
 
 (defun floscr-react/post-init-add-node-modules-path ()

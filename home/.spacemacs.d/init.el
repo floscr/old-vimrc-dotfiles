@@ -23,6 +23,7 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
+     react
      floscr-react
 
      markdown
@@ -353,7 +354,7 @@ before packages are loaded."
   (require 'org-projectile)
   (setq org-projectile-per-project-filepath "Tasks/tasks.org")
   (push (org-projectile-project-todo-entry) org-capture-templates)
-  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+  ;; (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
 
   ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
