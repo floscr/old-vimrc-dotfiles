@@ -197,14 +197,6 @@ before packages are loaded."
   (setq-default line-spacing 0.12)
   (setq-default line-height 1.22)
 
-  ;; (add-text-properties (point-min) (point-max)
-  ;;   '(line-spacing 0.12 line-height 1.22))
-
-  (require 'org-projectile)
-  (setq org-projectile-per-project-filepath "Tasks/tasks.org")
-  (push (org-projectile-project-todo-entry) org-capture-templates)
-  ;; (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-
   ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
@@ -226,18 +218,13 @@ before packages are loaded."
   (setq shell-file-name "/bin/bash")
 
   ;; Hide the title
-  (setq frame-title-format nil)
+  (setq frame-title-format "")
 
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-  ;; (eval-after-load 'web-mode
-  ;;   '(progn
-  ;;      (add-hook 'web-mode-hook #'add-node-modules-path)))
-
   (eval-after-load 'react-mode
-    '(progn
-       (add-hook 'react-mode-hook #'add-node-modules-path)))
+    '(progn (add-hook 'react-mode-hook #'add-node-modules-path)))
 
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . react-mode))
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
