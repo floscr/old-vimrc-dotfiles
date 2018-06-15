@@ -7,4 +7,6 @@
     (evilified-state-evilify-map neotree-mode-map
       :mode neotree-mode
       :bindings
-      (kbd "TAB") 'neotree-quick-look)))
+      (kbd "TAB") 'neotree-quick-look)
+    )
+  )

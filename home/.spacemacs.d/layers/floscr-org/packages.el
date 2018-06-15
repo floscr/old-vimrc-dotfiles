@@ -19,43 +19,54 @@
       (forward-char (if is-org-mode -8 -6)))))
 
 (defun floscr-org/post-init-org ()
-  ;; Org directories
-  (setq org-directory (expand-file-name "~/Dropbox/org"))
-
-  (setq org-default-notes-file (concat org-directory "/inbox.org"))
-  (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
-
+  (require 'org-projectile)
 
   ;; Allow blank lines before and after headlines
   (custom-set-variables
    '(org-blank-before-new-entry 
      (quote ((heading) (plain-list-item)))))
 
+  ;; Org directories
+  (setq org-directory (expand-file-name "~/Dropbox/org"))
+
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
+
+  (setq org-projectile-per-project-filepath "Tasks/tasks.org")
+  (push (org-projectile-project-todo-entry) org-capture-templates)
+  ;; (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+
   ;; capture
   (setq org-capture-templates
         (quote (("t" "todo" entry (file org-default-notes-file)
-                 "* TODO %?\n%U\n%a\n")
+                 "* TODO %?\n\t%U\n\t%a\n")
                 ("s" "shoppinglist" entry (file org-shopping-list)
                  "* Supermarkt\n\t- [ ] %?")
                 ("i" "idea" entry (file org-default-notes-file)
-                 "* %? :IDEA:\n%U\n%a\n")
+                 "* %? :IDEA:\n\t%U\n\t%a\n")
                 ("n" "note" entry (file org-default-notes-file)
-                 "* %? :NOTE:\n%U\n%a\n")
-                ("h" "habit" entry (file rae/org-default-notes-file)
-                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+                 "* %? :NOTE:\n\t%U\n\t%a\n")
+                )))
 
-  ;; refile
-  (setq org-refile-targets '(
-                              (org-directory :maxlevel . 3)
-                              (org-agenda-files :maxlevel . 3)
-                              ))
+  (setq org-agenda-files
+        (list
+         "~/Dropbox/org/home.org"
+         "~/Dropbox/org/inbox.org"
+         "~/.org-annotate-file.org"
+         "~/Dropbox/org/refile-beorg.org"
+         "~/Dropbox/org/shoppinglist.org"
+         "~/Dropbox/org/Work/Work.org"
+         "~/Dropbox/org/cooking.org"
+         "~/Dropbox/org/Projects/ideas.org"
+         ))
 
-  (setq org-agenda-files (list "~/Dropbox/org/home.org"
-                            "~/.org-annotate-file.org"
-                            "~/Dropbox/org/refile-beorg.org"
-                            "~/Dropbox/org/shoppinglist.org"
-                            "~/Dropbox/org/Work/Work.org"
-                            ))
+  (setq
+   org-refile-targets
+   '(
+     (org-directory :maxlevel . 3)
+     (org-agenda-files :maxlevel . 3)
+     ))
+
    (setq org-journal-dir "~/Dropbox/org/journal")
    (setq org-journal-file-format "%Y-%m-%d")
    (setq org-journal-date-prefix "#+TITLE: ")
