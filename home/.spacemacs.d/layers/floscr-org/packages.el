@@ -20,8 +20,7 @@
 
 (defun floscr-org/post-init-org ()
   ;; Org directories
-  (setq floscr/home-dir (expand-file-name "~"))
-  (setq org-directory (concat floscr/home-dir "/Dropbox/org"))
+  (setq org-directory (expand-file-name "~/Dropbox/org"))
 
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
