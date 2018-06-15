@@ -184,7 +184,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq-default line-spacing 0.2)
+  (setq-default line-spacing 0.15)
   )
 
 (defun dotspacemacs/user-config ()
