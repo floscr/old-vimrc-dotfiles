@@ -149,10 +149,6 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-helm-position 'bottom
    dotspacemacs-helm-use-fuzzy 'always
 
-   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
-   ;; `p' several times cycles through the elements in the `kill-ring'.
-   dotspacemacs-enable-paste-transient-state t
-
    ;; Which Key
    dotspacemacs-which-key-delay 0.4
    dotspacemacs-which-key-position 'bottom
@@ -161,11 +157,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-show-transient-state-title t
    dotspacemacs-show-transient-state-color-guide t
    dotspacemacs-mode-line-unicode-symbols nil
-
-   dotspacemacs-smartparens-strict-mode nil
-   dotspacemacs-smart-closing-parenthesis nil
-
-   dotspacemacs-highlight-delimiters 'all
+   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
+   ;; `p' several times cycles through the elements in the `kill-ring'.
+   dotspacemacs-enable-paste-transient-state t
 
    dotspacemacs-enable-server t
    dotspacemacs-persistent-server nil
