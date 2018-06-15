@@ -14,6 +14,7 @@ This function should only modify configuration layer settings."
      html
      yaml
      vimscript
+     markdown
      (react :variables
             node-add-modules-path t)
 
@@ -25,12 +26,8 @@ This function should only modify configuration layer settings."
      floscr-org
      floscr-react
 
-     markdown
      helm
-
-     ;; System
      osx
-
      spacemacs-org
      org
 
@@ -60,7 +57,7 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
 
      syntax-checking
-    ;; spell-checking
+     ;; spell-checking
      )
 
    dotspacemacs-additional-packages '(
