@@ -100,7 +100,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-startup-buffer-responsive nil
 
    ;; Scratch Buffer
-   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-scratch-mode 'elisp-mode
    dotspacemacs-initial-scratch-message nil
 
    ;; Themes
