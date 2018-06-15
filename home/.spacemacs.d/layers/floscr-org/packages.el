@@ -5,7 +5,7 @@
      spacemacs-journal
      ))
 
-(defun floscr-org/insert-key (key)
+(defun floscr-org/insert-key-binding-tag (key)
   "Interactive enter a keybinding and automatically insert it into <kbd> tags"
   (interactive "kType key sequence: ")
   (let* ((is-org-mode (derived-mode-p 'org-mode))
