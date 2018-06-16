@@ -17,4 +17,5 @@
   "od" 'floscr-org/org-agenda-day
   "oc" 'org-capture
   "ol" 'org-store-link
+  "oj" 'org-journal-new-entry'
   )
