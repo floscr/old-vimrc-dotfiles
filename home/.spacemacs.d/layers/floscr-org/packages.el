@@ -5,6 +5,10 @@
      spacemacs-journal
      ))
 
+(defun floscr-org/org-agenda-day ()
+  (interactive)
+  (org-agenda-list nil nil 'day nil))
+
 (defun floscr-org/insert-key-binding-tag (key)
   "Interactive enter a keybinding and automatically insert it into <kbd> tags"
   (interactive "kType key sequence: ")
