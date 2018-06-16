@@ -1,5 +1,8 @@
 (defconst floscr-defaults-packages
-  '(neotree))
+  '(
+     neotree
+     default-text-scale
+     ))
 
 (defun floscr-defaults/post-init-neotree ()
   (use-package neotree
