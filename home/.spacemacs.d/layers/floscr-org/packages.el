@@ -23,7 +23,7 @@
 
   ;; Allow blank lines before and after headlines
   (custom-set-variables
-   '(org-blank-before-new-entry 
+   '(org-blank-before-new-entry
      (quote ((heading) (plain-list-item)))))
 
   ;; Org directories
@@ -52,7 +52,6 @@
         (list
          "~/Dropbox/org/home.org"
          "~/Dropbox/org/inbox.org"
-         "~/.org-annotate-file.org"
          "~/Dropbox/org/refile-beorg.org"
          "~/Dropbox/org/shoppinglist.org"
          "~/Dropbox/org/Work/Work.org"
