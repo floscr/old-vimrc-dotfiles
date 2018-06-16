@@ -1,5 +1,8 @@
 (when (spacemacs/system-is-mac)
   (global-set-key (kbd "H-h") 'ns-do-hide-emacs)
+  (global-set-key (kbd "H-+") 'default-text-scale-increase)
+  (global-set-key (kbd "H--") 'default-text-scale-increase)
+  (global-set-key (kbd "H-0") 'default-text-scale-reset)
   (global-set-key (kbd "H-M-h") 'ns-do-hide-others)
   (global-set-key (kbd "s-q") 'save-buffers-kill-terminal)
   (global-set-key (kbd "<H-return>") 'toggle-frame-fullscreen)
