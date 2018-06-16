@@ -11,3 +11,10 @@
 
 ;; General
 (spacemacs/set-leader-keys "aoS" 'org-save-all-org-buffers)
+
+(evil-leader/set-key
+  "oa" 'org-agenda
+  "od" 'rae/org-agenda-day
+  "oc" 'org-capture
+  "ol" 'org-store-link
+  )
