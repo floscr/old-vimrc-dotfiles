@@ -199,6 +199,11 @@ before packages are loaded."
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
 
+  ;; Overrided spacmacs default keys
+  (global-set-key (kbd "H-=") 'default-text-scale-increase)
+  (global-set-key (kbd "H--") 'default-text-scale-decrease)
+  (global-set-key (kbd "H-0") 'default-text-scale-reset)
+
   ;; Make the fringe background same as the linenumber
   (set-face-attribute 'fringe nil :background (face-attribute 'mode-line :background))
 
