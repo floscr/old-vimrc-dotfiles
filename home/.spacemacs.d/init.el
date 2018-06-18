@@ -195,6 +195,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-company-mode t)
 
+  (setq-default magit-save-repository-buffers 'dontask)
+
   ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
