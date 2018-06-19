@@ -5,6 +5,29 @@
      spacemacs-journal
      ))
 
+(defvar org-journal-dir-default "~/Dropbox/org/journal")
+(defvar org-journal-dir-diary "~/Dropbox/org/diary")
+
+(defun floscr-org/activate-journal ()
+  (interactive)
+  (setq org-journal-dir org-journal-dir-default)
+  (setq org-journal-enable-encryption nil)
+  )
+
+(defun floscr-org/activate-diary ()
+  (setq org-journal-dir org-journal-dir-diary)
+  (setq org-journal-enable-encryption 1)
+  )
+
+(defun floscr-org/switch-diary ()
+  (interactive)
+  (if (eq org-journal-dir org-journal-dir-default)
+      (floscr-org/activate-diary)
+    (floscr-org/activate-journal))
+  (message "Switch main diary to %s" org-journal-dir)
+  )
+
+
 (defun floscr-org/insert-key-binding-tag (key)
   "Interactive enter a keybinding and automatically insert it into <kbd> tags"
   (interactive "kType key sequence: ")
@@ -67,7 +90,7 @@
      (org-agenda-files :maxlevel . 3)
      ))
 
-   (setq org-journal-dir "~/Dropbox/org/journal")
+   (setq org-journal-dir org-journal-dir-default)
    (setq org-journal-file-format "%Y-%m-%d")
    (setq org-journal-date-prefix "#+TITLE: ")
    (setq org-journal-date-format "%A, %B %d %Y")
