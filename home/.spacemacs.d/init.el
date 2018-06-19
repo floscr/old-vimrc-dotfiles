@@ -220,6 +220,9 @@ before packages are loaded."
   ;; Hide the title
   (setq frame-title-format "")
 
+  ;; Use Emacs UI to enter the encryption key
+  (setq epa-pinentry-mode 'loopback)
+
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
