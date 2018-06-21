@@ -145,7 +145,7 @@ set copyindent    " Copy previous indetation on autoindenting
 set foldmethod=indent " Fold by indentation
 set foldopen-=block   " Disable fold opening when jumping paragraphs
 set foldlevelstart=99 " start unfolded
-set foldnestmax=2     " Maximum fold nesting level
+set foldnestmax=4     " Maximum fold nesting level
 
 function! MyFoldText() "{{{3
 let line = getline(v:foldstart)
