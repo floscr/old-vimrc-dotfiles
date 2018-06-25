@@ -213,6 +213,9 @@ before packages are loaded."
   ;; Transparent titlebar
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
+  (when (member "Symbol" (font-family-list))
+    (set-fontset-font t 'unicode "Symbol" nil 'prepend))
+
   ;; Speed up projectile
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/bash")
