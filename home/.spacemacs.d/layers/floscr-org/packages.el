@@ -55,6 +55,7 @@
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
 
+
   (setq org-projectile-per-project-filepath "Tasks/tasks.org")
   (push (org-projectile-project-todo-entry) org-capture-templates)
   ;; (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
@@ -83,10 +84,11 @@
          "~/Dropbox/org/Projects/ideas.org"
          ))
 
+  (setq org-agenda-refile (org-agenda-files))
+
   (setq
    org-refile-targets
    '(
-     (org-directory :maxlevel . 3)
      (org-agenda-files :maxlevel . 3)
      ))
 
