@@ -30,38 +30,42 @@ which require an initialization must be listed explicitly in the list.")
  'tabbar-default nil
  :background (face-attribute 'default :background)
  :foreground (face-attribute 'default :background)
- :box '(:line-width 1 :color "gray20" :style nil))
+ :box `(:line-width 1 :color ,(face-attribute 'default :background)))
 
 (set-face-attribute
  'tabbar-unselected nil
- :background (face-attribute 'mode-line :background)
- :foreground "white"
- :box `(:line-width 5 :color ,(face-attribute 'mode-line :background)))
+ :background (face-attribute 'default :background)
+ :foreground (face-attribute 'default :foreground)
+ :slant 'normal
+ :weight 'medium
+ :box `(:line-width 5 :color ,(face-attribute 'default :background)))
 
- ;; :box '(:line-width 5 :color ,(face-attribute 'default :background) :style nil))
 (set-face-attribute
  'tabbar-selected nil
- :background "gray75"
- :foreground "black"
- :box '(:line-width 5 :color "gray75" :style nil))
+ :background (face-attribute 'default :foreground)
+ :foreground (face-attribute 'default :background)
+ :box `(:line-width 5 :color ,(face-attribute 'default :foreground)))
+
 (set-face-attribute
  'tabbar-highlight nil
- :background "white"
- :foreground "black"
- :underline nil
- :box '(:line-width 5 :color "white" :style nil))
+ :background (face-attribute 'default :foreground)
+ :foreground (face-attribute 'default :background)
+ :box `(:line-width 5 :color ,(face-attribute 'default :foreground)))
+
 (set-face-attribute
  'tabbar-button nil
- :box '(:line-width 1 :color "gray20" :style nil))
+ :box `(:line-width 1 :color ,(face-attribute 'default :background)))
+
 (set-face-attribute
  'tabbar-separator nil
- :background "gray20"
+ :background (face-attribute 'default :background)
  :height 0.6)
 
 ;; Change padding of the tabs
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
 (custom-set-variables
  '(tabbar-separator (quote (0.5))))
+
 ;; adding spaces
 (defun tabbar-buffer-tab-label (tab)
   "Return a label for TAB.
