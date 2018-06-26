@@ -258,6 +258,10 @@ before packages are loaded."
   (eval-after-load 'js-mode
     '(add-hook 'rjsx-mode-hook #'add-node-modules-path))
 
+  (setq powerline-default-separator 'contour)
+  (setq ns-use-srgb-colorspace nil)
+  (setq powerline-image-apple-rgb nil)
+
   (setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 
   (use-package flycheck
