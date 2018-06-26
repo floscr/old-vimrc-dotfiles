@@ -63,6 +63,8 @@
 (defun floscr-org/post-init-org ()
   (require 'org-projectile)
 
+  (setq org-image-actual-width 600)
+
   ;; Allow blank lines before and after headlines
   (custom-set-variables
    '(org-blank-before-new-entry 
