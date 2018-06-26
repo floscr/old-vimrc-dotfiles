@@ -33,12 +33,20 @@ which require an initialization must be listed explicitly in the list.")
      :box `(:line-width 1 :color ,(face-attribute 'fringe :background)))
 
     (set-face-attribute
-     'tabbar-unselected nil
+     'tabbar-modified nil
      :background (face-attribute 'fringe :background)
-     :foreground (face-attribute 'default :foreground)
+     :foreground (face-attribute 'fringe :foreground)
      :slant 'normal
      :weight 'medium
      :box `(:line-width 5 :color ,(face-attribute 'fringe :background)))
+
+    (set-face-attribute
+     'tabbar-selected-modified nil
+     :background (face-attribute 'fringe :foreground)
+     :foreground (face-attribute 'fringe :background)
+     :slant 'normal
+     :weight 'bold
+     :box `(:line-width 5 :color ,(face-attribute 'fringe :foreground)))
 
     (set-face-attribute
      'tabbar-selected nil
