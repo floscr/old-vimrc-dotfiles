@@ -27,6 +27,25 @@
   (message "Switch main diary to %s" org-journal-dir)
   )
 
+(defun floscr-org/shopping-list-save-hook ()
+  "Save the contents of supermarkt to a text file to make it readable for notes app"
+  (interactive)
+  ;; Keep the cursor position
+  (save-excursion
+    (require 's)
+    (require 'f)
+
+    ;; Copy subtree of Supermarkt
+    (goto-char (org-find-exact-headline-in-buffer "Supermarkt"))
+    (setq org-subtree-clip-backup org-subtree-clip)
+    (org-copy-subtree)
+
+    (setq subtree-contents (s-replace "*" "#" org-subtree-clip))
+    (f-write-text subtree-contents 'utf-8 "~/Dropbox/Notes/Shoppinglist.txt")
+
+    ;; Restore previous subtree-clip
+    (setq org-subtree-clip org-subtree-clip-backup)
+    ))
 
 (defun floscr-org/insert-key-binding-tag (key)
   "Interactive enter a keybinding and automatically insert it into <kbd> tags"
