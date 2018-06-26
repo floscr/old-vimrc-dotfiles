@@ -195,6 +195,9 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-company-mode t)
 
+  ;; Automatic load changes
+  (global-auto-revert-mode t)
+
   (setq-default magit-save-repository-buffers 'dontask)
 
   ;; Evil Replace Motion
