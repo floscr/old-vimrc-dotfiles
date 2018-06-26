@@ -62,6 +62,7 @@ This function should only modify configuration layer settings."
 
    dotspacemacs-additional-packages '(
                                       editorconfig
+                                      (rjsx-mode :location (recipe :fetcher github :repo "floscr/rjsx-mode"))
                                       evil-replace-with-register
                                       eslintd-fix
                                       helm-ls-git
