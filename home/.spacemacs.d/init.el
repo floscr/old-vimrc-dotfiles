@@ -10,7 +10,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      ;; Syntax
-     javascript
+     (javascript :variables node-add-modules-path t)
      html
      yaml
      vimscript
