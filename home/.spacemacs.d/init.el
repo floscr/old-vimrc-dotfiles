@@ -199,7 +199,7 @@ before packages are loaded."
   (global-auto-revert-mode t)
 
   ;; Keep history
-  (undo-tree-auto-save-history t)
+  (setq undo-tree-auto-save-history t)
 
   (setq-default magit-save-repository-buffers 'dontask)
 
