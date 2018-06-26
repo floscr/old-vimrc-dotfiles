@@ -10,3 +10,6 @@
 (define-key global-map (kbd "C-j") #'evil-window-down)
 (define-key global-map (kbd "C-k") #'evil-window-up)
 (define-key global-map (kbd "C-l") #'evil-window-right)
+
+(evil-define-key 'normal 'global "gn" 'tabbar-forward)
+(evil-define-key 'normal 'global "gp" 'tabbar-backward)
