@@ -201,6 +201,12 @@ before packages are loaded."
   ;; Keep history
   (setq undo-tree-auto-save-history t)
 
+  ;; Persistent undo-tree
+  (require 'undo-tree)
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history t
+        undo-tree-history-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/undo-tree/"))))
+
   (setq-default magit-save-repository-buffers 'dontask)
 
   ;; Evil Replace Motion
