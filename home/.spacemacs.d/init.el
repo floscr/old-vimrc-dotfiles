@@ -24,6 +24,7 @@ This function should only modify configuration layer settings."
      floscr-org
      ; floscr-react
      ;; rjsx
+     tabbar
 
      helm
      osx
@@ -107,7 +108,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
 
    ;; Leader Key
    dotspacemacs-leader-key "SPC"
@@ -258,9 +259,10 @@ before packages are loaded."
   (eval-after-load 'js-mode
     '(add-hook 'rjsx-mode-hook #'add-node-modules-path))
 
-  (setq powerline-default-separator 'contour)
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-image-apple-rgb nil)
+
+  (setq powerline-default-separator 'slant)
 
   (setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 
