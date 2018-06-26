@@ -198,6 +198,9 @@ before packages are loaded."
   ;; Automatic load changes
   (global-auto-revert-mode t)
 
+  ;; Keep history
+  (undo-tree-auto-save-history t)
+
   (setq-default magit-save-repository-buffers 'dontask)
 
   ;; Evil Replace Motion
