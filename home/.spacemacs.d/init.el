@@ -15,8 +15,6 @@ This function should only modify configuration layer settings."
      yaml
      vimscript
      markdown
-     (react :variables
-            node-add-modules-path t)
 
      (ranger :variables
              ranger-show-preview t)
@@ -24,7 +22,8 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
-     floscr-react
+     ; floscr-react
+     ;; rjsx
 
      helm
      osx
@@ -242,11 +241,24 @@ before packages are loaded."
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-  (eval-after-load 'react-mode
-    '(progn (add-hook 'react-mode-hook #'add-node-modules-path)))
+  (eval-after-load 'rjsx-mode
+    '(progn (add-hook 'rjsx-mode-hook #'add-node-modules-path)))
 
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . react-mode))
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+
+  (with-eval-after-load 'flycheck
+    (push 'javascript-jshint flycheck-disabled-checkers)
+    (push 'json-jsonlint flycheck-disabled-checkers))
+  (spacemacs/enable-flycheck 'rjsx-mode)
+
+  (setq node-add-modules-path t)
+  (add-hook 'rjsx-mode-hook 'eslintd-fix-mode)
+
+  (eval-after-load 'js-mode
+    '(add-hook 'rjsx-mode-hook #'add-node-modules-path))
+
+  (setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 
   (use-package flycheck
     :ensure t
