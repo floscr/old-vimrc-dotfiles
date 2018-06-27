@@ -28,6 +28,7 @@ which require an initialization must be listed explicitly in the list.")
 
     (set-face-attribute
      'tabbar-default nil
+     :height 120
      :background (face-attribute 'line-number :background)
      :foreground (face-attribute 'default :background)
      :box `(:line-width 1 :color ,(face-attribute 'line-number :background)))
