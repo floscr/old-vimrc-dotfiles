@@ -28,25 +28,36 @@ which require an initialization must be listed explicitly in the list.")
 
     (set-face-attribute
      'tabbar-default nil
-     :background (face-attribute 'fringe :background)
-     :foreground (face-attribute 'default :background)
-     :box `(:line-width 1 :color ,(face-attribute 'fringe :background)))
-
-    (set-face-attribute
-     'tabbar-modified nil
-     :background (face-attribute 'fringe :background)
-     :foreground (face-attribute 'fringe :foreground)
+     :background (face-attribute 'line-number :background)
+     :foreground (face-attribute 'line-number :foreground)
      :slant 'normal
      :weight 'medium
-     :box `(:line-width 5 :color ,(face-attribute 'fringe :background)))
+     :box `(:line-width 1 :color ,(face-attribute 'line-number :background)))
+
+    (set-face-attribute
+     'tabbar-unselected nil
+     :background (face-attribute 'line-number :background)
+     :foreground (face-attribute 'line-number :foreground)
+     :slant 'normal
+     :weight 'normal
+     :box `(:line-width 1 :color ,(face-attribute 'line-number :background)))
+
+
+    (set-face-attribute
+     'tabbar-modified nil (face-attribute 'tabbar-default)
+     :background (face-attribute 'line-number :background)
+     :foreground (face-attribute 'line-number :foreground)
+     :slant 'normal
+     :weight 'medium
+     :box `(:line-width 5 :color ,(face-attribute 'line-number :background)))
 
     (set-face-attribute
      'tabbar-selected-modified nil
-     :background (face-attribute 'fringe :foreground)
-     :foreground (face-attribute 'fringe :background)
+     :background (face-attribute 'line-number :foreground)
+     :foreground (face-attribute 'line-number :background)
      :slant 'normal
      :weight 'bold
-     :box `(:line-width 5 :color ,(face-attribute 'fringe :foreground)))
+     :box `(:line-width 5 :color ,(face-attribute 'line-number :foreground)))
 
     (set-face-attribute
      'tabbar-selected nil
@@ -56,17 +67,17 @@ which require an initialization must be listed explicitly in the list.")
 
     (set-face-attribute
      'tabbar-highlight nil
-     :background (face-attribute 'default :foreground)
-     :foreground (face-attribute 'default :background)
-     :box `(:line-width 5 :color ,(face-attribute 'default :foreground)))
+     :background (face-attribute 'line-number :foreground)
+     :foreground (face-attribute 'line-number :background)
+     :box `(:line-width 5 :color ,(face-attribute 'line-number :foreground)))
 
     (set-face-attribute
      'tabbar-button nil
-     :box `(:line-width 1 :color ,(face-attribute 'fringe :background)))
+     :box `(:line-width 1 :color ,(face-attribute 'line-number :background)))
 
     (set-face-attribute
      'tabbar-separator nil
-     :background (face-attribute 'default :background)
+     :background (face-attribute 'line-number :background)
      :height 0.2)
 
     ;; Change padding of the tabs
