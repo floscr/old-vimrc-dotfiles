@@ -5,3 +5,6 @@
 (spacemacs/set-leader-keys "ghn" 'git-gutter:next-hunk)
 (spacemacs/set-leader-keys "ghp" 'git-gutter:previous-hunk)
 (spacemacs/set-leader-keys "ghu" 'git-gutter:revert-hunk)
+
+(define-key evil-normal-state-map (kbd "[c") 'git-gutter:previous-hunk)
+(define-key evil-normal-state-map (kbd "]c") 'git-gutter:next-hunk)
