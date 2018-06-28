@@ -79,9 +79,21 @@
    '(org-level-8 ((t (:inherit outline-3 :height 1.0 ))))
    )
 
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "SUBTREE(s)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
+	        (sequence "CRASH(c)" "BUG(b)" "REQUEST(r)" "TEST(e)" "|" "FIXED(f)")))
+
+  (setq org-todo-keyword-faces
+        '(("WAIT" . "white")
+	        ("CRASH" . "red")
+	        ("BUG" . "red")
+	        ("SUBTREE" . "grey")
+	        ("TEST" . "turquoise1")
+	        ))
+
   ;; Allow blank lines before and after headlines
   (custom-set-variables
-   '(org-blank-before-new-entry 
+   '(org-blank-before-new-entry
      (quote ((heading) (plain-list-item)))))
 
   ;; Org directories
