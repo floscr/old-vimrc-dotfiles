@@ -20,3 +20,6 @@
   "ol" 'org-store-link
   "oj" 'org-journal-new-entry
   )
+
+(evil-define-key 'normal 'org-mode "]f" 'org-journal-open-next-entry)
+(evil-define-key 'normal 'org-mode "[f" 'org-journal-open-previous-entry)
