@@ -138,7 +138,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-fullscreen-at-startup nil
    dotspacemacs-fullscreen-use-non-native nil
    dotspacemacs-maximized-at-startup nil
-   dotspacemacs-smooth-scrolling t
+
+   ;; Disable smooth scrolling as its super slow
+   dotspacemacs-smooth-scrolling nil
 
    ;; File Handling
    dotspacemacs-large-file-size 1
