@@ -14,8 +14,9 @@
 
 (evil-leader/set-key
   "oa" 'org-agenda
+  "oh" 'floscr-org/org-open-home-file
   "od" 'floscr-org/org-agenda-day
   "oc" 'org-capture
   "ol" 'org-store-link
-  "oj" 'org-journal-new-entry'
+  "oj" 'org-journal-new-entry
   )

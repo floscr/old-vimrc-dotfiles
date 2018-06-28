@@ -9,6 +9,11 @@
   (interactive)
   (org-agenda-list nil nil 'day nil))
 
+(defun floscr-org/org-open-home-file ()
+   "Open the home org file"
+   (interactive)
+   (find-file (concat org-directory "/home.org")))
+
 (defun floscr-org/insert-key-binding-tag (key)
   "Interactive enter a keybinding and automatically insert it into <kbd> tags"
   (interactive "kType key sequence: ")
