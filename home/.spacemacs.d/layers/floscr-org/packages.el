@@ -65,6 +65,10 @@
 
   (setq org-image-actual-width 600)
 
+  (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+
   ;; Allow blank lines before and after headlines
   (custom-set-variables
    '(org-blank-before-new-entry 
