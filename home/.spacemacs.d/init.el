@@ -15,6 +15,7 @@ This function should only modify configuration layer settings."
      yaml
      vimscript
      markdown
+     ruby
 
      (ranger :variables
              ranger-show-preview t)
