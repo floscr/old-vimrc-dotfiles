@@ -69,6 +69,16 @@
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
 
+  (custom-set-faces
+   '(org-level-2 ((t (:inherit outline-2 :height 1.0 ))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-4 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-5 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-6 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-7 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-8 ((t (:inherit outline-3 :height 1.0 ))))
+   )
+
   ;; Allow blank lines before and after headlines
   (custom-set-variables
    '(org-blank-before-new-entry 
