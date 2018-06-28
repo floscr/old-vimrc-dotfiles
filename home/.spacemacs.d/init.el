@@ -331,6 +331,11 @@ before packages are loaded."
       "X"
       "X"))
 
+  ;;; scroll one line at a time (less "jumpy" than defaults)
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
