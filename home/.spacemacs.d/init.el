@@ -24,8 +24,6 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
-     ; floscr-react
-     ;; rjsx
      tabbar
 
      helm
