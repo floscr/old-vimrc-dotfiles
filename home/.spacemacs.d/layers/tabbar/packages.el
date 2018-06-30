@@ -47,7 +47,6 @@ which require an initialization must be listed explicitly in the list.")
      :weight 'medium
      :box `(:line-width 1 :color ,(face-attribute 'line-number :background)))
 
-
     (set-face-attribute
      'tabbar-modified nil
      :background (face-attribute 'line-number :background)
