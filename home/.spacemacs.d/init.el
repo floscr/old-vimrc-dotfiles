@@ -16,6 +16,7 @@ This function should only modify configuration layer settings."
      vimscript
      markdown
      ruby
+     reason
 
      (ranger :variables
              ranger-show-preview t)
