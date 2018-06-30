@@ -15,6 +15,8 @@
 
 export SHELL=zsh
 
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/sbin:$PATH
+
 export PATH=$HOME/.gem/bin:$PATH
 
 # Set architecture flags
@@ -28,9 +30,8 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH=/usr/local/mysql/bin:$PATH
 
 # Homebrew bins
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # Default bins
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
+# export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 # Ruby bins
 # export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
 # Custom Ruby gem path
@@ -50,7 +51,7 @@ export PATH="/usr/local/opt/php70/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
 # MySQL
-export PATH=/usr/local/mysql/bin:$PATH
+# export PATH=/usr/local/mysql/bin:$PATH
 
 # Haskell
 export PATH=$HOME/.local/bin:$PATH
@@ -106,6 +107,8 @@ export CHEATCOLORS=true
 
 export DEFAULT_CHEAT_DIR=$HOME/Dropbox/Snippets
 export CHEATPATH=$HOME/Dropbox/Snippets
+
+# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings

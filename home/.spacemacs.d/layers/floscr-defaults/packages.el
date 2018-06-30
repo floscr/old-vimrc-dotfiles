@@ -18,3 +18,11 @@
       (kbd "TAB") 'neotree-quick-look)
     )
   )
+
+(defun floscr-defaults/init-default-text-scale ()
+  (use-package default-text-scale
+    :bind (
+           ("C-M-=" . default-text-scale-increase)
+           ("C-M--" . default-text-scale-decrease)
+           ("C-M-0" . default-text-scale-reset)
+           )))
