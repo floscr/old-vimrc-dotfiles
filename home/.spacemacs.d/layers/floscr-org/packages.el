@@ -117,16 +117,16 @@
 
   ;; capture
   (setq org-capture-templates
-        (quote (("t" "todo" entry (file org-default-notes-file)
+        (quote (("t" "todo" entry (file org-default-notes-file "Refile Todos")
                  "* TODO %?\n\t%U\n\t%a\n")
-                ("c" "Chrome" entry (file+headline "~/.emacs.d/gtd.org" "Quick notes")
-                 "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+                ("c" "Chrome" entry (file org-default-notes-file "Refile Notes")
+                 "* [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                  :empty-lines 1)
-                ("s" "shoppinglist" entry (file org-shopping-list)
+                ("s" "shoppinglist" entry (file org-shopping-list "Supermarkt")
                  "* Supermarkt\n\t- [ ] %?")
-                ("i" "idea" entry (file org-default-notes-file)
+                ("i" "idea" entry (file org-default-notes-file "Refile Ideas")
                  "* %? :IDEA:\n\t%U\n\t%a\n")
-                ("n" "note" entry (file org-default-notes-file)
+                ("n" "note" entry (file org-default-notes-file "Refile Notes")
                  "* %? :NOTE:\n\t%U\n\t%a\n")
                 )))
 
