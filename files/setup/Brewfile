@@ -112,6 +112,8 @@ brew 'ranger'
 # Spreadsheet Editor
 brew tap nickolasburr/pfa
 brew install sc-im
+# Encryption
+brew 'gnupg'
 
 # Switch audio source in osx
 # For alfred:

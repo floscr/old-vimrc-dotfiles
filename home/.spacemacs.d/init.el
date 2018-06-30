@@ -10,13 +10,13 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      ;; Syntax
-     javascript
+     (javascript :variables node-add-modules-path t)
      html
      yaml
      vimscript
      markdown
-     (react :variables
-            node-add-modules-path t)
+     ruby
+     reason
 
      (ranger :variables
              ranger-show-preview t)
@@ -24,7 +24,7 @@ This function should only modify configuration layer settings."
      floscr-git
      floscr-defaults
      floscr-org
-     floscr-react
+     tabbar
 
      helm
      osx
@@ -62,6 +62,7 @@ This function should only modify configuration layer settings."
 
    dotspacemacs-additional-packages '(
                                       editorconfig
+                                      (rjsx-mode :location (recipe :fetcher github :repo "floscr/rjsx-mode"))
                                       evil-replace-with-register
                                       eslintd-fix
                                       helm-ls-git
@@ -107,7 +108,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
 
    ;; Leader Key
    dotspacemacs-leader-key "SPC"
@@ -136,7 +137,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-fullscreen-at-startup nil
    dotspacemacs-fullscreen-use-non-native nil
    dotspacemacs-maximized-at-startup nil
-   dotspacemacs-smooth-scrolling t
+
+   ;; Disable smooth scrolling as its super slow
+   dotspacemacs-smooth-scrolling nil
 
    ;; File Handling
    dotspacemacs-large-file-size 1
@@ -195,6 +198,20 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-company-mode t)
 
+  ;; Automatic load changes
+  (global-auto-revert-mode t)
+
+  ;; Keep history
+  (setq undo-tree-auto-save-history t)
+
+  ;; Persistent undo-tree
+  (require 'undo-tree)
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history t
+        undo-tree-history-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/undo-tree/"))))
+
+  (setq-default magit-save-repository-buffers 'dontask)
+
   ;; Evil Replace Motion
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
@@ -216,6 +233,9 @@ before packages are loaded."
   ;; Transparent titlebar
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
+  (when (member "Symbol" (font-family-list))
+    (set-fontset-font t 'unicode "Symbol" nil 'prepend))
+
   ;; Speed up projectile
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/bash")
@@ -223,14 +243,35 @@ before packages are loaded."
   ;; Hide the title
   (setq frame-title-format "")
 
+  ;; Use Emacs UI to enter the encryption key
+  (setq epa-pinentry-mode 'loopback)
+
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-  (eval-after-load 'react-mode
-    '(progn (add-hook 'react-mode-hook #'add-node-modules-path)))
+  (eval-after-load 'rjsx-mode
+    '(progn (add-hook 'rjsx-mode-hook #'add-node-modules-path)))
 
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . react-mode))
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+
+  (with-eval-after-load 'flycheck
+    (push 'javascript-jshint flycheck-disabled-checkers)
+    (push 'json-jsonlint flycheck-disabled-checkers))
+  (spacemacs/enable-flycheck 'rjsx-mode)
+
+  (setq node-add-modules-path t)
+  (add-hook 'rjsx-mode-hook 'eslintd-fix-mode)
+
+  (eval-after-load 'js-mode
+    '(add-hook 'rjsx-mode-hook #'add-node-modules-path))
+
+  (setq ns-use-srgb-colorspace nil)
+  (setq powerline-image-apple-rgb nil)
+
+  (setq powerline-default-separator 'slant)
+
+  (setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 
   (use-package flycheck
     :ensure t
@@ -294,11 +335,17 @@ before packages are loaded."
       "X"
       "X"))
 
+  ;;; scroll one line at a time (less "jumpy" than defaults)
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
   (setq
    ;; ScrollOff 10 lines
    scroll-conservatively 10
    scroll-margin 10)
   )
+
 
 (setq custom-file "~/.emacs.d/.cache/.custom-settings")
 (load custom-file)

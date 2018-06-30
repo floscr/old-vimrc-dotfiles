@@ -17,7 +17,7 @@ nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <space>gt :Gcommit -v -q %:p<CR>
 
 " Diff current file
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gd :Gdiff master<CR>
 " Show the previus version of a file
 nnoremap <space>ge :Gedit<CR>
 " Hard reset all changes

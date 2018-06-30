@@ -3,9 +3,14 @@
 
 # Node
 node_modules
+.importjs.js
+.nvmrc
 
 # Vim
 *.swp
+
+# Emacs
+.projectile
 
 # Tern
 .tern-project

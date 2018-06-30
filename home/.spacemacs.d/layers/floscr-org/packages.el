@@ -13,6 +13,47 @@
    "Open the home org file"
    (interactive)
    (find-file (concat org-directory "/home.org")))
+(defvar org-journal-dir-default "~/Dropbox/org/journal")
+(defvar org-journal-dir-diary "~/Dropbox/org/diary")
+
+(defun floscr-org/activate-journal ()
+  (interactive)
+  (setq org-journal-dir org-journal-dir-default)
+  (setq org-journal-enable-encryption nil)
+  )
+
+(defun floscr-org/activate-diary ()
+  (setq org-journal-dir org-journal-dir-diary)
+  (setq org-journal-enable-encryption 1)
+  )
+
+(defun floscr-org/switch-diary ()
+  (interactive)
+  (if (eq org-journal-dir org-journal-dir-default)
+      (floscr-org/activate-diary)
+    (floscr-org/activate-journal))
+  (message "Switch main diary to %s" org-journal-dir)
+  )
+
+(defun floscr-org/shopping-list-save-hook ()
+  "Save the contents of supermarkt to a text file to make it readable for notes app"
+  (interactive)
+  ;; Keep the cursor position
+  (save-excursion
+    (require 's)
+    (require 'f)
+
+    ;; Copy subtree of Supermarkt
+    (goto-char (org-find-exact-headline-in-buffer "Supermarkt"))
+    (setq org-subtree-clip-backup org-subtree-clip)
+    (org-copy-subtree)
+
+    (setq subtree-contents (s-replace "*" "#" org-subtree-clip))
+    (f-write-text subtree-contents 'utf-8 "~/Dropbox/Notes/Shoppinglist.txt")
+
+    ;; Restore previous subtree-clip
+    (setq org-subtree-clip org-subtree-clip-backup)
+    ))
 
 (defun floscr-org/insert-key-binding-tag (key)
   "Interactive enter a keybinding and automatically insert it into <kbd> tags"
@@ -30,6 +71,34 @@
 (defun floscr-org/post-init-org ()
   (require 'org-projectile)
 
+  (setq org-image-actual-width 600)
+
+  (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+
+  (custom-set-faces
+   '(org-level-2 ((t (:inherit outline-2 :height 1.0 ))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-4 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-5 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-6 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-7 ((t (:inherit outline-3 :height 1.0 ))))
+   '(org-level-8 ((t (:inherit outline-3 :height 1.0 ))))
+   )
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "SUBTREE(s)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
+	        (sequence "CRASH(c)" "BUG(b)" "REQUEST(r)" "TEST(e)" "|" "FIXED(f)")))
+
+  (setq org-todo-keyword-faces
+        '(("WAIT" . "white")
+	        ("CRASH" . "red")
+	        ("BUG" . "red")
+	        ("SUBTREE" . "grey")
+	        ("TEST" . "turquoise1")
+	        ))
+
   ;; Allow blank lines before and after headlines
   (custom-set-variables
    '(org-blank-before-new-entry
@@ -41,6 +110,7 @@
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
 
+
   (setq org-projectile-per-project-filepath "Tasks/tasks.org")
   (push (org-projectile-project-todo-entry) org-capture-templates)
   ;; (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
@@ -49,6 +119,9 @@
   (setq org-capture-templates
         (quote (("t" "todo" entry (file org-default-notes-file)
                  "* TODO %?\n\t%U\n\t%a\n")
+                ("c" "Chrome" entry (file+headline "~/.emacs.d/gtd.org" "Quick notes")
+                 "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+                 :empty-lines 1)
                 ("s" "shoppinglist" entry (file org-shopping-list)
                  "* Supermarkt\n\t- [ ] %?")
                 ("i" "idea" entry (file org-default-notes-file)
@@ -68,14 +141,15 @@
          "~/Dropbox/org/Projects/ideas.org"
          ))
 
+  (setq org-agenda-refile (org-agenda-files))
+
   (setq
    org-refile-targets
    '(
-     (org-directory :maxlevel . 3)
      (org-agenda-files :maxlevel . 3)
      ))
 
-   (setq org-journal-dir "~/Dropbox/org/journal")
+   (setq org-journal-dir org-journal-dir-default)
    (setq org-journal-file-format "%Y-%m-%d")
    (setq org-journal-date-prefix "#+TITLE: ")
    (setq org-journal-date-format "%A, %B %d %Y")

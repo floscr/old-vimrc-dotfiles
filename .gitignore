@@ -28,3 +28,6 @@ home/.config/fontforge
 home/.dotfiles/bin/arduino
 settings/all/vscode/extensions
 home/.config/hub
+
+# Vscode
+settings/all/vscode/workspaceStorage/**
