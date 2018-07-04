@@ -8,6 +8,8 @@
 
 (setq-default line-spacing 0.15)
 
+(setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
+
 (setq
  ;; ScrollOff 10 lines
  scroll-conservatively 10
