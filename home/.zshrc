@@ -50,6 +50,9 @@ export PATH=$PATH:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS
 export PATH="/usr/local/opt/php70/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
+# Doom
+export PATH=$PATH:~/.emacs.d/bin
+
 # MySQL
 # export PATH=/usr/local/mysql/bin:$PATH
 
