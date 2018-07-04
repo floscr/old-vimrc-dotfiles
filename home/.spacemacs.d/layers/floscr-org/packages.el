@@ -128,10 +128,10 @@ save it with the current buffer's file name but with .org extension."
   (setq org-capture-templates
         (quote (("t" "todo" entry (file org-default-notes-file)
                  "* TODO %?\n\t%U\n\t%a\n")
-                ("c" "Chrome" entry (file+headline "~/.emacs.d/gtd.org" "Quick notes")
-                 "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+                ("c" "Chrome" entry (file org-default-notes-file)
+                 "* [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                  :empty-lines 1)
-                ("s" "shoppinglist" entry (file org-shopping-list)
+                ("s" "shoppinglist" entry (file org-shopping-list "Supermarkt")
                  "* Supermarkt\n\t- [ ] %?")
                 ("i" "idea" entry (file org-default-notes-file)
                  "* %? :IDEA:\n\t%U\n\t%a\n")
