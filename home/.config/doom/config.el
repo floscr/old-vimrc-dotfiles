@@ -22,6 +22,11 @@
          (doom/reload-theme))
         (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
 
+(map! :leader
+      (:desc "toggle" :prefix "t"
+        :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
+        ))
+
 ;;; Org
 
 (setq org-directory (expand-file-name "~/Dropbox/org"))
