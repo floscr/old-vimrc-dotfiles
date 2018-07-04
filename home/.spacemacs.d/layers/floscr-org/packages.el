@@ -9,6 +9,15 @@
   (interactive)
   (org-agenda-list nil nil 'day nil))
 
+(defun floscr-org/markdown-convert-buffer-to-org ()
+  "Convert the current buffer's content from markdown to orgmode format and
+save it with the current buffer's file name but with .org extension."
+  (interactive)
+  (shell-command-on-region (point-min) (point-max)
+                           (format "pandoc -f markdown -t org -o %s"
+                                   (concat (file-name-sans-extension (buffer-file-name)) ".org")))
+  )
+
 (defun floscr-org/org-open-home-file ()
    "Open the home org file"
    (interactive)
