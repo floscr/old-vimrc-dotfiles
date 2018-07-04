@@ -6,6 +6,13 @@
 
 ;; THEME
 
+(setq-default line-spacing 0.15)
+
+(setq
+ ;; ScrollOff 10 lines
+ scroll-conservatively 10
+ scroll-margin 10)
+
 (defconst light-theme 'doom-one)
 (defconst dark-theme  'doom-one-light)
 
