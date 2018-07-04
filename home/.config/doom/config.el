@@ -4,6 +4,16 @@
 
 (remove-hook 'doom-post-init-hook #'blink-cursor-mode)
 
+;;;;;;;;;;;;
+;;; BINDINGS
+;;;;;;;;;;;;
+
+(map!
+ :n "M-="   #'default-text-scale-increase
+ :n "M--"   #'default-text-scale-decrease
+ :n "M-0"   #'default-text-scale-reset
+ )
+
 ;; THEME
 
 (setq-default line-spacing 0.15)
