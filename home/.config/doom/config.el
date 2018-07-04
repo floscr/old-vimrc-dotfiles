@@ -34,6 +34,15 @@
         :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
         ))
 
+;; evil-replace-with-register
+
+(def-package!
+  evil-replace-with-register
+  :config
+  (setq evil-replace-with-register-key (kbd "gr"))
+  (evil-replace-with-register-install)
+  )
+
 ;;; Org
 
 (setq org-directory (expand-file-name "~/Dropbox/org"))
