@@ -4,6 +4,24 @@
 
 (remove-hook 'doom-post-init-hook #'blink-cursor-mode)
 
+;; THEME
+
+(defconst light-theme 'doom-one)
+(defconst dark-theme  'doom-one-light)
+
+(defun +doom|toggle-theme ()
+  "Toggle between light and dark themes."
+  (interactive)
+  (cond ((eq doom-theme dark-theme)
+         (message "Toggling to light-theme: %s" light-theme)
+         (setq doom-theme light-theme)
+         (doom/reload-theme))
+        ((eq doom-theme light-theme)
+         (message "Toggling to dark-theme: %s" dark-theme)
+         (setq doom-theme dark-theme)
+         (doom/reload-theme))
+        (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
+
 ;;; Org
 
 (setq org-directory (expand-file-name "~/Dropbox/org"))
