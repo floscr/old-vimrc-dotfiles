@@ -34,6 +34,10 @@
         :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
         ))
 
+;;; Magit
+
+(setq-default magit-save-repository-buffers 'dontask)
+
 ;;; Undo Tree
 
 ;; Branching undo
