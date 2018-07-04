@@ -1,5 +1,11 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/config.el -*- lexical-binding: t; -*-
 
+;;; Defaults
+
+(remove-hook 'doom-post-init-hook #'blink-cursor-mode)
+
+;;; Org
+
 (setq org-directory (expand-file-name "~/Dropbox/org"))
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
 (setq org-shopping-list (concat org-directory "/shoppinglist.org"))
