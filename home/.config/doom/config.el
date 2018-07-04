@@ -91,10 +91,12 @@
    (find-file (concat org-directory "/home.org")))
 
 (map! :leader
-      (:desc "open" :prefix "n"
-        :desc "Org Agenda" :n  "a" #'org-agenda
-        :desc "Org Home" :n  "h" #'+org|org-open-home-file
+      (:desc "Notes" :prefix "n"
+        :desc "Agenda" :n  "a" #'org-agenda
+        :desc "Home.org" :n  "h" #'+org|org-open-home-file
+        :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
         ))
+
 
 (after! org
   :config
@@ -103,7 +105,6 @@
   (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
-
 
   (setq org-agenda-files
         (list
