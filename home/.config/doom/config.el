@@ -25,6 +25,11 @@
  scroll-conservatively 10
  scroll-margin 10)
 
+;; Remove Scrolloff for terminal
+(add-hook 'term-mode-hook (lambda () (setq
+                                 scroll-conservatively 0
+                                 scroll-margin 0)))
+
 (defconst light-theme 'doom-one)
 (defconst dark-theme  'doom-one-light)
 
