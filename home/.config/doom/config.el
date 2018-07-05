@@ -50,6 +50,9 @@
 ;; Custom Leader Bindings
 
 (map! :leader
+      (:desc "search" :prefix "/"
+        :desc "Search project" :n  "p" #'helm-projectile-ag
+        )
       (:desc "toggle" :prefix "t"
         :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
         )
