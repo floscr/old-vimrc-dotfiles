@@ -145,5 +145,6 @@ brew 'phplint'
 
 mas "Moom", id: 419330170
 mas "Xcode", id: 497799835
+mas "Chronoslider", id: 439549600
 
 #}}}
