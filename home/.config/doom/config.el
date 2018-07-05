@@ -18,6 +18,22 @@
 (defconst light-theme 'doom-one)
 (defconst dark-theme  'doom-one-light)
 
+(defun delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to delete this file? ")
+        (delete-file filename t)
+        (kill-buffer buffer)
+        (when (and (configuration-layer/package-usedp 'projectile)
+                   (projectile-project-p))
+          (call-interactively #'projectile-invalidate-cache))
+        (message "File '%s' successfully removed" filename)))))
+
 (defun +doom|toggle-theme ()
   "Toggle between light and dark themes."
   (interactive)
@@ -31,10 +47,16 @@
          (doom/reload-theme))
         (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
 
+;; Custom Leader Bindings
+
 (map! :leader
       (:desc "toggle" :prefix "t"
         :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
-        ))
+        )
+      (:desc "buffer" :prefix "b"
+        :desc "Delete File" :n  "D" #'delete-current-buffer-file
+        )
+      )
 
 ;;; Magit
 
