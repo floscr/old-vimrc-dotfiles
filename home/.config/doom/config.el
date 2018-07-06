@@ -134,6 +134,15 @@
    (interactive)
    (find-file (concat org-directory "/home.org")))
 
+(defun +org|paste-chrome-link ()
+  "Paste the frontmost chrome link"
+  (interactive)
+  ;; (when (not (looking-at-p "\s.*$") (
+  ;;                                    (end-of-line)
+  ;;                                    (new-line))))
+  (insert (org-mac-chrome-get-frontmost-url))
+  )
+
 (map! :leader
       (:desc "Notes" :prefix "n"
         :desc "Agenda" :n  "a" #'org-agenda
@@ -141,6 +150,16 @@
         :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
         ))
 
+(map! :map org-mode-map
+      :localleader
+      :nv "a" #'org-archive-subtree
+      :nv "r" #'org-refile
+      :nv "T" #'org-set-tags
+      :nv "p" #'+org|paste-chrome-link
+      :prefix "h"
+      :nv "l" #'org-demote-subtree
+      :nv "h" #'org-promote-subtree
+      )
 
 (after! org
   :config
