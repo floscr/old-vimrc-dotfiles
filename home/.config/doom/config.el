@@ -155,14 +155,12 @@
         ))
 
 (map! :map org-mode-map
+(map! :mode org-mode
       :localleader
-      :nv "a" #'org-archive-subtree
-      :nv "r" #'org-refile
-      :nv "T" #'org-set-tags
-      :nv "p" #'+org|paste-chrome-link
-      :prefix "h"
-      :nv "l" #'org-demote-subtree
-      :nv "h" #'org-promote-subtree
+      :desc "Archive Subtree" :m "a" #'org-archive-subtree
+      :desc "Refile" :m "r" #'org-refile
+      :desc "Set tags" :m "T" #'org-set-tags
+      :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
       )
 
 (after! org
