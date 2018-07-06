@@ -110,7 +110,7 @@
 (setq org-capture-templates
       (quote (("t" "todo" entry (file org-default-notes-file)
                "* TODO %?\n\t%U\n\t%a\n")
-              ("c" "Chrome" entry (file+headline "~/.emacs.d/gtd.org" "Quick notes")
+              ("c" "Chrome" entry (file org-default-notes-file)
                "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                :empty-lines 1)
               ("s" "shoppinglist" entry (file org-shopping-list)
