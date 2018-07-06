@@ -14,11 +14,15 @@
  :n "M-0"   #'default-text-scale-reset
  )
 
+;; Javascript
+
+(setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
+(after! rjsx-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
+
+
 ;; THEME
 
 (setq-default line-spacing 0.15)
-
-(setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 
 (setq
  ;; ScrollOff 10 lines
