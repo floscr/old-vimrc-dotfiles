@@ -50,6 +50,7 @@
  data
  emacs-lisp
  javascript
+ markdown
  (org
   +attach
   +babel
