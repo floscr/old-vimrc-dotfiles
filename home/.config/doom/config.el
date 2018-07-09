@@ -66,6 +66,8 @@
 
 ;; Custom Leader Bindings
 
+(map! :leader (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle))
+
 (map! :leader
       (:desc "search" :prefix "/"
         :desc "Search project" :n  "p" #'helm-projectile-ag
