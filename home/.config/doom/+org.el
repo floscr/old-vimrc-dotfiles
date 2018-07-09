@@ -81,3 +81,22 @@
   (setq org-agenda-refile (org-agenda-files))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   )
+
+; (map! :map org-mode-map
+; (map! :mode org-mode
+;       :localleader
+;       :desc "Archive Subtree" :m "a" #'org-archive-subtree
+;       :desc "Refile" :m "r" #'org-refile
+;       :desc "Set tags" :m "T" #'org-set-tags
+;       :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
+;       )
+
+(defvar org-journal-dir-default "~/Dropbox/org/journal")
+(defvar org-journal-dir-diary "~/Dropbox/org/diary")
+(setq org-journal-dir org-journal-dir-default)
+
+(setq org-journal-file-format "%Y-%m-%d")
+(setq org-journal-date-prefix "#+TITLE: ")
+(setq org-journal-date-format "%A, %B %d %Y")
+(setq org-journal-time-prefix "* ")
+(setq org-journal-time-format "")
