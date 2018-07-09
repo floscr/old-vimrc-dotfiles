@@ -5,34 +5,26 @@
  eval
  (evil +everywhere)
  file-templates
- (lookup
-  +devdocs
-  +docsets)
+ (lookup +devdocs +docsets)
  snippets
  spellcheck
- (syntax-checker
-  +childframe)
+ (syntax-checker +childframe)
  workspaces
 
  :completion
- (company
-  +auto)
- (helm
-  +fuzzy)
+ (company +auto)
+ (helm +fuzzy)
 
  :ui
  doom
  doom-dashboard
  doom-modeline
  doom-quit
- evil-goggles
  hl-todo
- nav-flash
+ ;; nav-flash
  neotree
- (popup
-  +all
-  +defaults)
- pretty-code
+ (popup +all +defaults)
+ ;; pretty-code
  vc-gutter
  vi-tilde-fringe
  window-select
@@ -58,8 +50,6 @@
  data
  emacs-lisp
  javascript
-
-
  (org
   +attach
   +babel
