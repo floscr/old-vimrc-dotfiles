@@ -1,20 +1,10 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/config.el -*- lexical-binding: t; -*-
 
-;;; Defaults
+;;; DEFAULTS
 
 (remove-hook 'doom-post-init-hook #'blink-cursor-mode)
 
-;;;;;;;;;;;;
-;;; BINDINGS
-;;;;;;;;;;;;
-
-(map!
- :n "M-="   #'default-text-scale-increase
- :n "M--"   #'default-text-scale-decrease
- :n "M-0"   #'default-text-scale-reset
- )
-
-;; Javascript
+;; JAVASCRIPT
 
 (setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 (after! rjsx-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
@@ -22,18 +12,15 @@
 
 ;; THEME
 
-(setq-default line-spacing 0.15)
+(setq-default
+ line-spacing 0.15)
 
 (setq
- ;; ScrollOff 10 lines
  scroll-conservatively 10
  scroll-margin 10)
 
 ;; Remove Scrolloff for terminal
 (add-hook 'term-mode-hook (lambda () (setq-local scroll-margin 0)))
-
-(defconst light-theme 'doom-one)
-(defconst dark-theme  'doom-one-light)
 
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
@@ -50,6 +37,9 @@
                    (projectile-project-p))
           (call-interactively #'projectile-invalidate-cache))
         (message "File '%s' successfully removed" filename)))))
+
+(defconst light-theme 'doom-one)
+(defconst dark-theme  'doom-one-light)
 
 (defun +doom|toggle-theme ()
   "Toggle between light and dark themes."
@@ -104,3 +94,4 @@
   )
 
 (load! "+org")
+(load! "+bindings")
