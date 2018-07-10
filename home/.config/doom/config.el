@@ -41,6 +41,15 @@
 (defconst light-theme 'doom-one)
 (defconst dark-theme  'doom-one-light)
 
+(defun +MM|other-file ()
+  "Toggle between component or controller"
+  (interactive)
+  (setq filename (file-name-nondirectory buffer-file-name))
+  (setq path (file-name-directory buffer-file-name))
+  (setq target (if (string= filename "component.js") "controller.js" "component.js"))
+  (find-file (concat path target))
+  )
+
 (defun +doom|toggle-theme ()
   "Toggle between light and dark themes."
   (interactive)
