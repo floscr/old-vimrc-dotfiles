@@ -6,16 +6,16 @@
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file org-default-notes-file)
-               "* TODO %?\n\t%U\n\t%a\n")
+               "* TODO %?\n%U\n%a\n")
               ("c" "Chrome" entry (file org-default-notes-file)
                "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                :empty-lines 1)
               ("s" "shoppinglist" entry (file org-shopping-list)
-               "* Supermarkt\n\t- [ ] %?")
+               "* Supermarkt\n- [ ] %?")
               ("i" "idea" entry (file org-default-notes-file)
-               "* %? :IDEA:\n\t%U\n\t%a\n")
+               "* %? :IDEA:\n%U\n%a\n")
               ("n" "note" entry (file org-default-notes-file)
-               "* %? :NOTE:\n\t%U\n\t%a\n")
+               "* %? :NOTE:\n%U\n%a\n")
               )))
 
 (setq org-todo-keywords
@@ -50,14 +50,6 @@
         :desc "Home.org" :n  "h" #'+org|org-open-home-file
         :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
         ))
-
-; (map! :mode org-mode
-;       :localleader
-;       :desc "Archive Subtree" :m "a" #'org-archive-subtree
-;       :desc "Refile" :m "r" #'org-refile
-;       :desc "Set tags" :m "T" #'org-set-tags
-;       :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
-;       )
 
 ;; Journal
 
