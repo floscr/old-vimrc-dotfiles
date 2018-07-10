@@ -1,4 +1,4 @@
-;;; ~/.homesick/repos/dotfiles/home/.config/doom/+bindings.el -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 
 (map!
  :niv "M-="   #'default-text-scale-increase
