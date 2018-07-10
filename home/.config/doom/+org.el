@@ -1,8 +1,10 @@
 ;;; ~/.homesick/repos/dotfiles/home/.config/doom/+org.el -*- lexical-binding: t; -*-
 
-(setq org-directory (expand-file-name "~/Dropbox/org"))
-(setq org-default-notes-file (concat org-directory "/inbox.org"))
-(setq org-shopping-list (concat org-directory "/shoppinglist.org"))
+(setq
+ org-directory (expand-file-name "~/Dropbox/org")
+ org-default-notes-file (concat org-directory "/inbox.org")
+ org-shopping-list (concat org-directory "/shoppinglist.org")
+ )
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file org-default-notes-file)
