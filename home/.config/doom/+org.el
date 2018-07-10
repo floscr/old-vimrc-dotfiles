@@ -59,37 +59,7 @@
 ;       :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
 ;       )
 
-(after! org
-  :config
-  (setq org-image-actual-width 600)
-
-  (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
-  (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
-  (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
-
-  (setq org-agenda-files
-        (list
-         "~/Dropbox/org/home.org"
-         "~/Dropbox/org/inbox.org"
-         "~/Dropbox/org/refile-beorg.org"
-         "~/Dropbox/org/shoppinglist.org"
-         "~/Dropbox/org/Work/Work.org"
-         "~/Dropbox/org/cooking.org"
-         "~/Dropbox/org/Projects/ideas.org"
-         ))
-
-  (setq org-agenda-refile (org-agenda-files))
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-  )
-
-; (map! :map org-mode-map
-; (map! :mode org-mode
-;       :localleader
-;       :desc "Archive Subtree" :m "a" #'org-archive-subtree
-;       :desc "Refile" :m "r" #'org-refile
-;       :desc "Set tags" :m "T" #'org-set-tags
-;       :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
-;       )
+;; Journal
 
 (defvar org-journal-dir-default "~/Dropbox/org/journal")
 (defvar org-journal-dir-diary "~/Dropbox/org/diary")
@@ -100,3 +70,40 @@
 (setq org-journal-date-format "%A, %B %d %Y")
 (setq org-journal-time-prefix "* ")
 (setq org-journal-time-format "")
+
+(after! org
+  (map! :map evil-org-mode-map
+        :localleader
+        :desc "Archive Subtree" :m "a" #'org-archive-subtree
+        :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
+
+        :desc "Create/Edit Todo" :nve "o" #'org-todo
+        :desc "Schedule" :nve "s" #'org-schedule
+        :desc "Deadline" :nve "d" #'org-deadline
+        :desc "Refile" :nve "r" #'org-refile
+        :desc "Filter" :nve "f" #'org-match-sparse-tree
+        :desc "Tag heading" :nve "t" #'org-set-tags-command)
+
+  :config
+
+  ;; Templates
+  (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+  (setq
+   org-image-actual-width 600
+   org-agenda-files
+    (list
+      "~/Dropbox/org/home.org"
+      "~/Dropbox/org/inbox.org"
+      "~/Dropbox/org/refile-beorg.org"
+      "~/Dropbox/org/shoppinglist.org"
+      "~/Dropbox/org/Work/Work.org"
+      "~/Dropbox/org/cooking.org"
+      "~/Dropbox/org/Projects/ideas.org"
+      )
+    org-agenda-refile (org-agenda-files)
+    org-refile-targets '((org-agenda-files :maxlevel . 3))
+    org-default-notes-file (concat org-directory "/inbox.org")
+   )
+  )
