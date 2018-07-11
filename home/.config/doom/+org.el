@@ -4,6 +4,13 @@
  org-directory (expand-file-name "~/Dropbox/org")
  org-default-notes-file (concat org-directory "/inbox.org")
  org-shopping-list (concat org-directory "/shoppinglist.org")
+ org-default-notes-list (list
+                         "~/Dropbox/org/home.org"
+                         "~/Dropbox/org/shoppinglist.org"
+                         "~/Dropbox/org/Work/work.org"
+                         "~/Dropbox/org/cooking.org"
+                         "~/Dropbox/org/Projects/ideas.org"
+                         )
  )
 
 (setq org-capture-templates
@@ -92,18 +99,12 @@
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
   (setq
    org-image-actual-width 600
-   org-agenda-files
-    (list
-      "~/Dropbox/org/home.org"
-      "~/Dropbox/org/inbox.org"
-      "~/Dropbox/org/refile-beorg.org"
-      "~/Dropbox/org/shoppinglist.org"
-      "~/Dropbox/org/Work/Work.org"
-      "~/Dropbox/org/cooking.org"
-      "~/Dropbox/org/Projects/ideas.org"
-      )
-    org-agenda-refile (org-agenda-files)
-    org-refile-targets '((org-agenda-files :maxlevel . 3))
-    org-default-notes-file (concat org-directory "/inbox.org")
+   org-agenda-files (list "~/Dropbox/org")
+   org-agenda-refile (org-agenda-files)
+   org-refile-targets (quote (
+                              (nil :maxlevel . 9)
+                              (org-agenda-files :maxlevel . 3)
+                              ))
+   org-default-notes-file (concat org-directory "/inbox.org")
    )
   )
