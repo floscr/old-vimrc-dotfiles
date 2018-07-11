@@ -19,6 +19,7 @@
  :n "]1" #'+MM|other-file
 
  :leader
+ :n "'"   #'+popup/toggle
  :n "ss"   #'helm-swoop
  :n "au"   #'undo-tree-visualize
  )
