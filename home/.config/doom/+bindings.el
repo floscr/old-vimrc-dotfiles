@@ -10,6 +10,7 @@
 
  :leader
  :n "ss"   #'helm-swoop
+ :n "au"   #'undo-tree-visualize
  )
 
 
