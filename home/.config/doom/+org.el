@@ -58,6 +58,12 @@
   (insert (org-mac-chrome-get-frontmost-url))
   )
 
+(defun +org|paste-markdown-as-org ()
+  "Convert the current clipboard to markdown"
+  (interactive)
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org"))
+  )
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home.org" :n  "h" #'+org|org-open-home-file
