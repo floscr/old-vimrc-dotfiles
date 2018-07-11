@@ -37,6 +37,11 @@
    (interactive)
    (find-file (concat org-directory "/home.org")))
 
+(defun +org|org-open-work-file ()
+   "Open the home org file"
+   (interactive)
+   (find-file (concat org-directory "/Work/work.org")))
+
 (defun +org|paste-chrome-link ()
   "Paste the frontmost chrome link"
   (interactive)
@@ -46,11 +51,12 @@
   (insert (org-mac-chrome-get-frontmost-url))
   )
 
-(map! :leader
-      (:desc "Notes" :prefix "n"
-        :desc "Agenda" :n  "a" #'org-agenda
-        :desc "Home.org" :n  "h" #'+org|org-open-home-file
-        :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
+(map! :leader (
+               :desc "Notes" :prefix "n"
+                     :desc "Home.org" :n  "h" #'+org|org-open-home-file
+                     :desc "Work.org" :n  "w" #'+org|org-open-work-file
+                     :desc "Agenda" :n  "a" #'org-agenda
+                     :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
         ))
 
 ;; Journal
