@@ -8,9 +8,9 @@
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file org-default-notes-file)
-               "* TODO %?\n%U\n%a\n")
+               "* [ ] %?\n%U\n%a\n")
               ("c" "Chrome" entry (file org-default-notes-file)
-               "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+               "* %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                :empty-lines 1)
               ("s" "shoppinglist" entry (file org-shopping-list)
                "* Supermarkt\n- [ ] %?")
