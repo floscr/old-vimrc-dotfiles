@@ -1,4 +1,4 @@
-# Osx
+# OSX
 .DS_Store
 
 # Node
@@ -24,3 +24,5 @@ tags*
 yarn.lock
 db_storages
 jsconfig.json
+
+.dir-localcs.el
