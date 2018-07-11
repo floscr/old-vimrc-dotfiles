@@ -104,3 +104,4 @@
 
 (load! "+org")
 (load! "+bindings")
+(load! "+eldoc")
