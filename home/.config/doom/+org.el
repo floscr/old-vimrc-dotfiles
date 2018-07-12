@@ -28,15 +28,12 @@
               )))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "SUBTREE(s)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
-        (sequence "CRASH(c)" "BUG(b)" "REQUEST(r)" "TEST(e)" "|" "FIXED(f)")))
+      '(
+        (sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)")
+        ))
 
 (setq org-todo-keyword-faces
-      '(("WAIT" . "white")
-        ("CRASH" . "red")
-        ("BUG" . "red")
-        ("SUBTREE" . "grey")
-        ("TEST" . "turquoise1")
+      '(("[…]" . "grey")
         ))
 
 (defun +org|org-open-home-file ()
