@@ -86,6 +86,10 @@
 
 (after! org
   (map! :map evil-org-mode-map
+
+        :n "M-k" #'org-move-subtree-up
+        :n "M-j" #'org-move-subtree-down
+
         :localleader
         :desc "Archive Subtree" :m "a" #'org-archive-subtree
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
