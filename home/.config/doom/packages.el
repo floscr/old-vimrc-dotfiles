@@ -3,3 +3,4 @@
 (package! org-journal)
 (package! org-web-tools)
 (package! helm-org-rifle)
+(package! indium)
