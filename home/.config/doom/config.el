@@ -89,6 +89,10 @@
       (:desc "buffer" :prefix "b"
         :desc "Delete File" :n  "D" #'delete-current-buffer-file
         )
+      (:desc "git" :prefix "g"
+        :desc "Checkout" :n  "b" #'magit-checkout
+        :desc "Blame" :n  "B" #'magit-blame
+        )
       )
 
 ;;; Magit
