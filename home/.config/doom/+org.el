@@ -110,7 +110,7 @@
    org-agenda-files (list "~/Dropbox/org")
    org-agenda-refile (org-agenda-files)
    org-refile-targets (quote (
-                              (nil :maxlevel . 9)
+                              (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 3)
                               ))
    org-default-notes-file (concat org-directory "/inbox.org")
