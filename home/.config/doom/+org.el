@@ -67,6 +67,7 @@
                      :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
                      :desc "Work" :n  "w" #'+org|org-open-work-file
                      :desc "Agenda" :n  "a" #'org-agenda
+                     :desc "Store Link" :n  "y" #'org-store-link
                      :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
         ))
 
