@@ -25,7 +25,7 @@
  scroll-margin 10)
 
 ;; Remove Scrolloff for terminal
-(add-hook 'term-mode-hook (lambda () (setq-local scroll-margin 0)))
+(add-hook 'term-mode-hook (λ! (setq-local scroll-margin 0)))
 
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
