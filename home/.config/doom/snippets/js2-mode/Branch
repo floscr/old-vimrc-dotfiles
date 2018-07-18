@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# name: Branch
+# key: B
+# --
+
+return Branch
+    .of('init', { $0 })
+
+    .chainBranch('init', function (Branch) {
+        const { $1 } = Branch.state
+
+        return $1
+            ? Branch.checkout('$2')
+            : Branch.checkout('$3');
+    })
+
+    .mapBranch('$2', function(state) {
+        return {
+            $4
+        };
+    })
+
+    .mapBranch('$3', function(state) {
+        return {
+            $5
+        };
+    })
+
+    .get()
