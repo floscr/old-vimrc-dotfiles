@@ -63,8 +63,9 @@
 
 (map! :leader (
                :desc "Notes" :prefix "n"
-                     :desc "Home.org" :n  "h" #'+org|org-open-home-file
-                     :desc "Work.org" :n  "w" #'+org|org-open-work-file
+                     :desc "Home" :n  "h" #'+org|org-open-home-file
+                     :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
+                     :desc "Work" :n  "w" #'+org|org-open-work-file
                      :desc "Agenda" :n  "a" #'org-agenda
                      :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
         ))
