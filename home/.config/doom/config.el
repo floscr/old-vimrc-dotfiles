@@ -117,3 +117,4 @@
 (load! "+org")
 (load! "+bindings")
 (load! "+eldoc")
+(load! "+indium")
