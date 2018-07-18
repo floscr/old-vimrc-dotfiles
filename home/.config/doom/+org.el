@@ -15,16 +15,18 @@
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
-               "* [ ] %?\n%U\n%a\n")
+               "* [ ] %?\n%U\n")
               ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
-               "* %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+               "* %? %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                :empty-lines 1)
               ("s" "shoppinglist" entry (file org-shopping-list)
                "* Supermarkt\n- [ ] %?")
               ("i" "idea" entry (file+headline org-default-notes-file "INBOX")
-               "* %? :IDEA:\n%U\n%a\n")
+               "* %? :IDEA:\n%U")
+              ("f" "file" entry (file+headline org-default-notes-file "INBOX")
+               "* %?\n%U\n%a")
               ("n" "note" entry (file+headline org-default-notes-file "INBOX")
-               "* %? :NOTE:\n%U\n%a\n")
+               "* %? :NOTE:\n%U")
               )))
 
 (setq org-todo-keywords
