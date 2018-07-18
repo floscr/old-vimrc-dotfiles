@@ -108,7 +108,7 @@
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
   (setq
    org-image-actual-width 600
-   org-agenda-files (list "~/Dropbox/org")
+   org-agenda-files (append (list "~/Dropbox/org") (list "~/Dropbox/org/Work"))
    org-agenda-refile (org-agenda-files)
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
