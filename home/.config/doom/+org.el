@@ -111,11 +111,12 @@
   (setq
    org-image-actual-width 600
    org-agenda-files (append (list "~/Dropbox/org") (list "~/Dropbox/org/Work"))
-   org-agenda-refile (org-agenda-files)
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
-                              (org-agenda-files :maxlevel . 3)
+                              (org-agenda-files :maxlevel . 2)
+                              ;; ('("~/Dropbox/org/Collections/Emacs.org") :maxlevel . 1)
                               ))
+   org-agenda-refile (org-refile-get-targets)
    org-default-notes-file (concat org-directory "/inbox.org")
    )
   )
