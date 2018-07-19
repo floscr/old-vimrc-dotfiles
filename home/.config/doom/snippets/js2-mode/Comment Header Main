@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Comment Header: Main
+# key: *M
+# --
+$0
+
+/** MAIN **/
+
+
