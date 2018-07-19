@@ -94,6 +94,8 @@
         :localleader
         :desc "Archive Subtree" :m "a" #'org-archive-subtree
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
+        :desc "Cut Subtree" :m "P" #'org-cut-subtree
+        :desc "Paste Subtree" :m "P" #'org-paste-subtree
 
         :desc "Create/Edit Todo" :nve "o" #'org-todo
         :desc "Schedule" :nve "s" #'org-schedule
