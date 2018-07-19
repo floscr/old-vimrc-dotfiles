@@ -22,4 +22,18 @@
  :n "'"   #'+popup/toggle
  :n "ss"   #'helm-swoop
  :n "au"   #'undo-tree-visualize
+ (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
+ (:desc "search" :prefix "/"
+   :desc "Search project" :n  "p" #'helm-projectile-ag
+   )
+ (:desc "toggle" :prefix "t"
+   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
+   )
+ (:desc "buffer" :prefix "b"
+   :desc "Delete File" :n  "D" #'delete-current-buffer-file
+   )
+ (:desc "git" :prefix "g"
+   :desc "Checkout" :n  "b" #'magit-checkout
+   :desc "Blame" :n  "B" #'magit-blame
+   )
  )
