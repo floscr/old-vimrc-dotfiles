@@ -11,6 +11,9 @@
 
 ;; THEME
 
+(remove-hook 'doom-init-ui-hook #'blink-cursor-mode)
+(blink-cursor-mode -1)
+
 (cond
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3)
