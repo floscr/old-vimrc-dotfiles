@@ -118,7 +118,7 @@
                               (org-agenda-files :maxlevel . 2)
                               ;; ('("~/Dropbox/org/Collections/Emacs.org") :maxlevel . 1)
                               ))
-   org-agenda-refile (org-refile-get-targets)
+   org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")
    )
   )
