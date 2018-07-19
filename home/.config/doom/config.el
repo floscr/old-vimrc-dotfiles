@@ -2,8 +2,6 @@
 
 ;;; DEFAULTS
 
-(remove-hook 'doom-post-init-hook #'blink-cursor-mode)
-
 (setq projectile-globally-ignored-file-suffixes
       '(
         ".org_archive"
