@@ -17,8 +17,11 @@
 
 ;; THEME
 
-(setq-default
- line-spacing 0.15)
+(cond
+ ((string= system-name "Florians-iMac.local")
+  (setq-default line-spacing 0.3)
+  )
+ (t (setq-default line-spacing 0.15)))
 
 (setq
  scroll-conservatively 10
