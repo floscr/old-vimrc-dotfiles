@@ -23,7 +23,10 @@
  :n "'"   #'+popup/toggle
  :n "ss"   #'helm-swoop
  :n "au"   #'undo-tree-visualize
+ :n "//"   #'helm-projectile-ag
+
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
+
  (:desc "search" :prefix "/"
    :desc "Search project" :n  "p" #'helm-projectile-ag
    )
