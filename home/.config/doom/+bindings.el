@@ -13,6 +13,7 @@
  :i "A-["   (λ! (insert "ü"))
  :i "A-{"   (λ! (insert "Ü"))
  :i "A-s"   (λ! (insert "ß"))
+ :i "A-e"   (λ! (insert "€"))
 
  :n "gb" #'evil-switch-to-windows-last-buffer
  :n "[1" #'+MM|other-file
