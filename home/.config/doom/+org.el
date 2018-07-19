@@ -13,6 +13,8 @@
                          )
  )
 
+(setq org-agenda-start-day "-1d")
+(setq org-agenda-span 5)
 
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
@@ -118,6 +120,7 @@
   (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+  (setq org-agenda-start-on-weekday 1)
   (setq
    org-image-actual-width 600
    org-agenda-files (append (list "~/Dropbox/org") (list "~/Dropbox/org/Work"))
