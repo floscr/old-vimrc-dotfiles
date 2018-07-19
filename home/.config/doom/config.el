@@ -2,10 +2,7 @@
 
 ;;; DEFAULTS
 
-(setq projectile-globally-ignored-file-suffixes
-      '(
-        ".org_archive"
-        ))
+(setq projectile-globally-ignored-file-suffixes '(".org_archive"))
 
 ;; JAVASCRIPT
 
