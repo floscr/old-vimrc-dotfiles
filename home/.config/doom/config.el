@@ -9,14 +9,15 @@
 (setq flycheck-javascript-eslint-executable (executable-find "eslint_d"))
 (after! rjsx-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
 
-
 ;; THEME
 
 (cond
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3)
   )
- (t (setq-default line-spacing 0.15)))
+ (t
+  (setq-default line-spacing 0.15)
+  ))
 
 (setq
  scroll-conservatively 10
