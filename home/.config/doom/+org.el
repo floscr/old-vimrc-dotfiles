@@ -1,5 +1,7 @@
 ;;; ~/.homesick/repos/dotfiles/home/.config/doom/+org.el -*- lexical-binding: t; -*-
 
+(setq projectile-globally-ignored-file-suffixes '(".org_archive"))
+
 (setq
  org-directory (expand-file-name "~/Dropbox/org")
  org-default-notes-file (concat org-directory "/inbox.org")
