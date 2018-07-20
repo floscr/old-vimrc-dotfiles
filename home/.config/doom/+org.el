@@ -20,6 +20,7 @@
 
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
+  "ds" 'org-agenda-schedule
   "vw" 'org-agenda-week-view
   "vm" 'org-agenda-month-view
   "vy" 'org-agenda-year-view
