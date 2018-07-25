@@ -38,6 +38,8 @@
                "* %? :IDEA:\n%U")
               ("f" "file" entry (file+headline org-default-notes-file "INBOX")
                "* %?\n%U\n%a")
+              ("b" "book" entry (file+headline "~/Dropbox/org/books.org" "Read in the future")
+               "*** %?\n%U")
               ("n" "note" entry (file+headline org-default-notes-file "INBOX")
                "* %? :NOTE:\n%U")
               )))
