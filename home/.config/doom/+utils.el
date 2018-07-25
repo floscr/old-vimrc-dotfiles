@@ -16,31 +16,28 @@
           (call-interactively #'projectile-invalidate-cache))
         (message "File '%s' successfully removed" filename)))))
 
+;; (defun is-term-buffer (b)
+;;   "Check if buffer a buffer name matches doom terminal"
+;;   (string-match-p "^\\*doom terminal" (buffer-name b)))
 
-(defun is-term-buffer (b)
-  "Check if buffer a buffer name matches doom terminal"
-  (s-contains? "*doom terminal" (buffer-name b)))
+;; (defun +term/popup-new-or-existing-term ()
+;;   "Pops up a new or an existing term buffer"
+;;   (interactive)
+;;   (let ((persp-term-buffer (cl-find-if #'is-term-buffer (persp-buffer-list))))
+;;     (if persp-term-buffer
+;;         (pop-to-buffer (save-window-excursion persp-term-buffer))
+;;       (+term/open-popup-in-project)))
+;;   )
 
-(defun +term/popup-new-or-existing-term ()
-  "Pops up a new or an existing term buffer"
-  (interactive)
-  (require 'dash)
-  (require 's)
-  (let ((persp-term-buffer (-find (lambda (b) (when (is-term-buffer b) b)) (persp-buffer-list))))
-    (if persp-term-buffer
-        (pop-to-buffer (save-window-excursion persp-term-buffer))
-      (+term/open-popup-in-project))
-    )
-  )
+;; (defun +term/popup-new-or-existing-term ()
+;;   "Pops up a new or an existing term buffer"
+;;   (interactive)
+;;   (let ((popup-term (cl-find-if #'is-term-buffer (+popup-windows) :key #'window-buffer)))
+;;     (if popup-term
+;;         (+popup/close popup-term)
+;;       (+term/open-popup-in-project)))
+;;   )
 
-(defun +term/toggle-term-buffer ()
-  "Close existing term buffer or re/open a new one"
-  (interactive)
-  (require 'dash)
-  (let ((popup-term (-find (lambda (w) (is-term-buffer (window-buffer w))) (+popup-windows))))
-    (if popup-term
-        (+popup/close popup-term)
-      (+term/popup-new-or-existing-term))
-  ))
+;; (+term/popup-new-or-existing-term)
 
-(+term/toggle-term-buffer)
+;; (+term/popup-new-or-existing-term)
