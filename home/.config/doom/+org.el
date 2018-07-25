@@ -107,17 +107,26 @@
         :n "M-j" #'org-move-subtree-down
 
         :localleader
-        :desc "Archive Subtree" :m "a" #'org-archive-subtree
+        :desc "Archive Subtree"   :m "a" #'org-archive-subtree
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
-        :desc "Cut Subtree" :m "P" #'org-cut-subtree
-        :desc "Paste Subtree" :m "P" #'org-paste-subtree
+        :desc "Cut Subtree"       :m "C" #'org-cut-subtree
+        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
+        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
 
-        :desc "Create/Edit Todo" :nve "o" #'org-todo
-        :desc "Schedule" :nve "s" #'org-schedule
-        :desc "Deadline" :nve "d" #'org-deadline
-        :desc "Refile" :nve "r" #'org-refile
-        :desc "Filter" :nve "f" #'org-match-sparse-tree
-        :desc "Tag heading" :nve "t" #'org-set-tags-command)
+        (
+         :desc "Narrow" :prefix "n"
+               :desc "Subtree" :m "s" #'org-narrow-to-subtree
+               :desc "Block"   :m "b" #'org-narrow-to-block
+               :desc "Element" :m "e" #'org-narrow-to-element
+               :desc "widen"   :m "w" #'widen
+         )
+
+        :desc "Create/Edit Todo"  :nve "o" #'org-todo
+        :desc "Schedule"          :nve "s" #'org-schedule
+        :desc "Deadline"          :nve "d" #'org-deadline
+        :desc "Refile"            :nve "r" #'org-refile
+        :desc "Filter"            :nve "f" #'org-match-sparse-tree
+        :desc "Tag heading"       :nve "t" #'org-set-tags-command)
 
   :config
 
