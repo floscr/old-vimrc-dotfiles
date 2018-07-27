@@ -4,3 +4,4 @@
 (package! org-web-tools)
 (package! helm-org-rifle)
 (package! indium)
+(package! import-js)
