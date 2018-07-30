@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 ;; Fix helm ag edit to preview file
-(evil-define-key* 'normal helm-ag-edit-map (kbd "RET") #'compile-goto-error)
+; (evil-define-key* 'normal helm-ag-edit-map (kbd "RET") #'compile-goto-error)
 
 (map!
  :niv "M-="   #'default-text-scale-increase
