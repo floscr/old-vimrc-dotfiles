@@ -22,7 +22,8 @@
  doom-quit
  hl-todo
  ;; nav-flash
- neotree
+ ;; neotree
+ treemacs
  (popup +all +defaults)
  ;; pretty-code
  vc-gutter
