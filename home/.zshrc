@@ -9,13 +9,14 @@
 # Plugins
 # -----------------------------------------------------------------------------
 
+# Load path from bashrc
+. ./.bashrc
+
 # -----------------------------------------------------------------------------
 # Exports & PATH Variable
 # -----------------------------------------------------------------------------
 
 export SHELL=zsh
-
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/sbin:$PATH
 
 export PATH=$HOME/.gem/bin:$PATH
 
