@@ -5,3 +5,4 @@
 (package! helm-org-rifle)
 (package! indium)
 (package! import-js)
+(package! request)
