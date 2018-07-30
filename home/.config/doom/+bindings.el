@@ -19,6 +19,8 @@
  :i "A-e"   (λ! (insert "€"))
 
  :n "gb" #'evil-switch-to-windows-last-buffer
+ :n "]f" #'dumb-jump-go
+ :n "[f" #'dumb-jump-back
  :n "[1" #'+MM|other-file
  :n "]1" #'+MM|other-file
 
