@@ -78,6 +78,15 @@
   (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org"))
   )
 
+(defun +org|copy-block ()
+  "Copies the current block to clipboard"
+  (interactive)
+  (org-edit-src-code)
+  (clipboard-kill-ring-save
+   (point-min)
+   (point-max))
+  (org-edit-src-abort))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
