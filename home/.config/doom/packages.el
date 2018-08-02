@@ -6,3 +6,4 @@
 (package! indium)
 (package! import-js)
 (package! request)
+(package! git-lens)
