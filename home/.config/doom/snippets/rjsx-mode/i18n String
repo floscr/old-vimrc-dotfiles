@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: i18n String
+# key: ts
+# --
+I18n.t('$0')
