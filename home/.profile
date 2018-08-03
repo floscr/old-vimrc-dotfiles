@@ -1,6 +1,6 @@
 export LOCAL_PROFILE="$HOME/.local_profile"
-if [ -f LOCAL_PROFILE ]; then
-  . LOCAL_PROFILE
+if [ -f $LOCAL_PROFILE ]; then
+  . $LOCAL_PROFILE
 fi
 
 # Set architecture flags

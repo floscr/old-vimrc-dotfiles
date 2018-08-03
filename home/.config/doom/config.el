@@ -12,6 +12,8 @@
 
 ;; ETC / TEMP
 
+(getenv "ENABLE_MEISTERLABS")
+
 ;; Use Emacs UI to enter the encryption key
 (setenv "GPG_AGENT_INFO" nil)
 (setq epa-pinentry-mode 'loopback)
