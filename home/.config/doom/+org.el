@@ -87,6 +87,12 @@
    (point-max))
   (org-edit-src-abort))
 
+(defun +org|sort-entries ()
+  "Go to header and sort entries"
+  (interactive)
+  (org-up-element)
+  (org-sort))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
@@ -120,6 +126,7 @@
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
+        :desc "Sort Entries"      :m "S" #'+org|sort-entries
 
         (
          :desc "Narrow" :prefix "n"
