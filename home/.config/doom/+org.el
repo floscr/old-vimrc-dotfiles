@@ -120,7 +120,6 @@
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
-        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
 
         (
          :desc "Narrow" :prefix "n"
