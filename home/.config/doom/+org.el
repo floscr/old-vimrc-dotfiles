@@ -151,6 +151,9 @@
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
 
+  (defun level-2-refile-targets ()
+    (list "~/Dropbox/org/Collections/Emacs.org"))
+
   (setq
    org-agenda-start-on-weekday 1
    org-image-actual-width 600
@@ -158,7 +161,7 @@
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
-                              ;; ('("~/Dropbox/org/Collections/Emacs.org") :maxlevel . 1)
+                              (level-2-refile-targets :maxlevel . 1)
                               ))
    org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")
