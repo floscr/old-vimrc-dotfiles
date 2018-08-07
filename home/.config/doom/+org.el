@@ -93,6 +93,31 @@
   (org-up-element)
   (org-sort))
 
+(defun +org|narrow-to-subtree ()
+  "Narrow to subtree and disable org-indent-mode"
+  (interactive)
+  (org-narrow-to-subtree)
+  (org-indent-mode -1))
+
+(defun +org|narrow-to-block ()
+  "Narrow to subtree and disable org-indent-mode"
+  (interactive)
+  (org-narrow-to-block)
+  (org-indent-mode -1))
+
+(defun +org|narrow-to-element ()
+  "Narrow to subtree and disable org-indent-mode"
+  (interactive)
+  (org-narrow-to-element)
+  (org-indent-mode -1))
+
+(defun +org|widen ()
+  "Widen and enable org-indent-mode"
+  (interactive)
+  (widen)
+  (org-indent-mode t)
+  (recenter nil))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
@@ -130,10 +155,10 @@
 
         (
          :desc "Narrow" :prefix "n"
-               :desc "Subtree" :m "s" #'org-narrow-to-subtree
-               :desc "Block"   :m "b" #'org-narrow-to-block
-               :desc "Element" :m "e" #'org-narrow-to-element
-               :desc "widen"   :m "w" #'widen
+               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
+               :desc "Block"   :m "b" #'+org|narrow-to-block
+               :desc "Element" :m "e" #'+org|narrow-to-element
+               :desc "widen"   :m "w" #'+org|widen
          )
 
         :desc "Create/Edit Todo"  :nve "o" #'org-todo

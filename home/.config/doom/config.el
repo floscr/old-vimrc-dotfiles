@@ -8,11 +8,11 @@
 (load! "+bindings")
 (load! "+eldoc")
 (load! "+indium")
-(load! "+MM")
+
+(if (getenv "ENABLE_MEISTERLABS")
+    (load! "+MM"))
 
 ;; ETC / TEMP
-
-(getenv "ENABLE_MEISTERLABS")
 
 ;; Use Emacs UI to enter the encryption key
 (setenv "GPG_AGENT_INFO" nil)
