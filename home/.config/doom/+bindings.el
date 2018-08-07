@@ -26,7 +26,6 @@
 
  :leader
  :n "'"   #'+popup/toggle
- :n "ss"   #'helm-swoop
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
 
