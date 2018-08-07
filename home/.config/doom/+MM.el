@@ -1,5 +1,10 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+MM.el -*- lexical-binding: t; -*-
 
+(after! yasnippet
+  :config
+  (setq yas-snippet-dirs (append yas-snippet-dirs '("~/Code/Meisterlabs/Snippets")))
+  )
+
 (defun +MM|other-file ()
   "Toggle between component or controller"
   (interactive)
