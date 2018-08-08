@@ -140,6 +140,13 @@
 (setq org-journal-time-prefix "* ")
 (setq org-journal-time-format "")
 
+;; Modifiy the org capture frame
+(setq +org-capture-window-params `((undecorated . t)
+                                   (height . 25)
+                                   (width . 110)
+                                   (left . 0.5)
+                                   ))
+
 (after! org
   (map! :map evil-org-mode-map
 
