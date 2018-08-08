@@ -78,6 +78,46 @@
   (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org"))
   )
 
+(defun +org|copy-block ()
+  "Copies the current block to clipboard"
+  (interactive)
+  (org-edit-src-code)
+  (clipboard-kill-ring-save
+   (point-min)
+   (point-max))
+  (org-edit-src-abort))
+
+(defun +org|sort-entries ()
+  "Go to header and sort entries"
+  (interactive)
+  (org-up-element)
+  (org-sort))
+
+(defun +org|narrow-to-subtree ()
+  "Narrow to subtree and disable org-indent-mode"
+  (interactive)
+  (org-narrow-to-subtree)
+  (org-indent-mode -1))
+
+(defun +org|narrow-to-block ()
+  "Narrow to subtree and disable org-indent-mode"
+  (interactive)
+  (org-narrow-to-block)
+  (org-indent-mode -1))
+
+(defun +org|narrow-to-element ()
+  "Narrow to subtree and disable org-indent-mode"
+  (interactive)
+  (org-narrow-to-element)
+  (org-indent-mode -1))
+
+(defun +org|widen ()
+  "Widen and enable org-indent-mode"
+  (interactive)
+  (widen)
+  (org-indent-mode t)
+  (recenter nil))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
@@ -111,14 +151,14 @@
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
-        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
+        :desc "Sort Entries"      :m "S" #'+org|sort-entries
 
         (
          :desc "Narrow" :prefix "n"
-               :desc "Subtree" :m "s" #'org-narrow-to-subtree
-               :desc "Block"   :m "b" #'org-narrow-to-block
-               :desc "Element" :m "e" #'org-narrow-to-element
-               :desc "widen"   :m "w" #'widen
+               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
+               :desc "Block"   :m "b" #'+org|narrow-to-block
+               :desc "Element" :m "e" #'+org|narrow-to-element
+               :desc "widen"   :m "w" #'+org|widen
          )
 
         :desc "Create/Edit Todo"  :nve "o" #'org-todo
@@ -132,16 +172,21 @@
 
   ;; Templates
   (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
-  (setq org-agenda-start-on-weekday 1)
+
+  (defun level-2-refile-targets ()
+    (list "~/Dropbox/org/Collections/Emacs.org"))
+
   (setq
+   org-agenda-start-on-weekday 1
    org-image-actual-width 600
    org-agenda-files (append (list "~/Dropbox/org") (list "~/Dropbox/org/Work"))
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
-                              ;; ('("~/Dropbox/org/Collections/Emacs.org") :maxlevel . 1)
+                              (level-2-refile-targets :maxlevel . 1)
                               ))
    org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")

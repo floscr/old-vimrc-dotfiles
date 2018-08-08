@@ -8,7 +8,9 @@
 (load! "+bindings")
 (load! "+eldoc")
 (load! "+indium")
-(load! "+MM")
+
+(if (getenv "ENABLE_MEISTERLABS")
+    (load! "+MM"))
 
 ;; ETC / TEMP
 

@@ -1,5 +1,10 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+MM.el -*- lexical-binding: t; -*-
 
+(after! yasnippet
+  :config
+  (setq yas-snippet-dirs (append yas-snippet-dirs '("~/Code/Meisterlabs/Snippets")))
+  )
+
 (defun +MM|other-file ()
   "Toggle between component or controller"
   (interactive)
@@ -15,3 +20,15 @@
      (interactive "p")
      (kmacro-exec-ring-item (quote ([?y ?s ?a ?B ?b ?i ?S ?t ?y ?l ?e escape ?l ?a ?f ?u ?n ?c ?t ?i ?o ?n ?  S-backspace ?  ?\( ?o ?p ?t ?i ?o ?n ?s ?, ?  ?R ?u ?l ?e ?s escape ?l ?l ?y ?s ?a ?B ?B ?i ?  escape ?l ?a return ?r ?e ?t ?u ?r ?n ?  escape ?l ?j ?> ?i ?\{ ?k ?$ ?% ?a return escape ?k ?a ?\; escape ?= ?= ?j ?b ?l ?%] 0 "%d")) arg)
      ))
+
+(defun dated-string (name)
+  (format "%s-name" (format-time-string "%m-%d")))
+
+;; (defun +MM|dated-branch ()
+;;   "Push the current branch as a dated branch"
+;;   (interactive)
+;;   (let ((dated-branch (magit-get-current-branch)))
+
+;;     )
+;;   (magit-get-current-branch)
+;;   )

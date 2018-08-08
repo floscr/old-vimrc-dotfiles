@@ -1,79 +1,11 @@
 #!/bin/zsh
 # -----------------------------------------------------------------------------
-# ZSHRC
-# -----------------------------------------------------------------------------
-# Exports & Path Variable
-# Oh-my-zsh Settings
-# Shell Settings
-# Configurations
-# Plugins
+# Exports
 # -----------------------------------------------------------------------------
 
-# Load path from bashrc
-. ~/.bashrc
-
-# -----------------------------------------------------------------------------
-# Exports & PATH Variable
-# -----------------------------------------------------------------------------
+. "$HOME/.profile"
 
 export SHELL=zsh
-
-export PATH=$HOME/.gem/bin:$PATH
-
-# Set architecture flags
-export ARCHFLAGS="-arch x86_64"
-
-# RVM
-export PATH=$PATH:$HOME/.rvm/bin
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-
-# Mysql
-export PATH=/usr/local/mysql/bin:$PATH
-
-# Homebrew bins
-# Default bins
-# export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
-# Ruby bins
-# export PATH=$PATH:/usr/local/Cellar/ruby/2.0.0-p0/bin
-# Custom Ruby gem path
-export GEM_HOME=$HOME/.gem
-export PATH=$GEM_HOME/bin:$PATH
-
-# Custom binaries
-export PATH=$PATH:$HOME/.dotfiles/bin
-
-# Android Tools
-export ANDROID_TOOLS="~/Library/Android/sdk/tools"
-export ANDROID_PLATFORM_TOOLS="~/Library/Android/sdk/platform-tools"
-export PATH=$PATH:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS
-
-# PHP & Composer
-export PATH="/usr/local/opt/php70/bin:$PATH"
-export PATH=~/.composer/vendor/bin:$PATH
-
-# Doom
-export PATH=$PATH:~/.emacs.d/bin
-
-# MySQL
-# export PATH=/usr/local/mysql/bin:$PATH
-
-# Haskell
-export PATH=$HOME/.local/bin:$PATH
-
-# Rust
-export PATH=$HOME/.cargo/bin:$PATH
-
-# Color Setup
-# export COLORTERM=xterm-256color
-# export TERM=xterm-256color
-
-# Language
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# PKG Config
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
 
 # Dotfiles
 export DOTFILES="$HOME/.dotfiles"
@@ -97,12 +29,6 @@ export GREP_COLOR='1;35;40'
 export COLOR_ECI="/Library/Application Support/Adobe/Color/Profiles/Recommended/eciRGB_v2.icc"
 export COLOR_SRGB="/Library/Application Support/Adobe/Color/Profiles/Recommended/sRGB Color Space Profile.icm"
 
-# Go
-export GOPATH=$HOME/golang
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
 # Enable a different cursor in NVIM in insert mode
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -111,8 +37,6 @@ export CHEATCOLORS=true
 
 export DEFAULT_CHEAT_DIR=$HOME/Dropbox/Snippets
 export CHEATPATH=$HOME/Dropbox/Snippets
-
-# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings
@@ -135,13 +59,6 @@ ZSH_THEME="floscr"
 
 # ZSH PlUGINS
 plugins=(git osx history-substring-search encode64 fasd web-search fast-syntax-highlighting)
-
-# # Lazy load zsh nvm plugin
-# ZSH_NVM_PLUGIN=~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-# if [[ -f "$ZSH_NVM_PLUGIN" ]]; then
-#   export NVM_LAZY_LOAD=true
-#   source ~/.dotfiles/zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-# fi
 
 # Turn off auto update
 # http://stackoverflow.com/questions/11378607/oh-my-zsh-disable-would-you-like-to-check-for-updates-prompt
