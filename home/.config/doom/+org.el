@@ -91,7 +91,9 @@
   "Go to header and sort entries"
   (interactive)
   (org-up-element)
-  (org-sort))
+  (org-sort)
+  (org-shifttab)
+  (org-cycle))
 
 (defun +org|narrow-to-subtree ()
   "Narrow to subtree and disable org-indent-mode"
