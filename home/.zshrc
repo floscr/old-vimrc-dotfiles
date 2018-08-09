@@ -38,6 +38,8 @@ export CHEATCOLORS=true
 export DEFAULT_CHEAT_DIR=$HOME/Dropbox/Snippets
 export CHEATPATH=$HOME/Dropbox/Snippets
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+#
 # -----------------------------------------------------------------------------
 # Oh-my-zsh Settings
 # -----------------------------------------------------------------------------
