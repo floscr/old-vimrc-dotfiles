@@ -60,6 +60,9 @@
   +present)
  sh
 
+ :app
+ irc
+
  :config
  (default +bindings +snippets +evil-commands))
 

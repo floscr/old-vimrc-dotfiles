@@ -7,6 +7,8 @@
  :niv "M-="   #'default-text-scale-increase
  :niv "M--"   #'default-text-scale-decrease
  :niv "M-0"   #'default-text-scale-reset
+ :niv "M-W"   #'delete-frame
+ :niv "M-X"   #'+org-capture/open-frame
 
  ;; Umlaut
  :i "A-;"   (λ! (insert "ö"))
