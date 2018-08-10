@@ -187,6 +187,9 @@
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
 
+  (defun level-1-refile-targets ()
+    (list "~/Dropbox/org/Collections/reading-list.org"))
+
   (defun level-2-refile-targets ()
     (list "~/Dropbox/org/Collections/Emacs.org"))
 
@@ -197,7 +200,8 @@
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
-                              (level-2-refile-targets :maxlevel . 1)
+                              (level-2-refile-targets :level . 2)
+                              (level-1-refile-targets :level . 1)
                               ))
    org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")
