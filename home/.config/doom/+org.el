@@ -144,6 +144,8 @@
 
 ;; Modifiy the org capture frame
 (setq +org-capture-window-params `((undecorated . t)
+                                   (name . "org-capture")
+                                   (transient . t)
                                    (height . 25)
                                    (width . 110)
                                    (left . 0.5)
