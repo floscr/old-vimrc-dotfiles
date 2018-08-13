@@ -62,6 +62,10 @@
    (interactive)
     (+org|find-file "/home.org"))
 
+(defun +org|org-open-reading-list-file ()
+   "Open the reading list org file"
+   (interactive)
+    (+org|find-file "/Collections/reading-list.org"))
 
 (defun +org|org-open-work-file ()
    "Open the home org file"
@@ -128,6 +132,7 @@
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
+                     :desc "Reading List" :n  "r" #'+org|org-open-reading-list-file
                      :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
                      :desc "Work" :n  "w" #'+org|org-open-work-file
                      :desc "Agenda" :n  "a" #'org-agenda
