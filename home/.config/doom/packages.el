@@ -7,3 +7,4 @@
 (package! import-js)
 (package! request)
 (package! git-lens)
+(package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))

@@ -39,8 +39,6 @@
                           ("(\\(curry\\)[ \t\n\r]" 1 font-lock-keyword-face)
                           ("(\\(rcurry\\)[ \t\n\r]" 1 font-lock-keyword-face)))
 
-(mapcar (curry #'+ 2) '(1 2 3 4))
-
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
