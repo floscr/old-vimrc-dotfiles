@@ -10,3 +10,8 @@
 (package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
 
 (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
+
+;; Like abolish.vim
+;; Search and replace multiples
+;; TODO: Add literate config here
+(package! plur)
