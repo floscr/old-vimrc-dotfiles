@@ -8,3 +8,5 @@
 (package! request)
 (package! git-lens)
 (package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
+
+(package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
