@@ -24,6 +24,13 @@
 (defun dated-string (name)
   (format "%s-name" (format-time-string "%m-%d")))
 
+;; (defun +MM|toggle-relative()
+;;   (interactive)
+;;   )
+
+;; (s-match-strings-all "\\.\\.\\/" "import { foo } from './../../foo")
+;; (s-split-up-to "src/" "~/Code/Meisterlabs/mindmeister-web/src/containers/PrivateMaps/ListRow/Map/NonViewable/style.js")
+
 ;; (defun +MM|dated-branch ()
 ;;   "Push the current branch as a dated branch"
 ;;   (interactive)
