@@ -29,3 +29,19 @@
     (mapc (lambda (f) (insert "    " f ",\n")) fs)
     (insert "};")
     ))
+
+(defun +js|load-evil-camel-case-motion ()
+  (require 'evil-little-word)
+  (define-key evil-normal-state-map (kbd "w") 'evil-forward-little-word-begin)
+  (define-key evil-normal-state-map (kbd "b") 'evil-backward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "w") 'evil-forward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "w") 'evil-forward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "i w") 'evil-inner-little-word))
+
+(after! rjsx-mode
+  (+js|load-evil-camel-case-motion))
+
+(after! js2-mode
+  (+js|load-evil-camel-case-motion))

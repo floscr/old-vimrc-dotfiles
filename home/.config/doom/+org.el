@@ -53,15 +53,24 @@
       '(("[…]" . "grey")
         ))
 
+(defun +org|find-file (f)
+  "Find file in org directory"
+  (find-file (concat org-directory f)))
+
 (defun +org|org-open-home-file ()
    "Open the home org file"
    (interactive)
-   (find-file (concat org-directory "/home.org")))
+    (+org|find-file "/home.org"))
+
+(defun +org|org-open-reading-list-file ()
+   "Open the reading list org file"
+   (interactive)
+    (+org|find-file "/Collections/reading-list.org"))
 
 (defun +org|org-open-work-file ()
    "Open the home org file"
    (interactive)
-   (find-file (concat org-directory "/Work/work.org")))
+    (+org|find-file "/Work/work.org"))
 
 (defun +org|paste-chrome-link ()
   "Paste the frontmost chrome link"
@@ -123,6 +132,7 @@
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
+                     :desc "Reading List" :n  "r" #'+org|org-open-reading-list-file
                      :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
                      :desc "Work" :n  "w" #'+org|org-open-work-file
                      :desc "Agenda" :n  "a" #'org-agenda
@@ -142,14 +152,8 @@
 (setq org-journal-time-prefix "* ")
 (setq org-journal-time-format "")
 
-;; Modifiy the org capture frame
-(setq +org-capture-window-params `((undecorated . t)
-                                   (name . "org-capture")
-                                   (transient . t)
-                                   (height . 25)
-                                   (width . 110)
-                                   (left . 0.5)
-                                   ))
+;; (add-to-list '+org-capture-frame-parameters '(left . 0.5))
+;; (add-to-list '+org-capture-frame-parameters '(width . 110))
 
 (after! org
   (map! :map evil-org-mode-map
