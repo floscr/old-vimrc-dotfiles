@@ -30,3 +30,12 @@
          (setq doom-theme dark-theme)
          (doom/reload-theme))
         (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
+
+(defun +ui|increase-line-spacing ()
+  (interactive)
+  (setq-default line-spacing (+ line-spacing 0.2)))
+
+(defun +ui|decrease-line-spacing ()
+  (interactive)
+  (setq-default line-spacing (- line-spacing 0.2)))
+
