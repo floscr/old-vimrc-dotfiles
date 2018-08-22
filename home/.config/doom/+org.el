@@ -163,6 +163,12 @@
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
         :desc "Sort Entries"      :m "S" #'+org|sort-entries
+        (
+         :desc "Insert" :prefix "i"
+               :desc "Subheadeing" :m "s" (λ!
+                                           (call-interactively 'org-insert-subheading)
+                                           (evil-insert-state))
+         )
 
         (
          :desc "Narrow" :prefix "n"
