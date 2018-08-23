@@ -27,4 +27,5 @@
 (map!
  :leader
  (:desc "Magit" :prefix "g"
-   :desc "Changed Files" :n  "F" #'+git|helm-changed-files))
+   :desc "Changed Files" :n  "F" #'+git|helm-changed-files
+   :desc "Fetch" :n  "f" #'magit-fetch-popup))
