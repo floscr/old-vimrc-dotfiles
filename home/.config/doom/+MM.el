@@ -1,5 +1,7 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+MM.el -*- lexical-binding: t; -*-
 
+(setq projectile-project-search-path '("~/Code/Meisterlabs"))
+
 (after! yasnippet
   :config
   (setq yas-snippet-dirs (append yas-snippet-dirs '("~/Code/Meisterlabs/Snippets")))
