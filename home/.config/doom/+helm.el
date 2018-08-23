@@ -10,7 +10,9 @@
   :config
   (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
 
-(after! helm
+(after!
+  helm
+  :config
   (add-hook! 'helm-find-files-after-init-hook
-    (map! :map helm-find-files-map
-          "<DEL>" #'helm-find-files-up-one-level))
+             (map! :map helm-find-files-map
+                   "<DEL>" #'helm-find-files-up-one-level)))
