@@ -8,6 +8,7 @@
 (load! "+bindings")
 (load! "+eldoc")
 (load! "+indium")
+(load! "+dired")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
@@ -20,6 +21,8 @@
 ;; Use Emacs UI to enter the encryption key
 (setenv "GPG_AGENT_INFO" nil)
 (setq epa-pinentry-mode 'loopback)
+
+(put 'dired-find-alternate-file 'disabled nil)
 
 ;; Branching undo
 (def-package! undo-tree
