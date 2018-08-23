@@ -24,7 +24,29 @@
                    :fuzzy-match t)
         :buffer "*helm git changed files"))
 
+(defun +git|commit-search-message-history ()
+  "Search and insert commit message from history."
+  (interactive)
+  (insert (completing-read "History: "
+                           ;; Remove unnecessary newlines from beginning and end.
+                           (mapcar (lambda (text)
+                                     (string-trim text))
+                                   (ring-elements log-edit-comment-ring)))))
+(defun +git|undo ()
+  "Soft reset current git repo to HEAD~1."
+  (interactive)
+  (magit-reset-soft "HEAD~1"))
+
+(after! magit
+  :config
+  (bind-key "M-r" #'+git|commit-search-message-history git-commit-mode-map)
+  (add-to-list 'savehist-additional-variables log-edit-comment-ring)
+  (savehist-mode +1)
+  )
+
 (map!
  :leader
  (:desc "Magit" :prefix "g"
-   :desc "Changed Files" :n  "F" #'+git|helm-changed-files))
+   :desc "Changed Files" :n  "F" #'+git|helm-changed-files
+   :desc "Fetch" :n  "f" #'magit-fetch-popup
+   :desc "Undo" :n  "u" #'+git|undo))
