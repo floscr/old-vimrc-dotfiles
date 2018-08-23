@@ -15,3 +15,13 @@ But at some time I want to purge those buffers"
       :after dired
       :map dired-mode-map
       :n "Q" #'+dired|kill-dired-buffers)
+
+(after!
+  dired
+  :config
+  ;; Better dired sorting by using the unix ls command instead of the native osx one
+  ;; Otherwise the system will come to a crashing halt
+  ;; brew install coreutils
+  (when (and IS-MAC (locate-file "gls" exec-path))
+    (setq dired-listing-switches "-lah")
+    (setq insert-directory-program "gls" dired-use-ls-dired t)))
