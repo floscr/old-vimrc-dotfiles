@@ -32,6 +32,10 @@
                            (mapcar (lambda (text)
                                      (string-trim text))
                                    (ring-elements log-edit-comment-ring)))))
+(defun +git|undo ()
+  "Soft reset current git repo to HEAD~1."
+  (interactive)
+  (magit-reset-soft "HEAD~1"))
 
 (after! magit
   :config
@@ -44,4 +48,5 @@
  :leader
  (:desc "Magit" :prefix "g"
    :desc "Changed Files" :n  "F" #'+git|helm-changed-files
-   :desc "Fetch" :n  "f" #'magit-fetch-popup))
+   :desc "Fetch" :n  "f" #'magit-fetch-popup
+   :desc "Undo" :n  "u" #'+git|undo))
