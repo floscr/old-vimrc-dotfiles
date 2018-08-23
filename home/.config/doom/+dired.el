@@ -20,7 +20,7 @@ But at some time I want to purge those buffers"
   dired
   :config
   ;; Better dired sorting by using the unix ls command instead of the native osx one
-  ;; Otherwise the system will come to a crashing halt
+  ;; Otherwise the system will come to a crashing halt when using -h flag
   ;; brew install coreutils
   (when (and IS-MAC (locate-file "gls" exec-path))
     (setq dired-listing-switches "-lah")
