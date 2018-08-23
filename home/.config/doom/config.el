@@ -9,6 +9,7 @@
 (load! "+eldoc")
 (load! "+indium")
 (load! "+dired")
+(load! "+helm")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
