@@ -15,3 +15,8 @@
 ;; Search and replace multiples
 ;; TODO: Add literate config here
 (package! plur)
+
+; (package! dired-subtree
+;   (bind-keys :map dired-mode-map
+;              (">" . dired-subtree-insert)
+;              ("<" . dired-subtree-remove)))
