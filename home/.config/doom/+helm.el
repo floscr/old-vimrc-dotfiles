@@ -16,3 +16,38 @@
   (add-hook! 'helm-find-files-after-init-hook
              (map! :map helm-find-files-map
                    "<DEL>" #'helm-find-files-up-one-level)))
+
+(defun ar/helm-helm (title candidates on-select-function)
+  "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
+  (helm :sources `((name . ,title)
+                   (candidates . ,candidates)
+                   (action . ,on-select-function))
+        :buffer "*helm-exec*"
+        :candidate-number-limit 10000))
+
+(defun ar/shell-send-command (command)
+  "Send COMMAND to shell mode."
+  ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
+  (goto-char (point-max))
+  (comint-kill-input)
+  (insert command)
+  (comint-send-input))
+
+(defun find-zsh-command-from-history-string (s)
+  (last (s-split-up-to ";" s 1)))
+
+(defun ar/helm-shell-search-history ()
+  "Narrow down bash history with helm."
+  (interactive)
+  ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
+  (ar/helm-helm "bash history"
+                (with-temp-buffer
+                  (insert-file-contents "~/.zsh_history")
+
+                  (mapc 'find-zsh-command-from-history-string
+                        (reverse
+                         (delete-dups
+                          (split-string (buffer-string) "\n")))))
+                #'ar/shell-send-command))
+
+(bind-key "M-r" #'ar/helm-shell-search-history shell-mode-map)
