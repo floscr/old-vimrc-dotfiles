@@ -51,6 +51,7 @@
  data
  emacs-lisp
  javascript
+ purescript
  markdown
  (org
   +attach
