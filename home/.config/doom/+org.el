@@ -129,6 +129,18 @@
   (org-indent-mode t)
   (recenter nil))
 
+(defun +org|paste-chrome-link ()
+  "Paste the frontmost chrome link
+Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
+E.g.: (Brackets signal the cursor position)
+**[*]
+***[]"
+  (interactive)
+  (when (not (looking-at-p "[\s\t\n\r]"))
+    (forward-char))
+  (insert-char " ")
+  (insert (org-mac-chrome-get-frontmost-url)))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
