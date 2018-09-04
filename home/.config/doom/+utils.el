@@ -55,6 +55,11 @@
           (call-interactively #'projectile-invalidate-cache))
         (message "File '%s' successfully removed" filename)))))
 
+(defun do-jxa-script (cmd)
+  "Run a osx javascript automation script via bash"
+  (shell-command-to-string
+   (concat "osascript -l 'JavaScript' -e '" cmd "'")))
+
 ;; (defun is-term-buffer (b)
 ;;   "Check if buffer a buffer name matches doom terminal"
 ;;   (string-match-p "^\\*doom terminal" (buffer-name b)))

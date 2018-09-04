@@ -145,8 +145,13 @@ E.g.: (Brackets signal the cursor position)
   "Grab all the chrome tabs as an org list to save for later inspection"
   (interactive)
   (let ((tabs
-         (shell-command-to-string
-          "osascript -l \"JavaScript\" -e 'Application(\"Chrome\").windows[0].tabs().map(tab => `- [[${tab.url()}][${tab.title()}]]`).join(\"\\n\")'")))
+         (do-jxa-script
+          (concat
+           "Application(\"Chrome\").windows[0].tabs()"
+           ".map(tab => `"
+           "- [[${tab.url()}][${tab.title()}]]"
+           "`)"
+           ".join(\"\\n\")"))))
     (insert tabs)))
 
 (map! :leader (
