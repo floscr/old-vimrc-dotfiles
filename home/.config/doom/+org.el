@@ -141,6 +141,14 @@ E.g.: (Brackets signal the cursor position)
   (insert-char " ")
   (insert (org-mac-chrome-get-frontmost-url)))
 
+(defun +org|grab-tabs ()
+  "Grab all the chrome tabs as an org list to save for later inspection"
+  (interactive)
+  (let ((tabs
+         (shell-command-to-string
+          "osascript -l \"JavaScript\" -e 'Application(\"Chrome\").windows[0].tabs().map(tab => `- [[${tab.url()}][${tab.title()}]]`).join(\"\\n\")'")))
+    (insert tabs)))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                      :desc "Home" :n  "h" #'+org|org-open-home-file
