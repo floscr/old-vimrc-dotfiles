@@ -189,6 +189,7 @@ E.g.: (Brackets signal the cursor position)
         :localleader
         :desc "Archive Subtree"   :m "a" #'org-archive-subtree
         :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
+        :desc "Grab tabs"         :m "P" #'+org|grab-tabs
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
         :desc "Sort Entries"      :m "S" #'+org|sort-entries
