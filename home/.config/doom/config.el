@@ -34,10 +34,12 @@
   (global-undo-tree-mode +1))
 
 ;; Replace with register
-(def-package!
-  evil-replace-with-register
+(def-package! evil-replace-with-register
   :config
   (setq evil-replace-with-register-key (kbd "gr"))
   (evil-replace-with-register-install)
   )
 
+(def-package! blimp
+  :config
+  (add-hook 'image-mode-hook 'blimp-mode))
