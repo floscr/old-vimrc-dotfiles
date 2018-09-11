@@ -72,15 +72,6 @@
    (interactive)
     (+org|find-file "/Work/work.org"))
 
-(defun +org|paste-chrome-link ()
-  "Paste the frontmost chrome link"
-  (interactive)
-  ;; (when (not (looking-at-p "\s.*$") (
-  ;;                                    (end-of-line)
-  ;;                                    (new-line))))
-  (insert (org-mac-chrome-get-frontmost-url))
-  )
-
 (defun +org|paste-markdown-as-org ()
   "Convert the current clipboard to markdown"
   (interactive)
@@ -136,9 +127,8 @@ E.g.: (Brackets signal the cursor position)
 **[*]
 ***[]"
   (interactive)
-  (when (not (looking-at-p "[\s\t\n\r]"))
-    (forward-char))
-  (insert-char " ")
+  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
+  (insert " ")
   (insert (org-mac-chrome-get-frontmost-url)))
 
 (defun +org|grab-tabs ()
