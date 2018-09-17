@@ -28,6 +28,8 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
+(global-eldoc-mode -1)
+
 ;; Branching undo
 (def-package! undo-tree
   :after-call (doom-exit-buffer-hook after-find-file)
