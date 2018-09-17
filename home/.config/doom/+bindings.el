@@ -40,6 +40,7 @@
    )
  (:desc "buffer" :prefix "b"
    :desc "Delete File" :n  "D" #'delete-current-buffer-file
+   :desc "Delete File" :n  "X" #'+doom|open-elisp-scratch-buffer
    )
  (:desc "git" :prefix "g"
    :desc "Checkout" :n  "b" #'magit-checkout

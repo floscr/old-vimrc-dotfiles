@@ -85,3 +85,10 @@
 ;; (+term/popup-new-or-existing-term)
 
 ;; (+term/popup-new-or-existing-term)
+
+
+(defun +doom|open-elisp-scratch-buffer ()
+  "Opens a new scratch buffer in elisp mode"
+  (interactive)
+  (doom/open-scratch-buffer)
+  (emacs-lisp-mode))
