@@ -21,6 +21,10 @@
 
 (savehist-mode 1)
 
+;; Sort by occurance
+;; https://github.com/company-mode/company-mode/issues/52
+(setq company-transformers '(company-sort-by-occurrence))
+
 ;; automatically reload tags files
 (setq tags-revert-without-query 1)
 
