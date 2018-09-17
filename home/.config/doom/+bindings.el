@@ -9,6 +9,12 @@
  :niv "M-W"   #'delete-frame
  :niv "M-X"   #'+org-capture/open-frame
 
+ ;; Easier window navigation
+ :en "C-h"   #'evil-window-left
+ :en "C-j"   #'evil-window-down
+ :en "C-k"   #'evil-window-up
+ :en "C-l"   #'evil-window-right
+
  ;; Umlaut
  :i "A-;"   (λ! (insert "ö"))
  :i "A-:"   (λ! (insert "Ö"))
