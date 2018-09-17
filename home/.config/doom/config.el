@@ -19,6 +19,8 @@
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")
 
+(savehist-mode 1)
+
 ;; automatically reload tags files
 (setq tags-revert-without-query 1)
 
