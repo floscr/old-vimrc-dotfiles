@@ -19,6 +19,7 @@
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")
 
+;; Save command history
 (savehist-mode 1)
 
 ;; Sort by occurance
@@ -48,8 +49,7 @@
 (def-package! evil-replace-with-register
   :config
   (setq evil-replace-with-register-key (kbd "gr"))
-  (evil-replace-with-register-install)
-  )
+  (evil-replace-with-register-install))
 
 (def-package! blimp
   :config
