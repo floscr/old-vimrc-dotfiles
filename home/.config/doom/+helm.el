@@ -10,13 +10,6 @@
   :config
   (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
 
-(after!
-  helm
-  :config
-  (add-hook! 'helm-find-files-after-init-hook
-             (map! :map helm-find-files-map
-                   "<DEL>" #'helm-find-files-up-one-level)))
-
 (defun ar/helm-helm (title candidates on-select-function)
   "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
   (helm :sources `((name . ,title)
