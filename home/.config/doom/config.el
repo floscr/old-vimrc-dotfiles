@@ -37,13 +37,13 @@
 
 (global-eldoc-mode -1)
 
-;; Branching undo
-(def-package! undo-tree
-  :after-call (doom-exit-buffer-hook after-find-file)
-  :config
-  (setq undo-tree-auto-save-history t
-      undo-tree-history-directory-alist `((".*" . ,temporary-file-directory)))
-  (global-undo-tree-mode +1))
+;; ;; Branching undo
+;; (def-package! undo-tree
+;;   :after-call (doom-exit-buffer-hook after-find-file)
+;;   :config
+;;   (setq undo-tree-auto-save-history t
+;;       undo-tree-history-directory-alist `((".*" . ,temporary-file-directory)))
+;;   (global-undo-tree-mode +1))
 
 ;; Replace with register
 (def-package! evil-replace-with-register
