@@ -24,6 +24,21 @@
                    :fuzzy-match t)
         :buffer "*helm git changed files"))
 
+(defun magit-revision-show-original-file ()
+  "Show the orginal file from a revision buffer
+If possible also go to the pointing line"
+  (interactive)
+  (when magit-buffer-file-name
+    (let ((file-name magit-buffer-file-name)
+           (line-number (line-number-at-pos))
+           (current-line (thing-at-point 'line t)))
+      (delete-other-windows)
+      (find-file file-name)
+      ;; (when (string= (thing-at-point 'line t) 'current-line)
+      ;;   (message "SAME LINE")
+      ;;   (goto-line line-number))
+      )))
+
 (defun +git|commit-search-message-history ()
   "Search and insert commit message from history."
   (interactive)
@@ -43,6 +58,7 @@
   (add-to-list 'savehist-additional-variables log-edit-comment-ring)
   (savehist-mode +1)
   )
+
 
 (map!
  :leader
