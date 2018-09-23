@@ -8,46 +8,51 @@
 (after!
   helm-projectile
   :config
-  (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
+  (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag)
+  (helm-projectile-define-key helm-projectile-projects-map (kbd "C-g") 'helm-projectile-vc))
 
-(after!
-  helm
-  :config
-  (add-hook! 'helm-find-files-after-init-hook
-             (map! :map helm-find-files-map
-                   "<DEL>" #'helm-find-files-up-one-level)))
+;; (defun ar/helm-helm (title candidates on-select-function)
+;;   "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
+;;   )
 
-(defun ar/helm-helm (title candidates on-select-function)
-  "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
-  (helm :sources `((name . ,title)
-                   (candidates . ,candidates)
-                   (action . ,on-select-function))
-        :buffer "*helm-exec*"
-        :candidate-number-limit 10000))
+;; (defun ar/shell-send-command (command)
+;;   "Send COMMAND to shell mode."
+;;   ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
+;;   (goto-char (point-max))
+;;   (comint-kill-input)
+;;   (insert command)
+;;   (comint-send-input))
 
-(defun ar/shell-send-command (command)
-  "Send COMMAND to shell mode."
-  ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
-  (goto-char (point-max))
-  (comint-kill-input)
-  (insert command)
-  (comint-send-input))
+;; (defun split-up-to-semi-colon (s)
+;;   "Splits a string up to the first semi-colon"
+;;   (last (s-split-up-to ";" s 1)))
 
-(defun find-zsh-command-from-history-string (s)
-  (last (s-split-up-to ";" s 1)))
+;; (defun opt (x y)
+;;   "Helper function - When x is non-nil use x otherwise use y"
+;;   (if x x y))
 
-(defun ar/helm-shell-search-history ()
-  "Narrow down bash history with helm."
-  (interactive)
-  ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
-  (ar/helm-helm "bash history"
-                (with-temp-buffer
-                  (insert-file-contents "~/.zsh_history")
+;; (defun parse-zsh-history (&optional file)
+;;   "Read the zsh_history and parse the commands"
+;;   (with-temp-buffer
+;;     (insert-file-contents (opt file "~/.zsh_history") nil 0 500)
+;;     (mapcar 'split-up-to-semi-colon
+;;           (delete-dups
+;;             (split-string (buffer-string) "\n")))))
 
-                  (mapc 'find-zsh-command-from-history-string
-                        (reverse
-                         (delete-dups
-                          (split-string (buffer-string) "\n")))))
-                #'ar/shell-send-command))
+;; (defvar +helm|zsh-history
+;;   '((name . "Zsh History")
+;;     (candidates-process . (lambda)))
+;;   )
 
-(bind-key "M-r" #'ar/helm-shell-search-history shell-mode-map)
+;; (defun +helm|zsh-history ()
+;;   "Narrow down bash history with helm."
+;;   (interactive)
+;;   (helm :sources +helm|zsh-history
+;;         :prompt  "shell command: "
+;;         :buffer  "*helm shell history*"))
+
+;; (bind-key "M-r" #'ar/helm-shell-search-history shell-mode-map)
+
+;; ;; Save buffer name
+;; ;; Close minibuffer
+;; ;; Switch to bufffer
