@@ -37,7 +37,8 @@
   "Wrap sexp into a template string"
   (interactive)
   (kill-sexp)
-  (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`")))
+  (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
+  (pop kill-ring))
 
 (defun +js|load-evil-camel-case-motion ()
   (require 'evil-little-word)
