@@ -32,6 +32,7 @@
 
  :editor
  rotate-text
+ multiple-cursors
 
  :emacs
  dired
