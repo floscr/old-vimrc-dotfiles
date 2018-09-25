@@ -54,4 +54,7 @@
    :desc "Checkout" :n  "b" #'magit-checkout
    :desc "Blame" :n  "B" #'magit-blame
    )
+ (:desc "workspace" :prefix [tab]
+   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
+   )
  )

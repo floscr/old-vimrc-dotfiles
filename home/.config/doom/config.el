@@ -10,6 +10,7 @@
 (load! "+indium")
 (load! "+dired")
 (load! "+helm")
+(load! "+workspace")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
