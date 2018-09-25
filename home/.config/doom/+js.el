@@ -33,6 +33,13 @@
     (insert "};")
     ))
 
+(defun js2r-sexp-to-template-string ()
+  "Wrap sexp into a template string"
+  (interactive)
+  (kill-sexp)
+  (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
+  (pop kill-ring))
+
 (defun +js|load-evil-camel-case-motion ()
   (require 'evil-little-word)
   (define-key evil-normal-state-map (kbd "A-w") 'evil-forward-little-word-begin)
