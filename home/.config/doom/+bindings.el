@@ -2,6 +2,9 @@
 
 (define-key evil-visual-state-map (kbd "gS") #'evil-ex-sort)
 
+(define-key minibuffer-local-map "\C-p" 'previous-history-element)
+(define-key minibuffer-local-map "\C-n" 'next-history-element)
+
 (map!
  :niv "M-="   #'default-text-scale-increase
  :niv "M--"   #'default-text-scale-decrease
