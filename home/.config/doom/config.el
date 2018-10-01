@@ -27,6 +27,9 @@
 ;; https://github.com/company-mode/company-mode/issues/52
 (setq company-transformers '(company-sort-by-occurrence))
 
+;; Repeat snipe after further key press
+(setq evil-snipe-repeat-keys t)
+
 ;; automatically reload tags files
 (setq tags-revert-without-query 1)
 
