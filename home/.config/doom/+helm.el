@@ -5,12 +5,11 @@
   (let ((projectile-switch-project-action 'helm-projectile-ag))
     (projectile-switch-project-by-name project)))
 
+;; TODO Only works after eval
 (after!
   helm-projectile
   :config
-  (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag)
-  (helm-projectile-define-key helm-projectile-projects-map (kbd "M-g") 'helm-projectile-vc)
-  )
+  (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
 
 ;; (defun ar/helm-helm (title candidates on-select-function)
 ;;   "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
