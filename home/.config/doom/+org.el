@@ -40,24 +40,24 @@
  org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)"))
  org-todo-keyword-faces '(("[…]" . "grey")))
 
-(defun +org|find-file (f)
+(defun org-find-file (f)
   "Find file in org directory"
   (find-file (concat org-directory f)))
 
 (defun +org|org-open-home-file ()
    "Open the home org file"
    (interactive)
-    (+org|find-file "/home.org"))
+    (org-find-file "/home.org"))
 
 (defun +org|org-open-reading-list-file ()
    "Open the reading list org file"
    (interactive)
-    (+org|find-file "/Collections/reading-list.org"))
+    (org-find-file "/Collections/reading-list.org"))
 
 (defun +org|org-open-work-file ()
    "Open the home org file"
    (interactive)
-    (+org|find-file "/Work/work.org"))
+    (org-find-file "/Work/work.org"))
 
 (defun +org|paste-markdown-as-org ()
   "Convert the current clipboard to markdown"
