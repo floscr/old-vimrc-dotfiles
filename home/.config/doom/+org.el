@@ -47,31 +47,28 @@
 (defun +org|org-open-home-file ()
    "Open the home org file"
    (interactive)
-    (org-find-file "/home.org"))
+   (org-find-file "/home.org"))
 
 (defun +org|org-open-reading-list-file ()
    "Open the reading list org file"
    (interactive)
-    (org-find-file "/Collections/reading-list.org"))
+   (org-find-file "/Collections/reading-list.org"))
 
 (defun +org|org-open-work-file ()
    "Open the home org file"
    (interactive)
-    (org-find-file "/Work/work.org"))
+   (org-find-file "/Work/work.org"))
 
 (defun +org|paste-markdown-as-org ()
   "Convert the current clipboard to markdown"
   (interactive)
-  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org"))
-  )
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
 
 (defun +org|copy-block ()
   "Copies the current block to clipboard"
   (interactive)
   (org-edit-src-code)
-  (clipboard-kill-ring-save
-   (point-min)
-   (point-max))
+  (clipboard-kill-ring-save (point-min) (point-max))
   (org-edit-src-abort))
 
 (defun +org|sort-entries ()
@@ -153,9 +150,6 @@ E.g.: (Brackets signal the cursor position)
 (setq org-journal-date-format "%A, %B %d %Y")
 (setq org-journal-time-prefix "* ")
 (setq org-journal-time-format "")
-
-;; (add-to-list '+org-capture-frame-parameters '(left . 0.5))
-;; (add-to-list '+org-capture-frame-parameters '(width . 110))
 
 (after! org
   (map! :map evil-org-mode-map
