@@ -183,27 +183,26 @@ E.g.: (Brackets signal the cursor position)
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
         :desc "Sort Entries"      :m "S" #'+org|sort-entries
-        (
-         :desc "Insert" :prefix "i"
-               :desc "Subheadeing" :m "s" (λ!
-                                           (call-interactively 'org-insert-subheading)
-                                           (evil-insert-state))
-         )
-
-        (
-         :desc "Narrow" :prefix "n"
-               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
-               :desc "Block"   :m "b" #'+org|narrow-to-block
-               :desc "Element" :m "e" #'+org|narrow-to-element
-               :desc "widen"   :m "w" #'+org|widen
-         )
 
         :desc "Create/Edit Todo"  :nve "o" #'org-todo
         :desc "Schedule"          :nve "s" #'org-schedule
         :desc "Deadline"          :nve "d" #'org-deadline
         :desc "Refile"            :nve "r" #'org-refile
         :desc "Filter"            :nve "f" #'org-match-sparse-tree
-        :desc "Tag heading"       :nve "t" #'org-set-tags-command)
+        :desc "Tag heading"       :nve "t" #'org-set-tags-command
+
+        (
+         :desc "Insert" :prefix "i"
+               :desc "Subheadeing" :m "s" (λ!
+                                           (call-interactively 'org-insert-subheading)
+                                           (evil-insert-state)))
+        (
+         :desc "Narrow" :prefix "n"
+               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
+               :desc "Block"   :m "b" #'+org|narrow-to-block
+               :desc "Element" :m "e" #'+org|narrow-to-element
+               :desc "widen"   :m "w" #'+org|widen
+         ))
 
   :config
 
