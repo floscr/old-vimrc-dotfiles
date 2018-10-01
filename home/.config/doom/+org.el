@@ -5,10 +5,10 @@
 (setq
  org-directory (expand-file-name "~/Dropbox/org")
  org-default-notes-file (concat org-directory "/inbox.org")
- org-shopping-list (concat org-directory "/shoppinglist.org"))
+ org-shopping-list (concat org-directory "/shoppinglist.org")
 
-(setq org-agenda-start-day "-1d")
-(setq org-agenda-span 5)
+ org-agenda-start-day "-1d"
+ org-agenda-span 5)
 
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
@@ -36,14 +36,9 @@
                "* %? :NOTE:\n%U")
               )))
 
-(setq org-todo-keywords
-      '(
-        (sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)")
-        ))
-
-(setq org-todo-keyword-faces
-      '(("[…]" . "grey")
-        ))
+(setq
+ org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)"))
+ org-todo-keyword-faces '(("[…]" . "grey")))
 
 (defun +org|find-file (f)
   "Find file in org directory"
