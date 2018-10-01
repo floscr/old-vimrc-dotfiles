@@ -223,7 +223,14 @@ E.g.: (Brackets signal the cursor position)
   (setq
    org-agenda-start-on-weekday 1
    org-image-actual-width 600
-   org-agenda-files (append (list "~/Dropbox/org") (list "~/Dropbox/org/Work"))
+   org-agenda-files (append
+                     (list
+                      "~/Dropbox/org/Collections/ideas.org"
+                      "~/Dropbox/org/Collections/reading-list.org"
+                      )
+                     (list "~/Dropbox/org")
+                     (list "~/Dropbox/org/Work")
+                     )
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
