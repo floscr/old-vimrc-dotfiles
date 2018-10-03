@@ -54,6 +54,7 @@ If possible also go to the pointing line"
 
 (after! magit
   :config
+  (setq magithub-clone-default-directory "~/Code/Repositories")
   (bind-key "M-r" #'+git|commit-search-message-history git-commit-mode-map)
   (add-to-list 'savehist-additional-variables log-edit-comment-ring)
   (savehist-mode +1)
