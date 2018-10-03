@@ -1,6 +1,8 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+git.el -*- lexical-binding: t; -*-
 
-(setq-default magit-save-repository-buffers 'dontask)
+(setq-default
+ magit-save-repository-buffers 'dontask
+ magithub-clone-default-directory "~/Code/Repositories/")
 
 (defun shell-command-to-list (cmd)
   "Split output from shell-command to list"
