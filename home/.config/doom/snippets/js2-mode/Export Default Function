@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Export Default Function
+# key: exdf
+# --
+const ${1:name} = function () {
+    $0
+};
+
+export default $1
