@@ -1,8 +1,6 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+git.el -*- lexical-binding: t; -*-
 
-(setq-default
- magit-save-repository-buffers 'dontask
- magithub-clone-default-directory "~/Code/Repositories/")
+(setq-default magit-save-repository-buffers 'dontask)
 
 (defun shell-command-to-list (cmd)
   "Split output from shell-command to list"
@@ -56,6 +54,7 @@ If possible also go to the pointing line"
 
 (after! magit
   :config
+  (setq magithub-clone-default-directory "~/Code/Repositories")
   (bind-key "M-r" #'+git|commit-search-message-history git-commit-mode-map)
   (add-to-list 'savehist-additional-variables log-edit-comment-ring)
   (savehist-mode +1)
