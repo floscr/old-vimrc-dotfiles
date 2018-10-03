@@ -37,7 +37,7 @@
               )))
 
 (setq
- org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)"))
+ org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "|" "[X](d)"))
  org-todo-keyword-faces '(("[…]" . "grey")))
 
 (defun org-find-file (f)
