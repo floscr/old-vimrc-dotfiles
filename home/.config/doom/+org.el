@@ -194,7 +194,7 @@ E.g.: (Brackets signal the cursor position)
   (add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
 
-  (defun level-1-refile-targets ()
+  (defun level-0-refile-targets ()
     (list "~/Dropbox/org/Collections/reading-list.org"))
 
   (defun level-2-refile-targets ()
@@ -215,7 +215,7 @@ E.g.: (Brackets signal the cursor position)
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
                               (level-2-refile-targets :level . 2)
-                              (level-1-refile-targets :level . 1)
+                              (level-0-refile-targets :level . 0)
                               ))
    org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")
