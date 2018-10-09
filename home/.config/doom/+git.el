@@ -11,7 +11,7 @@
 
 (defun git-modified-files (branch)
   (shell-command-to-list
-   (format "git --no-pager diff --no-renames --name-only --no-merges %s master;" (magit-get-current-branch))))
+   (format "git --no-pager diff --no-renames --name-only --no-merges %s master;" (magit-rev-parse "HEAD"))))
 
 (defun git-get-changed-files (b)
     (delete-dups (append (git-modified-files b) (git-new-files))))
