@@ -15,7 +15,8 @@
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
 
-;; ETC / TEMP
+;; auto-mode-alist
+(add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")
