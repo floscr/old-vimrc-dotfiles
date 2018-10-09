@@ -11,6 +11,7 @@
 (load! "+dired")
 (load! "+helm")
 (load! "+workspace")
+(load! "+reason")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
