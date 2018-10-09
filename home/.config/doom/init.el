@@ -55,6 +55,7 @@
  javascript
  purescript
  markdown
+ ocaml
  (org
   +attach
   +babel
