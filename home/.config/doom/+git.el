@@ -17,7 +17,7 @@
     (delete-dups (append (git-modified-files b) (git-new-files))))
 
 (defun +git|helm-changed-files ()
-    (interactive)
+  (interactive)
   (helm :sources (helm-build-sync-source "Git Changed Files"
                    :candidates (git-get-changed-files "master")
                    :action (lambda (f) (find-file (concat (projectile-project-root) f)))
