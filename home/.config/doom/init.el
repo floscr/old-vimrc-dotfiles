@@ -33,6 +33,7 @@
  :editor
  rotate-text
  multiple-cursors
+ parinfer
 
  :emacs
  dired
