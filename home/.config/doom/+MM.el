@@ -26,6 +26,13 @@
 (defun dated-string (name)
   (format "%s-name" (format-time-string "%m-%d")))
 
+(defun js2r-mm-taplog ()
+  "Insert tap log"
+  (interactive)
+  (newline-and-indent)
+  (yas-lookup-snippet "Tap Console Log" 'js2-mode)
+  )
+
 ;; (defun +MM|toggle-relative()
 ;;   (interactive)
 ;;   )
