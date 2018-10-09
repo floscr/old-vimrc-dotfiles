@@ -2,4 +2,4 @@
 # name: Tap Console Log
 # key: tapl
 # --
-.tap(console.log)
+.tap(x => console.log('${1:name}', x))
