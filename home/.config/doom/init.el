@@ -33,6 +33,7 @@
  :editor
  rotate-text
  multiple-cursors
+ parinfer
 
  :emacs
  dired
@@ -47,6 +48,7 @@
  editorconfig
  macos
  magit
+ prodigy
 
  :lang
  data
@@ -54,6 +56,7 @@
  javascript
  purescript
  markdown
+ ocaml
  (org
   +attach
   +babel

@@ -178,3 +178,6 @@ bindkey '^Z' fancy-ctrl-z
 
 # Source fzf zsh extension
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# opam configuration
+test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

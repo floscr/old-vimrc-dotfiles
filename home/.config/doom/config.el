@@ -11,11 +11,21 @@
 (load! "+dired")
 (load! "+helm")
 (load! "+workspace")
+(load! "+reason")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
 
-;; ETC / TEMP
+(after! prodigy
+  (prodigy-define-service
+   :name "mindmeister-web"
+   :command "npm"
+   :args '("run" "start" "PrivateMaps")
+   :path '("~/.nvm/versions/node/v8.8.1/bin")
+   :cwd "~/Code/Meisterlabs/mindmeister-web"))
+
+;; auto-mode-alist
+(add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")

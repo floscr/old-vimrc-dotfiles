@@ -50,6 +50,8 @@ brew "neovim/neovim/neovim", args: ["HEAD"]
 
 brew 'reattach-to-user-namespace'
 
+brew 'ispell', args: ['with-lang-en']
+
 #}}}
 # Applications -------------------------------------------------------------{{{
 

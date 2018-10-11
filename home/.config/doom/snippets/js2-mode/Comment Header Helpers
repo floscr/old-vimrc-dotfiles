@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Comment Header: Helpers
-# key: *H
-# --
-$0
-
-/** HELPERS **/
-
-

@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Tap Console Log
-# key: tapl
-# --
-.tap(console.log)
