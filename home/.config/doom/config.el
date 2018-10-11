@@ -16,6 +16,14 @@
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
 
+(after! prodigy
+  (prodigy-define-service
+   :name "mindmeister-web"
+   :command "npm"
+   :args '("run" "start" "PrivateMaps")
+   :path '("~/.nvm/versions/node/v8.8.1/bin")
+   :cwd "~/Code/Meisterlabs/mindmeister-web"))
+
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 

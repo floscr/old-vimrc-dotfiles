@@ -48,6 +48,7 @@
  editorconfig
  macos
  magit
+ prodigy
 
  :lang
  data
