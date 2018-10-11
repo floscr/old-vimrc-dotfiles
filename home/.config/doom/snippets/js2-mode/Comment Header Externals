@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: Comment Header: Externals
-# key: *E
-# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
-# --
-/** EXTERNALS **/
-
-
