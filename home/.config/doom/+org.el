@@ -15,15 +15,15 @@
   "ds" 'org-agenda-schedule
   "vw" 'org-agenda-week-view
   "vm" 'org-agenda-month-view
-  "vy" 'org-agenda-year-view
-)
+  "vy" 'org-agenda-year-view)
+
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
                "* [ ] %?\n%U")
               ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
-               "* %(org-mac-chrome-get-frontmost-url)%?\n%U"
-               )
+               "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+
               ("s" "shoppinglist" entry (file org-shopping-list)
                "* Supermarkt\n- [ ] %?")
               ("i" "idea" entry (file+headline org-default-notes-file "INBOX")
@@ -33,8 +33,8 @@
               ("b" "book" entry (file+headline "~/Dropbox/org/books.org" "Read in the future")
                "*** %?\n%U")
               ("n" "note" entry (file+headline org-default-notes-file "INBOX")
-               "* %? :NOTE:\n%U")
-              )))
+               "* %? :NOTE:\n%U"))))
+
 
 (setq
  org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)"))
@@ -44,10 +44,21 @@
   "Find file in org directory"
   (find-file (concat org-directory f)))
 
+(defun my-archive-entry ()
+  (message "%s" (thing-at-point 'line t)))
+
+(defun +org|org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries #'my-archive-entry "/[X]" 'tree))
+
+(defun +org|org-archive-done-task ()
+  (interactive)
+  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
+
 (defun +org|org-open-home-file ()
-   "Open the home org file"
-   (interactive)
-   (org-find-file "/home.org"))
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/home.org"))
 
 (defun +org|org-open-reading-list-file ()
    "Open the reading list org file"
@@ -136,8 +147,8 @@ E.g.: (Brackets signal the cursor position)
                      :desc "Work" :n  "w" #'+org|org-open-work-file
                      :desc "Agenda" :n  "a" #'org-agenda
                      :desc "Store Link" :n  "y" #'org-store-link
-                     :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
-        ))
+                     :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers))
+
 
 ;; Journal
 
@@ -182,8 +193,8 @@ E.g.: (Brackets signal the cursor position)
                :desc "Subtree" :m "s" #'+org|narrow-to-subtree
                :desc "Block"   :m "b" #'+org|narrow-to-block
                :desc "Element" :m "e" #'+org|narrow-to-element
-               :desc "widen"   :m "w" #'+org|widen
-         ))
+               :desc "widen"   :m "w" #'+org|widen))
+
 
   :config
 
@@ -206,18 +217,16 @@ E.g.: (Brackets signal the cursor position)
    org-agenda-files (append
                      (list
                       "~/Dropbox/org/Collections/ideas.org"
-                      "~/Dropbox/org/Collections/reading-list.org"
-                      )
+                      "~/Dropbox/org/Collections/reading-list.org")
+
                      (list "~/Dropbox/org")
-                     (list "~/Dropbox/org/Work")
-                     )
+                     (list "~/Dropbox/org/Work"))
+
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
                               (level-2-refile-targets :level . 2)
-                              (level-0-refile-targets :level . 0)
-                              ))
+                              (level-0-refile-targets :level . 0)))
+
    org-agenda-refile org-agenda-files
-   org-default-notes-file (concat org-directory "/inbox.org")
-   )
-  )
+   org-default-notes-file (concat org-directory "/inbox.org")))
