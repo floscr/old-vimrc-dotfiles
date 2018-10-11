@@ -21,6 +21,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "^com.adobe.illustrator",
                                             "^com.bohemiancoding.sketch3"
                                         ],
                                         "type": "frontmost_application_unless"
