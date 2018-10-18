@@ -17,12 +17,27 @@
     (load! "+MM"))
 
 (after! prodigy
+  (define-key prodigy-mode-map "q" #'doom/escape)
+  (define-key prodigy-mode-map "j" #'prodigy-next)
+  (define-key prodigy-mode-map "k" #'prodigy-prev)
+  (define-key prodigy-mode-map "G" #'prodigy-last)
   (prodigy-define-service
    :name "mindmeister-web"
    :command "npm"
    :args '("run" "start" "PrivateMaps")
    :path '("~/.nvm/versions/node/v8.8.1/bin")
-   :cwd "~/Code/Meisterlabs/mindmeister-web"))
+   :cwd "~/Code/Meisterlabs/mindmeister-web")
+  (prodigy-define-service
+    :name "mindmeister"
+    :command "rails"
+    :args '("s" "-p" "3000")
+    :cwd "~/Code/Meisterlabs/mindmeister")
+  (prodigy-define-service
+      :name "meistercanvas"
+      :command "npm"
+      :args '("run" "start" "meistercanvas" "--" "--port" "7000")
+      :path '("~/.nvm/versions/node/v8.8.1/bin")
+      :cwd "~/Code/Meisterlabs/meistertask"))
 
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
