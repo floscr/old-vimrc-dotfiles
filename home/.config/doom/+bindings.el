@@ -72,6 +72,9 @@
    :desc "Checkout" :n  "b" #'magit-checkout
    :desc "Blame" :n  "B" #'magit-blame
    )
+ (:desc "project" :prefix "p"
+   :desc "services" :n  "s" #'prodigy
+   )
  (:desc "workspace" :prefix [tab]
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
    )
