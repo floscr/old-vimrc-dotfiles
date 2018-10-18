@@ -17,6 +17,7 @@
     (load! "+MM"))
 
 (after! prodigy
+  (define-key prodigy-mode-map "q" #'doom/escape)
   (prodigy-define-service
    :name "mindmeister-web"
    :command "npm"
