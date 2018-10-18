@@ -18,6 +18,9 @@
 
 (after! prodigy
   (define-key prodigy-mode-map "q" #'doom/escape)
+  (define-key prodigy-mode-map "j" #'prodigy-next)
+  (define-key prodigy-mode-map "k" #'prodigy-prev)
+  (define-key prodigy-mode-map "G" #'prodigy-last)
   (prodigy-define-service
    :name "mindmeister-web"
    :command "npm"
