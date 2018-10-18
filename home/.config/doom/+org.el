@@ -164,13 +164,14 @@ E.g.: (Brackets signal the cursor position)
 
 
 (after! org-agenda
-  (setq org-agenda-custom-commands '())
+  ;; (setq org-agenda-custom-commands '())
   (add-to-list 'org-agenda-custom-commands
                '("p" "Private" agenda ""
                  ((org-agenda-ndays 5)
                   (org-agenda-span 7)
-                  (org-agenda-tag-filter-preset '("-WORK"))
-                  (org-agenda-tag-filter-preset '("-REPEATING"))
+                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
+                  (tags-todo "-\[X\]")
+                  (tags-todo "-DONE")
                   (org-agenda-start-on-weekday 0)
                   (org-agenda-time-grid nil)
                   (org-agenda-start-on-weekday 1)
