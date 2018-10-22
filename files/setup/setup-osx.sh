@@ -1,8 +1,12 @@
 #!/usr/bin/bash
 
-# Install command line tools
-# This speeds up brew gcc upgrading massively
-xcode-select --install
+# Helpers for messaging etc
+. ../../home/.dotfiles/functions/helpers.sh
+
+if ! command xcode-select -v > /dev/null; then
+  _info_msg "Installing xcode command line tools"
+  xcode-select --install
+fi
 
 # Disable new window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
