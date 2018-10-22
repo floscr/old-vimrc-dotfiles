@@ -179,7 +179,6 @@ E.g.: (Brackets signal the cursor position)
 
 (after! org
   (map! :map evil-org-mode-map
-
         :n "M-k" #'org-move-subtree-up
         :n "M-j" #'org-move-subtree-down
 
@@ -209,7 +208,6 @@ E.g.: (Brackets signal the cursor position)
                :desc "Block"   :m "b" #'+org|narrow-to-block
                :desc "Element" :m "e" #'+org|narrow-to-element
                :desc "widen"   :m "w" #'+org|widen))
-
 
   :config
 

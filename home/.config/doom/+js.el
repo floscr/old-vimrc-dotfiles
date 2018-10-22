@@ -5,6 +5,7 @@
  flycheck-disabled-checkers '(javascript-jshint javascript))
 
 (after! rjsx-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
+(after! js2-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
 
 (defun remove-js-ext (f)
   "Remove js extension from string"
