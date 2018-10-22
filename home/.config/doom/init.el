@@ -63,6 +63,7 @@
 
  :app
  irc
+ write
 
  :config
  (default +bindings +snippets +evil-commands))
