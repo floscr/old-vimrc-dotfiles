@@ -50,7 +50,7 @@
       :command "npm"
       :args '("run" "start" "meistercanvas" "--" "--port" "7000")
       :path '("~/.nvm/versions/node/v8.8.1/bin")
-      :cwd "~/Code/Meisterlabs/meistertask")))
+      :cwd "~/Code/Meisterlabs/meistercanvas")))
 
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
