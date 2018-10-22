@@ -97,4 +97,3 @@ defaults write com.apple.screencapture location $SCREENSHOTS_DIR
 
 # Disable shadow for screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
-
