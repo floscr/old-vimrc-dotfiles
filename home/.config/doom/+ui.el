@@ -6,6 +6,9 @@
 (cond
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
+ ((string= system-name "Florians-MacBook-Air.local")
+  ;; Fix for small helm ui on small display
+  (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil))
  (t (setq-default line-spacing 0.15)))
 
 (setq
@@ -31,11 +34,23 @@
          (doom/reload-theme))
         (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
 
+(defvar default-line-spacing 0.2)
+
+(defun set-line-spacing (&optional spacing)
+  "Set the line spacing
+When no line spacing is given is the default-line-spacing"
+  (if line-spacing
+      (setq-default line-spacing (+ (or spacing default-line-spacing) line-spacing))
+    (setq-default line-spacing (+ 0 default-line-spacing))))
+
+(defun +ui|reset-line-spacing ()
+  (interactive)
+  (setq-default line-spacing nil))
+
 (defun +ui|increase-line-spacing ()
   (interactive)
-  (setq-default line-spacing (+ line-spacing 0.2)))
+  (set-line-spacing))
 
 (defun +ui|decrease-line-spacing ()
   (interactive)
-  (setq-default line-spacing (- line-spacing 0.2)))
-
+  (set-line-spacing (- default-line-spacing)))

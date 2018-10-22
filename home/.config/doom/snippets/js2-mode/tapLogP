@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: tapLogP 
-# key: tlp
-# --
-const tapLogP = f => x => {
-    console.log(x);
-    return f(x);
-};

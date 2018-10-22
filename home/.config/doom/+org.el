@@ -6,32 +6,24 @@
  org-directory (expand-file-name "~/Dropbox/org")
  org-default-notes-file (concat org-directory "/inbox.org")
  org-shopping-list (concat org-directory "/shoppinglist.org")
- org-default-notes-list (list
-                         "~/Dropbox/org/home.org"
-                         "~/Dropbox/org/shoppinglist.org"
-                         "~/Dropbox/org/Work/work.org"
-                         "~/Dropbox/org/cooking.org"
-                         "~/Dropbox/org/Projects/ideas.org"
-                         )
- )
 
-(setq org-agenda-start-day "-1d")
-(setq org-agenda-span 5)
+ org-agenda-start-day "-1d"
+ org-agenda-span 5)
 
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
   "ds" 'org-agenda-schedule
   "vw" 'org-agenda-week-view
   "vm" 'org-agenda-month-view
-  "vy" 'org-agenda-year-view
-)
+  "vy" 'org-agenda-year-view)
+
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
                "* [ ] %?\n%U")
               ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
-               "* %(org-mac-chrome-get-frontmost-url)%?\n%U"
-               )
+               "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+
               ("s" "shoppinglist" entry (file org-shopping-list)
                "* Supermarkt\n- [ ] %?")
               ("i" "idea" entry (file+headline org-default-notes-file "INBOX")
@@ -41,50 +33,53 @@
               ("b" "book" entry (file+headline "~/Dropbox/org/books.org" "Read in the future")
                "*** %?\n%U")
               ("n" "note" entry (file+headline org-default-notes-file "INBOX")
-               "* %? :NOTE:\n%U")
-              )))
+               "* %? :NOTE:\n%U"))))
 
-(setq org-todo-keywords
-      '(
-        (sequence "[ ](t)" "[-](p)" "[?](m)" "[…](w)"  "|" "[X](d)")
-        ))
 
-(setq org-todo-keyword-faces
-      '(("[…]" . "grey")
-        ))
+(setq
+ org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "|" "[X](d)"))
+ org-todo-keyword-faces '(("[…]" . "grey")))
 
-(defun +org|find-file (f)
+(defun org-find-file (f)
   "Find file in org directory"
   (find-file (concat org-directory f)))
 
+(defun my-archive-entry ()
+  (message "%s" (thing-at-point 'line t)))
+
+(defun +org|org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries #'my-archive-entry "/[X]" 'tree))
+
+(defun +org|org-archive-done-task ()
+  (interactive)
+  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
+
 (defun +org|org-open-home-file ()
-   "Open the home org file"
-   (interactive)
-    (+org|find-file "/home.org"))
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/home.org"))
 
 (defun +org|org-open-reading-list-file ()
    "Open the reading list org file"
    (interactive)
-    (+org|find-file "/Collections/reading-list.org"))
+   (org-find-file "/Collections/reading-list.org"))
 
 (defun +org|org-open-work-file ()
    "Open the home org file"
    (interactive)
-    (+org|find-file "/Work/work.org"))
+   (org-find-file "/Work/work.org"))
 
 (defun +org|paste-markdown-as-org ()
   "Convert the current clipboard to markdown"
   (interactive)
-  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org"))
-  )
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
 
 (defun +org|copy-block ()
   "Copies the current block to clipboard"
   (interactive)
   (org-edit-src-code)
-  (clipboard-kill-ring-save
-   (point-min)
-   (point-max))
+  (clipboard-kill-ring-save (point-min) (point-max))
   (org-edit-src-abort))
 
 (defun +org|sort-entries ()
@@ -152,8 +147,8 @@ E.g.: (Brackets signal the cursor position)
                      :desc "Work" :n  "w" #'+org|org-open-work-file
                      :desc "Agenda" :n  "a" #'org-agenda
                      :desc "Store Link" :n  "y" #'org-store-link
-                     :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers
-        ))
+                     :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers))
+
 
 ;; Journal
 
@@ -167,12 +162,23 @@ E.g.: (Brackets signal the cursor position)
 (setq org-journal-time-prefix "* ")
 (setq org-journal-time-format "")
 
-;; (add-to-list '+org-capture-frame-parameters '(left . 0.5))
-;; (add-to-list '+org-capture-frame-parameters '(width . 110))
+
+(after! org-agenda
+  ;; (setq org-agenda-custom-commands '())
+  (add-to-list 'org-agenda-custom-commands
+               '("p" "Private" agenda ""
+                 ((org-agenda-ndays 5)
+                  (org-agenda-span 7)
+                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
+                  (tags-todo "-\[X\]")
+                  (tags-todo "-DONE")
+                  (org-agenda-start-on-weekday 0)
+                  (org-agenda-time-grid nil)
+                  (org-agenda-start-on-weekday 1)
+                  (org-agenda-repeating-timestamp-show-all t)))))
 
 (after! org
   (map! :map evil-org-mode-map
-
         :n "M-k" #'org-move-subtree-up
         :n "M-j" #'org-move-subtree-down
 
@@ -183,27 +189,25 @@ E.g.: (Brackets signal the cursor position)
         :desc "Cut Subtree"       :m "C" #'org-cut-subtree
         :desc "Paste Subtree"     :m "P" #'org-paste-subtree
         :desc "Sort Entries"      :m "S" #'+org|sort-entries
-        (
-         :desc "Insert" :prefix "i"
-               :desc "Subheadeing" :m "s" (λ!
-                                           (call-interactively 'org-insert-subheading)
-                                           (evil-insert-state))
-         )
-
-        (
-         :desc "Narrow" :prefix "n"
-               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
-               :desc "Block"   :m "b" #'+org|narrow-to-block
-               :desc "Element" :m "e" #'+org|narrow-to-element
-               :desc "widen"   :m "w" #'+org|widen
-         )
 
         :desc "Create/Edit Todo"  :nve "o" #'org-todo
         :desc "Schedule"          :nve "s" #'org-schedule
         :desc "Deadline"          :nve "d" #'org-deadline
         :desc "Refile"            :nve "r" #'org-refile
         :desc "Filter"            :nve "f" #'org-match-sparse-tree
-        :desc "Tag heading"       :nve "t" #'org-set-tags-command)
+        :desc "Tag heading"       :nve "t" #'org-set-tags-command
+
+        (
+         :desc "Insert" :prefix "i"
+               :desc "Subheadeing" :m "s" (λ!
+                                           (call-interactively 'org-insert-subheading)
+                                           (evil-insert-state)))
+        (
+         :desc "Narrow" :prefix "n"
+               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
+               :desc "Block"   :m "b" #'+org|narrow-to-block
+               :desc "Element" :m "e" #'+org|narrow-to-element
+               :desc "widen"   :m "w" #'+org|widen))
 
   :config
 
@@ -214,7 +218,7 @@ E.g.: (Brackets signal the cursor position)
   (add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
 
-  (defun level-1-refile-targets ()
+  (defun level-0-refile-targets ()
     (list "~/Dropbox/org/Collections/reading-list.org"))
 
   (defun level-2-refile-targets ()
@@ -223,14 +227,19 @@ E.g.: (Brackets signal the cursor position)
   (setq
    org-agenda-start-on-weekday 1
    org-image-actual-width 600
-   org-agenda-files (append (list "~/Dropbox/org") (list "~/Dropbox/org/Work"))
+   org-agenda-files (append
+                     (list
+                      "~/Dropbox/org/Collections/ideas.org"
+                      "~/Dropbox/org/Collections/reading-list.org")
+
+                     (list "~/Dropbox/org")
+                     (list "~/Dropbox/org/Work"))
+
    org-refile-targets (quote (
                               (nil :maxlevel . 5)
                               (org-agenda-files :maxlevel . 2)
                               (level-2-refile-targets :level . 2)
-                              (level-1-refile-targets :level . 1)
-                              ))
+                              (level-0-refile-targets :level . 0)))
+
    org-agenda-refile org-agenda-files
-   org-default-notes-file (concat org-directory "/inbox.org")
-   )
-  )
+   org-default-notes-file (concat org-directory "/inbox.org")))

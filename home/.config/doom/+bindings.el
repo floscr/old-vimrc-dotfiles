@@ -2,6 +2,23 @@
 
 (define-key evil-visual-state-map (kbd "gS") #'evil-ex-sort)
 
+(define-key minibuffer-local-map "\C-p" 'previous-history-element)
+(define-key minibuffer-local-map "\C-n" 'next-history-element)
+
+(defun paste-from-x-clipboard()
+  (interactive)
+  (shell-command
+   (cond
+    (IS-MAC "pbpaste")
+    (t "xsel -ob"))
+   1)
+  (doom/forward-to-last-non-comment-or-eol))
+
+(defun paste-in-minibuffer ()
+  (local-set-key (kbd "M-v") 'paste-from-x-clipboard))
+
+(add-hook 'minibuffer-setup-hook 'paste-in-minibuffer)
+
 (map!
  :niv "M-="   #'default-text-scale-increase
  :niv "M--"   #'default-text-scale-decrease
@@ -48,10 +65,17 @@
    )
  (:desc "buffer" :prefix "b"
    :desc "Delete File" :n  "D" #'delete-current-buffer-file
+   :desc "Delete File" :n  "O" #'doom/kill-matching-buffers
    :desc "Delete File" :n  "X" #'+doom|open-elisp-scratch-buffer
    )
  (:desc "git" :prefix "g"
    :desc "Checkout" :n  "b" #'magit-checkout
    :desc "Blame" :n  "B" #'magit-blame
+   )
+ (:desc "project" :prefix "p"
+   :desc "services" :n  "s" #'prodigy
+   )
+ (:desc "workspace" :prefix [tab]
+   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
    )
  )

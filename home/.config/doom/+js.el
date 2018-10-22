@@ -5,6 +5,7 @@
  flycheck-disabled-checkers '(javascript-jshint javascript))
 
 (after! rjsx-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
+(after! js2-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
 
 (defun remove-js-ext (f)
   "Remove js extension from string"
@@ -13,6 +14,23 @@
 (defun buffer-file-name-relative ()
   "Extranct the filename with extension from path"
   (replace-regexp-in-string (file-name-directory buffer-file-name) "" (buffer-file-name)))
+
+(defun match-const-function-name (line)
+  "Matches a line to the word after the declaration"
+  (nth 2 (s-match
+          "\\(const\\|let\\)\s\\(.+?\\)\s"
+          line)))
+
+(defun js2r-extract-const-to-file ()
+  "Extracts function to external file"
+  (interactive)
+  (let* ((name (match-const-function-name (thing-at-point 'line t)))
+         (path (concat "./" name ".js")))
+    (evil-digit-argument-or-evil-beginning-of-line)
+    (js2r-kill)
+    (f-write-text "" 'utf-8 path)
+    (find-file path)
+    (yank)))
 
 (defun js-index-file-names ()
   "Get filenames from current buffers directory"
@@ -32,6 +50,13 @@
     (mapc (lambda (f) (insert "    " f ",\n")) fs)
     (insert "};")
     ))
+
+(defun js2r-sexp-to-template-string ()
+  "Wrap sexp into a template string"
+  (interactive)
+  (kill-sexp)
+  (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
+  (pop kill-ring))
 
 (defun +js|load-evil-camel-case-motion ()
   (require 'evil-little-word)

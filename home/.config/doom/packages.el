@@ -9,8 +9,10 @@
 (package! git-lens)
 (package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
 (package! blimp)
+(package! reason-mode)
 
-(package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
+;; TODO Evil-Briefcase does not work
+;; (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
 
 ;; Like abolish.vim
 ;; Search and replace multiples

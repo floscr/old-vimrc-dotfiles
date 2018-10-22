@@ -1,8 +1,15 @@
 #!/usr/bin/bash
 
-# Install command line tools
-# This speeds up brew gcc upgrading massively
-xcode-select --install
+# Helpers for messaging etc
+. ../../home/.dotfiles/functions/helpers.sh
+
+if ! command xcode-select -v > /dev/null; then
+  _info_msg "Installing xcode command line tools"
+  xcode-select --install
+fi
+
+# Disable new window animations
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
 
 # Reduce Transparency
 defaults write com.apple.universalaccess reduceTransparency -bool true
@@ -90,4 +97,3 @@ defaults write com.apple.screencapture location $SCREENSHOTS_DIR
 
 # Disable shadow for screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
-

@@ -95,3 +95,15 @@ function numhash() {
 function eslint_changed_files() {
   eslint_d $(git_changed_files | egrep '\.js$') $@
 }
+
+# Restart the mm server
+function mm_server_re () {
+  pull
+  bundle install
+  bundle exec rake load
+  bundle exec rake db:migrate
+  terminal-notifier \
+    -message "Server up to date" \
+    -sound Submarine
+  rails s -p 3001
+}
