@@ -4,6 +4,9 @@
 # This speeds up brew gcc upgrading massively
 xcode-select --install
 
+# Disable new window animations
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+
 # Reduce Transparency
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
