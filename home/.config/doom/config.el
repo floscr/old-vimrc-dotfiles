@@ -52,6 +52,20 @@
       :path '("~/.nvm/versions/node/v8.8.1/bin")
       :cwd "~/Code/Meisterlabs/meistercanvas")))
 
+(setq +lookup-provider-url-alist
+  '(("Google"            . "https://google.com/search?q=%s")
+    ("Google images"     . "https://google.com/images?q=%s")
+    ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
+    ("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
+    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
+    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
+    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
+    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
+    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
+    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
+
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 
