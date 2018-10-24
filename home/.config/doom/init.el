@@ -57,6 +57,7 @@
  purescript
  markdown
  ocaml
+ haskell
  (org
   +attach
   +babel
