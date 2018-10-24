@@ -175,7 +175,12 @@ E.g.: (Brackets signal the cursor position)
                   (org-agenda-start-on-weekday 0)
                   (org-agenda-time-grid nil)
                   (org-agenda-start-on-weekday 1)
-                  (org-agenda-repeating-timestamp-show-all t)))))
+                  (org-agenda-repeating-timestamp-show-all t))))
+  (add-to-list 'org-agenda-custom-commands
+               '("w" "Work" agenda ""
+                 ((org-agenda-tag-filter-preset '("+WORK"))
+                  (tags-todo "-\[X\]")
+                  (tags-todo "-DONE")))))
 
 (after! org
   (map! :map evil-org-mode-map
