@@ -26,6 +26,8 @@
  :niv "M-W"   #'delete-frame
  :niv "M-X"   #'+org-capture/open-frame
 
+ :en "C-±"   #'+popup/raise
+
  ;; Easier window navigation
  :en "C-h"   #'evil-window-left
  :en "C-j"   #'evil-window-down
