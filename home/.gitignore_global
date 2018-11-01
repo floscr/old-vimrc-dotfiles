@@ -21,6 +21,7 @@ tags*
 .tags
 .lvimrc
 
+*.log
 yarn.lock
 db_storages
 jsconfig.json
