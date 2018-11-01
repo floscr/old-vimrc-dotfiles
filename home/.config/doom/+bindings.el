@@ -45,6 +45,7 @@
  :i "A-e"   (λ! (insert "€"))
  :i "A-`"   (λ! (insert "°"))
  :i "A-."   (λ! (insert "…"))
+ :i "A-l"   (λ! (insert "λ"))
 
  :n "gb" #'evil-switch-to-windows-last-buffer
  :n "]f" #'dumb-jump-go
