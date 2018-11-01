@@ -199,17 +199,15 @@ E.g.: (Brackets signal the cursor position)
         :desc "Filter"            :nve "f" #'org-match-sparse-tree
         :desc "Tag heading"       :nve "t" #'org-set-tags-command
 
-        (
-         :desc "Insert" :prefix "i"
-               :desc "Subheadeing" :m "s" (λ!
-                                           (call-interactively 'org-insert-subheading)
-                                           (evil-insert-state)))
-        (
-         :desc "Narrow" :prefix "n"
-               :desc "Subtree" :m "s" #'+org|narrow-to-subtree
-               :desc "Block"   :m "b" #'+org|narrow-to-block
-               :desc "Element" :m "e" #'+org|narrow-to-element
-               :desc "widen"   :m "w" #'+org|widen))
+        (:desc "Insert" :prefix "i"
+         :desc "Subheadeing" :m "s" (λ!
+                                     (call-interactively 'org-insert-subheading)
+                                     (evil-insert-state)))
+        (:desc "Narrow" :prefix "n"
+         :desc "Subtree" :m "s" #'+org|narrow-to-subtree
+         :desc "Block"   :m "b" #'+org|narrow-to-block
+         :desc "Element" :m "e" #'+org|narrow-to-element
+         :desc "widen"   :m "w" #'+org|widen))
 
   :config
 
