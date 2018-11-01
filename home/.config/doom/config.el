@@ -16,6 +16,8 @@
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
 
+(defalias 'λ 'lambda)
+
 (after! prodigy
   (define-key prodigy-mode-map "q" #'doom/escape)
   (define-key prodigy-mode-map "j" #'prodigy-next)
