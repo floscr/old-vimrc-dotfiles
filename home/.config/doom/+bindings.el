@@ -61,24 +61,22 @@
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "search" :prefix "/"
-   :desc "Search project" :n  "p" #'helm-projectile-ag
-   )
+   :desc "Search project" :n  "p" #'helm-projectile-ag)
+
  (:desc "toggle" :prefix "t"
-   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme
-   )
+   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
+
  (:desc "buffer" :prefix "b"
    :desc "Delete File" :n  "D" #'delete-current-buffer-file
    :desc "Delete File" :n  "O" #'doom/kill-matching-buffers
-   :desc "Delete File" :n  "X" #'+doom|open-elisp-scratch-buffer
-   )
+   :desc "Delete File" :n  "X" #'+doom|open-elisp-scratch-buffer)
+
  (:desc "git" :prefix "g"
    :desc "Checkout" :n  "b" #'magit-checkout
-   :desc "Blame" :n  "B" #'magit-blame
-   )
+   :desc "Blame" :n  "B" #'magit-blame)
+
  (:desc "project" :prefix "p"
-   :desc "services" :n  "s" #'prodigy
-   )
+   :desc "services" :n  "s" #'prodigy)
+
  (:desc "workspace" :prefix [tab]
-   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
-   )
- )
+   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))
