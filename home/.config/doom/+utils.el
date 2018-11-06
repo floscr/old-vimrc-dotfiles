@@ -60,6 +60,15 @@
   (shell-command-to-string
    (concat "osascript -l 'JavaScript' -e '" cmd "'")))
 
+(defun find-workspace-project-root ()
+  "Gets the root dir for the current workspace"
+  (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
+
+(defun +workspace|find-workspace-project-file ()
+  (interactive)
+  (cl-letf (((symbol-function 'projectile-project-root) #'find-workspace-project-root))
+      (projectile-find-file)))
+
 ;; (defun is-term-buffer (b)
 ;;   "Check if buffer a buffer name matches doom terminal"
 ;;   (string-match-p "^\\*doom terminal" (buffer-name b)))
