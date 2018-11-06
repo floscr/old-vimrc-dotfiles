@@ -8,7 +8,7 @@
 ;; TODO Only works after eval
 (after!
   helm-projectile
-  :config
+  :init
   (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
 
 ;; (defun ar/helm-helm (title candidates on-select-function)
