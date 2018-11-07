@@ -78,5 +78,10 @@
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
    :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
+ (:desc "Yank" :prefix "y"
+   :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
+   :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
+   :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
+   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name)))))
  (:desc "workspace" :prefix [tab]
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))
