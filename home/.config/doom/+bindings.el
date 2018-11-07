@@ -76,7 +76,7 @@
    :desc "Blame" :n  "B" #'magit-blame)
 
  (:desc "project" :prefix "p"
-   :desc "services" :n  "s" #'prodigy)
-
+   :desc "services" :n  "s" #'prodigy
+   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
  (:desc "workspace" :prefix [tab]
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))

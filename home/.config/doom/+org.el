@@ -63,7 +63,7 @@
 (defun +org|org-open-reading-list-file ()
    "Open the reading list org file"
    (interactive)
-   (org-find-file "/Collections/reading-list.org"))
+   (org-find-file "/reading-list.org"))
 
 (defun +org|org-open-work-file ()
    "Open the home org file"
