@@ -58,8 +58,7 @@ If possible also go to the pointing line"
    magithub-clone-default-directory "~/Code/Repositories"
    git-commit-summary-max-length 120)
   (bind-key "M-r" #'+git|commit-search-message-history git-commit-mode-map)
-  (add-to-list 'savehist-additional-variables log-edit-comment-ring)
-  (savehist-mode +1))
+  (add-to-list 'savehist-additional-variables log-edit-comment-ring))
 
 (map!
  :leader
