@@ -17,7 +17,6 @@
     (load! "+MM"))
 
 (defalias 'λ 'lambda)
-(defalias '->> 'thread-last)
 
 (after! prodigy
   (define-key prodigy-mode-map "q" #'doom/escape)
