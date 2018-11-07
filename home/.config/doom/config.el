@@ -29,7 +29,7 @@
       :name "mindmeister-web"
       :url "localhost:3000"
       :command "npm"
-      :args '("run" "start" "PrivateMaps")
+      :args '("start")
       :path '("~/.nvm/versions/node/v8.8.1/bin")
       :cwd "~/Code/Meisterlabs/mindmeister-web"
       :tags '(mindmeister frontend))
