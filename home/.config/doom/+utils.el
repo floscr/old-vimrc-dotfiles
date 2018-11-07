@@ -1,5 +1,9 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+utils.el -*- lexical-binding: t; -*-
 
+(defun copy-message (x)
+  (kill-new x)
+  (message "Copied to clipboard: %s" x))
+
 (defsubst curry (function &rest arguments)
   (lexical-let ((function function)
                 (arguments arguments))
