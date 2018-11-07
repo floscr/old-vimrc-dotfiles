@@ -23,7 +23,7 @@
  hl-todo
  ;; nav-flash
  neotree
- ; treemacs
+ ;; treemacs
  (popup +all +defaults)
  ;; pretty-code
  vc-gutter
