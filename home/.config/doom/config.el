@@ -1,17 +1,20 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/config.el -*- lexical-binding: t; -*-
 
-(load! "+ui")
+;; Base
 (load! "+utils")
+(load! "+ui")
+(load! "+bindings")
+
+;; Packages
+(load! "+dired")
+(load! "+eldoc")
 (load! "+git")
+(load! "+helm")
+(load! "+indium")
 (load! "+js")
 (load! "+org")
-(load! "+bindings")
-(load! "+eldoc")
-(load! "+indium")
-(load! "+dired")
-(load! "+helm")
-(load! "+workspace")
 (load! "+reason")
+(load! "+workspace")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
