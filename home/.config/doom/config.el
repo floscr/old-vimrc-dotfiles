@@ -49,11 +49,14 @@
       :cwd "~/Code/Meisterlabs/mindmeister")
     (prodigy-define-service
       :name "meistercanvas"
-      :url "localhost:7000"
+      :url "localhost:7007"
       :command "npm"
-      :args '("run" "start" "meistercanvas" "--" "--port" "7000")
+      :args '("run" "start" "meistercanvas" "--" "--port" "7007")
       :path '("~/.nvm/versions/node/v8.8.1/bin")
       :cwd "~/Code/Meisterlabs/meistercanvas")))
+
+;; Always create workspace when switching to project
+(setq +workspaces-on-switch-project-behavior t)
 
 (setq +lookup-provider-url-alist
   '(("Google"            . "https://google.com/search?q=%s")
