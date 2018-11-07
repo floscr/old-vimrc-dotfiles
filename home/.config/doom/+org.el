@@ -61,14 +61,14 @@
   (org-find-file "/home.org"))
 
 (defun +org|org-open-reading-list-file ()
-   "Open the reading list org file"
-   (interactive)
-   (org-find-file "/reading-list.org"))
+  "Open the reading list org file"
+  (interactive)
+  (org-find-file "/reading-list.org"))
 
 (defun +org|org-open-work-file ()
-   "Open the home org file"
-   (interactive)
-   (org-find-file "/Work/work.org"))
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/Work/work.org"))
 
 (defun +org|paste-markdown-as-org ()
   "Convert the current clipboard to markdown"
@@ -141,13 +141,13 @@ E.g.: (Brackets signal the cursor position)
 
 (map! :leader (
                :desc "Notes" :prefix "n"
-                     :desc "Home" :n  "h" #'+org|org-open-home-file
-                     :desc "Reading List" :n  "r" #'+org|org-open-reading-list-file
-                     :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
-                     :desc "Work" :n  "w" #'+org|org-open-work-file
-                     :desc "Agenda" :n  "a" #'org-agenda
-                     :desc "Store Link" :n  "y" #'org-store-link
-                     :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers))
+               :desc "Home" :n  "h" #'+org|org-open-home-file
+               :desc "Reading List" :n  "r" #'+org|org-open-reading-list-file
+               :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
+               :desc "Work" :n  "w" #'+org|org-open-work-file
+               :desc "Agenda" :n  "a" #'org-agenda
+               :desc "Store Link" :n  "y" #'org-store-link
+               :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers))
 
 
 ;; Journal
@@ -200,14 +200,14 @@ E.g.: (Brackets signal the cursor position)
         :desc "Tag heading"       :nve "t" #'org-set-tags-command
 
         (:desc "Insert" :prefix "i"
-         :desc "Subheadeing" :m "s" (λ!
-                                     (call-interactively 'org-insert-subheading)
-                                     (evil-insert-state)))
+          :desc "Subheadeing" :m "s" (λ!
+                                      (call-interactively 'org-insert-subheading)
+                                      (evil-insert-state)))
         (:desc "Narrow" :prefix "n"
-         :desc "Subtree" :m "s" #'+org|narrow-to-subtree
-         :desc "Block"   :m "b" #'+org|narrow-to-block
-         :desc "Element" :m "e" #'+org|narrow-to-element
-         :desc "widen"   :m "w" #'+org|widen))
+          :desc "Subtree" :m "s" #'+org|narrow-to-subtree
+          :desc "Block"   :m "b" #'+org|narrow-to-block
+          :desc "Element" :m "e" #'+org|narrow-to-element
+          :desc "widen"   :m "w" #'+org|widen))
 
   :config
 
