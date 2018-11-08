@@ -4,6 +4,38 @@
   (kill-new x)
   (message "Copied to clipboard: %s" x))
 
+(defun math-on-number (f)
+  "Read user input and apply with function f to the number at point"
+  (let* ((x (thing-at-point 'number))
+         (arithmetic-symbol (pcase f
+                              ('+ "+")
+                              ('- "-")
+                              ('/ "/")
+                              ('* "*")
+                              (_ (error "Unknown function %s" f))))
+         (readline (concat (number-to-string x) " " arithmetic-symbol " "))
+         (y (read-number readline))
+         (result (funcall f x y))
+         (bounds (bounds-of-thing-at-point 'evil-WORD)))
+    (delete-region (car bounds) (cdr bounds))
+    (insert (number-to-string result))))
+
+(defun math+|add-to-number ()
+  (interactive)
+  (math-on-number '+))
+
+(defun math+|subtract-from-number ()
+  (interactive)
+  (math-on-number '-))
+
+(defun math+|divide-by-number ()
+  (interactive)
+  (math-on-number '/))
+
+(defun math+|multiply-by-number ()
+  (interactive)
+  (math-on-number '*))
+
 (defsubst curry (function &rest arguments)
   (lexical-let ((function function)
                 (arguments arguments))
