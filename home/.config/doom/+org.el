@@ -223,12 +223,12 @@ E.g.: (Brackets signal the cursor position)
     (mapcar (λ (x) (expand-file-name x org-directory)) xs))
 
   (setq level-0-refile-targets (expand-org-file-names '("reading-list.org"
+                                                        "cooking.org"
                                                         "shoppinglist.org")))
 
   (setq level-2-refile-targets (expand-org-file-names '("Emacs.org"
                                                         "art.org"
                                                         "books.org"
-                                                        "cooking.org"
                                                         "diary"
                                                         "games.org"
                                                         "hardware.org"
