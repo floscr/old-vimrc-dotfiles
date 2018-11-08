@@ -4,6 +4,10 @@
   (kill-new x)
   (message "Copied to clipboard: %s" x))
 
+(defun company-select-last ()
+  (interactive)
+  (company-select-next (- company-candidates-length 1)))
+
 (defun math-on-number (f)
   "Read user input and apply with function f to the number at point"
   (let* ((x (thing-at-point 'number))
