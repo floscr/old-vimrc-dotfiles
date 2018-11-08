@@ -17,7 +17,6 @@
   "vm" 'org-agenda-month-view
   "vy" 'org-agenda-year-view)
 
-
 (setq org-capture-templates
       (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
                "* [ ] %?\n%U")
@@ -177,7 +176,9 @@ E.g.: (Brackets signal the cursor position)
                   (org-agenda-start-on-weekday 1)
                   (org-agenda-repeating-timestamp-show-all t))))
   (add-to-list 'org-agenda-custom-commands
-               '("w" "Work" tags-todo "+WORK")))
+               '("w" "Work" tags-todo "+WORK"))
+  (add-to-list 'org-agenda-custom-commands
+               '("rr" "Reading List" tags-todo "+TEXT")))
 
 (after! org
   (map! :map evil-org-mode-map
