@@ -24,6 +24,7 @@
 
 (defun +MM|convert-to-new-redux-style ()
   "Converts the current buffer to the new redux style"
+  (interactive)
   (shell-command (template "jscodeshift -t ~/Code/Meisterlabs/jscodeshift/redux/v5.8.0/actions-controllers.js <<(buffer-file-name)>>")))
 
 (defun dated-string (name)
