@@ -1,6 +1,7 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/config.el -*- lexical-binding: t; -*-
 
 ;; Base
+(load! "+macros")
 (load! "+utils")
 (load! "+ui")
 (load! "+bindings")
@@ -19,8 +20,6 @@
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
-
-(defalias 'λ 'lambda)
 
 ;; Always create workspace when switching to project
 (setq +workspaces-on-switch-project-behavior t)
