@@ -22,7 +22,7 @@
          (result (funcall f x y))
          (bounds (bounds-of-thing-at-point 'evil-WORD)))
     (delete-region (car bounds) (cdr bounds))
-    (insert (number-to-string result))))
+    (insert (format "%.02f" result))))
 
 (defun math+|add-to-number ()
   (interactive)
