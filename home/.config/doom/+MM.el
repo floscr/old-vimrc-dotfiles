@@ -27,6 +27,12 @@
   (interactive)
   (shell-command (template "jscodeshift --dry --print --silent --transform ~/Code/Meisterlabs/jscodeshift/redux/v5.8.0/actions-controllers.js <<(buffer-file-name)>>") (current-buffer)))
 
+(fset 'js2r-mm-extract-props
+      (lambda (&optional arg)
+        "Turns an object into a Style function, needs to be focused on the starting {"
+        (interactive "p")
+        (kmacro-exec-ring-item (quote ([?c ?i ?b ?p ?r ?o ?p ?s escape ?o escape ?p ?= ?= ?^ ?i ?c ?o ?n ?s ?t ?  escape ?a escape escape ?A ?  ?= ?  ?p ?r ?o ?p ?s escape ?A ?\; escape ?b ?b ?b ?b ?  ?m ?r ?e ?e ?A ?\C-? ?, escape ?j ?b])) arg)))
+
 (defun dated-string (name)
   (format "%s-name" (format-time-string "%m-%d")))
 
