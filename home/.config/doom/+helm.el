@@ -5,7 +5,6 @@
   (let ((projectile-switch-project-action 'helm-projectile-ag))
     (projectile-switch-project-by-name project)))
 
-;; TODO Only works after eval
 (after!
   helm-projectile
   :init
