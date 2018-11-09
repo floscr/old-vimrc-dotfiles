@@ -6,7 +6,6 @@
   :config
   (setq yas-snippet-dirs (append yas-snippet-dirs '("~/Code/Meisterlabs/Snippets"))))
 
-
 (defun +MM|other-file ()
   "Toggle between component or controller"
   (interactive)
@@ -15,12 +14,11 @@
   (setq target (if (string= filename "component.js") "controller.js" "component.js"))
   (find-file (concat path target)))
 
-
 (fset '+MM|turn-style-object-into-function
-   (lambda (&optional arg)
-     "Turns an object into a Style function, needs to be focused on the starting {"
-     (interactive "p")
-     (kmacro-exec-ring-item (quote ([?y ?s ?a ?B ?b ?i ?S ?t ?y ?l ?e escape ?l ?a ?f ?u ?n ?c ?t ?i ?o ?n ?  S-backspace ?  ?\( ?o ?p ?t ?i ?o ?n ?s ?, ?  ?R ?u ?l ?e ?s escape ?l ?l ?y ?s ?a ?B ?B ?i ?  escape ?l ?a return ?r ?e ?t ?u ?r ?n ?  escape ?l ?j ?> ?i ?\{ ?k ?$ ?% ?a return escape ?k ?a ?\; escape ?= ?= ?j ?b ?l ?%] 0 "%d")) arg)))
+      (lambda (&optional arg)
+        "Turns an object into a Style function, needs to be focused on the starting {"
+        (interactive "p")
+        (kmacro-exec-ring-item (quote ([?y ?s ?a ?B ?b ?i ?S ?t ?y ?l ?e escape ?l ?a ?f ?u ?n ?c ?t ?i ?o ?n ?  S-backspace ?  ?\( ?o ?p ?t ?i ?o ?n ?s ?, ?  ?R ?u ?l ?e ?s escape ?l ?l ?y ?s ?a ?B ?B ?i ?  escape ?l ?a return ?r ?e ?t ?u ?r ?n ?  escape ?l ?j ?> ?i ?\{ ?k ?$ ?% ?a return escape ?k ?a ?\; escape ?= ?= ?j ?b ?l ?%] 0 "%d")) arg)))
 
 (defun +MM|convert-to-new-redux-style ()
   "Converts the current buffer to the new redux style"
@@ -29,7 +27,7 @@
 
 (fset 'js2r-mm-extract-props
       (lambda (&optional arg)
-        "Turns an object into a Style function, needs to be focused on the starting {"
+        "Extract function props to statement"
         (interactive "p")
         (kmacro-exec-ring-item (quote ([?c ?i ?b ?p ?r ?o ?p ?s escape ?o escape ?p ?= ?= ?^ ?i ?c ?o ?n ?s ?t ?  escape ?a escape escape ?A ?  ?= ?  ?p ?r ?o ?p ?s escape ?A ?\; escape ?b ?b ?b ?b ?  ?m ?r ?e ?e ?A ?\C-? ?, escape ?j ?b])) arg)))
 
