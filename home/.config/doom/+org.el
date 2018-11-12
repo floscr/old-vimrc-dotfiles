@@ -222,11 +222,12 @@ E.g.: (Brackets signal the cursor position)
   (defun expand-org-file-names (xs)
     (mapcar (λ (x) (expand-file-name x org-directory)) xs))
 
-  (setq level-0-refile-targets (expand-org-file-names '("reading-list.org"
+  (setq level-1-refile-targets (expand-org-file-names '("reading-list.org"
                                                         "cooking.org"
+                                                        "programming.org"
                                                         "shoppinglist.org")))
 
-  (setq level-2-refile-targets (expand-org-file-names '("Emacs.org"
+  (setq max-level-2-refile-targets (expand-org-file-names '("Emacs.org"
                                                         "art.org"
                                                         "books.org"
                                                         "diary"
@@ -241,24 +242,23 @@ E.g.: (Brackets signal the cursor position)
                                                         "osx.org"
                                                         "personal.org"
                                                         "podcasts.org"
-                                                        "programming.org"
                                                         "projects.org"
                                                         "sleep.org"
                                                         "sports.org"
                                                         "travel.org"
                                                         "Work/work.org")))
 
-  (setq org-agenda-files (-concat level-0-refile-targets level-2-refile-targets))
+  (setq org-agenda-files (-concat level-1-refile-targets max-level-2-refile-targets))
 
-  (defun level-0-refile-targets () level-0-refile-targets)
+  (defun level-1-refile-targets () level-1-refile-targets)
 
-  (defun level-2-refile-targets () level-2-refile-targets)
+  (defun max-level-2-refile-targets () max-level-2-refile-targets)
 
   (setq
    org-agenda-start-on-weekday 1
    org-image-actual-width 600
    org-refile-targets (quote ((nil :maxlevel . 5)
-                              (level-2-refile-targets :maxlevel . 2)
-                              (level-0-refile-targets :level . 0)))
+                              (max-level-2-refile-targets :maxlevel . 2)
+                              (level-1-refile-targets :level . 0)))
    org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")))
