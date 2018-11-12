@@ -12,7 +12,9 @@
  workspaces
 
  :completion
- (company +auto)
+ (company
+  +auto
+  +childframe)
  (helm +fuzzy)
 
  :ui
