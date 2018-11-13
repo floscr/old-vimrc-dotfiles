@@ -1,5 +1,10 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+MM.el -*- lexical-binding: t; -*-
 
+(defvar +Meisterlabs-Web-mode nil)
+
+(def-project-mode! +Meisterlabs-Web-mode
+  :when (bound-and-true-p +Meisterlabs-Web-mode-enabled))
+
 (setq projectile-project-search-path '("~/Code/Meisterlabs"))
 
 (after! yasnippet
