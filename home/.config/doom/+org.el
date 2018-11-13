@@ -259,6 +259,6 @@ E.g.: (Brackets signal the cursor position)
    org-image-actual-width 600
    org-refile-targets (quote ((nil :maxlevel . 5)
                               (max-level-2-refile-targets :maxlevel . 2)
-                              (level-1-refile-targets :level . 0)))
+                              (level-1-refile-targets :level . 1)))
    org-agenda-refile org-agenda-files
    org-default-notes-file (concat org-directory "/inbox.org")))
