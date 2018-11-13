@@ -87,4 +87,5 @@
  (:desc "workspace" :prefix [tab]
    :desc "Next Workspace" :n "n" #'+workspace/switch-right
    :desc "Previous Workspace" :n "p" #'+workspace/switch-left
+   :desc "Create" :n "c" #'+workspace/new
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))
