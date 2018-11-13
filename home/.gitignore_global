@@ -26,4 +26,4 @@ yarn.lock
 db_storages
 jsconfig.json
 
-.dir-localcs.el
+.dir-locals.el
