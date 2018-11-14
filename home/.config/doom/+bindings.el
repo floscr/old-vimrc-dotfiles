@@ -85,7 +85,6 @@
    :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
    :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name)))))
  (:desc "workspace" :prefix [tab]
-   :desc "Next Workspace" :n "n" #'+workspace/switch-right
-   :desc "Previous Workspace" :n "p" #'+workspace/switch-left
-   :desc "Create" :n "c" #'+workspace/new
+   :desc "Create" :n "c" (λ! (let* ((name (read-string "New workspace name: ")))
+                               (+workspace/new name)))
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))
