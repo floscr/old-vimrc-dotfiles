@@ -76,7 +76,7 @@
   (shell-command-to-string
    (concat "osascript -l 'JavaScript' -e '" cmd "'")))
 
-(defun find-workspace-project-root ()
+(defun find-workspace-project-root (&optional arg)
   "Gets the root dir for the current workspace"
   (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
 
