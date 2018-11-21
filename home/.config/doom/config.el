@@ -84,3 +84,9 @@
 (def-package! blimp
   :config
   (add-hook 'image-mode-hook 'blimp-mode))
+
+(after! smerge-mode
+  :config
+  ;; TODO This is broken after switching the theme but works for now
+  ;; This fixes the smerge diff color is really bright an ugly
+  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
