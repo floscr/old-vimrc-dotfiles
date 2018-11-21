@@ -15,6 +15,18 @@
           (org-web-tools-read-url-as-org clipboard-url)
         (message "No url found")))))
 
+;; source: https://emacsredux.com/blog/2013/06/21/eval-and-replace/
+(defun eval-and-replace-sexp ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (right-char)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
 (defun copy-message (x)
   (kill-new x)
   (message "Copied to clipboard: %s" x))
