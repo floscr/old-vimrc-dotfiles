@@ -19,7 +19,7 @@
 (defun eval-and-replace-sexp ()
   "Replace the preceding sexp with its value."
   (interactive)
-  (right-char)
+  (right-char) ;; Fix for normal mode
   (backward-kill-sexp)
   (condition-case nil
       (prin1 (eval (read (current-kill 0)))
