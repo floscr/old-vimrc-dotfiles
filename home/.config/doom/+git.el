@@ -20,7 +20,9 @@
   (interactive)
   (helm :sources (helm-build-sync-source "Git Changed Files"
                    :candidates (git-get-changed-files "master")
-                   :action (lambda (f) (find-file (concat (projectile-project-root) f)))
+                   :action (helm-make-actions
+                            "Find file" (lambda (fs) (find-file (concat (projectile-project-root) fs)))
+                            "Search" (lambda (fs) (helm-do-ag nil fs)))
                    :fuzzy-match t)
         :buffer "*helm git changed files"))
 
