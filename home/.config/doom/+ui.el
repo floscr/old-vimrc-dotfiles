@@ -7,8 +7,10 @@
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-MacBook-Air.local")
-  ;; Fix for small helm ui on small display
-  (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil))
+  (after! helm-mode
+    :config
+    ;; Fix for small helm ui on small display
+    (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)))
  (t (setq-default line-spacing 0.15)))
 
 (setq
