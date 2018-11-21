@@ -7,6 +7,12 @@
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-MacBook-Air.local")
+  (setq-default line-spacing 0.4)
+  (setq initial-frame-alist
+        (append (list '(left . 272)
+                      '(width . 165)
+                      '(fullscreen . fullheight))
+                initial-frame-alist))
   (after! helm-mode
     :config
     ;; Fix for small helm ui on small display
