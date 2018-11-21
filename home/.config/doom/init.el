@@ -70,7 +70,7 @@
 
  :app
  irc
- write
+ writeme
 
  :config
  (default +bindings +snippets +evil-commands))
