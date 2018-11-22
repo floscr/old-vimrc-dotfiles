@@ -58,6 +58,9 @@
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
 
+ (:after evil
+   :textobj "h" #'evil-i-syntax #'evil-a-syntax)
+
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "search" :prefix "/"
@@ -75,6 +78,10 @@
    :desc "Checkout"   :n  "b" #'magit-checkout
    :desc "Blame"      :n  "B" #'magit-blame
    :desc "New Branch" :n  "N" #'magit-branch-spinoff)
+
+ (:desc "window" :prefix "w"
+   :desc "Split Vertical" :n "|" #'evil-window-vsplit
+   :desc "Split Horizontal" :n "_" #'evil-window-split)
 
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
