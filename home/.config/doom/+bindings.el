@@ -58,9 +58,6 @@
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
 
- (:after evil
-   :textobj "h" #'evil-i-syntax #'evil-a-syntax)
-
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "search" :prefix "/"

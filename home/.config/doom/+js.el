@@ -18,7 +18,7 @@
 (defun match-const-function-name (line)
   "Matches a line to the word after the declaration"
   (nth 2 (s-match
-          "\\(const\\|let\\)\s\\(.+?\\)\s"
+          "\\(const\\|let\\|class\\)\s\\(.+?\\)\s"
           line)))
 
 (defun js2r-extract-const-to-file ()
