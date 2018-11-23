@@ -15,6 +15,7 @@
   "Extranct the filename with extension from path"
   (replace-regexp-in-string (file-name-directory buffer-file-name) "" (buffer-file-name)))
 
+
 (defun match-const-function-name (line)
   "Matches a line to the word after the declaration"
   (nth 2 (s-match
@@ -36,8 +37,7 @@
   "Get filenames from current buffers directory"
   (let ((fs (directory-files default-directory nil ".*\\.js")))
     (mapcar 'remove-js-ext
-            (remove (buffer-file-name-relative) fs))
-    ))
+            (remove (buffer-file-name-relative) fs))))
 
 (defun +js|generate-index ()
   "Generate an index import file for files in directory"
@@ -48,8 +48,7 @@
     (insert "\n")
     (insert "export default {\n")
     (mapc (lambda (f) (insert "    " f ",\n")) fs)
-    (insert "};")
-    ))
+    (insert "};")))
 
 (defun js2r-sexp-to-template-string ()
   "Wrap sexp into a template string"
