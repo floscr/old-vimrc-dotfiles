@@ -21,11 +21,15 @@
           "\\(const\\|let\\|class\\)\s\\(.+?\\)\s"
           line)))
 
+(defun const-function-at-point ()
+  "Returns the current function name at the current line"
+  (match-const-function-name (thing-at-point 'line t)))
+
 (defun js2r-export-default ()
   "Exports the current declaration at the end of the file"
   (interactive)
   (save-excursion
-    (let* ((name (match-const-function-name (thing-at-point 'line t))))
+    (let* ((name (const-function-at-point)))
       (goto-char (point-max))
       (insert "\n")
       (insert (template "export default <<name>>;")))))
@@ -33,7 +37,7 @@
 (defun js2r-extract-const-to-file ()
   "Extracts function to external file"
   (interactive)
-  (let* ((name (match-const-function-name (thing-at-point 'line t)))
+  (let* ((name (const-function-at-point))
          (path (concat "./" name ".js")))
     (evil-digit-argument-or-evil-beginning-of-line)
     (js2r-kill)
