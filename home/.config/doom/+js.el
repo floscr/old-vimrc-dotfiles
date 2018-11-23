@@ -15,12 +15,20 @@
   "Extranct the filename with extension from path"
   (replace-regexp-in-string (file-name-directory buffer-file-name) "" (buffer-file-name)))
 
-
 (defun match-const-function-name (line)
   "Matches a line to the word after the declaration"
   (nth 2 (s-match
           "\\(const\\|let\\|class\\)\s\\(.+?\\)\s"
           line)))
+
+(defun js2r-export-default ()
+  "Exports the current declaration at the end of the file"
+  (interactive)
+  (save-excursion
+    (let* ((name (match-const-function-name (thing-at-point 'line t))))
+      (goto-char (point-max))
+      (insert "\n")
+      (insert (template "export default <<name>>;")))))
 
 (defun js2r-extract-const-to-file ()
   "Extracts function to external file"
