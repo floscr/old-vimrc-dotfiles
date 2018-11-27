@@ -22,8 +22,8 @@
 ;; TODO For some reason this doesnt work inside the map block...
 (after! evil
   (map! :m  "-"  #'dired-jump
-        :n "[ SPC" (λ! (evil-insert-newline-below)(evil-previous-line))
-        :n "] SPC" (λ! (evil-insert-newline-above)(evil-next-line))))
+        :n "[ SPC" #'evil-motion-insert-newline-above
+        :n "] SPC" #'evil-motion-insert-newline-below))
 
 (map!
  :niv "M-="   #'default-text-scale-increase

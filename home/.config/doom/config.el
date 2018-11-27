@@ -17,6 +17,7 @@
 (load! "+reason")
 (load! "+workspace")
 (load! "+prodigy")
+(load! "+evil")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
