@@ -64,6 +64,11 @@
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
 
+ ;; Fixes for treemacs window navigation
+ (:after treemacs-evil
+   :n "C-h" #'evil-window-left
+   :n "C-l" #'evil-window-right)
+
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "search" :prefix "/"
