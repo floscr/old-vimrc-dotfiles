@@ -19,6 +19,12 @@
 
 (add-hook 'minibuffer-setup-hook 'paste-in-minibuffer)
 
+;; TODO For some reason this doesnt work inside the map block...
+(after! evil
+  (map! :m  "-"  #'dired-jump
+        :n "[ SPC" (λ! (evil-insert-newline-below)(evil-previous-line))
+        :n "] SPC" (λ! (evil-insert-newline-above)(evil-next-line))))
+
 (map!
  :niv "M-="   #'default-text-scale-increase
  :niv "M--"   #'default-text-scale-decrease
