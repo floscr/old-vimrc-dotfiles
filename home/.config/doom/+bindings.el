@@ -5,6 +5,10 @@
 (define-key minibuffer-local-map "\C-p" 'previous-history-element)
 (define-key minibuffer-local-map "\C-n" 'next-history-element)
 
+(map! :map emacs-lisp-mode-map
+      :n "g]"   #'sp-slurp-hybrid-sexp
+      :n "g["   #'sp-forward-barf-sexp)
+
 (defun paste-from-x-clipboard()
   (interactive)
   (shell-command
