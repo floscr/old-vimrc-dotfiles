@@ -31,6 +31,7 @@
     ("Google"            . "https://google.com/search?q=%s")
     ("Google images"     . "https://google.com/images?q=%s")
     ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("NPM"               . "https://npmjs.com/search?q=%s")
     ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
     ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
     ("DevDocs.io"        . "https://devdocs.io/#q=%s")
