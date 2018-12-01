@@ -12,7 +12,8 @@
   (setq-local visual-fill-column-center-text t)
   (when +write-text-scale
     (text-scale-set (if +write-mode 6 0)))
-  (setq-local line-spacing 0.8))
+  (setq-local line-spacing 0.45)
+  (setq-local visual-fill-column-width 120))
 
 ;;;###autoload
 (defun +write|init-org-mode ()
@@ -28,9 +29,10 @@
 (defun +write|init-mixed-pitch ()
   (copy-face 'variable-pitch 'write-variable-pitch)
   ;; TODO Hacky workaround to set the variable pitch font just for the current buffer
-  (set-face-attribute 'variable-pitch nil :font "Georgia")
+  (copy-face 'variable-pitch 'variable-pitch-backup)
+  (set-face-attribute 'variable-pitch nil :font "Whitman-RomanLF" :height 160)
   (mixed-pitch-mode (if +write-mode +1 -1))
-  (set-face-attribute 'variable-pitch nil :font "Helvetica"))
+  (set-face-attribute 'variable-pitch nil :font "Helvetica" :height 120))
 
 ;;;###autoload
 (defun +write|init-visual-fill-column ()

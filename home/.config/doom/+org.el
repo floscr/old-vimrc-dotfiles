@@ -214,11 +214,14 @@ E.g.: (Brackets signal the cursor position)
                        (sequence "TODO(T)" "DOING(D)" "NEXT(N)" "LATER(L)" "|" "DONE(X)" "CANCELLED(C)")))
 
   ;; Templates
+  ;; TODO: Solve this with https://github.com/plexus/a.el
   (add-to-list 'org-structure-template-alist '("e" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
   (add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("re" "#+BEGIN_SRC reason\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("ocaml" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
 
   (defun expand-org-file-names (xs)
     (mapcar (λ (x) (expand-file-name x org-directory)) xs))

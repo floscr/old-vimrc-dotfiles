@@ -16,6 +16,8 @@
   +auto
   +childframe)
  (helm +fuzzy)
+ (lsp
+   +ocaml)
 
  :ui
  doom

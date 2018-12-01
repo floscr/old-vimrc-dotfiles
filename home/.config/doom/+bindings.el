@@ -19,6 +19,12 @@
 
 (add-hook 'minibuffer-setup-hook 'paste-in-minibuffer)
 
+;; TODO For some reason this doesnt work inside the map block...
+(after! evil
+  (map! :m  "-"  #'dired-jump
+        :n "[ SPC" #'evil-motion-insert-newline-above
+        :n "] SPC" #'evil-motion-insert-newline-below))
+
 (map!
  :niv "M-="   #'default-text-scale-increase
  :niv "M--"   #'default-text-scale-decrease
@@ -58,6 +64,11 @@
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
 
+ ;; Fixes for treemacs window navigation
+ (:after treemacs-evil
+   :n "C-h" #'evil-window-left
+   :n "C-l" #'evil-window-right)
+
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "search" :prefix "/"
@@ -75,6 +86,10 @@
    :desc "Checkout"   :n  "b" #'magit-checkout
    :desc "Blame"      :n  "B" #'magit-blame
    :desc "New Branch" :n  "N" #'magit-branch-spinoff)
+
+ (:desc "window" :prefix "w"
+   :desc "Split Vertical" :n "|" #'evil-window-vsplit
+   :desc "Split Horizontal" :n "_" #'evil-window-split)
 
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
