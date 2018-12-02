@@ -16,9 +16,14 @@ brew 'git-extras'
 brew 'zsh'
 brew 'zsh-completions'
 
-# Defaults
+# python3
 brew 'python3'
-brew 'nvm'
+
+if [[ $INSTALL_NVM ]]; then
+  brew 'nvm'
+fi
+
+# Defaults
 brew 'wget'
 brew 'ffmpeg'
 
@@ -33,9 +38,6 @@ brew 'rename'
 # Move to trash cli
 brew 'trash'
 
-# NeoVim
-tap 'neovim/neovim'
-
 # To support colorprofile conversion install imagemagick with little-cms
 brew 'imagemagick', args: ['with-little-cms', 'with-little-cms2']
 
@@ -46,8 +48,10 @@ brew "dockutil"
 brew "mas"
 
 # Neovim
+tap 'neovim/neovim'
 brew "neovim/neovim/neovim", args: ["HEAD"]
 
+# tmux
 brew 'reattach-to-user-namespace'
 
 brew 'ispell', args: ['with-lang-en']
@@ -55,33 +59,25 @@ brew 'ispell', args: ['with-lang-en']
 #}}}
 # Applications -------------------------------------------------------------{{{
 
+# All Macs
 cask "1password"
 cask "alfred"
-cask "appcleaner"
-cask "arduino"
 cask "bartender"
 cask "bettertouchtool"
-cask "boom"
 cask "default-folder-x"
 cask "dropbox"
-cask "fantastical"
 cask "google-chrome"
-cask "hammerspoon"
-cask "hazel"
-cask "iterm2-beta"
-cask "iterm2-nightly"
 cask "karabiner-elements"
 cask "keyboard-maestro"
-cask "mailmate"
 cask "marked"
-cask "mplayerx"
-cask "sequel-pro"
-cask "spotify"
-cask "steam"
-cask "trickster"
-cask "virtualbox"
-cask "visual-studio-code"
 cask "selfcontrol"
+cask "trickster"
+
+if [[ $INSTALL_DEV_PACKAGES ]]; then
+  cask "sequel-pro"
+  cask "virtualbox"
+  cask "visual-studio-code"
+fi
 
 #}}}
 # Tools --------------------------------------------------------------------{{{
@@ -92,8 +88,6 @@ brew 'exa'
 brew 'fasd'
 # Quickly copy ssh keys
 brew 'ssh-copy-id'
-# Git deployment to servers without git
-brew 'git-ftp'
 # Donwload youtube videos
 brew 'youtube-dl'
 # CLI Fuzzy Finder
@@ -104,16 +98,13 @@ brew 'tree'
 brew 'the_silver_searcher'
 # Faster newer version of 'Ag'
 brew 'ripgrep'
-# Pipe to vim
-# echo 'text' | vipe
-brew 'moreutils'
 # Notifications
 brew 'terminal-notifier'
 # File manager
 brew 'ranger'
 # Spreadsheet Editor
-brew tap nickolasburr/pfa
-brew install sc-im
+# brew tap 'nickolasburr/pfa'
+# brew install sc-im
 # Encryption
 brew 'gnupg'
 
@@ -124,12 +115,13 @@ brew 'switchaudio-osx'
 #}}}
 # Coding -------------------------------------------------------------------{{{
 
-# Golang
-brew 'go', args: ["cross-compile-common"]
+if [[ $INSTAL_GO ]]; then
+  # Golang
+  brew 'go', args: ["cross-compile-common"]
+fi
 
 brew 'ctags'
 brew 'editorconfig'
-brew 'cheat'
 
 # JSON Parser
 brew 'jq'
@@ -145,8 +137,11 @@ brew 'phplint'
 #}}}
 # AppStore -----------------------------------------------------------------{{{
 
+if [[ $INSTALL_XCODE ]]; then
+  mas "Xcode", id: 497799835
+fi
+
 mas "Moom", id: 419330170
-mas "Xcode", id: 497799835
 mas "Chronoslider", id: 439549600
 
 #}}}
