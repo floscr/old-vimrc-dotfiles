@@ -35,9 +35,6 @@
                "* %? :NOTE:\n%U"))))
 
 
-(setq
- org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "|" "[X](d)"))
- org-todo-keyword-faces '(("[…]" . "grey")))
 
 (defun org-find-file (f)
   "Find file in org directory"
@@ -211,6 +208,10 @@ E.g.: (Brackets signal the cursor position)
           :desc "widen"   :m "w" #'+org|widen))
 
   :config
+
+  (setq
+   org-todo-keywords '((sequence "[ ](t)" "|" "[X](d)")
+                       (sequence "TODO(T)" "DOING(D)" "NEXT(N)" "LATER(L)" "|" "DONE(X)" "CANCELLED(C)")))
 
   ;; Templates
   ;; TODO: Solve this with https://github.com/plexus/a.el
