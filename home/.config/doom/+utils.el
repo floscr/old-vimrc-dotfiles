@@ -1,5 +1,13 @@
 ;;; ~/.homesick/repos/Dotfiles/home/.config/doom/+utils.el -*- lexical-binding: t; -*-
 
+(defun +flyspell|save-word ()
+  "Save the current word to dictionary"
+  (interactive)
+  (let* ((current-location (point))
+         (word (flyspell-get-word)))
+    (when (consp word)
+      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+
 (defun +org-web-tools-dwim-at-point ()
   "Pass url to web tools from either:
 1. An org link under the cursor
