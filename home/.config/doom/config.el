@@ -18,6 +18,7 @@
 (load! "+workspace")
 (load! "+prodigy")
 (load! "+evil")
+(load! "+spell")
 
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
