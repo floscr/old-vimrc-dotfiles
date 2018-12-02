@@ -200,7 +200,8 @@ E.g.: (Brackets signal the cursor position)
         (:desc "Insert" :prefix "i"
           :desc "Subheadeing" :m "s" (λ!
                                       (call-interactively 'org-insert-subheading)
-                                      (evil-insert-state)))
+                                      (evil-insert-state))
+          :desc "Inavtive Timestamp" :m "i" 'org-time-stamp-inactive)
         (:desc "Narrow" :prefix "n"
           :desc "Subtree" :m "s" #'+org|narrow-to-subtree
           :desc "Block"   :m "b" #'+org|narrow-to-block
