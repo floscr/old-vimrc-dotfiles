@@ -27,3 +27,6 @@ db_storages
 jsconfig.json
 
 .dir-locals.el
+
+# MM
+DevPluginsLocal/
