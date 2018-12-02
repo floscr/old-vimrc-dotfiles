@@ -25,8 +25,7 @@
 
 ;; TODO For some reason this doesnt work inside the map block...
 (after! evil
-  (map! :m  "-"  #'dired-jump
-        :n "[ SPC" #'evil-motion-insert-newline-above
+  (map! :n "[ SPC" #'evil-motion-insert-newline-above
         :n "] SPC" #'evil-motion-insert-newline-below))
 
 (map!
