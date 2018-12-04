@@ -231,7 +231,7 @@ E.g.: (Brackets signal the cursor position)
 
   (setq level-1-refile-targets (expand-org-file-names '("reading-list.org"
                                                         "cooking.org"
-                                                        "books.org"
+                                                        ;; "books.org"
                                                         "programming.org"
                                                         "shoppinglist.org")))
 
