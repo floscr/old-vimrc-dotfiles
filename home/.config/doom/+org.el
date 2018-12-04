@@ -212,7 +212,7 @@ E.g.: (Brackets signal the cursor position)
 
   (setq
    org-todo-keywords '((sequence "[ ](t)" "|" "[X](d)")
-                       (sequence "TODO(T)" "DOING(D)" "NEXT(N)" "LATER(L)" "|" "DONE(X)" "CANCELLED(C)")))
+                       (sequence "TODO(T)" "DOING(D)" "NEXT(N)" "LATER(L)" "QUESTION(Q)" "|" "DONE(X)" "CANCELLED(C)" "WAITING(W)")))
 
   ;; Templates
   ;; TODO: Solve this with https://github.com/plexus/a.el
