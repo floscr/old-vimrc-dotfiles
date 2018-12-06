@@ -79,6 +79,11 @@ if [[ $INSTALL_DEV_PACKAGES ]]; then
   cask "visual-studio-code"
 fi
 
+if [[ $INSTALL_LATEX ]]; then
+  cask "mactex"
+fi
+
+
 #}}}
 # Tools --------------------------------------------------------------------{{{
 
