@@ -18,10 +18,21 @@
    1)
   (doom/forward-to-last-non-comment-or-eol))
 
-(defun paste-in-minibuffer ()
-  (local-set-key (kbd "M-v") 'paste-from-x-clipboard))
+(defun copy-minibuffer-line ()
+  "Copies the minibuffer content to the clipboard"
+  (interactive)
+  (save-excursion
+    (doom/forward-to-last-non-comment-or-eol)
+    (set-mark-command nil)
+    (doom/backward-to-bol-or-indent)
+    (kill-ring-save (mark) (point))))
 
-(add-hook 'minibuffer-setup-hook 'paste-in-minibuffer)
+(defun setup-minibuffer ()
+  "Set up keybindings for the minibuffer"
+  (local-set-key (kbd "M-v") 'paste-from-x-clipboard)
+  (local-set-key (kbd "M-c") 'copy-minibuffer-line))
+
+(remove-hook 'minibuffer-setup-hook 'setup-minibuffer)
 
 ;; TODO For some reason this doesnt work inside the map block...
 (after! evil
