@@ -13,7 +13,7 @@
   (when +write-text-scale
     (text-scale-set (if +write-mode 6 0)))
   (setq-local line-spacing 0.45)
-  (setq-local visual-fill-column-width 120))
+  (setq-local visual-fill-column-width 95))
 
 ;;;###autoload
 (defun +write|init-org-mode ()
