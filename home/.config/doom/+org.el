@@ -135,6 +135,23 @@ E.g.: (Brackets signal the cursor position)
            ".join(\"\\n\")"))))
     (insert tabs)))
 
+(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
+  "Convert the current src block from ocaml to reason and vice versa"
+  (interactive)
+  (save-excursion
+    (let* ((old-block (org-element-at-point))
+           (old-lang (org-element-property :language old-block))
+           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
+           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml))
+           (from (org-element-property :begin old-block))
+           (to (org-element-property :end old-block)))
+      (org-edit-special)
+      (funcall formatter (point-min) (point-max))
+      (org-edit-src-exit)
+      (let ((new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang))))
+        (delete-region from to)
+        (insert new-block-parsed)))))
+
 (map! :leader (
                :desc "Notes" :prefix "n"
                :desc "Home" :n  "h" #'+org|org-open-home-file
