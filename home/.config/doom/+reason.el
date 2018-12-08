@@ -1,5 +1,11 @@
 ;;;  -*- lexical-binding: t; -*-
 
+(defun rtop ()
+  "Launch reason version of utop"
+  (interactive)
+  (cl-letf ((utop-command "rtop -emacs"))
+    (utop)))
+
 (def-package! reason-mode
   :mode "\\.rei?$"
   :commands (reason-mode)
