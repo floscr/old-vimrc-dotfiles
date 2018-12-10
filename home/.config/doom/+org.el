@@ -240,7 +240,7 @@ E.g.: (Brackets signal the cursor position)
   (add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("re" "#+BEGIN_SRC reason\n?\n#+END_SRC\n"))
-  (add-to-list 'org-structure-template-alist '("ocaml" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
+  (add-to-list 'org-structure-template-alist '("oc" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("rb" "#+BEGIN_SRC ruby\n?\n#+END_SRC\n"))
   (add-to-list 'org-structure-template-alist '("md" "#+BEGIN_SRC markdown\n?\n#+END_SRC\n"))
 
