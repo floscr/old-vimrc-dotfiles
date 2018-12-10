@@ -10,6 +10,9 @@
   :mode "\\.rei?$"
   :commands (reason-mode)
   :config
+  ;; Merlin eldoc is very slow with marking the whole type region
+  ;; Just trigger it via C-c C-t
+  (setq merlin-eldoc-doc nil)
   (let* (
          (refmt-bin (executable-find "refmt"))
          (merlin-bin (executable-find "ocamlmerlin"))
