@@ -43,7 +43,7 @@
   (interactive)
   (company-select-next (- company-candidates-length 1)))
 
-(defun math-on-number (f)
+(defun math-on-number (f &optional num)
   "Read user input and apply with function f to the number at point"
   (let* ((x (thing-at-point 'number))
          (arithmetic-symbol (pcase f
@@ -53,7 +53,7 @@
                               ('* "*")
                               (_ (error "Unknown function %s" f))))
          (readline (concat (number-to-string x) " " arithmetic-symbol " "))
-         (y (read-number readline))
+         (y (or num (read-number readline)))
          (result (funcall f x y))
          (bounds (bounds-of-thing-at-point 'evil-WORD)))
     (delete-region (car bounds) (cdr bounds))
@@ -66,6 +66,10 @@
 (defun math+|subtract-from-number ()
   (interactive)
   (math-on-number '-))
+
+(defun math+|subtract-maran-vegan ()
+  (interactive)
+  (math-on-number '- 8.60))
 
 (defun math+|divide-by-number ()
   (interactive)
