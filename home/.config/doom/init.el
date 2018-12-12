@@ -68,6 +68,7 @@
   +capture
   +export
   +present)
+ org-private
  sh
 
  :app

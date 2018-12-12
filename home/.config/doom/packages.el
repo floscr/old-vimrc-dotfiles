@@ -1,8 +1,5 @@
 (package! evil-replace-with-register)
 (package! default-text-scale)
-(package! org-journal)
-(package! org-web-tools)
-(package! helm-org-rifle)
 (package! indium)
 (package! import-js)
 (package! request)

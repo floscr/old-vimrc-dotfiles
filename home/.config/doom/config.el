@@ -13,7 +13,6 @@
 (load! "+helm")
 (load! "+indium")
 (load! "+js")
-(load! "+org")
 (load! "+reason")
 (load! "+workspace")
 (load! "+prodigy")
