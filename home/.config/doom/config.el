@@ -22,6 +22,10 @@
 (if (getenv "ENABLE_MEISTERLABS")
     (load! "+MM"))
 
+(setq
+ trash-directory "~/.Trash/"
+ delete-by-moving-to-trash t)
+
 ;; Always create workspace when switching to project
 (setq +workspaces-on-switch-project-behavior t)
 
