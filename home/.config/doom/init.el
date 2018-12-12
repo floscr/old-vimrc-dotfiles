@@ -81,3 +81,20 @@
 
 (provide 'init)
 ;;; init.el ends here
+
+(setq
+ indicate-empty-lines nil
+ which-key-idle-delay 0.3)
+
+;; * Config
+(setq
+ insert-directory-program "gls"
+ user-mail-address "flo.schroedl@gmail.com"
+ user-full-name "Florian Schrödl"
+ max-specpdl-size 10000)
+
+(setq
+ doom-localleader-key ","
+ doom-localleader-key ","
+ +default-repeat-forward-key ";"
+ +default-repeat-backward-key "'")
