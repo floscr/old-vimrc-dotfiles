@@ -53,6 +53,7 @@
  macos
  magit
  prodigy
+ rgb
 
  :lang
  data
