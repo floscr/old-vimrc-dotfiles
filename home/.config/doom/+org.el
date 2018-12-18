@@ -10,6 +10,22 @@
  org-agenda-start-day "-1d"
  org-agenda-span 5)
 
+(setq
+    org-tag-persistent-alist '(
+                               ("ACCESABILTY"))
+  org-tag-alist '(
+                  ("CSS" . ?c)
+                  ("DESIGN" . ?d)
+                  ("EMACS" . ?e)
+                  ("GUIDE" . ?g)
+                  ("HASKELL" . ?h)
+                  ("JAVASCRIPT" . ?j)
+                  ("LEISURE" . ?l)
+                  ("MATH" . ?m)
+                  ("REASON_ML" . ?r)
+                  ("REPOSITORY". ?R)
+                  ("WORK" . ?w)))
+
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
   "ds" 'org-agenda-schedule
