@@ -4,6 +4,8 @@
 (blink-cursor-mode -1)
 
 (cond
+ ((string= system-name "Florians-MBP.localdomain")
+  (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-MacBook-Air.local")
