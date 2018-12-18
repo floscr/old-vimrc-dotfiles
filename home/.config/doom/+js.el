@@ -4,8 +4,16 @@
  flycheck-javascript-eslint-executable (executable-find "eslint_d")
  flycheck-disabled-checkers '(javascript-jshint javascript))
 
-(after! rjsx-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
-(after! js2-mode (add-hook 'js2-mode-hook #'eslintd-fix-mode))
+(after! rjsx-mode
+  (add-hook 'js2-mode-hook #'eslintd-fix-mode))
+(after! js2-mode
+  (add-hook 'js2-mode-hook #'eslintd-fix-mode)
+  :config
+  (map! :map js2-mode-map
+        :localleader
+        (:desc "Indium" :prefix "i"
+          :desc "Reload" :n  "r" #'indium-reload
+          :desc "Start" :n  "s" #'indium-connect)))
 
 (defun remove-js-ext (f)
   "Remove js extension from string"
