@@ -27,6 +27,18 @@
                   ("REPOSITORY". ?R)
                   ("WORK" . ?w)))
 
+(defun org-reading-list ()
+  (interactive)
+  (let ((org-agenda-files (list org-reading-list))
+        (org-agenda-prefix-format "%t")
+        ;; (org-agenda-sorting-strategy '((timestamp-down)))
+        (org-super-agenda-groups
+              '((:name "Reading List"
+                       :time-grid t
+                       :and (:tag ("TEXT")))
+                (:name "Watching List" :and (:tag ("VIDEO"))))))
+      (org-todo-list)))
+
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
   "ds" 'org-agenda-schedule
