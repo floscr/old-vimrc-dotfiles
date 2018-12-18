@@ -11,6 +11,13 @@ Full name and email address
 (setq user-full-name "Florian Schrödl"
       user-mail-address "flo.schroedl.com")
 #+END_SRC
+
+*** GPG
+#+BEGIN_SRC elisp
+;; Use Emacs UI to enter the encryption key
+(setenv "GPG_AGENT_INFO" nil)
+(setq epa-pinentry-mode 'loopback)
+#+END_SRC
 ** Utils
 *** Macros
 **** Aliases
@@ -1236,11 +1243,6 @@ E.g.: (Brackets signal the cursor position)
 
 ;; automatically reload tags files
 (setq tags-revert-without-query 1)
-
-;; Use Emacs UI to enter the encryption key
-(setenv "GPG_AGENT_INFO" nil)
-(setq epa-pinentry-mode 'loopback)
-
 (put 'dired-find-alternate-file 'disabled nil)
 
 (global-eldoc-mode -1)
