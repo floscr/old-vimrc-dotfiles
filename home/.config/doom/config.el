@@ -1,3 +1,10 @@
+(setq user-full-name "Florian Schrödl"
+      user-mail-address "flo.schroedl.com")
+
+;; Use Emacs UI to enter the encryption key
+(setenv "GPG_AGENT_INFO" nil)
+(setq epa-pinentry-mode 'loopback)
+
 (defalias 'λ 'lambda)
 
 (defmacro template (text)
@@ -170,14 +177,53 @@ When no line spacing is given is the default-line-spacing"
   (interactive)
   (set-line-spacing (- default-line-spacing)))
 
-(define-key evil-visual-state-map (kbd "gS") #'evil-ex-sort)
-
-(define-key minibuffer-local-map "\C-p" 'previous-history-element)
-(define-key minibuffer-local-map "\C-n" 'next-history-element)
+(map!
+ :niv "M-W"   #'delete-frame
+ :en "C-±"   #'+popup/raise)
 
 (setq
  +default-repeat-forward-key ";"
  +default-repeat-backward-key "'")
+
+(after! evil
+  (map! :m  "-"  #'dired-jump))
+
+(after! evil
+  (define-key evil-visual-state-map (kbd "gS") #'evil-ex-sort))
+
+(define-key minibuffer-local-map "\C-p" 'previous-history-element)
+(define-key minibuffer-local-map "\C-n" 'next-history-element)
+
+(evil-define-motion evil-motion-insert-newline-below (count)
+  "Insert COUNT newlines below"
+  :type line
+  (save-excursion
+    (dotimes (c (or count 1))
+      (evil-insert-newline-below))))
+
+(evil-define-motion evil-motion-insert-newline-above (count)
+  "Insert COUNT newlines above"
+  :type line
+  (save-excursion
+    (dotimes (c (or count 1))
+      (evil-insert-newline-above))))
+
+(after! evil
+  (map! :n "[ SPC" #'evil-motion-insert-newline-above
+        :n "] SPC" #'evil-motion-insert-newline-below))
+
+(map!
+ :en "C-h"   #'evil-window-left
+ :en "C-j"   #'evil-window-down
+ :en "C-k"   #'evil-window-up
+ :en "C-l"   #'evil-window-right
+
+ ;; Fixes for treemacs window navigation
+ (:after treemacs-evil
+   :n "C-h" #'evil-window-left
+   :n "C-l" #'evil-window-right))
+
+(map! :n "gb" #'evil-switch-to-windows-last-buffer)
 
 (map! :map emacs-lisp-mode-map
       :n "g]"   #'sp-slurp-hybrid-sexp
@@ -206,29 +252,17 @@ When no line spacing is given is the default-line-spacing"
   (local-set-key (kbd "M-v") 'paste-from-x-clipboard)
   (local-set-key (kbd "M-c") 'copy-minibuffer-line))
 
-(remove-hook 'minibuffer-setup-hook 'setup-minibuffer)
-
-;; TODO For some reason this doesnt work inside the map block...
-(after! evil
-  (map! :n "[ SPC" #'evil-motion-insert-newline-above
-        :n "] SPC" #'evil-motion-insert-newline-below))
+(add-hook 'minibuffer-setup-hook 'setup-minibuffer)
 
 (map!
  :niv "M-="   #'default-text-scale-increase
  :niv "M--"   #'default-text-scale-decrease
- :niv "M-0"   #'default-text-scale-reset
- :niv "M-W"   #'delete-frame
- :niv "M-X"   #'+org-capture/open-frame
+ :niv "M-0"   #'default-text-scale-reset)
 
- :en "C-±"   #'+popup/raise
+(map!
+ :niv "M-X"   #'+org-capture/open-frame)
 
- ;; Easier window navigation
- :en "C-h"   #'evil-window-left
- :en "C-j"   #'evil-window-down
- :en "C-k"   #'evil-window-up
- :en "C-l"   #'evil-window-right
-
- ;; Umlaut
+(map!
  :i "A-;"   (λ! (insert "ö"))
  :i "A-:"   (λ! (insert "Ö"))
  :i "A-'"   (λ! (insert "ä"))
@@ -239,23 +273,13 @@ When no line spacing is given is the default-line-spacing"
  :i "A-e"   (λ! (insert "€"))
  :i "A-`"   (λ! (insert "°"))
  :i "A-."   (λ! (insert "…"))
- :i "A-l"   (λ! (insert "λ"))
+ :i "A-l"   (λ! (insert "λ")))
 
- :n "gb" #'evil-switch-to-windows-last-buffer
- :n "]f" #'dumb-jump-go
- :n "[f" #'dumb-jump-back
- :n "[1" #'+MM|other-file
- :n "]1" #'+MM|other-file
-
+(map!
  :leader
  :n "'"   #'+popup/toggle
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
-
- ;; Fixes for treemacs window navigation
- (:after treemacs-evil
-   :n "C-h" #'evil-window-left
-   :n "C-l" #'evil-window-right)
 
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
@@ -292,6 +316,14 @@ When no line spacing is given is the default-line-spacing"
    :desc "Create" :n "c" (λ! (let* ((name (read-string "New workspace name: ")))
                                (+workspace/new name)))
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))
+
+(map!
+ :n "]f" #'dumb-jump-go
+ :n "[f" #'dumb-jump-back)
+
+(map!
+ :n "[1" #'+MM|other-file
+ :n "]1" #'+MM|other-file)
 
 (defvar +Meisterlabs-Web-mode nil)
 
@@ -355,6 +387,11 @@ When no line spacing is given is the default-line-spacing"
 ;;   (magit-get-current-branch)
 ;;   )
 
+;; Repeat snipe after further key press
+(setq evil-snipe-repeat-keys t)
+
+(put 'dired-find-alternate-file 'disabled nil)
+
 (defun +dired|kill-dired-buffers ()
   "Kills all dired buffers
 Dired creates a buffer for every directory which it visits
@@ -385,6 +422,11 @@ But at some time I want to purge those buffers"
   (interactive)
   (company-select-next (- company-candidates-length 1)))
 
+;; Sort by occurance
+;; https://github.com/company-mode/company-mode/issues/52
+(setq company-transformers '(company-sort-by-occurrence)
+      company-idle-delay 0.5)
+
 ;; Always truncate ElDoc messages to one line. This prevents the echo
 ;; area from resizing itself unexpectedly when point is on a variable
 ;; with a multiline docstring.
@@ -393,6 +435,9 @@ But at some time I want to purge those buffers"
 ;; Show ElDoc messages in the echo area immediately, instead of after
 ;; 1/2 a second.
 (setq eldoc-idle-delay 0)
+
+;; Disable eldoc mode
+(global-eldoc-mode -1)
 
 (setq-default magit-save-repository-buffers 'dontask)
 
@@ -559,20 +604,6 @@ If possible also go to the pointing line"
       :path '("~/.nvm/versions/node/v8.8.1/bin")
       :cwd "~/Code/Meisterlabs/meistercanvas")))
 
-(evil-define-motion evil-motion-insert-newline-below (count)
-  "Insert COUNT newlines below"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-below))))
-
-(evil-define-motion evil-motion-insert-newline-above (count)
-  "Insert COUNT newlines above"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-above))))
-
 (defun +flyspell|save-word ()
   "Save the current word to dictionary"
   (interactive)
@@ -606,6 +637,41 @@ If possible also go to the pointing line"
     (setq ispell-local-dictionary "german"))))
 
 (add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
+
+;; Replace with register
+(def-package! evil-replace-with-register
+  :config
+  (setq evil-replace-with-register-key (kbd "gr"))
+  (evil-replace-with-register-install))
+
+(def-package! blimp
+  :config
+  (add-hook 'image-mode-hook 'blimp-mode))
+
+(after! smerge-mode
+  :config
+  ;; TODO This is broken after switching the theme but works for now
+  ;; This fixes the smerge diff color is really bright an ugly
+  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
+
+;; Always create workspace when switching to project
+(setq +workspaces-on-switch-project-behavior t)
+
+(setq +lookup-provider-url-alist
+  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
+    ("Google"            . "https://google.com/search?q=%s")
+    ("Google images"     . "https://google.com/images?q=%s")
+    ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("NPM"               . "https://npmjs.com/search?q=%s")
+    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
+    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
+    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
+    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
+    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
+    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
+    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
+    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 
 (setq
  flycheck-javascript-eslint-executable (executable-find "eslint_d")
@@ -1070,31 +1136,9 @@ E.g.: (Brackets signal the cursor position)
                           :documentation #'merlin-document)
     (set-company-backend! 'reason-mode 'merlin-company-backend)))
 
-(if (getenv "ENABLE_MEISTERLABS")
-    (load! "+MM"))
-
 (setq
  trash-directory "~/.Trash/"
  delete-by-moving-to-trash t)
-
-;; Always create workspace when switching to project
-(setq +workspaces-on-switch-project-behavior t)
-
-(setq +lookup-provider-url-alist
-  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
-    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
-    ("Google"            . "https://google.com/search?q=%s")
-    ("Google images"     . "https://google.com/images?q=%s")
-    ("Google maps"       . "https://maps.google.com/maps?q=%s")
-    ("NPM"               . "https://npmjs.com/search?q=%s")
-    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
-    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
-    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
-    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
-    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
-    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
-    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
-    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
@@ -1102,48 +1146,7 @@ E.g.: (Brackets signal the cursor position)
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")
 
-;; Save command history
 (savehist-mode 1)
-
-;; Sort by occurance
-;; https://github.com/company-mode/company-mode/issues/52
-(setq company-transformers '(company-sort-by-occurrence)
-      company-idle-delay 0.5)
-
-;; Repeat snipe after further key press
-(setq evil-snipe-repeat-keys t)
 
 ;; automatically reload tags files
 (setq tags-revert-without-query 1)
-
-;; Use Emacs UI to enter the encryption key
-(setenv "GPG_AGENT_INFO" nil)
-(setq epa-pinentry-mode 'loopback)
-
-(put 'dired-find-alternate-file 'disabled nil)
-
-(global-eldoc-mode -1)
-
-;; ;; Branching undo
-;; (def-package! undo-tree
-;;   :after-call (doom-exit-buffer-hook after-find-file)
-;;   :config
-;;   (setq undo-tree-auto-save-history t
-;;       undo-tree-history-directory-alist `((".*" . ,temporary-file-directory)))
-;;   (global-undo-tree-mode +1))
-
-;; Replace with register
-(def-package! evil-replace-with-register
-  :config
-  (setq evil-replace-with-register-key (kbd "gr"))
-  (evil-replace-with-register-install))
-
-(def-package! blimp
-  :config
-  (add-hook 'image-mode-hook 'blimp-mode))
-
-(after! smerge-mode
-  :config
-  ;; TODO This is broken after switching the theme but works for now
-  ;; This fixes the smerge diff color is really bright an ugly
-  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))

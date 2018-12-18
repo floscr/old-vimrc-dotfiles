@@ -1268,31 +1268,38 @@ E.g.: (Brackets signal the cursor position)
     (set-company-backend! 'reason-mode 'merlin-company-backend)))
 #+END_SRC
 ** General Config
-*** Move items to trash on delete
+
+Move items to trash on delete
+
 #+BEGIN_SRC elisp
 (setq
  trash-directory "~/.Trash/"
  delete-by-moving-to-trash t)
 #+END_SRC
-*** Auto Modes
+
+Automatically set mode for specifc filenames
+
 #+BEGIN_SRC elisp
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 #+END_SRC
-*** Terminal
+
+Set the terminal to zsh
+
 #+BEGIN_SRC elisp
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")
 #+END_SRC
-*** Save-Hist Mode
 
 Save the command history between sessions
+The history can be accessed with ~C-n~ / ~C-p~
 
 #+BEGIN_SRC elisp
 (savehist-mode 1)
 #+END_SRC
-*** Fix Tags
+
+Automatically reload tags files
+
 #+BEGIN_SRC elisp
-;; automatically reload tags files
 (setq tags-revert-without-query 1)
 #+END_SRC
