@@ -79,3 +79,6 @@
 
 (provide 'init)
 ;;; init.el ends here
+
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
