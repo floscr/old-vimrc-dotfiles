@@ -6,7 +6,6 @@
 (define-key minibuffer-local-map "\C-n" 'next-history-element)
 
 (setq
- doom-localleader-key ","
  +default-repeat-forward-key ";"
  +default-repeat-backward-key "'")
 
