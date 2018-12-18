@@ -2,6 +2,7 @@
 (package! default-text-scale)
 (package! org-journal)
 (package! org-web-tools)
+(package! org-super-agenda)
 (package! helm-org-rifle)
 (package! indium)
 (package! import-js)
