@@ -5,7 +5,8 @@
 (setq
  org-directory (expand-file-name "~/Dropbox/org")
  org-default-notes-file (concat org-directory "/inbox.org")
- org-shopping-list (concat org-directory "/shoppinglist.org")
+ org-shopping-list-file (concat org-directory "/shoppinglist.org")
+ org-reading-list (concat org-directory "/reading-list.org")
 
  org-agenda-start-day "-1d"
  org-agenda-span 5)
