@@ -461,9 +461,21 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
 ;;   (magit-get-current-branch)
 ;;   )
 #+END_SRC
-
-** Packages
+** Packages & Modules
+*** Evil-Snipe
+#+BEGIN_SRC elisp
+;; Repeat snipe after further key press
+(setq evil-snipe-repeat-keys t)
+#+END_SRC
 *** Dired
+Disable dired from opening files in a new window
+
+#+BEGIN_SRC elisp
+(put 'dired-find-alternate-file 'disabled nil)
+#+END_SRC
+
+Kill all dired buffers with ~Q~
+
 #+BEGIN_SRC elisp
 (defun +dired|kill-dired-buffers ()
   "Kills all dired buffers
@@ -480,7 +492,11 @@ But at some time I want to purge those buffers"
       :after dired
       :map dired-mode-map
       :n "Q" #'+dired|kill-dired-buffers)
+#+END_SRC
 
+Use ~gls~ with dired which is way faster than osx ~ls~
+
+#+BEGIN_SRC elisp
 (after!
   dired
   :config
@@ -497,6 +513,14 @@ But at some time I want to purge those buffers"
   (interactive)
   (company-select-next (- company-candidates-length 1)))
 #+END_SRC
+
+#+BEGIN_SRC elisp
+;; Sort by occurance
+;; https://github.com/company-mode/company-mode/issues/52
+(setq company-transformers '(company-sort-by-occurrence)
+      company-idle-delay 0.5)
+
+#+END_SRC
 *** Eldoc
 #+BEGIN_SRC elisp
 ;; Always truncate ElDoc messages to one line. This prevents the echo
@@ -507,8 +531,10 @@ But at some time I want to purge those buffers"
 ;; Show ElDoc messages in the echo area immediately, instead of after
 ;; 1/2 a second.
 (setq eldoc-idle-delay 0)
-#+END_SRC
 
+;; Disable eldoc mode
+(global-eldoc-mode -1)
+#+END_SRC
 *** Git
 #+BEGIN_SRC elisp
 (setq-default magit-save-repository-buffers 'dontask)
@@ -719,6 +745,33 @@ If possible also go to the pointing line"
     (setq ispell-local-dictionary "german"))))
 
 (add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
+#+END_SRC
+*** Replace With Register
+#+BEGIN_SRC elisp
+;; Replace with register
+(def-package! evil-replace-with-register
+  :config
+  (setq evil-replace-with-register-key (kbd "gr"))
+  (evil-replace-with-register-install))
+#+END_SRC
+*** Blimp
+#+BEGIN_SRC elisp
+(def-package! blimp
+  :config
+  (add-hook 'image-mode-hook 'blimp-mode))
+#+END_SRC
+*** TODO Smerge Mode
+#+BEGIN_SRC elisp
+(after! smerge-mode
+  :config
+  ;; TODO This is broken after switching the theme but works for now
+  ;; This fixes the smerge diff color is really bright an ugly
+  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
+#+END_SRC
+*** TODO Workspaces
+#+BEGIN_SRC elisp
+;; Always create workspace when switching to project
+(setq +workspaces-on-switch-project-behavior t)
 #+END_SRC
 *** Lookup
 #+BEGIN_SRC elisp
@@ -1215,57 +1268,31 @@ E.g.: (Brackets signal the cursor position)
     (set-company-backend! 'reason-mode 'merlin-company-backend)))
 #+END_SRC
 ** General Config
+*** Move items to trash on delete
 #+BEGIN_SRC elisp
-(if (getenv "ENABLE_MEISTERLABS")
-    (load! "+MM"))
-
 (setq
  trash-directory "~/.Trash/"
  delete-by-moving-to-trash t)
+#+END_SRC
+*** Auto Modes
+#+BEGIN_SRC elisp
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
-
+#+END_SRC
+*** Terminal
+#+BEGIN_SRC elisp
 ;; Set the default multi-term to zsh
 (setq multi-term-program "/bin/zsh")
+#+END_SRC
+*** Save-Hist Mode
 
-;; Save command history
+Save the command history between sessions
+
+#+BEGIN_SRC elisp
 (savehist-mode 1)
-
-;; Sort by occurance
-;; https://github.com/company-mode/company-mode/issues/52
-(setq company-transformers '(company-sort-by-occurrence)
-      company-idle-delay 0.5)
-
-;; Repeat snipe after further key press
-(setq evil-snipe-repeat-keys t)
-
+#+END_SRC
+*** Fix Tags
+#+BEGIN_SRC elisp
 ;; automatically reload tags files
 (setq tags-revert-without-query 1)
-(put 'dired-find-alternate-file 'disabled nil)
-
-(global-eldoc-mode -1)
-
-;; ;; Branching undo
-;; (def-package! undo-tree
-;;   :after-call (doom-exit-buffer-hook after-find-file)
-;;   :config
-;;   (setq undo-tree-auto-save-history t
-;;       undo-tree-history-directory-alist `((".*" . ,temporary-file-directory)))
-;;   (global-undo-tree-mode +1))
-
-;; Replace with register
-(def-package! evil-replace-with-register
-  :config
-  (setq evil-replace-with-register-key (kbd "gr"))
-  (evil-replace-with-register-install))
-
-(def-package! blimp
-  :config
-  (add-hook 'image-mode-hook 'blimp-mode))
-
-(after! smerge-mode
-  :config
-  ;; TODO This is broken after switching the theme but works for now
-  ;; This fixes the smerge diff color is really bright an ugly
-  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
 #+END_SRC
