@@ -12,7 +12,8 @@ Full name and email address
       user-mail-address "flo.schroedl.com")
 #+END_SRC
 
-*** GPG
+Setup GPG
+
 #+BEGIN_SRC elisp
 ;; Use Emacs UI to enter the encryption key
 (setenv "GPG_AGENT_INFO" nil)
@@ -907,6 +908,19 @@ If possible also go to the pointing line"
         (message "No url found")))))
 #+END_SRC
 
+**** Reading List
+#+BEGIN_SRC elisp
+(defun org-reading-list ()
+  (interactive)
+  (let ((org-agenda-files (list org-reading-list))
+        (org-agenda-prefix-format "%t")
+        ;; (org-agenda-sorting-strategy '((timestamp-down)))
+        (org-super-agenda-groups
+              '((:name "Reading List"
+                       :auto-property "INTEREST"
+                       :and (:tag ("TEXT" "VIDEO"))))))
+      (org-todo-list)))
+#+END_SRC
 **** Config
 #+BEGIN_SRC elisp
 (setq projectile-globally-ignored-file-suffixes '(".org_archive"))
@@ -935,18 +949,6 @@ If possible also go to the pointing line"
                   ("REASON_ML" . ?r)
                   ("REPOSITORY". ?R)
                   ("WORK" . ?w)))
-
-(defun org-reading-list ()
-  (interactive)
-  (let ((org-agenda-files (list org-reading-list))
-        (org-agenda-prefix-format "%t")
-        ;; (org-agenda-sorting-strategy '((timestamp-down)))
-        (org-super-agenda-groups
-              '((:name "Reading List"
-                       :time-grid t
-                       :and (:tag ("TEXT")))
-                (:name "Watching List" :and (:tag ("VIDEO"))))))
-      (org-todo-list)))
 
 (evil-define-key 'motion org-agenda-mode-map
   "vd" 'org-agenda-day-view
