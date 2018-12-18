@@ -116,7 +116,8 @@
    :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
    :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
    :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name)))))
+   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
+   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name)))))
  (:desc "workspace" :prefix [tab]
    :desc "Create" :n "c" (λ! (let* ((name (read-string "New workspace name: ")))
                                (+workspace/new name)))
