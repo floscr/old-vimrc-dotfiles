@@ -53,6 +53,7 @@
  macos
  magit
  prodigy
+ rgb
 
  :lang
  data
@@ -82,3 +83,10 @@
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+;; * Config
+(setq
+ insert-directory-program "gls"
+ user-mail-address "flo.schroedl@gmail.com"
+ user-full-name "Florian Schrödl"
+ max-specpdl-size 10000)

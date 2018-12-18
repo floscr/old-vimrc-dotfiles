@@ -5,6 +5,11 @@
 (define-key minibuffer-local-map "\C-p" 'previous-history-element)
 (define-key minibuffer-local-map "\C-n" 'next-history-element)
 
+(setq
+ doom-localleader-key ","
+ +default-repeat-forward-key ";"
+ +default-repeat-backward-key "'")
+
 (map! :map emacs-lisp-mode-map
       :n "g]"   #'sp-slurp-hybrid-sexp
       :n "g["   #'sp-forward-barf-sexp)
