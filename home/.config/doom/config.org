@@ -720,6 +720,24 @@ If possible also go to the pointing line"
 
 (add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
 #+END_SRC
+*** Lookup
+#+BEGIN_SRC elisp
+(setq +lookup-provider-url-alist
+  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
+    ("Google"            . "https://google.com/search?q=%s")
+    ("Google images"     . "https://google.com/images?q=%s")
+    ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("NPM"               . "https://npmjs.com/search?q=%s")
+    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
+    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
+    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
+    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
+    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
+    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
+    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
+    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
+#+END_SRC
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
@@ -1204,26 +1222,6 @@ E.g.: (Brackets signal the cursor position)
 (setq
  trash-directory "~/.Trash/"
  delete-by-moving-to-trash t)
-
-;; Always create workspace when switching to project
-(setq +workspaces-on-switch-project-behavior t)
-
-(setq +lookup-provider-url-alist
-  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
-    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
-    ("Google"            . "https://google.com/search?q=%s")
-    ("Google images"     . "https://google.com/images?q=%s")
-    ("Google maps"       . "https://maps.google.com/maps?q=%s")
-    ("NPM"               . "https://npmjs.com/search?q=%s")
-    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
-    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
-    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
-    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
-    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
-    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
-    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
-    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
-
 ;; auto-mode-alist
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 
