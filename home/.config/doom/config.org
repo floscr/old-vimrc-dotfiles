@@ -341,7 +341,13 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
  :i "A-."   (λ! (insert "…"))
  :i "A-l"   (λ! (insert "λ")))
 #+END_SRC
+*** Insert bindings
 
+Insert from the kill ring in insert mode
+
+#+BEGIN_SRC elisp
+(map! :i "A-y" #'helm-show-kill-ring)
+#+END_SRC
 *** Leader Bindings
 #+BEGIN_SRC elisp
 (map!
