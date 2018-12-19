@@ -355,6 +355,8 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
  (:desc "search" :prefix "/"
    :desc "Search project" :n  "p" #'helm-projectile-ag)
 
+ (:desc "file" :prefix "f"
+   :desc "find in literate config file" :n  "p" #'helm-org-rifle-config)
 
  (:desc "buffer" :prefix "b"
    :desc "Delete File" :n  "D" #'delete-current-buffer-file
@@ -928,7 +930,14 @@ If possible also go to the pointing line"
                        :and (:tag ("TEXT" "VIDEO"))))))
       (org-todo-list)))
 #+END_SRC
-**** Config
+**** Config Rifle
+#+BEGIN_SRC elisp
+(defun helm-org-rifle-config ()
+  "Rifle for the literate configuration file"
+  (interactive)
+  (helm-org-rifle-files (list +literate-config-file)))
+#+END_SRC
+**** TODO Config
 #+BEGIN_SRC elisp
 (setq projectile-globally-ignored-file-suffixes '(".org_archive"))
 
