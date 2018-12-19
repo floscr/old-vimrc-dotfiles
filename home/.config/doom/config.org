@@ -1293,6 +1293,14 @@ E.g.: (Brackets signal the cursor position)
 #+END_SRC
 ** General Config
 
+Fine undo
+Whether actions like "cw" are undone in several steps.
+
+#+BEGIN_SRC elisp
+(setq evil-want-fine-undo t)
+#+END_SRC
+
+
 Move items to trash on delete
 
 #+BEGIN_SRC elisp
