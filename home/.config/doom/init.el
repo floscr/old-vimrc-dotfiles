@@ -76,7 +76,8 @@
  writeme
 
  :config
- (default +bindings +snippets +evil-commands))
+ (default +bindings +snippets +evil-commands)
+ literate)
 
 (provide 'init)
 ;;; init.el ends here
