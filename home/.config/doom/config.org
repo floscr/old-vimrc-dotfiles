@@ -355,8 +355,6 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
  (:desc "search" :prefix "/"
    :desc "Search project" :n  "p" #'helm-projectile-ag)
 
- (:desc "toggle" :prefix "t"
-   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
 
  (:desc "buffer" :prefix "b"
    :desc "Delete File" :n  "D" #'delete-current-buffer-file
@@ -368,23 +366,28 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
    :desc "Blame"      :n  "B" #'magit-blame
    :desc "New Branch" :n  "N" #'magit-branch-spinoff)
 
+ (:desc "project" :prefix "p"
+   :desc "services" :n  "s" #'prodigy
+   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
+
+ (:desc "toggle" :prefix "t"
+   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
+
  (:desc "window" :prefix "w"
    :desc "Split Vertical" :n "|" #'evil-window-vsplit
    :desc "Split Horizontal" :n "_" #'evil-window-split)
 
- (:desc "project" :prefix "p"
-   :desc "services" :n  "s" #'prodigy
-   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
+ (:desc "workspace" :prefix [tab]
+   :desc "Create" :n "c" (λ! (let* ((name (read-string "New workspace name: ")))))
+   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited)
+
  (:desc "Yank" :prefix "y"
    :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
    :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
    :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
    :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name)))))
- (:desc "workspace" :prefix [tab]
-   :desc "Create" :n "c" (λ! (let* ((name (read-string "New workspace name: ")))
-                               (+workspace/new name)))
-   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited))
+   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
+
 #+END_SRC
 
 *** Dumb Jump
