@@ -911,6 +911,10 @@ If possible also go to the pointing line"
         (message "No url found")))))
 #+END_SRC
 
+**** Config
+#+BEGIN_SRC elisp
+(setq org-src-window-setup 'current-window)
+#+END_SRC
 **** Reading List
 #+BEGIN_SRC elisp
 (defun org-reading-list ()
