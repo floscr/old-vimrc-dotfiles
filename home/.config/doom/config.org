@@ -511,30 +511,18 @@ But at some time I want to purge those buffers"
 #+END_SRC
 
 Use ~gls~ with dired which is way faster than osx ~ls~
-
-#+BEGIN_SRC elisp
-(after!
-  dired
-  :config
-  ;; Better dired sorting by using the unix ls command instead of the native osx one
-  ;; Otherwise the system will come to a crashing halt when using -h flag
-  ;; brew install coreutils
-  (when (and IS-MAC (locate-file "gls" exec-path))
-    (setq dired-listing-switches "-la -h --group-directories-first")
-    (setq insert-directory-program "gls" dired-use-ls-dired t)))
-#+END_SRC
-
-Enable =dired-k-human-readable= when =-h= flag is given.
+Must enable =dired-k-human-readable= when =-h= flag is given.
 Otherwise dired comes to a grinding halt on some sizes.
 
 #+BEGIN_SRC elisp
 (after!
   dired
   :config
-  (require 's)
-  (setq dired-k-human-readable (s-contains? "-h" dired-listing-switches)))
+  (when (and IS-MAC (locate-file "gls" exec-path))
+    (setq dired-listing-switches "-la -h --group-directories-first"
+          dired-k-human-readable t
+          insert-directory-program "gls" dired-use-ls-dired t)))
 #+END_SRC
-
 
 *** Company
 #+BEGIN_SRC elisp
