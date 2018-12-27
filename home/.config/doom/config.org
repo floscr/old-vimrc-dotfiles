@@ -1060,8 +1060,7 @@ If possible also go to the pointing line"
 (defun +org|narrow-to-subtree ()
   "Narrow to subtree and disable org-indent-mode"
   (interactive)
-  (org-narrow-to-subtree)
-  (org-indent-mode -1))
+  (org-narrow-to-subtree))
 
 (defun +org|narrow-to-block ()
   "Narrow to subtree and disable org-indent-mode"
