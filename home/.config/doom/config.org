@@ -528,7 +528,11 @@ Enable =dired-k-human-readable= when =-h= flag is given.
 Otherwise dired comes to a grinding halt on some sizes.
 
 #+BEGIN_SRC elisp
-(setq dired-k-human-readable (s-contains? "-h" dired-listing-switches))
+(after!
+  dired
+  :config
+  (require 's)
+  (setq dired-k-human-readable (s-contains? "-h" dired-listing-switches)))
 #+END_SRC
 
 
