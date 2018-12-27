@@ -298,7 +298,6 @@ E.g.: ?* -> Clipboard Contents"
 (defun paste-evil-register-clipboard-pruned ()
   "Paste the current clipboard pruned from newlines"
   (interactive)
-  (require 's)
   (insert (s-trim (evil-get-register-string ?*)))
   (doom/forward-to-last-non-comment-or-eol))
 
