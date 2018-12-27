@@ -1080,8 +1080,8 @@ If possible also go to the pointing line"
   "Paste the frontmost chrome link
 Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
 E.g.: (Brackets signal the cursor position)
-**[*]
-***[]"
+,**[*]
+,***[]"
   (interactive)
   (unless (looking-at-p "[\s\t\n\r]") (forward-char))
   (insert " ")
