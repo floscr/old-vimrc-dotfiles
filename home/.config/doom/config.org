@@ -289,13 +289,17 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
 - ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
 
 #+BEGIN_SRC elisp
-(defun paste-from-x-clipboard()
+(defun evil-get-register-string (REGISTER)
+  "Get evil-register pure text content
+Registers can be selected with ?letter
+E.g.: ?* -> Clipboard Contents"
+  (evil-vector-to-string (evil-get-register REGISTER)))
+
+(defun paste-evil-register-clipboard-pruned ()
+  "Paste the current clipboard pruned from newlines"
   (interactive)
-  (shell-command
-   (cond
-    (IS-MAC "pbpaste")
-    (t "xsel -ob"))
-   1)
+  (require 's)
+  (insert (s-trim (evil-get-register-string ?*)))
   (doom/forward-to-last-non-comment-or-eol))
 
 (defun copy-minibuffer-line ()
@@ -309,7 +313,7 @@ Since the minibuffer has no evil mode, i've got these bindings to help out:
 
 (defun setup-minibuffer ()
   "Set up keybindings for the minibuffer"
-  (local-set-key (kbd "M-v") 'paste-from-x-clipboard)
+  (local-set-key (kbd "M-v") 'paste-evil-register-clipboard-pruned)
   (local-set-key (kbd "M-c") 'copy-minibuffer-line))
 
 (add-hook 'minibuffer-setup-hook 'setup-minibuffer)
