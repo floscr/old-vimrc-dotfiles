@@ -12,6 +12,7 @@
 (package! blimp)
 (package! reason-mode)
 (package! rainbow-mode)
+(package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 
 ;; TODO Evil-Briefcase does not work
 ;; (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
