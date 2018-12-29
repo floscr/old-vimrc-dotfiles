@@ -13,6 +13,7 @@
 (package! reason-mode)
 (package! rainbow-mode)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
+(package! evil-matchit :recipe (:fetcher github :repo "redguardtoo/evil-matchit" :commit "7d65b4167b1f0086c2b42b3aec805e47a0d355c4"))
 
 ;; TODO Evil-Briefcase does not work
 ;; (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
