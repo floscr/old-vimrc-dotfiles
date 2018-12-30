@@ -31,3 +31,4 @@ home/.config/hub
 
 # Vscode
 settings/all/vscode/workspaceStorage/**
+home/.config/doom/config.el
