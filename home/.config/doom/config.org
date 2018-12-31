@@ -323,8 +323,8 @@ E.g.: ?* -> Clipboard Contents"
 
 (defun setup-minibuffer ()
   "Set up keybindings for the minibuffer"
-  (local-set-key (kbd "M-v") 'paste-evil-register-clipboard-pruned)
-  (local-set-key (kbd "M-c") 'copy-minibuffer-line))
+  (local-set-key (kbd "s-v") 'paste-evil-register-clipboard-pruned)
+  (local-set-key (kbd "s-c") 'copy-minibuffer-line))
 
 (add-hook 'minibuffer-setup-hook 'setup-minibuffer)
 #+END_SRC
