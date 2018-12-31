@@ -143,10 +143,8 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
 #+END_SRC
 
 ** UI
+*** System specific
 #+BEGIN_SRC elisp
-(remove-hook 'doom-init-ui-hook #'blink-cursor-mode)
-(blink-cursor-mode -1)
-
 (cond
  ((string= system-name "Florians-MBP.localdomain")
   (setq-default line-spacing 0.3))
@@ -164,14 +162,12 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
     ;; Fix for small helm ui on small display
     (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)))
  (t (setq-default line-spacing 0.15)))
+#+END_SRC
+*** Theme Toggle
 
-(setq
- scroll-conservatively 10
- scroll-margin 10)
+Allows me to toggle quickly between two themes.
 
-;; Remove Scrolloff for terminal
-(add-hook 'term-mode-hook (λ! (setq-local scroll-margin 0)))
-
+#+BEGIN_SRC elisp
 (defconst light-theme 'doom-one)
 (defconst dark-theme  'doom-one-light)
 
@@ -187,7 +183,30 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
          (setq doom-theme dark-theme)
          (doom/reload-theme))
         (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
+#+END_SRC
+*** General UI Changes
 
+Remove the blinking cursor.
+
+#+BEGIN_SRC elisp
+(remove-hook 'doom-init-ui-hook #'blink-cursor-mode)
+(blink-cursor-mode -1)
+#+END_SRC
+
+Start scrolling X lines before the end of a screen.
+Disable for terminal buffers, since there cane be issues completion/interactive
+shell scripts.
+
+#+BEGIN_SRC elisp
+(setq
+ scroll-conservatively 10
+ scroll-margin 10)
+
+(add-hook 'term-mode-hook (λ! (setq-local scroll-margin 0)))
+#+END_SRC
+*** Line Spacing
+Change and reset line-spacing for all buffers.
+#+BEGIN_SRC elisp
 (defvar default-line-spacing 0.2)
 
 (defun set-line-spacing (&optional spacing)
