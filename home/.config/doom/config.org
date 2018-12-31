@@ -553,18 +553,20 @@ Otherwise dired comes to a grinding halt on some sizes.
 #+END_SRC
 
 *** Company
+Select last item of company, not used for now
+
 #+BEGIN_SRC elisp
 (defun company-select-last ()
   (interactive)
   (company-select-next (- company-candidates-length 1)))
 #+END_SRC
 
+Sort company by occurance
+ [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
+
 #+BEGIN_SRC elisp
-;; Sort by occurance
-;; https://github.com/company-mode/company-mode/issues/52
 (setq company-transformers '(company-sort-by-occurrence)
       company-idle-delay 0.5)
-
 #+END_SRC
 *** Eldoc
 #+BEGIN_SRC elisp
