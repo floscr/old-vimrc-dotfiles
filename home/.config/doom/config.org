@@ -137,6 +137,12 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
   (cl-letf (((symbol-function 'projectile-project-root) #'find-workspace-project-root))
       (projectile-find-file)))
 
+(defun +workspace|new-named ()
+  "Prompt for a name and create a workspace in that name"
+  (interactive)
+  (let ((name (read-string "New workspace name: ")))
+    (if name (+workspace/new name))))
+
 (defun find-workspace-project-root (&optional arg)
   "Gets the root dir for the current workspace"
   (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
@@ -418,7 +424,7 @@ Insert from the kill ring in insert mode
    :desc "Split Horizontal" :n "_" #'evil-window-split)
 
  (:desc "workspace" :prefix [tab]
-   :desc "Create" :n "c" (λ! (let* ((name (read-string "New workspace name: ")))))
+   :desc "Create" :n "c" #'+workspace|new-named
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited)
 
  (:desc "Yank" :prefix "y"
