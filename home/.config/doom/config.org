@@ -247,12 +247,6 @@ When no line spacing is given is the default-line-spacing"
  :en "C-±"   #'+popup/raise)
 #+END_SRC
 *** Evil
-**** Find Previous/Next letters with ~;/'~
-#+BEGIN_SRC elisp
-(setq
- +default-repeat-forward-key ";"
- +default-repeat-backward-key "'")
-#+END_SRC
 **** Go up one directory from the current buffer
 #+BEGIN_SRC elisp
 (after! evil
@@ -314,6 +308,7 @@ Slurp and Barf expressions
       :n "g["   #'sp-forward-barf-sexp)
 #+END_SRC
 *** Copy and Paste from the minibuffer
+
 Since the minibuffer has no evil mode, i've got these bindings to help out:
 - ~M-c~: Copy the minibuffer line
 - ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
