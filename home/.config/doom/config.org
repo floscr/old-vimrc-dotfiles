@@ -40,7 +40,7 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
           (replace-match "%s" t t))
         `(format ,(buffer-string) ,@(reverse (mapcar 'read matches)))))))
 #+END_SRC
-*** Buffers
+*** Delete current Buffer File
 #+BEGIN_SRC elisp
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
@@ -58,7 +58,7 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
           (call-interactively #'projectile-invalidate-cache))
         (message "File '%s' successfully removed" filename)))))
 #+END_SRC
-*** General
+*** Utility Functions
 #+BEGIN_SRC elisp
 (defun do-jxa-script (cmd)
   "Run a osx javascript automation script via bash"
