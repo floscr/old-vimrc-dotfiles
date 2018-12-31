@@ -620,10 +620,6 @@ If possible also go to the pointing line"
           (current-line (thing-at-point 'line t)))
       (delete-other-windows)
       (find-file file-name))))
-      ;; (when (string= (thing-at-point 'line t) 'current-line)
-      ;;   (message "SAME LINE")
-      ;;   (goto-line line-number))
-
 
 (defun +git|commit-search-message-history ()
   "Search and insert commit message from history."
@@ -643,8 +639,6 @@ If possible also go to the pointing line"
   (setq
    magithub-clone-default-directory "~/Code/Repositories"
    git-commit-summary-max-length 120))
-  ;; (bind-key "M-r" #'+git|commit-search-message-history git-commit-mode-map)
-  ;; (add-to-list 'savehist-additional-variables log-edit-comment-ring))
 
 (map!
  :leader
@@ -1329,7 +1323,6 @@ Whether actions like "cw" are undone in several steps.
 #+BEGIN_SRC elisp
 (setq evil-want-fine-undo t)
 #+END_SRC
-
 
 Move items to trash on delete
 
