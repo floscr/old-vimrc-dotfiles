@@ -339,6 +339,10 @@ E.g.: ?* -> Clipboard Contents"
 #+BEGIN_SRC elisp
 (map!
  :niv "M-X"   #'+org-capture/open-frame)
+
+(map! :map outline-mode-map
+      :n "s-k" #'org-metaup
+      :n "s-j" #'org-metadown)
 #+END_SRC
 *** German Umlaut
 #+BEGIN_SRC elisp
