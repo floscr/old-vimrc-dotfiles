@@ -213,7 +213,18 @@ When no line spacing is given is the default-line-spacing"
 *** General Bindings
 #+BEGIN_SRC elisp
 (map!
- :niv "M-W"   #'delete-frame
+ :niv "M-W" #'delete-frame
+
+ :niv "s-1" (λ! (+workspace/switch-to 0))
+ :niv "s-2" (λ! (+workspace/switch-to 1))
+ :niv "s-3" (λ! (+workspace/switch-to 2))
+ :niv "s-4" (λ! (+workspace/switch-to 3))
+ :niv "s-5" (λ! (+workspace/switch-to 4))
+ :niv "s-6" (λ! (+workspace/switch-to 5))
+ :niv "s-7" (λ! (+workspace/switch-to 6))
+ :niv "s-8" (λ! (+workspace/switch-to 7))
+ :niv "s-9" (λ! (+workspace/switch-to 9))
+
  :en "C-±"   #'+popup/raise)
 #+END_SRC
 *** Evil
