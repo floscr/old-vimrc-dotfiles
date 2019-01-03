@@ -12,6 +12,7 @@
 (package! blimp)
 (package! reason-mode)
 (package! rainbow-mode)
+(package! org-noter)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 
 ;; TODO Evil-Briefcase does not work
