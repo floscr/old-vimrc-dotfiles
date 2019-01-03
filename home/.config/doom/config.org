@@ -655,6 +655,8 @@ If possible also go to the pointing line"
 #+END_SRC
 
 *** Helm
+**** Use ag as default grep search
+
 #+BEGIN_SRC elisp
 (defun projectile-switch-project-and-do-ag (project)
   "Switch to a project and do a search"
@@ -670,34 +672,47 @@ If possible also go to the pointing line"
 ;;   "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
 ;;   )
 
-;; (defun ar/shell-send-command (command)
-;;   "Send COMMAND to shell mode."
-;;   ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
-;;   (goto-char (point-max))
-;;   (comint-kill-input)
-;;   (insert command)
-;;   (comint-send-input))
+**** TODO Helm Terminal History C-R
+#+BEGIN_SRC elisp :tangle no
+(defun ar/helm-helm (title candidates on-select-function)
+  "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
+  )
 
-;; (defun split-up-to-semi-colon (s)
-;;   "Splits a string up to the first semi-colon"
-;;   (last (s-split-up-to ";" s 1)))
+(defun ar/shell-send-command (command)
+  "Send COMMAND to shell mode."
+  ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
+  (goto-char (point-max))
+  (comint-kill-input)
+  (insert command)
+  (comint-send-input))
 
-;; (defun opt (x y)
-;;   "Helper function - When x is non-nil use x otherwise use y"
-;;   (if x x y))
+(defun split-up-to-semi-colon (s)
+  "Splits a string up to the first semi-colon"
+  (last (s-split-up-to ";" s 1)))
 
-;; (defun parse-zsh-history (&optional file)
-;;   "Read the zsh_history and parse the commands"
-;;   (with-temp-buffer
-;;     (insert-file-contents (opt file "~/.zsh_history") nil 0 500)
-;;     (mapcar 'split-up-to-semi-colon
-;;           (delete-dups
-;;             (split-string (buffer-string) "\n")))))
+(defun opt (x y)
+  "Helper function - When x is non-nil use x otherwise use y"
+  (if x x y))
 
-;; (defvar +helm|zsh-history
-;;   '((name . "Zsh History")
-;;     (candidates-process . (lambda)))
-;;   )
+(defun parse-zsh-history (&optional file)
+  "Read the zsh_history and parse the commands"
+  (with-temp-buffer
+    (insert-file-contents (opt file "~/.zsh_history") nil 0 500)
+    (mapcar 'split-up-to-semi-colon
+          (delete-dups
+            (split-string (buffer-string) "\n")))))
+
+(defvar +helm|zsh-history
+  '((name . "Zsh History")
+    (candidates-process . (lambda)))
+  )
+
+(defun +helm|zsh-history ()
+  "Narrow down bash history with helm."
+  (interactive)
+  (helm :sources +helm|zsh-history
+        :prompt  "shell command: "
+        :buffer  "*helm shell history*"))
 
 ;; (defun +helm|zsh-history ()
 ;;   "Narrow down bash history with helm."
