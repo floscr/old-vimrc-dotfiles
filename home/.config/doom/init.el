@@ -54,6 +54,7 @@
  magit
  prodigy
  rgb
+ pdf
 
  :lang
  data
