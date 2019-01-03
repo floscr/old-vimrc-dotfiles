@@ -833,6 +833,11 @@ If possible also go to the pointing line"
   ;; This fixes the smerge diff color is really bright an ugly
   (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
 #+END_SRC
+*** TODO Workspaces
+#+BEGIN_SRC elisp
+;; Always create workspace when switching to project
+(setq +workspaces-on-switch-project-behavior t)
+#+END_SRC
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
