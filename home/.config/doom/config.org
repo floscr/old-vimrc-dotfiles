@@ -1323,6 +1323,7 @@ These can be solved with a lambda and dont need extra functions
 (after! org
   (map! :map evil-org-mode-map
         :n "M-j" #'org-move-subtree-down
+        :n "M-k" #'org-move-subtree-up
 
         :localleader
         :desc "Archive Subtree"   :m "a" #'org-archive-subtree
