@@ -1230,8 +1230,7 @@ Maybe just try persistent tags.
 
 (after! org
   :config
-  (setq org-agenda-files (-concat level-1-refile-targets max-level-2-refile-targets)
-        org-refile-targets (quote ((nil :maxlevel . 5)
+  (setq org-refile-targets (quote ((nil :maxlevel . 5)
                                    (max-level-2-refile-targets :maxlevel . 2)
                                    (level-1-refile-targets :level . 1)))
         org-agenda-refile org-agenda-files))
@@ -1382,7 +1381,8 @@ These can be solved with a lambda and dont need extra functions
                '("rr" "Reading List" tags-todo "+TEXT"))
 
   :config
-  (setq org-agenda-start-on-weekday 1))
+  (setq org-agenda-start-on-weekday 1
+        org-agenda-files (list org-directory)))
 #+END_SRC
 
 Helper to reset the org agenda custom commands.
