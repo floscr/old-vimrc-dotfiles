@@ -443,8 +443,7 @@ Insert from the kill ring in insert mode
  :n "]f" #'dumb-jump-go
  :n "[f" #'dumb-jump-back)
 #+END_SRC
-** Custom Packages
-*** Work
+** Work
 #+BEGIN_SRC elisp
 (map!
  :n "[1" #'+MM|other-file
