@@ -1050,8 +1050,10 @@ This overrides my insert subheading keybinding
 #+BEGIN_SRC elisp
 (after! org
   :config
-  (setq org-todo-keywords '((sequence "[ ](t)" "|" "[X](d)")
-                            (sequence "TODO(T)" "DOING(D)" "NEXT(N)" "LATER(L)" "QUESTION(Q)" "|" "DONE(X)" "CANCELLED(C)" "WAITING(W)"))))
+  (setq org-todo-keywords
+        '((sequence "[ ](t)" "|" "[X](x)")
+          (sequence "TODO(T)" "DOING(d)" "|" "DONE(X)")
+          (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)"))))
 #+END_SRC
 ****** Projectile Ignore
 
