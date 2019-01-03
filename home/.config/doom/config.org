@@ -211,7 +211,9 @@ shell scripts.
 (add-hook 'term-mode-hook (λ! (setq-local scroll-margin 0)))
 #+END_SRC
 *** Line Spacing
+
 Change and reset line-spacing for all buffers.
+
 #+BEGIN_SRC elisp
 (defvar default-line-spacing 0.2)
 
@@ -318,6 +320,7 @@ Slurp and Barf expressions
 Since the minibuffer has no evil mode, i've got these bindings to help out:
 - ~M-c~: Copy the minibuffer line
 - ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
+         This also removes trailng newlines
 
 #+BEGIN_SRC elisp
 (defun evil-get-register-string (REGISTER)
@@ -516,11 +519,14 @@ Insert from the kill ring in insert mode
 #+END_SRC
 ** Packages & Modules
 *** Evil-Snipe
+
+Repeat snipe after further key press
+
 #+BEGIN_SRC elisp
-;; Repeat snipe after further key press
 (setq evil-snipe-repeat-keys t)
 #+END_SRC
 *** Dired
+
 Disable dired from opening files in a new window
 
 #+BEGIN_SRC elisp
@@ -562,20 +568,20 @@ Otherwise dired comes to a grinding halt on some sizes.
 #+END_SRC
 
 *** Company
-Select last item of company, not used for now
 
-#+BEGIN_SRC elisp
-(defun company-select-last ()
-  (interactive)
-  (company-select-next (- company-candidates-length 1)))
-#+END_SRC
-
-Sort company by occurance
- [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
+Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
 
 #+BEGIN_SRC elisp
 (setq company-transformers '(company-sort-by-occurrence)
       company-idle-delay 0.5)
+#+END_SRC
+
+Select last item of company
+
+#+BEGIN_SRC elisp :tangle no
+(defun company-select-last ()
+  (interactive)
+  (company-select-next (- company-candidates-length 1)))
 #+END_SRC
 *** Eldoc
 #+BEGIN_SRC elisp
@@ -639,6 +645,12 @@ If possible also go to the pointing line"
       (find-file file-name))))
 #+END_SRC
 
+**** Helm Changed Files
+
+Show a list of the changed files in the current branch.
+For now only works on branches that were directly forked from master.
+
+#+BEGIN_SRC elisp
 (defun shell-command-to-list (cmd)
   "Split output from shell-command to list"
   (split-string (shell-command-to-string cmd) "\n" t))
@@ -672,7 +684,6 @@ If possible also go to the pointing line"
    :desc "Fetch" :n  "f" #'magit-fetch-popup
    :desc "Undo" :n  "u" #'+git|undo))
 #+END_SRC
-
 *** Helm
 **** Use ag as default grep search
 
@@ -687,9 +698,7 @@ If possible also go to the pointing line"
   :init
   (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
 
-;; (defun ar/helm-helm (title candidates on-select-function)
-;;   "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
-;;   )
+#+END_SRC
 
 **** TODO Helm Terminal History C-R
 #+BEGIN_SRC elisp :tangle no
@@ -733,20 +742,13 @@ If possible also go to the pointing line"
         :prompt  "shell command: "
         :buffer  "*helm shell history*"))
 
-;; (defun +helm|zsh-history ()
-;;   "Narrow down bash history with helm."
-;;   (interactive)
-;;   (helm :sources +helm|zsh-history
-;;         :prompt  "shell command: "
-;;         :buffer  "*helm shell history*"))
+(bind-key "M-r" #'ar/helm-shell-search-history shell-mode-map)
 
-;; (bind-key "M-r" #'ar/helm-shell-search-history shell-mode-map)
+;; Save buffer name
+;; Close minibuffer
+;; Switch to bufffer
 
-;; ;; Save buffer name
-;; ;; Close minibuffer
-;; ;; Switch to bufffer
 #+END_SRC
-
 *** Indium
 #+BEGIN_SRC elisp
 (def-package! indium
@@ -859,7 +861,7 @@ If possible also go to the pointing line"
     ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
     ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 #+END_SRC
-*** TODO Smerge Mode
+*** Smerge Mode
 #+BEGIN_SRC elisp
 (after! smerge-mode
   :config
@@ -867,7 +869,7 @@ If possible also go to the pointing line"
   ;; This fixes the smerge diff color is really bright an ugly
   (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
 #+END_SRC
-*** TODO Workspaces
+*** Workspaces
 #+BEGIN_SRC elisp
 ;; Always create workspace when switching to project
 (setq +workspaces-on-switch-project-behavior t)
