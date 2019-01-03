@@ -377,6 +377,7 @@ E.g.: ?* -> Clipboard Contents"
  :i "M-e"   (λ! (insert "€"))
  :i "M-`"   (λ! (insert "°"))
  :i "M-."   (λ! (insert "…"))
+ :i "M-^"   (λ! (insert "°"))
  :i "M-l"   (λ! (insert "λ")))
 #+END_SRC
 *** Insert bindings
