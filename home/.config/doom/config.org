@@ -346,17 +346,17 @@ E.g.: ?* -> Clipboard Contents"
 
 (defun setup-minibuffer ()
   "Set up keybindings for the minibuffer"
-  (local-set-key (kbd "s-v") 'paste-evil-register-clipboard-pruned)
-  (local-set-key (kbd "s-c") 'copy-minibuffer-line))
+  (local-set-key (kbd "M-v") 'paste-evil-register-clipboard-pruned)
+  (local-set-key (kbd "M-c") 'copy-minibuffer-line))
 
 (add-hook 'minibuffer-setup-hook 'setup-minibuffer)
 #+END_SRC
 *** Text Scale
 #+BEGIN_SRC elisp
 (map!
- :niv "s-="   #'default-text-scale-increase
- :niv "s--"   #'default-text-scale-decrease
- :niv "s-0"   #'default-text-scale-reset)
+ :niv "M-="   #'default-text-scale-increase
+ :niv "M--"   #'default-text-scale-decrease
+ :niv "M-0"   #'default-text-scale-reset)
 #+END_SRC
 *** Org Mode
 #+BEGIN_SRC elisp
@@ -364,31 +364,32 @@ E.g.: ?* -> Clipboard Contents"
  :niv "M-X"   #'+org-capture/open-frame)
 
 (map! :map outline-mode-map
-      :n "s-k" #'org-metaup
-      :n "s-j" #'org-metadown)
+      :n "M-k" #'org-metaup
+      :n "M-j" #'org-metadown)
 #+END_SRC
 *** Unicode Symbols and German Umlaut
 #+BEGIN_SRC elisp
 (map!
- :i "M-;"   (λ! (insert "ö"))
- :i "M-:"   (λ! (insert "Ö"))
- :i "M-'"   (λ! (insert "ä"))
- :i "M-\""  (λ! (insert "Ä"))
- :i "M-["   (λ! (insert "ü"))
- :i "M-{"   (λ! (insert "Ü"))
- :i "M-s"   (λ! (insert "ß"))
- :i "M-e"   (λ! (insert "€"))
- :i "M-`"   (λ! (insert "°"))
- :i "M-."   (λ! (insert "…"))
- :i "M-^"   (λ! (insert "°"))
- :i "M-l"   (λ! (insert "λ")))
+ :i "A-;"   (λ! (insert "ö"))
+ :i "A-:"   (λ! (insert "Ö"))
+ :i "A-'"   (λ! (insert "ä"))
+ :i "A-\""  (λ! (insert "Ä"))
+ :i "A-["   (λ! (insert "ü"))
+ :i "A-{"   (λ! (insert "Ü"))
+ :i "A-s"   (λ! (insert "ß"))
+ :i "A-e"   (λ! (insert "€"))
+ :i "A-`"   (λ! (insert "°"))
+ :i "A-."   (λ! (insert "…"))
+ :i "A-^"   (λ! (insert "°"))
+ :i "A-l"   (λ! (insert "λ")))
 #+END_SRC
+**** TODO Inserting a character makes one undo state
 *** Insert bindings
 
 Insert from the kill ring in insert mode
 
 #+BEGIN_SRC elisp
-(map! :i "M-y" #'helm-show-kill-ring)
+(map! :i "A-y" #'helm-show-kill-ring)
 #+END_SRC
 *** Leader Bindings
 #+BEGIN_SRC elisp
