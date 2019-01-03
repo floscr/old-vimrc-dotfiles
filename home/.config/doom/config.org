@@ -364,7 +364,7 @@ E.g.: ?* -> Clipboard Contents"
       :n "s-k" #'org-metaup
       :n "s-j" #'org-metadown)
 #+END_SRC
-*** German Umlaut
+*** Unicode Symbols and German Umlaut
 #+BEGIN_SRC elisp
 (map!
  :i "M-;"   (λ! (insert "ö"))
