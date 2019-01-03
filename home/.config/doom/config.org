@@ -807,19 +807,6 @@ If possible also go to the pointing line"
   :config
   (add-hook 'image-mode-hook 'blimp-mode))
 #+END_SRC
-*** TODO Smerge Mode
-#+BEGIN_SRC elisp
-(after! smerge-mode
-  :config
-  ;; TODO This is broken after switching the theme but works for now
-  ;; This fixes the smerge diff color is really bright an ugly
-  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
-#+END_SRC
-*** TODO Workspaces
-#+BEGIN_SRC elisp
-;; Always create workspace when switching to project
-(setq +workspaces-on-switch-project-behavior t)
-#+END_SRC
 *** Lookup
 #+BEGIN_SRC elisp
 (setq +lookup-provider-url-alist
@@ -837,6 +824,14 @@ If possible also go to the pointing line"
     ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
     ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
     ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
+#+END_SRC
+*** TODO Smerge Mode
+#+BEGIN_SRC elisp
+(after! smerge-mode
+  :config
+  ;; TODO This is broken after switching the theme but works for now
+  ;; This fixes the smerge diff color is really bright an ugly
+  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
 #+END_SRC
 ** Languages
 *** Javascript
