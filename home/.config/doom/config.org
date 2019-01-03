@@ -1006,6 +1006,70 @@ This overrides my insert subheading keybinding
 #+END_SRC
 *** Org
 **** Utils
+***** TODO Archive all done tasks
+#+BEGIN_SRC elisp :tangle no
+(defun my-archive-entry ()
+  (message "%s" (thing-at-point 'line t)))
+
+(defun +org|org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries #'my-archive-entry "/[X]" 'tree))
+
+(defun +org|org-archive-done-task ()
+  (interactive)
+  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
+
+#+END_SRC
+***** Grab Tablist from Chrome
+#+BEGIN_SRC elisp
+(defun +org|grab-tabs ()
+  "Grab all the chrome tabs as an org list to save for later inspection"
+  (interactive)
+  (let ((tabs
+         (do-jxa-script
+          (concat
+           "Application(\"Chrome\").windows[0].tabs()"
+           ".map(tab => `"
+           "- [[${tab.url()}][${tab.title()}]]"
+           "`)"
+           ".join(\"\\n\")"))))
+    (insert tabs)))
+#+END_SRC
+***** Paste Chrome Link Fix
+
+Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
+
+E.g.: (Brackets signal the cursor position)
+
+: **[*]
+: ***[]"
+
+#+BEGIN_SRC elisp
+(defun +org|paste-chrome-link ()
+  "Paste the frontmost chrome link"
+  (interactive)
+  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
+  (insert " ")
+  (insert (org-mac-chrome-get-frontmost-url)))
+#+END_SRC
+***** Sort org entries
+#+BEGIN_SRC elisp
+(defun +org|sort-entries ()
+  "Go to header and sort entries"
+  (interactive)
+  (org-up-element)
+  (org-sort)
+  (org-shifttab)
+  (org-cycle))
+#+END_SRC
+***** Copy block to clipboard
+#+BEGIN_SRC elisp
+(defun +org|copy-block ()
+  "Copies the current block to clipboard"
+  (interactive)
+  (org-edit-src-code)
+  (clipboard-kill-ring-save (point-min) (point-max)))
+#+END_SRC
 ***** TODO Org Web Tools at point
 #+BEGIN_SRC elisp
 (defun +org-web-tools-dwim-at-point ()
@@ -1024,6 +1088,32 @@ This overrides my insert subheading keybinding
         (message "No url found")))))
 #+END_SRC
 
+***** Paste Markdown as org
+#+BEGIN_SRC elisp
+(defun +org|paste-markdown-as-org ()
+  "Convert the current clipboard to markdown"
+  (interactive)
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
+#+END_SRC
+***** Ocaml Refmt to Reason
+#+BEGIN_SRC elisp
+(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
+  "Convert the current src block from ocaml to reason and vice versa"
+  (interactive)
+  (save-excursion
+    (let* ((old-block (org-element-at-point))
+           (old-lang (org-element-property :language old-block))
+           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
+           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
+      (org-edit-special)
+      (funcall formatter (point-min) (point-max))
+      (org-edit-src-exit)
+      (let* ((new-block (org-element-at-point))
+             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
+             (from (org-element-property :begin new-block))
+             (to (org-element-property :end new-block)))
+        (delete-region from to)))))
+#+END_SRC
 **** Reading List
 #+BEGIN_SRC elisp
 (defun org-reading-list ()
@@ -1059,7 +1149,8 @@ This overrides my insert subheading keybinding
 
 #+BEGIN_SRC elisp
 (after! projectile
-  (add-to-list 'projectile-globally-ignored-file-suffixes ".org_archive"))
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".org_archive")
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".DS_Store"))
 #+END_SRC
 
 ****** Org variables
@@ -1078,97 +1169,6 @@ This overrides my insert subheading keybinding
    org-default-notes-file (concat org-directory "/inbox.org")))
 #+END_SRC
 
-***** Utils
-****** TODO Archive all done tasks
-#+BEGIN_SRC elisp :tangle no
-(defun my-archive-entry ()
-  (message "%s" (thing-at-point 'line t)))
-
-(defun +org|org-archive-done-tasks ()
-  (interactive)
-  (org-map-entries #'my-archive-entry "/[X]" 'tree))
-
-(defun +org|org-archive-done-task ()
-  (interactive)
-  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
-
-#+END_SRC
-****** Grab Tablist from Chrome
-#+BEGIN_SRC elisp
-(defun +org|grab-tabs ()
-  "Grab all the chrome tabs as an org list to save for later inspection"
-  (interactive)
-  (let ((tabs
-         (do-jxa-script
-          (concat
-           "Application(\"Chrome\").windows[0].tabs()"
-           ".map(tab => `"
-           "- [[${tab.url()}][${tab.title()}]]"
-           "`)"
-           ".join(\"\\n\")"))))
-    (insert tabs)))
-#+END_SRC
-****** Paste Chrome Link Fix
-
-Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
-
-E.g.: (Brackets signal the cursor position)
-
-: **[*]
-: ***[]"
-
-#+BEGIN_SRC elisp
-(defun +org|paste-chrome-link ()
-  "Paste the frontmost chrome link"
-  (interactive)
-  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
-  (insert " ")
-  (insert (org-mac-chrome-get-frontmost-url)))
-#+END_SRC
-****** Sort org entries
-#+BEGIN_SRC elisp
-(defun +org|sort-entries ()
-  "Go to header and sort entries"
-  (interactive)
-  (org-up-element)
-  (org-sort)
-  (org-shifttab)
-  (org-cycle))
-#+END_SRC
-****** Copy block to clipboard
-#+BEGIN_SRC elisp
-(defun +org|copy-block ()
-  "Copies the current block to clipboard"
-  (interactive)
-  (org-edit-src-code)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-#+END_SRC
-****** Paste Markdown as org
-#+BEGIN_SRC elisp
-(defun +org|paste-markdown-as-org ()
-  "Convert the current clipboard to markdown"
-  (interactive)
-  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
-#+END_SRC
-****** Ocaml Refmt to Reason
-#+BEGIN_SRC elisp
-(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
-  "Convert the current src block from ocaml to reason and vice versa"
-  (interactive)
-  (save-excursion
-    (let* ((old-block (org-element-at-point))
-           (old-lang (org-element-property :language old-block))
-           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
-           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
-      (org-edit-special)
-      (funcall formatter (point-min) (point-max))
-      (org-edit-src-exit)
-      (let* ((new-block (org-element-at-point))
-             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
-             (from (org-element-property :begin new-block))
-             (to (org-element-property :end new-block)))
-        (delete-region from to)))))
-#+END_SRC
 ***** Tags
 
 Persistent list of tags and tag shortcuts.
