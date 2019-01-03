@@ -413,6 +413,9 @@ Insert from the kill ring in insert mode
    :desc "Blame"      :n  "B" #'magit-blame
    :desc "New Branch" :n  "N" #'magit-branch-spinoff)
 
+ (:desc "insert" :prefix "i"
+   :desc "Killring"   :n  "y" #'helm-show-kill-ring)
+
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
    :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
