@@ -1346,10 +1346,10 @@ These can be solved with a lambda and dont need extra functions
                                       (evil-insert-state))
           :desc "Inavtive Timestamp" :m "i" 'org-time-stamp-inactive)
         (:desc "Narrow" :prefix "n"
-          :desc "Subtree" :m "s" #'+org|narrow-to-subtree
-          :desc "Block"   :m "b" #'+org|narrow-to-block
-          :desc "Element" :m "e" #'+org|narrow-to-element
-          :desc "widen"   :m "w" #'+org|widen)))
+          :desc "Subtree" :m "s" #'org-narrow-to-subtree
+          :desc "Block"   :m "b" #'org-narrow-to-block
+          :desc "Element" :m "e" #'org-narrow-to-element
+          :desc "widen"   :m "w" #'widen)))
 #+END_SRC
 ***** Agenda
 ****** Bindings
