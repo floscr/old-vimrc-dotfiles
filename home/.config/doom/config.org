@@ -528,6 +528,13 @@ Repeat snipe after further key press
 #+END_SRC
 *** Dired
 
+When there are two visual splits with dired buffers.
+~C~ will take the other window as the copy target.
+
+#+BEGIN_SRC elisp
+(setq dired-dwim-target t)
+#+END_SRC
+
 Disable dired from opening files in a new window
 
 #+BEGIN_SRC elisp
