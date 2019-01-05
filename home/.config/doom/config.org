@@ -1264,11 +1264,22 @@ Maybe just try persistent tags.
 #+END_SRC
 ***** Capture Templates
 #+BEGIN_SRC elisp
+(defun org-capture-bookmark-pair ()
+    (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
+
+(defun org-capture-bookmark-string-url ()
+    (car (org-capture-bookmark-pair)))
+
+(defun org-capture-bookmark-string-description ()
+    (cadr (org-capture-bookmark-pair)))
+
 (setq org-capture-templates
       (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
                "* [ ] %?\n%U")
               ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
-               "* %(org-mac-chrome-get-frontmost-url)%?\n%U"))))
+               "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+              ("b" "bookmark" entry (file+headline org-default-notes-file "INBOX")
+               "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:"))))
 #+END_SRC
 ***** TODO Src Block Snippets
 
