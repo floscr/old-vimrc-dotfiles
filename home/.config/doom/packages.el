@@ -16,7 +16,7 @@
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 
 ;; TODO Evil-Briefcase does not work
-;; (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
+(package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
 
 ;; Like abolish.vim
 ;; Search and replace multiples
