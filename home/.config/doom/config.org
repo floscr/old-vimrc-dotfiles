@@ -27,9 +27,17 @@ Setup GPG
 #+END_SRC
 **** Template Literals
 Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
+
+#+BEGIN_SRC elisp :tangle no
+(template "2 = <<(+ 1 1)>>")
+#+END_SRC
+
+#+RESULTS:
+: 2 = 2
+
 #+BEGIN_SRC elisp
 (defmacro template (text)
-  "Expand text like \"Hello <<name>>\" to (format \"Hello %s\" name)."
+  "Template literals"
   (let ((pattern "<<\\(.*?\\)>>"))
     ;; The regexp matches anything between delimiters, non-greedily
     (with-temp-buffer
