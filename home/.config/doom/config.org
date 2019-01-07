@@ -535,6 +535,7 @@ Repeat snipe after further key press
 (setq evil-snipe-repeat-keys t)
 #+END_SRC
 *** Dired
+**** Config
 
 When there are two visual splits with dired buffers.
 ~C~ will take the other window as the copy target.
@@ -582,7 +583,28 @@ Otherwise dired comes to a grinding halt on some sizes.
           dired-k-human-readable t
           insert-directory-program "gls" dired-use-ls-dired t)))
 #+END_SRC
+**** Bindings
+***** Wdired Mode Bindings
 
+Stay in normal mode when switching to wdired
+
+#+BEGIN_SRC elisp
+(defun flosc|wdired-change-to-wdired-mode ()
+  "Simple forward to wdired-change-to-wdired-mode, but staying in normal mode."
+  (interactive)
+  (wdired-change-to-wdired-mode)
+  (evil-normal-state)
+  (forward-char))
+#+END_SRC
+
+Map ~\~ to change to wdired mode, like text mode in maggit buffers.
+
+#+BEGIN_SRC elisp
+(map! :when (featurep! :feature evil +everywhere)
+      :after dired
+      :map dired-mode-map
+      :n "\\" #'flosc|wdired-change-to-wdired-mode)
+#+END_SRC
 *** Company
 
 Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
