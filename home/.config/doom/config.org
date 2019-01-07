@@ -1173,6 +1173,9 @@ E.g.: (Brackets signal the cursor position)
 #+BEGIN_SRC elisp
 (setq
  org-directory (expand-file-name "~/Dropbox/org")
+ org-pinboard-dir org-directory
+ org-pinboard-file (concat org-pinboard-dir "/Bookmarks/bookmarks.org")
+ org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
  org-default-notes-file (concat org-directory "/inbox.org")
  org-shopping-list-file (concat org-directory "/shoppinglist.org")
  org-reading-list (concat org-directory "/reading-list.org"))
