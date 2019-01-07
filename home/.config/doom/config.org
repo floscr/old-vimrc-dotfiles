@@ -738,17 +738,6 @@ For now only works on branches that were directly forked from master.
   (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
 
 #+END_SRC
-**** Use native indexing
-
-Otherwise the ~.projectile~ files wont accept extensions for ignoring.
-
-#+BEGIN_SRC elisp
-(after!
-  helm-projectile
-  :config
-  (setq projectile-indexing-method 'native))
-#+END_SRC
-
 **** TODO Helm Terminal History C-R
 #+BEGIN_SRC elisp :tangle no
 (defun ar/helm-helm (title candidates on-select-function)
