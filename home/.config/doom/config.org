@@ -1274,12 +1274,14 @@ Maybe just try persistent tags.
     (cadr (org-capture-bookmark-pair)))
 
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
-               "* TODO %?\n%U")
-              ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
-               "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
-              ("b" "bookmark" entry (file+headline org-default-notes-file "INBOX")
-               "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:"))))
+      (backquote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
+                   "* TODO %?\n%U")
+                  ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
+                   "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+                  ("b" "bookmark" entry (file+headline org-default-notes-file "INBOX")
+                   "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
+                  ("w" "work" entry (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
+                   "* TODO %?\n%U"))))
 #+END_SRC
 ***** TODO Src Block Snippets
 
