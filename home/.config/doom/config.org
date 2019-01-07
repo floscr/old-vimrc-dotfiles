@@ -1275,7 +1275,7 @@ Maybe just try persistent tags.
 
 (setq org-capture-templates
       (quote (("t" "todo" entry (file+headline org-default-notes-file "INBOX")
-               "* [ ] %?\n%U")
+               "* TODO %?\n%U")
               ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
                "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
               ("b" "bookmark" entry (file+headline org-default-notes-file "INBOX")
