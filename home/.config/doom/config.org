@@ -1398,15 +1398,15 @@ These can be solved with a lambda and dont need extra functions
 #+BEGIN_SRC elisp
 (after! org-agenda
   (add-to-list 'org-agenda-custom-commands
-               '("p" "Private" agenda ""
+               '("p" "Personal" agenda ""
                  ((org-agenda-ndays 5)
                   (org-agenda-span 7)
                   (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
                   (tags-todo "-\[X\]")
                   (tags-todo "-DONE")
-                  (org-agenda-start-on-weekday 0)
+                  (org-agenda-start-on-weekday nil)
                   (org-agenda-time-grid nil)
-                  (org-agenda-start-on-weekday 1)
+                  (org-agenda-day-view)
                   (org-agenda-repeating-timestamp-show-all t))))
   (add-to-list 'org-agenda-custom-commands
                '("w" "Work" tags-todo "+WORK"))
