@@ -1169,7 +1169,7 @@ E.g.: (Brackets signal the cursor position)
     (and (tags "TEXT")
          (level 2))
     :super-groups ((:todo "NEXT")
-                   (:todo "DOING"))))
+                   (:todo "ACTIVE"))))
 
 (org-reading-list)
 #+END_SRC
@@ -1194,7 +1194,7 @@ Org habit is needed for ~org-ql~
   :config
   (setq org-todo-keywords
         '((sequence "[ ](t)" "|" "[X](x)")
-          (sequence "TODO(T)" "DOING(d)" "|" "DONE(X)")
+          (sequence "TODO(T)" "ACTIVE(a)" "|" "DONE(X)")
           (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)"))))
 #+END_SRC
 ****** Projectile Ignore
