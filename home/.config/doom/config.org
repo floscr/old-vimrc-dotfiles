@@ -1528,3 +1528,8 @@ Automatically reload tags files
 #+BEGIN_SRC elisp
 (setq tags-revert-without-query 1)
 #+END_SRC
+** Hacks
+*** Fix ~org-insert-link~
+#+BEGIN_SRC elisp
+(advice-remove #'org-insert-link #'+popup*hide-org-links-popup)
+#+END_SRC
