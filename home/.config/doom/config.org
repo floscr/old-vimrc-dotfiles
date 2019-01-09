@@ -68,6 +68,10 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
 #+END_SRC
 *** Utility Functions
 #+BEGIN_SRC elisp
+(defun noop (args) nil)
+#+END_SRC
+
+#+BEGIN_SRC elisp
 (defun do-jxa-script (cmd)
   "Run a osx javascript automation script via bash"
   (shell-command-to-string
