@@ -1162,17 +1162,16 @@ E.g.: (Brackets signal the cursor position)
         (delete-region from to)))))
 #+END_SRC
 **** Reading List
-#+BEGIN_SRC elisp
+#+BEGIN_SRC elisp :tangle no
 (defun org-reading-list ()
   (interactive)
-  (let ((org-agenda-files (list org-reading-list))
-        (org-agenda-prefix-format "%t")
-        ;; (org-agenda-sorting-strategy '((timestamp-down)))
-        (org-super-agenda-groups
-              '((:name "Reading List"
-                       :auto-property "INTEREST"
-                       :and (:tag ("TEXT" "VIDEO"))))))
-      (org-todo-list)))
+  (org-ql-agenda org-reading-list
+    (and (tags "TEXT")
+         (level 2))
+    :super-groups ((:todo "NEXT")
+                   (:todo "DOING"))))
+
+(org-reading-list)
 #+END_SRC
 **** Config Rifle
 #+BEGIN_SRC elisp
@@ -1183,6 +1182,12 @@ E.g.: (Brackets signal the cursor position)
 #+END_SRC
 **** Config
 ***** General Config
+****** Add Org Habit
+Org habit is needed for ~org-ql~
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-modules 'org-habit t)
+#+END_SRC
 ****** Todo Keywords
 #+BEGIN_SRC elisp
 (after! org
