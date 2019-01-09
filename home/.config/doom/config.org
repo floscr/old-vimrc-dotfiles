@@ -531,6 +531,17 @@ Insert from the kill ring in insert mode
 ;;   )
 #+END_SRC
 ** Packages & Modules
+*** Flycheck
+
+Disable the flycheck popup during insert mode, I dont want to see it while I'm typing.
+
+#+BEGIN_SRC elisp
+(after! flycheck
+  :config
+  (add-hook 'evil-insert-state-entry-hook (lambda () (setq flycheck-display-errors-function #'noop)))
+  (add-hook 'evil-insert-state-exit-hook (lambda () (setq flycheck-display-errors-function #'+syntax-checker-show-popup))))
+#+END_SRC
+
 *** Evil-Snipe
 
 Repeat snipe after further key press
