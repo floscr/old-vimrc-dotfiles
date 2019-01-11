@@ -448,9 +448,10 @@ Insert from the kill ring in insert mode
    :desc "Delete File" :n  "X" #'+doom|open-elisp-scratch-buffer)
 
  (:desc "git" :prefix "g"
-   :desc "Checkout"   :n  "b" #'magit-checkout
-   :desc "Blame"      :n  "B" #'magit-blame
-   :desc "New Branch" :n  "N" #'magit-branch-spinoff)
+   :desc "Amend Commit" :n  "a" #'magit-commit-amend
+   :desc "Checkout"     :n  "b" #'magit-checkout
+   :desc "Blame"        :n  "B" #'magit-blame
+   :desc "New Branch"   :n  "N" #'magit-branch-spinoff)
 
  (:desc "insert" :prefix "i"
    :desc "Killring"   :n  "y" #'helm-show-kill-ring)
