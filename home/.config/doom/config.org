@@ -137,6 +137,23 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
   (interactive)
   (math-on-number '*))
 #+END_SRC
+*** Window Dedicated
+
+To lock a window you set the dedicadet flag on the window.
+[[https://emacs.stackexchange.com/questions/2189/how-can-i-prevent-a-command-from-using-specific-windows][buffers - How can I prevent a command from using specific windows? - Emacs Stack Exchange]]
+
+#+BEGIN_SRC elisp
+(defun toggle-window-dedicated ()
+  "Control whether or not Emacs is allowed to display another
+buffer in current window."
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window (not (window-dedicated-p window))))
+       "%s: Window locked!"
+     "%s: Window unlocked!")
+   (current-buffer)))
+#+END_SRC
 *** Workspace
 #+BEGIN_SRC elisp
 (defun +workspace/switch-to-last-visited ()
@@ -452,6 +469,9 @@ Insert from the kill ring in insert mode
  (:desc "workspace" :prefix [tab]
    :desc "Create" :n "c" #'+workspace|new-named
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited)
+
+ (:desc "window" :prefix "w"
+   :desc "Toggle Locked" :n "#" #'toggle-window-dedicated)
 
  (:desc "Yank" :prefix "y"
    :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
