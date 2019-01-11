@@ -759,9 +759,10 @@ For now only works on branches that were directly forked from master.
 (map!
  :leader
  (:desc "Magit" :prefix "g"
-   :desc "Changed Files" :n  "F" #'+git|helm-changed-files
-   :desc "Fetch" :n  "f" #'magit-fetch-popup
-   :desc "Undo" :n  "u" #'+git|undo))
+   :desc "Worktree Popup" :n  "%" #'magit-worktree-popup
+   :desc "Changed Files"  :n  "F" #'+git|helm-changed-files
+   :desc "Fetch"          :n  "f" #'magit-fetch-popup
+   :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
 *** Helm
 **** Use ag as default grep search
