@@ -1222,6 +1222,16 @@ Org habit is needed for ~org-ql~
    org-default-notes-file (concat org-directory "/inbox.org")))
 #+END_SRC
 
+***** Export
+#+BEGIN_SRC elisp
+(defun +org|copy-subtree-as-markdown ()
+  "Copy the current subtree as markdown to clipboard"
+    (interactive)
+    (let* ((org-export-with-toc nil)
+           (md (org-md-export-as-markdown nil t)))
+      (kill-ring-save (point-min) (point-max))
+      (kill-buffer md)))
+#+END_SRC
 ***** Tags
 
 Persistent list of tags and tag shortcuts.
