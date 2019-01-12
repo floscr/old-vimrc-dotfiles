@@ -150,3 +150,10 @@ mas "Moom", id: 419330170
 mas "Chronoslider", id: 439549600
 
 #}}}
+
+# Fonts -------------------------------------------------------------------{{{
+
+tap  "homebrew/cask-fonts"
+cask "font-liberation-sans"
+
+#}}}
