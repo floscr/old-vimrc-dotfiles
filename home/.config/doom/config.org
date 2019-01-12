@@ -1553,21 +1553,22 @@ Helper to reset the org agenda custom commands.
     (set-company-backend! 'reason-mode 'merlin-company-backend)))
 #+END_SRC
 ** General Config
-
-Fine undo
+*** Fine undo
 Whether actions like "cw" are undone in several steps.
 
 #+BEGIN_SRC elisp
 (setq evil-want-fine-undo t)
 #+END_SRC
 
-Move items to trash on delete
+*** Move items to trash on delete
 
 #+BEGIN_SRC elisp
 (setq
  trash-directory "~/.Trash/"
  delete-by-moving-to-trash t)
 #+END_SRC
+
+*** Filename Auto Modes
 
 Automatically set mode for specifc filenames
 
@@ -1576,6 +1577,7 @@ Automatically set mode for specifc filenames
 (add-to-list 'auto-mode-alist '("Brewfile" . shell-script-mode))
 #+END_SRC
 
+*** Terminal Config
 Set the terminal to zsh
 
 #+BEGIN_SRC elisp
@@ -1583,6 +1585,7 @@ Set the terminal to zsh
 (setq multi-term-program "/bin/zsh")
 #+END_SRC
 
+*** Save Hist Mode
 Save the command history between sessions
 The history can be accessed with ~C-n~ / ~C-p~
 
@@ -1590,7 +1593,7 @@ The history can be accessed with ~C-n~ / ~C-p~
 (savehist-mode 1)
 #+END_SRC
 
-Automatically reload tags files
+*** Automatically reload tags files
 
 #+BEGIN_SRC elisp
 (setq tags-revert-without-query 1)
