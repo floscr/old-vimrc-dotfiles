@@ -16,6 +16,8 @@
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 (package! org-ql :recipe (:fetcher github :repo "alphapapa/org-ql"))
 
+(package! nov)
+
 ;; TODO Evil-Briefcase does not work
 (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
 
