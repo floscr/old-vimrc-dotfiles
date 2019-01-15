@@ -1500,6 +1500,13 @@ These can be solved with a lambda and dont need extra functions
                '("w" "Work" tags-todo "+WORK"))
   (add-to-list 'org-agenda-custom-commands
                '("rr" "Reading List" tags-todo "+TEXT"))
+  (add-to-list 'org-agenda-custom-commands
+               '("c" "Calendar" agenda ""
+                 ((org-agenda-span 7)
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-start-day "-1d")
+                  (org-agenda-tag-filter-preset '("+CALENDAR")))))
+
 
   :config
   (setq org-agenda-start-on-weekday 1
