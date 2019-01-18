@@ -1559,6 +1559,29 @@ Helper to reset the org agenda custom commands.
                           :documentation #'merlin-document)
     (set-company-backend! 'reason-mode 'merlin-company-backend)))
 #+END_SRC
+*** Markdown
+
+Always keep markdown centered, without line numbers.
+
+#+BEGIN_SRC elisp
+(def-package! markdown-mode
+  :init
+  (setq markdown-hide-urls t
+        markdown-fontify-code-blocks-natively t)
+  :config
+  (add-hook! markdown-mode
+    (visual-line-mode)
+    (visual-fill-column-mode)
+    (outline-minor-mode)
+    (setq visual-fill-column-width 90
+          display-line-numbers nil)
+    (setq line-spacing 2
+          fill-column 80))
+
+  (map! (:map markdown-mode-map
+          :n "<"    #'markdown-promote
+          :n ">"    #'markdown-demote)))
+#+END_SRC
 ** General Config
 *** Shorten Yes/No prompts
 :PROPERTIES:
