@@ -902,6 +902,16 @@ For now only works on branches that were directly forked from master.
       :cwd "~/Code/Meisterlabs/meistercanvas")))
 #+END_SRC
 *** Spelling
+
+Flycheck with ~hunspell~ (which supports other languages better than the default ~ispell~)
+
+With the latest brew update hunspell might be broken, here is how you fix it:
+
+#+BEGIN_SRC bash :tangle no
+ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
+#+END_SRC
+
+
 #+BEGIN_SRC elisp
 (defun +flyspell|save-word ()
   "Save the current word to dictionary"
