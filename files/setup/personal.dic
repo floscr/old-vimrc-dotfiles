@@ -4,5 +4,9 @@ monad/SM
 hunspell/SM
 dir/SM
 osx/SM
-osx/SM
 symlink/MDRSG
+redux/SM
+schema/MDRSG
+ℹ
+init/SM
+Store/MDRSG
