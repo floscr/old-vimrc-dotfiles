@@ -1303,7 +1303,20 @@ E.g.: (Brackets signal the cursor position)
   (interactive)
   (helm-org-rifle-files (list +literate-config-file)))
 #+END_SRC
-**** Org Attach Screenshot
+**** Org Attach
+***** Download
+#+BEGIN_SRC elisp
+(defcustom downloads-dir "~/Downloads/"
+  "Directory containing your downloads."
+  :type 'string)
+
+(defun +org-attach/downloads-file (file)
+  "Attach a file in your downloads-directory"
+  (interactive (list (read-file-name "Attach File: " downloads-dir)))
+  (+org-attach/uri file))
+#+END_SRC
+
+***** Screenshot
 #+BEGIN_SRC elisp
 (defcustom screenshot-dir "~/Pictures/Screenshots"
   "Directory containing your screenshots."
