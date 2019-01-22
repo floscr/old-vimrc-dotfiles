@@ -176,7 +176,21 @@ buffer in current window."
   "Gets the root dir for the current workspace"
   (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
 #+END_SRC
+*** IO File Utilities
+**** Get the last file in directory
+:PROPERTIES:
+:SOURCE:   https://stackoverflow.com/a/30886283
+:END:
 
+#+BEGIN_SRC elisp
+(defun latest-file (path)
+  (let ((e (f-entries path)))
+    (car (sort e (lambda (a b)
+                   (not (time-less-p (file-timestamp a)
+                                     (file-timestamp b))))))))
+
+(defun file-timestamp (f) (let ((attrs (file-attributes f))) (nth 5 attrs)))
+#+END_SRC
 ** UI
 *** System specific
 #+BEGIN_SRC elisp
