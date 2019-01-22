@@ -3,7 +3,8 @@
 #+PROPERTY: header-args :tangle yes
 
 * Config
-** Personal Configuration
+** Variables
+*** Personal Configuration
 
 Full name and email address
 
@@ -18,6 +19,16 @@ Setup GPG
 ;; Use Emacs UI to enter the encryption key
 (setenv "GPG_AGENT_INFO" nil)
 (setq epa-pinentry-mode 'loopback)
+#+END_SRC
+*** Directories
+#+BEGIN_SRC elisp
+(defcustom downloads-dir "~/Downloads/"
+  "Directory containing your downloads."
+  :type 'string)
+
+(defcustom screenshot-dir "~/Pictures/Screenshots"
+  "Directory containing your screenshots."
+  :type 'string)
 #+END_SRC
 ** Utils
 *** Macros
@@ -181,7 +192,6 @@ buffer in current window."
 :PROPERTIES:
 :SOURCE:   https://stackoverflow.com/a/30886283
 :END:
-
 #+BEGIN_SRC elisp
 (defun latest-file (path)
   (let ((e (f-entries path)))
@@ -1306,22 +1316,13 @@ E.g.: (Brackets signal the cursor position)
 **** Org Attach
 ***** Download
 #+BEGIN_SRC elisp
-(defcustom downloads-dir "~/Downloads/"
-  "Directory containing your downloads."
-  :type 'string)
-
 (defun +org-attach/downloads-file (file)
   "Attach a file in your downloads-directory"
   (interactive (list (read-file-name "Attach File: " downloads-dir)))
   (+org-attach/uri file))
 #+END_SRC
-
 ***** Screenshot
 #+BEGIN_SRC elisp
-(defcustom screenshot-dir "~/Pictures/Screenshots"
-  "Directory containing your screenshots."
-  :type 'string)
-
 (defun +org-attach/last-screenshot ()
   "Attaches the last screenshot"
   (interactive)
