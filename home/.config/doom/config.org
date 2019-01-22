@@ -1287,6 +1287,17 @@ E.g.: (Brackets signal the cursor position)
   (interactive)
   (helm-org-rifle-files (list +literate-config-file)))
 #+END_SRC
+**** Org Attach Screenshot
+#+BEGIN_SRC elisp
+(defcustom screenshot-dir "~/Pictures/Screenshots"
+  "Directory containing your screenshots."
+  :type 'string)
+
+(defun +org-attach/last-screenshot ()
+  "Attaches the last screenshot"
+  (interactive)
+  (+org-attach/file (latest-file screenshot-dir)))
+#+END_SRC
 **** Config
 ***** General Config
 ****** Add Org Habit
