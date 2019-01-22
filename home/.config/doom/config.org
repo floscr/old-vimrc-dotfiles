@@ -1313,7 +1313,8 @@ Org habit is needed for ~org-ql~
   (setq org-todo-keywords
         '((sequence "[ ](t)" "|" "[X](x)")
           (sequence "TODO(T)" "ACTIVE(a)" "|" "DONE(X)")
-          (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)"))))
+          (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)")
+          (sequence "PROJECT(p)"))))
 #+END_SRC
 ****** Projectile Ignore
 
