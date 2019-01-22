@@ -56,6 +56,9 @@ brew 'reattach-to-user-namespace'
 
 brew 'ispell', args: ['with-lang-en']
 
+# ncurses disk analyzer
+brew 'ncdu'
+
 #}}}
 # Applications -------------------------------------------------------------{{{
 
