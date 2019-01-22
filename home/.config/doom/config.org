@@ -1557,6 +1557,12 @@ These can be solved with a lambda and dont need extra functions
         :desc "Filter"            :nve "f" #'org-match-sparse-tree
         :desc "Tag heading"       :nve "t" #'org-set-tags-command
 
+        (:desc "Attach" :prefix "F"
+          :desc "Downloads File" :m "d" '+org-attach/downloads-file
+          :desc "Screenshot" :m "s" '+org-attach/last-screenshot
+          :desc "URI" :m "u" '+org-attach/uri
+          :desc "File" :m "f" '+org-attach/file)
+
         (:desc "Insert" :prefix "i"
           :desc "Subheadeing" :m "s" (λ!
                                       (call-interactively 'org-insert-subheading)
