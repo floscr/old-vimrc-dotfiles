@@ -215,11 +215,7 @@ buffer in current window."
         (append (list '(left . 272)
                       '(width . 165)
                       '(fullscreen . fullheight))
-                initial-frame-alist))
-  (after! helm-mode
-    :config
-    ;; Fix for small helm ui on small display
-    (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)))
+                initial-frame-alist)))
  (t (setq-default line-spacing 0.15)))
 #+END_SRC
 *** Theme Toggle
@@ -288,6 +284,16 @@ When no line spacing is given is the default-line-spacing"
 (defun +ui|decrease-line-spacing ()
   (interactive)
   (set-line-spacing (- default-line-spacing)))
+#+END_SRC
+*** Popups
+
+Change popups to my preferred size.
+
+#+BEGIN_SRC elisp
+(after! helm-mode
+  :config
+  (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil))
+  (set-popup-rule! "^\\*doom:scratch" :vslot -100 :size 0.6 :ttl nil))
 #+END_SRC
 ** Bindings
 *** General Bindings
