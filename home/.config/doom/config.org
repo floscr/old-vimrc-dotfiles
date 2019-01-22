@@ -194,6 +194,16 @@ buffer in current window."
 ** UI
 *** System specific
 #+BEGIN_SRC elisp
+(defun my-frame-resize-width (width)
+  "Set the frame to the displays prefered setting"
+  (set-frame-width (selected-frame) width)
+  (maximize-frame-vertically)
+  (set-frame-position (selected-frame) (- (x-display-pixel-width) width) 0))
+
+(defun my-frame-resize-work-external ()
+  (interactive)
+  (my-frame-resize-width 1410))
+
 (cond
  ((string= system-name "Florians-MBP.localdomain")
   (setq-default line-spacing 0.3))
