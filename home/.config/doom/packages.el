@@ -18,6 +18,10 @@
 
 (package! nov)
 
+;; Install frame cmds
+(package! frame-fns :recipe (:fetcher wiki))
+(package! frame-cmds :recipe (:fetcher wiki))
+
 ;; TODO Evil-Briefcase does not work
 (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
 
