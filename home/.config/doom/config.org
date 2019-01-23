@@ -205,18 +205,43 @@ buffer in current window."
 ** UI
 *** System specific
 #+BEGIN_SRC elisp
+
+(defcustom my-default-frame-size nil
+  "A cons cell of screen dimensions (width . height)"
+  :type 'cons)
+
+(defcustom osx-screen-reserved-y-space 48
+  "How much of the screen is available when subtracting the
+1. app title bar
+2. menu bar"
+  :type 'integer)
+
+(defun my-set-initial-frame-size (size)
+  "Set the initial frame"
+  (let* ((width (car size))
+         (height (cdr size))
+         (left (- (x-display-pixel-width) width)))
+    (setq initial-frame-alist
+          (append (list `(left . ,left)
+                        `(width . ,width)
+                        '(fullscreen . fullheight))
+                  initial-frame-alist)))
+  (setq my-default-frame-size size))
+
 (defun my-frame-resize-width (width)
-  "Set the frame to the displays prefered setting"
-  (set-frame-width (selected-frame) width)
-  (maximize-frame-vertically)
+  "Set the frame WIDTH. Maximize the frame vertically (minus the osx reserver space)"
+  (set-frame-width (selected-frame) width nil t)
+  (set-frame-height (selected-frame) (- (x-display-pixel-height) osx-screen-reserved-y-space) nil t)
   (set-frame-position (selected-frame) (- (x-display-pixel-width) width) 0))
 
 (defun my-frame-resize-work-external ()
+  "External Monitor at work"
   (interactive)
   (my-frame-resize-width 1410))
 
 (cond
  ((string= system-name "Florians-MBP.localdomain")
+  (my-set-initial-frame-size (cons 1410 1060))
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
