@@ -302,7 +302,7 @@ Change popups to my preferred size.
 #+BEGIN_SRC elisp
 (after! helm-mode
   :config
-  (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil))
+  (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)
   (set-popup-rule! "^\\*doom:scratch" :vslot -100 :size 0.6 :ttl nil))
 #+END_SRC
 ** Bindings
