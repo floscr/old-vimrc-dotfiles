@@ -334,9 +334,10 @@ Change popups to my preferred size.
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
-(map!
- :niv "M-W" #'delete-frame
+(map! (:map override
+        "M-w" #'+workspace/close-window-or-workspace))
 
+(map!
  :niv "s-1" (λ! (+workspace/switch-to 0))
  :niv "s-2" (λ! (+workspace/switch-to 1))
  :niv "s-3" (λ! (+workspace/switch-to 2))
