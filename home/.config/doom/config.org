@@ -1,6 +1,7 @@
 #+TITLE: My emacs doom configuration
 #+AUTHOR: Florian Schrödl <flo.schroedl@gmail.com>
 #+PROPERTY: header-args :tangle yes
+#+STARTUP: org-startup-folded: showall
 
 * Config
 ** Variables
