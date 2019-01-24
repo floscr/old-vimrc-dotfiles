@@ -648,6 +648,20 @@ Insert from the kill ring in insert mode
 ;;   )
 #+END_SRC
 ** Packages & Modules
+*** Eshell
+**** Aliases
+#+BEGIN_SRC elisp
+(after! eshell-mode
+  (add-hook 'eshell-mode-hook (lambda ()
+                                (eshell/alias "gs" "git status")
+                                (eshell/alias "gc" "git commit")
+
+                                ;; The 'ls' executable requires the Gnu version on the Mac
+                                (let ((ls (if (file-exists-p "/usr/local/bin/gls")
+                                            "/usr/local/bin/gls"
+                                            "/bin/ls"))))
+                                (eshell/alias "ll" (concat ls " -AlohG --color=always")))))
+#+END_SRC
 *** Flycheck
 **** Proselint
 :PROPERTIES:
