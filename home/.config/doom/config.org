@@ -232,6 +232,11 @@ This fix opens the folder and selects the file.
 2. menu bar"
   :type 'integer)
 
+(defcustom osx-screen-reserved-x-space 12
+  "How much of the screen is available when subtracting the
+1. Window Border"
+  :type 'integer)
+
 (defun my-set-initial-frame-size (size)
   "Set the initial frame"
   (let* ((width (car size))
@@ -248,7 +253,7 @@ This fix opens the folder and selects the file.
   "Set the frame WIDTH. Maximize the frame vertically (minus the osx reserver space)"
   (set-frame-width (selected-frame) width nil t)
   (set-frame-height (selected-frame) (- (x-display-pixel-height) osx-screen-reserved-y-space) nil t)
-  (set-frame-position (selected-frame) (- (x-display-pixel-width) width) 0))
+  (set-frame-position (selected-frame) (- (x-display-pixel-width) width osx-screen-reserved-x-space) 0))
 
 (defun my-frame-resize-work-external ()
   "External Monitor at work"
