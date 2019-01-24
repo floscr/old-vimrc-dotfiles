@@ -523,6 +523,7 @@ Insert from the kill ring in insert mode
  :n "'"   #'+popup/toggle
  :n "au"   #'undo-tree-visualize
  :n "//"   #'helm-projectile-ag
+ :n "-"    #'quick-calc
 
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
