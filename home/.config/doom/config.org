@@ -202,6 +202,22 @@ buffer in current window."
 
 (defun file-timestamp (f) (let ((attrs (file-attributes f))) (nth 5 attrs)))
 #+END_SRC
+*** Reveal in Finder
+
+The regular ~+macos/reveal-in-finder~ in doom only opens the folder.
+This fix opens the folder and selects the file.
+
+#+BEGIN_SRC elisp
+(defun +macos/reveal-in-finder ()
+  "Reveal the current file in finder and select it"
+  (interactive)
+  (do-applescript (concat
+                   "tell application \"Finder\"\n"
+                   "    activate\n"
+                   "    reveal POSIX file \"" (buffer-file-name) "\"\n"
+                   "end tell")))
+#+END_SRC
+
 ** UI
 *** System specific
 #+BEGIN_SRC elisp
