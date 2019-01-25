@@ -1440,6 +1440,16 @@ Org habit is needed for ~org-ql~
    org-image-actual-width 600
    org-default-notes-file (concat org-directory "/inbox.org")))
 #+END_SRC
+****** Src Edit Window Setup
+
+~'current-window~ does not work for me.
+~'reorganize-frame~ at least creates a split, which i might prefer anyway.
+
+#+BEGIN_SRC elisp
+(after! org
+  :config
+  (setq org-src-window-setup 'reorganize-frame))
+#+END_SRC
 
 ***** Export
 #+BEGIN_SRC elisp
