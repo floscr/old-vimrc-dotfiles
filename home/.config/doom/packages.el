@@ -18,6 +18,8 @@
 
 (package! nov)
 
+(package! define-word)
+
 ;; Install frame cmds
 (package! frame-fns :recipe (:fetcher wiki))
 (package! frame-cmds :recipe (:fetcher wiki))
