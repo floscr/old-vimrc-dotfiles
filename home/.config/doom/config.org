@@ -554,6 +554,10 @@ Insert from the kill ring in insert mode
  (:desc "toggle" :prefix "t"
    :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
 
+ (:desc "open" :prefix "o"
+   :desc "Eshell in Current Dir" :n  "." (λ! (+eshell/open t))
+   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
+
  (:desc "window" :prefix "w"
    :desc "Split Vertical" :n "|" #'evil-window-vsplit
    :desc "Split Horizontal" :n "_" #'evil-window-split)
