@@ -1754,6 +1754,10 @@ Always keep markdown centered, without line numbers.
           :n ">"    #'markdown-demote)))
 #+END_SRC
 ** General Config
+*** Open OTF fonts in image mode
+#+BEGIN_SRC elisp
+(add-to-list 'auto-mode-alist '("\\.otf\\'" . image-mode))
+#+END_SRC
 *** Shorten Yes/No prompts
 :PROPERTIES:
 :SOURCE:   https://github.com/wasamasa/dotemacs/blob/master/init.org#shorten-yesno-prompts
