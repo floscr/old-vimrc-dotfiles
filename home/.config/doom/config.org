@@ -713,6 +713,7 @@ Repeat snipe after further key press
 
 When there are two visual splits with dired buffers.
 ~C~ will take the other window as the copy target.
+The cursor has to be on the dired frame with the marked files.
 
 #+BEGIN_SRC elisp
 (setq dired-dwim-target t)
