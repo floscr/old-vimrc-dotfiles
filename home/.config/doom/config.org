@@ -1,5 +1,5 @@
-#+TITLE: My emacs doom configuration
-#+AUTHOR: Florian Schrödl <flo.schroedl@gmail.com>
+#+TITLE: Emacs Doom configuration
+#+AUTHOR: Florian Schrödl (floscr)
 #+PROPERTY: header-args :tangle yes
 #+STARTUP: org-startup-folded: showall
 
