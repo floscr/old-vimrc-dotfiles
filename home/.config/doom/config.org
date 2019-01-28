@@ -6,24 +6,26 @@
 ;; -*- lexical-binding: t -*-
 #+END_SRC
 
-* Config
-** Variables
-*** Personal Configuration
-
-Full name and email address
-
-#+BEGIN_SRC elisp
-(setq user-full-name "Florian Schrödl"
-      user-mail-address "flo.schroedl.com")
-#+END_SRC
-
-Setup GPG
+* Configuration
+** About
+This is Florian Schrödls Emacs Config based on [[https://github.com/hlissner/doom-emacs][doom-emacs]].
+I'm using the develop branch of doom.
 
 #+BEGIN_SRC elisp
-;; Use Emacs UI to enter the encryption key
-(setenv "GPG_AGENT_INFO" nil)
-(setq epa-pinentry-mode 'loopback)
+(setq user-full-name "Florian Schrödl")
 #+END_SRC
+
+*** Naming conventions
+- floscr-...   variables or non-interactive functions
+- floscr/...   an interactive function
+- floscr|...   hook function
+- floscr*...   advising functions
+- floscr:...   an evil operator, motion or command
+- ...!      a macro or function that configures Emacs
+- %...      functions used for in-snippet logic
+- +...      variables or functions related to a package
+** Essential
+*** Variables and constants
 *** Directories
 #+BEGIN_SRC elisp
 (defcustom downloads-dir "~/Downloads/"
@@ -34,7 +36,7 @@ Setup GPG
   "Directory containing your screenshots."
   :type 'string)
 #+END_SRC
-** Utils
+** Utilities
 *** Macros
 **** Aliases
 #+BEGIN_SRC elisp
@@ -65,7 +67,7 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
 #+END_SRC
 *** Delete current Buffer File
 #+BEGIN_SRC elisp
-(defun delete-current-buffer-file ()
+(defun floscr/delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
   (let ((filename (buffer-file-name))
@@ -81,12 +83,10 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
           (call-interactively #'projectile-invalidate-cache))
         (message "File '%s' successfully removed" filename)))))
 #+END_SRC
-*** Utility Functions
+*** Helpers
 #+BEGIN_SRC elisp
 (defun noop (args) nil)
-#+END_SRC
 
-#+BEGIN_SRC elisp
 (defun do-jxa-script (cmd)
   "Run a osx javascript automation script via bash"
   (shell-command-to-string
@@ -105,6 +105,7 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
            (insert (current-kill 0)))))
 
 (defun copy-message (x)
+  "Executes kill-new but with a message log side effect"
   (kill-new x)
   (message "Copied to clipboard: %s" x))
 
@@ -116,6 +117,7 @@ Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
 #+END_SRC
 *** Math+
 #+BEGIN_SRC elisp
+3
 (defun math-on-number (f &optional num)
   "Read user input and apply with function f to the number at point"
   (let* ((x (thing-at-point 'number))
@@ -1260,455 +1262,6 @@ This overrides my insert subheading keybinding
 (after! js2-mode
   (+js|load-evil-camel-case-motion))
 #+END_SRC
-*** Org
-**** Utils
-***** TODO Archive all done tasks
-#+BEGIN_SRC elisp :tangle no
-(defun my-archive-entry ()
-  (message "%s" (thing-at-point 'line t)))
-
-(defun +org|org-archive-done-tasks ()
-  (interactive)
-  (org-map-entries #'my-archive-entry "/[X]" 'tree))
-
-(defun +org|org-archive-done-task ()
-  (interactive)
-  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
-
-#+END_SRC
-***** Grab Tablist from Chrome
-#+BEGIN_SRC elisp
-(defun +org|grab-tabs ()
-  "Grab all the chrome tabs as an org list to save for later inspection"
-  (interactive)
-  (let ((tabs
-         (do-jxa-script
-          (concat
-           "Application(\"Chrome\").windows[0].tabs()"
-           ".map(tab => `"
-           "- [[${tab.url()}][${tab.title()}]]"
-           "`)"
-           ".join(\"\\n\")"))))
-    (insert tabs)))
-#+END_SRC
-***** Paste Chrome Link Fix
-
-Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
-
-E.g.: (Brackets signal the cursor position)
-
-: **[*]
-: ***[]"
-
-#+BEGIN_SRC elisp
-(defun +org|paste-chrome-link ()
-  "Paste the frontmost chrome link"
-  (interactive)
-  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
-  (insert " ")
-  (insert (org-mac-chrome-get-frontmost-url)))
-#+END_SRC
-***** Sort org entries
-#+BEGIN_SRC elisp
-(defun +org|sort-entries ()
-  "Go to header and sort entries"
-  (interactive)
-  (org-up-element)
-  (org-sort)
-  (org-shifttab)
-  (org-cycle))
-#+END_SRC
-***** Copy block to clipboard
-#+BEGIN_SRC elisp
-(defun +org|copy-block ()
-  "Copies the current block to clipboard"
-  (interactive)
-  (org-edit-src-code)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-#+END_SRC
-***** TODO Org Web Tools at point
-#+BEGIN_SRC elisp
-(defun +org-web-tools-dwim-at-point ()
-  "Pass url to web tools from either:
-1. An org link under the cursor
-2. An url in the clipboard"
-  (interactive)
-  (let ((org-url (org-element-property :raw-link (org-element-context)))
-        (clipboard-url (current-kill 0)))
-    (if org-url
-        (message "Reading org url from thing at point")
-        (org-web-tools-read-url-as-org org-url)
-      (if (string-match url-handler-regexp clipboard-url)
-          (message "Reading org url from clipboard")
-          (org-web-tools-read-url-as-org clipboard-url)
-        (message "No url found")))))
-#+END_SRC
-
-***** Paste Markdown as org
-#+BEGIN_SRC elisp
-(defun +org|paste-markdown-as-org ()
-  "Convert the current clipboard to markdown"
-  (interactive)
-  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
-#+END_SRC
-***** Ocaml Refmt to Reason
-#+BEGIN_SRC elisp
-(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
-  "Convert the current src block from ocaml to reason and vice versa"
-  (interactive)
-  (save-excursion
-    (let* ((old-block (org-element-at-point))
-           (old-lang (org-element-property :language old-block))
-           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
-           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
-      (org-edit-special)
-      (funcall formatter (point-min) (point-max))
-      (org-edit-src-exit)
-      (let* ((new-block (org-element-at-point))
-             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
-             (from (org-element-property :begin new-block))
-             (to (org-element-property :end new-block)))
-        (delete-region from to)))))
-#+END_SRC
-**** Reading List
-#+BEGIN_SRC elisp :tangle no
-(defun org-reading-list ()
-  (interactive)
-  (org-ql-agenda org-reading-list
-    (and (tags "TEXT")
-         (level 2))
-    :super-groups ((:todo "NEXT")
-                   (:todo "ACTIVE"))))
-
-(org-reading-list)
-#+END_SRC
-**** Config Rifle
-#+BEGIN_SRC elisp
-(defun helm-org-rifle-config ()
-  "Rifle for the literate configuration file"
-  (interactive)
-  (helm-org-rifle-files (list +literate-config-file)))
-#+END_SRC
-**** Org Attach
-***** Download
-#+BEGIN_SRC elisp
-(defun +org-attach/downloads-file (file)
-  "Attach a file in your downloads-directory"
-  (interactive (list (read-file-name "Attach File: " downloads-dir)))
-  (+org-attach/uri file))
-#+END_SRC
-***** Screenshot
-#+BEGIN_SRC elisp
-(defun +org-attach/last-screenshot ()
-  "Attaches the last screenshot"
-  (interactive)
-  (+org-attach/file (latest-file screenshot-dir)))
-#+END_SRC
-**** Config
-***** General Config
-****** Add Org Habit
-Org habit is needed for ~org-ql~
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-modules 'org-habit t)
-#+END_SRC
-****** Todo Keywords
-#+BEGIN_SRC elisp
-(after! org
-  :config
-  (setq org-todo-keywords
-        '((sequence "[ ](t)" "|" "[X](x)")
-          (sequence "TODO(T)" "ACTIVE(a)" "|" "DONE(X)")
-          (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)")
-          (sequence "PROJECT(p)"))))
-#+END_SRC
-****** Projectile Ignore
-
-#+BEGIN_SRC elisp
-(after! projectile
-  (add-to-list 'projectile-globally-ignored-file-suffixes ".org_archive")
-  (add-to-list 'projectile-globally-ignored-file-suffixes ".DS_Store"))
-#+END_SRC
-
-****** Org variables
-
-#+BEGIN_SRC elisp
-(setq
- org-directory (expand-file-name "~/Dropbox/org")
- org-pinboard-dir org-directory
- org-pinboard-file (concat org-pinboard-dir "/Bookmarks/bookmarks.org")
- org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
- org-default-notes-file (concat org-directory "/inbox.org")
- org-shopping-list-file (concat org-directory "/shoppinglist.org")
- org-reading-list (concat org-directory "/reading-list.org"))
-
-(after! org
-  :config
-  (setq
-   org-image-actual-width 600
-   org-default-notes-file (concat org-directory "/inbox.org")))
-#+END_SRC
-****** Src Edit Window Setup
-
-~'current-window~ does not work for me.
-~'reorganize-frame~ at least creates a split, which i might prefer anyway.
-
-#+BEGIN_SRC elisp
-(after! org
-  :config
-  (setq org-src-window-setup 'reorganize-frame))
-#+END_SRC
-
-***** Export
-#+BEGIN_SRC elisp
-(defun +org|copy-subtree-as-markdown ()
-  "Copy the current subtree as markdown to clipboard"
-    (interactive)
-    (let* ((org-export-with-toc nil)
-           (md (org-md-export-as-markdown nil t)))
-      (kill-ring-save (point-min) (point-max))
-      (kill-buffer md)))
-#+END_SRC
-***** Tags
-
-Persistent list of tags and tag shortcuts.
-
-Not sure yet if the shortcuts work for me.
-Maybe just try persistent tags.
-
-#+BEGIN_SRC elisp
-(setq
- org-tag-persistent-alist '(("ACCESABILTY"))
- org-tag-alist '(("CSS" . ?c)
-                 ("DESIGN" . ?d)
-                 ("EMACS" . ?e)
-                 ("GUIDE" . ?g)
-                 ("HASKELL" . ?h)
-                 ("JAVASCRIPT" . ?j)
-                 ("LEISURE" . ?l)
-                 ("MATH" . ?m)
-                 ("REASON_ML" . ?r)
-                 ("REPOSITORY". ?R)
-                 ("WORK" . ?w)))
-#+END_SRC
-
-***** Refile Targets
-
-#+BEGIN_SRC elisp
-(defun expand-org-file-names (xs)
-  (mapcar (λ (x) (expand-file-name x org-directory)) xs))
-
-(setq level-1-refile-targets (expand-org-file-names '("reading-list.org"
-                                                      "cooking.org"
-                                                      ;; "books.org"
-                                                      "programming.org"
-                                                      "shoppinglist.org")))
-
-(setq max-level-2-refile-targets (expand-org-file-names '("Emacs.org"
-                                                          "art.org"
-                                                          "diary"
-                                                          "games.org"
-                                                          "hardware.org"
-                                                          "home.org"
-                                                          "inbox.org"
-                                                          "mealplan.org"
-                                                          "misc.org"
-                                                          "movies.org"
-                                                          "music.org"
-                                                          "osx.org"
-                                                          "personal.org"
-                                                          "podcasts.org"
-                                                          "projects.org"
-                                                          "sleep.org"
-                                                          "sports.org"
-                                                          "travel.org"
-                                                          "Work/work.org")))
-
-(defun level-1-refile-targets () level-1-refile-targets)
-
-(defun max-level-2-refile-targets () max-level-2-refile-targets)
-
-(after! org
-  :config
-  (setq org-refile-targets (quote ((nil :maxlevel . 5)
-                                   (max-level-2-refile-targets :maxlevel . 2)
-                                   (level-1-refile-targets :level . 1)))
-        org-agenda-refile org-agenda-files))
-#+END_SRC
-***** Journal
-#+BEGIN_SRC elisp
-(defvar org-journal-dir-default "~/Dropbox/org/journal")
-(defvar org-journal-dir-diary "~/Dropbox/org/diary")
-
-(setq org-journal-dir org-journal-dir-default)
-(setq org-journal-file-format "%Y-%m-%d")
-(setq org-journal-date-prefix "#+TITLE: ")
-(setq org-journal-date-format "%A, %B %d %Y")
-(setq org-journal-time-prefix "* ")
-(setq org-journal-time-format "")
-#+END_SRC
-***** Capture Templates
-#+BEGIN_SRC elisp
-(defun org-capture-bookmark-pair ()
-    (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
-
-(defun org-capture-bookmark-string-url ()
-    (car (org-capture-bookmark-pair)))
-
-(defun org-capture-bookmark-string-description ()
-    (cadr (org-capture-bookmark-pair)))
-
-(setq org-capture-templates
-      `(("t" "todo" entry (file+headline org-default-notes-file "INBOX")
-         "* TODO %?\n%U")
-        ("e" "Event (Calendar)" entry (file+headline ,(concat org-directory "/home.org") "Calendar")
-         "* %?\n%U")
-        ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
-         "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
-        ("b" "bookmark" entry (file+headline org-pinboard-file "Pinboard")
-         "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
-        ("w" "work" entry (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
-         "* TODO %?\n%U")))
-#+END_SRC
-***** TODO Src Block Snippets
-
-Solve these with yasnippet
-
-#+BEGIN_SRC elisp :tangle no
-(add-to-list 'org-structure-template-alist '("es" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
-(add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("re" "#+BEGIN_SRC reason\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("oc" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("rb" "#+BEGIN_SRC ruby\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("md" "#+BEGIN_SRC markdown\n?\n#+END_SRC\n"))
-#+END_SRC
-
-***** TODO Bookmarks
-These can be solved with a lambda and dont need extra functions
-#+BEGIN_SRC elisp
-(defun org-find-file (f)
-  "Find file in org directory"
-  (find-file (concat org-directory f)))
-
-(defun +org|org-open-home-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/home.org"))
-
-(defun +org|org-open-reading-list-file ()
-  "Open the reading list org file"
-  (interactive)
-  (org-find-file "/reading-list.org"))
-
-(defun +org|org-open-work-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/Work/work.org"))
-#+END_SRC
-
-***** Leader Bindings
-#+BEGIN_SRC elisp
-(map! :leader (
-               :desc "Notes" :prefix "n"
-               :desc "Home" :n  "h" #'+org|org-open-home-file
-               :desc "Reading List" :n  "r" #'+org|org-open-reading-list-file
-               :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
-               :desc "Work" :n  "w" #'+org|org-open-work-file
-               :desc "Agenda" :n  "a" #'org-agenda
-               :desc "Store Link" :n  "y" #'org-store-link
-               :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers))
-#+END_SRC
-***** General Bindings
-#+BEGIN_SRC elisp
-(after! org
-  (map! :map evil-org-mode-map
-        :n "M-j" #'org-move-subtree-down
-        :n "M-k" #'org-move-subtree-up
-
-        :localleader
-        :desc "Archive Subtree"   :m "a" #'org-archive-subtree
-        :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
-        :desc "Grab tabs"         :m "P" #'+org|grab-tabs
-        :desc "Cut Subtree"       :m "C" #'org-cut-subtree
-        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
-        :desc "Sort Entries"      :m "S" #'+org|sort-entries
-
-        :desc "Create/Edit Todo"  :nve "o" #'org-todo
-        :desc "Schedule"          :nve "s" #'org-schedule
-        :desc "Deadline"          :nve "d" #'org-deadline
-        :desc "Refile"            :nve "r" #'org-refile
-        :desc "Filter"            :nve "f" #'org-match-sparse-tree
-        :desc "Tag heading"       :nve "t" #'org-set-tags-command
-
-        (:desc "Attach" :prefix "F"
-          :desc "Downloads File" :m "d" '+org-attach/downloads-file
-          :desc "Screenshot" :m "s" '+org-attach/last-screenshot
-          :desc "URI" :m "u" '+org-attach/uri
-          :desc "File" :m "f" '+org-attach/file)
-
-        (:desc "Insert" :prefix "i"
-          :desc "Subheadeing" :m "s" (λ!
-                                      (call-interactively 'org-insert-subheading)
-                                      (evil-insert-state))
-          :desc "Inavtive Timestamp" :m "i" 'org-time-stamp-inactive)
-        (:desc "Narrow" :prefix "n"
-          :desc "Indirect Buffer Tree" :m "i" #'org-tree-to-indirect-buffer
-          :desc "Subtree"              :m "s" #'org-narrow-to-subtree
-          :desc "Block"                :m "b" #'org-narrow-to-block
-          :desc "Element"              :m "e" #'org-narrow-to-element
-          :desc "widen"                :m "w" #'widen)))
-#+END_SRC
-***** Agenda
-****** Bindings
-#+BEGIN_SRC elisp
-(evil-define-key 'motion org-agenda-mode-map
-  "vd" 'org-agenda-day-view
-  "ds" 'org-agenda-schedule
-  "vw" 'org-agenda-week-view
-  "vm" 'org-agenda-month-view
-  "vy" 'org-agenda-year-view)
-#+END_SRC
-****** Custom Agenda Commands
-
-#+BEGIN_SRC elisp
-(after! org-agenda
-  (add-to-list 'org-agenda-custom-commands
-               '("p" "Personal" agenda ""
-                 ((org-agenda-ndays 5)
-                  (org-agenda-span 7)
-                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
-                  (tags-todo "-\[X\]")
-                  (tags-todo "-DONE")
-                  (org-agenda-start-on-weekday nil)
-                  (org-agenda-time-grid nil)
-                  (org-agenda-day-view)
-                  (org-agenda-repeating-timestamp-show-all t))))
-  (add-to-list 'org-agenda-custom-commands
-               '("w" "Work" tags-todo "+WORK"))
-  (add-to-list 'org-agenda-custom-commands
-               '("rr" "Reading List" tags-todo "+TEXT"))
-  (add-to-list 'org-agenda-custom-commands
-               '("c" "Calendar" agenda ""
-                 ((org-agenda-span 7)
-                  (org-agenda-start-on-weekday nil)
-                  (org-agenda-start-day "-1d")
-                  (org-agenda-tag-filter-preset '("+CALENDAR")))))
-
-
-  :config
-  (setq org-agenda-start-on-weekday 1
-        org-agenda-files (list org-directory
-                               (concat org-directory "/Work"))))
-#+END_SRC
-
-Helper to reset the org agenda custom commands.
-
-#+BEGIN_SRC elisp :tangle no
-(setq org-agenda-custom-commands '())
-#+END_SRC
 *** Reason
 #+BEGIN_SRC elisp
 (defun rtop ()
@@ -1770,6 +1323,455 @@ Always keep markdown centered, without line numbers.
   (map! (:map markdown-mode-map
           :n "<"    #'markdown-promote
           :n ">"    #'markdown-demote)))
+#+END_SRC
+** Org
+*** Utils
+**** TODO Archive all done tasks
+#+BEGIN_SRC elisp :tangle no
+(defun my-archive-entry ()
+  (message "%s" (thing-at-point 'line t)))
+
+(defun +org|org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries #'my-archive-entry "/[X]" 'tree))
+
+(defun +org|org-archive-done-task ()
+  (interactive)
+  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
+
+#+END_SRC
+**** Grab Tablist from Chrome
+#+BEGIN_SRC elisp
+(defun +org|grab-tabs ()
+  "Grab all the chrome tabs as an org list to save for later inspection"
+  (interactive)
+  (let ((tabs
+         (do-jxa-script
+          (concat
+           "Application(\"Chrome\").windows[0].tabs()"
+           ".map(tab => `"
+           "- [[${tab.url()}][${tab.title()}]]"
+           "`)"
+           ".join(\"\\n\")"))))
+    (insert tabs)))
+#+END_SRC
+**** Paste Chrome Link Fix
+
+Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
+
+E.g.: (Brackets signal the cursor position)
+
+: **[*]
+: ***[]"
+
+#+BEGIN_SRC elisp
+(defun +org|paste-chrome-link ()
+  "Paste the frontmost chrome link"
+  (interactive)
+  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
+  (insert " ")
+  (insert (org-mac-chrome-get-frontmost-url)))
+#+END_SRC
+**** Sort org entries
+#+BEGIN_SRC elisp
+(defun +org|sort-entries ()
+  "Go to header and sort entries"
+  (interactive)
+  (org-up-element)
+  (org-sort)
+  (org-shifttab)
+  (org-cycle))
+#+END_SRC
+**** Copy block to clipboard
+#+BEGIN_SRC elisp
+(defun +org|copy-block ()
+  "Copies the current block to clipboard"
+  (interactive)
+  (org-edit-src-code)
+  (clipboard-kill-ring-save (point-min) (point-max)))
+#+END_SRC
+**** TODO Org Web Tools at point
+#+BEGIN_SRC elisp
+(defun +org-web-tools-dwim-at-point ()
+  "Pass url to web tools from either:
+1. An org link under the cursor
+2. An url in the clipboard"
+  (interactive)
+  (let ((org-url (org-element-property :raw-link (org-element-context)))
+        (clipboard-url (current-kill 0)))
+    (if org-url
+        (message "Reading org url from thing at point")
+        (org-web-tools-read-url-as-org org-url)
+      (if (string-match url-handler-regexp clipboard-url)
+          (message "Reading org url from clipboard")
+          (org-web-tools-read-url-as-org clipboard-url)
+        (message "No url found")))))
+#+END_SRC
+
+**** Paste Markdown as org
+#+BEGIN_SRC elisp
+(defun +org|paste-markdown-as-org ()
+  "Convert the current clipboard to markdown"
+  (interactive)
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
+#+END_SRC
+**** Ocaml Refmt to Reason
+#+BEGIN_SRC elisp
+(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
+  "Convert the current src block from ocaml to reason and vice versa"
+  (interactive)
+  (save-excursion
+    (let* ((old-block (org-element-at-point))
+           (old-lang (org-element-property :language old-block))
+           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
+           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
+      (org-edit-special)
+      (funcall formatter (point-min) (point-max))
+      (org-edit-src-exit)
+      (let* ((new-block (org-element-at-point))
+             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
+             (from (org-element-property :begin new-block))
+             (to (org-element-property :end new-block)))
+        (delete-region from to)))))
+#+END_SRC
+*** Reading List
+#+BEGIN_SRC elisp :tangle no
+(defun org-reading-list ()
+  (interactive)
+  (org-ql-agenda org-reading-list
+    (and (tags "TEXT")
+         (level 2))
+    :super-groups ((:todo "NEXT")
+                   (:todo "ACTIVE"))))
+
+(org-reading-list)
+#+END_SRC
+*** Config Rifle
+#+BEGIN_SRC elisp
+(defun helm-org-rifle-config ()
+  "Rifle for the literate configuration file"
+  (interactive)
+  (helm-org-rifle-files (list +literate-config-file)))
+#+END_SRC
+*** Org Attach
+**** Download
+#+BEGIN_SRC elisp
+(defun +org-attach/downloads-file (file)
+  "Attach a file in your downloads-directory"
+  (interactive (list (read-file-name "Attach File: " downloads-dir)))
+  (+org-attach/uri file))
+#+END_SRC
+**** Screenshot
+#+BEGIN_SRC elisp
+(defun +org-attach/last-screenshot ()
+  "Attaches the last screenshot"
+  (interactive)
+  (+org-attach/file (latest-file screenshot-dir)))
+#+END_SRC
+*** Config
+**** General Config
+***** Add Org Habit
+Org habit is needed for ~org-ql~
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-modules 'org-habit t)
+#+END_SRC
+***** Todo Keywords
+#+BEGIN_SRC elisp
+(after! org
+  :config
+  (setq org-todo-keywords
+        '((sequence "[ ](t)" "|" "[X](x)")
+          (sequence "TODO(T)" "ACTIVE(a)" "|" "DONE(X)")
+          (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)")
+          (sequence "PROJECT(p)"))))
+#+END_SRC
+***** Projectile Ignore
+
+#+BEGIN_SRC elisp
+(after! projectile
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".org_archive")
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".DS_Store"))
+#+END_SRC
+
+***** Org variables
+
+#+BEGIN_SRC elisp
+(setq
+ org-directory (expand-file-name "~/Dropbox/org")
+ org-pinboard-dir org-directory
+ org-pinboard-file (concat org-pinboard-dir "/Bookmarks/bookmarks.org")
+ org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
+ org-default-notes-file (concat org-directory "/inbox.org")
+ org-shopping-list-file (concat org-directory "/shoppinglist.org")
+ org-reading-list (concat org-directory "/reading-list.org"))
+
+(after! org
+  :config
+  (setq
+   org-image-actual-width 600
+   org-default-notes-file (concat org-directory "/inbox.org")))
+#+END_SRC
+***** Src Edit Window Setup
+
+~'current-window~ does not work for me.
+~'reorganize-frame~ at least creates a split, which i might prefer anyway.
+
+#+BEGIN_SRC elisp
+(after! org
+  :config
+  (setq org-src-window-setup 'reorganize-frame))
+#+END_SRC
+
+**** Export
+#+BEGIN_SRC elisp
+(defun +org|copy-subtree-as-markdown ()
+  "Copy the current subtree as markdown to clipboard"
+    (interactive)
+    (let* ((org-export-with-toc nil)
+           (md (org-md-export-as-markdown nil t)))
+      (kill-ring-save (point-min) (point-max))
+      (kill-buffer md)))
+#+END_SRC
+**** Tags
+
+Persistent list of tags and tag shortcuts.
+
+Not sure yet if the shortcuts work for me.
+Maybe just try persistent tags.
+
+#+BEGIN_SRC elisp
+(setq
+ org-tag-persistent-alist '(("ACCESABILTY"))
+ org-tag-alist '(("CSS" . ?c)
+                 ("DESIGN" . ?d)
+                 ("EMACS" . ?e)
+                 ("GUIDE" . ?g)
+                 ("HASKELL" . ?h)
+                 ("JAVASCRIPT" . ?j)
+                 ("LEISURE" . ?l)
+                 ("MATH" . ?m)
+                 ("REASON_ML" . ?r)
+                 ("REPOSITORY". ?R)
+                 ("WORK" . ?w)))
+#+END_SRC
+
+**** Refile Targets
+
+#+BEGIN_SRC elisp
+(defun expand-org-file-names (xs)
+  (mapcar (λ (x) (expand-file-name x org-directory)) xs))
+
+(setq level-1-refile-targets (expand-org-file-names '("reading-list.org"
+                                                      "cooking.org"
+                                                      ;; "books.org"
+                                                      "programming.org"
+                                                      "shoppinglist.org")))
+
+(setq max-level-2-refile-targets (expand-org-file-names '("Emacs.org"
+                                                          "art.org"
+                                                          "diary"
+                                                          "games.org"
+                                                          "hardware.org"
+                                                          "home.org"
+                                                          "inbox.org"
+                                                          "mealplan.org"
+                                                          "misc.org"
+                                                          "movies.org"
+                                                          "music.org"
+                                                          "osx.org"
+                                                          "personal.org"
+                                                          "podcasts.org"
+                                                          "projects.org"
+                                                          "sleep.org"
+                                                          "sports.org"
+                                                          "travel.org"
+                                                          "Work/work.org")))
+
+(defun level-1-refile-targets () level-1-refile-targets)
+
+(defun max-level-2-refile-targets () max-level-2-refile-targets)
+
+(after! org
+  :config
+  (setq org-refile-targets (quote ((nil :maxlevel . 5)
+                                   (max-level-2-refile-targets :maxlevel . 2)
+                                   (level-1-refile-targets :level . 1)))
+        org-agenda-refile org-agenda-files))
+#+END_SRC
+**** Journal
+#+BEGIN_SRC elisp
+(defvar org-journal-dir-default "~/Dropbox/org/journal")
+(defvar org-journal-dir-diary "~/Dropbox/org/diary")
+
+(setq org-journal-dir org-journal-dir-default)
+(setq org-journal-file-format "%Y-%m-%d")
+(setq org-journal-date-prefix "#+TITLE: ")
+(setq org-journal-date-format "%A, %B %d %Y")
+(setq org-journal-time-prefix "* ")
+(setq org-journal-time-format "")
+#+END_SRC
+**** Capture Templates
+#+BEGIN_SRC elisp
+(defun org-capture-bookmark-pair ()
+    (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
+
+(defun org-capture-bookmark-string-url ()
+    (car (org-capture-bookmark-pair)))
+
+(defun org-capture-bookmark-string-description ()
+    (cadr (org-capture-bookmark-pair)))
+
+(setq org-capture-templates
+      `(("t" "todo" entry (file+headline org-default-notes-file "INBOX")
+         "* TODO %?\n%U")
+        ("e" "Event (Calendar)" entry (file+headline ,(concat org-directory "/home.org") "Calendar")
+         "* %?\n%U")
+        ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
+         "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+        ("b" "bookmark" entry (file+headline org-pinboard-file "Pinboard")
+         "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
+        ("w" "work" entry (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
+         "* TODO %?\n%U")))
+#+END_SRC
+**** TODO Src Block Snippets
+
+Solve these with yasnippet
+
+#+BEGIN_SRC elisp :tangle no
+(add-to-list 'org-structure-template-alist '("es" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
+(add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("re" "#+BEGIN_SRC reason\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("oc" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("rb" "#+BEGIN_SRC ruby\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("md" "#+BEGIN_SRC markdown\n?\n#+END_SRC\n"))
+#+END_SRC
+
+**** TODO Bookmarks
+These can be solved with a lambda and dont need extra functions
+#+BEGIN_SRC elisp
+(defun org-find-file (f)
+  "Find file in org directory"
+  (find-file (concat org-directory f)))
+
+(defun +org|org-open-home-file ()
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/home.org"))
+
+(defun +org|org-open-reading-list-file ()
+  "Open the reading list org file"
+  (interactive)
+  (org-find-file "/reading-list.org"))
+
+(defun +org|org-open-work-file ()
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/Work/work.org"))
+#+END_SRC
+
+**** Leader Bindings
+#+BEGIN_SRC elisp
+(map! :leader (
+               :desc "Notes" :prefix "n"
+               :desc "Home" :n  "h" #'+org|org-open-home-file
+               :desc "Reading List" :n  "r" #'+org|org-open-reading-list-file
+               :desc "Inbox" :n  "i" (λ! (find-file (concat org-directory "/inbox.org")))
+               :desc "Work" :n  "w" #'+org|org-open-work-file
+               :desc "Agenda" :n  "a" #'org-agenda
+               :desc "Store Link" :n  "y" #'org-store-link
+               :desc "Save All Org Buffers" :n  "S" #'org-save-all-org-buffers))
+#+END_SRC
+**** General Bindings
+#+BEGIN_SRC elisp
+(after! org
+  (map! :map evil-org-mode-map
+        :n "M-j" #'org-move-subtree-down
+        :n "M-k" #'org-move-subtree-up
+
+        :localleader
+        :desc "Archive Subtree"   :m "a" #'org-archive-subtree
+        :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
+        :desc "Grab tabs"         :m "P" #'+org|grab-tabs
+        :desc "Cut Subtree"       :m "C" #'org-cut-subtree
+        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
+        :desc "Sort Entries"      :m "S" #'+org|sort-entries
+
+        :desc "Create/Edit Todo"  :nve "o" #'org-todo
+        :desc "Schedule"          :nve "s" #'org-schedule
+        :desc "Deadline"          :nve "d" #'org-deadline
+        :desc "Refile"            :nve "r" #'org-refile
+        :desc "Filter"            :nve "f" #'org-match-sparse-tree
+        :desc "Tag heading"       :nve "t" #'org-set-tags-command
+
+        (:desc "Attach" :prefix "F"
+          :desc "Downloads File" :m "d" '+org-attach/downloads-file
+          :desc "Screenshot" :m "s" '+org-attach/last-screenshot
+          :desc "URI" :m "u" '+org-attach/uri
+          :desc "File" :m "f" '+org-attach/file)
+
+        (:desc "Insert" :prefix "i"
+          :desc "Subheadeing" :m "s" (λ!
+                                      (call-interactively 'org-insert-subheading)
+                                      (evil-insert-state))
+          :desc "Inavtive Timestamp" :m "i" 'org-time-stamp-inactive)
+        (:desc "Narrow" :prefix "n"
+          :desc "Indirect Buffer Tree" :m "i" #'org-tree-to-indirect-buffer
+          :desc "Subtree"              :m "s" #'org-narrow-to-subtree
+          :desc "Block"                :m "b" #'org-narrow-to-block
+          :desc "Element"              :m "e" #'org-narrow-to-element
+          :desc "widen"                :m "w" #'widen)))
+#+END_SRC
+**** Agenda
+***** Bindings
+#+BEGIN_SRC elisp
+(evil-define-key 'motion org-agenda-mode-map
+  "vd" 'org-agenda-day-view
+  "ds" 'org-agenda-schedule
+  "vw" 'org-agenda-week-view
+  "vm" 'org-agenda-month-view
+  "vy" 'org-agenda-year-view)
+#+END_SRC
+***** Custom Agenda Commands
+
+#+BEGIN_SRC elisp
+(after! org-agenda
+  (add-to-list 'org-agenda-custom-commands
+               '("p" "Personal" agenda ""
+                 ((org-agenda-ndays 5)
+                  (org-agenda-span 7)
+                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
+                  (tags-todo "-\[X\]")
+                  (tags-todo "-DONE")
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-time-grid nil)
+                  (org-agenda-day-view)
+                  (org-agenda-repeating-timestamp-show-all t))))
+  (add-to-list 'org-agenda-custom-commands
+               '("w" "Work" tags-todo "+WORK"))
+  (add-to-list 'org-agenda-custom-commands
+               '("rr" "Reading List" tags-todo "+TEXT"))
+  (add-to-list 'org-agenda-custom-commands
+               '("c" "Calendar" agenda ""
+                 ((org-agenda-span 7)
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-start-day "-1d")
+                  (org-agenda-tag-filter-preset '("+CALENDAR")))))
+
+
+  :config
+  (setq org-agenda-start-on-weekday 1
+        org-agenda-files (list org-directory
+                               (concat org-directory "/Work"))))
+#+END_SRC
+
+Helper to reset the org agenda custom commands.
+
+#+BEGIN_SRC elisp :tangle no
+(setq org-agenda-custom-commands '())
 #+END_SRC
 ** General Config
 *** Open OTF fonts in image mode
