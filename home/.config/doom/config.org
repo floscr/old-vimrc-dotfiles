@@ -2,6 +2,9 @@
 #+AUTHOR: Florian Schrödl (floscr)
 #+PROPERTY: header-args :tangle yes
 #+STARTUP: org-startup-folded: showall
+#+BEGIN_SRC emacs-lisp
+;; -*- lexical-binding: t -*-
+#+END_SRC
 
 * Config
 ** Variables
