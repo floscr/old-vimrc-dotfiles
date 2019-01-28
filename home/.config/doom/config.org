@@ -1156,6 +1156,11 @@ This overrides my insert subheading keybinding
      (:prefix "m"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 #+END_SRC
+*** TODO PDF Tools
+#+BEGIN_SRC elisp
+(setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
+#+END_SRC
+
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
