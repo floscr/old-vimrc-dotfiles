@@ -75,6 +75,7 @@
  :app
  irc
  writeme
+ calendar
 
  :config
  (default +bindings +snippets +evil-commands)
