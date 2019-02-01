@@ -222,6 +222,23 @@ This fix opens the folder and selects the file.
                    "    reveal POSIX file \"" (buffer-file-name) "\"\n"
                    "end tell")))
 #+END_SRC
+*** Show Next/Previous file in file listing
+#+BEGIN_SRC elisp
+(defun floscr/next-ls-file (&optional direction)
+  "Gives you the next file of a listing in the current dictionary"
+  (interactive)
+  (let* ((direction (or direction 1))
+         (files (-drop 2 (directory-files (file-name-directory (buffer-file-name)) nil nil nil)))
+         (current-index (-elem-index (file-name-nondirectory buffer-file-name) files))
+         (file-length (- (length files) 1))
+         (next-index (+ current-index direction)))
+    (--> (cond
+          ((equal (> file-length next-index) 0))
+          ((equal (< 0 next-index) file-length))
+          (t next-index))
+        (nth it files))))
+#+END_SRC
+
 
 ** UI
 *** System specific
