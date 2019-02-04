@@ -238,8 +238,23 @@ This fix opens the folder and selects the file.
           (t next-index))
         (nth it files))))
 #+END_SRC
+*** Hydra Expand Region
+:PROPERTIES:
+:SOURCE:   https://www.reddit.com/r/emacs/comments/also27/second_trial_for_a_weekly_tipstricksetc_thread/efi7pbj/
+:END:
 
+Expand region using a hydra.
+Double press ~v~ to enable.
 
+#+BEGIN_SRC elisp
+(defhydra hydra-expand-region ()
+   "region: "
+   ("f" er/mark-defun "defun")
+   ("k" er/expand-region "expand")
+   ("j" er/contract-region "contract"))
+
+(evil-define-key 'visual 'global (kbd "v") #'hydra-expand-region/body)
+#+END_SRC
 ** UI
 *** System specific
 #+BEGIN_SRC elisp
