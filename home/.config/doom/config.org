@@ -1655,11 +1655,11 @@ Maybe just try persistent tags.
     (cadr (org-capture-bookmark-pair)))
 
 (setq org-capture-templates
-      `(("t" "todo" entry (file+headline org-default-notes-file "INBOX")
+      `(("t" "todo" entry (file org-default-notes-file)
          "* TODO %?\n%U")
         ("e" "Event (Calendar)" entry (file+headline ,(concat org-directory "/home.org") "Calendar")
          "* %?\n%U")
-        ("c" "Chrome" entry (file+headline org-default-notes-file "INBOX")
+        ("c" "Chrome" entry (file org-default-notes-file)
          "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
         ("b" "bookmark" entry (file+headline org-pinboard-file "Pinboard")
          "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
