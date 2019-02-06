@@ -615,6 +615,16 @@ Insert from the kill ring in insert mode
 
 #+END_SRC
 
+*** Local Leader Bindings
+**** Eshell
+#+BEGIN_SRC elisp
+(defun floscr|+eshell|init-keymap ()
+  "Setup additional custom eshell keybindings to already existing doom bindings. This must be done in a hook because eshell-mode
+redefines its keys every time `eshell-mode' is enabled."
+  (map! :map eshell-mode-map
+        :localleader "l" #'eshell/clear))
+(add-hook 'eshell-first-time-mode-hook #'floscr|+eshell|init-keymap)
+#+END_SRC
 *** Dumb Jump
 #+BEGIN_SRC elisp
 (map!
