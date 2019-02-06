@@ -172,19 +172,38 @@ buffer in current window."
    (current-buffer)))
 #+END_SRC
 *** Workspace
+**** Switch to last visited workspace
+
 #+BEGIN_SRC elisp
 (defun +workspace/switch-to-last-visited ()
   "Switch to the last visited workspace."
   (interactive)
   (+workspace/switch-to +workspace--last))
+#+END_SRC
+**** Find file for workspace
+
+Most of the time you create workspaces from a project.
+But when the CWD has changed in that workspace, you would have to relocate to
+the projects cwd to find a file.
+
+#+BEGIN_SRC elisp
+(defun floscr-find-workspace-project-root (&optional arg)
+  "Gets the root dir for the current workspace"
+  (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
 
 (defun +workspace|find-workspace-project-file ()
+"Projectile find file for the project named after the current workspace."
   (interactive)
-  (cl-letf (((symbol-function 'projectile-project-root) #'find-workspace-project-root))
+  (cl-letf (((symbol-function 'projectile-project-root) #'floscr-find-workspace-project-root))
       (projectile-find-file)))
 
+#+END_SRC
+
+****
+**** New named workspace
+#+BEGIN_SRC elisp
 (defun +workspace|new-named ()
-  "Prompt for a name and create a workspace in that name"
+  "Create a new named workspace."
   (interactive)
   (let ((name (read-string "New workspace name: ")))
     (if name (+workspace/new name))))
