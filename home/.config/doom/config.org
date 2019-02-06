@@ -408,13 +408,21 @@ Change popups to my preferred size.
 
  :en "C-±"   #'+popup/raise)
 #+END_SRC
-*** Flycheck Bindings
+*** Mac Modifier Bindings
+
+OSX Meta Bindings
+
+**** Text Scale
 #+BEGIN_SRC elisp
 (map!
- :n "]e" #'flycheck-next-error
- :n "[e" #'flycheck-previous-error)
+ :niv "M-="   #'default-text-scale-increase
+ :niv "M--"   #'default-text-scale-decrease
+ :niv "M-0"   #'default-text-scale-reset)
 #+END_SRC
-*** Evil
+*** Evil Normal Bindings
+
+Global Evil Normal/Visual Mode bindigns
+
 **** Go up one directory from the current buffer
 #+BEGIN_SRC elisp
 (after! evil
@@ -429,6 +437,39 @@ Change popups to my preferred size.
 #+BEGIN_SRC elisp
 (define-key minibuffer-local-map "\C-p" 'previous-history-element)
 (define-key minibuffer-local-map "\C-n" 'next-history-element)
+#+END_SRC
+**** Window navigation
+#+BEGIN_SRC elisp
+(map!
+ :en "C-h"   #'evil-window-left
+ :en "C-j"   #'evil-window-down
+ :en "C-k"   #'evil-window-up
+ :en "C-l"   #'evil-window-right
+
+ ;; Fixes for treemacs window navigation
+ (:after treemacs-evil
+   :n "C-h" #'evil-window-left
+   :n "C-l" #'evil-window-right))
+#+END_SRC
+**** Jump to last buffer
+#+BEGIN_SRC elisp
+(map! :n "gb" #'evil-switch-to-windows-last-buffer)
+#+END_SRC
+*** Evil Square Bracket Bindings
+
+Global ~[~ & ~]~ combinator bindings
+
+**** Dumb Jump
+#+BEGIN_SRC elisp
+(map!
+ :n "]f" #'dumb-jump-go
+ :n "[f" #'dumb-jump-back)
+#+END_SRC
+**** Flycheck Error Jumping
+#+BEGIN_SRC elisp
+(map!
+ :n "]e" #'flycheck-next-error
+ :n "[e" #'flycheck-previous-error)
 #+END_SRC
 **** Insert Line above/below
 #+BEGIN_SRC elisp
@@ -450,84 +491,17 @@ Change popups to my preferred size.
   (map! :n "[ SPC" #'evil-motion-insert-newline-above
         :n "] SPC" #'evil-motion-insert-newline-below))
 #+END_SRC
-**** Window navigation
-#+BEGIN_SRC elisp
-(map!
- :en "C-h"   #'evil-window-left
- :en "C-j"   #'evil-window-down
- :en "C-k"   #'evil-window-up
- :en "C-l"   #'evil-window-right
+*** Evil Insert Bindings
 
- ;; Fixes for treemacs window navigation
- (:after treemacs-evil
-   :n "C-h" #'evil-window-left
-   :n "C-l" #'evil-window-right))
-#+END_SRC
-**** Jump to last buffer
-#+BEGIN_SRC elisp
-(map! :n "gb" #'evil-switch-to-windows-last-buffer)
-#+END_SRC
-*** Elisp
-Slurp and Barf expressions
+Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
+
+**** Insert from the kill ring in insert mode
 
 #+BEGIN_SRC elisp
-(map! :map emacs-lisp-mode-map
-      :n "g]"   #'sp-slurp-hybrid-sexp
-      :n "g["   #'sp-forward-barf-sexp)
+(map! :i "A-y" #'helm-show-kill-ring)
 #+END_SRC
-*** Copy and Paste from the minibuffer
 
-Since the minibuffer has no evil mode, i've got these bindings to help out:
-- ~M-c~: Copy the minibuffer line
-- ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
-         This also removes trailng newlines
-
-#+BEGIN_SRC elisp
-(defun evil-get-register-string (REGISTER)
-  "Get evil-register pure text content
-Registers can be selected with ?letter
-E.g.: ?* -> Clipboard Contents"
-  (evil-vector-to-string (evil-get-register REGISTER)))
-
-(defun paste-evil-register-clipboard-pruned ()
-  "Paste the current clipboard pruned from newlines"
-  (interactive)
-  (insert (s-trim (shell-command-to-string "pbpaste")))
-  (doom/forward-to-last-non-comment-or-eol))
-
-(defun copy-minibuffer-line ()
-  "Copies the minibuffer content to the clipboard"
-  (interactive)
-  (save-excursion
-    (doom/forward-to-last-non-comment-or-eol)
-    (set-mark-command nil)
-    (doom/backward-to-bol-or-indent)
-    (kill-ring-save (mark) (point))))
-
-(defun setup-minibuffer ()
-  "Set up keybindings for the minibuffer"
-  (local-set-key (kbd "M-v") 'paste-evil-register-clipboard-pruned)
-  (local-set-key (kbd "M-c") 'copy-minibuffer-line))
-
-(add-hook 'minibuffer-setup-hook 'setup-minibuffer)
-#+END_SRC
-*** Text Scale
-#+BEGIN_SRC elisp
-(map!
- :niv "M-="   #'default-text-scale-increase
- :niv "M--"   #'default-text-scale-decrease
- :niv "M-0"   #'default-text-scale-reset)
-#+END_SRC
-*** Org Mode
-#+BEGIN_SRC elisp
-(map!
- :niv "M-X"   #'+org-capture/open-frame)
-
-(map! :map outline-mode-map
-      :n "M-k" #'org-metaup
-      :n "M-j" #'org-metadown)
-#+END_SRC
-*** Unicode Symbols and German Umlaut
+**** Unicode Symbols and German Umlaut
 #+BEGIN_SRC elisp
 (map!
  :i "A-;"   (λ! (insert "ö"))
@@ -545,15 +519,11 @@ E.g.: ?* -> Clipboard Contents"
  :i "A-w"   (λ! (insert "⚠"))
  :i "A-i"   (λ! (insert "ℹ")))
 #+END_SRC
-**** TODO Inserting a character makes one undo state
-*** Insert bindings
-
-Insert from the kill ring in insert mode
-
-#+BEGIN_SRC elisp
-(map! :i "A-y" #'helm-show-kill-ring)
-#+END_SRC
+***** TODO Inserting a character makes one undo state
 *** Leader Bindings
+
+My global leader bindings
+
 #+BEGIN_SRC elisp
 (map!
  :leader
@@ -616,6 +586,10 @@ Insert from the kill ring in insert mode
 #+END_SRC
 
 *** Local Leader Bindings
+
+Mode Specific local leader Bindings.
+My local leader is ~SPC M~
+
 **** Eshell
 #+BEGIN_SRC elisp
 (defun floscr|+eshell|init-keymap ()
@@ -625,11 +599,66 @@ redefines its keys every time `eshell-mode' is enabled."
         :localleader "l" #'eshell/clear))
 (add-hook 'eshell-first-time-mode-hook #'floscr|+eshell|init-keymap)
 #+END_SRC
-*** Dumb Jump
+*** Package/Mode Bindings
+
+Pacakge/Mode specific bindings
+
+**** Org Mode
 #+BEGIN_SRC elisp
 (map!
- :n "]f" #'dumb-jump-go
- :n "[f" #'dumb-jump-back)
+ :niv "M-X"   #'+org-capture/open-frame)
+
+(map! :map outline-mode-map
+      :n "M-k" #'org-metaup
+      :n "M-j" #'org-metadown)
+#+END_SRC
+**** Elisp
+Slurp and Barf expressions
+
+#+BEGIN_SRC elisp
+(map! :map emacs-lisp-mode-map
+      :n "g]"   #'sp-slurp-hybrid-sexp
+      :n "g["   #'sp-forward-barf-sexp)
+#+END_SRC
+*** Other Bindings
+
+Other bindings and overrides that dont fit anywhere else.
+
+**** Copy and Paste from the minibuffer
+
+Since the minibuffer has no evil mode, i've got these bindings to help out:
+- ~M-c~: Copy the minibuffer line
+- ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
+         This also removes trailng newlines
+
+#+BEGIN_SRC elisp
+(defun evil-get-register-string (REGISTER)
+  "Get evil-register pure text content
+Registers can be selected with ?letter
+E.g.: ?* -> Clipboard Contents"
+  (evil-vector-to-string (evil-get-register REGISTER)))
+
+(defun paste-evil-register-clipboard-pruned ()
+  "Paste the current clipboard pruned from newlines"
+  (interactive)
+  (insert (s-trim (shell-command-to-string "pbpaste")))
+  (doom/forward-to-last-non-comment-or-eol))
+
+(defun copy-minibuffer-line ()
+  "Copies the minibuffer content to the clipboard"
+  (interactive)
+  (save-excursion
+    (doom/forward-to-last-non-comment-or-eol)
+    (set-mark-command nil)
+    (doom/backward-to-bol-or-indent)
+    (kill-ring-save (mark) (point))))
+
+(defun setup-minibuffer ()
+  "Set up keybindings for the minibuffer"
+  (local-set-key (kbd "M-v") 'paste-evil-register-clipboard-pruned)
+  (local-set-key (kbd "M-c") 'copy-minibuffer-line))
+
+(add-hook 'minibuffer-setup-hook 'setup-minibuffer)
 #+END_SRC
 ** Work
 #+BEGIN_SRC elisp
