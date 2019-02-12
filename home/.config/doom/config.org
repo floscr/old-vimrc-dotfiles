@@ -275,9 +275,16 @@ Double press ~v~ to enable.
 (evil-define-key 'visual 'global (kbd "v") #'hydra-expand-region/body)
 #+END_SRC
 ** UI
-*** System specific
-#+BEGIN_SRC elisp
+*** System specific window modifications
 
+Resize the window font size etc according to the system.
+This will be disabled in terminal mode.
+
+#+BEGIN_SRC elisp
+(when (display-graphic-p)
+#+END_SRC
+
+#+BEGIN_SRC elisp
 (defcustom my-default-frame-size nil
   "A cons cell of screen dimensions (width . height)"
   :type 'cons)
@@ -331,6 +338,12 @@ Double press ~v~ to enable.
                 initial-frame-alist)))
  (t (setq-default line-spacing 0.15)))
 #+END_SRC
+
+
+#+BEGIN_SRC elisp
+)
+#+END_SRC
+
 *** Theme Toggle
 
 Allows me to toggle quickly between two themes.
