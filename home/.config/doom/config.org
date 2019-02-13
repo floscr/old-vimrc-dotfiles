@@ -1586,9 +1586,8 @@ Org habit is needed for ~org-ql~
 (after! org
   :config
   (setq org-todo-keywords
-        '((sequence "[ ](t)" "|" "[X](x)")
-          (sequence "TODO(T)" "ACTIVE(a)" "|" "DONE(X)")
-          (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)")
+        '((sequence "ACTIVE(a)" "NEXT(n)" "TODO(T)" "[ ](t)" "|" "DONE(X)" "[X](x)")
+          (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)")
           (sequence "PROJECT(p)"))))
 #+END_SRC
 ***** Projectile Ignore
