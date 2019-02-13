@@ -75,6 +75,7 @@ cask "keyboard-maestro"
 cask "marked"
 cask "selfcontrol"
 cask "trickster"
+cask "iina" # Video Player
 
 if [[ $INSTALL_DEV_PACKAGES ]]; then
   cask "sequel-pro"
