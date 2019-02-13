@@ -1591,9 +1591,15 @@ Org habit is needed for ~org-ql~
 (after! org
   :config
   (setq org-todo-keywords
-        '((sequence "ACTIVE(a)" "NEXT(n)" "TODO(T)" "[ ](t)" "|" "DONE(X)" "[X](x)")
-          (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)")
-          (sequence "PROJECT(p)"))))
+        '((sequence "ACTIVE(a)" "NEXT(n)" "TODO(T)" "[ ](t)" "PROJECT(p)" "|" "DONE(X)" "[X](x)")
+          (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "CANCELLED(c)"))
+   org-todo-keyword-faces
+   '(("ACTIVE" :inherit warning :weight bold)
+     ("NEXT" :inherit warning :weight bold)
+     ("WAITING" :inherit default :weight bold)
+     ("SOMEDAY" :inherit default :weight bold)
+     ("LATER" :inherit default :weight bold)
+     ("PROJECT" :inherit 'org-todo :weight bold))))
 #+END_SRC
 ***** Projectile Ignore
 
