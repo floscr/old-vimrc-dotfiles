@@ -1624,6 +1624,7 @@ Org habit is needed for ~org-ql~
 (after! org
   :config
   (setq
+   org-tags-column -80
    org-image-actual-width 600
    org-default-notes-file (concat org-directory "/inbox.org")))
 #+END_SRC
