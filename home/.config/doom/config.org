@@ -25,6 +25,11 @@ I'm using the develop branch of doom.
 - %...      functions used for in-snippet logic
 - +...      variables or functions related to a package
 ** Essential
+*** Doom Settings
+#+BEGIN_SRC elisp
+(setq doom-leader-alt-key "A-SPC")
+#+END_SRC
+
 *** Variables and constants
 *** Directories
 #+BEGIN_SRC elisp
