@@ -426,6 +426,12 @@ Change popups to my preferred size.
   (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)
   (set-popup-rule! "^\\*doom:scratch" :vslot -100 :size 0.6 :ttl nil))
 #+END_SRC
+*** Fill Column
+#+BEGIN_SRC elisp
+(setq fill-column 130)
+(setq visual-fill-column-width 130)
+#+END_SRC
+
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
