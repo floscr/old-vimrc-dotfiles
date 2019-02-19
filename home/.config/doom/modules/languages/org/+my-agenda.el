@@ -14,11 +14,13 @@
 
 (setq org-agenda-custom-commands
       '(("n" "Agenda"
-         ((agenda "" ((org-agenda-overriding-header "➤ This Week:\n")
-                      (org-agenda-ndays 7)
-                      (org-agenda-start-on-weekday nil)))
-          (+agenda-inbox nil ((org-agenda-files (list org-default-notes-file))))
-          (+agenda-tasks nil ((org-agenda-files (list org-directory))))))))
+         ((agenda "" ((org-agenda-ndays 7)
+                      (org-agenda-start-on-weekday nil)
+                      (org-agenda-entry-types '(:deadline :scheduled :timestamp :sexp))
+                      (org-agenda-overriding-header "➤ This Week:\n")
+                      (org-agenda-prefix-format " %(+agenda-schedule-get-prefix)%?-12t% s")))
+          (+agenda-inbox nil ((org-agenda-files (list org-default-notes-file))))))))
+          ;; (+agenda-tasks nil ((org-agenda-files (list org-directory))))))))
 
 ;;; Entry
 
