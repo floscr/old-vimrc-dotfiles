@@ -1885,9 +1885,7 @@ These can be solved with a lambda and dont need extra functions
 
 
   :config
-  (setq org-agenda-start-on-weekday 1
-        org-agenda-files (list org-directory
-                               (concat org-directory "/Work"))))
+  (setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
 #+END_SRC
 
 Helper to reset the org agenda custom commands.
