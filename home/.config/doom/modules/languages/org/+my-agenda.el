@@ -357,6 +357,10 @@
                 (when (or +agenda-weekly-review (string= todo "NEXT") scheduled-past-or-now)
                   (setq return entry))))))))
       return)))
+(defun +agenda-files-to-buffers (files)
+  (-map (lambda (f) (if (file-exists-p f)
+                        (org-get-agenda-file-buffer f)
+                      (error "No such file %s" f))) files))
 
 (defun +agenda-tasks (&optional _)
   (catch 'exit
