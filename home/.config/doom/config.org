@@ -426,6 +426,12 @@ Change popups to my preferred size.
   (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)
   (set-popup-rule! "^\\*doom:scratch" :vslot -100 :size 0.6 :ttl nil))
 #+END_SRC
+*** Fill Column
+#+BEGIN_SRC elisp
+(setq fill-column 130)
+(setq visual-fill-column-width 130)
+#+END_SRC
+
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
@@ -655,6 +661,13 @@ Slurp and Barf expressions
 
 #+BEGIN_SRC elisp
 (map! :map emacs-lisp-mode-map
+      ;; Rearrange Sexps
+      :n "M-k"   (λ! (sp-transpose-sexp)
+                     (evil-previous-line))
+      :n "M-j"   (λ! (sp-push-hybrid-sexp)
+                     (evil-next-line))
+      :n "M-r" #'eval-buffer
+      ;; Slurp and barf
       :n "g]"   #'sp-slurp-hybrid-sexp
       :n "g["   #'sp-forward-barf-sexp)
 #+END_SRC
@@ -1880,9 +1893,7 @@ These can be solved with a lambda and dont need extra functions
 
 
   :config
-  (setq org-agenda-start-on-weekday 1
-        org-agenda-files (list org-directory
-                               (concat org-directory "/Work"))))
+  (setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
 #+END_SRC
 
 Helper to reset the org agenda custom commands.
