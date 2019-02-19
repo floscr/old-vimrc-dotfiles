@@ -666,6 +666,7 @@ Slurp and Barf expressions
                      (evil-previous-line))
       :n "M-j"   (λ! (sp-push-hybrid-sexp)
                      (evil-next-line))
+      :n "M-r" #'eval-buffer
       ;; Slurp and barf
       :n "g]"   #'sp-slurp-hybrid-sexp
       :n "g["   #'sp-forward-barf-sexp)
