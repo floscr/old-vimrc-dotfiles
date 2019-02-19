@@ -14,11 +14,9 @@
 
 (setq org-agenda-custom-commands
       '(("n" "Agenda"
-         ((agenda "" ((org-agenda-ndays 7)
-                      (org-agenda-start-on-weekday nil)
-                      (org-agenda-entry-types '(:deadline :scheduled :timestamp :sexp))
-                      (org-agenda-overriding-header "➤ This Week:\n")
-                      (org-agenda-prefix-format " %(+agenda-schedule-get-prefix)%?-12t% s")))
+         ((agenda "" ((org-agenda-overriding-header "➤ This Week:\n")
+                      (org-agenda-ndays 7)
+                      (org-agenda-start-on-weekday nil)))
           (+agenda-inbox nil ((org-agenda-files (list org-default-notes-file))))
           (+agenda-tasks nil ((org-agenda-files (list org-directory))))))))
 
@@ -441,6 +439,7 @@
   (setq +agenda-show-private (not +agenda-show-private))
   (when  (equal major-mode 'org-agenda-mode) (quiet! (org-agenda-redo)))
   (message "Private tasks: %s" (if +agenda-show-private "Shown" "Hidden")))
+
 ;;; Hacks
 (defun +agenda*change-all-lines-reapply-face (&rest _)
   (when (org-get-at-bol 'nox-custom-agenda)
@@ -449,4 +448,5 @@
            (eol (point-at-eol))
            (position (next-single-property-change bol 'nox-face nil eol)))
       (add-text-properties bol eol `(face ,(and position (get-text-property position 'nox-face)))))))
+
 (advice-add 'org-agenda-change-all-lines :before #'+agenda*change-all-lines-reapply-face)
