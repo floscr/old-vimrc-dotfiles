@@ -436,7 +436,8 @@ Change popups to my preferred size.
 *** General Bindings
 #+BEGIN_SRC elisp
 (map! (:map override
-        "M-w" #'+workspace/close-window-or-workspace))
+        "s-x" #'execute-extended-command
+        "s-w" #'+workspace/close-window-or-workspace))
 
 (map!
  :niv "s-1" (λ! (+workspace/switch-to 0))
@@ -458,9 +459,9 @@ OSX Meta Bindings
 **** Text Scale
 #+BEGIN_SRC elisp
 (map!
- :niv "M-="   #'default-text-scale-increase
- :niv "M--"   #'default-text-scale-decrease
- :niv "M-0"   #'default-text-scale-reset)
+ :niv "s-="   #'default-text-scale-increase
+ :niv "s--"   #'default-text-scale-decrease
+ :niv "s-0"   #'default-text-scale-reset)
 #+END_SRC
 *** Evil Normal Bindings
 
@@ -650,11 +651,11 @@ Pacakge/Mode specific bindings
 **** Org Mode
 #+BEGIN_SRC elisp
 (map!
- :niv "M-X"   #'+org-capture/open-frame)
+ :niv "s-X"   #'+org-capture/open-frame)
 
 (map! :map outline-mode-map
-      :n "M-k" #'org-metaup
-      :n "M-j" #'org-metadown)
+      :n "s-k" #'org-metaup
+      :n "s-j" #'org-metadown)
 #+END_SRC
 **** Elisp
 Slurp and Barf expressions
@@ -662,11 +663,11 @@ Slurp and Barf expressions
 #+BEGIN_SRC elisp
 (map! :map emacs-lisp-mode-map
       ;; Rearrange Sexps
-      :n "M-k"   (λ! (sp-transpose-sexp)
+      :n "s-k"   (λ! (sp-transpose-sexp)
                      (evil-previous-line))
-      :n "M-j"   (λ! (sp-push-hybrid-sexp)
+      :n "s-j"   (λ! (sp-push-hybrid-sexp)
                      (evil-next-line))
-      :n "M-r" #'eval-buffer
+      :n "s-r" #'eval-buffer
       ;; Slurp and barf
       :n "g]"   #'sp-slurp-hybrid-sexp
       :n "g["   #'sp-forward-barf-sexp)
@@ -706,8 +707,8 @@ E.g.: ?* -> Clipboard Contents"
 
 (defun setup-minibuffer ()
   "Set up keybindings for the minibuffer"
-  (local-set-key (kbd "M-v") 'paste-evil-register-clipboard-pruned)
-  (local-set-key (kbd "M-c") 'copy-minibuffer-line))
+  (local-set-key (kbd "s-v") 'paste-evil-register-clipboard-pruned)
+  (local-set-key (kbd "s-c") 'copy-minibuffer-line))
 
 (add-hook 'minibuffer-setup-hook 'setup-minibuffer)
 #+END_SRC
@@ -1087,7 +1088,7 @@ For now only works on branches that were directly forked from master.
         :prompt  "shell command: "
         :buffer  "*helm shell history*"))
 
-(bind-key "M-r" #'ar/helm-shell-search-history shell-mode-map)
+(bind-key "s-r" #'ar/helm-shell-search-history shell-mode-map)
 
 ;; Save buffer name
 ;; Close minibuffer
@@ -1819,8 +1820,8 @@ These can be solved with a lambda and dont need extra functions
 #+BEGIN_SRC elisp
 (after! org
   (map! :map evil-org-mode-map
-        :n "M-j" #'org-move-subtree-down
-        :n "M-k" #'org-move-subtree-up
+        :n "s-j" #'org-move-subtree-down
+        :n "s-k" #'org-move-subtree-up
 
         :localleader
         :desc "Archive Subtree"   :m "a" #'org-archive-subtree
