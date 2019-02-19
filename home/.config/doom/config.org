@@ -655,6 +655,12 @@ Slurp and Barf expressions
 
 #+BEGIN_SRC elisp
 (map! :map emacs-lisp-mode-map
+      ;; Rearrange Sexps
+      :n "M-k"   (λ! (sp-transpose-sexp)
+                     (evil-previous-line))
+      :n "M-j"   (λ! (sp-push-hybrid-sexp)
+                     (evil-next-line))
+      ;; Slurp and barf
       :n "g]"   #'sp-slurp-hybrid-sexp
       :n "g["   #'sp-forward-barf-sexp)
 #+END_SRC
