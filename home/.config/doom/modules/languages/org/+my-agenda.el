@@ -2,12 +2,23 @@
 
 (setq org-agenda-tags-column -80)
 
+(defun +agenda|skip-function ()
+  (and (or (and (not +agenda-show-private) (member "PRIVATE" (org-get-tags-at))
+                (and (boundp 'deadline-items)
+                     (let ((deadline (org-agenda--timestamp-to-absolute (match-string 1)))
+                           (date-abs (calendar-absolute-from-gregorian date))
+                           (span (or (car (last org-agenda-overriding-arguments)) org-agenda-span)))
+                       (and (> deadline date-abs
+                               (< deadline (+ today (org-agenda-span-to-ndays span date-abs))))))))
+           (or (outline-next-heading) (point-max)))))
+
 (setq org-agenda-custom-commands
       '(("n" "Agenda"
          ((agenda "" ((org-agenda-ndays 7)
                       (org-agenda-start-on-weekday nil)
                       (org-agenda-entry-types '(:deadline :scheduled :timestamp :sexp))
-                      (org-agenda-overriding-header "➤ This Week:\n")))
+                      (org-agenda-overriding-header "➤ This Week:\n")
+                      (org-agenda-prefix-format " %(+agenda-schedule-get-prefix)%?-12t% s")))
           (+agenda-inbox nil ((org-agenda-files (list org-default-notes-file))))
           (+agenda-tasks nil ((org-agenda-files (list org-directory))))))))
 
@@ -67,7 +78,7 @@
           (concat prefix
                   (when (+agenda-entry-todo entry) (concat (+agenda-entry-todo entry) " "))
                   (when (+agenda-entry-priority entry)
-                    (string ?\[ ?# (+agenda-entry-priority entry) ?\] ?))
+                    (string ?\[ ?# (+agenda-entry-priority entry) ?\] ? ))
                   entry-text
                   (when (+agenda-entry-tags entry)
                     (concat " :"
