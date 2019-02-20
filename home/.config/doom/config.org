@@ -437,7 +437,8 @@ Change popups to my preferred size.
 #+BEGIN_SRC elisp
 (map! (:map override
         "s-x" #'execute-extended-command
-        "s-w" #'+workspace/close-window-or-workspace))
+        "s-w" #'+workspace/close-window-or-workspace
+        "s-;" #'eval-expression))
 
 (map!
  :niv "s-1" (λ! (+workspace/switch-to 0))
