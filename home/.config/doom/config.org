@@ -1042,6 +1042,30 @@ For now only works on branches that were directly forked from master.
   (let ((git-link-open-in-browser t))
     (call-interactively 'git-link)))
 #+END_SRC
+**** Create New Git Workspace
+
+Creates a new git workspace from a branch.
+Automatically adds ~.projectfile~ and opens a new doom workspace.
+
+#+BEGIN_SRC elisp
+(defun magit-worktree-branch-project-worktree (branch start-point &optional force)
+  "Create a new BRANCH and check it out in a new worktree at PATH in a new workspace."
+  (interactive
+   `(,@(butlast (magit-branch-read-args "Create and checkout branch"))
+     ,current-prefix-arg))
+  (let* ((worktree-path (f-join (projectile-project-root) ".worktrees"))
+         (path (f-join (projectile-project-root) ".worktrees" branch)))
+    (when (not (f-exists-p worktree-path))
+      (mkdir worktree-path t))
+    (magit-run-git "worktree" "add" (if force "-B" "-b")
+                   branch (expand-file-name path) start-point)
+    (f-touch (f-join path ".projectile"))
+    (+workspace-new branch)
+    (+workspace-switch branch)
+    (magit-diff-visit-directory path)
+    (projectile-add-known-project path)
+    path))
+
 
 *** Helm
 **** Use ag as default grep search
