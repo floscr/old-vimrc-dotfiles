@@ -1213,6 +1213,7 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
 #+BEGIN_SRC elisp
 (setq +lookup-provider-url-alist
   '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
     ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
     ("Google"            . "https://google.com/search?q=%s")
     ("Google images"     . "https://google.com/images?q=%s")
