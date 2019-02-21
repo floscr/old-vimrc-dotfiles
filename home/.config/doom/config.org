@@ -1027,9 +1027,9 @@ For now only works on branches that were directly forked from master.
 (map!
  :leader
  (:desc "Magit" :prefix "g"
-   :desc "Worktree Popup" :n  "%" #'magit-worktree-popup
+   :desc "Worktree Popup" :n  "%" #'magit-worktree
    :desc "Changed Files"  :n  "F" #'+git|helm-changed-files
-   :desc "Fetch"          :n  "f" #'magit-fetch-popup
+   :desc "Fetch"          :n  "f" #'magit-fetch
    :desc "Push"           :n  "p" #'magit-push
    :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
