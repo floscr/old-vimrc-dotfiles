@@ -428,8 +428,8 @@ Change popups to my preferred size.
 #+END_SRC
 *** Fill Column
 #+BEGIN_SRC elisp
-(setq fill-column 130)
-(setq visual-fill-column-width 130)
+(setq-default fill-column 110)
+(setq visual-fill-column-width fill-column)
 #+END_SRC
 
 ** Bindings
