@@ -1760,7 +1760,7 @@ Maybe just try persistent tags.
 #+BEGIN_SRC elisp
 (setq +org-capture-frame-parameters
   `((name . "org-capture")
-    (width . 20)
+    (width . 120)
     (height . 35)
     (transient . t)))
 #+END_SRC
