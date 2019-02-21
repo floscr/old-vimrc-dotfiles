@@ -1742,7 +1742,19 @@ Maybe just try persistent tags.
 (setq org-journal-time-prefix "* ")
 (setq org-journal-time-format "")
 #+END_SRC
-**** Capture Templates
+**** Org Capture
+***** Org Capture Config
+
+#+BEGIN_SRC elisp
+(setq +org-capture-frame-parameters
+  `((name . "org-capture")
+    (width . 20)
+    (height . 35)
+    (transient . t))
+#+END_SRC
+
+***** Org Capture Templates
+
 #+BEGIN_SRC elisp
 (defun org-capture-bookmark-pair ()
     (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
