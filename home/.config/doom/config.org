@@ -1761,7 +1761,7 @@ Maybe just try persistent tags.
   `((name . "org-capture")
     (width . 20)
     (height . 35)
-    (transient . t))
+    (transient . t)))
 #+END_SRC
 
 ***** Org Capture Templates
