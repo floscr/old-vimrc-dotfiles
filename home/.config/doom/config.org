@@ -1601,6 +1601,14 @@ E.g.: (Brackets signal the cursor position)
              (to (org-element-property :end new-block)))
         (delete-region from to)))))
 #+END_SRC
+**** Archive and Done
+#+BEGIN_SRC elisp
+(defun org-archive-and-done ()
+  "Mark task as done and archive"
+  (interactive)
+  (org-todo "DONE")
+  (org-archive-subtree))
+#+END_SRC
 *** Reading List
 #+BEGIN_SRC elisp :tangle no
 (defun org-reading-list ()
@@ -1886,12 +1894,13 @@ These can be solved with a lambda and dont need extra functions
         :n "s-k" #'org-move-subtree-up
 
         :localleader
-        :desc "Archive Subtree"   :m "a" #'org-archive-subtree
-        :desc "Paste Chrome Link" :m "p" #'+org|paste-chrome-link
-        :desc "Grab tabs"         :m "P" #'+org|grab-tabs
-        :desc "Cut Subtree"       :m "C" #'org-cut-subtree
-        :desc "Paste Subtree"     :m "P" #'org-paste-subtree
-        :desc "Sort Entries"      :m "S" #'+org|sort-entries
+        :desc "Archive Subtree"          :m "a" #'org-archive-subtree
+        :desc "Archive Subtree and Done" :m "A" #'org-archive-and-done
+        :desc "Paste Chrome Link"        :m "p" #'+org|paste-chrome-link
+        :desc "Grab tabs"                :m "P" #'+org|grab-tabs
+        :desc "Cut Subtree"              :m "C" #'org-cut-subtree
+        :desc "Paste Subtree"            :m "P" #'org-paste-subtree
+        :desc "Sort Entries"             :m "S" #'+org|sort-entries
 
         :desc "Create/Edit Todo"  :nve "o" #'org-todo
         :desc "Schedule"          :nve "s" #'org-schedule
