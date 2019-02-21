@@ -1707,8 +1707,7 @@ Org habit is needed for ~org-ql~
       (kill-buffer md)))
 #+END_SRC
 **** Tags
-
-Persistent list of tags and tag shortcuts.
+***** Tags List
 
 Not sure yet if the shortcuts work for me.
 Maybe just try persistent tags.
@@ -1728,7 +1727,13 @@ Maybe just try persistent tags.
                  ("REPOSITORY". ?R)
                  ("WORK" . ?w)))
 #+END_SRC
-
+***** Tags Helpers
+#+BEGIN_SRC elisp
+(defun +org-align-all-tags ()
+  "Interactive version of org-align-all-tags"
+  (interactive)
+  (org-align-all-tags))
+#+END_SRC
 **** Refile Targets
 
 #+BEGIN_SRC elisp
