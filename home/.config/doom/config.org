@@ -1030,6 +1030,7 @@ For now only works on branches that were directly forked from master.
    :desc "Worktree Popup" :n  "%" #'magit-worktree-popup
    :desc "Changed Files"  :n  "F" #'+git|helm-changed-files
    :desc "Fetch"          :n  "f" #'magit-fetch-popup
+   :desc "Push"           :n  "p" #'magit-push
    :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
 **** Browse git link
