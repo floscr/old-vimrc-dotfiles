@@ -31,3 +31,4 @@ jsconfig.json
 # MM
 DevPluginsLocal/
 .workspaces/**
+.worktrees/**
