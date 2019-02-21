@@ -1032,6 +1032,16 @@ For now only works on branches that were directly forked from master.
    :desc "Fetch"          :n  "f" #'magit-fetch-popup
    :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
+**** Browse git link
+
+#+BEGIN_SRC elisp
+(defun browse-git-link ()
+  "Browse the git link at the current point"
+  (interactive)
+  (let ((git-link-open-in-browser t))
+    (call-interactively 'git-link)))
+#+END_SRC
+
 *** Helm
 **** Use ag as default grep search
 
