@@ -1049,6 +1049,11 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
     (projectile-add-known-project path)
     path))
 
+(defun +MM|new-worktree ()
+  "New worktree with the devpanel files and an npm install"
+  (let ((path (call-interactively magit-worktree-branch-project-worktree)))
+    (npm-mode-npm-install)))
+#+END_SRC
 
 **** Git undo
 #+BEGIN_SRC elisp
