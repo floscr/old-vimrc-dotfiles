@@ -957,6 +957,35 @@ Select last item of company
    git-commit-summary-max-length 120))
 #+END_SRC
 
+**** Bindings
+***** Git Commit Mode Map Bindings
+
+Fixes evil window navigation for magit
+
+#+BEGIN_SRC elisp
+(map!
+ (:after evil-magit
+   :map (magit-status-mode-map magit-revision-mode-map magit-diff-mode-map)
+   :n "C-j" #'evil-window-down
+   :n "C-k" #'evil-window-up
+   :n "C-h" #'evil-window-left
+   :n "C-l" #'evil-window-right))
+#+END_SRC
+
+***** Git Local Leader Bindings
+#+BEGIN_SRC elisp
+(map! :map global-git-commit-mode-map
+      :n "Q" #'+dired|kill-dired-buffers)
+
+(map!
+ :leader
+ (:desc "Magit" :prefix "g"
+   :desc "Worktree Popup" :n  "%" #'magit-worktree
+   :desc "Changed Files"  :n  "F" #'+git|helm-changed-files
+   :desc "Fetch"          :n  "f" #'magit-fetch
+   :desc "Push"           :n  "p" #'magit-push
+   :desc "Undo"           :n  "u" #'+git|undo))
+#+END_SRC
 **** Revision show orignal file
 
 Show the orginal file when visiting a revision buffer.
@@ -1004,17 +1033,6 @@ For now only works on branches that were directly forked from master.
                             "Search" (lambda (fs) (helm-do-ag nil fs)))
                    :fuzzy-match t)
         :buffer "*helm git changed files"))
-#+END_SRC
-**** Bindings
-#+BEGIN_SRC elisp
-(map!
- :leader
- (:desc "Magit" :prefix "g"
-   :desc "Worktree Popup" :n  "%" #'magit-worktree
-   :desc "Changed Files"  :n  "F" #'+git|helm-changed-files
-   :desc "Fetch"          :n  "f" #'magit-fetch
-   :desc "Push"           :n  "p" #'magit-push
-   :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
 **** Browse git link
 
