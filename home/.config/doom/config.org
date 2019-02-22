@@ -1025,7 +1025,7 @@ For now only works on branches that were directly forked from master.
   (let ((git-link-open-in-browser t))
     (call-interactively 'git-link)))
 #+END_SRC
-**** Create New Git Workspace
+**** Create New Git Worktree Workspace
 
 Creates a new git workspace from a branch.
 Automatically adds ~.projectfile~ and opens a new doom workspace.
