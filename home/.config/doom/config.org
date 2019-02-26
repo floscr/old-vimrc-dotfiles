@@ -616,7 +616,8 @@ My global leader bindings
    :desc "Split Horizontal" :n "_" #'evil-window-split)
 
  (:desc "workspace" :prefix [tab]
-   :desc "Create" :n "c" #'+workspace|new-named
+   :desc "Create"       :n "c" #'+workspace|new-named
+   :desc "Rename"       :n "," #'+workspace/rename
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited)
 
  (:desc "window" :prefix "w"
