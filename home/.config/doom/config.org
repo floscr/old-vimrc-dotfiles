@@ -1070,7 +1070,8 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
 
 (defun +MM|new-worktree ()
   "New worktree with the devpanel files and an npm install"
-  (let ((path (call-interactively magit-worktree-branch-project-worktree)))
+  (interactive)
+  (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
     (npm-mode-npm-install)))
 #+END_SRC
 
@@ -1092,6 +1093,24 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
                                      (string-trim text))
                                    (ring-elements log-edit-comment-ring)))))
 #+END_SRC
+*** Git Review
+
+Config for [[https://github.com/charignon/github-review][charignon/github-review]].
+
+**** Open Forge PR in Review Mode
+#+BEGIN_SRC elisp
+(defun +forge-start-pull-review ()
+  "Start Pull Review on the current pull request"
+  (interactive)
+  (-some-->
+   (forge-get-url (or (forge-post-at-point)
+                      (forge-current-topic)))
+   (let ((github-review-review-folder (or (directory-file-name (projectile-project-root)) github-review-review-folder)))
+     (setq github-review-review-folder (directory-file-name (projectile-project-root)))
+     (message "FOLDER: %s" github-review-review-folder)
+     (github-review-start it))))
+#+END_SRC
+
 *** Helm
 **** Use ag as default grep search
 

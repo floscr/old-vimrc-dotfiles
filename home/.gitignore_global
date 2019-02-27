@@ -32,3 +32,4 @@ jsconfig.json
 DevPluginsLocal/
 .workspaces/**
 .worktrees/**
+*.diff
