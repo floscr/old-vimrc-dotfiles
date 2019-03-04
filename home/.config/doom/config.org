@@ -959,7 +959,33 @@ Select last item of company
 #+END_SRC
 
 **** Bindings
-***** Git Commit Mode Map Bindings
+***** Magit Navigation Binding
+
+My workflow for navigating diffs
+Use ~z1~ to fold all diffs to their file headers and presss ~{~ or ~}~ to
+
+1. Refold all sections
+2. Go to the next section
+3. Unfold everything in the current section
+
+Then use ~]~ to navigate the sections
+
+#+BEGIN_SRC elisp
+(defun floscr:magit-jumpunfold-section (&optional forward)
+  "Fold all section. Go to next section when FORWARD. Show all children"
+  (interactive)
+  (magit-section-show-level-1-all)
+  (call-interactively (if forward #'magit-section-forward-sibling #'magit-section-backward-sibling))
+  (call-interactively #'magit-section-show-children))
+
+(map!
+ (:after evil-magit
+   :map (magit-diff-mode-map)
+   :n "}" (λ! (floscr:magit-jumpunfold-section 't))
+   :n "{" (λ! (floscr:magit-jumpunfold-section))))
+#+END_SRC
+
+***** Magit Window Navigation Binding Fixes
 
 Fixes evil window navigation for magit
 
