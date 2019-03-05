@@ -1119,6 +1119,25 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
                                      (string-trim text))
                                    (ring-elements log-edit-comment-ring)))))
 #+END_SRC
+*** JSON
+**** Autofix JSON
+
+Uses [[https://www.npmjs.com/package/json-fix][json-fix]] to autofix JSON files.
+
+#+BEGIN_SRC bash :tangle no
+npm i -g json-fix
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(defun json-fix ()
+  "Autofix json buffer"
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+     (template "json-fix --no-sort --spaces <<tab-width>>") (current-buffer) t)))
+#+END_SRC
+
 *** Git Review
 
 Config for [[https://github.com/charignon/github-review][charignon/github-review]].
