@@ -7,8 +7,7 @@
  file-templates
  (lookup +devdocs +docsets)
  snippets
- spellcheck
- (syntax-checker +childframe)
+
  workspaces
 
  :completion
@@ -22,7 +21,7 @@
  :ui
  doom
  doom-dashboard
- doom-modeline
+ modeline
  doom-quit
  hl-todo
  ;; nav-flash
@@ -55,6 +54,8 @@
  prodigy
  rgb
  pdf
+ flyspell
+ (flycheck +childframe)
 
  :lang
  data
