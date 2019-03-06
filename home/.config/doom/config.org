@@ -1416,11 +1416,43 @@ This overrides my insert subheading keybinding
      (:prefix "m"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 #+END_SRC
-*** TODO PDF Tools
+*** PDF Tools
+**** PDF Tool Config
 #+BEGIN_SRC elisp
+;; Enable Retina pdfs
+(setq pdf-view-use-scaling t)
+
+;; Fix midnight colors for doom-one theme
 (setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
 #+END_SRC
+**** PDF Tool Bindings
 
+When switching pages in PDFs, return the scroll to the top of the page
+
+#+BEGIN_SRC elisp
+(after! org-noter
+  (map! :map org-noter-notes-mode-map
+        :n "[n" #'org-noter-sync-prev-note
+        :n "]n" #'org-noter-sync-next-note))
+
+(after! pdf-tools
+  :config
+  (define-key pdf-view-mode-map (kbd "M-f") 'isearch-forward)
+  (map! :map pdf-view-mode-map
+        :n "gj" (lambda ()
+                  (interactive)
+                  (pdf-view-next-page-command)
+                  (image-bob))
+        :n "gk" (lambda ()
+                  (interactive)
+                  (pdf-view-previous-page)
+                  (image-bob))
+        :n "gJ" #'pdf-history-backward
+        :n "gK" #'pdf-history-forward
+        :n "[n" #'org-noter-sync-prev-note
+        :n "]n" #'org-noter-sync-next-note
+        :n "M-f" #'pdf-links-isearch-link))
+#+END_SRC
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
