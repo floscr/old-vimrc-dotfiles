@@ -1826,6 +1826,12 @@ Org habit is needed for ~org-ql~
   :config
   (setq org-src-window-setup 'reorganize-frame))
 #+END_SRC
+***** Latex
+Needs ~dvisvgm~
+
+#+BEGIN_SRC elisp
+(setq org-latex-create-formula-image-program 'dvisvgm)
+#+END_SRC
 
 **** Export
 #+BEGIN_SRC elisp
