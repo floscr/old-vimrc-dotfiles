@@ -797,6 +797,11 @@ E.g.: ?* -> Clipboard Contents"
                                             "/bin/ls"))))
                                 (eshell/alias "ll" (concat ls " -AlohG --color=always")))))
 #+END_SRC
+*** Eww
+Set the page width for eww
+#+BEGIN_SRC elisp
+(setq shr-width 120)
+#+END_SRC
 *** Flycheck
 **** Proselint
 :PROPERTIES:
