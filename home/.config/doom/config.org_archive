@@ -22,3 +22,17 @@ This is very slow on dotfiles repo in osx.
   :config
   (setq projectile-indexing-method 'native))
 #+END_SRC
+
+* DONE Disable the flycheck popup during insert mode
+:PROPERTIES:
+:ARCHIVE_TIME: 2019-03-13 Wed 10:28
+:ARCHIVE_FILE: ~/.homesick/repos/Dotfiles/home/.config/doom/config.org
+:ARCHIVE_OLPATH: Configuration/Packages & Modules/Flycheck
+:ARCHIVE_CATEGORY: config
+:ARCHIVE_TODO: DONE
+:END:
+
+#+BEGIN_SRC elisp :tangle no
+(setq-hook! 'evil-insert-state-entry-hook flycheck-display-errors-function #'noop)
+(setq-hook! 'evil-insert-state-exit-hook flycheck-display-errors-function #'syntax-checker-show-popup)
+#+END_SRC
