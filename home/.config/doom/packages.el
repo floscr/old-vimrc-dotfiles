@@ -18,6 +18,7 @@
 (package! github-review :recipe (:fetcher github :repo "charignon/github-review"))
 
 (package! nov)
+(package! lsp-ui :disable t)
 
 (package! define-word)
 
