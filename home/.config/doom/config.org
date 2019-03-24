@@ -850,13 +850,6 @@ To enable the checker press ~SPC u C-c ! x~
 
   (add-to-list 'flycheck-checkers 'proselint))
 #+END_SRC
-**** Disable the flycheck popup during insert mode
-
-#+BEGIN_SRC elisp
-(setq-hook! 'evil-insert-state-entry-hook flycheck-display-errors-function #'noop)
-(setq-hook! 'evil-insert-state-exit-hook flycheck-display-errors-function #'+syntax-checker-show-popup)
-#+END_SRC
-
 *** Evil-Snipe
 
 Repeat snipe after further key press
