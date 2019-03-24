@@ -1468,6 +1468,16 @@ When switching pages in PDFs, return the scroll to the top of the page
         :n "]n" #'org-noter-sync-next-note
         :n "M-f" #'pdf-links-isearch-link))
 #+END_SRC
+*** LSP
+#+BEGIN_SRC elisp
+(setq lsp-eldoc-enable-hover nil
+      lsp-eldoc-enable-signature-help nil
+      lsp-eldoc-prefer-signature-help nil
+      lsp-enable-links nil
+      ;; Disable make error highlighting
+      lsp-prefer-flymake nil)
+#+END_SRC
+
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
