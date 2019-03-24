@@ -33,13 +33,13 @@
  window-select
 
  :editor
+ fold
  rotate-text
  multiple-cursors
  parinfer
 
  :emacs
  dired
- ediff
  electric
  eshell
  imenu
