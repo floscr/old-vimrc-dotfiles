@@ -573,13 +573,10 @@ My global leader bindings
  :leader
  :n "'"   #'+popup/toggle
  :n "au"   #'undo-tree-visualize
- :n "//"   #'helm-projectile-ag
+ :n "//"   #'+default/search-project
  :n "-"    #'quick-calc
 
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
-
- (:desc "search" :prefix "/"
-   :desc "Search project" :n  "p" #'helm-projectile-ag)
 
  (:desc "file" :prefix "f"
    :desc "find in literate config file" :n  "p" #'helm-org-rifle-config)
