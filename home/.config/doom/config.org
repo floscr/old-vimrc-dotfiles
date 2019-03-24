@@ -1015,6 +1015,7 @@ Fixes evil window navigation for magit
 #+END_SRC
 
 ***** Git Local Leader Bindings
+
 #+BEGIN_SRC elisp
 (map! :map global-git-commit-mode-map
       :n "Q" #'+dired|kill-dired-buffers)
@@ -1028,6 +1029,7 @@ Fixes evil window navigation for magit
    :desc "Push"           :n  "p" #'magit-push
    :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
+
 **** Revision show orignal file
 
 Show the orginal file when visiting a revision buffer.
