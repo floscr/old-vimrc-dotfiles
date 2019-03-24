@@ -12,11 +12,10 @@
 
  :completion
  (company
-  +auto
   +childframe)
- (helm +fuzzy)
- (lsp
-   +ocaml)
+ (ivy
+  +fuzzy
+  +childframe)
 
  :ui
  doom
