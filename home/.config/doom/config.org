@@ -2130,6 +2130,10 @@ Helper to reset the org agenda custom commands.
 (setq org-agenda-custom-commands '())
 #+END_SRC
 ** General Config
+*** Disable Eldoc
+#+BEGIN_SRC elisp
+(global-eldoc-mode -1)
+#+END_SRC
 *** Open OTF fonts in image mode
 #+BEGIN_SRC elisp
 (add-to-list 'auto-mode-alist '("\\.otf\\'" . image-mode))
