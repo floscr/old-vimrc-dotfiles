@@ -1332,7 +1332,10 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
 (def-package! evil-replace-with-register
   :config
   (setq evil-replace-with-register-key (kbd "gr"))
-  (evil-replace-with-register-install))
+  (define-key evil-normal-state-map
+    evil-replace-with-register-key 'evil-replace-with-register)
+  (define-key evil-visual-state-map
+    evil-replace-with-register-key 'evil-replace-with-register))
 #+END_SRC
 *** Blimp
 #+BEGIN_SRC elisp
