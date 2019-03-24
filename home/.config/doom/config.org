@@ -1974,7 +1974,9 @@ Maybe just try persistent tags.
 (defun org-capture-bookmark-string-description ()
     (cadr (org-capture-bookmark-pair)))
 
-(setq org-capture-templates
+(after! org
+  :config
+  (setq org-capture-templates
       `(("t" "todo" entry (file org-default-notes-file)
          "* TODO %?\n%U")
         ("c" "Calendar Event" entry (file+headline ,(concat org-directory "/home.org") "Calendar")
@@ -1986,7 +1988,7 @@ Maybe just try persistent tags.
         ("p" "Pin Bookmark" entry (file+headline org-pinboard-file "Pinboard")
          "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
         ("w" "work" entry (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
-         "* TODO %?\n%U")))
+         "* TODO %?\n%U"))))
 #+END_SRC
 **** TODO Src Block Snippets
 
