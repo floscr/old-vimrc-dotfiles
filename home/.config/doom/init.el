@@ -55,11 +55,12 @@
  pdf
  flyspell
  (flycheck +childframe)
+ lsp
 
  :lang
  data
  emacs-lisp
- javascript
+ (javascript +lsp)
  purescript
  markdown
  ocaml
