@@ -1049,7 +1049,7 @@ If possible also go to the pointing line"
       (find-file file-name))))
 #+END_SRC
 
-**** Helm Changed Files
+**** Git Changed Files
 
 Show a list of the changed files in the current branch.
 For now only works on branches that were directly forked from master.
