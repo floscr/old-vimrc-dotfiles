@@ -1061,9 +1061,9 @@ For now only works on branches that were directly forked from master.
 (defun git-new-files ()
   (shell-command-to-list "git ls-files -om --exclude-standard"))
 
-(defun git-modified-files (branch)
+(defun git-modified-files (&optional branch)
   (shell-command-to-list
-   (format "git --no-pager diff --no-renames --name-only --no-merges %s master;" (magit-rev-parse "HEAD"))))
+   (template "git --no-pager diff --no-renames --name-only --no-merges <<(magit-rev-parse \"HEAD\")>> <<branch>>;")))
 
 (defun git-get-changed-files (b)
     (delete-dups (append (git-modified-files b) (git-new-files))))
