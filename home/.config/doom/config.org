@@ -1518,7 +1518,34 @@ When switching pages in PDFs, return the scroll to the top of the page
   (+js|ivy-import-file '+MM|add-import-to-file))
  #+END_SRC
 
+**** Rules
+#+BEGIN_SRC elisp :tangle no
+(setq +MM-Rules
+      (ht ("flexDirection" '("row" "row-reverse" "column" "column-reverse"))))
 
+(defvar +MM|add-prop-for-rule-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-<return>") (lambda (rule prop)
+                                         (ivy-quit-and-run
+                                           (progn
+                                            (+MM|write-rule rule prop)
+                                            (+MM|add-rule)))))
+    map))
+
+(defun +MM|write-rule (rule prop)
+    (insert (template ".<<rule>>('<<prop>>')\n")))
+
+(defun +MM|add-prop-for-rule (rule)
+  (ivy-read "Add prop" (ht-get +MM-Rules rule)
+            ;; :keymap counsel-find-file-map
+            :action (lambda (prop) (+MM|write-rule rule prop)
+                                   (+MM|add-rule))))
+
+(defun +MM|add-rule ()
+  (interactive)
+  (ivy-read "Add Rule" (ht-keys +MM-Rules)
+            :action '+MM|add-prop-for-rule))
+#+END_SRC
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
