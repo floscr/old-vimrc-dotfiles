@@ -1499,6 +1499,23 @@ When switching pages in PDFs, return the scroll to the top of the page
              (split-string (shell-command-to-string
                             (concat "jq -r '.dependencies | keys | .[]' " (concat (projectile-project-root) "package.json"))) "\n" t))
             :action (or action 'my-js-import-file)))
+
+(defun +MM|add-import-to-file (file)
+  (goto-char (point-min))
+  (let* ((is-local (s-contains? "./" file))
+         (comment-header-title (if is-local "LOCALS" "EXTERNALS"))
+         (comment-header (template "/** <<comment-header-title>> **/")))
+    (if (search-forward comment-header)
+        (progn
+          ;; Go to next comment header
+          (if (search-forward "/**")
+            (previous-line 3))
+          (evil-insert-newline-below)
+          (my-js-import-file file)))))
+
+(defun +MM|import-file ()
+  (interactive)
+  (+js|ivy-import-file '+MM|add-import-to-file))
  #+END_SRC
 
 
