@@ -1492,7 +1492,7 @@ When switching pages in PDFs, return the scroll to the top of the page
 
 (defun +js|ivy-import-file (&optional action)
   (interactive)
-  (ivy-read "Import file"
+  (ivy-read "Import file "
             (append
              (--map (concat "./" it)
                     (split-string (shell-command-to-string (concat find-program " " counsel-file-jump-args)) "\n" t))
