@@ -1068,15 +1068,15 @@ For now only works on branches that were directly forked from master.
 (defun git-get-changed-files (b)
     (delete-dups (append (git-modified-files b) (git-new-files))))
 
-(defun +git|helm-changed-files ()
+(defun +git|ivy-changed-files (&optional branch)
   (interactive)
-  (helm :sources (helm-build-sync-source "Git Changed Files"
-                   :candidates (git-get-changed-files "master")
-                   :action (helm-make-actions
-                            "Find file" (lambda (fs) (find-file (concat (projectile-project-root) fs)))
-                            "Search" (lambda (fs) (helm-do-ag nil fs)))
-                   :fuzzy-match t)
-        :buffer "*helm git changed files"))
+  (let ((enable-recursive-minibuffers t))
+    (ivy-read "Find in changed files"
+              (git-get-changed-files (or branch "master"))
+              :require-match t
+              :history 'file-name-history
+              :action counsel-projectile-find-file-action
+              :caller '+git|ivy-changed-files)))
 #+END_SRC
 **** Browse git link
 
