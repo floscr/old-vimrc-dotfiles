@@ -1490,7 +1490,7 @@ When switching pages in PDFs, return the scroll to the top of the page
     (forward-char 7)
     (evil-insert-state)))
 
-(defun +js|ivy-import-file ()
+(defun +js|ivy-import-file (&optional action)
   (interactive)
   (ivy-read "Import file"
             (append
@@ -1498,7 +1498,7 @@ When switching pages in PDFs, return the scroll to the top of the page
                     (split-string (shell-command-to-string (concat find-program " " counsel-file-jump-args)) "\n" t))
              (split-string (shell-command-to-string
                             (concat "jq -r '.dependencies | keys | .[]' " (concat (projectile-project-root) "package.json"))) "\n" t))
-            :action 'my-js-import-file))
+            :action (or action 'my-js-import-file)))
  #+END_SRC
 
 
