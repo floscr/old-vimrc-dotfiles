@@ -36,3 +36,29 @@ This is very slow on dotfiles repo in osx.
 (setq-hook! 'evil-insert-state-entry-hook flycheck-display-errors-function #'noop)
 (setq-hook! 'evil-insert-state-exit-hook flycheck-display-errors-function #'syntax-checker-show-popup)
 #+END_SRC
+
+* DONE Delete current Buffer File
+:PROPERTIES:
+:ARCHIVE_TIME: 2019-04-01 Mon 13:22
+:ARCHIVE_FILE: ~/.homesick/repos/Dotfiles/home/.config/doom/config.org
+:ARCHIVE_OLPATH: Configuration/Utilities
+:ARCHIVE_CATEGORY: config
+:ARCHIVE_TODO: DONE
+:END:
+#+BEGIN_SRC elisp
+(defun floscr/delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to delete this file? ")
+        (delete-file filename t)
+        (kill-buffer buffer)
+        (when (and (configuration-layer/package-usedp 'projectile)
+                   (projectile-project-p))
+          (call-interactively #'projectile-invalidate-cache))
+        (message "File '%s' successfully removed" filename)))))
+#+END_SRC
