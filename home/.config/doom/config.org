@@ -58,15 +58,23 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
         `(format ,(buffer-string) ,@(reverse (mapcar 'read matches)))))))
 #+END_SRC
 *** Helpers
+**** Noop
 #+BEGIN_SRC elisp
 (defun noop (args) nil)
-
+#+END_SRC
+**** Run JXA scripts
+#+BEGIN_SRC elisp
 (defun do-jxa-script (cmd)
   "Run a osx javascript automation script via bash"
   (shell-command-to-string
    (concat "osascript -l 'JavaScript' -e '" cmd "'")))
+#+END_SRC
+**** Eval and Replace sexp
+:PROPERTIES:
+:SOURCE:   https://emacsredux.com/blog/2013/06/21/eval-and-replace/
+:END:
 
-;; source: https://emacsredux.com/blog/2013/06/21/eval-and-replace/
+#+BEGIN_SRC elisp
 (defun eval-and-replace-sexp ()
   "Replace the preceding sexp with its value."
   (interactive)
@@ -77,17 +85,13 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
              (current-buffer))
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
-
+#+END_SRC
+**** Kill and Message
+#+BEGIN_SRC elisp
 (defun copy-message (x)
   "Executes kill-new but with a message log side effect"
   (kill-new x)
   (message "Copied to clipboard: %s" x))
-
-(defun +doom|open-elisp-scratch-buffer ()
-  "Opens a new scratch buffer in elisp mode"
-  (interactive)
-  (doom/open-scratch-buffer)
-  (emacs-lisp-mode))
 #+END_SRC
 *** Math+
 #+BEGIN_SRC elisp
