@@ -1612,6 +1612,76 @@ When switching pages in PDFs, return the scroll to the top of the page
   (ivy-read "Add Rule" (ht-keys +MM-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
+*** TODO Org Noter
+
+[[https://github.com/weirdNox/org-noter][Org Noter]] is a tool to annotate pdfs.
+
+**** Disable Org Noter keybindings
+
+#+BEGIN_SRC elisp
+(setq org-noter-notes-mode-map (make-sparse-keymap))
+#+END_SRC
+
+**** TODO Create custom bindings to insert a note
+
+This overrides my insert subheading keybinding
+
+#+BEGIN_SRC elisp :tangle no
+(after! org
+  (def-package! org-noter
+    :config
+    (map!
+     :leader
+     (:prefix "m"
+       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
+#+END_SRC
+*** TODO Spelling
+
+Flycheck with ~hunspell~ (which supports other languages better than the default ~ispell~)
+
+With the latest brew update hunspell might be broken, here is how you fix it:
+
+#+BEGIN_SRC bash :tangle no
+ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC elisp :tangle no
+(defun +flyspell|save-word ()
+  "Save the current word to dictionary"
+  (interactive)
+  (let* ((current-location (point))
+         (word (flyspell-get-word)))
+    (when (consp word)
+      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+
+(after! flyspell
+  (cond
+   ((executable-find "hunspell")
+
+    ;; For the switching, "german" has to be also in this alist
+    (add-to-list 'ispell-hunspell-dict-paths-alist (list "german" (expand-file-name "~/Library/Spelling/de_AT.aff")))
+
+    (setq ispell-program-name "hunspell"
+          ispell-local-dictionary "en_US"
+          ispell-really-hunspell t
+          ispell-local-dictionary-alist
+                  ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
+                  ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
+                  '(("english" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "personal,en_US") nil utf-8)
+                    ("german"  "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "personal,de_AT") nil utf-8))))))
+
+(defun flyspell-set-language-environment ()
+  "Change flyspell language based on the language environment"
+  (cond
+   ((string= "English" current-language-environment)
+    (setq ispell-local-dictionary "english"))
+   ((string= "German" current-language-environment)
+    (setq ispell-local-dictionary "german"))))
+
+(add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
+#+END_SRC
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
