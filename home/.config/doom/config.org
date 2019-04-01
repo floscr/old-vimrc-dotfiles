@@ -468,7 +468,6 @@ Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
 #+END_SRC
-
 *** Evil Normal Bindings
 
 Global Evil Normal/Visual Mode bindigns
