@@ -2332,10 +2332,6 @@ The history can be accessed with ~C-n~ / ~C-p~
 (setq tags-revert-without-query 1)
 #+END_SRC
 ** Hacks
-*** Fix ~org-insert-link~
-#+BEGIN_SRC elisp
-(advice-remove #'org-insert-link #'+popup*hide-org-links-popup)
-#+END_SRC
 *** Open org link at other frame
 :PROPERTIES:
 :SOURCE:   https://stackoverflow.com/questions/8881649/how-to-force-org-mode-to-open-a-link-in-another-frame
