@@ -811,7 +811,7 @@ E.g.: ?* -> Clipboard Contents"
     ("clear" "clear-scrollback")))
 #+END_SRC
 *** Eww
-Set the page width for eww
+**** Set the max page width for eww
 #+BEGIN_SRC elisp
 (setq shr-width 120)
 #+END_SRC
