@@ -75,3 +75,91 @@ This is very slow on dotfiles repo in osx.
 (after! evil
   (define-key evil-visual-state-map (kbd "gS") #'evil-ex-sort))
 #+END_SRC
+
+* DONE Use ag as default grep search
+:PROPERTIES:
+:ARCHIVE_TIME: 2019-04-01 Mon 15:21
+:ARCHIVE_FILE: ~/.homesick/repos/Dotfiles/home/.config/doom/config.org
+:ARCHIVE_OLPATH: Configuration/Packages & Modules/Helm
+:ARCHIVE_CATEGORY: config
+:ARCHIVE_TODO: DONE
+:END:
+
+#+BEGIN_SRC elisp
+(defun projectile-switch-project-and-do-ag (project)
+  "Switch to a project and do a search"
+  (let ((projectile-switch-project-action 'helm-projectile-ag))
+    (projectile-switch-project-by-name project)))
+
+(after!
+  helm-projectile
+  :init
+  (helm-projectile-define-key helm-projectile-projects-map (kbd "C-/") 'projectile-switch-project-and-do-ag))
+
+#+END_SRC
+
+* DONE Helm Terminal History C-R
+:PROPERTIES:
+:ARCHIVE_TIME: 2019-04-01 Mon 15:21
+:ARCHIVE_FILE: ~/.homesick/repos/Dotfiles/home/.config/doom/config.org
+:ARCHIVE_OLPATH: Configuration/Packages & Modules/Helm
+:ARCHIVE_CATEGORY: config
+:ARCHIVE_TODO: DONE
+:END:
+#+BEGIN_SRC elisp :tangle no
+(defun ar/helm-helm (title candidates on-select-function)
+  "Helm with TITLE CANDIDATES and ON-SELECT-FUNCTION."
+  )
+
+(defun ar/shell-send-command (command)
+  "Send COMMAND to shell mode."
+  ;; (assert (string-equal mode-name "Shell") nil "Not in Shell mode")
+  (goto-char (point-max))
+  (comint-kill-input)
+  (insert command)
+  (comint-send-input))
+
+(defun split-up-to-semi-colon (s)
+  "Splits a string up to the first semi-colon"
+  (last (s-split-up-to ";" s 1)))
+
+(defun opt (x y)
+  "Helper function - When x is non-nil use x otherwise use y"
+  (if x x y))
+
+(defun parse-zsh-history (&optional file)
+  "Read the zsh_history and parse the commands"
+  (with-temp-buffer
+    (insert-file-contents (opt file "~/.zsh_history") nil 0 500)
+    (mapcar 'split-up-to-semi-colon
+          (delete-dups
+            (split-string (buffer-string) "\n")))))
+
+(defvar +helm|zsh-history
+  '((name . "Zsh History")
+    (candidates-process . (lambda)))
+  )
+
+(defun +helm|zsh-history ()
+  "Narrow down bash history with helm."
+  (interactive)
+  (helm :sources +helm|zsh-history
+        :prompt  "shell command: "
+        :buffer  "*helm shell history*"))
+
+(bind-key "s-r" #'ar/helm-shell-search-history shell-mode-map)
+
+;; Save buffer name
+;; Close minibuffer
+;; Switch to bufffer
+
+#+END_SRC
+
+* DONE Helm
+:PROPERTIES:
+:ARCHIVE_TIME: 2019-04-01 Mon 15:21
+:ARCHIVE_FILE: ~/.homesick/repos/Dotfiles/home/.config/doom/config.org
+:ARCHIVE_OLPATH: Configuration/Packages & Modules
+:ARCHIVE_CATEGORY: config
+:ARCHIVE_TODO: DONE
+:END:
