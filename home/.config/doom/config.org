@@ -57,7 +57,7 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
           (replace-match "%s" t t))
         `(format ,(buffer-string) ,@(reverse (mapcar 'read matches)))))))
 #+END_SRC
-*** Helpers
+*** General Helpers
 **** Noop
 #+BEGIN_SRC elisp
 (defun noop (args) nil)
