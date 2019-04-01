@@ -409,34 +409,30 @@ Change popups to my preferred size.
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
+(map! :en "C-±"   #'+popup/raise)
+#+END_SRC
+*** Mac Modifier Bindings
+#+BEGIN_SRC elisp
 (map! (:map override
         "s-x" #'execute-extended-command
         "s-w" #'+workspace/close-window-or-workspace
-        "s-;" #'eval-expression))
+        "s-;" #'eval-expression)
 
-(map!
- :niv "s-1" (λ! (+workspace/switch-to 0))
- :niv "s-2" (λ! (+workspace/switch-to 1))
- :niv "s-3" (λ! (+workspace/switch-to 2))
- :niv "s-4" (λ! (+workspace/switch-to 3))
- :niv "s-5" (λ! (+workspace/switch-to 4))
- :niv "s-6" (λ! (+workspace/switch-to 5))
- :niv "s-7" (λ! (+workspace/switch-to 6))
- :niv "s-8" (λ! (+workspace/switch-to 7))
- :niv "s-9" (λ! (+workspace/switch-to 9))
+      ;; Workspace Switching
+      :niv "s-1" (λ! (+workspace/switch-to 0))
+      :niv "s-2" (λ! (+workspace/switch-to 1))
+      :niv "s-3" (λ! (+workspace/switch-to 2))
+      :niv "s-4" (λ! (+workspace/switch-to 3))
+      :niv "s-5" (λ! (+workspace/switch-to 4))
+      :niv "s-6" (λ! (+workspace/switch-to 5))
+      :niv "s-7" (λ! (+workspace/switch-to 6))
+      :niv "s-8" (λ! (+workspace/switch-to 7))
+      :niv "s-9" (λ! (+workspace/switch-to 9))
 
- :en "C-±"   #'+popup/raise)
-#+END_SRC
-*** Mac Modifier Bindings
-
-OSX Meta Bindings
-
-**** Text Scale
-#+BEGIN_SRC elisp
-(map!
- :niv "s-="   #'default-text-scale-increase
- :niv "s--"   #'default-text-scale-decrease
- :niv "s-0"   #'default-text-scale-reset)
+      ;; Text scale
+      :niv "s-="   #'default-text-scale-increase
+      :niv "s--"   #'default-text-scale-decrease
+      :niv "s-0"   #'default-text-scale-reset)
 #+END_SRC
 *** Evil Textobjects
 
