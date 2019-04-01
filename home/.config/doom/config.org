@@ -16,11 +16,6 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
 #+END_SRC
 
 ** Essential
-*** Doom Settings
-#+BEGIN_SRC elisp
-(setq doom-leader-alt-key "A-SPC")
-#+END_SRC
-
 *** Variables and constants
 *** Directories
 #+BEGIN_SRC elisp
