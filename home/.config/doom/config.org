@@ -8,22 +8,13 @@
 
 * Configuration
 ** About
-This is Florian Schrödls Emacs Config based on [[https://github.com/hlissner/doom-emacs][doom-emacs]].
-I'm using the develop branch of doom.
+
+This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs]].
 
 #+BEGIN_SRC elisp
 (setq user-full-name "Florian Schrödl")
 #+END_SRC
 
-*** Naming conventions
-- floscr-...   variables or non-interactive functions
-- floscr/...   an interactive function
-- floscr|...   hook function
-- floscr*...   advising functions
-- floscr:...   an evil operator, motion or command
-- ...!      a macro or function that configures Emacs
-- %...      functions used for in-snippet logic
-- +...      variables or functions related to a package
 ** Essential
 *** Doom Settings
 #+BEGIN_SRC elisp
