@@ -95,7 +95,6 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
 #+END_SRC
 *** Math+
 #+BEGIN_SRC elisp
-3
 (defun math-on-number (f &optional num)
   "Read user input and apply with function f to the number at point"
   (let* ((x (thing-at-point 'number))
@@ -112,23 +111,23 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
     (delete-region (car bounds) (cdr bounds))
     (insert (format "%.02f" result))))
 
-(defun math+|add-to-number ()
+(defun +math|add-to-number ()
   (interactive)
   (math-on-number '+))
 
-(defun math+|subtract-from-number ()
+(defun +math|subtract-from-number ()
   (interactive)
   (math-on-number '-))
 
-(defun math+|subtract-maran-vegan ()
+(defun +math|subtract-maran-vegan ()
   (interactive)
   (math-on-number '- 8.60))
 
-(defun math+|divide-by-number ()
+(defun +math|divide-by-number ()
   (interactive)
   (math-on-number '/))
 
-(defun math+|multiply-by-number ()
+(defun +math|multiply-by-number ()
   (interactive)
   (math-on-number '*))
 #+END_SRC
