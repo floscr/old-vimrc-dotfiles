@@ -15,16 +15,15 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
 (setq user-full-name "Florian Schrödl")
 #+END_SRC
 
-** Essential
-*** Variables and constants
+** Essentials
 *** Directories
 #+BEGIN_SRC elisp
 (defcustom downloads-dir "~/Downloads/"
-  "Directory containing your downloads."
+  "Directory containing my downloads."
   :type 'string)
 
 (defcustom screenshot-dir "~/Pictures/Screenshots"
-  "Directory containing your screenshots."
+  "Directory containing my screenshots."
   :type 'string)
 #+END_SRC
 ** Utilities
