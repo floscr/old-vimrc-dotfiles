@@ -468,10 +468,6 @@ Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
 #+END_SRC
-*** Evil Normal Bindings
-
-Global Evil Normal/Visual Mode bindigns
-
 **** Go up one directory from the current buffer
 #+BEGIN_SRC elisp
 (after! evil
@@ -641,7 +637,6 @@ My global leader bindings
    :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
    :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
-
 #+END_SRC
 
 *** Local Leader Bindings
@@ -853,6 +848,7 @@ To enable the checker press ~SPC u C-c ! x~
 #+END_SRC
 *** Dired
 **** Config
+***** Window targeting
 
 When there are two visual splits with dired buffers.
 ~C~ will take the other window as the copy target.
@@ -862,14 +858,11 @@ The cursor has to be on the dired frame with the marked files.
 (setq dired-dwim-target t)
 #+END_SRC
 
-Disable dired from opening files in a new window
-
+***** Disable dired from opening files in a new window
 #+BEGIN_SRC elisp
 (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
-
-Kill all dired buffers with ~Q~
-
+***** Kill all dired buffers with ~Q~
 #+BEGIN_SRC elisp
 (defun +dired|kill-dired-buffers ()
   "Kills all dired buffers
@@ -888,6 +881,7 @@ But at some time I want to purge those buffers"
       :n "Q" #'+dired|kill-dired-buffers)
 #+END_SRC
 
+***** Use gls
 Use ~gls~ with dired which is way faster than osx ~ls~
 Must enable =dired-k-human-readable= when =-h= flag is given.
 Otherwise dired comes to a grinding halt on some sizes.
