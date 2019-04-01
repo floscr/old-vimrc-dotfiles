@@ -798,16 +798,17 @@ E.g.: ?* -> Clipboard Contents"
 *** Eshell
 **** Aliases
 #+BEGIN_SRC elisp
-(after! eshell-mode
-  (add-hook 'eshell-mode-hook (lambda ()
-                                (eshell/alias "gs" "git status")
-                                (eshell/alias "gc" "git commit")
-
-                                ;; The 'ls' executable requires the Gnu version on the Mac
-                                (let ((ls (if (file-exists-p "/usr/local/bin/gls")
-                                            "/usr/local/bin/gls"
-                                            "/bin/ls"))))
-                                (eshell/alias "ll" (concat ls " -AlohG --color=always")))))
+(setq +eshell-aliases
+  '(("q"  "exit")           ; built-in
+    ("f"  "find-file $1")
+    ("bd" "eshell-up $1")   ; `eshell-up'
+    ("rg" "rg --color=always $*")
+    ("ag" "ag --color=always $*")
+    ("l"  "ls -lh")
+    ("ll" "ls -lah")
+    ("gs" "git status")
+    ("gc" "git commit")
+    ("clear" "clear-scrollback")))
 #+END_SRC
 *** Eww
 Set the page width for eww
