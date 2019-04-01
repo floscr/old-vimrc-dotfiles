@@ -847,9 +847,7 @@ To enable the checker press ~SPC u C-c ! x~
   (add-to-list 'flycheck-checkers 'proselint))
 #+END_SRC
 *** Evil-Snipe
-
-Repeat snipe after further key press
-
+**** Repeat snipe after further key press
 #+BEGIN_SRC elisp
 (setq evil-snipe-repeat-keys t)
 #+END_SRC
