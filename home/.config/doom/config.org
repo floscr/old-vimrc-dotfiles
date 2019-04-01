@@ -338,6 +338,7 @@ Allows me to toggle quickly between two themes.
          (doom/reload-theme))
         (t (message "Toggling theme is not possible. Theme is not currently light-theme (%s) or dark-theme (%s)." light-theme dark-theme))))
 #+END_SRC
+*** Scrolloff
 
 Start scrolling X lines before the end of a screen.
 Disable for terminal buffers, since there cane be issues completion/interactive
