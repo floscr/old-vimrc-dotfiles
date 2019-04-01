@@ -376,6 +376,21 @@ When no line spacing is given is the default-line-spacing"
 (defun +ui|decrease-line-spacing ()
   (interactive)
   (set-line-spacing (- default-line-spacing)))
+
+(evil-define-key 'normal 'global (kbd "]z") #'+line-spacing/step/body)
+
+;;;###autoload (autoload '+common-lisp/macrostep/body "lang/common-lisp/autoload/hydras" nil nil)
+(defhydra +line-spacing/step (:exit nil :hint nil :foreign-keys run)
+  "
+Macro Expansion
+^^Definitions                           ^^Compiler Notes             ^^Stickers
+^^^^^^─────────────────────────────────────────────────────────────────────────────────────
+[_k_] Expand
+[_j_] Collapse
+"
+  ("k" +ui|increase-line-spacing)
+  ("j" +ui|decrease-line-spacing)
+  ("q" noop :exit t))
 #+END_SRC
 *** Popups
 
