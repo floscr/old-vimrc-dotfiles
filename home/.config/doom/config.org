@@ -33,7 +33,9 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
 (defalias 'λ 'lambda)
 #+END_SRC
 **** Template Literals
-Source: https://gist.github.com/cbowdon/012d623920bd28453bf8
+:PROPERTIES:
+:SOURCE:   https://gist.github.com/cbowdon/012d623920bd28453bf8
+:END:
 
 #+BEGIN_SRC elisp :tangle no
 (template "2 = <<(+ 1 1)>>")
