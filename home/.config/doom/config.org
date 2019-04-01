@@ -183,11 +183,12 @@ the projects cwd to find a file.
   (let ((name (read-string "New workspace name: ")))
     (if name (+workspace/new name))))
 #+END_SRC
-*** IO File Utilities
+*** File Utilities
 **** Get the last file in directory
 :PROPERTIES:
 :SOURCE:   https://stackoverflow.com/a/30886283
 :END:
+
 #+BEGIN_SRC elisp
 (defun latest-file (path)
   (let ((e (f-entries path)))
@@ -197,7 +198,7 @@ the projects cwd to find a file.
 
 (defun file-timestamp (f) (let ((attrs (file-attributes f))) (nth 5 attrs)))
 #+END_SRC
-*** Reveal in Finder
+**** Reveal in Finder
 
 The regular ~+macos/reveal-in-finder~ in doom only opens the folder.
 This fix opens the folder and selects the file.
@@ -212,7 +213,7 @@ This fix opens the folder and selects the file.
                    "    reveal POSIX file \"" (buffer-file-name) "\"\n"
                    "end tell")))
 #+END_SRC
-*** Show Next/Previous file in file listing
+**** Show Next/Previous file in file listing
 #+BEGIN_SRC elisp
 (defun floscr/next-ls-file (&optional direction)
   "Gives you the next file of a listing in the current dictionary"
