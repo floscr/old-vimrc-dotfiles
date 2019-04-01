@@ -131,10 +131,12 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
   (interactive)
   (math-on-number '*))
 #+END_SRC
-*** Window Dedicated
+*** Toggle Window Dedicated
+:PROPERTIES:
+:SOURCE:   [[https://emacs.stackexchange.com/questions/2189/how-can-i-prevent-a-command-from-using-specific-windows][buffers - How can I prevent a command from using specific windows? - Emacs Stack Exchange]]
+:END:
 
 To lock a window you set the dedicadet flag on the window.
-[[https://emacs.stackexchange.com/questions/2189/how-can-i-prevent-a-command-from-using-specific-windows][buffers - How can I prevent a command from using specific windows? - Emacs Stack Exchange]]
 
 #+BEGIN_SRC elisp
 (defun toggle-window-dedicated ()
@@ -150,7 +152,6 @@ buffer in current window."
 #+END_SRC
 *** Workspace
 **** Switch to last visited workspace
-
 #+BEGIN_SRC elisp
 (defun +workspace/switch-to-last-visited ()
   "Switch to the last visited workspace."
@@ -158,25 +159,22 @@ buffer in current window."
   (+workspace/switch-to +workspace--last))
 #+END_SRC
 **** Find file for workspace
-
 Most of the time you create workspaces from a project.
 But when the CWD has changed in that workspace, you would have to relocate to
 the projects cwd to find a file.
 
 #+BEGIN_SRC elisp
-(defun floscr-find-workspace-project-root (&optional arg)
+(defun floscr|find-workspace-project-root (&optional arg)
   "Gets the root dir for the current workspace"
   (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
 
 (defun +workspace|find-workspace-project-file ()
 "Projectile find file for the project named after the current workspace."
   (interactive)
-  (cl-letf (((symbol-function 'projectile-project-root) #'floscr-find-workspace-project-root))
+  (cl-letf (((symbol-function 'projectile-project-root) #'floscr|find-workspace-project-root))
       (projectile-find-file)))
-
 #+END_SRC
 
-****
 **** New named workspace
 #+BEGIN_SRC elisp
 (defun +workspace|new-named ()
@@ -184,10 +182,6 @@ the projects cwd to find a file.
   (interactive)
   (let ((name (read-string "New workspace name: ")))
     (if name (+workspace/new name))))
-
-(defun find-workspace-project-root (&optional arg)
-  "Gets the root dir for the current workspace"
-  (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
 #+END_SRC
 *** IO File Utilities
 **** Get the last file in directory
