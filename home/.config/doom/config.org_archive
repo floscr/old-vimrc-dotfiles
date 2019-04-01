@@ -62,3 +62,16 @@ This is very slow on dotfiles repo in osx.
           (call-interactively #'projectile-invalidate-cache))
         (message "File '%s' successfully removed" filename)))))
 #+END_SRC
+
+* DONE Sort Lines
+:PROPERTIES:
+:ARCHIVE_TIME: 2019-04-01 Mon 14:30
+:ARCHIVE_FILE: ~/.homesick/repos/Dotfiles/home/.config/doom/config.org
+:ARCHIVE_OLPATH: Configuration/Bindings/Evil Normal Bindings
+:ARCHIVE_CATEGORY: config
+:ARCHIVE_TODO: DONE
+:END:
+#+BEGIN_SRC elisp
+(after! evil
+  (define-key evil-visual-state-map (kbd "gS") #'evil-ex-sort))
+#+END_SRC
