@@ -164,14 +164,14 @@ But when the CWD has changed in that workspace, you would have to relocate to
 the projects cwd to find a file.
 
 #+BEGIN_SRC elisp
-(defun floscr|find-workspace-project-root (&optional arg)
+(defun my-find-workspace-project-root (&optional arg)
   "Gets the root dir for the current workspace"
   (--find (s-match (concat (+workspace-current-name) "/$") it) projectile-known-projects))
 
 (defun +workspace|find-workspace-project-file ()
 "Projectile find file for the project named after the current workspace."
   (interactive)
-  (cl-letf (((symbol-function 'projectile-project-root) #'floscr|find-workspace-project-root))
+  (cl-letf (((symbol-function 'projectile-project-root) #'my-find-workspace-project-root))
       (projectile-find-file)))
 #+END_SRC
 
@@ -215,7 +215,7 @@ This fix opens the folder and selects the file.
 #+END_SRC
 **** Show Next/Previous file in file listing
 #+BEGIN_SRC elisp
-(defun floscr/next-ls-file (&optional direction)
+(defun my-next-ls-file (&optional direction)
   "Gives you the next file of a listing in the current dictionary"
   (interactive)
   (let* ((direction (or direction 1))
@@ -297,7 +297,8 @@ This will be disabled in terminal mode.
 
 (cond
  ((string= system-name "Florians-MBP.localdomain")
-  (my-set-initial-frame-size (cons 1410 1060))
+  (my-frame-resize-work-external)
+  ;; (my-set-initial-frame-size (cons 2 1060))
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
