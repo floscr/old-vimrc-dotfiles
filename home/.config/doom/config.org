@@ -93,7 +93,7 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
   (kill-new x)
   (message "Copied to clipboard: %s" x))
 #+END_SRC
-*** Math+
+*** Math on Numbers
 #+BEGIN_SRC elisp
 (defun math-on-number (f &optional num)
   "Read user input and apply with function f to the number at point"
