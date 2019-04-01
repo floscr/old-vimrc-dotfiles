@@ -434,7 +434,11 @@ Change popups to my preferred size.
       :niv "s--"   #'default-text-scale-decrease
       :niv "s-0"   #'default-text-scale-reset)
 #+END_SRC
-*** Evil Textobjects
+*** Evil Normal Bindings
+
+Global Evil Normal/Visual Mode bindigns
+
+**** Evil Quotes Motion
 
 Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
 
