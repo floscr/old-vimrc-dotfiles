@@ -23,11 +23,8 @@
  modeline
  doom-quit
  hl-todo
- ;; nav-flash
- ;; neotree
  treemacs
  (popup +all +defaults)
- ;; pretty-code
  vc-gutter
  vi-tilde-fringe
  window-select
