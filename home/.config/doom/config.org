@@ -350,6 +350,7 @@ shell scripts.
  scroll-margin 10)
 
 (add-hook 'term-mode-hook (λ! (setq-local scroll-margin 0)))
+(add-hook 'ivy-mode-hook (λ! (setq-local scroll-margin 0)))
 #+END_SRC
 *** Line Spacing
 
