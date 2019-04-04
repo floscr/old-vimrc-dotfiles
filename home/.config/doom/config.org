@@ -1543,6 +1543,14 @@ When switching pages in PDFs, return the scroll to the top of the page
   (ivy-read "Add Rule" (ht-keys +MM-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
+*** Minibuffer Maps
+#+BEGIN_SRC elisp
+;; Insert from the minibuffer
+(define-key! ivy-minibuffer-map
+  "C-c TAB" (λ!
+             (ivy-kill-whole-line)
+             (ivy-quit-and-run (yank))))
+#+END_SRC
 *** TODO Org Noter
 
 [[https://github.com/weirdNox/org-noter][Org Noter]] is a tool to annotate pdfs.
