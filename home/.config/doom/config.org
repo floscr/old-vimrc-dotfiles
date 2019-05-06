@@ -958,26 +958,6 @@ Select last item of company
 Complete a whole line with all lines from buffers matching the current major-mode.
 
 #+BEGIN_SRC elisp
-(defun +company/whole-lines-all-buffers (command &optional arg &rest ignored)
-  "`company-mode' completion backend that completes whole-lines, akin to vim's
-C-x C-l."
-  (interactive (list 'interactive))
-  (require 'company)
-  (pcase command
-    (`interactive (company-begin-backend '+company/whole-lines-all-buffers))
-    (`prefix      (company-grab-line "^[\t\s]*\\(.+\\)" 1))
-    (`candidates
-     (all-completions
-      arg
-      (-uniq
-       (-flatten
-        (--map (with-current-buffer it
-                 (split-string
-                  (replace-regexp-in-string
-                   "^[\t\s]+" ""
-                   (buffer-substring-no-properties (point-min) (point-max)))
-                  "\\(\r\n\\|[\n\r]\\)" t)) (floscr:buffer-list-with-major-mode))))))))
-
 (defun floscr:buffer-list-with-modes (modes)
   "Get all buffers that match MODES"
   (--filter
@@ -995,6 +975,29 @@ Has built in aliases"
        (floscr:buffer-list-with-modes javascript-modes))
       (_
        (floscr:buffer-list-with-modes major-mode)))))
+
+(defun +company/whole-lines-all-buffers (command &optional arg &rest ignored)
+  "`company-mode' completion backend that completes whole-lines, akin to vim's
+C-x C-l."
+  (interactive (list 'interactive))
+  (require 'company)
+  (pcase command
+    (`interactive (company-begin-backend '+company/whole-lines-all-buffers))
+    (`prefix      (company-grab-line "^[\t\s]*\\(.+\\)" 1))
+    (`candidates
+     (all-completions
+      arg
+      (funcall (-compose
+                #'-uniq
+                #'-flatten
+                (lambda (xs)
+                  (--map (with-current-buffer it
+                           (split-string
+                            (replace-regexp-in-string
+                             "^[\t\s]+" ""
+                             (buffer-substring-no-properties (point-min) (point-max)))
+                            "\\(\r\n\\|[\n\r]\\)" t)) xs)))
+               (floscr:buffer-list-with-major-mode))))))
 #+END_SRC
 
 
