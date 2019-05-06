@@ -945,6 +945,59 @@ Select last item of company
   (company-select-next (- company-candidates-length 1)))
 #+END_SRC
 
+**** Bindings
+#+BEGIN_SRC elisp
+(map!
+ (:prefix "C-x"
+   :i "C-l" #'+company/whole-lines-all-buffers
+   :i "C-." #'+company/whole-lines))
+#+END_SRC
+
+**** Company complete whole lines for all matching buffers
+
+Complete a whole line with all lines from buffers matching the current major-mode.
+
+#+BEGIN_SRC elisp
+(defun +company/whole-lines-all-buffers (command &optional arg &rest ignored)
+  "`company-mode' completion backend that completes whole-lines, akin to vim's
+C-x C-l."
+  (interactive (list 'interactive))
+  (require 'company)
+  (pcase command
+    (`interactive (company-begin-backend '+company/whole-lines-all-buffers))
+    (`prefix      (company-grab-line "^[\t\s]*\\(.+\\)" 1))
+    (`candidates
+     (all-completions
+      arg
+      (-uniq
+       (-flatten
+        (--map (with-current-buffer it
+                 (split-string
+                  (replace-regexp-in-string
+                   "^[\t\s]+" ""
+                   (buffer-substring-no-properties (point-min) (point-max)))
+                  "\\(\r\n\\|[\n\r]\\)" t)) (floscr:buffer-list-with-major-mode))))))))
+
+(defun floscr:buffer-list-with-modes (modes)
+  "Get all buffers that match MODES"
+  (--filter
+   (with-current-buffer it (-contains? (doom-enlist modes) major-mode))
+   (buffer-list)))
+
+(defun floscr:buffer-list-with-major-mode ()
+  "Get all buffers matching the current major-mode
+Has built in aliases"
+  (let ((javascript-modes (list 'rjsx-mode 'js2-mode)))
+    (pcase major-mode
+      ('rjsx-mode
+       (floscr:buffer-list-with-modes javascript-modes))
+      ('js2-mode
+       (floscr:buffer-list-with-modes javascript-modes))
+      (_
+       (floscr:buffer-list-with-modes major-mode)))))
+#+END_SRC
+
+
 *** Eldoc
 #+BEGIN_SRC elisp
 ;; Always truncate ElDoc messages to one line. This prevents the echo
