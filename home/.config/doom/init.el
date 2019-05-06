@@ -1,15 +1,9 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
 
+
+
+
 (doom!
- :feature
- eval
- (evil +everywhere)
- file-templates
- (lookup +devdocs +docsets)
- snippets
-
- workspaces
-
  :completion
  (company
   +childframe)
@@ -28,12 +22,16 @@
  vc-gutter
  vi-tilde-fringe
  window-select
+ workspaces
 
  :editor
+ (evil +everywhere)
+ file-templates
  fold
  rotate-text
  multiple-cursors
  parinfer
+ snippets
 
  :emacs
  dired
@@ -44,6 +42,8 @@
  vc
 
  :tools
+ (lookup +devdocs +docsets)
+ eval
  editorconfig
  macos
  magit
