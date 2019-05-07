@@ -1169,6 +1169,7 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
   "New worktree with the devpanel files and an npm install"
   (interactive)
   (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
+    (npm-mode)
     (npm-mode-npm-install)))
 #+END_SRC
 
