@@ -586,7 +586,11 @@ My global leader bindings
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "file" :prefix "f"
-   :desc "find in literate config file" :n  "p" #'helm-org-rifle-config)
+   :desc "find in literate config file" :n  "p" #'helm-org-rifle-config
+   :desc "find" :n  "r" #'helm-org-rifle-config)
+
+ (:desc "dir" :prefix "d"
+   :desc "Project Root" :n  "p" (λ! (dired (projectile-project-root))))
 
  (:desc "git" :prefix "g"
    :desc "Amend Commit"                :n  "a" #'magit-commit-amend
