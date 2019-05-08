@@ -805,6 +805,22 @@ E.g.: ?* -> Clipboard Contents"
 #+END_SRC
 ** Packages & Modules
 *** Eshell
+**** Syntax highlighted cat
+#+BEGIN_SRC elisp
+(defun eshell/cat (file)
+  "Like `cat' but output with Emacs syntax highlighting."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (let ((buffer-file-name file))
+      (delay-mode-hooks
+        (set-auto-mode)
+        (if (fboundp 'font-lock-ensure)
+            (font-lock-ensure)
+          (with-no-warnings
+            (font-lock-fontify-buffer)))))
+    (buffer-string)))
+#+END_SRC
+
 **** Aliases
 #+BEGIN_SRC elisp
 (setq +eshell-aliases
@@ -812,6 +828,7 @@ E.g.: ?* -> Clipboard Contents"
     ("f"  "find-file $1")
     ("bd" "eshell-up $1")   ; `eshell-up'
     ("rg" "rg --color=always $*")
+    ("cat" "eshell/cat $1")
     ("ag" "ag --color=always $*")
     ("l"  "ls -lh")
     ("ll" "ls -lah")
