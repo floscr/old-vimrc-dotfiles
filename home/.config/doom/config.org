@@ -617,6 +617,9 @@ My global leader bindings
    :desc "Create"       :n "c" #'+workspace|new-named
    :desc "Rename"       :n "," #'+workspace/rename
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
+   :desc "Clone" :n "C" (λ!
+                         (+workspace/new (format "Clone: %s" (+workspace-current-name)) t)
+                         (message "Cloned current workspace %s" (+workspace-current-name)))
    :desc "Display tab bar"           "TAB" #'+workspace/display
    :desc "New workspace"             "n"   #'+workspace/new
    :desc "Load workspace from file"  "l"   #'+workspace/load
