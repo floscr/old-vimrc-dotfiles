@@ -1639,6 +1639,26 @@ When switching pages in PDFs, return the scroll to the top of the page
   (ivy-read "Add Rule" (ht-keys +MM-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
+**** Ivy Projectile
+
+Override the default ~+default/search-project~, since that does just a basic rg, without respecting the
+projectile ignores.
+
+#+BEGIN_SRC elisp
+(defun +default/search-project (&optional arg)
+  "Conduct a text search in the current project root.
+If prefix ARG is set, prompt for a known project to search from."
+  (interactive "P")
+  (let ((default-directory
+          (if arg
+              (if-let* ((projects (projectile-relevant-known-projects)))
+                  (completing-read "Switch to project: " projects
+                                   nil t nil nil (doom-project-root))
+                (user-error "There are no known projects"))
+            default-directory)))
+    (call-interactively #'counsel-projectile-rg)))
+#+END_SRC
+
 *** Minibuffer Maps
 #+BEGIN_SRC elisp
 ;; Insert from the minibuffer
