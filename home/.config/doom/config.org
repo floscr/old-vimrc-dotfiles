@@ -1428,8 +1428,7 @@ When switching pages in PDFs, return the scroll to the top of the page
                     lsp-face-highlight-textual))
       (set-face-attribute
        face nil
-       :foreground nil :distant-foreground nil :background nil
-       :weight 'bold :underline t))))
+       :foreground nil :distant-foreground nil :background nil))))
 #+END_SRC
 *** Ivy
 **** Import JS File
