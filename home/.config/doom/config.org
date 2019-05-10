@@ -1801,7 +1801,7 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
   "Get filenames from current buffers directory"
   (let ((fs (directory-files (or actions-dir default-directory) nil ".*\\.js")))
     (mapcar 'remove-js-ext
-            (remove (buffer-file-name-relative) fs))))
+            (remove "index.js" fs))))
 
 (defun +js|generate-index (&optional actions-dir)
   "Generate an index import file for files in directory"
