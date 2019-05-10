@@ -1458,8 +1458,9 @@ When switching pages in PDFs, return the scroll to the top of the page
 ;; TODO Make template accepts a cursor placeholder
 ;; TODO Maybe even look at exports
 (defun my-js-import-file (file)
-  (let ((cursor-postion (point)))
-    (insert (template "import  from '<<file>>';"))
+  (let ((cursor-postion (point))
+        (filename (remove-js-ext file)))
+    (insert (template "import  from '<<filename>>';"))
     (goto-char cursor-postion)
     (forward-char 7)
     (evil-insert-state)))
