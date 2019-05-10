@@ -1480,6 +1480,7 @@ When switching pages in PDFs, return the scroll to the top of the page
   (let* ((is-local (s-contains? "./" file))
          (comment-header-title (if is-local "LOCALS" "EXTERNALS"))
          (comment-header (template "/** <<comment-header-title>> **/")))
+    (pcase (--first (save-excursion (search-forward it nil t)) '("EXTERNALS" "LOCALS" "MAIN")))
     (if (search-forward comment-header)
         (progn
           ;; Go to next comment header
