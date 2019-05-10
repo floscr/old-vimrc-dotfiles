@@ -1797,17 +1797,17 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
     (find-file path)
     (yank)))
 
-(defun js-index-file-names ()
+(defun js-index-file-names (&optional actions-dir)
   "Get filenames from current buffers directory"
-  (let ((fs (directory-files default-directory nil ".*\\.js")))
+  (let ((fs (directory-files (or actions-dir default-directory) nil ".*\\.js")))
     (mapcar 'remove-js-ext
             (remove (buffer-file-name-relative) fs))))
 
-(defun +js|generate-index ()
+(defun +js|generate-index (&optional actions-dir)
   "Generate an index import file for files in directory"
   (interactive)
   (erase-buffer)
-  (let* ((fs (js-index-file-names)))
+  (let* ((fs (js-index-file-names actions-dir)))
     (mapc (lambda (f) (insert "import " f " from './" f "';\n")) fs)
     (insert "\n")
     (insert "export default {\n")
