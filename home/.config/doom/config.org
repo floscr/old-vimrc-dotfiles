@@ -807,6 +807,28 @@ E.g.: ?* -> Clipboard Contents"
 ;;   (magit-get-current-branch)
 ;;   )
 #+END_SRC
+*** Create action
+
+Create an action from a controller and import directly
+
+#+BEGIN_SRC elisp
+(defun +MM|create-action ()
+  "Create an action file from a controller file"
+  (interactive)
+  (let* ((action-name (read-string "Action Name: "))
+         (root-dir (file-name-directory (buffer-file-name)))
+         (actions-dir (concat root-dir "actions/"))
+         (actions-index-file (concat actions-dir "index.js"))
+         (action-file (concat actions-dir (concat action-name ".js"))))
+    (unless (file-directory-p actions-dir) (mkdir actions-dir))
+    (copy-file
+     (concat (projectile-project-root) "snippets/Core/Action.js")
+     action-file)
+    (with-temp-file actions-index-file
+      (+js|generate-index actions-dir))
+    (find-file action-file)))
+#+END_SRC
+
 ** Packages & Modules
 *** Eshell
 **** Syntax highlighted cat
