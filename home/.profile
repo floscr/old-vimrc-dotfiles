@@ -57,3 +57,6 @@ export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# Fix libffi for pdf-tools
+# https://github.com/mesonbuild/meson/issues/2273#issuecomment-420412230
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
