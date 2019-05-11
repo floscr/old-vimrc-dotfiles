@@ -1142,10 +1142,10 @@ If possible also go to the pointing line"
   (interactive)
   (when magit-buffer-file-name
     (let ((file-name magit-buffer-file-name)
-          (line-number (line-number-at-pos))
-          (current-line (thing-at-point 'line t)))
+          (line-number (line-number-at-pos)))
       (delete-other-windows)
-      (find-file file-name))))
+      (find-file file-name)
+      (goto-line line-number))))
 #+END_SRC
 
 **** Git Changed Files
