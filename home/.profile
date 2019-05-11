@@ -8,6 +8,7 @@ export ARCHFLAGS="-arch x86_64"
 
 # Brew
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/sbin:$PATH
+export HOMEBREW_NO_ANALYTICS=1
 
 # PKG Config
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
