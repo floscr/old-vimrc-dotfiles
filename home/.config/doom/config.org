@@ -1475,30 +1475,42 @@ When switching pages in PDFs, return the scroll to the top of the page
                             (concat "jq -r '.dependencies | keys | .[]' " (concat (projectile-project-root) "package.json"))) "\n" t))
             :action (or action 'my-js-import-file)))
 
-;; TODO
-;; 1. Split upto these headers, then reverse find (--last) to the first available header
-;;    When no header is found, just insert the header at the top of the file
-;; 2. Find the next comment header, if none is available go to the end of the file
-;; 3. Insert your import statement
 (setq +MM-comment-headers '("EXTERNALS" "LOCALS" "HELPERS" "MAIN"))
 
-(defun +MM|add-import-to-file (file)
+(defun +MM:get-remaining-headers-list (header)
+  "Returns a reversed list of headers to search through"
+  (->> +MM-comment-headers
+       (-split-on header)
+       (-first-item)))
+
+(defun +MM:goto-or-add-header (header)
+  "Goes to a comment header or if it doesnt exist creates one"
+  (goto-char (point-min))
+  (if (search-forward header nil t)
+      (progn
+        (search-forward-regexp "^/\\*\\*" nil t)
+        (previous-line 2))
+    ;; Create header when none was found
+    (progn
+      (let* ((headers (reverse (+MM:get-remaining-headers-list header))))
+        (--first (search-forward it nil t) headers))
+      (search-forward-regexp "^/\\*\\*" nil t)
+      (evil-insert-newline-above)
+      (insert (template  "/** <<header>> **/\n\n\n\n"))
+      (previous-line 1))))
+
+(defun +MM:add-import-to-file (file)
   (goto-char (point-min))
   (let* ((is-local (s-contains? "./" file))
-         (comment-header-title (if is-local "LOCALS" "EXTERNALS"))
-         (comment-header (template "/** <<comment-header-title>> **/")))
-    (pcase (--first (save-excursion (search-forward it nil t)) '("EXTERNALS" "LOCALS" "MAIN")))
-    (if (search-forward comment-header)
-        (progn
-          ;; Go to next comment header
-          (if (search-forward "/**")
-            (previous-line 3))
-          (evil-insert-newline-below)
-          (my-js-import-file file)))))
+         (comment-header-title (if is-local "LOCALS" "EXTERNALS")))
+    (+MM:goto-or-add-header comment-header-title)
+    (evil-insert-newline-below)
+    (previous-line 1)
+    (my-js-import-file file)))
 
 (defun +MM|import-file ()
   (interactive)
-  (+js|ivy-import-file '+MM|add-import-to-file))
+  (+js|ivy-import-file '+MM:add-import-to-file))
  #+END_SRC
 
 **** Rules
