@@ -680,6 +680,11 @@ Pacakge/Mode specific bindings
 (map!
  :niv "s-X"   #'+org-capture/open-frame)
 
+(map! :map org-mode-map
+      :localleader
+      (:prefix ("g" . "goto")
+        :desc "Org Web Link" "l" (λ! () (org-web-tools-read-url-as-org (org-web-tools--read-url)))))
+
 (map! :map outline-mode-map
       :n "s-k" #'org-metaup
       :n "s-j" #'org-metadown)
