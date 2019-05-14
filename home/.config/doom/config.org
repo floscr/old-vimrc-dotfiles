@@ -984,6 +984,16 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
      "C-l" #'evil-window-right)))
 #+END_SRC
 
+**** Ignore ~happypack~                                                                              :HACK:
+
+#+BEGIN_SRC elisp
+(defun treemacs-is-file-happypack? (f _)
+  (string= f ".happypack"))
+
+(after! treemacs
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-is-file-happypack?))
+#+END_SRC
+
 *** Company
 
 Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
