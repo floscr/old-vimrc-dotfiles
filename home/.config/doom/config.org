@@ -974,6 +974,16 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
       :map dired-mode-map
       :n "\\" #'flosc|wdired-change-to-wdired-mode)
 #+END_SRC
+*** Treemacs
+**** Fix window switch mapping
+#+BEGIN_SRC elisp
+(map!
+ (:after treemacs-evil
+   (:map evil-treemacs-state-map
+     "C-h" #'evil-window-left
+     "C-l" #'evil-window-right)))
+#+END_SRC
+
 *** Company
 
 Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
@@ -1045,7 +1055,6 @@ C-x C-l."
                             "\\(\r\n\\|[\n\r]\\)" t)) xs)))
                (floscr:buffer-list-with-major-mode))))))
 #+END_SRC
-
 
 *** Eldoc
 #+BEGIN_SRC elisp
