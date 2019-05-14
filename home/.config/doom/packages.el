@@ -18,7 +18,6 @@
 (package! github-review :recipe (:fetcher github :repo "charignon/github-review"))
 
 (package! nov)
-(package! lsp-ui :disable t)
 
 (package! define-word)
 
@@ -38,3 +37,7 @@
 ;   (bind-keys :map dired-mode-map
 ;              (">" . dired-subtree-insert)
 ;              ("<" . dired-subtree-remove)))
+
+;; Disabled packages
+(package! lsp-ui :disable t)         ;; Annoying LSP Interface
+(package! treemacs-magit :disable t) ;; Hangs on large projects
