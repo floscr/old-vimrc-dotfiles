@@ -1483,6 +1483,15 @@ When switching pages in PDFs, return the scroll to the top of the page
        :foreground nil :distant-foreground nil :background nil))))
 #+END_SRC
 *** Ivy
+**** Counsel Config
+#+BEGIN_SRC elisp
+(defun counsel-org-doom-config ()
+  "Counsel the doom config"
+  (interactive)
+  (doom/find-private-org-config)
+  (counsel-org-goto))
+#+END_SRC
+
 **** Import JS File
 #+BEGIN_SRC elisp
 ;; TODO Make template accepts a cursor placeholder
