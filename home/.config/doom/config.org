@@ -229,6 +229,17 @@ This fix opens the folder and selects the file.
           (t next-index))
         (nth it files))))
 #+END_SRC
+**** Open private config
+#+BEGIN_SRC elisp
+(defun doom/find-private-org-config ()
+  "Opens config.org"
+  (interactive)
+  (let ((filename (concat doom-private-dir "config.org")))
+    (or
+     (switch-to-buffer (find-buffer-visiting (concat doom-private-dir "config.org")))
+     (find-buffer-visiting filename))))
+#+END_SRC
+
 *** Hydra Expand Region
 :PROPERTIES:
 :SOURCE:   https://www.reddit.com/r/emacs/comments/also27/second_trial_for_a_weekly_tipstricksetc_thread/efi7pbj/
@@ -495,12 +506,7 @@ Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
  :en "C-h"   #'evil-window-left
  :en "C-j"   #'evil-window-down
  :en "C-k"   #'evil-window-up
- :en "C-l"   #'evil-window-right
-
- ;; Fixes for treemacs window navigation
- (:after treemacs-evil
-   :n "C-h" #'evil-window-left
-   :n "C-l" #'evil-window-right))
+ :en "C-l"   #'evil-window-right)
 #+END_SRC
 **** Jump to last buffer
 #+BEGIN_SRC elisp
@@ -586,8 +592,7 @@ My global leader bindings
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
  (:desc "file" :prefix "f"
-   :desc "find in literate config file" :n  "p" #'helm-org-rifle-config
-   :desc "find" :n  "r" #'helm-org-rifle-config)
+   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
 
  (:desc "dir" :prefix "d"
    :desc "Project Root" :n  "p" (λ! (dired (projectile-project-root))))
@@ -679,6 +684,11 @@ Pacakge/Mode specific bindings
 #+BEGIN_SRC elisp
 (map!
  :niv "s-X"   #'+org-capture/open-frame)
+
+(map! :map org-mode-map
+      :localleader
+      (:prefix ("g" . "goto")
+        :desc "Org Web Link" "l" (λ! () (org-web-tools-read-url-as-org (org-web-tools--read-url)))))
 
 (map! :map outline-mode-map
       :n "s-k" #'org-metaup
@@ -974,6 +984,26 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
       :map dired-mode-map
       :n "\\" #'flosc|wdired-change-to-wdired-mode)
 #+END_SRC
+*** Treemacs
+**** Fix window switch mapping
+#+BEGIN_SRC elisp
+(map!
+ (:after treemacs-evil
+   (:map evil-treemacs-state-map
+     "C-h" #'evil-window-left
+     "C-l" #'evil-window-right)))
+#+END_SRC
+
+**** Ignore ~happypack~                                                                              :HACK:
+
+#+BEGIN_SRC elisp
+(defun treemacs-is-file-happypack? (f _)
+  (string= f ".happypack"))
+
+(after! treemacs
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-is-file-happypack?))
+#+END_SRC
+
 *** Company
 
 Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
@@ -1045,7 +1075,6 @@ C-x C-l."
                             "\\(\r\n\\|[\n\r]\\)" t)) xs)))
                (floscr:buffer-list-with-major-mode))))))
 #+END_SRC
-
 
 *** Eldoc
 #+BEGIN_SRC elisp
@@ -1453,6 +1482,15 @@ When switching pages in PDFs, return the scroll to the top of the page
        :foreground nil :distant-foreground nil :background nil))))
 #+END_SRC
 *** Ivy
+**** Counsel Config
+#+BEGIN_SRC elisp
+(defun counsel-org-doom-config ()
+  "Counsel the doom config"
+  (interactive)
+  (doom/find-private-org-config)
+  (counsel-org-goto))
+#+END_SRC
+
 **** Import JS File
 #+BEGIN_SRC elisp
 ;; TODO Make template accepts a cursor placeholder
