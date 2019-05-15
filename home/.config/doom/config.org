@@ -229,6 +229,17 @@ This fix opens the folder and selects the file.
           (t next-index))
         (nth it files))))
 #+END_SRC
+**** Open private config
+#+BEGIN_SRC elisp
+(defun doom/find-private-org-config ()
+  "Opens config.org"
+  (interactive)
+  (let ((filename (concat doom-private-dir "config.org")))
+    (or
+     (switch-to-buffer (find-buffer-visiting (concat doom-private-dir "config.org")))
+     (find-buffer-visiting filename))))
+#+END_SRC
+
 *** Hydra Expand Region
 :PROPERTIES:
 :SOURCE:   https://www.reddit.com/r/emacs/comments/also27/second_trial_for_a_weekly_tipstricksetc_thread/efi7pbj/
