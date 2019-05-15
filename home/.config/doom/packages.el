@@ -17,6 +17,9 @@
 (package! org-ql :recipe (:fetcher github :repo "alphapapa/org-ql"))
 (package! github-review :recipe (:fetcher github :repo "charignon/github-review"))
 
+(package! beancount :recipe
+   (:fetcher bitbucket :repo "blais/beancount" :files ("editors/emacs/*.el")))
+
 (package! nov)
 (package! lsp-ui :disable t)
 
