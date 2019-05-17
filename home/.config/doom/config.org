@@ -838,6 +838,16 @@ Create an action from a controller and import directly
       (+js|generate-index actions-dir))
     (find-file action-file)))
 #+END_SRC
+*** Search MapEditor Only
+
+#+BEGIN_SRC elisp
+(defun +MM|canvas-files ()
+  "Project files but only for canvas"
+  (interactive)
+  (ivy-read "Find File: "
+            (--filter (s-contains? "MapEditor" it) (projectile-current-project-files))
+            :action #'projectile-find-file))
+#+END_SRC
 
 ** Packages & Modules
 *** Eshell
