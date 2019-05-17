@@ -1,8 +1,4 @@
 ;;; init.el --- description -*- lexical-binding: t; -*-
-
-
-
-
 (doom!
  :completion
  (company
