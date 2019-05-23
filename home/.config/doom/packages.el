@@ -1,4 +1,8 @@
+;; TODO Evil-Briefcase does not work
+(package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
+(package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
 (package! evil-replace-with-register)
+
 (package! default-text-scale)
 (package! org-journal)
 (package! org-web-tools)
@@ -8,7 +12,6 @@
 (package! import-js)
 (package! request)
 (package! git-lens)
-(package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
 (package! blimp)
 (package! reason-mode)
 (package! rainbow-mode)
@@ -27,9 +30,6 @@
 ;; Install frame cmds
 (package! frame-fns :recipe (:fetcher wiki))
 (package! frame-cmds :recipe (:fetcher wiki))
-
-;; TODO Evil-Briefcase does not work
-(package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
 
 ;; Like abolish.vim
 ;; Search and replace multiples
