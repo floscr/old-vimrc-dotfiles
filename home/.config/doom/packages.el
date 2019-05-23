@@ -2,6 +2,7 @@
 (package! evil-briefcase :recipe (:fetcher github :repo "strickinato/evil-briefcase"))
 (package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
 (package! evil-replace-with-register)
+(package! evil-text-objects-javascript :recipe (:fetcher github :repo "urbint/evil-text-objects-javascript"))
 
 (package! default-text-scale)
 (package! org-journal)

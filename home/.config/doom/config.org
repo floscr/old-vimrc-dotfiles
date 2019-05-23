@@ -1937,6 +1937,13 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
 (after! js2-mode
   (+js|load-evil-camel-case-motion))
 #+END_SRC
+**** Javascript Text Objects
+
+#+BEGIN_SRC elisp
+(add-hook! js-mode
+  (require 'evil-text-objects-javascript)
+  (evil-text-objects-javascript/install))
+#+END_SRC
 
 **** Expand self closing tag
 
