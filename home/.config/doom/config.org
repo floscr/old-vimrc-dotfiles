@@ -1917,7 +1917,10 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
   (kill-sexp)
   (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
   (pop kill-ring))
+#+END_SRC
+**** Little Word Motion
 
+#+BEGIN_SRC elisp
 (defun +js|load-evil-camel-case-motion ()
   (require 'evil-little-word)
   (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
@@ -1934,7 +1937,9 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
 (after! js2-mode
   (+js|load-evil-camel-case-motion))
 #+END_SRC
+
 **** Expand self closing tag
+
 #+BEGIN_SRC elisp
 (defun +rjsx|expand-insert-self-closing-tag ()
   "Opens the current tag at any position of the cursor and starts insert mode"
