@@ -1840,7 +1840,12 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
  flycheck-disabled-checkers '(javascript-jshint javascript))
 
 (after! rjsx-mode
-  (add-hook 'js2-mode-hook #'eslintd-fix-mode))
+  (add-hook 'js2-mode-hook #'eslintd-fix-mode)
+  (map! :map rjsx-mode-map
+        :localleader
+        (:desc "Open Self-Closing Tag" :n ">" #'+rjsx|expand-insert-self-closing-tag)
+        (:desc "Open Self-Closing Tag" :n "<" #'rjsx-rename-tag-at-point)))
+
 (after! js2-mode
   (add-hook 'js2-mode-hook #'eslintd-fix-mode)
   :config
@@ -1929,6 +1934,20 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
 (after! js2-mode
   (+js|load-evil-camel-case-motion))
 #+END_SRC
+**** Expand self closing tag
+#+BEGIN_SRC elisp
+(defun +rjsx|expand-insert-self-closing-tag ()
+  "Opens the current tag at any position of the cursor and starts insert mode"
+  (interactive)
+  (search-forward "/>")
+  (evil-backward-char)
+  (call-interactively #'delete-backward-char)
+  (call-interactively #'rjsx-electric-gt)
+  (newline)
+  (call-interactively #'evil-indent-line)
+  (call-interactively #'evil-open-above))
+#+END_SRC
+
 *** Reason
 #+BEGIN_SRC elisp
 (defun rtop ()
