@@ -2352,13 +2352,13 @@ Maybe just try persistent tags.
 
 #+BEGIN_SRC elisp
 (defun org-capture-bookmark-pair ()
-    (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
+  (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
 
 (defun org-capture-bookmark-string-url ()
-    (car (org-capture-bookmark-pair)))
+  (car (org-capture-bookmark-pair)))
 
 (defun org-capture-bookmark-string-description ()
-    (cadr (org-capture-bookmark-pair)))
+  (cadr (org-capture-bookmark-pair)))
 
 (after! org
   :config
