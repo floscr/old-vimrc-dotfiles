@@ -2415,15 +2415,16 @@ These can be solved with a lambda and dont need extra functions
 **** Leader Bindings
 #+BEGIN_SRC elisp
 (map! :leader (:desc "Notes" :prefix "n"
-                :desc "Home"                 :n "h" #'+org|org-open-home-file
-                :desc "Search Pinboard"      :n "b" #'helm-org-pinboard
                 :desc "Pinboard File"        :n "B" (λ! (find-file org-pinboard-file))
-                :desc "Reading List"         :n "r" #'+org|org-open-reading-list-file
-                :desc "Inbox"                :n "i" (λ! (find-file (concat org-directory "/inbox.org")))
-                :desc "Work"                 :n "w" #'+org|org-open-work-file
+                :desc "Save All Org Buffers" :n "S" #'org-save-all-org-buffers
                 :desc "Agenda"               :n "a" #'org-agenda
-                :desc "Store Link"           :n "y" #'org-store-link
-                :desc "Save All Org Buffers" :n "S" #'org-save-all-org-buffers))
+                :desc "Search Pinboard"      :n "b" #'helm-org-pinboard
+                :desc "Emacs"                :n "e" (λ! (find-file (concat org-directory "/Emacs.org")))
+                :desc "Home"                 :n "h" #'+org|org-open-home-file
+                :desc "Inbox"                :n "i" (λ! (find-file (concat org-directory "/inbox.org")))
+                :desc "Reading List"         :n "r" #'+org|org-open-reading-list-file
+                :desc "Work"                 :n "w" #'+org|org-open-work-file
+                :desc "Store Link"           :n "y" #'org-store-link))
 #+END_SRC
 **** General Bindings
 #+BEGIN_SRC elisp
