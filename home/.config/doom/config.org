@@ -2157,12 +2157,6 @@ E.g.: (Brackets signal the cursor position)
 #+END_SRC
 *** Config
 **** General Config
-***** Add Org Habit
-Org habit is needed for ~org-ql~
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-modules 'org-habit t)
-#+END_SRC
 ***** Todo Keywords
 #+BEGIN_SRC elisp
 (after! org
