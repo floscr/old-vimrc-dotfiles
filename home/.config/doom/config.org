@@ -405,14 +405,11 @@ Macro Expansion
   ("q" noop :exit t))
 #+END_SRC
 *** Popups
-
-Change popups to my preferred size.
-
 #+BEGIN_SRC elisp
+(set-popup-rule! "^\\*Org Src" :side 'right :size 0.55 :select t :modeline t :ttl nil)
 (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)
 (set-popup-rule! "^\\*doom:scratch" :vslot -100 :size 0.6 :ttl nil)
 #+END_SRC
-
 *** Fill Column
 #+BEGIN_SRC elisp
 (setq-default fill-column 110)
@@ -2226,16 +2223,6 @@ Org habit is needed for ~org-ql~
    org-tags-column (- fill-column)
    org-image-actual-width 600
    org-default-notes-file (concat org-directory "/inbox.org")))
-#+END_SRC
-***** Src Edit Window Setup
-
-~'current-window~ does not work for me.
-~'reorganize-frame~ at least creates a split, which i might prefer anyway.
-
-#+BEGIN_SRC elisp
-(after! org
-  :config
-  (setq org-src-window-setup 'reorganize-frame))
 #+END_SRC
 ***** Latex
 Needs ~dvisvgm~
