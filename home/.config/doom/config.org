@@ -397,11 +397,11 @@ When no line spacing is given is the default-line-spacing"
 Macro Expansion
 ^^Definitions                           ^^Compiler Notes             ^^Stickers
 ^^^^^^─────────────────────────────────────────────────────────────────────────────────────
-[_k_] Expand
-[_j_] Collapse
+[_z_] Expand
+[_Z_] Collapse
 "
-  ("k" +ui|increase-line-spacing)
-  ("j" +ui|decrease-line-spacing)
+  ("z" +ui|increase-line-spacing)
+  ("Z" +ui|decrease-line-spacing)
   ("q" noop :exit t))
 #+END_SRC
 *** Popups
@@ -593,7 +593,8 @@ My global leader bindings
    :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
 
  (:desc "dir" :prefix "d"
-   :desc "Project Root" :n  "p" (λ! (dired (projectile-project-root))))
+   :desc "find in literate config file" :n "r" #'dired-recent-open
+   :desc "Project Root"                 :n  "p" (λ! (dired (projectile-project-root))))
 
  (:desc "git" :prefix "g"
    :desc "Amend Commit"                :n  "a" #'magit-commit-amend
@@ -992,6 +993,16 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
       :after dired
       :map dired-mode-map
       :n "\\" #'flosc|wdired-change-to-wdired-mode)
+#+END_SRC
+**** Dired Recent
+#+BEGIN_SRC elisp
+(def-package! dired-recent
+  :after dired
+  :init
+  :config
+  (setq dired-recent-directories-file (concat doom-cache-dir "recentdir")
+        dired-recent-max-directories 300)
+  (dired-recent-mode 1))
 #+END_SRC
 *** Treemacs
 **** Fix window switch mapping

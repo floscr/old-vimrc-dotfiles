@@ -37,6 +37,9 @@
 ;; TODO: Add literate config here
 (package! plur)
 
+
+(package! dired-recent)
+
 ; (package! dired-subtree
 ;   (bind-keys :map dired-mode-map
 ;              (">" . dired-subtree-insert)
