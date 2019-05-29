@@ -1369,12 +1369,6 @@ Config for [[https://github.com/charignon/github-review][charignon/github-review
       :path '("~/.nvm/versions/node/v8.8.1/bin")
       :cwd "~/Code/Meisterlabs/meistercanvas")))
 #+END_SRC
-*** Blimp
-#+BEGIN_SRC elisp
-(def-package! blimp
-  :config
-  (add-hook 'image-mode-hook 'blimp-mode))
-#+END_SRC
 *** Lookup
 #+BEGIN_SRC elisp
 (setq +lookup-provider-url-alist
@@ -2490,6 +2484,12 @@ Helper to reset the org agenda custom commands.
 
 #+BEGIN_SRC elisp :tangle no
 (setq org-agenda-custom-commands '())
+#+END_SRC
+** Package Config
+*** Blimp
+#+BEGIN_SRC elisp
+(def-package! blimp
+  :hook (image-mode-hook . blimp-mode)
 #+END_SRC
 ** General Config
 *** Disable Eldoc
