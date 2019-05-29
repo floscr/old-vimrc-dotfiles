@@ -13,7 +13,6 @@
 (package! blimp)
 (package! reason-mode)
 (package! rainbow-mode)
-(package! org-noter)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 (package! org-ql :recipe (:fetcher github :repo "alphapapa/org-ql"))
 (package! github-review :recipe (:fetcher github :repo "charignon/github-review"))
