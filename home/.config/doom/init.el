@@ -73,7 +73,11 @@
 
  :config
  (default +bindings +snippets +evil-commands)
- literate)
+ literate
+
+ :private
+ (org
+  +org-web-tools))
 
 (provide 'init)
 ;;; init.el ends here

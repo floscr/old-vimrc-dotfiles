@@ -687,7 +687,7 @@ Pacakge/Mode specific bindings
 (map! :map org-mode-map
       :localleader
       (:prefix ("g" . "goto")
-        :desc "Org Web Link" "l" (λ! () (org-web-tools-read-url-as-org (org-web-tools--read-url)))))
+        :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
 
 (map! :map outline-mode-map
       :n "s-k" #'org-metaup
@@ -2097,24 +2097,6 @@ E.g.: (Brackets signal the cursor position)
   (org-edit-src-code)
   (clipboard-kill-ring-save (point-min) (point-max)))
 #+END_SRC
-**** TODO Org Web Tools at point
-#+BEGIN_SRC elisp
-(defun +org-web-tools-dwim-at-point ()
-  "Pass url to web tools from either:
-1. An org link under the cursor
-2. An url in the clipboard"
-  (interactive)
-  (let ((org-url (org-element-property :raw-link (org-element-context)))
-        (clipboard-url (current-kill 0)))
-    (if org-url
-        (message "Reading org url from thing at point")
-        (org-web-tools-read-url-as-org org-url)
-      (if (string-match url-handler-regexp clipboard-url)
-          (message "Reading org url from clipboard")
-          (org-web-tools-read-url-as-org clipboard-url)
-        (message "No url found")))))
-#+END_SRC
-
 **** Paste Markdown as org
 #+BEGIN_SRC elisp
 (defun +org|paste-markdown-as-org ()
