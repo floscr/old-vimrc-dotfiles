@@ -5,7 +5,6 @@
 (package! evil-text-objects-javascript :recipe (:fetcher github :repo "urbint/evil-text-objects-javascript"))
 
 (package! default-text-scale)
-(package! org-journal)
 (package! org-web-tools)
 (package! org-super-agenda)
 (package! helm-org-rifle)
