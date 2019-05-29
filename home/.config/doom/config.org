@@ -2466,7 +2466,7 @@ Helper to reset the org agenda custom commands.
 *** Git Lens
 #+BEGIN_SRC elisp
 (def-package! git-lens
-  :command (git-lens))
+  :commands (git-lens))
 #+END_SRC
 ** General Config
 *** Disable Eldoc
