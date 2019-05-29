@@ -2133,18 +2133,6 @@ E.g.: (Brackets signal the cursor position)
   (org-todo "DONE")
   (org-archive-subtree))
 #+END_SRC
-*** Reading List
-#+BEGIN_SRC elisp :tangle no
-(defun org-reading-list ()
-  (interactive)
-  (org-ql-agenda org-reading-list
-    (and (tags "TEXT")
-         (level 2))
-    :super-groups ((:todo "NEXT")
-                   (:todo "ACTIVE"))))
-
-(org-reading-list)
-#+END_SRC
 *** Config Rifle
 #+BEGIN_SRC elisp
 (defun helm-org-rifle-config ()
