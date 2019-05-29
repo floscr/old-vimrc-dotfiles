@@ -1443,34 +1443,6 @@ brew cask install font-liberation-sans
 ;; Fix midnight colors for doom-one theme
 (setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
 #+END_SRC
-**** PDF Tool Bindings
-
-When switching pages in PDFs, return the scroll to the top of the page
-
-#+BEGIN_SRC elisp
-(after! org-noter
-  (map! :map org-noter-notes-mode-map
-        :n "[n" #'org-noter-sync-prev-note
-        :n "]n" #'org-noter-sync-next-note))
-
-(after! pdf-tools
-  :config
-  (define-key pdf-view-mode-map (kbd "M-f") 'isearch-forward)
-  (map! :map pdf-view-mode-map
-        :n "gj" (lambda ()
-                  (interactive)
-                  (pdf-view-next-page-command)
-                  (image-bob))
-        :n "gk" (lambda ()
-                  (interactive)
-                  (pdf-view-previous-page)
-                  (image-bob))
-        :n "gJ" #'pdf-history-backward
-        :n "gK" #'pdf-history-forward
-        :n "[n" #'org-noter-sync-prev-note
-        :n "]n" #'org-noter-sync-next-note
-        :n "M-f" #'pdf-links-isearch-link))
-#+END_SRC
 *** LSP
 **** Disable LSP hover
 #+BEGIN_SRC elisp
@@ -2489,7 +2461,12 @@ Helper to reset the org agenda custom commands.
 *** Blimp
 #+BEGIN_SRC elisp
 (def-package! blimp
-  :hook (image-mode-hook . blimp-mode)
+  :hook (image-mode-hook . blimp-mode))
+#+END_SRC
+*** Git Lens
+#+BEGIN_SRC elisp
+(def-package! git-lens
+  :command (git-lens))
 #+END_SRC
 ** General Config
 *** Disable Eldoc

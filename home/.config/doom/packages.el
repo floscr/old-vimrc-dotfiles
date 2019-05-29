@@ -18,18 +18,17 @@
 
 ;;; Org-Mode Packages
 (package! helm-org-rifle)
+(package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 
 ;;; Utils
+;; Text Scale
 (package! default-text-scale)
-(package! request)
+;; Show changes in current branch
 (package! git-lens)
 ;; Image editing utility
 (package! blimp)
-
+;; Colorized Hex Strings
 (package! rainbow-mode)
-(package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
-(package! github-review :recipe (:fetcher github :repo "charignon/github-review"))
-
 (package! beancount :recipe
    (:fetcher bitbucket :repo "blais/beancount" :files ("editors/emacs/*.el")))
 
@@ -40,7 +39,6 @@
 ;; Install frame cmds
 (package! frame-fns :recipe (:fetcher wiki))
 (package! frame-cmds :recipe (:fetcher wiki))
-
 
 (package! dired-recent)
 
