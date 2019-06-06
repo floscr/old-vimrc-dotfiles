@@ -254,8 +254,8 @@ Double press ~v~ to enable.
 (defhydra hydra-expand-region ()
    "region: "
    ("f" er/mark-defun "defun")
-   ("k" er/expand-region "expand")
-   ("j" er/contract-region "contract"))
+   ("v" er/expand-region "expand")
+   ("V" er/contract-region "contract"))
 
 (evil-define-key 'visual 'global (kbd "v") #'hydra-expand-region/body)
 #+END_SRC
