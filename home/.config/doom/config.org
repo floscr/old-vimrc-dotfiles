@@ -2229,7 +2229,15 @@ The history can be accessed with ~C-n~ / ~C-p~
       :niv "s-0"   #'default-text-scale-reset)
 #+END_SRC
 *** Evil Normal Bindings
-**** Replace With Register
+**** Window navigation
+#+BEGIN_SRC elisp
+(map!
+ :en "C-h"   #'evil-window-left
+ :en "C-j"   #'evil-window-down
+ :en "C-k"   #'evil-window-up
+ :en "C-l"   #'evil-window-right)
+#+END_SRC
+**** Replace With Register Motion
 #+BEGIN_SRC elisp
 (def-package! evil-replace-with-register
   :config
@@ -2280,14 +2288,6 @@ Change inner bracket with ~r~
 #+BEGIN_SRC elisp
 (define-key minibuffer-local-map "\C-p" 'previous-history-element)
 (define-key minibuffer-local-map "\C-n" 'next-history-element)
-#+END_SRC
-**** Window navigation
-#+BEGIN_SRC elisp
-(map!
- :en "C-h"   #'evil-window-left
- :en "C-j"   #'evil-window-down
- :en "C-k"   #'evil-window-up
- :en "C-l"   #'evil-window-right)
 #+END_SRC
 **** Jump to last buffer
 #+BEGIN_SRC elisp
