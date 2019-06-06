@@ -189,6 +189,8 @@ the projects cwd to find a file.
 :SOURCE:   https://stackoverflow.com/a/30886283
 :END:
 
+- Used in [[*Screenshot][Screenshot]]
+
 #+BEGIN_SRC elisp
 (defun latest-file (path)
   (let ((e (f-entries path)))
