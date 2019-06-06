@@ -2239,9 +2239,10 @@ The history can be accessed with ~C-n~ / ~C-p~
   (define-key evil-visual-state-map
     evil-replace-with-register-key 'evil-replace-with-register))
 #+END_SRC
-**** Evil Quotes Motion
+**** Evil Quotes/Brackets Motion
 
 Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
+Change inner bracket with ~r~
 
 #+BEGIN_SRC elisp
 (after! evil
@@ -2267,7 +2268,8 @@ Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
       (evil-textobj-anyblock--make-textobj beg end type count t)))
 
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
-  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
+  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote)
+  (define-key evil-inner-text-objects-map "r" 'evil-inner-bracket))
 #+END_SRC
 **** Go up one directory from the current buffer
 #+BEGIN_SRC elisp
