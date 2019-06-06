@@ -2361,8 +2361,6 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
 ***** TODO Inserting a character makes one undo state
 *** Leader Bindings
 
-My global leader bindings
-
 #+BEGIN_SRC elisp
 (map!
  :leader
@@ -2446,21 +2444,7 @@ My global leader bindings
    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
-*** Local Leader Bindings
-
-Mode Specific local leader Bindings.
-My local leader is ~SPC M~
-
-**** Eshell
-#+BEGIN_SRC elisp
-(defun floscr|+eshell|init-keymap ()
-  "Setup additional custom eshell keybindings to already existing doom bindings. This must be done in a hook because eshell-mode
-redefines its keys every time `eshell-mode' is enabled."
-  (map! :map eshell-mode-map
-        :localleader "l" #'eshell/clear))
-(add-hook 'eshell-first-time-mode-hook #'floscr|+eshell|init-keymap)
-#+END_SRC
-*** Package/Mode Bindings
+*** Package (Local-Leader) Bindings
 
 Pacakge/Mode specific bindings
 
@@ -2478,9 +2462,16 @@ Pacakge/Mode specific bindings
       :n "s-k" #'org-metaup
       :n "s-j" #'org-metadown)
 #+END_SRC
+**** Eshell
+#+BEGIN_SRC elisp
+(defun floscr|+eshell|init-keymap ()
+  "Setup additional custom eshell keybindings to already existing doom bindings. This must be done in a hook because eshell-mode
+redefines its keys every time `eshell-mode' is enabled."
+  (map! :map eshell-mode-map
+        :localleader "l" #'eshell/clear))
+(add-hook 'eshell-first-time-mode-hook #'floscr|+eshell|init-keymap)
+#+END_SRC
 **** Elisp
-Slurp and Barf expressions
-
 #+BEGIN_SRC elisp
 (map! :map emacs-lisp-mode-map
       ;; Rearrange Sexps
@@ -2488,15 +2479,15 @@ Slurp and Barf expressions
                      (evil-previous-line))
       :n "s-j"   (λ! (sp-push-hybrid-sexp)
                      (evil-next-line))
+
+      ;; Eval Buffer
       :n "s-r" #'eval-buffer
+
       ;; Slurp and barf
       :n "g]"   #'sp-slurp-hybrid-sexp
       :n "g["   #'sp-forward-barf-sexp)
 #+END_SRC
-*** Other Bindings
-
-Other bindings and overrides that dont fit anywhere else.
-
+*** Minibuffer Bindings
 **** Copy and Paste from the minibuffer
 
 Since the minibuffer has no evil mode, i've got these bindings to help out:
