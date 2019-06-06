@@ -523,30 +523,14 @@ Create an action from a controller and import directly
 
 ** Packages & Modules
 *** Company
-
-Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
-
+**** Sort company by occurance
+:PROPERTIES:
+:SOURCE:   [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
+:END:
 #+BEGIN_SRC elisp
 (setq company-transformers '(company-sort-by-occurrence)
       company-idle-delay 0.5)
 #+END_SRC
-
-Select last item of company
-
-#+BEGIN_SRC elisp :tangle no
-(defun company-select-last ()
-  (interactive)
-  (company-select-next (- company-candidates-length 1)))
-#+END_SRC
-
-**** Bindings
-#+BEGIN_SRC elisp
-(map!
- (:prefix "C-x"
-   :i "C-l" #'+company/whole-lines-all-buffers
-   :i "C-." #'+company/whole-lines))
-#+END_SRC
-
 **** Company complete whole lines for all matching buffers
 
 Complete a whole line with all lines from buffers matching the current major-mode.
@@ -592,6 +576,15 @@ C-x C-l."
                              (buffer-substring-no-properties (point-min) (point-max)))
                             "\\(\r\n\\|[\n\r]\\)" t)) xs)))
                (floscr:buffer-list-with-major-mode))))))
+#+END_SRC
+
+Bindings
+
+#+BEGIN_SRC elisp
+(map!
+ (:prefix "C-x"
+   :i "C-l" #'+company/whole-lines-all-buffers
+   :i "C-." #'+company/whole-lines))
 #+END_SRC
 
 *** Eldoc
