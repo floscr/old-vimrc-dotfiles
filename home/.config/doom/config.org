@@ -2528,16 +2528,3 @@ The history can be accessed with ~C-n~ / ~C-p~
 #+BEGIN_SRC elisp
 (setq tags-revert-without-query 1)
 #+END_SRC
-** Hacks
-*** Open org link at other frame
-:PROPERTIES:
-:SOURCE:   https://stackoverflow.com/questions/8881649/how-to-force-org-mode-to-open-a-link-in-another-frame
-:END:
-
-#+BEGIN_SRC elisp
-(defun floscr/org-open-other-window ()
-  "Jump to bookmark in another frame. See `bookmark-jump' for more."
-  (interactive)
-  (let ((org-link-frame-setup (acons 'file 'find-file-other-window org-link-frame-setup)))
-    (org-open-at-point)))
-#+END_SRC
