@@ -854,128 +854,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** Eww
-**** Set the max page width for eww
-#+BEGIN_SRC elisp
-(setq shr-width 120)
-#+END_SRC
-*** Flycheck
-**** Proselint
-:PROPERTIES:
-:SOURCE:   https://unconj.ca/blog/linting-prose-in-emacs.html
-:END:
-
-Adds proselint checker to flycheck.
-Not sure if I like this yet, seems slow and too opinionated.
-
-To install proselint you have to install it via pip3
-
-#+BEGIN_SRC bash :tangle no
-pip3 install proselint
-#+END_SRC
-
-To enable the checker press ~SPC u C-c ! x~
-
-#+BEGIN_SRC elisp
-(after! flycheck
-  :config
-  (flycheck-define-checker proselint
-    "A linter for prose."
-    :command ("proselint" source-inplace)
-    :error-patterns
-    ((warning line-start (file-name) ":" line ":" column ": "
-        (id (one-or-more (not (any " "))))
-        (message) line-end))
-    :modes (text-mode markdown-mode gfm-mode))
-
-  (add-to-list 'flycheck-checkers 'proselint))
-#+END_SRC
-*** Evil-Snipe
-**** Repeat snipe after further key press
-#+BEGIN_SRC elisp
-(setq evil-snipe-repeat-keys t)
-#+END_SRC
-*** Dired
-**** Config
-***** Window targeting
-
-When there are two visual splits with dired buffers.
-~C~ will take the other window as the copy target.
-The cursor has to be on the dired frame with the marked files.
-
-#+BEGIN_SRC elisp
-(setq dired-dwim-target t)
-#+END_SRC
-
-***** Disable dired from opening files in a new window
-#+BEGIN_SRC elisp
-(put 'dired-find-alternate-file 'disabled nil)
-#+END_SRC
-***** Kill all dired buffers with ~Q~
-#+BEGIN_SRC elisp
-(defun +dired|kill-dired-buffers ()
-  "Kills all dired buffers
-Dired creates a buffer for every directory which it visits
-Which is fine since you can easily switch between visited buffers
-But at some time I want to purge those buffers"
-  (interactive)
-  (mapc (lambda (buffer)
-          (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
-            (kill-buffer buffer)))
-        (buffer-list)))
-
-(map! :when (featurep! :editor evil +everywhere)
-      :after dired
-      :map dired-mode-map
-      :n "Q" #'+dired|kill-dired-buffers)
-#+END_SRC
-
-***** Use gls
-Use ~gls~ with dired which is way faster than osx ~ls~
-Must enable =dired-k-human-readable= when =-h= flag is given.
-Otherwise dired comes to a grinding halt on some sizes.
-
-#+BEGIN_SRC elisp
-(after!
-  dired
-  :config
-  (when (and IS-MAC (locate-file "gls" exec-path))
-    (setq dired-listing-switches "-la -h --group-directories-first"
-          dired-k-human-readable t
-          insert-directory-program "gls" dired-use-ls-dired t)))
-#+END_SRC
-**** Bindings
-***** Wdired Mode Bindings
-
-Stay in normal mode when switching to wdired
-
-#+BEGIN_SRC elisp
-(defun flosc|wdired-change-to-wdired-mode ()
-  "Simple forward to wdired-change-to-wdired-mode, but staying in normal mode."
-  (interactive)
-  (wdired-change-to-wdired-mode)
-  (evil-normal-state)
-  (forward-char))
-#+END_SRC
-
-Map ~\~ to change to wdired mode, like text mode in maggit buffers.
-
-#+BEGIN_SRC elisp
-(map! :when (featurep! :editor evil +everywhere)
-      :after dired
-      :map dired-mode-map
-      :n "\\" #'flosc|wdired-change-to-wdired-mode)
-#+END_SRC
-**** Dired Recent
-#+BEGIN_SRC elisp
-(def-package! dired-recent
-  :after dired
-  :init
-  :config
-  (setq dired-recent-directories-file (concat doom-cache-dir "recentdir")
-        dired-recent-max-directories 300)
-  (dired-recent-mode 1))
-#+END_SRC
 *** Treemacs
 **** Fix window switch mapping
 #+BEGIN_SRC elisp
@@ -2428,6 +2306,127 @@ Helper to reset the org agenda custom commands.
 (setq org-agenda-custom-commands '())
 #+END_SRC
 ** Package Config
+*** Dired
+**** Window targeting
+
+When there are two visual splits with dired buffers.
+~C~ will take the other window as the copy target.
+The cursor has to be on the dired frame with the marked files.
+
+#+BEGIN_SRC elisp
+(setq dired-dwim-target t)
+#+END_SRC
+
+**** Disable dired from opening files in a new window
+#+BEGIN_SRC elisp
+(put 'dired-find-alternate-file 'disabled nil)
+#+END_SRC
+**** Kill all dired buffers with ~Q~
+#+BEGIN_SRC elisp
+(defun +dired|kill-dired-buffers ()
+  "Kills all dired buffers
+Dired creates a buffer for every directory which it visits
+Which is fine since you can easily switch between visited buffers
+But at some time I want to purge those buffers"
+  (interactive)
+  (mapc (lambda (buffer)
+          (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
+            (kill-buffer buffer)))
+        (buffer-list)))
+
+(map! :when (featurep! :editor evil +everywhere)
+      :after dired
+      :map dired-mode-map
+      :n "Q" #'+dired|kill-dired-buffers)
+#+END_SRC
+**** Use gls
+
+Use ~gls~ with dired which is way faster than osx ~ls~
+Must enable =dired-k-human-readable= when =-h= flag is given.
+Otherwise dired comes to a grinding halt on some sizes.
+
+#+BEGIN_SRC elisp
+(after!
+  dired
+  :config
+  (when (and IS-MAC (locate-file "gls" exec-path))
+    (setq dired-listing-switches "-la -h --group-directories-first"
+          dired-k-human-readable t
+          insert-directory-program "gls" dired-use-ls-dired t)))
+#+END_SRC
+**** Wdired Mode Switch
+
+Stay in normal mode when switching to wdired
+
+#+BEGIN_SRC elisp
+(defun flosc|wdired-change-to-wdired-mode ()
+  "Simple forward to wdired-change-to-wdired-mode, but staying in normal mode."
+  (interactive)
+  (wdired-change-to-wdired-mode)
+  (evil-normal-state)
+  (forward-char))
+#+END_SRC
+
+Map ~\~ to change to wdired mode, like text mode in maggit buffers.
+
+#+BEGIN_SRC elisp
+(map! :when (featurep! :editor evil +everywhere)
+      :after dired
+      :map dired-mode-map
+      :n "\\" #'flosc|wdired-change-to-wdired-modej)
+#+END_SRC
+*** Dired Recent
+#+BEGIN_SRC elisp
+(def-package! dired-recent
+  :after dired
+  :init
+  :config
+  (setq dired-recent-directories-file (concat doom-cache-dir "recentdir")
+        dired-recent-max-directories 300)
+  (dired-recent-mode 1))
+#+END_SRC
+*** Evil-Snipe
+**** Repeat snipe after further key press
+#+BEGIN_SRC elisp
+(after! evil-snipe
+  (setq evil-snipe-repeat-keys t))
+#+END_SRC
+*** Flycheck
+**** Proselint
+:PROPERTIES:
+:SOURCE:   https://unconj.ca/blog/linting-prose-in-emacs.html
+:END:
+
+Adds proselint checker to flycheck.
+Not sure if I like this yet, seems slow and too opinionated.
+
+To install proselint you have to install it via pip3
+
+#+BEGIN_SRC bash :tangle no
+pip3 install proselint
+#+END_SRC
+
+To enable the checker press ~SPC u C-c ! x~
+
+#+BEGIN_SRC elisp
+(after! flycheck
+  :config
+  (flycheck-define-checker proselint
+    "A linter for prose."
+    :command ("proselint" source-inplace)
+    :error-patterns
+    ((warning line-start (file-name) ":" line ":" column ": "
+        (id (one-or-more (not (any " "))))
+        (message) line-end))
+    :modes (text-mode markdown-mode gfm-mode))
+
+  (add-to-list 'flycheck-checkers 'proselint))
+#+END_SRC
+*** EWW Web Browser
+**** Set the max page width
+#+BEGIN_SRC elisp
+(setq shr-width 120)
+#+END_SRC
 *** Blimp
 #+BEGIN_SRC elisp
 (def-package! blimp
