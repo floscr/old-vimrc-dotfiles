@@ -961,7 +961,7 @@ Stay in normal mode when switching to wdired
 Map ~\~ to change to wdired mode, like text mode in maggit buffers.
 
 #+BEGIN_SRC elisp
-(map! :when (featurep! :feature evil +everywhere)
+(map! :when (featurep! :editor evil +everywhere)
       :after dired
       :map dired-mode-map
       :n "\\" #'flosc|wdired-change-to-wdired-mode)
