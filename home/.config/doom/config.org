@@ -420,338 +420,6 @@ Macro Expansion
 (setq-default fill-column 110)
 (setq visual-fill-column-width fill-column)
 #+END_SRC
-** Bindings
-*** General Bindings
-#+BEGIN_SRC elisp
-(map! :en "C-±"   #'+popup/raise)
-#+END_SRC
-*** Mac Modifier Bindings
-#+BEGIN_SRC elisp
-(map! (:map override
-        "s-x" #'execute-extended-command
-        "s-w" #'+workspace/close-window-or-workspace
-        "s-;" #'eval-expression)
-
-      ;; Workspace Switching
-      :niv "s-1" (λ! (+workspace/switch-to 0))
-      :niv "s-2" (λ! (+workspace/switch-to 1))
-      :niv "s-3" (λ! (+workspace/switch-to 2))
-      :niv "s-4" (λ! (+workspace/switch-to 3))
-      :niv "s-5" (λ! (+workspace/switch-to 4))
-      :niv "s-6" (λ! (+workspace/switch-to 5))
-      :niv "s-7" (λ! (+workspace/switch-to 6))
-      :niv "s-8" (λ! (+workspace/switch-to 7))
-      :niv "s-9" (λ! (+workspace/switch-to 9))
-
-      ;; Text scale
-      :niv "s-="   #'default-text-scale-increase
-      :niv "s--"   #'default-text-scale-decrease
-      :niv "s-0"   #'default-text-scale-reset)
-#+END_SRC
-*** Evil Normal Bindings
-
-Global Evil Normal/Visual Mode bindigns
-
-**** Replace With Register
-#+BEGIN_SRC elisp
-(def-package! evil-replace-with-register
-  :config
-  (setq evil-replace-with-register-key (kbd "gr"))
-  (define-key evil-normal-state-map
-    evil-replace-with-register-key 'evil-replace-with-register)
-  (define-key evil-visual-state-map
-    evil-replace-with-register-key 'evil-replace-with-register))
-#+END_SRC
-**** Evil Quotes Motion
-
-Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
-
-#+BEGIN_SRC elisp
-(after! evil
-  (require 'evil-textobj-anyblock)
-  (evil-define-text-object my-evil-textobj-anyblock-inner-quote
-    (count &optional beg end type)
-    "Select the closest outer quote."
-    (let ((evil-textobj-anyblock-blocks
-           '(("'" . "'")
-             ("\"" . "\"")
-             ("`" . "'")
-             ("“" . "”"))))
-      (evil-textobj-anyblock--make-textobj beg end type count nil)))
-
-  (evil-define-text-object my-evil-textobj-anyblock-a-quote
-    (count &optional beg end type)
-    "Select the closest outer quote."
-    (let ((evil-textobj-anyblock-blocks
-           '(("'" . "'")
-             ("\"" . "\"")
-             ("`" . "'")
-             ("“" . "”"))))
-      (evil-textobj-anyblock--make-textobj beg end type count t)))
-
-  (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
-  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
-#+END_SRC
-**** Go up one directory from the current buffer
-#+BEGIN_SRC elisp
-(after! evil
-  (map! :m  "-"  #'dired-jump))
-#+END_SRC
-**** Fix history navigation for the minibuffer
-#+BEGIN_SRC elisp
-(define-key minibuffer-local-map "\C-p" 'previous-history-element)
-(define-key minibuffer-local-map "\C-n" 'next-history-element)
-#+END_SRC
-**** Window navigation
-#+BEGIN_SRC elisp
-(map!
- :en "C-h"   #'evil-window-left
- :en "C-j"   #'evil-window-down
- :en "C-k"   #'evil-window-up
- :en "C-l"   #'evil-window-right)
-#+END_SRC
-**** Jump to last buffer
-#+BEGIN_SRC elisp
-(map! :n "gb" #'evil-switch-to-windows-last-buffer)
-#+END_SRC
-*** Evil Square Bracket Bindings
-
-Global ~[~ & ~]~ combinator bindings
-
-**** Dumb Jump
-#+BEGIN_SRC elisp
-(map!
- :n "]f" #'dumb-jump-go
- :n "[f" #'dumb-jump-back)
-#+END_SRC
-**** Flycheck Error Jumping
-#+BEGIN_SRC elisp
-(map!
- :n "]e" #'flycheck-next-error
- :n "[e" #'flycheck-previous-error)
-#+END_SRC
-**** Insert Line above/below
-#+BEGIN_SRC elisp
-(evil-define-motion evil-motion-insert-newline-below (count)
-  "Insert COUNT newlines below"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-below))))
-
-(evil-define-motion evil-motion-insert-newline-above (count)
-  "Insert COUNT newlines above"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-above))))
-
-(after! evil
-  (map! :n "[ SPC" #'evil-motion-insert-newline-above
-        :n "] SPC" #'evil-motion-insert-newline-below))
-#+END_SRC
-*** Evil Insert Bindings
-
-Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
-
-**** Insert from the kill ring in insert mode
-
-#+BEGIN_SRC elisp
-(map! :i "A-y" #'helm-show-kill-ring)
-#+END_SRC
-
-**** Unicode Symbols and German Umlaut
-#+BEGIN_SRC elisp
-(map!
- :i "M-;"   (λ! (insert "ö"))
- :i "M-:"   (λ! (insert "Ö"))
- :i "M-'"   (λ! (insert "ä"))
- :i "M-\""  (λ! (insert "Ä"))
- :i "M-["   (λ! (insert "ü"))
- :i "M-{"   (λ! (insert "Ü"))
- :i "M-s"   (λ! (insert "ß"))
- :i "M-e"   (λ! (insert "€"))
- :i "M-`"   (λ! (insert "°"))
- :i "M-."   (λ! (insert "…"))
- :i "M-^"   (λ! (insert "°"))
- :i "M-l"   (λ! (insert "λ"))
- :i "M-w"   (λ! (insert "⚠"))
- :i "M-i"   (λ! (insert "ℹ")))
-#+END_SRC
-***** TODO Inserting a character makes one undo state
-*** Leader Bindings
-
-My global leader bindings
-
-#+BEGIN_SRC elisp
-(map!
- :leader
- :n "'"   #'+popup/toggle
- :n "au"   #'undo-tree-visualize
- :n "//"   #'+default/search-project
- :n "-"    #'quick-calc
-
- (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
-
- (:desc "file" :prefix "f"
-   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
-
- (:desc "dir" :prefix "d"
-   :desc "find in literate config file" :n "r" #'dired-recent-open
-   :desc "Project Root"                 :n  "p" (λ! (dired (projectile-project-root))))
-
- (:desc "git" :prefix "g"
-   :desc "Amend Commit"                :n  "a" #'magit-commit-amend
-   :desc "Checkout"                    :n  "b" #'magit-checkout
-   :desc "Blame"                       :n  "B" #'magit-blame
-   :desc "New Branch"                  :n  "N" #'magit-branch-spinoff
-   :desc "Show revision original File" :n  "O" #'magit-revision-show-original-file)
-
- (:desc "insert" :prefix "i"
-   :desc "Killring"   :n  "y" #'helm-show-kill-ring)
-
- (:desc "project" :prefix "p"
-   :desc "services" :n  "s" #'prodigy
-   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
-
- (:desc "toggle" :prefix "t"
-   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
-
- (:desc "open" :prefix "o"
-   :desc "Eshell in Current Dir" :n  "." (λ! (+eshell/open t))
-   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
-
- (:desc "window" :prefix "w"
-   :desc "Split Vertical" :n "|" #'evil-window-vsplit
-   :desc "Split Horizontal" :n "_" #'evil-window-split)
-
- (:desc "workspace" :prefix "<tab>"
-   :desc "Create"       :n "c" #'+workspace|new-named
-   :desc "Rename"       :n "," #'+workspace/rename
-   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
-   :desc "Clone" :n "C" (λ!
-                         (+workspace/new (format "Clone: %s" (+workspace-current-name)) t)
-                         (message "Cloned current workspace %s" (+workspace-current-name)))
-   :desc "Display tab bar"           "TAB" #'+workspace/display
-   :desc "New workspace"             "n"   #'+workspace/new
-   :desc "Load workspace from file"  "l"   #'+workspace/load
-   :desc "Save workspace to file"    "s"   #'+workspace/save
-   :desc "Switch workspace"          "."   #'+workspace/switch-to
-   :desc "Delete session"            "x"   #'+workspace/kill-session
-   :desc "Delete this workspace"     "d"   #'+workspace/delete
-   :desc "Rename workspace"          "r"   #'+workspace/rename
-   :desc "Restore last session"      "R"   #'+workspace/restore-last-session
-   :desc "Next workspace"            "]"   #'+workspace/switch-right
-   :desc "Previous workspace"        "["   #'+workspace/switch-left
-   :desc "Switch to 1st workspace"   "1"   (λ! (+workspace/switch-to 0))
-   :desc "Switch to 2nd workspace"   "2"   (λ! (+workspace/switch-to 1))
-   :desc "Switch to 3rd workspace"   "3"   (λ! (+workspace/switch-to 2))
-   :desc "Switch to 4th workspace"   "4"   (λ! (+workspace/switch-to 3))
-   :desc "Switch to 5th workspace"   "5"   (λ! (+workspace/switch-to 4))
-   :desc "Switch to 6th workspace"   "6"   (λ! (+workspace/switch-to 5))
-   :desc "Switch to 7th workspace"   "7"   (λ! (+workspace/switch-to 6))
-   :desc "Switch to 8th workspace"   "8"   (λ! (+workspace/switch-to 7))
-   :desc "Switch to 9th workspace"   "9"   (λ! (+workspace/switch-to 8))
-   :desc "Switch to last workspace"  "0"   #'+workspace/switch-to-last)
-
- (:desc "window" :prefix "w"
-   :desc "Toggle Locked" :n "#" #'toggle-window-dedicated)
-
- (:desc "Yank" :prefix "y"
-   :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
-   :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
-   :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
-#+END_SRC
-
-*** Local Leader Bindings
-
-Mode Specific local leader Bindings.
-My local leader is ~SPC M~
-
-**** Eshell
-#+BEGIN_SRC elisp
-(defun floscr|+eshell|init-keymap ()
-  "Setup additional custom eshell keybindings to already existing doom bindings. This must be done in a hook because eshell-mode
-redefines its keys every time `eshell-mode' is enabled."
-  (map! :map eshell-mode-map
-        :localleader "l" #'eshell/clear))
-(add-hook 'eshell-first-time-mode-hook #'floscr|+eshell|init-keymap)
-#+END_SRC
-*** Package/Mode Bindings
-
-Pacakge/Mode specific bindings
-
-**** Org Mode
-#+BEGIN_SRC elisp
-(map!
- :niv "s-X"   #'+org-capture/open-frame)
-
-(map! :map org-mode-map
-      :localleader
-      (:prefix ("g" . "goto")
-        :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
-
-(map! :map outline-mode-map
-      :n "s-k" #'org-metaup
-      :n "s-j" #'org-metadown)
-#+END_SRC
-**** Elisp
-Slurp and Barf expressions
-
-#+BEGIN_SRC elisp
-(map! :map emacs-lisp-mode-map
-      ;; Rearrange Sexps
-      :n "s-k"   (λ! (sp-transpose-sexp)
-                     (evil-previous-line))
-      :n "s-j"   (λ! (sp-push-hybrid-sexp)
-                     (evil-next-line))
-      :n "s-r" #'eval-buffer
-      ;; Slurp and barf
-      :n "g]"   #'sp-slurp-hybrid-sexp
-      :n "g["   #'sp-forward-barf-sexp)
-#+END_SRC
-*** Other Bindings
-
-Other bindings and overrides that dont fit anywhere else.
-
-**** Copy and Paste from the minibuffer
-
-Since the minibuffer has no evil mode, i've got these bindings to help out:
-- ~M-c~: Copy the minibuffer line
-- ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
-         This also removes trailng newlines
-
-#+BEGIN_SRC elisp
-(defun evil-get-register-string (REGISTER)
-  "Get evil-register pure text content
-Registers can be selected with ?letter
-E.g.: ?* -> Clipboard Contents"
-  (evil-vector-to-string (evil-get-register REGISTER)))
-
-(defun paste-evil-register-clipboard-pruned ()
-  "Paste the current clipboard pruned from newlines"
-  (interactive)
-  (insert (s-trim (shell-command-to-string "pbpaste")))
-  (doom/forward-to-last-non-comment-or-eol))
-
-(defun copy-minibuffer-line ()
-  "Copies the minibuffer content to the clipboard"
-  (interactive)
-  (save-excursion
-    (doom/forward-to-last-non-comment-or-eol)
-    (set-mark-command nil)
-    (doom/backward-to-bol-or-indent)
-    (kill-ring-save (mark) (point))))
-
-(defun setup-minibuffer ()
-  "Set up keybindings for the minibuffer"
-  (local-set-key (kbd "s-v") 'paste-evil-register-clipboard-pruned)
-  (local-set-key (kbd "s-c") 'copy-minibuffer-line))
-
-(add-hook 'minibuffer-setup-hook 'setup-minibuffer)
-#+END_SRC
 ** Work
 #+BEGIN_SRC elisp
 (map!
@@ -1563,7 +1231,7 @@ If prefix ARG is set, prompt for a known project to search from."
 #+BEGIN_SRC elisp
 ;; Insert from the minibuffer
 (define-key! ivy-minibuffer-map
-  "C-c TAB" (λ!
+  "C-c TAB" (λ! ()
              (ivy-kill-whole-line)
              (ivy-quit-and-run (yank))))
 #+END_SRC
@@ -2531,4 +2199,333 @@ The history can be accessed with ~C-n~ / ~C-p~
 *** Automatically reload tags files
 #+BEGIN_SRC elisp
 (setq tags-revert-without-query 1)
+#+END_SRC
+** Bindings
+*** General Bindings
+#+BEGIN_SRC elisp
+(map! :en "C-±"   #'+popup/raise)
+#+END_SRC
+*** Mac Modifier Bindings
+#+BEGIN_SRC elisp
+(map! (:map override
+        "s-x" #'execute-extended-command
+        "s-w" #'+workspace/close-window-or-workspace
+        "s-;" #'eval-expression)
+
+      ;; Workspace Switching
+      :niv "s-1" (λ! (+workspace/switch-to 0))
+      :niv "s-2" (λ! (+workspace/switch-to 1))
+      :niv "s-3" (λ! (+workspace/switch-to 2))
+      :niv "s-4" (λ! (+workspace/switch-to 3))
+      :niv "s-5" (λ! (+workspace/switch-to 4))
+      :niv "s-6" (λ! (+workspace/switch-to 5))
+      :niv "s-7" (λ! (+workspace/switch-to 6))
+      :niv "s-8" (λ! (+workspace/switch-to 7))
+      :niv "s-9" (λ! (+workspace/switch-to 9))
+
+      ;; Text scale
+      :niv "s-="   #'default-text-scale-increase
+      :niv "s--"   #'default-text-scale-decrease
+      :niv "s-0"   #'default-text-scale-reset)
+#+END_SRC
+*** Evil Normal Bindings
+**** Replace With Register
+#+BEGIN_SRC elisp
+(def-package! evil-replace-with-register
+  :config
+  (setq evil-replace-with-register-key (kbd "gr"))
+  (define-key evil-normal-state-map
+    evil-replace-with-register-key 'evil-replace-with-register)
+  (define-key evil-visual-state-map
+    evil-replace-with-register-key 'evil-replace-with-register))
+#+END_SRC
+**** Evil Quotes Motion
+
+Changes the text matching inside quotes with ~q~ motion (e.g. ~ciq~)
+
+#+BEGIN_SRC elisp
+(after! evil
+  (require 'evil-textobj-anyblock)
+  (evil-define-text-object my-evil-textobj-anyblock-inner-quote
+    (count &optional beg end type)
+    "Select the closest outer quote."
+    (let ((evil-textobj-anyblock-blocks
+           '(("'" . "'")
+             ("\"" . "\"")
+             ("`" . "'")
+             ("“" . "”"))))
+      (evil-textobj-anyblock--make-textobj beg end type count nil)))
+
+  (evil-define-text-object my-evil-textobj-anyblock-a-quote
+    (count &optional beg end type)
+    "Select the closest outer quote."
+    (let ((evil-textobj-anyblock-blocks
+           '(("'" . "'")
+             ("\"" . "\"")
+             ("`" . "'")
+             ("“" . "”"))))
+      (evil-textobj-anyblock--make-textobj beg end type count t)))
+
+  (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
+  (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
+#+END_SRC
+**** Go up one directory from the current buffer
+#+BEGIN_SRC elisp
+(after! evil
+  (map! :m  "-"  #'dired-jump))
+#+END_SRC
+**** Fix history navigation for the minibuffer
+#+BEGIN_SRC elisp
+(define-key minibuffer-local-map "\C-p" 'previous-history-element)
+(define-key minibuffer-local-map "\C-n" 'next-history-element)
+#+END_SRC
+**** Window navigation
+#+BEGIN_SRC elisp
+(map!
+ :en "C-h"   #'evil-window-left
+ :en "C-j"   #'evil-window-down
+ :en "C-k"   #'evil-window-up
+ :en "C-l"   #'evil-window-right)
+#+END_SRC
+**** Jump to last buffer
+#+BEGIN_SRC elisp
+(map! :n "gb" #'evil-switch-to-windows-last-buffer)
+#+END_SRC
+*** Evil Square Bracket Bindings
+
+Global ~[~ & ~]~ combinator bindings
+
+**** Dumb Jump
+#+BEGIN_SRC elisp
+(map!
+ :n "]f" #'dumb-jump-go
+ :n "[f" #'dumb-jump-back)
+#+END_SRC
+**** Flycheck Error Jumping
+#+BEGIN_SRC elisp
+(map!
+ :n "]e" #'flycheck-next-error
+ :n "[e" #'flycheck-previous-error)
+#+END_SRC
+**** Insert Line above/below
+#+BEGIN_SRC elisp
+(evil-define-motion evil-motion-insert-newline-below (count)
+  "Insert COUNT newlines below"
+  :type line
+  (save-excursion
+    (dotimes (c (or count 1))
+      (evil-insert-newline-below))))
+
+(evil-define-motion evil-motion-insert-newline-above (count)
+  "Insert COUNT newlines above"
+  :type line
+  (save-excursion
+    (dotimes (c (or count 1))
+      (evil-insert-newline-above))))
+
+(after! evil
+  (map! :n "[ SPC" #'evil-motion-insert-newline-above
+        :n "] SPC" #'evil-motion-insert-newline-below))
+#+END_SRC
+*** Evil Insert Bindings
+
+Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
+
+**** Insert from the kill ring in insert mode
+
+#+BEGIN_SRC elisp
+(map! :i "A-y" #'helm-show-kill-ring)
+#+END_SRC
+
+**** Unicode Symbols and German Umlaut
+#+BEGIN_SRC elisp
+(map!
+ :i "M-;"   (λ! (insert "ö"))
+ :i "M-:"   (λ! (insert "Ö"))
+ :i "M-'"   (λ! (insert "ä"))
+ :i "M-\""  (λ! (insert "Ä"))
+ :i "M-["   (λ! (insert "ü"))
+ :i "M-{"   (λ! (insert "Ü"))
+ :i "M-s"   (λ! (insert "ß"))
+ :i "M-e"   (λ! (insert "€"))
+ :i "M-`"   (λ! (insert "°"))
+ :i "M-."   (λ! (insert "…"))
+ :i "M-^"   (λ! (insert "°"))
+ :i "M-l"   (λ! (insert "λ"))
+ :i "M-w"   (λ! (insert "⚠"))
+ :i "M-i"   (λ! (insert "ℹ")))
+#+END_SRC
+***** TODO Inserting a character makes one undo state
+*** Leader Bindings
+
+My global leader bindings
+
+#+BEGIN_SRC elisp
+(map!
+ :leader
+ :n "'"   #'+popup/toggle
+ :n "au"   #'undo-tree-visualize
+ :n "//"   #'+default/search-project
+ :n "-"    #'quick-calc
+
+ (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
+
+ (:desc "file" :prefix "f"
+   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
+
+ (:desc "dir" :prefix "d"
+   :desc "find in literate config file" :n "r" #'dired-recent-open
+   :desc "Project Root"                 :n  "p" (λ! (dired (projectile-project-root))))
+
+ (:desc "git" :prefix "g"
+   :desc "Amend Commit"                :n  "a" #'magit-commit-amend
+   :desc "Checkout"                    :n  "b" #'magit-checkout
+   :desc "Blame"                       :n  "B" #'magit-blame
+   :desc "New Branch"                  :n  "N" #'magit-branch-spinoff
+   :desc "Show revision original File" :n  "O" #'magit-revision-show-original-file)
+
+ (:desc "insert" :prefix "i"
+   :desc "Killring"   :n  "y" #'helm-show-kill-ring)
+
+ (:desc "project" :prefix "p"
+   :desc "services" :n  "s" #'prodigy
+   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
+
+ (:desc "toggle" :prefix "t"
+   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
+
+ (:desc "open" :prefix "o"
+   :desc "Eshell in Current Dir" :n  "." (λ! (+eshell/open t))
+   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
+
+ (:desc "window" :prefix "w"
+   :desc "Split Vertical" :n "|" #'evil-window-vsplit
+   :desc "Split Horizontal" :n "_" #'evil-window-split)
+
+ (:desc "workspace" :prefix "<tab>"
+   :desc "Create"       :n "c" #'+workspace|new-named
+   :desc "Rename"       :n "," #'+workspace/rename
+   :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
+   :desc "Clone" :n "C" (λ!
+                         (+workspace/new (format "Clone: %s" (+workspace-current-name)) t)
+                         (message "Cloned current workspace %s" (+workspace-current-name)))
+   :desc "Display tab bar"           "TAB" #'+workspace/display
+   :desc "New workspace"             "n"   #'+workspace/new
+   :desc "Load workspace from file"  "l"   #'+workspace/load
+   :desc "Save workspace to file"    "s"   #'+workspace/save
+   :desc "Switch workspace"          "."   #'+workspace/switch-to
+   :desc "Delete session"            "x"   #'+workspace/kill-session
+   :desc "Delete this workspace"     "d"   #'+workspace/delete
+   :desc "Rename workspace"          "r"   #'+workspace/rename
+   :desc "Restore last session"      "R"   #'+workspace/restore-last-session
+   :desc "Next workspace"            "]"   #'+workspace/switch-right
+   :desc "Previous workspace"        "["   #'+workspace/switch-left
+   :desc "Switch to 1st workspace"   "1"   (λ! (+workspace/switch-to 0))
+   :desc "Switch to 2nd workspace"   "2"   (λ! (+workspace/switch-to 1))
+   :desc "Switch to 3rd workspace"   "3"   (λ! (+workspace/switch-to 2))
+   :desc "Switch to 4th workspace"   "4"   (λ! (+workspace/switch-to 3))
+   :desc "Switch to 5th workspace"   "5"   (λ! (+workspace/switch-to 4))
+   :desc "Switch to 6th workspace"   "6"   (λ! (+workspace/switch-to 5))
+   :desc "Switch to 7th workspace"   "7"   (λ! (+workspace/switch-to 6))
+   :desc "Switch to 8th workspace"   "8"   (λ! (+workspace/switch-to 7))
+   :desc "Switch to 9th workspace"   "9"   (λ! (+workspace/switch-to 8))
+   :desc "Switch to last workspace"  "0"   #'+workspace/switch-to-last)
+
+ (:desc "window" :prefix "w"
+   :desc "Toggle Locked" :n "#" #'toggle-window-dedicated)
+
+ (:desc "Yank" :prefix "y"
+   :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
+   :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
+   :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
+   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
+   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
+#+END_SRC
+
+*** Local Leader Bindings
+
+Mode Specific local leader Bindings.
+My local leader is ~SPC M~
+
+**** Eshell
+#+BEGIN_SRC elisp
+(defun floscr|+eshell|init-keymap ()
+  "Setup additional custom eshell keybindings to already existing doom bindings. This must be done in a hook because eshell-mode
+redefines its keys every time `eshell-mode' is enabled."
+  (map! :map eshell-mode-map
+        :localleader "l" #'eshell/clear))
+(add-hook 'eshell-first-time-mode-hook #'floscr|+eshell|init-keymap)
+#+END_SRC
+*** Package/Mode Bindings
+
+Pacakge/Mode specific bindings
+
+**** Org Mode
+#+BEGIN_SRC elisp
+(map!
+ :niv "s-X"   #'+org-capture/open-frame)
+
+(map! :map org-mode-map
+      :localleader
+      (:prefix ("g" . "goto")
+        :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
+
+(map! :map outline-mode-map
+      :n "s-k" #'org-metaup
+      :n "s-j" #'org-metadown)
+#+END_SRC
+**** Elisp
+Slurp and Barf expressions
+
+#+BEGIN_SRC elisp
+(map! :map emacs-lisp-mode-map
+      ;; Rearrange Sexps
+      :n "s-k"   (λ! (sp-transpose-sexp)
+                     (evil-previous-line))
+      :n "s-j"   (λ! (sp-push-hybrid-sexp)
+                     (evil-next-line))
+      :n "s-r" #'eval-buffer
+      ;; Slurp and barf
+      :n "g]"   #'sp-slurp-hybrid-sexp
+      :n "g["   #'sp-forward-barf-sexp)
+#+END_SRC
+*** Other Bindings
+
+Other bindings and overrides that dont fit anywhere else.
+
+**** Copy and Paste from the minibuffer
+
+Since the minibuffer has no evil mode, i've got these bindings to help out:
+- ~M-c~: Copy the minibuffer line
+- ~M-v~: Paste from clippboard to minibuffer (Same as ~C-r 0~)
+         This also removes trailng newlines
+
+#+BEGIN_SRC elisp
+(defun evil-get-register-string (REGISTER)
+  "Get evil-register pure text content
+Registers can be selected with ?letter
+E.g.: ?* -> Clipboard Contents"
+  (evil-vector-to-string (evil-get-register REGISTER)))
+
+(defun paste-evil-register-clipboard-pruned ()
+  "Paste the current clipboard pruned from newlines"
+  (interactive)
+  (insert (s-trim (shell-command-to-string "pbpaste")))
+  (doom/forward-to-last-non-comment-or-eol))
+
+(defun copy-minibuffer-line ()
+  "Copies the minibuffer content to the clipboard"
+  (interactive)
+  (save-excursion
+    (doom/forward-to-last-non-comment-or-eol)
+    (set-mark-command nil)
+    (doom/backward-to-bol-or-indent)
+    (kill-ring-save (mark) (point))))
+
+(defun setup-minibuffer ()
+  "Set up keybindings for the minibuffer"
+  (local-set-key (kbd "s-v") 'paste-evil-register-clipboard-pruned)
+  (local-set-key (kbd "s-c") 'copy-minibuffer-line))
+
+(add-hook 'minibuffer-setup-hook 'setup-minibuffer)
 #+END_SRC
