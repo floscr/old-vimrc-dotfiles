@@ -177,7 +177,7 @@ the projects cwd to find a file.
 
 **** New named workspace
 #+BEGIN_SRC elisp
-(defun +workspace|new-named ()
+(defun +workspace/new-named ()
   "Create a new named workspace."
   (interactive)
   (let ((name (read-string "New workspace name: ")))
@@ -2405,7 +2405,7 @@ My global leader bindings
    :desc "Split Horizontal" :n "_" #'evil-window-split)
 
  (:desc "workspace" :prefix "<tab>"
-   :desc "Create"       :n "c" #'+workspace|new-named
+   :desc "Create"       :n "c" #'+workspace/new-named
    :desc "Rename"       :n "," #'+workspace/rename
    :desc "Last visited" :n "0" #'+workspace/switch-to-last-visited
    :desc "Clone" :n "C" (λ!
