@@ -522,85 +522,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** Company
-**** Sort company by occurance
-:PROPERTIES:
-:SOURCE:   [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
-:END:
-#+BEGIN_SRC elisp
-(setq company-transformers '(company-sort-by-occurrence)
-      company-idle-delay 0.5)
-#+END_SRC
-**** Company complete whole lines for all matching buffers
-
-Complete a whole line with all lines from buffers matching the current major-mode.
-
-#+BEGIN_SRC elisp
-(defun floscr:buffer-list-with-modes (modes)
-  "Get all buffers that match MODES"
-  (--filter
-   (with-current-buffer it (-contains? (doom-enlist modes) major-mode))
-   (buffer-list)))
-
-(defun floscr:buffer-list-with-major-mode ()
-  "Get all buffers matching the current major-mode
-Has built in aliases"
-  (let ((javascript-modes (list 'rjsx-mode 'js2-mode)))
-    (pcase major-mode
-      ('rjsx-mode
-       (floscr:buffer-list-with-modes javascript-modes))
-      ('js2-mode
-       (floscr:buffer-list-with-modes javascript-modes))
-      (_
-       (floscr:buffer-list-with-modes major-mode)))))
-
-(defun +company/whole-lines-all-buffers (command &optional arg &rest ignored)
-  "`company-mode' completion backend that completes whole-lines, akin to vim's
-C-x C-l."
-  (interactive (list 'interactive))
-  (require 'company)
-  (pcase command
-    (`interactive (company-begin-backend '+company/whole-lines-all-buffers))
-    (`prefix      (company-grab-line "^[\t\s]*\\(.+\\)" 1))
-    (`candidates
-     (all-completions
-      arg
-      (funcall (-compose
-                #'-uniq
-                #'-flatten
-                (lambda (xs)
-                  (--map (with-current-buffer it
-                           (split-string
-                            (replace-regexp-in-string
-                             "^[\t\s]+" ""
-                             (buffer-substring-no-properties (point-min) (point-max)))
-                            "\\(\r\n\\|[\n\r]\\)" t)) xs)))
-               (floscr:buffer-list-with-major-mode))))))
-#+END_SRC
-
-Bindings
-
-#+BEGIN_SRC elisp
-(map!
- (:prefix "C-x"
-   :i "C-l" #'+company/whole-lines-all-buffers
-   :i "C-." #'+company/whole-lines))
-#+END_SRC
-
-*** Eldoc
-#+BEGIN_SRC elisp
-;; Always truncate ElDoc messages to one line. This prevents the echo
-;; area from resizing itself unexpectedly when point is on a variable
-;; with a multiline docstring.
-(setq eldoc-echo-area-use-multiline-p nil)
-
-;; Show ElDoc messages in the echo area immediately, instead of after
-;; 1/2 a second.
-(setq eldoc-idle-delay 0)
-
-;; Disable eldoc mode
-(global-eldoc-mode -1)
-#+END_SRC
 *** Git
 **** Config
 #+BEGIN_SRC elisp
@@ -777,25 +698,6 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
                                      (string-trim text))
                                    (ring-elements log-edit-comment-ring)))))
 #+END_SRC
-*** JSON
-**** Autofix JSON
-
-Uses [[https://www.npmjs.com/package/json-fix][json-fix]] to autofix JSON files.
-
-#+BEGIN_SRC bash :tangle no
-npm i -g json-fix
-#+END_SRC
-
-#+BEGIN_SRC elisp
-(defun json-fix ()
-  "Autofix json buffer"
-  (interactive)
-  (let ((b (if mark-active (min (point) (mark)) (point-min)))
-        (e (if mark-active (max (point) (mark)) (point-max))))
-    (shell-command-on-region b e
-     (template "json-fix --no-sort --spaces <<tab-width>>") (current-buffer) t)))
-#+END_SRC
-
 *** Git Review
 
 Config for [[https://github.com/charignon/github-review][charignon/github-review]].
@@ -814,12 +716,6 @@ Config for [[https://github.com/charignon/github-review][charignon/github-review
      (github-review-start it))))
 #+END_SRC
 
-*** Indium
-#+BEGIN_SRC elisp
-(def-package! indium
-  :config
-  (setq indium-chrome-executable "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"))
-#+END_SRC
 *** Prodigy
 #+BEGIN_SRC elisp
 (after! prodigy
@@ -1947,6 +1843,111 @@ Helper to reset the org agenda custom commands.
 (setq org-agenda-custom-commands '())
 #+END_SRC
 ** Package Config
+*** Indium
+#+BEGIN_SRC elisp
+(def-package! indium
+  :commands indium-connect
+  :config
+  (setq indium-chrome-executable "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"))
+#+END_SRC
+*** JSON
+**** Autofix JSON
+
+Uses [[https://www.npmjs.com/package/json-fix][json-fix]] to autofix JSON files.
+
+#+BEGIN_SRC bash :tangle no
+npm i -g json-fix
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(defun json-fix ()
+  "Autofix json buffer"
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+     (template "json-fix --no-sort --spaces <<tab-width>>") (current-buffer) t)))
+#+END_SRC
+
+*** Eldoc
+#+BEGIN_SRC elisp
+;; Always truncate ElDoc messages to one line. This prevents the echo
+;; area from resizing itself unexpectedly when point is on a variable
+;; with a multiline docstring.
+(setq eldoc-echo-area-use-multiline-p nil)
+
+;; Show ElDoc messages in the echo area immediately, instead of after
+;; 1/2 a second.
+(setq eldoc-idle-delay 0)
+
+;; Disable eldoc mode
+(global-eldoc-mode -1)
+#+END_SRC
+*** Company
+**** Sort company by occurance
+:PROPERTIES:
+:SOURCE:   [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
+:END:
+#+BEGIN_SRC elisp
+(setq company-transformers '(company-sort-by-occurrence)
+      company-idle-delay 0.5)
+#+END_SRC
+**** Company complete whole lines for all matching buffers
+
+Complete a whole line with all lines from buffers matching the current major-mode.
+
+#+BEGIN_SRC elisp
+(defun floscr:buffer-list-with-modes (modes)
+  "Get all buffers that match MODES"
+  (--filter
+   (with-current-buffer it (-contains? (doom-enlist modes) major-mode))
+   (buffer-list)))
+
+(defun floscr:buffer-list-with-major-mode ()
+  "Get all buffers matching the current major-mode
+Has built in aliases"
+  (let ((javascript-modes (list 'rjsx-mode 'js2-mode)))
+    (pcase major-mode
+      ('rjsx-mode
+       (floscr:buffer-list-with-modes javascript-modes))
+      ('js2-mode
+       (floscr:buffer-list-with-modes javascript-modes))
+      (_
+       (floscr:buffer-list-with-modes major-mode)))))
+
+(defun +company/whole-lines-all-buffers (command &optional arg &rest ignored)
+  "`company-mode' completion backend that completes whole-lines, akin to vim's
+C-x C-l."
+  (interactive (list 'interactive))
+  (require 'company)
+  (pcase command
+    (`interactive (company-begin-backend '+company/whole-lines-all-buffers))
+    (`prefix      (company-grab-line "^[\t\s]*\\(.+\\)" 1))
+    (`candidates
+     (all-completions
+      arg
+      (funcall (-compose
+                #'-uniq
+                #'-flatten
+                (lambda (xs)
+                  (--map (with-current-buffer it
+                           (split-string
+                            (replace-regexp-in-string
+                             "^[\t\s]+" ""
+                             (buffer-substring-no-properties (point-min) (point-max)))
+                            "\\(\r\n\\|[\n\r]\\)" t)) xs)))
+               (floscr:buffer-list-with-major-mode))))))
+#+END_SRC
+
+Bindings
+
+#+BEGIN_SRC elisp
+(map!
+ (:prefix "C-x"
+   :i "C-l" #'+company/whole-lines-all-buffers
+   :i "C-." #'+company/whole-lines))
+#+END_SRC
+
 *** Dired
 **** Window targeting
 
