@@ -854,26 +854,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** Treemacs
-**** Fix window switch mapping
-#+BEGIN_SRC elisp
-(map!
- (:after treemacs-evil
-   (:map evil-treemacs-state-map
-     "C-h" #'evil-window-left
-     "C-l" #'evil-window-right)))
-#+END_SRC
-
-**** Ignore ~happypack~                                                                              :HACK:
-
-#+BEGIN_SRC elisp
-(defun treemacs-is-file-happypack? (f _)
-  (string= f ".happypack"))
-
-(after! treemacs
-  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-is-file-happypack?))
-#+END_SRC
-
 *** Company
 
 Sort company by occurance [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
@@ -2375,6 +2355,28 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
       :map dired-mode-map
       :n "\\" #'flosc|wdired-change-to-wdired-modej)
 #+END_SRC
+*** Treemacs
+**** Treemacs Evil window switching
+#+BEGIN_SRC elisp
+(map!
+ (:after treemacs-evil
+   (:map evil-treemacs-state-map
+     "C-h" #'evil-window-left
+     "C-l" #'evil-window-right)))
+#+END_SRC
+
+**** Ignore ~happypack~                                                                              :HACK:
+
+Happypack slows down treemacs quite a bit.
+
+#+BEGIN_SRC elisp
+(defun treemacs-is-file-happypack? (f _)
+  (string= f ".happypack"))
+
+(after! treemacs
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-is-file-happypack?))
+#+END_SRC
+
 *** Dired Recent
 #+BEGIN_SRC elisp
 (def-package! dired-recent
