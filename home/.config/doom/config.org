@@ -854,38 +854,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** Eshell
-**** Syntax highlighted cat
-#+BEGIN_SRC elisp
-(defun eshell/cat (file)
-  "Like `cat' but output with Emacs syntax highlighting."
-  (with-temp-buffer
-    (insert-file-contents file)
-    (let ((buffer-file-name file))
-      (delay-mode-hooks
-        (set-auto-mode)
-        (if (fboundp 'font-lock-ensure)
-            (font-lock-ensure)
-          (with-no-warnings
-            (font-lock-fontify-buffer)))))
-    (buffer-string)))
-#+END_SRC
-
-**** Aliases
-#+BEGIN_SRC elisp
-(setq +eshell-aliases
-  '(("q"  "exit")           ; built-in
-    ("f"  "find-file $1")
-    ("bd" "eshell-up $1")   ; `eshell-up'
-    ("rg" "rg --color=always $*")
-    ("cat" "eshell/cat $1")
-    ("ag" "ag --color=always $*")
-    ("l"  "ls -lh")
-    ("ll" "ls -lah")
-    ("gs" "git status")
-    ("gc" "git commit")
-    ("clear" "clear-scrollback")))
-#+END_SRC
 *** Eww
 **** Set the max page width for eww
 #+BEGIN_SRC elisp
@@ -2469,6 +2437,41 @@ Helper to reset the org agenda custom commands.
 #+BEGIN_SRC elisp
 (def-package! git-lens
   :commands (git-lens))
+#+END_SRC
+*** Eshell
+**** Aliases
+
+Overrides dooms aliases.
+
+#+BEGIN_SRC elisp
+(setq +eshell-aliases
+  '(("q"      "exit")
+    ("f"      "find-file $1")
+    ("bd"     "eshell-up $1")
+    ("rg"     "rg --color=always $*")
+    ("ag"     "ag --color=always $*")
+    ("l"      "ls -lh")
+    ("ll"     "ls -lah")
+    ("gs"     "git status")
+    ("gc"     "git commit")
+    ("clear"  "clear-scrollback")))
+#+END_SRC
+**** Syntax highlighted cat
+#+BEGIN_SRC elisp
+(defun eshell/cat (file)
+  "Like `cat' but output with Emacs syntax highlighting."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (let ((buffer-file-name file))
+      (delay-mode-hooks
+        (set-auto-mode)
+        (if (fboundp 'font-lock-ensure)
+            (font-lock-ensure)
+          (with-no-warnings
+            (font-lock-fontify-buffer)))))
+    (buffer-string)))
+
+(add-to-list '+eshell-aliases '("cat" "eshell/cat $1"))
 #+END_SRC
 ** General Config
 *** Disable Eldoc
