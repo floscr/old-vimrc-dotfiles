@@ -1748,6 +1748,12 @@ Browse the current thing at point for git
                                      (string-trim text))
                                    (ring-elements log-edit-comment-ring)))))
 #+END_SRC
+*** rainbow-mode
+#+BEGIN_SRC elisp
+(def-package! rainbow-mode
+  :commands (rainbow-mode))
+#+END_SRC
+
 *** Indium
 #+BEGIN_SRC elisp
 (def-package! indium
@@ -2001,7 +2007,7 @@ To enable the checker press ~SPC u C-c ! x~
 (def-package! blimp
   :hook (image-mode-hook . blimp-mode))
 #+END_SRC
-*** Git Lens
+*** git-lens
 #+BEGIN_SRC elisp
 (def-package! git-lens
   :commands (git-lens))
