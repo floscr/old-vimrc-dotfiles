@@ -42,7 +42,6 @@
  editorconfig
  macos
  magit
- prodigy
  rgb
  pdf
  flyspell
