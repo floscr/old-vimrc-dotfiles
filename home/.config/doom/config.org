@@ -546,14 +546,6 @@ Create an action from a controller and import directly
     ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
     ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 #+END_SRC
-*** Smerge Mode
-#+BEGIN_SRC elisp
-(after! smerge-mode
-  :config
-  ;; TODO This is broken after switching the theme but works for now
-  ;; This fixes the smerge diff color is really bright an ugly
-  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
-#+END_SRC
 *** Workspaces
 #+BEGIN_SRC elisp
 ;; Always create workspace when switching to project
@@ -1615,6 +1607,14 @@ Helper to reset the org agenda custom commands.
 (setq org-agenda-custom-commands '())
 #+END_SRC
 ** Package Config
+*** Smerge Mode
+#+BEGIN_SRC elisp
+(after! smerge-mode
+  :config
+  ;; TODO This is broken after switching the theme but works for now
+  ;; This fixes the smerge diff color is really bright an ugly
+  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
+#+END_SRC
 *** Git
 **** Config
 #+BEGIN_SRC elisp
