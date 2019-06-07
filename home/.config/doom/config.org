@@ -308,8 +308,10 @@ This will be disabled in terminal mode.
   (interactive)
   (my-frame-resize-width 1410))
 
+(require 'dash)
+
 (cond
- ((string= system-name "Florians-MBP.localdomain")
+ ((--first (string= system-name it) '("Florians-MBP.localdomain" "Florians-MacBook-Pro.local"))
   (my-frame-resize-work-external)
   ;; (my-set-initial-frame-size (cons 2 1060))
   (setq-default line-spacing 0.3))
@@ -2197,7 +2199,10 @@ The history can be accessed with ~C-n~ / ~C-p~
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
-(map! :en "C-±"   #'+popup/raise)
+(map!
+ :en "C-±"   #'+popup/raise
+ :nv "C-a"   #'evil-numbers/inc-at-pt
+ :nv "C-S-a" #'evil-numbers/dev-at-pt)
 #+END_SRC
 *** Mac Modifier Bindings
 #+BEGIN_SRC elisp
