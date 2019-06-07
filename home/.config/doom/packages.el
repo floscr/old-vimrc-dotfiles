@@ -4,14 +4,9 @@
 (package! evil-plugin :recipe (:fetcher github :repo "tarao/evil-plugins"))
 (package! evil-replace-with-register)
 (package! evil-text-objects-javascript :recipe (:fetcher github :repo "urbint/evil-text-objects-javascript"))
-;; Like abolish.vim
-;; Search and replace multiples
-;; TODO: Add literate config here
-(package! plur)
 
 ;;; Javascript Packages
 (package! indium)
-(package! import-js)
 
 ;;; Reasonml Packages
 (package! reason-mode)

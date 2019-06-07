@@ -33,7 +33,6 @@
  dired
  electric
  eshell
- imenu
  term
  vc
 
@@ -43,7 +42,6 @@
  editorconfig
  macos
  magit
- prodigy
  rgb
  pdf
  flyspell

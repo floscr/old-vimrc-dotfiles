@@ -7,6 +7,10 @@
 #+END_SRC
 
 * Configuration
+** Required Packages
+#+BEGIN_SRC elisp
+(require 'dash)
+#+END_SRC
 ** About
 
 This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs]].
@@ -309,7 +313,7 @@ This will be disabled in terminal mode.
   (my-frame-resize-width 1410))
 
 (cond
- ((string= system-name "Florians-MBP.localdomain")
+ ((--first (string= system-name it) '("Florians-MBP.localdomain" "Florians-MacBook-Pro.local"))
   (my-frame-resize-work-external)
   ;; (my-set-initial-frame-size (cons 2 1060))
   (setq-default line-spacing 0.3))
@@ -521,341 +525,656 @@ Create an action from a controller and import directly
             :action #'projectile-find-file))
 #+END_SRC
 
-** Packages & Modules
-*** Git
-**** Config
-#+BEGIN_SRC elisp
-(setq-default magit-save-repository-buffers 'dontask)
+** Package Config
+*** Org
+**** Utils
+***** TODO Archive all done tasks
+#+BEGIN_SRC elisp :tangle no
+(defun my-archive-entry ()
+  (message "%s" (thing-at-point 'line t)))
 
-(after! magit
+(defun +org|org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries #'my-archive-entry "/[X]" 'tree))
+
+(defun +org|org-archive-done-task ()
+  (interactive)
+  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
+
+#+END_SRC
+***** Grab Tablist from Chrome
+#+BEGIN_SRC elisp
+(defun +org|grab-tabs ()
+  "Grab all the chrome tabs as an org list to save for later inspection"
+  (interactive)
+  (let ((tabs
+         (do-jxa-script
+          (concat
+           "Application(\"Chrome\").windows[0].tabs()"
+           ".map(tab => `"
+           "- [[${tab.url()}][${tab.title()}]]"
+           "`)"
+           ".join(\"\\n\")"))))
+    (insert tabs)))
+#+END_SRC
+***** Paste Chrome Link Fix
+
+Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
+
+E.g.: (Brackets signal the cursor position)
+
+: **[*]
+: ***[]"
+
+#+BEGIN_SRC elisp
+(defun +org|paste-chrome-link ()
+  "Paste the frontmost chrome link"
+  (interactive)
+  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
+  (insert " ")
+  (insert (org-mac-chrome-get-frontmost-url)))
+#+END_SRC
+***** Sort org entries
+#+BEGIN_SRC elisp
+(defun +org|sort-entries ()
+  "Go to header and sort entries"
+  (interactive)
+  (org-up-element)
+  (org-sort)
+  (org-shifttab)
+  (org-cycle))
+#+END_SRC
+***** Copy block to clipboard
+#+BEGIN_SRC elisp
+(defun +org|copy-block ()
+  "Copies the current block to clipboard"
+  (interactive)
+  (org-edit-src-code)
+  (clipboard-kill-ring-save (point-min) (point-max)))
+#+END_SRC
+***** Paste Markdown as org
+#+BEGIN_SRC elisp
+(defun +org|paste-markdown-as-org ()
+  "Convert the current clipboard to markdown"
+  (interactive)
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
+#+END_SRC
+***** Ocaml Refmt to Reason
+#+BEGIN_SRC elisp
+(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
+  "Convert the current src block from ocaml to reason and vice versa"
+  (interactive)
+  (save-excursion
+    (let* ((old-block (org-element-at-point))
+           (old-lang (org-element-property :language old-block))
+           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
+           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
+      (org-edit-special)
+      (funcall formatter (point-min) (point-max))
+      (org-edit-src-exit)
+      (let* ((new-block (org-element-at-point))
+             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
+             (from (org-element-property :begin new-block))
+             (to (org-element-property :end new-block)))
+        (delete-region from to)))))
+#+END_SRC
+***** Archive and Done
+#+BEGIN_SRC elisp
+(defun org-archive-and-done ()
+  "Mark task as done and archive"
+  (interactive)
+  (org-todo "DONE")
+  (org-archive-subtree))
+#+END_SRC
+**** Config Rifle
+#+BEGIN_SRC elisp
+(defun helm-org-rifle-config ()
+  "Rifle for the literate configuration file"
+  (interactive)
+  (helm-org-rifle-files (list +literate-config-file)))
+#+END_SRC
+**** Org Attach
+***** Download
+#+BEGIN_SRC elisp
+(defun +org-attach/downloads-file (file)
+  "Attach a file in your downloads-directory"
+  (interactive (list (read-file-name "Attach File: " downloads-dir)))
+  (+org-attach/uri file))
+#+END_SRC
+***** Screenshot
+#+BEGIN_SRC elisp
+(defun +org-attach/last-screenshot ()
+  "Attaches the last screenshot"
+  (interactive)
+  (+org-attach/file (latest-file screenshot-dir)))
+#+END_SRC
+**** Config
+***** General Config
+****** Todo Keywords
+#+BEGIN_SRC elisp
+(after! org
+  :config
+  (setq org-todo-keywords
+        '((sequence "ACTIVE(a)" "NEXT(n)" "|" "DONE")
+          (sequence "TODO(T)" "|" "DONE(X)")
+          (sequence "[ ](t)" "|" "[X](x)")
+          (sequence "PROJECT(p)" "|" "DONE")
+          (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "DONE" "CANCELLED(c)"))
+   org-todo-keyword-faces
+   '(("ACTIVE" :inherit warning :weight bold)
+     ("NEXT" :inherit warning :weight bold)
+     ("WAITING" :inherit default :weight bold)
+     ("SOMEDAY" :inherit default :weight bold)
+     ("LATER" :inherit default :weight bold)
+     ("PROJECT" :inherit 'org-todo :weight bold))))
+#+END_SRC
+****** Projectile Ignore
+
+#+BEGIN_SRC elisp
+(after! projectile
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".org_archive")
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".DS_Store"))
+#+END_SRC
+
+****** Org variables
+
+#+BEGIN_SRC elisp
+(setq
+ org-directory (expand-file-name "~/Dropbox/org")
+ org-pinboard-dir org-directory
+ org-pinboard-file (concat org-pinboard-dir "/Bookmarks/bookmarks.org")
+ org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
+ org-default-notes-file (concat org-directory "/inbox.org")
+ org-shopping-list-file (concat org-directory "/shoppinglist.org")
+ org-reading-list (concat org-directory "/reading-list.org"))
+
+(after! org
   :config
   (setq
-   magithub-clone-default-directory "~/Code/Repositories"
-   git-commit-summary-max-length 120))
+   org-tags-column (- fill-column)
+   org-image-actual-width 600
+   org-default-notes-file (concat org-directory "/inbox.org")))
 #+END_SRC
-**** Bindings
-***** Magit Navigation Binding
-
-My workflow for navigating diffs
-Use ~z1~ to fold all diffs to their file headers and presss ~{~ or ~}~ to
-
-1. Refold all sections
-2. Go to the next section
-3. Unfold everything in the current section
-
-Then use ~]~ to navigate the sections
+****** Latex
+Needs ~dvisvgm~
 
 #+BEGIN_SRC elisp
-(defun floscr:magit-jumpunfold-section (&optional forward)
-  "Fold all section. Go to next section when FORWARD. Show all children"
+(setq org-latex-create-formula-image-program 'dvisvgm)
+#+END_SRC
+
+***** Export
+#+BEGIN_SRC elisp
+(defun +org|copy-subtree-as-markdown ()
+  "Copy the current subtree as markdown to clipboard"
+    (interactive)
+    (let* ((org-export-with-toc nil)
+           (md (org-md-export-as-markdown nil t)))
+      (kill-ring-save (point-min) (point-max))
+      (kill-buffer md)))
+#+END_SRC
+***** Tags
+****** Tags List
+
+Not sure yet if the shortcuts work for me.
+Maybe just try persistent tags.
+
+#+BEGIN_SRC elisp
+(setq
+ org-tag-persistent-alist '(("ACCESABILTY"))
+ org-tag-alist '(("CSS" . ?c)
+                 ("DESIGN" . ?d)
+                 ("EMACS" . ?e)
+                 ("GUIDE" . ?g)
+                 ("HASKELL" . ?h)
+                 ("JAVASCRIPT" . ?j)
+                 ("LEISURE" . ?l)
+                 ("MATH" . ?m)
+                 ("REASON_ML" . ?r)
+                 ("REPOSITORY". ?R)
+                 ("WORK" . ?w)))
+#+END_SRC
+****** Tags Helpers
+#+BEGIN_SRC elisp
+(defun +org-align-all-tags ()
+  "Interactive version of org-align-all-tags"
   (interactive)
-  (magit-section-show-level-1-all)
-  (call-interactively (if forward #'magit-section-forward-sibling #'magit-section-backward-sibling))
-  (call-interactively #'magit-section-show-children))
-
-(map!
- (:after evil-magit
-   :map (magit-diff-mode-map)
-   :n "}" (λ! (floscr:magit-jumpunfold-section 't))
-   :n "{" (λ! (floscr:magit-jumpunfold-section))))
+  (org-align-all-tags))
 #+END_SRC
-
-***** Magit Window Navigation Binding Fixes
-
-Fixes evil window navigation for magit
+***** Refile Targets
 
 #+BEGIN_SRC elisp
-(map!
- (:after evil-magit
-   :map (magit-status-mode-map magit-revision-mode-map magit-diff-mode-map)
-   :n "C-j" #'evil-window-down
-   :n "C-k" #'evil-window-up
-   :n "C-h" #'evil-window-left
-   :n "C-l" #'evil-window-right))
-#+END_SRC
+(defun expand-org-file-names (xs)
+  (mapcar (λ (x) (expand-file-name x org-directory)) xs))
 
-***** Git Local Leader Bindings
+(setq level-1-refile-targets (expand-org-file-names '("reading-list.org"
+                                                      "cooking.org"
+                                                      ;; "books.org"
+                                                      "programming.org"
+                                                      "shoppinglist.org")))
+
+(setq max-level-2-refile-targets (expand-org-file-names '("Emacs.org"
+                                                          "art.org"
+                                                          "diary"
+                                                          "games.org"
+                                                          "hardware.org"
+                                                          "home.org"
+                                                          "inbox.org"
+                                                          "mealplan.org"
+                                                          "misc.org"
+                                                          "movies.org"
+                                                          "music.org"
+                                                          "osx.org"
+                                                          "personal.org"
+                                                          "podcasts.org"
+                                                          "projects.org"
+                                                          "sleep.org"
+                                                          "sports.org"
+                                                          "travel.org"
+                                                          "Work/work.org")))
+
+(defun level-1-refile-targets () level-1-refile-targets)
+
+(defun max-level-2-refile-targets () max-level-2-refile-targets)
+
+(after! org
+  :config
+  (setq org-refile-targets (quote ((nil :maxlevel . 5)
+                                   (max-level-2-refile-targets :maxlevel . 2)
+                                   (level-1-refile-targets :level . 1)))
+        org-agenda-refile org-agenda-files))
+#+END_SRC
+***** Journal
+#+BEGIN_SRC elisp
+(defvar org-journal-dir-default "~/Dropbox/org/journal")
+(defvar org-journal-dir-diary "~/Dropbox/org/diary")
+
+(setq org-journal-dir org-journal-dir-default)
+(setq org-journal-file-format "%Y-%m-%d")
+(setq org-journal-date-prefix "#+TITLE: ")
+(setq org-journal-date-format "%A, %B %d %Y")
+(setq org-journal-time-prefix "* ")
+(setq org-journal-time-format "")
+#+END_SRC
+***** Org Capture
+****** Org Capture Config
 
 #+BEGIN_SRC elisp
-(map! :map global-git-commit-mode-map
-      :n "Q" #'+dired|kill-dired-buffers)
-
-(map!
- :leader
- (:desc "Magit" :prefix "g"
-   :desc "Worktree Popup" :n  "%" #'magit-worktree
-   :desc "Map-editor Changed Files"  :n  "T" (λ! (+git|ivy-changed-files "map-editor"))
-   :desc "Changed Files"  :n  "F" #'+git|ivy-changed-files
-   :desc "Fetch"          :n  "f" #'magit-fetch
-   :desc "Push"           :n  "p" #'magit-push
-   :desc "Undo"           :n  "u" #'+git|undo))
+(setq +org-capture-frame-parameters
+  `((name . "org-capture")
+    (width . 120)
+    (height . 35)
+    (transient . t)))
 #+END_SRC
 
-**** Revision show orignal file
-
-Show the orginal file when visiting a revision buffer.
-E.g.: When showing a diff from a commit, you may want to edit that file.
+****** Org Capture Templates
 
 #+BEGIN_SRC elisp
-(defun magit-revision-show-original-file ()
-  "Show the orginal file from a revision buffer
-If possible also go to the pointing line"
-  (interactive)
-  (when magit-buffer-file-name
-    (let ((file-name magit-buffer-file-name)
-          (line-number (line-number-at-pos)))
-      (delete-other-windows)
-      (find-file file-name)
-      (goto-line line-number))))
+(defun org-capture-bookmark-pair ()
+  (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
+
+(defun org-capture-bookmark-string-url ()
+  (car (org-capture-bookmark-pair)))
+
+(defun org-capture-bookmark-string-description ()
+  (cadr (org-capture-bookmark-pair)))
+
+(after! org
+  :config
+  (setq org-capture-templates
+        `(("t" "todo" entry
+           (file org-default-notes-file)
+           "* TODO %?\n%U")
+
+          ("c" "Calendar Event" entry
+           (file+headline ,(concat org-directory "/home.org") "Calendar")
+           "* %?\n%U")
+
+          ("e" "Emacs Todo" entry
+           (file+headline ,(concat org-directory "/emacs.org") "Emacs Todos")
+           "* TODO %?\n%U")
+
+          ("p" "Pin Bookmark" entry (file+headline org-pinboard-file "Pinboard")
+           "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
+
+          ("C" "Browser" entry
+           (file org-default-notes-file)
+           "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+
+          ("w" "work" entry
+           (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
+           "* TODO %?\n%U"))))
 #+END_SRC
+***** TODO Src Block Snippets
 
-**** Git Changed Files
+Solve these with yasnippet
 
-Show a list of the changed files in the current branch.
-For now only works on branches that were directly forked from master.
-
-#+BEGIN_SRC elisp
-(defun shell-command-to-list (cmd)
-  "Split output from shell-command to list"
-  (split-string (shell-command-to-string cmd) "\n" t))
-
-(defun git-new-files ()
-  (shell-command-to-list "git ls-files -om --exclude-standard"))
-
-(defun git-modified-files (&optional branch)
-  (shell-command-to-list
-   (template "git --no-pager diff --no-renames --name-only --no-merges <<(magit-rev-parse \"HEAD\")>> <<branch>>;")))
-
-(defun git-get-changed-files (b)
-    (delete-dups (append (git-modified-files b) (git-new-files))))
-
-(defun +git|ivy-changed-files (&optional branch)
-  (interactive)
-  (let ((enable-recursive-minibuffers t))
-    (ivy-read (template "Changed files for <<branch>>:")
-              (git-get-changed-files (or branch "master"))
-              :require-match t
-              :history 'file-name-history
-              :action counsel-projectile-find-file-action
-              :caller '+git|ivy-changed-files)))
-#+END_SRC
-**** Browse git link
-
-#+BEGIN_SRC elisp
-(defun browse-git-link ()
-  "Browse the git link at the current point"
-  (interactive)
-  (let ((git-link-open-in-browser t))
-    (call-interactively 'git-link)))
-#+END_SRC
-**** Create New Git Worktree Workspace
-
-Creates a new git workspace from a branch.
-Automatically adds ~.projectfile~ and opens a new doom workspace.
-
-#+BEGIN_SRC elisp
-(defun magit-worktree-branch-project-worktree (branch start-point &optional force)
-  "Create a new BRANCH and check it out in a new worktree at PATH in a new workspace."
-  (interactive
-   `(,@(butlast (magit-branch-read-args "Create and checkout branch"))
-     ,current-prefix-arg))
-  (let* ((worktree-path (f-join (projectile-project-root) ".worktrees"))
-         (path (f-join (projectile-project-root) ".worktrees" branch)))
-    (when (not (f-exists-p worktree-path))
-      (mkdir worktree-path t))
-    (magit-run-git "worktree" "add" (if force "-B" "-b")
-                   branch (expand-file-name path) start-point)
-    (f-touch (f-join path ".projectile"))
-    (+workspace-new branch)
-    (+workspace-switch branch)
-    (magit-diff-visit-directory path)
-    (projectile-add-known-project path)
-    path))
-
-(defun +MM|new-worktree ()
-  "New worktree with the devpanel files and an npm install"
-  (interactive)
-  (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
-    (npm-mode)
-    (npm-mode-npm-install)))
-#+END_SRC
-
-**** Git undo
-#+BEGIN_SRC elisp
-(defun +git|undo ()
-  "Soft reset current git repo to HEAD~1."
-  (interactive)
-  (magit-reset-soft "HEAD~1"))
-#+END_SRC
-**** TODO Insert message from commit history
 #+BEGIN_SRC elisp :tangle no
-(defun +git|commit-search-message-history ()
-  "Search and insert commit message from history."
+(add-to-list 'org-structure-template-alist '("es" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
+(add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("re" "#+BEGIN_SRC reason\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("oc" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("rb" "#+BEGIN_SRC ruby\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("md" "#+BEGIN_SRC markdown\n?\n#+END_SRC\n"))
+#+END_SRC
+
+***** TODO Bookmarks
+These can be solved with a lambda and dont need extra functions
+#+BEGIN_SRC elisp
+(defun org-find-file (f)
+  "Find file in org directory"
+  (find-file (concat org-directory f)))
+
+(defun +org|org-open-home-file ()
+  "Open the home org file"
   (interactive)
-  (insert (completing-read "History: "
-                           ;; Remove unnecessary newlines from beginning and end.
-                           (mapcar (lambda (text)
-                                     (string-trim text))
-                                   (ring-elements log-edit-comment-ring)))))
-#+END_SRC
-*** Git Review
+  (org-find-file "/home.org"))
 
-Config for [[https://github.com/charignon/github-review][charignon/github-review]].
-
-**** Open Forge PR in Review Mode
-#+BEGIN_SRC elisp
-(defun +forge-start-pull-review ()
-  "Start Pull Review on the current pull request"
+(defun +org|org-open-reading-list-file ()
+  "Open the reading list org file"
   (interactive)
-  (-some-->
-   (forge-get-url (or (forge-post-at-point)
-                      (forge-current-topic)))
-   (let ((github-review-review-folder (or (directory-file-name (projectile-project-root)) github-review-review-folder)))
-     (setq github-review-review-folder (directory-file-name (projectile-project-root)))
-     (message "FOLDER: %s" github-review-review-folder)
-     (github-review-start it))))
+  (org-find-file "/reading-list.org"))
+
+(defun +org|org-open-work-file ()
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/Work/work.org"))
 #+END_SRC
 
-*** Prodigy
+***** Leader Bindings
 #+BEGIN_SRC elisp
-(after! prodigy
-  (define-key prodigy-mode-map "q" #'doom/escape)
-  (define-key prodigy-mode-map "j" #'prodigy-next)
-  (define-key prodigy-mode-map "k" #'prodigy-prev)
-  (define-key prodigy-mode-map "G" #'prodigy-last)
-  (let ((external-url (shell-command-to-string "echo -n $(ifconfig en0 | awk '$1 == \"inet\" {print \"http://\" $2}'):3001")))
-    (prodigy-define-service
-      :name "mindmeister-web"
-      :url "localhost:3000"
-      :command "npm"
-      :args '("start")
-      :path '("~/.nvm/versions/node/v8.8.1/bin")
-      :cwd "~/Code/Meisterlabs/mindmeister-web"
-      :tags '(mindmeister frontend))
-    (prodigy-define-service
-      :name "mindmeister-web production"
-      :command "npm"
-      :url external-url
-      :args (list "run" "start" "PrivateMaps" "--" "--production" "--mmEndpoint" external-url)
-      :path '("~/.nvm/versions/node/v8.8.1/bin")
-      :cwd "~/Code/Meisterlabs/mindmeister-web"
-      :tags '(mindmeister frontend production))
-    (prodigy-define-service
-      :name "mindmeister"
-      :url "localhost:3001"
-      :command "rails"
-      :args '("s" "-p" "3000")
-      :cwd "~/Code/Meisterlabs/mindmeister")
-    (prodigy-define-service
-      :name "meistercanvas"
-      :url "localhost:7007"
-      :command "npm"
-      :args '("run" "start" "meistercanvas" "--" "--port" "7007")
-      :path '("~/.nvm/versions/node/v8.8.1/bin")
-      :cwd "~/Code/Meisterlabs/meistercanvas")))
+(map! :leader (:desc "Notes" :prefix "n"
+                :desc "Pinboard File"        :n "B" (λ! (find-file org-pinboard-file))
+                :desc "Save All Org Buffers" :n "S" #'org-save-all-org-buffers
+                :desc "Agenda"               :n "a" #'org-agenda
+                :desc "Search Pinboard"      :n "b" #'helm-org-pinboard
+                :desc "Emacs"                :n "e" (λ! (find-file (concat org-directory "/Emacs.org")))
+                :desc "Home"                 :n "h" #'+org|org-open-home-file
+                :desc "Inbox"                :n "i" (λ! (find-file (concat org-directory "/inbox.org")))
+                :desc "Reading List"         :n "r" #'+org|org-open-reading-list-file
+                :desc "Work"                 :n "w" #'+org|org-open-work-file
+                :desc "Store Link"           :n "y" #'org-store-link))
 #+END_SRC
-*** Lookup
+***** General Bindings
 #+BEGIN_SRC elisp
-(setq +lookup-provider-url-alist
-  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
-    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
-    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
-    ("Google"            . "https://google.com/search?q=%s")
-    ("Google images"     . "https://google.com/images?q=%s")
-    ("Google maps"       . "https://maps.google.com/maps?q=%s")
-    ("NPM"               . "https://npmjs.com/search?q=%s")
-    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
-    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
-    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
-    ("Explain Shell"     . "https://explainshell.com/explain?cmd=%s")
-    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
-    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
-    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
-    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
-    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
+(after! org
+  (map! :map evil-org-mode-map
+        :n "s-j" #'org-move-subtree-down
+        :n "s-k" #'org-move-subtree-up
+
+        :localleader
+        :desc "Archive Subtree"          :m "a" #'org-archive-subtree
+        :desc "Archive Subtree and Done" :m "A" #'org-archive-and-done
+        :desc "Paste Chrome Link"        :m "p" #'+org|paste-chrome-link
+        :desc "Grab tabs"                :m "P" #'+org|grab-tabs
+        :desc "Cut Subtree"              :m "C" #'org-cut-subtree
+        :desc "Paste Subtree"            :m "P" #'org-paste-subtree
+        :desc "Sort Entries"             :m "S" #'+org|sort-entries
+
+        :desc "Create/Edit Todo"  :nve "o" #'org-todo
+        :desc "Schedule"          :nve "s" #'org-schedule
+        :desc "Deadline"          :nve "d" #'org-deadline
+        :desc "Refile"            :nve "r" #'org-refile
+        :desc "Filter"            :nve "f" #'org-match-sparse-tree
+        :desc "Tag heading"       :nve "t" #'org-set-tags-command
+
+        (:desc "Attach" :prefix "F"
+          :desc "Downloads File" :m "d" '+org-attach/downloads-file
+          :desc "Screenshot" :m "s" '+org-attach/last-screenshot
+          :desc "URI" :m "u" '+org-attach/uri
+          :desc "File" :m "f" '+org-attach/file)
+
+        (:desc "Insert" :prefix "i"
+          :desc "Subheadeing" :m "s" (λ!
+                                      (call-interactively 'org-insert-subheading)
+                                      (evil-insert-state))
+          :desc "Inavtive Timestamp" :m "i" 'org-time-stamp-inactive)
+        (:desc "Narrow" :prefix "n"
+          :desc "Indirect Buffer Tree" :m "i" #'org-tree-to-indirect-buffer
+          :desc "Subtree"              :m "s" #'org-narrow-to-subtree
+          :desc "Block"                :m "b" #'org-narrow-to-block
+          :desc "Element"              :m "e" #'org-narrow-to-element
+          :desc "widen"                :m "w" #'widen)))
 #+END_SRC
-*** Smerge Mode
+***** Agenda
+****** Bindings
 #+BEGIN_SRC elisp
-(after! smerge-mode
+(evil-define-key 'motion org-agenda-mode-map
+  "vd" 'org-agenda-day-view
+  "ds" 'org-agenda-schedule
+  "vw" 'org-agenda-week-view
+  "vm" 'org-agenda-month-view
+  "vy" 'org-agenda-year-view)
+#+END_SRC
+****** Custom Agenda Commands
+
+#+BEGIN_SRC elisp
+(after! org-agenda
+  (add-to-list 'org-agenda-custom-commands
+               '("p" "Personal" agenda ""
+                 ((org-agenda-ndays 5)
+                  (org-agenda-span 7)
+                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
+                  (tags-todo "-\[X\]")
+                  (tags-todo "-DONE")
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-time-grid nil)
+                  (org-agenda-day-view)
+                  (org-agenda-repeating-timestamp-show-all t))))
+  (add-to-list 'org-agenda-custom-commands
+               '("w" "Work" tags-todo "+WORK"))
+  (add-to-list 'org-agenda-custom-commands
+               '("rr" "Reading List" tags-todo "+TEXT"))
+  (add-to-list 'org-agenda-custom-commands
+               '("c" "Calendar" agenda ""
+                 ((org-agenda-span 7)
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-start-day "-1d")
+                  (org-agenda-tag-filter-preset '("+CALENDAR")))))
+
+
   :config
-  ;; TODO This is broken after switching the theme but works for now
-  ;; This fixes the smerge diff color is really bright an ugly
-  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
+  (setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
 #+END_SRC
-*** Workspaces
-#+BEGIN_SRC elisp
-;; Always create workspace when switching to project
-(setq +workspaces-on-switch-project-behavior t)
+
+Helper to reset the org agenda custom commands.
+
+#+BEGIN_SRC elisp :tangle no
+(setq org-agenda-custom-commands '())
 #+END_SRC
-*** Nov (Epub Reading Mode)
+*** Javascript
+#+BEGIN_SRC elisp
+(setq
+ flycheck-javascript-eslint-executable (executable-find "eslint_d")
+ flycheck-disabled-checkers '(javascript-jshint javascript))
 
-Adds epub reading mode
-[[https://github.com/wasamasa/nov.el][wasamasa/nov.el: Major mode for reading EPUBs in Emacs]]
+(after! rjsx-mode
+  (add-hook 'js2-mode-hook #'eslintd-fix-mode)
+  (map! :map rjsx-mode-map
+        :localleader
+        (:desc "Open Self-Closing Tag" :n ">" #'+rjsx|expand-insert-self-closing-tag)
+        (:desc "Open Self-Closing Tag" :n "<" #'rjsx-rename-tag-at-point)))
 
-I want to keep the buffer centered, but let nov take care of breaking the text,
-since this is much nicer then ~visual-line-mode~.
+(after! js2-mode
+  (add-hook 'js2-mode-hook #'eslintd-fix-mode)
+  :config
+  (map! :map js2-mode-map
+        :localleader
+        (:desc "import" :n "i" #'+js|ivy-import-file)
+        (:desc "Indium" :prefix "I"
+          :desc "Reload" :n  "r" #'indium-reload
+          :desc "Start" :n  "s" #'indium-connect)))
+
+(defun remove-js-ext (f)
+  "Remove js extension from string"
+  (replace-regexp-in-string "\.js$" "" f))
+
+(defun buffer-file-name-relative ()
+  "Extranct the filename with extension from path"
+  (replace-regexp-in-string (file-name-directory buffer-file-name) "" (buffer-file-name)))
+
+(defun match-const-function-name (line)
+  "Matches a line to the word after the declaration"
+  (nth 2 (s-match
+          "\\(const\\|let\\|class\\)\s\\(.+?\\)\s"
+          line)))
+
+(defun const-function-at-point ()
+  "Returns the current function name at the current line"
+  (match-const-function-name (thing-at-point 'line t)))
+
+(defun js2r-export-default ()
+  "Exports the current declaration at the end of the file"
+  (interactive)
+  (save-excursion
+    (let* ((name (const-function-at-point)))
+      (goto-char (point-max))
+      (insert "\n")
+      (insert (template "export default <<name>>;")))))
+
+(defun js2r-extract-const-to-file ()
+  "Extracts function to external file"
+  (interactive)
+  (let* ((name (const-function-at-point))
+         (path (concat "./" name ".js")))
+    (evil-digit-argument-or-evil-beginning-of-line)
+    (js2r-kill)
+    (f-write-text "" 'utf-8 path)
+    (find-file path)
+    (yank)))
+
+(defun js-index-file-names (&optional actions-dir)
+  "Get filenames from current buffers directory"
+  (let ((fs (directory-files (or actions-dir default-directory) nil ".*\\.js")))
+    (mapcar 'remove-js-ext
+            (remove "index.js" fs))))
+
+(defun +js|generate-index (&optional actions-dir)
+  "Generate an index import file for files in directory"
+  (interactive)
+  (erase-buffer)
+  (let* ((fs (js-index-file-names actions-dir)))
+    (mapc (lambda (f) (insert "import " f " from './" f "';\n")) fs)
+    (insert "\n")
+    (insert "export default {\n")
+    (mapc (lambda (f) (insert "    " f ",\n")) fs)
+    (insert "};")))
+
+(defun js2r-sexp-to-template-string ()
+  "Wrap sexp into a template string"
+  (interactive)
+  (kill-sexp)
+  (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
+  (pop kill-ring))
+#+END_SRC
+**** Little Word Motion
 
 #+BEGIN_SRC elisp
-(defun my-nov-config ()
-  (setq line-spacing 5)
-  (face-remap-add-relative 'variable-pitch :family "Liberation Serif" :height 1.4)
-  (setq visual-fill-column-center-text t)
-  (setq visual-fill-column-width (+ nov-text-width 25))
-  (visual-fill-column-mode t))
+(defun +js|load-evil-camel-case-motion ()
+  (require 'evil-little-word)
+  (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-normal-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "i M-w") 'evil-inner-little-word))
 
-(def-package! nov
-  :defer t
+(after! rjsx-mode
+  (+js|load-evil-camel-case-motion))
+
+(after! js2-mode
+  (+js|load-evil-camel-case-motion))
+#+END_SRC
+**** Javascript Text Objects
+
+#+BEGIN_SRC elisp
+(add-hook! js-mode
+  (require 'evil-text-objects-javascript)
+  (evil-text-objects-javascript/install))
+#+END_SRC
+
+**** Expand self closing tag
+
+#+BEGIN_SRC elisp
+(defun +rjsx|expand-insert-self-closing-tag ()
+  "Opens the current tag at any position of the cursor and starts insert mode"
+  (interactive)
+  (search-forward "/>")
+  (evil-backward-char)
+  (call-interactively #'delete-backward-char)
+  (call-interactively #'rjsx-electric-gt)
+  (newline)
+  (call-interactively #'evil-indent-line)
+  (call-interactively #'evil-open-above))
+#+END_SRC
+
+*** Reason
+#+BEGIN_SRC elisp
+(defun rtop ()
+  "Launch reason version of utop"
+  (interactive)
+  (cl-letf ((utop-command "rtop -emacs"))
+    (utop)))
+
+(def-package! reason-mode
+  :mode "\\.rei?$"
+  :commands (reason-mode)
+  :config
+  ;; Merlin eldoc is very slow with marking the whole type region
+  ;; Just trigger it via C-c C-t
+  (setq merlin-eldoc-doc nil)
+  (let* (
+         (refmt-bin (executable-find "refmt"))
+         (merlin-bin (executable-find "ocamlmerlin"))
+         (merlin-base-dir (when merlin-bin
+                            (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
+    ;; Add npm merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
+    (when merlin-bin
+      (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
+      (setq merlin-command merlin-bin))
+
+    (when refmt-bin
+      (setq refmt-command refmt-bin))
+    (require 'merlin)
+    (add-hook! reason-mode
+        (add-hook 'before-save-hook #'refmt-before-save nil t)
+        (merlin-mode))
+    (setq-hook! reason-mode
+        indent-region-function #'apply-refmt)
+    (set-electric! 'some-mode :chars '(?|))
+    (set-lookup-handlers! 'reason-mode
+                          :definition #'merlin-locate
+                          :references #'merlin-occurrences
+                          :documentation #'merlin-document)
+    (set-company-backend! 'reason-mode 'merlin-company-backend)))
+#+END_SRC
+*** Markdown
+
+Always keep markdown centered, without line numbers.
+
+#+BEGIN_SRC elisp
+(def-package! markdown-mode
   :init
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-  (setq nov-text-width 75)
+  (setq markdown-fontify-code-blocks-natively t)
   :config
-  (progn
-    (add-hook 'nov-mode-hook 'my-nov-config)))
-#+END_SRC
+  (add-hook! markdown-mode
+    (visual-line-mode)
+    (visual-fill-column-mode)
+    (outline-minor-mode)
+    (setq visual-fill-column-width 90
+          display-line-numbers nil)
+    (setq line-spacing 2
+          fill-column 80))
 
-The font can be installed via brew cask.
-
-#+BEGIN_SRC bash :tangle no
-brew tap homebrew/cask-fonts
-brew cask install font-liberation-sans
-#+END_SRC
-*** PDF Tools
-**** PDF Tool Config
-#+BEGIN_SRC elisp
-;; Enable Retina pdfs
-(setq pdf-view-use-scaling t)
-
-;; Fix midnight colors for doom-one theme
-(setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
-#+END_SRC
-*** LSP
-**** Disable LSP hover
-#+BEGIN_SRC elisp
-(def-package! lsp-mode
-  :config
-  (setq lsp-eldoc-render-all nil
-        lsp-eldoc-enable-hover nil
-        lsp-eldoc-enable-signature-help nil
-        lsp-eldoc-prefer-signature-help nil
-        lsp-inhibit-message t
-        lsp-highlight-symbol-at-point nil
-        ;; Disable make error highlighting
-        lsp-prefer-flymake nil))
-#+END_SRC
-**** Disable LSP hover face
-
-#+BEGIN_SRC elisp
-(add-hook! 'doom-load-theme-hook
-  (after! lsp
-    (dolist (face '(lsp-face-highlight-read
-                    lsp-face-highlight-write
-                    lsp-face-highlight-textual))
-      (set-face-attribute
-       face nil
-       :foreground nil :distant-foreground nil :background nil))))
+  (map! (:map markdown-mode-map
+          :n "<"    #'markdown-promote
+          :n ">"    #'markdown-demote)))
 #+END_SRC
 *** Ivy
-**** Counsel Config
+**** TODO Counsel Config
 #+BEGIN_SRC elisp
 (defun counsel-org-doom-config ()
   "Counsel the doom config"
@@ -863,7 +1182,6 @@ brew cask install font-liberation-sans
   (doom/find-private-org-config)
   (counsel-org-goto))
 #+END_SRC
-
 **** Import JS File
 #+BEGIN_SRC elisp
 ;; TODO Make template accepts a cursor placeholder
@@ -1116,36 +1434,13 @@ If prefix ARG is set, prompt for a known project to search from."
     (call-interactively #'counsel-projectile-rg)))
 #+END_SRC
 
-*** Minibuffer Maps
+**** Minibuffer Maps
 #+BEGIN_SRC elisp
 ;; Insert from the minibuffer
 (define-key! ivy-minibuffer-map
   "C-c TAB" (λ! ()
              (ivy-kill-whole-line)
              (ivy-quit-and-run (yank))))
-#+END_SRC
-*** TODO Org Noter
-
-[[https://github.com/weirdNox/org-noter][Org Noter]] is a tool to annotate pdfs.
-
-**** Disable Org Noter keybindings
-
-#+BEGIN_SRC elisp
-(setq org-noter-notes-mode-map (make-sparse-keymap))
-#+END_SRC
-
-**** TODO Create custom bindings to insert a note
-
-This overrides my insert subheading keybinding
-
-#+BEGIN_SRC elisp :tangle no
-(after! org
-  (def-package! org-noter
-    :config
-    (map!
-     :leader
-     (:prefix "m"
-       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 #+END_SRC
 *** TODO Spelling
 
@@ -1194,655 +1489,271 @@ ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline
 
 (add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
 #+END_SRC
-** Languages
-*** Javascript
+*** LSP
+**** Disable LSP hover
 #+BEGIN_SRC elisp
-(setq
- flycheck-javascript-eslint-executable (executable-find "eslint_d")
- flycheck-disabled-checkers '(javascript-jshint javascript))
-
-(after! rjsx-mode
-  (add-hook 'js2-mode-hook #'eslintd-fix-mode)
-  (map! :map rjsx-mode-map
-        :localleader
-        (:desc "Open Self-Closing Tag" :n ">" #'+rjsx|expand-insert-self-closing-tag)
-        (:desc "Open Self-Closing Tag" :n "<" #'rjsx-rename-tag-at-point)))
-
-(after! js2-mode
-  (add-hook 'js2-mode-hook #'eslintd-fix-mode)
+(def-package! lsp-mode
   :config
-  (map! :map js2-mode-map
-        :localleader
-        (:desc "import" :n "i" #'+js|ivy-import-file)
-        (:desc "Indium" :prefix "I"
-          :desc "Reload" :n  "r" #'indium-reload
-          :desc "Start" :n  "s" #'indium-connect)))
-
-(defun remove-js-ext (f)
-  "Remove js extension from string"
-  (replace-regexp-in-string "\.js$" "" f))
-
-(defun buffer-file-name-relative ()
-  "Extranct the filename with extension from path"
-  (replace-regexp-in-string (file-name-directory buffer-file-name) "" (buffer-file-name)))
-
-(defun match-const-function-name (line)
-  "Matches a line to the word after the declaration"
-  (nth 2 (s-match
-          "\\(const\\|let\\|class\\)\s\\(.+?\\)\s"
-          line)))
-
-(defun const-function-at-point ()
-  "Returns the current function name at the current line"
-  (match-const-function-name (thing-at-point 'line t)))
-
-(defun js2r-export-default ()
-  "Exports the current declaration at the end of the file"
-  (interactive)
-  (save-excursion
-    (let* ((name (const-function-at-point)))
-      (goto-char (point-max))
-      (insert "\n")
-      (insert (template "export default <<name>>;")))))
-
-(defun js2r-extract-const-to-file ()
-  "Extracts function to external file"
-  (interactive)
-  (let* ((name (const-function-at-point))
-         (path (concat "./" name ".js")))
-    (evil-digit-argument-or-evil-beginning-of-line)
-    (js2r-kill)
-    (f-write-text "" 'utf-8 path)
-    (find-file path)
-    (yank)))
-
-(defun js-index-file-names (&optional actions-dir)
-  "Get filenames from current buffers directory"
-  (let ((fs (directory-files (or actions-dir default-directory) nil ".*\\.js")))
-    (mapcar 'remove-js-ext
-            (remove "index.js" fs))))
-
-(defun +js|generate-index (&optional actions-dir)
-  "Generate an index import file for files in directory"
-  (interactive)
-  (erase-buffer)
-  (let* ((fs (js-index-file-names actions-dir)))
-    (mapc (lambda (f) (insert "import " f " from './" f "';\n")) fs)
-    (insert "\n")
-    (insert "export default {\n")
-    (mapc (lambda (f) (insert "    " f ",\n")) fs)
-    (insert "};")))
-
-(defun js2r-sexp-to-template-string ()
-  "Wrap sexp into a template string"
-  (interactive)
-  (kill-sexp)
-  (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
-  (pop kill-ring))
+  (setq lsp-eldoc-render-all nil
+        lsp-eldoc-enable-hover nil
+        lsp-eldoc-enable-signature-help nil
+        lsp-eldoc-prefer-signature-help nil
+        lsp-inhibit-message t
+        lsp-highlight-symbol-at-point nil
+        ;; Disable make error highlighting
+        lsp-prefer-flymake nil))
 #+END_SRC
-**** Little Word Motion
+**** Disable LSP hover face
+#+BEGIN_SRC elisp
+(add-hook! 'doom-load-theme-hook
+  (after! lsp
+    (dolist (face '(lsp-face-highlight-read
+                    lsp-face-highlight-write
+                    lsp-face-highlight-textual))
+      (set-face-attribute
+       face nil
+       :foreground nil :distant-foreground nil :background nil))))
+#+END_SRC
+*** PDF Tools
+#+BEGIN_SRC elisp
+;; Enable Retina pdfs
+(setq pdf-view-use-scaling t)
+
+;; Fix midnight colors for doom-one theme
+(setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
+#+END_SRC
+*** Nov (Epub Reading Mode)
+
+Adds epub reading mode
+[[https://github.com/wasamasa/nov.el][wasamasa/nov.el: Major mode for reading EPUBs in Emacs]]
+
+I want to keep the buffer centered, but let nov take care of breaking the text,
+since this is much nicer then ~visual-line-mode~.
 
 #+BEGIN_SRC elisp
-(defun +js|load-evil-camel-case-motion ()
-  (require 'evil-little-word)
-  (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-normal-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-operator-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-operator-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "i M-w") 'evil-inner-little-word))
+(defun my-nov-config ()
+  (setq line-spacing 5)
+  (face-remap-add-relative 'variable-pitch :family "Liberation Serif" :height 1.4)
+  (setq visual-fill-column-center-text t)
+  (setq visual-fill-column-width (+ nov-text-width 25))
+  (visual-fill-column-mode t))
 
-(after! rjsx-mode
-  (+js|load-evil-camel-case-motion))
-
-(after! js2-mode
-  (+js|load-evil-camel-case-motion))
-#+END_SRC
-**** Javascript Text Objects
-
-#+BEGIN_SRC elisp
-(add-hook! js-mode
-  (require 'evil-text-objects-javascript)
-  (evil-text-objects-javascript/install))
-#+END_SRC
-
-**** Expand self closing tag
-
-#+BEGIN_SRC elisp
-(defun +rjsx|expand-insert-self-closing-tag ()
-  "Opens the current tag at any position of the cursor and starts insert mode"
-  (interactive)
-  (search-forward "/>")
-  (evil-backward-char)
-  (call-interactively #'delete-backward-char)
-  (call-interactively #'rjsx-electric-gt)
-  (newline)
-  (call-interactively #'evil-indent-line)
-  (call-interactively #'evil-open-above))
-#+END_SRC
-
-*** Reason
-#+BEGIN_SRC elisp
-(defun rtop ()
-  "Launch reason version of utop"
-  (interactive)
-  (cl-letf ((utop-command "rtop -emacs"))
-    (utop)))
-
-(def-package! reason-mode
-  :mode "\\.rei?$"
-  :commands (reason-mode)
-  :config
-  ;; Merlin eldoc is very slow with marking the whole type region
-  ;; Just trigger it via C-c C-t
-  (setq merlin-eldoc-doc nil)
-  (let* (
-         (refmt-bin (executable-find "refmt"))
-         (merlin-bin (executable-find "ocamlmerlin"))
-         (merlin-base-dir (when merlin-bin
-                            (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
-    ;; Add npm merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
-    (when merlin-bin
-      (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
-      (setq merlin-command merlin-bin))
-
-    (when refmt-bin
-      (setq refmt-command refmt-bin))
-    (require 'merlin)
-    (add-hook! reason-mode
-        (add-hook 'before-save-hook #'refmt-before-save nil t)
-        (merlin-mode))
-    (setq-hook! reason-mode
-        indent-region-function #'apply-refmt)
-    (set-electric! 'some-mode :chars '(?|))
-    (set-lookup-handlers! 'reason-mode
-                          :definition #'merlin-locate
-                          :references #'merlin-occurrences
-                          :documentation #'merlin-document)
-    (set-company-backend! 'reason-mode 'merlin-company-backend)))
-#+END_SRC
-*** Markdown
-
-Always keep markdown centered, without line numbers.
-
-#+BEGIN_SRC elisp
-(def-package! markdown-mode
+(def-package! nov
+  :defer t
   :init
-  (setq markdown-fontify-code-blocks-natively t)
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+  (setq nov-text-width 75)
   :config
-  (add-hook! markdown-mode
-    (visual-line-mode)
-    (visual-fill-column-mode)
-    (outline-minor-mode)
-    (setq visual-fill-column-width 90
-          display-line-numbers nil)
-    (setq line-spacing 2
-          fill-column 80))
+  (progn
+    (add-hook 'nov-mode-hook 'my-nov-config)))
+#+END_SRC
 
-  (map! (:map markdown-mode-map
-          :n "<"    #'markdown-promote
-          :n ">"    #'markdown-demote)))
-#+END_SRC
-** Org
-*** Utils
-**** TODO Archive all done tasks
-#+BEGIN_SRC elisp :tangle no
-(defun my-archive-entry ()
-  (message "%s" (thing-at-point 'line t)))
+The font can be installed via brew cask.
 
-(defun +org|org-archive-done-tasks ()
-  (interactive)
-  (org-map-entries #'my-archive-entry "/[X]" 'tree))
-
-(defun +org|org-archive-done-task ()
-  (interactive)
-  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
-
+#+BEGIN_SRC bash :tangle no
+brew tap homebrew/cask-fonts
+brew cask install font-liberation-sans
 #+END_SRC
-**** Grab Tablist from Chrome
+*** Workspaces
 #+BEGIN_SRC elisp
-(defun +org|grab-tabs ()
-  "Grab all the chrome tabs as an org list to save for later inspection"
-  (interactive)
-  (let ((tabs
-         (do-jxa-script
-          (concat
-           "Application(\"Chrome\").windows[0].tabs()"
-           ".map(tab => `"
-           "- [[${tab.url()}][${tab.title()}]]"
-           "`)"
-           ".join(\"\\n\")"))))
-    (insert tabs)))
+;; Always create workspace when switching to project
+(setq +workspaces-on-switch-project-behavior t)
 #+END_SRC
-**** Paste Chrome Link Fix
-
-Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
-
-E.g.: (Brackets signal the cursor position)
-
-: **[*]
-: ***[]"
-
+*** Lookup
 #+BEGIN_SRC elisp
-(defun +org|paste-chrome-link ()
-  "Paste the frontmost chrome link"
-  (interactive)
-  (unless (looking-at-p "[\s\t\n\r]") (forward-char))
-  (insert " ")
-  (insert (org-mac-chrome-get-frontmost-url)))
+(setq +lookup-provider-url-alist
+  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
+    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
+    ("Google"            . "https://google.com/search?q=%s")
+    ("Google images"     . "https://google.com/images?q=%s")
+    ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("NPM"               . "https://npmjs.com/search?q=%s")
+    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
+    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
+    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
+    ("Explain Shell"     . "https://explainshell.com/explain?cmd=%s")
+    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
+    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
+    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
+    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
+    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 #+END_SRC
-**** Sort org entries
+*** Smerge Mode
 #+BEGIN_SRC elisp
-(defun +org|sort-entries ()
-  "Go to header and sort entries"
-  (interactive)
-  (org-up-element)
-  (org-sort)
-  (org-shifttab)
-  (org-cycle))
-#+END_SRC
-**** Copy block to clipboard
-#+BEGIN_SRC elisp
-(defun +org|copy-block ()
-  "Copies the current block to clipboard"
-  (interactive)
-  (org-edit-src-code)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-#+END_SRC
-**** Paste Markdown as org
-#+BEGIN_SRC elisp
-(defun +org|paste-markdown-as-org ()
-  "Convert the current clipboard to markdown"
-  (interactive)
-  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
-#+END_SRC
-**** Ocaml Refmt to Reason
-#+BEGIN_SRC elisp
-(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
-  "Convert the current src block from ocaml to reason and vice versa"
-  (interactive)
-  (save-excursion
-    (let* ((old-block (org-element-at-point))
-           (old-lang (org-element-property :language old-block))
-           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
-           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
-      (org-edit-special)
-      (funcall formatter (point-min) (point-max))
-      (org-edit-src-exit)
-      (let* ((new-block (org-element-at-point))
-             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
-             (from (org-element-property :begin new-block))
-             (to (org-element-property :end new-block)))
-        (delete-region from to)))))
-#+END_SRC
-**** Archive and Done
-#+BEGIN_SRC elisp
-(defun org-archive-and-done ()
-  "Mark task as done and archive"
-  (interactive)
-  (org-todo "DONE")
-  (org-archive-subtree))
-#+END_SRC
-*** Config Rifle
-#+BEGIN_SRC elisp
-(defun helm-org-rifle-config ()
-  "Rifle for the literate configuration file"
-  (interactive)
-  (helm-org-rifle-files (list +literate-config-file)))
-#+END_SRC
-*** Org Attach
-**** Download
-#+BEGIN_SRC elisp
-(defun +org-attach/downloads-file (file)
-  "Attach a file in your downloads-directory"
-  (interactive (list (read-file-name "Attach File: " downloads-dir)))
-  (+org-attach/uri file))
-#+END_SRC
-**** Screenshot
-#+BEGIN_SRC elisp
-(defun +org-attach/last-screenshot ()
-  "Attaches the last screenshot"
-  (interactive)
-  (+org-attach/file (latest-file screenshot-dir)))
-#+END_SRC
-*** Config
-**** General Config
-***** Todo Keywords
-#+BEGIN_SRC elisp
-(after! org
+(after! smerge-mode
   :config
-  (setq org-todo-keywords
-        '((sequence "ACTIVE(a)" "NEXT(n)" "|" "DONE")
-          (sequence "TODO(T)" "|" "DONE(X)")
-          (sequence "[ ](t)" "|" "[X](x)")
-          (sequence "PROJECT(p)" "|" "DONE")
-          (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "DONE" "CANCELLED(c)"))
-   org-todo-keyword-faces
-   '(("ACTIVE" :inherit warning :weight bold)
-     ("NEXT" :inherit warning :weight bold)
-     ("WAITING" :inherit default :weight bold)
-     ("SOMEDAY" :inherit default :weight bold)
-     ("LATER" :inherit default :weight bold)
-     ("PROJECT" :inherit 'org-todo :weight bold))))
+  ;; TODO This is broken after switching the theme but works for now
+  ;; This fixes the smerge diff color is really bright an ugly
+  (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
 #+END_SRC
-***** Projectile Ignore
-
+*** Git
+**** Config
 #+BEGIN_SRC elisp
-(after! projectile
-  (add-to-list 'projectile-globally-ignored-file-suffixes ".org_archive")
-  (add-to-list 'projectile-globally-ignored-file-suffixes ".DS_Store"))
-#+END_SRC
+(setq-default magit-save-repository-buffers 'dontask)
 
-***** Org variables
-
-#+BEGIN_SRC elisp
-(setq
- org-directory (expand-file-name "~/Dropbox/org")
- org-pinboard-dir org-directory
- org-pinboard-file (concat org-pinboard-dir "/Bookmarks/bookmarks.org")
- org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
- org-default-notes-file (concat org-directory "/inbox.org")
- org-shopping-list-file (concat org-directory "/shoppinglist.org")
- org-reading-list (concat org-directory "/reading-list.org"))
-
-(after! org
+(after! magit
   :config
   (setq
-   org-tags-column (- fill-column)
-   org-image-actual-width 600
-   org-default-notes-file (concat org-directory "/inbox.org")))
+   magithub-clone-default-directory "~/Code/Repositories"
+   git-commit-summary-max-length 120))
 #+END_SRC
-***** Latex
-Needs ~dvisvgm~
+**** Bindings
+***** Diff Navigation
+
+My workflow for navigating diffs
+Use ~z1~ to fold all diffs to their file headers and presss ~{~ or ~}~ to
+
+1. Refold all sections
+2. Go to the next section
+3. Unfold everything in the current section
+
+Then use ~]~ to navigate the sections
 
 #+BEGIN_SRC elisp
-(setq org-latex-create-formula-image-program 'dvisvgm)
-#+END_SRC
-
-**** Export
-#+BEGIN_SRC elisp
-(defun +org|copy-subtree-as-markdown ()
-  "Copy the current subtree as markdown to clipboard"
-    (interactive)
-    (let* ((org-export-with-toc nil)
-           (md (org-md-export-as-markdown nil t)))
-      (kill-ring-save (point-min) (point-max))
-      (kill-buffer md)))
-#+END_SRC
-**** Tags
-***** Tags List
-
-Not sure yet if the shortcuts work for me.
-Maybe just try persistent tags.
-
-#+BEGIN_SRC elisp
-(setq
- org-tag-persistent-alist '(("ACCESABILTY"))
- org-tag-alist '(("CSS" . ?c)
-                 ("DESIGN" . ?d)
-                 ("EMACS" . ?e)
-                 ("GUIDE" . ?g)
-                 ("HASKELL" . ?h)
-                 ("JAVASCRIPT" . ?j)
-                 ("LEISURE" . ?l)
-                 ("MATH" . ?m)
-                 ("REASON_ML" . ?r)
-                 ("REPOSITORY". ?R)
-                 ("WORK" . ?w)))
-#+END_SRC
-***** Tags Helpers
-#+BEGIN_SRC elisp
-(defun +org-align-all-tags ()
-  "Interactive version of org-align-all-tags"
+(defun floscr:magit-jumpunfold-section (&optional forward)
+  "Fold all section. Go to next section when FORWARD. Show all children"
   (interactive)
-  (org-align-all-tags))
+  (magit-section-show-level-1-all)
+  (call-interactively (if forward #'magit-section-forward-sibling #'magit-section-backward-sibling))
+  (call-interactively #'magit-section-show-children))
+
+(map!
+ (:after evil-magit
+   :map (magit-diff-mode-map)
+   :n "}" (λ! (floscr:magit-jumpunfold-section 't))
+   :n "{" (λ! (floscr:magit-jumpunfold-section))))
 #+END_SRC
-**** Refile Targets
+
+***** Magit Window Navigation Binding Fixes
+
+Fixes evil window navigation for magit special buffers
 
 #+BEGIN_SRC elisp
-(defun expand-org-file-names (xs)
-  (mapcar (λ (x) (expand-file-name x org-directory)) xs))
-
-(setq level-1-refile-targets (expand-org-file-names '("reading-list.org"
-                                                      "cooking.org"
-                                                      ;; "books.org"
-                                                      "programming.org"
-                                                      "shoppinglist.org")))
-
-(setq max-level-2-refile-targets (expand-org-file-names '("Emacs.org"
-                                                          "art.org"
-                                                          "diary"
-                                                          "games.org"
-                                                          "hardware.org"
-                                                          "home.org"
-                                                          "inbox.org"
-                                                          "mealplan.org"
-                                                          "misc.org"
-                                                          "movies.org"
-                                                          "music.org"
-                                                          "osx.org"
-                                                          "personal.org"
-                                                          "podcasts.org"
-                                                          "projects.org"
-                                                          "sleep.org"
-                                                          "sports.org"
-                                                          "travel.org"
-                                                          "Work/work.org")))
-
-(defun level-1-refile-targets () level-1-refile-targets)
-
-(defun max-level-2-refile-targets () max-level-2-refile-targets)
-
-(after! org
-  :config
-  (setq org-refile-targets (quote ((nil :maxlevel . 5)
-                                   (max-level-2-refile-targets :maxlevel . 2)
-                                   (level-1-refile-targets :level . 1)))
-        org-agenda-refile org-agenda-files))
+(map!
+ (:after evil-magit
+   :map (magit-status-mode-map magit-revision-mode-map magit-diff-mode-map)
+   :n "C-j" #'evil-window-down
+   :n "C-k" #'evil-window-up
+   :n "C-h" #'evil-window-left
+   :n "C-l" #'evil-window-right))
 #+END_SRC
-**** Journal
-#+BEGIN_SRC elisp
-(defvar org-journal-dir-default "~/Dropbox/org/journal")
-(defvar org-journal-dir-diary "~/Dropbox/org/diary")
 
-(setq org-journal-dir org-journal-dir-default)
-(setq org-journal-file-format "%Y-%m-%d")
-(setq org-journal-date-prefix "#+TITLE: ")
-(setq org-journal-date-format "%A, %B %d %Y")
-(setq org-journal-time-prefix "* ")
-(setq org-journal-time-format "")
-#+END_SRC
-**** Org Capture
-***** Org Capture Config
+**** Revision show orignal file
+
+Show the orginal file when visiting a revision buffer.
+E.g.: When showing a diff from a commit, you may want to edit that file.
 
 #+BEGIN_SRC elisp
-(setq +org-capture-frame-parameters
-  `((name . "org-capture")
-    (width . 120)
-    (height . 35)
-    (transient . t)))
+(defun magit-revision-show-original-file ()
+  "Show the orginal file from a revision buffer
+If possible also go to the pointing line"
+  (interactive)
+  (when magit-buffer-file-name
+    (let ((file-name magit-buffer-file-name)
+          (line-number (line-number-at-pos)))
+      (delete-other-windows)
+      (find-file file-name)
+      (goto-line line-number))))
 #+END_SRC
 
-***** Org Capture Templates
+**** Git changed files
+
+Show a list of the changed files in the current branch.
+For now only works on branches that were directly forked from master.
 
 #+BEGIN_SRC elisp
-(defun org-capture-bookmark-pair ()
-  (split-string (org-as-mac-chrome-get-frontmost-url) "::split::"))
+(defun shell-command-to-list (cmd)
+  "Split output from shell-command to list"
+  (split-string (shell-command-to-string cmd) "\n" t))
 
-(defun org-capture-bookmark-string-url ()
-  (car (org-capture-bookmark-pair)))
+(defun git-new-files ()
+  (shell-command-to-list "git ls-files -om --exclude-standard"))
 
-(defun org-capture-bookmark-string-description ()
-  (cadr (org-capture-bookmark-pair)))
+(defun git-modified-files (&optional branch)
+  (shell-command-to-list
+   (template "git --no-pager diff --no-renames --name-only --no-merges <<(magit-rev-parse \"HEAD\")>> <<branch>>;")))
 
-(after! org
-  :config
-  (setq org-capture-templates
-        `(("t" "todo" entry
-           (file org-default-notes-file)
-           "* TODO %?\n%U")
+(defun git-get-changed-files (b)
+    (delete-dups (append (git-modified-files b) (git-new-files))))
 
-          ("c" "Calendar Event" entry
-           (file+headline ,(concat org-directory "/home.org") "Calendar")
-           "* %?\n%U")
-
-          ("e" "Emacs Todo" entry
-           (file+headline ,(concat org-directory "/emacs.org") "Emacs Todos")
-           "* TODO %?\n%U")
-
-          ("p" "Pin Bookmark" entry (file+headline org-pinboard-file "Pinboard")
-           "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
-
-          ("C" "Browser" entry
-           (file org-default-notes-file)
-           "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
-
-          ("w" "work" entry
-           (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
-           "* TODO %?\n%U"))))
+(defun +git|ivy-changed-files (&optional branch)
+  (interactive)
+  (let ((enable-recursive-minibuffers t))
+    (ivy-read (template "Changed files for <<branch>>:")
+              (git-get-changed-files (or branch "master"))
+              :require-match t
+              :history 'file-name-history
+              :action counsel-projectile-find-file-action
+              :caller '+git|ivy-changed-files)))
 #+END_SRC
-**** TODO Src Block Snippets
+**** Create New Git Worktree Workspace
 
-Solve these with yasnippet
+Creates a new git workspace from a branch.
+Automatically adds ~.projectfile~ and opens a new doom workspace.
 
+#+BEGIN_SRC elisp
+(defun magit-worktree-branch-project-worktree (branch start-point &optional force)
+  "Create a new BRANCH and check it out in a new worktree at PATH in a new workspace."
+  (interactive
+   `(,@(butlast (magit-branch-read-args "Create and checkout branch"))
+     ,current-prefix-arg))
+  (let* ((worktree-path (f-join (projectile-project-root) ".worktrees"))
+         (path (f-join (projectile-project-root) ".worktrees" branch)))
+    (when (not (f-exists-p worktree-path))
+      (mkdir worktree-path t))
+    (magit-run-git "worktree" "add" (if force "-B" "-b")
+                   branch (expand-file-name path) start-point)
+    (f-touch (f-join path ".projectile"))
+    (+workspace-new branch)
+    (+workspace-switch branch)
+    (magit-diff-visit-directory path)
+    (projectile-add-known-project path)
+    path))
+
+(defun +MM|new-worktree ()
+  "New worktree with the devpanel files and an npm install"
+  (interactive)
+  (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
+    (npm-mode)
+    (npm-mode-npm-install)))
+#+END_SRC
+
+**** Git undo
+#+BEGIN_SRC elisp
+(defun +git|undo ()
+  "Soft reset current git repo to HEAD~1."
+  (interactive)
+  (magit-reset-soft "HEAD~1"))
+#+END_SRC
+**** TODO Browse git link
+
+Browse the current thing at point for git
+
+#+BEGIN_SRC elisp
+(defun browse-git-link ()
+  "Browse the git link at the current point"
+  (interactive)
+  (let ((git-link-open-in-browser t))
+    (call-interactively 'git-link)))
+#+END_SRC
+**** TODO Insert message from commit history
 #+BEGIN_SRC elisp :tangle no
-(add-to-list 'org-structure-template-alist '("es" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
-(add-to-list 'org-structure-template-alist '("j" "#+BEGIN_SRC js\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("ps" "#+BEGIN_SRC purescript\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("b" "#+BEGIN_SRC bash\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("re" "#+BEGIN_SRC reason\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("oc" "#+BEGIN_SRC ocaml\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("rb" "#+BEGIN_SRC ruby\n?\n#+END_SRC\n"))
-(add-to-list 'org-structure-template-alist '("md" "#+BEGIN_SRC markdown\n?\n#+END_SRC\n"))
-#+END_SRC
-
-**** TODO Bookmarks
-These can be solved with a lambda and dont need extra functions
-#+BEGIN_SRC elisp
-(defun org-find-file (f)
-  "Find file in org directory"
-  (find-file (concat org-directory f)))
-
-(defun +org|org-open-home-file ()
-  "Open the home org file"
+(defun +git|commit-search-message-history ()
+  "Search and insert commit message from history."
   (interactive)
-  (org-find-file "/home.org"))
-
-(defun +org|org-open-reading-list-file ()
-  "Open the reading list org file"
-  (interactive)
-  (org-find-file "/reading-list.org"))
-
-(defun +org|org-open-work-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/Work/work.org"))
+  (insert (completing-read "History: "
+                           ;; Remove unnecessary newlines from beginning and end.
+                           (mapcar (lambda (text)
+                                     (string-trim text))
+                                   (ring-elements log-edit-comment-ring)))))
 #+END_SRC
-
-**** Leader Bindings
+*** rainbow-mode
 #+BEGIN_SRC elisp
-(map! :leader (:desc "Notes" :prefix "n"
-                :desc "Pinboard File"        :n "B" (λ! (find-file org-pinboard-file))
-                :desc "Save All Org Buffers" :n "S" #'org-save-all-org-buffers
-                :desc "Agenda"               :n "a" #'org-agenda
-                :desc "Search Pinboard"      :n "b" #'helm-org-pinboard
-                :desc "Emacs"                :n "e" (λ! (find-file (concat org-directory "/Emacs.org")))
-                :desc "Home"                 :n "h" #'+org|org-open-home-file
-                :desc "Inbox"                :n "i" (λ! (find-file (concat org-directory "/inbox.org")))
-                :desc "Reading List"         :n "r" #'+org|org-open-reading-list-file
-                :desc "Work"                 :n "w" #'+org|org-open-work-file
-                :desc "Store Link"           :n "y" #'org-store-link))
-#+END_SRC
-**** General Bindings
-#+BEGIN_SRC elisp
-(after! org
-  (map! :map evil-org-mode-map
-        :n "s-j" #'org-move-subtree-down
-        :n "s-k" #'org-move-subtree-up
-
-        :localleader
-        :desc "Archive Subtree"          :m "a" #'org-archive-subtree
-        :desc "Archive Subtree and Done" :m "A" #'org-archive-and-done
-        :desc "Paste Chrome Link"        :m "p" #'+org|paste-chrome-link
-        :desc "Grab tabs"                :m "P" #'+org|grab-tabs
-        :desc "Cut Subtree"              :m "C" #'org-cut-subtree
-        :desc "Paste Subtree"            :m "P" #'org-paste-subtree
-        :desc "Sort Entries"             :m "S" #'+org|sort-entries
-
-        :desc "Create/Edit Todo"  :nve "o" #'org-todo
-        :desc "Schedule"          :nve "s" #'org-schedule
-        :desc "Deadline"          :nve "d" #'org-deadline
-        :desc "Refile"            :nve "r" #'org-refile
-        :desc "Filter"            :nve "f" #'org-match-sparse-tree
-        :desc "Tag heading"       :nve "t" #'org-set-tags-command
-
-        (:desc "Attach" :prefix "F"
-          :desc "Downloads File" :m "d" '+org-attach/downloads-file
-          :desc "Screenshot" :m "s" '+org-attach/last-screenshot
-          :desc "URI" :m "u" '+org-attach/uri
-          :desc "File" :m "f" '+org-attach/file)
-
-        (:desc "Insert" :prefix "i"
-          :desc "Subheadeing" :m "s" (λ!
-                                      (call-interactively 'org-insert-subheading)
-                                      (evil-insert-state))
-          :desc "Inavtive Timestamp" :m "i" 'org-time-stamp-inactive)
-        (:desc "Narrow" :prefix "n"
-          :desc "Indirect Buffer Tree" :m "i" #'org-tree-to-indirect-buffer
-          :desc "Subtree"              :m "s" #'org-narrow-to-subtree
-          :desc "Block"                :m "b" #'org-narrow-to-block
-          :desc "Element"              :m "e" #'org-narrow-to-element
-          :desc "widen"                :m "w" #'widen)))
-#+END_SRC
-**** Agenda
-***** Bindings
-#+BEGIN_SRC elisp
-(evil-define-key 'motion org-agenda-mode-map
-  "vd" 'org-agenda-day-view
-  "ds" 'org-agenda-schedule
-  "vw" 'org-agenda-week-view
-  "vm" 'org-agenda-month-view
-  "vy" 'org-agenda-year-view)
-#+END_SRC
-***** Custom Agenda Commands
-
-#+BEGIN_SRC elisp
-(after! org-agenda
-  (add-to-list 'org-agenda-custom-commands
-               '("p" "Personal" agenda ""
-                 ((org-agenda-ndays 5)
-                  (org-agenda-span 7)
-                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
-                  (tags-todo "-\[X\]")
-                  (tags-todo "-DONE")
-                  (org-agenda-start-on-weekday nil)
-                  (org-agenda-time-grid nil)
-                  (org-agenda-day-view)
-                  (org-agenda-repeating-timestamp-show-all t))))
-  (add-to-list 'org-agenda-custom-commands
-               '("w" "Work" tags-todo "+WORK"))
-  (add-to-list 'org-agenda-custom-commands
-               '("rr" "Reading List" tags-todo "+TEXT"))
-  (add-to-list 'org-agenda-custom-commands
-               '("c" "Calendar" agenda ""
-                 ((org-agenda-span 7)
-                  (org-agenda-start-on-weekday nil)
-                  (org-agenda-start-day "-1d")
-                  (org-agenda-tag-filter-preset '("+CALENDAR")))))
-
-
-  :config
-  (setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
+(def-package! rainbow-mode
+  :commands (rainbow-mode))
 #+END_SRC
 
-Helper to reset the org agenda custom commands.
-
-#+BEGIN_SRC elisp :tangle no
-(setq org-agenda-custom-commands '())
-#+END_SRC
-** Package Config
 *** Indium
 #+BEGIN_SRC elisp
 (def-package! indium
@@ -2096,7 +2007,7 @@ To enable the checker press ~SPC u C-c ! x~
 (def-package! blimp
   :hook (image-mode-hook . blimp-mode))
 #+END_SRC
-*** Git Lens
+*** git-lens
 #+BEGIN_SRC elisp
 (def-package! git-lens
   :commands (git-lens))
@@ -2197,7 +2108,10 @@ The history can be accessed with ~C-n~ / ~C-p~
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
-(map! :en "C-±"   #'+popup/raise)
+(map!
+ :en "C-±"   #'+popup/raise
+ :nv "C-a"   #'evil-numbers/inc-at-pt
+ :nv "C-S-a" #'evil-numbers/dev-at-pt)
 #+END_SRC
 *** Mac Modifier Bindings
 #+BEGIN_SRC elisp
@@ -2373,11 +2287,17 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Project Root"                 :n  "p" (λ! (dired (projectile-project-root))))
 
  (:desc "git" :prefix "g"
-   :desc "Amend Commit"                :n  "a" #'magit-commit-amend
-   :desc "Checkout"                    :n  "b" #'magit-checkout
-   :desc "Blame"                       :n  "B" #'magit-blame
-   :desc "New Branch"                  :n  "N" #'magit-branch-spinoff
-   :desc "Show revision original File" :n  "O" #'magit-revision-show-original-file)
+   :desc "Worktree Popup"              :n "%" #'magit-worktree
+   :desc "Blame"                       :n "B" #'magit-blame
+   :desc "Changed Files"               :n "F" #'+git|ivy-changed-files
+   :desc "New Branch"                  :n "N" #'magit-branch-spinoff
+   :desc "Show revision original File" :n "O" #'magit-revision-show-original-file
+   :desc "Map-editor Changed Files"    :n "T" (λ! (+git|ivy-changed-files "map-editor"))
+   :desc "Amend Commit"                :n "a" #'magit-commit-amend
+   :desc "Checkout"                    :n "b" #'magit-checkout
+   :desc "Diff"                        :n "d" #'magit-diff
+   :desc "Push"                        :n "p" #'magit-push
+   :desc "Undo"                        :n "u" #'+git|undo)
 
  (:desc "insert" :prefix "i"
    :desc "Killring"   :n  "y" #'helm-show-kill-ring)
