@@ -686,7 +686,7 @@ E.g.: (Brackets signal the cursor position)
  org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
  org-default-notes-file (concat org-directory "/inbox.org")
  org-shopping-list-file (concat org-directory "/shoppinglist.org")
- org-reading-list (concat org-directory "/reading-list.org"))
+ +org-reading-list-file (concat org-directory "/reading-list.org"))
 
 (after! org
   :config
@@ -872,11 +872,6 @@ These can be solved with a lambda and dont need extra functions
   (interactive)
   (org-find-file "/home.org"))
 
-(defun +org|org-open-reading-list-file ()
-  "Open the reading list org file"
-  (interactive)
-  (org-find-file "/reading-list.org"))
-
 (defun +org|org-open-work-file ()
   "Open the home org file"
   (interactive)
@@ -893,7 +888,7 @@ These can be solved with a lambda and dont need extra functions
                 :desc "Emacs"                :n "e" (λ! (find-file (concat org-directory "/Emacs.org")))
                 :desc "Home"                 :n "h" #'+org|org-open-home-file
                 :desc "Inbox"                :n "i" (λ! (find-file (concat org-directory "/inbox.org")))
-                :desc "Reading List"         :n "r" #'+org|org-open-reading-list-file
+                :desc "Reading List"         :n "r" #'+org-reading-list/org-open-reading-list-file
                 :desc "Work"                 :n "w" #'+org|org-open-work-file
                 :desc "Store Link"           :n "y" #'org-store-link))
 #+END_SRC

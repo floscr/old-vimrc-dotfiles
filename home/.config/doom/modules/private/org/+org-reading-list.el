@@ -2,11 +2,12 @@
 
 ;;; Variables
 
-(setq-default +org-reading-list-todo-state "[ ]")
-(setq-default +org-reading-list-file (concat org-directory "/reading-list.org"))
-(setq-default +org-reading-list-headline "Reading List")
-(setq-default +org-watching-list-headline "Watching List")
-(setq-default +org-listening-list-headline "Listening List")
+(defvar +org-reading-list-todo-state "[ ]")
+(defvar +org-reading-list-file-name "reading-list.org")
+(defvar +org-reading-list-file (concat org-directory "/" +org-reading-list-file-name))
+(defvar +org-reading-list-headline "Reading List")
+(defvar +org-watching-list-headline "Watching List")
+(defvar +org-listening-list-headline "Listening List")
 
 ;;; Utils
 
@@ -49,3 +50,8 @@
    +org-listening-list-headline
    +org-reading-list-todo-state
    t))
+
+(defun +org-reading-list/org-open-reading-list-file ()
+  "Open the reading list org file"
+  (interactive)
+  (find-file +org-reading-list-file))
