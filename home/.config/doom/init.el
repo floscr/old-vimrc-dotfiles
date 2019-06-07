@@ -33,7 +33,6 @@
  dired
  electric
  eshell
- imenu
  term
  vc
 
