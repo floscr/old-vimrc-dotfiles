@@ -578,23 +578,11 @@ Fixes evil window navigation for magit
    :n "C-l" #'evil-window-right))
 #+END_SRC
 
-***** Git Local Leader Bindings
-
+***** Git Leader Bindings
 #+BEGIN_SRC elisp
 (map! :map global-git-commit-mode-map
       :n "Q" #'+dired|kill-dired-buffers)
-
-(map!
- :leader
- (:desc "Magit" :prefix "g"
-   :desc "Worktree Popup" :n  "%" #'magit-worktree
-   :desc "Map-editor Changed Files"  :n  "T" (λ! (+git|ivy-changed-files "map-editor"))
-   :desc "Changed Files"  :n  "F" #'+git|ivy-changed-files
-   :desc "Fetch"          :n  "f" #'magit-fetch
-   :desc "Push"           :n  "p" #'magit-push
-   :desc "Undo"           :n  "u" #'+git|undo))
 #+END_SRC
-
 **** Revision show orignal file
 
 Show the orginal file when visiting a revision buffer.
@@ -2380,11 +2368,17 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Project Root"                 :n  "p" (λ! (dired (projectile-project-root))))
 
  (:desc "git" :prefix "g"
-   :desc "Amend Commit"                :n  "a" #'magit-commit-amend
-   :desc "Checkout"                    :n  "b" #'magit-checkout
-   :desc "Blame"                       :n  "B" #'magit-blame
-   :desc "New Branch"                  :n  "N" #'magit-branch-spinoff
-   :desc "Show revision original File" :n  "O" #'magit-revision-show-original-file)
+   :desc "Worktree Popup"              :n "%" #'magit-worktree
+   :desc "Blame"                       :n "B" #'magit-blame
+   :desc "Changed Files"               :n "F" #'+git|ivy-changed-files
+   :desc "New Branch"                  :n "N" #'magit-branch-spinoff
+   :desc "Show revision original File" :n "O" #'magit-revision-show-original-file
+   :desc "Map-editor Changed Files"    :n "T" (λ! (+git|ivy-changed-files "map-editor"))
+   :desc "Amend Commit"                :n "a" #'magit-commit-amend
+   :desc "Checkout"                    :n "b" #'magit-checkout
+   :desc "Diff"                        :n "d" #'magit-diff
+   :desc "Push"                        :n "p" #'magit-push
+   :desc "Undo"                        :n "u" #'+git|undo)
 
  (:desc "insert" :prefix "i"
    :desc "Killring"   :n  "y" #'helm-show-kill-ring)
