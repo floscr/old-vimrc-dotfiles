@@ -526,24 +526,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** Git Review
-
-Config for [[https://github.com/charignon/github-review][charignon/github-review]].
-
-**** Open Forge PR in Review Mode
-#+BEGIN_SRC elisp
-(defun +forge-start-pull-review ()
-  "Start Pull Review on the current pull request"
-  (interactive)
-  (-some-->
-   (forge-get-url (or (forge-post-at-point)
-                      (forge-current-topic)))
-   (let ((github-review-review-folder (or (directory-file-name (projectile-project-root)) github-review-review-folder)))
-     (setq github-review-review-folder (directory-file-name (projectile-project-root)))
-     (message "FOLDER: %s" github-review-review-folder)
-     (github-review-start it))))
-#+END_SRC
-
 *** Prodigy
 #+BEGIN_SRC elisp
 (after! prodigy
