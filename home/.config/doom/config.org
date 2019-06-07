@@ -526,29 +526,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** TODO Org Noter
-
-[[https://github.com/weirdNox/org-noter][Org Noter]] is a tool to annotate pdfs.
-
-**** Disable Org Noter keybindings
-
-#+BEGIN_SRC elisp
-(setq org-noter-notes-mode-map (make-sparse-keymap))
-#+END_SRC
-
-**** TODO Create custom bindings to insert a note
-
-This overrides my insert subheading keybinding
-
-#+BEGIN_SRC elisp :tangle no
-(after! org
-  (def-package! org-noter
-    :config
-    (map!
-     :leader
-     (:prefix "m"
-       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
-#+END_SRC
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
