@@ -7,6 +7,10 @@
 #+END_SRC
 
 * Configuration
+** Required Packages
+#+BEGIN_SRC elisp
+(require 'dash)
+#+END_SRC
 ** About
 
 This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs]].
@@ -307,8 +311,6 @@ This will be disabled in terminal mode.
   "External Monitor at work"
   (interactive)
   (my-frame-resize-width 1410))
-
-(require 'dash)
 
 (cond
  ((--first (string= system-name it) '("Florians-MBP.localdomain" "Florians-MacBook-Pro.local"))
