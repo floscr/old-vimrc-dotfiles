@@ -7,7 +7,6 @@
 
 ;;; Javascript Packages
 (package! indium)
-(package! import-js)
 
 ;;; Reasonml Packages
 (package! reason-mode)
