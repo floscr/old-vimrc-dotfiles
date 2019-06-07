@@ -525,7 +525,6 @@ Create an action from a controller and import directly
             :action #'projectile-find-file))
 #+END_SRC
 
-** Packages & Modules
 ** Languages
 *** Javascript
 #+BEGIN_SRC elisp
