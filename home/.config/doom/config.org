@@ -526,368 +526,6 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Packages & Modules
-*** Lookup
-#+BEGIN_SRC elisp
-(setq +lookup-provider-url-alist
-  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
-    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
-    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
-    ("Google"            . "https://google.com/search?q=%s")
-    ("Google images"     . "https://google.com/images?q=%s")
-    ("Google maps"       . "https://maps.google.com/maps?q=%s")
-    ("NPM"               . "https://npmjs.com/search?q=%s")
-    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
-    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
-    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
-    ("Explain Shell"     . "https://explainshell.com/explain?cmd=%s")
-    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
-    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
-    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
-    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
-    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
-#+END_SRC
-*** Workspaces
-#+BEGIN_SRC elisp
-;; Always create workspace when switching to project
-(setq +workspaces-on-switch-project-behavior t)
-#+END_SRC
-*** Nov (Epub Reading Mode)
-
-Adds epub reading mode
-[[https://github.com/wasamasa/nov.el][wasamasa/nov.el: Major mode for reading EPUBs in Emacs]]
-
-I want to keep the buffer centered, but let nov take care of breaking the text,
-since this is much nicer then ~visual-line-mode~.
-
-#+BEGIN_SRC elisp
-(defun my-nov-config ()
-  (setq line-spacing 5)
-  (face-remap-add-relative 'variable-pitch :family "Liberation Serif" :height 1.4)
-  (setq visual-fill-column-center-text t)
-  (setq visual-fill-column-width (+ nov-text-width 25))
-  (visual-fill-column-mode t))
-
-(def-package! nov
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-  (setq nov-text-width 75)
-  :config
-  (progn
-    (add-hook 'nov-mode-hook 'my-nov-config)))
-#+END_SRC
-
-The font can be installed via brew cask.
-
-#+BEGIN_SRC bash :tangle no
-brew tap homebrew/cask-fonts
-brew cask install font-liberation-sans
-#+END_SRC
-*** PDF Tools
-**** PDF Tool Config
-#+BEGIN_SRC elisp
-;; Enable Retina pdfs
-(setq pdf-view-use-scaling t)
-
-;; Fix midnight colors for doom-one theme
-(setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
-#+END_SRC
-*** LSP
-**** Disable LSP hover
-#+BEGIN_SRC elisp
-(def-package! lsp-mode
-  :config
-  (setq lsp-eldoc-render-all nil
-        lsp-eldoc-enable-hover nil
-        lsp-eldoc-enable-signature-help nil
-        lsp-eldoc-prefer-signature-help nil
-        lsp-inhibit-message t
-        lsp-highlight-symbol-at-point nil
-        ;; Disable make error highlighting
-        lsp-prefer-flymake nil))
-#+END_SRC
-**** Disable LSP hover face
-
-#+BEGIN_SRC elisp
-(add-hook! 'doom-load-theme-hook
-  (after! lsp
-    (dolist (face '(lsp-face-highlight-read
-                    lsp-face-highlight-write
-                    lsp-face-highlight-textual))
-      (set-face-attribute
-       face nil
-       :foreground nil :distant-foreground nil :background nil))))
-#+END_SRC
-*** Ivy
-**** Counsel Config
-#+BEGIN_SRC elisp
-(defun counsel-org-doom-config ()
-  "Counsel the doom config"
-  (interactive)
-  (doom/find-private-org-config)
-  (counsel-org-goto))
-#+END_SRC
-
-**** Import JS File
-#+BEGIN_SRC elisp
-;; TODO Make template accepts a cursor placeholder
-;; TODO Maybe even look at exports
-(defun my-js-import-file (file)
-  (let ((cursor-postion (point))
-        (filename (remove-js-ext file)))
-    (insert (template "import  from '<<filename>>';"))
-    (goto-char cursor-postion)
-    (forward-char 7)
-    (evil-insert-state)))
-
-(defun +js|ivy-import-file (&optional action)
-  (interactive)
-  (ivy-read "Import file "
-            (append
-             (--map (concat "./" it)
-                    (split-string (shell-command-to-string (concat find-program " " counsel-file-jump-args)) "\n" t))
-             (split-string (shell-command-to-string
-                            (concat "jq -r '.dependencies | keys | .[]' " (concat (projectile-project-root) "package.json"))) "\n" t))
-            :action (or action 'my-js-import-file)))
-
-(setq +MM-comment-headers '("EXTERNALS" "LOCALS" "HELPERS" "MAIN"))
-
-(defun +MM:get-remaining-headers-list (header)
-  "Returns a reversed list of headers to search through"
-  (->> +MM-comment-headers
-       (-split-on header)
-       (-first-item)))
-
-(defun +MM:goto-or-add-header (header)
-  "Goes to a comment header or if it doesnt exist creates one"
-  (goto-char (point-min))
-  (if (search-forward header nil t)
-      (progn
-        (search-forward-regexp "^/\\*\\*" nil t)
-        (previous-line 2))
-    ;; Create header when none was found
-    (progn
-      (let* ((headers (reverse (+MM:get-remaining-headers-list header))))
-        (--first (search-forward it nil t) headers))
-      (search-forward-regexp "^/\\*\\*" nil t)
-      (evil-insert-newline-above)
-      (insert (template  "/** <<header>> **/\n\n\n\n"))
-      (previous-line 1))))
-
-(defun +MM:add-import-to-file (file)
-  (goto-char (point-min))
-  (let* ((is-local (s-contains? "./" file))
-         (comment-header-title (if is-local "LOCALS" "EXTERNALS")))
-    (+MM:goto-or-add-header comment-header-title)
-    (evil-insert-newline-below)
-    (previous-line 1)
-    (my-js-import-file file)))
-
-(defun +MM|import-file ()
-  (interactive)
-  (+js|ivy-import-file '+MM:add-import-to-file))
- #+END_SRC
-
-**** Rules
-#+BEGIN_SRC elisp :tangle no
-(setq +MM-Rules
-      (ht ("flexDirection"     '("row" "row-reverse" "column" "column-reverse"))
-          ("fontWeight"        '("normal" "regular" "heavy" "bold" "black" "light"))
-          ;; ("position"        '("absolute" "relative" "fixed"))
-          ;; ("padding"           'number)
-          ;; ("paddingHorizontal" 'number)
-          ;; ("paddingVertical"   'number)
-          ;; ("paddingTop"        'number)
-          ;; ("paddingBottom"     'number)
-          ;; ("paddingLeft"       'number)
-          ;; ("paddingRight"      'number)
-          ;; ("margin"            'number)
-          ;; ("marginTop"         'number)
-          ;; ("marginBottom"      'number)
-          ;; ("marginLeft"        'number)
-          ;; ("marginRight"       'number)
-          ;; ("top"               'number)
-          ;; ("left"              'number)
-          ;; ("right"             'number)
-          ;; ("bottom"            'number)
-          ;; ("translateY"            'number)
-          ;; ("translateX"            'number)
-          ;; ("rotate"            'number)
-          ;; ("absolute"       'noop)
-          ;; ("absoluteHorizontalCenter"       'noop)
-          ;; ("absoluteHorizontalCenter"       'noop))
-
-    ;; ("absoluteCenter" 'noop)
-    ;; ("absoluteHorizontalCenter" 'noop)
-    ;; ("absoluteVerticalCenter" 'noop)
-    ;; ("alignContent" '("flex-start", "flex-end", "center", "space-between", "space-around", "stretch"))
-    ;; ("alignItems" '())
-    ;; ("alignSelf" 'number)
-    ;; ("assoc" 'number)
-    ;; ("backfaceVisibility" 'number)
-    ;; ("backgroundColor" 'number)
-    ;; ("backgroundImage" 'number)
-    ;; ("backgroundPosition" 'number)
-    ;; ("backgroundRepeat" 'number)
-    ;; ("backgroundSize" 'number)
-    ;; ("borderBottomLeftRadius" 'number)
-    ;; ("borderBottomRightRadius" 'number)
-    ;; ("borderBottomWidth" 'number)
-    ;; ("borderColor" 'number)
-    ;; ("borderHorizontalWidth" 'number)
-    ;; ("borderLeftWidth" 'number)
-    ;; ("borderRadius" 'number)
-    ;; ("borderRightWidth" 'number)
-    ;; ("borderStyle" 'number)
-    ;; ("borderTopLeftRadius" 'number)
-    ;; ("borderTopRightRadius" 'number)
-    ;; ("borderTopWidth" 'number)
-    ;; ("borderVerticalWidth" 'number)
-    ;; ("borderWidth" 'number)
-    ;; ("bottom" 'number)
-    ;; ("boxShadow" 'number)
-    ;; ("boxShadows" 'number)
-    ;; ("boxShadows.result" 'number)
-    ;; ("boxSizing" 'number)
-    ;; ("color" 'number)
-    ;; ("concat" 'number)
-    ;; ("concatWhen" 'number)
-    ;; ("cursor" 'number)
-    ;; ("display" 'number)
-    ;; ("dissoc" 'number)
-    ;; ("fill" 'number)
-    ;; ("flexBasis" 'number)
-    ;; ("flexDirection" 'number)
-    ;; ("flexGrow" 'number)
-    ;; ("flexShrink" 'number)
-    ;; ("flexWrap" 'number)
-    ;; ("float" 'number)
-    ;; ("fontFamily" 'number)
-    ;; ("fontSize" 'number)
-    ;; ("fontStyle" 'number)
-    ;; ("fontWeight" 'number)
-    ;; ("fontWeight.Schema() callback" 'number)
-    ;; ("fontWeight.caseEquals('black') callback" 'number)
-    ;; ("fontWeight.caseEquals('heavy') callback" 'number)
-    ;; ("fontWeight.caseEquals('light') callback" 'number)
-    ;; ("fontWeight.caseEquals('regular') callback" 'number)
-    ;; ("fontWeight.default() callback" 'number)
-    ;; ("fontWeight.fold() callback" 'number)
-    ;; ("height" 'number)
-    ;; ("init" 'number)
-    ;; ("justifyContent" 'number)
-    ;; ("left" 'number)
-    ;; ("lineHeight" 'number)
-    ;; ("listStyleType" 'number)
-    ;; ("margin" 'number)
-    ;; ("marginBottom" 'number)
-    ;; ("marginHorizontal" 'number)
-    ;; ("marginLeft" 'number)
-    ;; ("marginRight" 'number)
-    ;; ("marginTop" 'number)
-    ;; ("marginVertical" 'number)
-    ;; ("maxHeight" 'number)
-    ;; ("maxSize" 'number)
-    ;; ("maxWidth" 'number)
-    ;; ("merge" 'number)
-    ;; ("minHeight" 'number)
-    ;; ("minSize" 'number)
-    ;; ("minWidth" 'number)
-    ;; ("opacity" 'number)
-    ;; ("overflow" 'number)
-    ;; ("overflowX" 'number)
-    ;; ("overflowY" 'number)
-    ;; ("padding" 'number)
-    ;; ("paddingBottom" 'number)
-    ;; ("paddingHorizontal" 'number)
-    ;; ("paddingLeft" 'number)
-    ;; ("paddingRight" 'number)
-    ;; ("paddingTop" 'number)
-    ;; ("paddingVertical" 'number)
-    ;; ("pointerEvents" 'number)
-    ;; ("position" 'number)
-    ;; ("resize" 'number)
-    ;; ("right" 'number)
-    ;; ("rotate" 'number)
-    ;; ("scale" 'number)
-    ;; ("scaleX" 'number)
-    ;; ("scaleY" 'number)
-    ;; ("schema" 'number)
-    ;; ("size" 'number)
-    ;; ("stretch" 'number)
-    ;; ("stroke" 'number)
-    ;; ("tableLayout" 'number)
-    ;; ("textAlign" 'number)
-    ;; ("textDecoration" 'number)
-    ;; ("textOverflow" 'number)
-    ;; ("textRendering" 'number)
-    ;; ("textShadow" 'number)
-    ;; ("textTransform" 'number)
-    ;; ("top" 'number)
-    ;; ("translate" 'number)
-    ;; ("translateX" 'number)
-    ;; ("translateY" 'number)
-    ;; ("truncate" 'number)
-    ;; ("userSelect" 'number)
-    ;; ("verticalAlign" 'number)
-    ;; ("visibility" 'number)
-    ;; ("whiteSpace" 'number)
-    ;; ("width" 'number)
-    ;; ("wordBreak" 'number)
-    ;; ("wordWrap" 'number)
-    ;; ("zIndex" 'number))
-
-(defvar +MM|add-prop-for-rule-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-<return>") (lambda (rule prop)
-                                         (ivy-quit-and-run
-                                           (progn
-                                            (+MM|write-rule rule prop)
-                                            (+MM|add-rule)))))
-    map))
-
-(defun +MM|write-rule (rule prop)
-    (insert (template ".<<rule>>('<<prop>>')\n")))
-
-(defun +MM|add-prop-for-rule (rule)
-  (ivy-read "Add prop" (ht-get +MM-Rules rule)
-            ;; :keymap counsel-find-file-map
-            :action (lambda (prop) (+MM|write-rule rule prop)
-                                   (+MM|add-rule))))
-
-(defun +MM|add-rule ()
-  (interactive)
-  (ivy-read "Add Rule" (ht-keys +MM-Rules)
-            :action '+MM|add-prop-for-rule))
-#+END_SRC
-**** Ivy Projectile
-
-Override the default ~+default/search-project~, since that does just a basic rg, without respecting the
-projectile ignores.
-
-#+BEGIN_SRC elisp
-(defun +default/search-project (&optional arg)
-  "Conduct a text search in the current project root.
-If prefix ARG is set, prompt for a known project to search from."
-  (interactive "P")
-  (let ((default-directory
-          (if arg
-              (if-let* ((projects (projectile-relevant-known-projects)))
-                  (completing-read "Switch to project: " projects
-                                   nil t nil nil (doom-project-root))
-                (user-error "There are no known projects"))
-            default-directory)))
-    (call-interactively #'counsel-projectile-rg)))
-#+END_SRC
-
-*** Minibuffer Maps
-#+BEGIN_SRC elisp
-;; Insert from the minibuffer
-(define-key! ivy-minibuffer-map
-  "C-c TAB" (λ! ()
-             (ivy-kill-whole-line)
-             (ivy-quit-and-run (yank))))
-#+END_SRC
 *** TODO Org Noter
 
 [[https://github.com/weirdNox/org-noter][Org Noter]] is a tool to annotate pdfs.
@@ -910,53 +548,6 @@ This overrides my insert subheading keybinding
      :leader
      (:prefix "m"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
-#+END_SRC
-*** TODO Spelling
-
-Flycheck with ~hunspell~ (which supports other languages better than the default ~ispell~)
-
-With the latest brew update hunspell might be broken, here is how you fix it:
-
-#+BEGIN_SRC bash :tangle no
-ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
-#+END_SRC
-
-#+RESULTS:
-
-#+BEGIN_SRC elisp :tangle no
-(defun +flyspell|save-word ()
-  "Save the current word to dictionary"
-  (interactive)
-  (let* ((current-location (point))
-         (word (flyspell-get-word)))
-    (when (consp word)
-      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
-
-(after! flyspell
-  (cond
-   ((executable-find "hunspell")
-
-    ;; For the switching, "german" has to be also in this alist
-    (add-to-list 'ispell-hunspell-dict-paths-alist (list "german" (expand-file-name "~/Library/Spelling/de_AT.aff")))
-
-    (setq ispell-program-name "hunspell"
-          ispell-local-dictionary "en_US"
-          ispell-really-hunspell t
-          ispell-local-dictionary-alist
-                  ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
-                  ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
-                  '(("english" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "personal,en_US") nil utf-8)
-                    ("german"  "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "personal,de_AT") nil utf-8))))))
-
-(defun flyspell-set-language-environment ()
-  "Change flyspell language based on the language environment"
-  (cond
-   ((string= "English" current-language-environment)
-    (setq ispell-local-dictionary "english"))
-   ((string= "German" current-language-environment)
-    (setq ispell-local-dictionary "german"))))
-
-(add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
 #+END_SRC
 ** Languages
 *** Javascript
@@ -1607,6 +1198,412 @@ Helper to reset the org agenda custom commands.
 (setq org-agenda-custom-commands '())
 #+END_SRC
 ** Package Config
+*** Ivy
+**** TODO Counsel Config
+#+BEGIN_SRC elisp
+(defun counsel-org-doom-config ()
+  "Counsel the doom config"
+  (interactive)
+  (doom/find-private-org-config)
+  (counsel-org-goto))
+#+END_SRC
+**** Import JS File
+#+BEGIN_SRC elisp
+;; TODO Make template accepts a cursor placeholder
+;; TODO Maybe even look at exports
+(defun my-js-import-file (file)
+  (let ((cursor-postion (point))
+        (filename (remove-js-ext file)))
+    (insert (template "import  from '<<filename>>';"))
+    (goto-char cursor-postion)
+    (forward-char 7)
+    (evil-insert-state)))
+
+(defun +js|ivy-import-file (&optional action)
+  (interactive)
+  (ivy-read "Import file "
+            (append
+             (--map (concat "./" it)
+                    (split-string (shell-command-to-string (concat find-program " " counsel-file-jump-args)) "\n" t))
+             (split-string (shell-command-to-string
+                            (concat "jq -r '.dependencies | keys | .[]' " (concat (projectile-project-root) "package.json"))) "\n" t))
+            :action (or action 'my-js-import-file)))
+
+(setq +MM-comment-headers '("EXTERNALS" "LOCALS" "HELPERS" "MAIN"))
+
+(defun +MM:get-remaining-headers-list (header)
+  "Returns a reversed list of headers to search through"
+  (->> +MM-comment-headers
+       (-split-on header)
+       (-first-item)))
+
+(defun +MM:goto-or-add-header (header)
+  "Goes to a comment header or if it doesnt exist creates one"
+  (goto-char (point-min))
+  (if (search-forward header nil t)
+      (progn
+        (search-forward-regexp "^/\\*\\*" nil t)
+        (previous-line 2))
+    ;; Create header when none was found
+    (progn
+      (let* ((headers (reverse (+MM:get-remaining-headers-list header))))
+        (--first (search-forward it nil t) headers))
+      (search-forward-regexp "^/\\*\\*" nil t)
+      (evil-insert-newline-above)
+      (insert (template  "/** <<header>> **/\n\n\n\n"))
+      (previous-line 1))))
+
+(defun +MM:add-import-to-file (file)
+  (goto-char (point-min))
+  (let* ((is-local (s-contains? "./" file))
+         (comment-header-title (if is-local "LOCALS" "EXTERNALS")))
+    (+MM:goto-or-add-header comment-header-title)
+    (evil-insert-newline-below)
+    (previous-line 1)
+    (my-js-import-file file)))
+
+(defun +MM|import-file ()
+  (interactive)
+  (+js|ivy-import-file '+MM:add-import-to-file))
+ #+END_SRC
+
+**** Rules
+#+BEGIN_SRC elisp :tangle no
+(setq +MM-Rules
+      (ht ("flexDirection"     '("row" "row-reverse" "column" "column-reverse"))
+          ("fontWeight"        '("normal" "regular" "heavy" "bold" "black" "light"))
+          ;; ("position"        '("absolute" "relative" "fixed"))
+          ;; ("padding"           'number)
+          ;; ("paddingHorizontal" 'number)
+          ;; ("paddingVertical"   'number)
+          ;; ("paddingTop"        'number)
+          ;; ("paddingBottom"     'number)
+          ;; ("paddingLeft"       'number)
+          ;; ("paddingRight"      'number)
+          ;; ("margin"            'number)
+          ;; ("marginTop"         'number)
+          ;; ("marginBottom"      'number)
+          ;; ("marginLeft"        'number)
+          ;; ("marginRight"       'number)
+          ;; ("top"               'number)
+          ;; ("left"              'number)
+          ;; ("right"             'number)
+          ;; ("bottom"            'number)
+          ;; ("translateY"            'number)
+          ;; ("translateX"            'number)
+          ;; ("rotate"            'number)
+          ;; ("absolute"       'noop)
+          ;; ("absoluteHorizontalCenter"       'noop)
+          ;; ("absoluteHorizontalCenter"       'noop))
+
+    ;; ("absoluteCenter" 'noop)
+    ;; ("absoluteHorizontalCenter" 'noop)
+    ;; ("absoluteVerticalCenter" 'noop)
+    ;; ("alignContent" '("flex-start", "flex-end", "center", "space-between", "space-around", "stretch"))
+    ;; ("alignItems" '())
+    ;; ("alignSelf" 'number)
+    ;; ("assoc" 'number)
+    ;; ("backfaceVisibility" 'number)
+    ;; ("backgroundColor" 'number)
+    ;; ("backgroundImage" 'number)
+    ;; ("backgroundPosition" 'number)
+    ;; ("backgroundRepeat" 'number)
+    ;; ("backgroundSize" 'number)
+    ;; ("borderBottomLeftRadius" 'number)
+    ;; ("borderBottomRightRadius" 'number)
+    ;; ("borderBottomWidth" 'number)
+    ;; ("borderColor" 'number)
+    ;; ("borderHorizontalWidth" 'number)
+    ;; ("borderLeftWidth" 'number)
+    ;; ("borderRadius" 'number)
+    ;; ("borderRightWidth" 'number)
+    ;; ("borderStyle" 'number)
+    ;; ("borderTopLeftRadius" 'number)
+    ;; ("borderTopRightRadius" 'number)
+    ;; ("borderTopWidth" 'number)
+    ;; ("borderVerticalWidth" 'number)
+    ;; ("borderWidth" 'number)
+    ;; ("bottom" 'number)
+    ;; ("boxShadow" 'number)
+    ;; ("boxShadows" 'number)
+    ;; ("boxShadows.result" 'number)
+    ;; ("boxSizing" 'number)
+    ;; ("color" 'number)
+    ;; ("concat" 'number)
+    ;; ("concatWhen" 'number)
+    ;; ("cursor" 'number)
+    ;; ("display" 'number)
+    ;; ("dissoc" 'number)
+    ;; ("fill" 'number)
+    ;; ("flexBasis" 'number)
+    ;; ("flexDirection" 'number)
+    ;; ("flexGrow" 'number)
+    ;; ("flexShrink" 'number)
+    ;; ("flexWrap" 'number)
+    ;; ("float" 'number)
+    ;; ("fontFamily" 'number)
+    ;; ("fontSize" 'number)
+    ;; ("fontStyle" 'number)
+    ;; ("fontWeight" 'number)
+    ;; ("fontWeight.Schema() callback" 'number)
+    ;; ("fontWeight.caseEquals('black') callback" 'number)
+    ;; ("fontWeight.caseEquals('heavy') callback" 'number)
+    ;; ("fontWeight.caseEquals('light') callback" 'number)
+    ;; ("fontWeight.caseEquals('regular') callback" 'number)
+    ;; ("fontWeight.default() callback" 'number)
+    ;; ("fontWeight.fold() callback" 'number)
+    ;; ("height" 'number)
+    ;; ("init" 'number)
+    ;; ("justifyContent" 'number)
+    ;; ("left" 'number)
+    ;; ("lineHeight" 'number)
+    ;; ("listStyleType" 'number)
+    ;; ("margin" 'number)
+    ;; ("marginBottom" 'number)
+    ;; ("marginHorizontal" 'number)
+    ;; ("marginLeft" 'number)
+    ;; ("marginRight" 'number)
+    ;; ("marginTop" 'number)
+    ;; ("marginVertical" 'number)
+    ;; ("maxHeight" 'number)
+    ;; ("maxSize" 'number)
+    ;; ("maxWidth" 'number)
+    ;; ("merge" 'number)
+    ;; ("minHeight" 'number)
+    ;; ("minSize" 'number)
+    ;; ("minWidth" 'number)
+    ;; ("opacity" 'number)
+    ;; ("overflow" 'number)
+    ;; ("overflowX" 'number)
+    ;; ("overflowY" 'number)
+    ;; ("padding" 'number)
+    ;; ("paddingBottom" 'number)
+    ;; ("paddingHorizontal" 'number)
+    ;; ("paddingLeft" 'number)
+    ;; ("paddingRight" 'number)
+    ;; ("paddingTop" 'number)
+    ;; ("paddingVertical" 'number)
+    ;; ("pointerEvents" 'number)
+    ;; ("position" 'number)
+    ;; ("resize" 'number)
+    ;; ("right" 'number)
+    ;; ("rotate" 'number)
+    ;; ("scale" 'number)
+    ;; ("scaleX" 'number)
+    ;; ("scaleY" 'number)
+    ;; ("schema" 'number)
+    ;; ("size" 'number)
+    ;; ("stretch" 'number)
+    ;; ("stroke" 'number)
+    ;; ("tableLayout" 'number)
+    ;; ("textAlign" 'number)
+    ;; ("textDecoration" 'number)
+    ;; ("textOverflow" 'number)
+    ;; ("textRendering" 'number)
+    ;; ("textShadow" 'number)
+    ;; ("textTransform" 'number)
+    ;; ("top" 'number)
+    ;; ("translate" 'number)
+    ;; ("translateX" 'number)
+    ;; ("translateY" 'number)
+    ;; ("truncate" 'number)
+    ;; ("userSelect" 'number)
+    ;; ("verticalAlign" 'number)
+    ;; ("visibility" 'number)
+    ;; ("whiteSpace" 'number)
+    ;; ("width" 'number)
+    ;; ("wordBreak" 'number)
+    ;; ("wordWrap" 'number)
+    ;; ("zIndex" 'number))
+
+(defvar +MM|add-prop-for-rule-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-<return>") (lambda (rule prop)
+                                         (ivy-quit-and-run
+                                           (progn
+                                            (+MM|write-rule rule prop)
+                                            (+MM|add-rule)))))
+    map))
+
+(defun +MM|write-rule (rule prop)
+    (insert (template ".<<rule>>('<<prop>>')\n")))
+
+(defun +MM|add-prop-for-rule (rule)
+  (ivy-read "Add prop" (ht-get +MM-Rules rule)
+            ;; :keymap counsel-find-file-map
+            :action (lambda (prop) (+MM|write-rule rule prop)
+                                   (+MM|add-rule))))
+
+(defun +MM|add-rule ()
+  (interactive)
+  (ivy-read "Add Rule" (ht-keys +MM-Rules)
+            :action '+MM|add-prop-for-rule))
+#+END_SRC
+**** Ivy Projectile
+
+Override the default ~+default/search-project~, since that does just a basic rg, without respecting the
+projectile ignores.
+
+#+BEGIN_SRC elisp
+(defun +default/search-project (&optional arg)
+  "Conduct a text search in the current project root.
+If prefix ARG is set, prompt for a known project to search from."
+  (interactive "P")
+  (let ((default-directory
+          (if arg
+              (if-let* ((projects (projectile-relevant-known-projects)))
+                  (completing-read "Switch to project: " projects
+                                   nil t nil nil (doom-project-root))
+                (user-error "There are no known projects"))
+            default-directory)))
+    (call-interactively #'counsel-projectile-rg)))
+#+END_SRC
+
+**** Minibuffer Maps
+#+BEGIN_SRC elisp
+;; Insert from the minibuffer
+(define-key! ivy-minibuffer-map
+  "C-c TAB" (λ! ()
+             (ivy-kill-whole-line)
+             (ivy-quit-and-run (yank))))
+#+END_SRC
+*** TODO Spelling
+
+Flycheck with ~hunspell~ (which supports other languages better than the default ~ispell~)
+
+With the latest brew update hunspell might be broken, here is how you fix it:
+
+#+BEGIN_SRC bash :tangle no
+ln -fs /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC elisp :tangle no
+(defun +flyspell|save-word ()
+  "Save the current word to dictionary"
+  (interactive)
+  (let* ((current-location (point))
+         (word (flyspell-get-word)))
+    (when (consp word)
+      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+
+(after! flyspell
+  (cond
+   ((executable-find "hunspell")
+
+    ;; For the switching, "german" has to be also in this alist
+    (add-to-list 'ispell-hunspell-dict-paths-alist (list "german" (expand-file-name "~/Library/Spelling/de_AT.aff")))
+
+    (setq ispell-program-name "hunspell"
+          ispell-local-dictionary "en_US"
+          ispell-really-hunspell t
+          ispell-local-dictionary-alist
+                  ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
+                  ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
+                  '(("english" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "personal,en_US") nil utf-8)
+                    ("german"  "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "personal,de_AT") nil utf-8))))))
+
+(defun flyspell-set-language-environment ()
+  "Change flyspell language based on the language environment"
+  (cond
+   ((string= "English" current-language-environment)
+    (setq ispell-local-dictionary "english"))
+   ((string= "German" current-language-environment)
+    (setq ispell-local-dictionary "german"))))
+
+(add-hook 'set-language-environment-hook 'flyspell-set-language-environment)
+#+END_SRC
+*** LSP
+**** Disable LSP hover
+#+BEGIN_SRC elisp
+(def-package! lsp-mode
+  :config
+  (setq lsp-eldoc-render-all nil
+        lsp-eldoc-enable-hover nil
+        lsp-eldoc-enable-signature-help nil
+        lsp-eldoc-prefer-signature-help nil
+        lsp-inhibit-message t
+        lsp-highlight-symbol-at-point nil
+        ;; Disable make error highlighting
+        lsp-prefer-flymake nil))
+#+END_SRC
+**** Disable LSP hover face
+#+BEGIN_SRC elisp
+(add-hook! 'doom-load-theme-hook
+  (after! lsp
+    (dolist (face '(lsp-face-highlight-read
+                    lsp-face-highlight-write
+                    lsp-face-highlight-textual))
+      (set-face-attribute
+       face nil
+       :foreground nil :distant-foreground nil :background nil))))
+#+END_SRC
+*** PDF Tools
+#+BEGIN_SRC elisp
+;; Enable Retina pdfs
+(setq pdf-view-use-scaling t)
+
+;; Fix midnight colors for doom-one theme
+(setq pdf-view-midnight-colors '("#BBC2CD" . "#282C34"))
+#+END_SRC
+*** Nov (Epub Reading Mode)
+
+Adds epub reading mode
+[[https://github.com/wasamasa/nov.el][wasamasa/nov.el: Major mode for reading EPUBs in Emacs]]
+
+I want to keep the buffer centered, but let nov take care of breaking the text,
+since this is much nicer then ~visual-line-mode~.
+
+#+BEGIN_SRC elisp
+(defun my-nov-config ()
+  (setq line-spacing 5)
+  (face-remap-add-relative 'variable-pitch :family "Liberation Serif" :height 1.4)
+  (setq visual-fill-column-center-text t)
+  (setq visual-fill-column-width (+ nov-text-width 25))
+  (visual-fill-column-mode t))
+
+(def-package! nov
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+  (setq nov-text-width 75)
+  :config
+  (progn
+    (add-hook 'nov-mode-hook 'my-nov-config)))
+#+END_SRC
+
+The font can be installed via brew cask.
+
+#+BEGIN_SRC bash :tangle no
+brew tap homebrew/cask-fonts
+brew cask install font-liberation-sans
+#+END_SRC
+*** Workspaces
+#+BEGIN_SRC elisp
+;; Always create workspace when switching to project
+(setq +workspaces-on-switch-project-behavior t)
+#+END_SRC
+*** Lookup
+#+BEGIN_SRC elisp
+(setq +lookup-provider-url-alist
+  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
+    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
+    ("Google"            . "https://google.com/search?q=%s")
+    ("Google images"     . "https://google.com/images?q=%s")
+    ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("NPM"               . "https://npmjs.com/search?q=%s")
+    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
+    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
+    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
+    ("Explain Shell"     . "https://explainshell.com/explain?cmd=%s")
+    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
+    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
+    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
+    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
+    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
+#+END_SRC
 *** Smerge Mode
 #+BEGIN_SRC elisp
 (after! smerge-mode
