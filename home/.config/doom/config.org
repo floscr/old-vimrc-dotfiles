@@ -1921,7 +1921,7 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
 (map! :when (featurep! :editor evil +everywhere)
       :after dired
       :map dired-mode-map
-      :n "\\" #'flosc|wdired-change-to-wdired-modej)
+      :n "\\" #'flosc|wdired-change-to-wdired-mode)
 #+END_SRC
 *** Treemacs
 **** Treemacs Evil window switching
