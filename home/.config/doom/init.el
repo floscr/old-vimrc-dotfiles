@@ -29,11 +29,13 @@
  parinfer
  snippets
 
+ :term
+ eshell
+ term
+
  :emacs
  dired
  electric
- eshell
- term
  vc
 
  :tools
