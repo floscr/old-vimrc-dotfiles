@@ -2291,7 +2291,7 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
 
  (:desc "dir" :prefix "d"
    :desc "find in literate config file" :n  "r" #'dired-recent-open
-   :desc "Project Root"                 :n  "p" (λ! (dired (projectile-project-root))))
+   :desc "Project Root"                 :n  "p" #'projectile-dired)
 
  (:desc "git" :prefix "g"
    :desc "Worktree Popup"              :n "%" #'magit-worktree
