@@ -27,6 +27,8 @@
 (package! beancount :recipe
    (:fetcher bitbucket :repo "blais/beancount" :files ("editors/emacs/*.el")))
 
+(package! visual-fill-column)
+
 (package! nov)
 
 (package! define-word)
