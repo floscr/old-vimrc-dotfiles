@@ -14,6 +14,7 @@
 ;;; Org-Mode Packages
 (package! helm-org-rifle)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
+(package! poporg)
 
 ;;; Utils
 ;; Text Scale
