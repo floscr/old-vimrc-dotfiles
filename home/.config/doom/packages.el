@@ -14,6 +14,7 @@
 ;;; Org-Mode Packages
 (package! helm-org-rifle)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
+(package! poporg)
 
 ;;; Utils
 ;; Text Scale
@@ -26,6 +27,8 @@
 (package! rainbow-mode)
 (package! beancount :recipe
    (:fetcher bitbucket :repo "blais/beancount" :files ("editors/emacs/*.el")))
+
+(package! visual-fill-column)
 
 (package! nov)
 
