@@ -656,8 +656,8 @@ E.g.: (Brackets signal the cursor position)
   :config
   (setq org-todo-keywords
         '((sequence "ACTIVE(a)" "NEXT(n)" "|" "DONE")
-          (sequence "TODO(T)" "|" "DONE(X)")
-          (sequence "[ ](t)" "|" "[X](x)")
+          (sequence "TODO(t)" "|" "DONE(x)")
+          (sequence "[ ]([)" "|" "[X](])")
           (sequence "PROJECT(p)" "|" "DONE")
           (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "DONE" "CANCELLED(c)"))
    org-todo-keyword-faces
