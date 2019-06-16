@@ -1073,25 +1073,6 @@ Helper to reset the org agenda custom commands.
   (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
   (pop kill-ring))
 #+END_SRC
-**** Little Word Motion
-
-#+BEGIN_SRC elisp
-(defun +js|load-evil-camel-case-motion ()
-  (require 'evil-little-word)
-  (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-normal-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-operator-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-operator-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "i M-w") 'evil-inner-little-word))
-
-(after! rjsx-mode
-  (+js|load-evil-camel-case-motion))
-
-(after! js2-mode
-  (+js|load-evil-camel-case-motion))
-#+END_SRC
 **** Javascript Text Objects
 
 #+BEGIN_SRC elisp
@@ -2372,6 +2353,27 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
+*** Little Word Motion
+#+BEGIN_SRC elisp
+(defun load-evil-camel-case-motion ()
+  (require 'evil-little-word)
+  (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-normal-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "i M-w") 'evil-inner-little-word))
+
+(after! rjsx-mode
+  (load-evil-camel-case-motion))
+
+(after! reason-mode
+  (load-evil-camel-case-motion))
+
+(after! js2-mode
+  (load-evil-camel-case-motion))
+#+END_SRC
 *** Package (Local-Leader) Bindings
 
 Pacakge/Mode specific bindings
