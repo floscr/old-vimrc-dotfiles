@@ -1932,6 +1932,16 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
       :map dired-mode-map
       :n "\\" #'flosc|wdired-change-to-wdired-mode)
 #+END_SRC
+**** Ignore .bs.js
+#+BEGIN_SRC elisp
+(def-package! dired-x
+  :after dired
+  :config
+  (setq dired-omit-files
+        (concat dired-omit-files
+                ;; Reason Compiled Files
+                "\\|\\.bs.js$")))
+#+END_SRC
 *** Treemacs
 **** Treemacs Evil window switching
 #+BEGIN_SRC elisp
