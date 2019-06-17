@@ -606,25 +606,6 @@ E.g.: (Brackets signal the cursor position)
   (interactive)
   (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
 #+END_SRC
-***** Ocaml Refmt to Reason
-#+BEGIN_SRC elisp
-(defun +org|org-src-block-refmt-reason-ocaml-toggle ()
-  "Convert the current src block from ocaml to reason and vice versa"
-  (interactive)
-  (save-excursion
-    (let* ((old-block (org-element-at-point))
-           (old-lang (org-element-property :language old-block))
-           (new-lang (if (string= old-lang "ocaml") "reason" "ocaml"))
-           (formatter (if (string= old-lang "ocaml") 'refmt-region-ocaml-to-reason 'refmt-region-reason-to-ocaml)))
-      (org-edit-special)
-      (funcall formatter (point-min) (point-max))
-      (org-edit-src-exit)
-      (let* ((new-block (org-element-at-point))
-             (new-block-parsed (org-element-interpret-data (org-element-put-property (org-element-at-point) :language new-lang)))
-             (from (org-element-property :begin new-block))
-             (to (org-element-property :end new-block)))
-        (delete-region from to)))))
-#+END_SRC
 ***** Archive and Done
 #+BEGIN_SRC elisp
 (defun org-archive-and-done ()
@@ -663,13 +644,15 @@ E.g.: (Brackets signal the cursor position)
   :config
   (setq org-todo-keywords
         '((sequence "ACTIVE(a)" "NEXT(n)" "|" "DONE")
-          (sequence "TODO(T)" "|" "DONE(X)")
-          (sequence "[ ](t)" "|" "[X](x)")
+          (sequence "TODO(t)" "|" "DONE(x)")
+          (sequence "[ ]([)" "|" "[X](])")
           (sequence "PROJECT(p)" "|" "DONE")
+          (sequence "NOTE(N)")
           (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "DONE" "CANCELLED(c)"))
    org-todo-keyword-faces
    '(("ACTIVE" :inherit warning :weight bold)
      ("NEXT" :inherit warning :weight bold)
+     ("NOTE" :inherit warning :weight bold)
      ("WAITING" :inherit default :weight bold)
      ("SOMEDAY" :inherit default :weight bold)
      ("LATER" :inherit default :weight bold)
@@ -693,7 +676,7 @@ E.g.: (Brackets signal the cursor position)
  org-pinboard-archive-file (concat org-pinboard-dir "/Bookmarks/.archive/pinboard.org")
  org-default-notes-file (concat org-directory "/inbox.org")
  org-shopping-list-file (concat org-directory "/shoppinglist.org")
- org-reading-list (concat org-directory "/reading-list.org"))
+ +org-reading-list-file (concat org-directory "/reading-list.org"))
 
 (after! org
   :config
@@ -879,11 +862,6 @@ These can be solved with a lambda and dont need extra functions
   (interactive)
   (org-find-file "/home.org"))
 
-(defun +org|org-open-reading-list-file ()
-  "Open the reading list org file"
-  (interactive)
-  (org-find-file "/reading-list.org"))
-
 (defun +org|org-open-work-file ()
   "Open the home org file"
   (interactive)
@@ -900,7 +878,7 @@ These can be solved with a lambda and dont need extra functions
                 :desc "Emacs"                :n "e" (λ! (find-file (concat org-directory "/Emacs.org")))
                 :desc "Home"                 :n "h" #'+org|org-open-home-file
                 :desc "Inbox"                :n "i" (λ! (find-file (concat org-directory "/inbox.org")))
-                :desc "Reading List"         :n "r" #'+org|org-open-reading-list-file
+                :desc "Reading List"         :n "r" #'+org-reading-list/org-open-reading-list-file
                 :desc "Work"                 :n "w" #'+org|org-open-work-file
                 :desc "Store Link"           :n "y" #'org-store-link))
 #+END_SRC
@@ -1076,25 +1054,6 @@ Helper to reset the org agenda custom commands.
   (insert (concat "`${" (substring-no-properties (car kill-ring)) "}`"))
   (pop kill-ring))
 #+END_SRC
-**** Little Word Motion
-
-#+BEGIN_SRC elisp
-(defun +js|load-evil-camel-case-motion ()
-  (require 'evil-little-word)
-  (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-normal-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-operator-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-operator-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "M-w") 'evil-forward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "M-b") 'evil-backward-little-word-begin)
-  (define-key evil-visual-state-map (kbd "i M-w") 'evil-inner-little-word))
-
-(after! rjsx-mode
-  (+js|load-evil-camel-case-motion))
-
-(after! js2-mode
-  (+js|load-evil-camel-case-motion))
-#+END_SRC
 **** Javascript Text Objects
 
 #+BEGIN_SRC elisp
@@ -1118,46 +1077,6 @@ Helper to reset the org agenda custom commands.
   (call-interactively #'evil-open-above))
 #+END_SRC
 
-*** Reason
-#+BEGIN_SRC elisp
-(defun rtop ()
-  "Launch reason version of utop"
-  (interactive)
-  (cl-letf ((utop-command "rtop -emacs"))
-    (utop)))
-
-(def-package! reason-mode
-  :mode "\\.rei?$"
-  :commands (reason-mode)
-  :config
-  ;; Merlin eldoc is very slow with marking the whole type region
-  ;; Just trigger it via C-c C-t
-  (setq merlin-eldoc-doc nil)
-  (let* (
-         (refmt-bin (executable-find "refmt"))
-         (merlin-bin (executable-find "ocamlmerlin"))
-         (merlin-base-dir (when merlin-bin
-                            (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
-    ;; Add npm merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
-    (when merlin-bin
-      (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
-      (setq merlin-command merlin-bin))
-
-    (when refmt-bin
-      (setq refmt-command refmt-bin))
-    (require 'merlin)
-    (add-hook! reason-mode
-        (add-hook 'before-save-hook #'refmt-before-save nil t)
-        (merlin-mode))
-    (setq-hook! reason-mode
-        indent-region-function #'apply-refmt)
-    (set-electric! 'some-mode :chars '(?|))
-    (set-lookup-handlers! 'reason-mode
-                          :definition #'merlin-locate
-                          :references #'merlin-occurrences
-                          :documentation #'merlin-document)
-    (set-company-backend! 'reason-mode 'merlin-company-backend)))
-#+END_SRC
 *** Markdown
 
 Always keep markdown centered, without line numbers.
@@ -1933,7 +1852,17 @@ Map ~\~ to change to wdired mode, like text mode in maggit buffers.
 (map! :when (featurep! :editor evil +everywhere)
       :after dired
       :map dired-mode-map
-      :n "\\" #'flosc|wdired-change-to-wdired-modej)
+      :n "\\" #'flosc|wdired-change-to-wdired-mode)
+#+END_SRC
+**** Ignore .bs.js
+#+BEGIN_SRC elisp
+(def-package! dired-x
+  :after dired
+  :config
+  (setq dired-omit-files
+        (concat dired-omit-files
+                ;; Reason Compiled Files
+                "\\|\\.bs.js$")))
 #+END_SRC
 *** Treemacs
 **** Treemacs Evil window switching
@@ -2366,6 +2295,27 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
+*** Little Word Motion
+#+BEGIN_SRC elisp
+(defun load-evil-camel-case-motion ()
+  (require 'evil-little-word)
+  (define-key evil-normal-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-normal-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-operator-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "M-w") 'evil-forward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "M-b") 'evil-backward-little-word-begin)
+  (define-key evil-visual-state-map (kbd "i M-w") 'evil-inner-little-word))
+
+(after! rjsx-mode
+  (load-evil-camel-case-motion))
+
+(after! reason-mode
+  (load-evil-camel-case-motion))
+
+(after! js2-mode
+  (load-evil-camel-case-motion))
+#+END_SRC
 *** Package (Local-Leader) Bindings
 
 Pacakge/Mode specific bindings

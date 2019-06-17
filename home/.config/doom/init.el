@@ -76,8 +76,10 @@
  literate
 
  :private
+ reason
  (org
-  +org-web-tools))
+  +org-web-tools
+  +org-reading-list))
 
 (provide 'init)
 ;;; init.el ends here

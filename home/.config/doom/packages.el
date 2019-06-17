@@ -8,9 +8,6 @@
 ;;; Javascript Packages
 (package! indium)
 
-;;; Reasonml Packages
-(package! reason-mode)
-
 ;;; Org-Mode Packages
 (package! helm-org-rifle)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
