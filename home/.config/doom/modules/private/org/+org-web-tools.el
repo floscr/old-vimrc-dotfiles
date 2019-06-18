@@ -18,7 +18,10 @@
 (defun +org-web-tools/read-url-at-point ()
   "Open the url under the cursor"
   (interactive)
-  (org-web-tools-read-url-as-org (org-web-tools--read-url)))
+  (org-web-tools-read-url-as-org (org-web-tools--read-url))
+  (visual-line-mode)
+  (visual-fill-column-mode)
+  (setq display-line-numbers nil))
 
 (def-package! org-web-tools
   :after org
