@@ -1637,12 +1637,17 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
     (projectile-add-known-project path)
     path))
 
+(defun npm-mode-npm-ci ()
+  "Run the 'npm install' command."
+  (interactive)
+  (npm-mode--exec-process "npm ci"))
+
 (defun +MM|new-worktree ()
   "New worktree with the devpanel files and an npm install"
   (interactive)
   (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
     (npm-mode)
-    (npm-mode-npm-install)))
+    (npm-mode-npm-ci)))
 #+END_SRC
 
 **** Git undo
