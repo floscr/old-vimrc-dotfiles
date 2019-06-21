@@ -2,6 +2,6 @@
 # name: Javascript SRC Block
 # key: <js
 # --
-#+BEGIN_SRC javascript
+#+BEGIN_SRC js
 $0
 #+END_SRC
