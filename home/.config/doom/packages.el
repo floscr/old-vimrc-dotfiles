@@ -12,6 +12,8 @@
 (package! helm-org-rifle)
 (package! org-pinboard :recipe (:fetcher github :repo "floscr/org-pinboard"))
 (package! poporg)
+(package! org-ql :recipe (:fetcher github :repo "alphapapa/org-ql"))
+(package! org-super-agenda :recipe (:fetcher github :repo "alphapapa/org-super-agenda"))
 
 ;;; Utils
 ;; Text Scale

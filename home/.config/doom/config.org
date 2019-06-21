@@ -1907,6 +1907,11 @@ Happypack slows down treemacs quite a bit.
 
 *** Dired Recent
 #+BEGIN_SRC elisp
+(def-package! org-ql
+  :after org)
+#+END_SRC
+*** Dired Recent
+#+BEGIN_SRC elisp
 (def-package! dired-recent
   :after dired
   :init
