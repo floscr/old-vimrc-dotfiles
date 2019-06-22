@@ -2272,6 +2272,10 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
  (:desc "toggle" :prefix "t"
    :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
 
+ (:desc "code" :prefix "c"
+   :desc "Compile" "c" #'compile
+   :desc "Compile" "Compile last command" (λ! (compile (car compile-history))))
+
  (:desc "open" :prefix "o"
    :desc "Eshell in Current Dir" :n  "." (λ! (+eshell/open t))
    :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
