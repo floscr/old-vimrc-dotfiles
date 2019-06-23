@@ -623,6 +623,14 @@ E.g.: (Brackets signal the cursor position)
   (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
 #+END_SRC
 
+***** Visit archive file
+#+BEGIN_SRC elisp
+(defun +org|visit-archive-file ()
+  (interactive)
+  (let ((archive-filename (car (org-archive--compute-location org-archive-location))))
+    (find-file archive-filename)
+    (end-of-buffer)))
+#+END_SRC
 **** Config Rifle
 #+BEGIN_SRC elisp
 (defun helm-org-rifle-config ()
@@ -2366,6 +2374,7 @@ Pacakge/Mode specific bindings
       :localleader
       :desc "Set source key to tab" "k" #'+org|source-properties-key-from-browser
       :desc "Align Tags" "$" #'+org-align-all-tags
+      :desc "Goto Archive" "%" #'+org|visit-archive-file
       (:prefix ("g" . "goto")
         :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
 
