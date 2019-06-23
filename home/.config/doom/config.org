@@ -616,6 +616,13 @@ E.g.: (Brackets signal the cursor position)
   (org-todo "DONE")
   (org-archive-subtree))
 #+END_SRC
+***** Add source key from chrome
+#+BEGIN_SRC elisp
+(defun +org|source-properties-key-from-browser ()
+  (interactive)
+  (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
+#+END_SRC
+
 **** Config Rifle
 #+BEGIN_SRC elisp
 (defun helm-org-rifle-config ()
@@ -2357,6 +2364,7 @@ Pacakge/Mode specific bindings
 
 (map! :map org-mode-map
       :localleader
+      :desc "Set source key to tab" "k" #'+org|source-properties-key-from-browser
       (:prefix ("g" . "goto")
         :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
 
