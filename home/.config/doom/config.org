@@ -848,7 +848,7 @@ Maybe just try persistent tags.
            "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
 
           ("w" "work" entry
-           (file+headline ,(concat org-directory "/Work/work.org") "Todo ")
+           (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
            "* TODO %?\n%U"))))
 #+END_SRC
 ***** TODO Src Block Snippets
