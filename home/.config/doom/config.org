@@ -843,6 +843,12 @@ Maybe just try persistent tags.
           ("p" "Pin Bookmark" entry (file+headline org-pinboard-file "Pinboard")
            "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
 
+          ("rr" "Add to reading list" entry (file+headline +org-reading-list-file "Reading List")
+           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
+
+          ("rw" "Add to watching list" entry (file+headline +org-reading-list-file "Watching List")
+           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
+
           ("C" "Browser" entry
            (file org-default-notes-file)
            "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
