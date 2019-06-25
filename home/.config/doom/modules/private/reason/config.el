@@ -6,6 +6,11 @@
   (cl-letf ((utop-command "rtop -emacs"))
     (utop)))
 
+(defun adjust-reason-comments ()
+  "Reason now supports // style comments"
+  (setq-local comment-start "// ")
+  (setq-local comment-end ""))
+
 (defun +org|org-src-block-refmt-reason-ocaml-toggle ()
   "Convert an Org SRC block from ocaml to reason and vice versa."
   (interactive)
@@ -31,6 +36,7 @@
 ;;  (with-eval-after-load 'merlin
 ;;    ;; Enable flycheck checker
 ;;    (flycheck-ocaml-setup)))
+
 
 (use-package merlin
   :after (reason-mode)
@@ -79,6 +85,7 @@
       (add-hook 'before-save-hook #'refmt-before-save nil t)))
 
   :config
+  (add-hook 'reason-mode-hook #'adjust-reason-comments)
   (add-hook
    'reason-mode-hook
    (lambda ()
