@@ -68,7 +68,7 @@
                                    (:name "Someday" :todo "SOMEDAY"))))
     (org-agenda nil "t")
     (search-forward "Read Next")
-    (next-line)
+    (forward-line)
     (evil-first-non-blank)))
 
 (defun +org-reading-list ()
