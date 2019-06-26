@@ -66,7 +66,10 @@
         (org-super-agenda-groups '((:name "Read Next" :todo "NEXT")
                                    (:name "Backlog" :todo "TODO")
                                    (:name "Someday" :todo "SOMEDAY"))))
-    (org-agenda nil "t")))
+    (org-agenda nil "t")
+    (search-forward "Read Next")
+    (next-line)
+    (evil-first-non-blank)))
 
 (defun +org-reading-list ()
   "Open Reading List Agenda"
