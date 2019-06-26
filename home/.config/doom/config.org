@@ -1943,11 +1943,17 @@ Happypack slows down treemacs quite a bit.
   (add-to-list 'treemacs-ignored-file-predicates #'treemacs-is-file-happypack?))
 #+END_SRC
 
-*** Dired Recent
+*** Org QL
 #+BEGIN_SRC elisp
 (def-package! org-ql
   :after org)
 #+END_SRC
+*** Org SuperAgenda
+#+BEGIN_SRC elisp
+(def-package! org-super-agenda
+  :after org)
+#+END_SRC
+
 *** Dired Recent
 #+BEGIN_SRC elisp
 (def-package! dired-recent
