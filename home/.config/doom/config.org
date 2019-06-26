@@ -429,7 +429,8 @@ Macro Expansion
 #+BEGIN_SRC elisp
 (after! org
   (set-popup-rule! "^\\*Org Agenda" :side 'right :size 0.55 :select t :modeline t :ttl nil)
-  (set-popup-rule! "^\\*Org Src" :side 'right :size 0.55 :select t :modeline t :ttl nil))
+  (set-popup-rule! "^\\*Org Src" :side 'right :size 0.55 :select t :modeline t :ttl nil)
+  (set-popup-rule! "^\\*Org QL Search" :side 'bottom :size 0.5 :select t :modeline t :ttl nil))
 
 (set-popup-rule! "^\\*helm" :vslot -100 :size 0.32 :ttl nil)
 (set-popup-rule! "^\\*doom:scratch" :vslot -100 :size 0.6 :ttl nil)
