@@ -68,8 +68,12 @@
                                    (:name "Someday" :todo "SOMEDAY"))))
     (org-agenda nil "t")))
 
-
 (defun +org-reading-list ()
   "Open Reading List Agenda"
   (interactive)
   (+org-reading-list/agenda "TEXT"))
+
+(defun +org-watching-list ()
+  "Open Reading List Agenda"
+  (interactive)
+  (+org-reading-list/agenda "VIDEO"))
