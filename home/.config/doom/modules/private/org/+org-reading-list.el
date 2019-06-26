@@ -62,6 +62,7 @@
         (org-agenda-prefix-format "  %?-12t% s")
         (org-agenda-tag-filter-preset (list (template "+<<tag>>")))
         (org-agenda-hide-tags-regexp tag)
+        (org-agenda-sorting-strategy '(timestamp-down))
         (org-super-agenda-groups '((:name "Read Next" :todo "NEXT")
                                    (:name "Backlog" :todo "TODO")
                                    (:name "Someday" :todo "SOMEDAY"))))
