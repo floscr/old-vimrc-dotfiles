@@ -59,6 +59,7 @@
 (defun +org-reading-list/agenda (tag)
   "Agenda for a section"
   (let ((org-agenda-files (list +org-reading-list-file))
+        ;; Remove the file prefix
         (org-agenda-prefix-format "  %?-12t% s")
         (org-agenda-tag-filter-preset (list (template "+<<tag>>")))
         (org-agenda-hide-tags-regexp tag)

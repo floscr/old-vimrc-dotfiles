@@ -544,6 +544,54 @@ Create an action from a controller and import directly
 #+END_SRC
 
 ** Package Config
+*** Smerge Mode
+:PROPERTIES:
+:SOURCE:   [[https://github.com/alphapapa/unpackaged.el#hydra][alphapapa/unpackaged.el: A collection of useful Emacs Lisp code that isn't substantial enough to be packaged]]
+:END:
+
+#+BEGIN_SRC elisp
+(use-package smerge-mode
+  :after hydra
+  :config
+  (defhydra unpackaged/smerge-hydra
+    (:color pink :hint nil :post (smerge-auto-leave))
+    "
+^Move^       ^Keep^               ^Diff^                 ^Other^
+^^-----------^^-------------------^^---------------------^^-------
+_n_ext       _b_ase               _<_: upper/base        _C_ombine
+_p_rev       _u_pper              _=_: upper/lower       _r_esolve
+^^           _l_ower              _>_: base/lower        _k_ill current
+^^           _a_ll                _R_efine
+^^           _RET_: current       _E_diff
+"
+    ("n" smerge-next)
+    ("p" smerge-prev)
+    ("b" smerge-keep-base)
+    ("u" smerge-keep-upper)
+    ("l" smerge-keep-lower)
+    ("a" smerge-keep-all)
+    ("RET" smerge-keep-current)
+    ("\C-m" smerge-keep-current)
+    ("<" smerge-diff-base-upper)
+    ("=" smerge-diff-upper-lower)
+    (">" smerge-diff-base-lower)
+    ("R" smerge-refine)
+    ("E" smerge-ediff)
+    ("C" smerge-combine-with-next)
+    ("r" smerge-resolve)
+    ("k" smerge-kill-current)
+    ("ZZ" (lambda ()
+            (interactive)
+            (save-buffer)
+            (bury-buffer))
+     "Save and bury buffer" :color blue)
+    ("q" nil "cancel" :color blue))
+  :hook (magit-diff-visit-file . (lambda ()
+                                   (when smerge-mode
+                                     (flycheck-mode -1)
+                                     (unpackaged/smerge-hydra/body)))))
+#+END_SRC
+
 *** Visual Fill Column
 #+BEGIN_SRC elisp
 (setq visual-fill-column-center-text t
@@ -1950,6 +1998,7 @@ Happypack slows down treemacs quite a bit.
   :after org)
 #+END_SRC
 *** Org SuperAgenda
+**** Config
 #+BEGIN_SRC elisp
 (def-package! org-super-agenda
   :after org
@@ -1957,6 +2006,30 @@ Happypack slows down treemacs quite a bit.
   (org-super-agenda-mode 1)
   ;; Disable org-super-agenda keymap which breaks evil mappings
   (setq org-super-agenda-header-map (make-sparse-keymap)))
+#+END_SRC
+**** Agenda
+#+BEGIN_SRC elisp
+(defun +org-agenda ()
+  "Agenda for a section"
+  (let ((org-agenda-files
+         (--map (concat org-directory "/" it) '("inbox.org"
+                                                "home.org"
+                                                "Work/work.org")))
+        (org-agenda-ndays 5)
+        (org-agenda-time-grid '((daily today require-timed) "----------------------" nil))
+        (org-agenda-compact-blocks t)
+        (org-agenda-include-deadlines t)
+        (org-agenda-skip-deadline-if-done t)
+        (org-agenda-skip-scheduled-if-done t)
+        (org-agenda-span 7)
+        (org-agenda-prefix-format "  %?-12t% s")
+        ;; (org-agenda-sorting-strategy '(timestamp-down))
+        (org-super-agenda-groups '((:name "Schedule"
+                                          :time-grid t
+                                          :date today
+                                          :discard (:scheduled past :deadline past))
+                                   (:name "Unscheduled" :todo "TODO NEXT"))))
+    (org-agenda-list)))
 #+END_SRC
 
 *** Dired Recent
