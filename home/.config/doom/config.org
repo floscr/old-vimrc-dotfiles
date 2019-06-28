@@ -97,6 +97,26 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
   (kill-new x)
   (message "Copied to clipboard: %s" x))
 #+END_SRC
+**** Shuffle List
+:PROPERTIES:
+:SOURCE:   [[http://kitchingroup.cheme.cmu.edu/blog/2014/09/06/Randomize-a-list-in-Emacs/][Randomize a list in Emacs]]
+:END:
+
+#+BEGIN_SRC elisp
+(defun swap-list-items (LIST el1 el2)
+  "in LIST swap indices EL1 and EL2 in place"
+  (let ((tmp (elt LIST el1)))
+    (setf (elt LIST el1) (elt LIST el2))
+    (setf (elt LIST el2) tmp)))
+
+(defun shuffle-list (LIST)
+  "Shuffle the elements in LIST.
+shuffling is done in place."
+  (loop for i in (reverse (number-sequence 1 (1- (length LIST))))
+        do (let ((j (random (+ i 1))))
+             (swap-list-items LIST i j)))
+  LIST)
+#+END_SRC
 *** Math on Numbers
 #+BEGIN_SRC elisp
 (defun math-on-number (f &optional num)
