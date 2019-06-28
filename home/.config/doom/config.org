@@ -563,6 +563,26 @@ Create an action from a controller and import directly
             :action #'projectile-find-file))
 #+END_SRC
 
+** Custom Packages
+*** Birthday Messsage
+#+BEGIN_SRC elisp
+(setq birthday-msg-emojis '("🍺" "🍻" "🍰" "🎂" "🎉"))
+
+(defun birthday-msg (name &optional emojis)
+  "Creates birthday string"
+  (let ((emojis (or emojis (--> birthday-slack-emojis
+                               (shuffle-list it)
+                               (-take 3 it)
+                               (string-join it " ")))))
+    (template "<<(reverse emojis)>> !! Happy Birthday <<name>> !! <<emojis>>")))
+
+(defun birthday-msg|copy ()
+  "Copies birthday string"
+  (interactive)
+  (--> (read-string "Name: ")
+       (birthday-msg it)
+       (copy-message it)))
+#+END_SRC
 ** Package Config
 *** Visual Fill Column
 #+BEGIN_SRC elisp
