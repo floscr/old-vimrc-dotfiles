@@ -12,9 +12,10 @@
 
 
 (let ((org-agenda-prefix-format "  %?-12t% s")
-      (org-agenda-sorting-strategy '(timestamp-down))
+      (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
       (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
       (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE" "NEXT"))
                                  (:name "Scheduled" :scheduled t)
-                                 (:name "Unscheduled" :and (:todo "TODO" :scheduled nil)))))
+                                 (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")))
+                                 (:name "Backlog" :tag "BACKLOG"))))
   (org-agenda nil "t"))
