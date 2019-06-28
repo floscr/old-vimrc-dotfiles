@@ -566,7 +566,7 @@ Create an action from a controller and import directly
 ** Custom Packages
 *** Birthday Messsage
 #+BEGIN_SRC elisp
-(setq birthday-msg-emojis '("🍺" "🍻" "🍰" "🎂" "🎉"))
+(setq birthday-msg-emojis '("🍰" "🎂" "🎉" "🎈" "🎁"))
 
 (defun birthday-msg (name &optional emojis)
   "Creates birthday string"
