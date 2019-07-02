@@ -1027,10 +1027,10 @@ These can be solved with a lambda and dont need extra functions
                 (org-agenda-span 1)
                 (org-agenda-start-day ".")
                 (org-agenda-skip-scheduled-if-done t)
-                (org-agenda-sorting-strategy '(timestamp-down))
+                (org-agenda-sorting-strategy '(timestamp-up time-up))
                 (org-agenda-day-view)
                 (org-super-agenda-groups '((:name "Today" :date today :time-grid t)
-                                           (:name "Overdue" :scheduled past)
+                                           (:name "Overdue" :deadline past :scheduled past)
                                            (:name "Future" :anything (:scheduled future)))))))
 #+END_SRC
 
