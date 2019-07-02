@@ -1030,6 +1030,16 @@ These can be solved with a lambda and dont need extra functions
                                              (:name "Future" :anything (:scheduled future)))))))
 
   (add-to-list 'org-agenda-custom-commands
+               '("x" "Todo Items" alltodo ""
+                 ((org-agenda-prefix-format "  %?-12t% s")
+                  (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
+                  (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
+                  (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE"))
+                                             (:name "Scheduled" :scheduled t)
+                                             (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")))
+                                             (:name "Backlog" :tag "BACKLOG"))))))
+
+  (add-to-list 'org-agenda-custom-commands
                '("w" "Work" tags-todo "+WORK"))
   (add-to-list 'org-agenda-custom-commands
                '("rr" "Reading List" tags-todo "+TEXT"))
