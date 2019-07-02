@@ -1030,17 +1030,6 @@ These can be solved with a lambda and dont need extra functions
                                              (:name "Future" :anything (:scheduled future)))))))
 
   (add-to-list 'org-agenda-custom-commands
-               '("p" "Personal" agenda ""
-                 ((org-agenda-ndays 5)
-                  (org-agenda-span 7)
-                  (org-agenda-tag-filter-preset '("-WORK" "-REPEATING"))
-                  (tags-todo "-\[X\]")
-                  (tags-todo "-DONE")
-                  (org-agenda-start-on-weekday nil)
-                  (org-agenda-time-grid nil)
-                  (org-agenda-day-view)
-                  (org-agenda-repeating-timestamp-show-all t))))
-  (add-to-list 'org-agenda-custom-commands
                '("w" "Work" tags-todo "+WORK"))
   (add-to-list 'org-agenda-custom-commands
                '("rr" "Reading List" tags-todo "+TEXT"))
