@@ -56,28 +56,15 @@
   (interactive)
   (find-file +org-reading-list-file))
 
-(defun +org-reading-list/agenda (tag)
-  "Agenda for a section"
-  (let ((org-agenda-files (list +org-reading-list-file))
-        ;; Remove the file prefix
-        (org-agenda-prefix-format "  %?-12t% s")
-        (org-agenda-tag-filter-preset (list (template "+<<tag>>")))
-        (org-agenda-hide-tags-regexp tag)
-        (org-agenda-sorting-strategy '(timestamp-down))
-        (org-super-agenda-groups '((:name "Read Next" :todo "NEXT")
-                                   (:name "Backlog" :todo "TODO")
-                                   (:name "Someday" :todo "SOMEDAY"))))
-    (org-agenda nil "t")
-    (search-forward "Read Next")
-    (forward-line)
-    (evil-first-non-blank)))
-
-(defun +org-reading-list ()
-  "Open Reading List Agenda"
-  (interactive)
-  (+org-reading-list/agenda "TEXT"))
-
-(defun +org-watching-list ()
-  "Open Reading List Agenda"
-  (interactive)
-  (+org-reading-list/agenda "VIDEO"))
+(after! org-agenda
+  (add-to-list 'org-agenda-custom-commands
+               '("rr" "Reading List" alltodo ""
+                 ((org-agenda-files (list +org-reading-list-file))
+                  ;; Remove the file prefix
+                  (org-agenda-prefix-format "  %?-12t% s")
+                  (org-agenda-tag-filter-preset (list "+TEXT"))
+                  (org-agenda-hide-tags-regexp "TEXT")
+                  (org-agenda-sorting-strategy '(timestamp-down))
+                  (org-super-agenda-groups '((:name "Read Next" :todo "NEXT")
+                                             (:name "Backlog" :todo "TODO")
+                                             (:name "Someday" :todo "SOMEDAY")))))))
