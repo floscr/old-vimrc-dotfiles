@@ -1017,6 +1017,19 @@ These can be solved with a lambda and dont need extra functions
 #+BEGIN_SRC elisp
 (after! org-agenda
   (add-to-list 'org-agenda-custom-commands
+               '("d" "Today" agenda "a"
+                 ((org-agenda-prefix-format "  %?-12t% s")
+                  (org-agenda-start-on-weekday nil)
+                  (org-agenda-span 1)
+                  (org-agenda-start-day ".")
+                  (org-agenda-skip-scheduled-if-done t)
+                  (org-agenda-sorting-strategy '(timestamp-down))
+                  (org-agenda-day-view)
+                  (org-super-agenda-groups '((:name "Today" :date today :time-grid t)
+                                             (:name "Overdue" :scheduled past)
+                                             (:name "Future" :anything (:scheduled future)))))))
+
+  (add-to-list 'org-agenda-custom-commands
                '("p" "Personal" agenda ""
                  ((org-agenda-ndays 5)
                   (org-agenda-span 7)
