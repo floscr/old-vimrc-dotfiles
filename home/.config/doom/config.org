@@ -1486,6 +1486,12 @@ If prefix ARG is set, prompt for a known project to search from."
              (ivy-kill-whole-line)
              (ivy-quit-and-run (yank))))
 #+END_SRC
+**** ACTIVE Counsel Org Effort
+#+BEGIN_SRC elisp :tangle no
+(defun counsel-org-effort ()
+  (ivy-read "Set effort: " org-duration-units :action #'org-set-effort))
+#+END_SRC
+
 *** TODO Spelling
 
 Flycheck with ~hunspell~ (which supports other languages better than the default ~ispell~)
