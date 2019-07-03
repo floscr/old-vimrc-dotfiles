@@ -907,7 +907,7 @@ Maybe just try persistent tags.
 
           ("C" "Browser" entry
            (file org-default-notes-file)
-           "* %(org-mac-chrome-get-frontmost-url)%?\n%U")
+           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
 
           ("w" "work" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
