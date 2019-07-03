@@ -2561,8 +2561,8 @@ Pacakge/Mode specific bindings
 (map! :map org-mode-map
       :localleader
       :desc "Set source key to tab" "k" #'+org|source-properties-key-from-browser
-      :desc "Align Tags" "%" #'+org-align-all-tags
-      :desc "Goto Archive" "$" #'+org|visit-archive-file
+      :desc "Align Tags"            "%" #'+org-align-all-tags
+      :desc "Goto Archive"          "$" #'+org|visit-archive-file
       (:prefix ("g" . "goto")
         :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
 
