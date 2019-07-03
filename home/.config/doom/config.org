@@ -1044,8 +1044,9 @@ These can be solved with a lambda and dont need extra functions
                 (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
                 (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE"))
                                            (:name "Scheduled" :scheduled t)
-                                           (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")))
-                                           (:name "Backlog" :tag "BACKLOG"))))))
+                                           (:name "Inbox" :file-path ".*inbox.org$" :order 2)
+                                           (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")) :order 1)
+                                           (:name "Backlog" :tag "BACKLOG" :order 3))))))
 #+END_SRC
 
 ******* Work
