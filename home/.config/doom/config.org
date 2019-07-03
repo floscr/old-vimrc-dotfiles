@@ -607,6 +607,25 @@ Create an action from a controller and import directly
   (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
 
 #+END_SRC
+***** Export As Markdown
+#+BEGIN_SRC elisp
+(defun +org/copy-as-markdown (&optional subtree-p)
+  "Copy the current subtree as markdown to clipboard"
+    (let* ((org-export-with-toc nil)
+           (md (org-md-export-as-markdown nil subtree-p)))
+      (kill-ring-save (point-min) (point-max))
+      (kill-buffer md)))
+
+(defun +org|copy-buffer-as-markdown ()
+  "Copy the entire buffer as markdown to clipboard."
+  (interactive)
+  (+org/copy-as-markdown))
+
+(defun +org|copy-subtree-as-markdown ()
+  "Copy the subtree as markdown to clipboard."
+  (interactive)
+  (+org/copy-as-markdown t))
+#+END_SRC
 ***** Grab Tablist from Chrome
 #+BEGIN_SRC elisp
 (defun +org|grab-tabs ()
@@ -765,16 +784,6 @@ Needs ~dvisvgm~
 (setq org-latex-create-formula-image-program 'dvisvgm)
 #+END_SRC
 
-***** Export
-#+BEGIN_SRC elisp
-(defun +org|copy-subtree-as-markdown ()
-  "Copy the current subtree as markdown to clipboard"
-    (interactive)
-    (let* ((org-export-with-toc nil)
-           (md (org-md-export-as-markdown nil t)))
-      (kill-ring-save (point-min) (point-max))
-      (kill-buffer md)))
-#+END_SRC
 ***** Tags
 ****** Tags List
 
