@@ -1058,6 +1058,20 @@ These can be solved with a lambda and dont need extra functions
                                            (:name "Backlog" :tag "BACKLOG" :order 3))))))
 #+END_SRC
 
+******* Emacs
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("e" "Emacs Items" alltodo ""
+               ((org-agenda-prefix-format "  %?-12t% s")
+                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
+                (org-agenda-files (--map (concat org-directory "/" it) '("Emacs.org")))
+                (org-super-agenda-groups '((:name "Active" :todo "ACTIVE")
+                                           (:name "Next" :todo "NEXT")
+                                           (:name "Low Effort" :effort< "0:30")
+                                           (:name "Todo" :todo "TODO"))))))
+#+END_SRC
+
 ******* Work
 #+BEGIN_SRC elisp
 (add-to-list 'org-agenda-custom-commands
