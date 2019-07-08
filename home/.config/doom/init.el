@@ -59,10 +59,7 @@
  ocaml
  haskell
  (org
-  +attach
-  +babel
-  +capture
-  +export
+  +dragndrop
   +present)
  sh
 
