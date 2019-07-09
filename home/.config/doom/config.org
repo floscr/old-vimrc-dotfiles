@@ -690,6 +690,12 @@ E.g.: (Brackets signal the cursor position)
   (interactive)
   (org-todo "DONE")
   (org-archive-subtree))
+
+(defun org-agenda-archive-and-done ()
+  "Mark agenda task as done and archive"
+  (interactive)
+  (org-agenda-todo "DONE")
+  (org-agenda-archive))
 #+END_SRC
 ***** Add source key from chrome
 #+BEGIN_SRC elisp
