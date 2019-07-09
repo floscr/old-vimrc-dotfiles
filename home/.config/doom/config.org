@@ -2591,6 +2591,14 @@ Pacakge/Mode specific bindings
       :n "s-k" #'org-metaup
       :n "s-j" #'org-metadown)
 #+END_SRC
+
+***** Agenda Mapping
+****** Fix Window Navigation
+#+BEGIN_SRC elisp
+(map! :map org-agenda-mode-map
+      :desc "Org Window Left" "C-h" #'evil-window-left
+      :desc "Org Window Left" "C-l" #'evil-window-right)
+#+END_SRC
 **** Eshell
 #+BEGIN_SRC elisp
 (defun floscr|+eshell|init-keymap ()
