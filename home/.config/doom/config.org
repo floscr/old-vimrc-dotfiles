@@ -2617,6 +2617,15 @@ Pacakge/Mode specific bindings
 #+END_SRC
 
 ***** Agenda Mapping
+****** Evil Customizations
+#+BEGIN_SRC elisp
+(defun my-evil-org-agenda-set-keys ()
+  (evil-define-key 'motion org-agenda-mode-map
+    "da" 'org-agenda-archive
+    "dA" 'org-agenda-archive-and-done))
+
+(advice-add #'evil-org-agenda-set-keys :after #'my-evil-org-agenda-set-keys)
+#+END_SRC
 ****** Fix Window Navigation
 #+BEGIN_SRC elisp
 (map! :map org-agenda-mode-map
