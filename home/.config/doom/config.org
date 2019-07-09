@@ -2248,6 +2248,14 @@ Overrides dooms aliases.
 
 (add-to-list '+eshell-aliases '("cat" "eshell/cat $1"))
 #+END_SRC
+*** Yasnippet
+**** TODO Expand first company snippet
+#+BEGIN_SRC elisp
+(defun yasnippet/expand-first-item ()
+  (interactive)
+  (call-interactively #'company-yasnippet)
+  (company-complete-selection))
+#+END_SRC
 ** General Config
 *** Disable Eldoc
 #+BEGIN_SRC elisp
