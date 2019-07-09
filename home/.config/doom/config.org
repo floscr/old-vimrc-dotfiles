@@ -10,6 +10,7 @@
 ** Required Packages
 #+BEGIN_SRC elisp
 (require 'dash)
+(require 's)
 #+END_SRC
 ** About
 
@@ -348,9 +349,8 @@ This will be disabled in terminal mode.
   (my-frame-resize-width 1410))
 
 (cond
- ((--first (string= system-name it) '("Florians-MBP.localdomain" "Florians-MacBook-Pro.local"))
+ ((s-contains? "Florians-MBP" system-name)
   (my-frame-resize-work-external)
-  ;; (my-set-initial-frame-size (cons 2 1060))
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
   (setq-default line-spacing 0.3))
