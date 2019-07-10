@@ -2651,6 +2651,9 @@ Pacakge/Mode specific bindings
 (defun my-evil-org-agenda-set-keys ()
   (evil-define-key 'motion org-agenda-mode-map
     "da" 'org-agenda-archive
+    "dSp" (λ! (org-agenda-schedule t "+1d 7pm"))
+    "dSw" (λ! (org-agenda-schedule t "+1d 8am"))
+    "dSS" (λ! (org-agenda-schedule t "+1d"))
     "dA" 'org-agenda-archive-and-done))
 
 (advice-add #'evil-org-agenda-set-keys :after #'my-evil-org-agenda-set-keys)
