@@ -1683,7 +1683,7 @@ I want buffers added whenever I visit a buffer.
     ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
     ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 #+END_SRC
-*** Git
+*** Magit / Git
 **** Config
 #+BEGIN_SRC elisp
 (setq-default magit-save-repository-buffers 'dontask)
@@ -1837,17 +1837,6 @@ Browse the current thing at point for git
   (interactive)
   (let ((git-link-open-in-browser t))
     (call-interactively 'git-link)))
-#+END_SRC
-**** TODO Insert message from commit history
-#+BEGIN_SRC elisp :tangle no
-(defun +git|commit-search-message-history ()
-  "Search and insert commit message from history."
-  (interactive)
-  (insert (completing-read "History: "
-                           ;; Remove unnecessary newlines from beginning and end.
-                           (mapcar (lambda (text)
-                                     (string-trim text))
-                                   (ring-elements log-edit-comment-ring)))))
 #+END_SRC
 *** Smerge Mode
 **** Fix Colors
