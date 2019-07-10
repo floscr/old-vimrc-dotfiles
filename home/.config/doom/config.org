@@ -706,6 +706,16 @@ E.g.: (Brackets signal the cursor position)
   (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
 #+END_SRC
 ***** Schedule Tomorrow
+:PROPERTIES:
+:SOURCE:   [[https://github.com/xandeer/.doom/blob/master/modules/private/xandeer/+org.el][.doom/+org.el at master · xandeer/.doom]]
+:END:
+
+#+BEGIN_SRC elisp
+(defun +org|schedule-tomorrow ()
+  "Return scheduled string on tomorrow."
+  (format-time-string "SCHEDULED: <%F %a>"
+                      (time-add (current-time) (* 24 3600))))
+#+END_SRC
 ***** Sort org entries
 #+BEGIN_SRC elisp
 (defun +org|sort-entries ()
@@ -2600,6 +2610,7 @@ Pacakge/Mode specific bindings
       :desc  "Copy Buffer To Markdown"  "y"  #'+org|copy-buffer-as-markdown
       :desc  "Align Tags"               "%"  #'+org-align-all-tags
       :desc  "Goto Archive"             "$"  #'+org|visit-archive-file
+      :desc  "Schedule Tomorrow"        "+"  #'+org|schedule-tomorrow
       (:prefix ("g" . "goto")
         :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
 #+END_SRC
