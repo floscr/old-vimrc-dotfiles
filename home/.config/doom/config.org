@@ -2580,6 +2580,21 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
+**** (e) Eshell
+:PROPERTIES:
+:SOURCE:   [[https://github.com/xandeer/.doom/blob/master/modules/private/xandeer/%252Beshell.el][.doom/+eshell.el at master · xandeer/.doom]]
+:END:
+
+#+BEGIN_SRC elisp
+(map! :leader
+      :desc "eshell" "e" nil
+      (:prefix ("e" . "eshell")
+        :desc "Create a new eshell window below the current one."             "j"   #'+eshell/split-below
+        :desc "Create a new eshell window to the right of the current one."   "l"   #'+eshell/split-right
+        :desc "Switch to eshell and change directory to DIR."                 "z"   #'eshell-z))
+(map!
+   :n "M-;" #'eshell-command)
+#+END_SRC
 *** Little Word Motion
 #+BEGIN_SRC elisp
 (defun load-evil-camel-case-motion ()
