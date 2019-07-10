@@ -2657,9 +2657,10 @@ Pacakge/Mode specific bindings
 #+END_SRC
 ****** Fix Window Navigation
 #+BEGIN_SRC elisp
-(map! :map org-agenda-mode-map
-      :desc "Org Window Left" "C-h" #'evil-window-left
-      :desc "Org Window Left" "C-l" #'evil-window-right)
+(after! org
+  (map! :map org-agenda-mode-map
+        :desc "Org Window Left" "C-h" #'evil-window-left
+        :desc "Org Window Left" "C-l" #'evil-window-right))
 #+END_SRC
 **** Eshell
 #+BEGIN_SRC elisp
