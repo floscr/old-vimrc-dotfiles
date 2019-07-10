@@ -600,7 +600,11 @@ Create an action from a controller and import directly
   (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
 #+END_SRC
 ***** Archive all done tasks
-#+BEGIN_SRC elisp :tangle no
+:PROPERTIES:
+:SOURCE:   [[https://github.com/xandeer/.doom/blob/master/modules/private/xandeer/+org.el][.doom/+org.el at master · xandeer/.doom]]
+:END:
+
+#+BEGIN_SRC elisp
 (defun +org|archive-done-tasks ()
   "Archive finished tasks."
   (interactive)
