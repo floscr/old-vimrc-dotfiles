@@ -593,19 +593,16 @@ Create an action from a controller and import directly
 #+END_SRC
 *** Org
 **** Utils
-***** TODO Archive all done tasks
+***** Archive all done tasks
 #+BEGIN_SRC elisp :tangle no
-(defun my-archive-entry ()
-  (message "%s" (thing-at-point 'line t)))
-
-(defun +org|org-archive-done-tasks ()
+(defun +org|archive-done-tasks ()
+  "Archive finished tasks."
   (interactive)
-  (org-map-entries #'my-archive-entry "/[X]" 'tree))
-
-(defun +org|org-archive-done-task ()
-  (interactive)
-  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
-
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/+{|DONE|CANCELED}" 'tree))
 #+END_SRC
 ***** Export As Markdown
 #+BEGIN_SRC elisp
