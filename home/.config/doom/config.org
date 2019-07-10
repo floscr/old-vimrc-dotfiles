@@ -2529,8 +2529,9 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
 
  (:desc "window" :prefix "w"
-   :desc "Split Vertical" :n "|" #'evil-window-vsplit
-   :desc "Split Horizontal" :n "_" #'evil-window-split)
+  :desc  "Split Vertical"  :n  "|"    #'evil-window-vsplit
+  :desc  "Split Vertical"  :n  "|"    #'evil-window-vsplit
+  :desc  "Swap"            :n  "SPC"  #'ace-swap-window)
 
  (:desc "workspace" :prefix "<tab>"
    :desc "Switch to"    :n "." #'+workspace/my-switch-to
