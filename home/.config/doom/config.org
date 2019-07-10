@@ -2487,6 +2487,9 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
 
  (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
 
+ (:desc "buffer" :prefix "b"
+   :desc "Rename Buffer"                :n  "r" #'rename-buffer)
+
  (:desc "file" :prefix "f"
    :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
 
