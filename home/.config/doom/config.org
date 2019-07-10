@@ -2597,24 +2597,29 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
 Pacakge/Mode specific bindings
 
 **** Org Mode
+***** Local Leader Mapping
 #+BEGIN_SRC elisp
-(map!
- :niv "s-X"   #'+org-capture/open-frame)
-
 (map! :map org-mode-map
       :localleader
-      :desc "Set source key to tab"   "k" #'+org|source-properties-key-from-browser
-      :desc "Copy Buffer To Markdown" "y" #'+org|copy-buffer-as-markdown
-      :desc "Align Tags"              "%" #'+org-align-all-tags
-      :desc "Goto Archive"            "$" #'+org|visit-archive-file
+      :desc  "Set source key to tab"    "k"  #'+org|source-properties-key-from-browser
+      :desc  "Copy Buffer To Markdown"  "y"  #'+org|copy-buffer-as-markdown
+      :desc  "Align Tags"               "%"  #'+org-align-all-tags
+      :desc  "Goto Archive"             "$"  #'+org|visit-archive-file
       (:prefix ("g" . "goto")
         :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
+#+END_SRC
+***** Meta Mapping
+#+BEGIN_SRC elisp
+(map! :niv "s-X" #'+org-capture/open-frame)
+
+(map! :map org-mode-map
+        :gni [s-return]   #'+org/insert-item-below
+        :gni [s-S-return] #'+org/insert-item-above)
 
 (map! :map outline-mode-map
       :n "s-k" #'org-metaup
       :n "s-j" #'org-metadown)
 #+END_SRC
-
 ***** Agenda Mapping
 ****** Evil Customizations
 #+BEGIN_SRC elisp
