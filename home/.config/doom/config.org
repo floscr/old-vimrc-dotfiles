@@ -1214,7 +1214,27 @@ These can be solved with a lambda and dont need extra functions
   (call-interactively #'evil-indent-line)
   (call-interactively #'evil-open-above))
 #+END_SRC
+**** Company Files
 
+Remove the ~js~ extension for ~company-files~.
+
+#+BEGIN_SRC elisp
+(defun company-js-files (command &optional arg &rest ignored)
+  "Company complete path. Remove extension after completion"
+  (interactive (list 'interactive))
+  (cl-case command
+    (interactive (company-begin-backend 'company-js-files))
+    (prefix (company-files--grab-existing-name))
+    (candidates (company-files--complete arg))
+    (location (cons (dired-noselect
+                     (file-name-directory (directory-file-name arg))) 1))
+    (post-completion (when (s-matches? "\.js$" arg) (delete-backward-char 3)))
+    (sorted t)
+    (no-cache t)))
+
+(map! :map js2-mode-map
+      :i "C-x C-f" #'company-js-files)
+#+END_SRC
 *** Markdown
 
 Always keep markdown centered, without line numbers.
