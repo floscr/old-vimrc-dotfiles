@@ -818,6 +818,96 @@ Needs ~dvisvgm~
 #+BEGIN_SRC elisp
 (setq org-latex-create-formula-image-program 'dvisvgm)
 #+END_SRC
+***** Agenda
+****** Bindings
+#+BEGIN_SRC elisp
+(evil-define-key 'motion org-agenda-mode-map
+  "vd" 'org-agenda-day-view
+  "ds" 'org-agenda-schedule
+  "vw" 'org-agenda-week-view
+  "vm" 'org-agenda-month-view
+  "vy" 'org-agenda-year-view)
+#+END_SRC
+****** Custom Agenda Commands
+
+#+BEGIN_SRC elisp
+(after! org-agenda
+#+END_SRC
+
+******* Today View
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("d" "Today" ((agenda "a"
+                                    ((org-agenda-prefix-format "  %?-12t% s")
+                                     (org-agenda-start-on-weekday nil)
+                                     (org-agenda-span 1)
+                                     (org-agenda-start-day ".")
+                                     (org-agenda-skip-scheduled-if-done t)
+                                     (org-agenda-sorting-strategy '(timestamp-up time-up))
+                                     (org-agenda-day-view)
+                                     (org-super-agenda-groups '((:name "Today" :date today :time-grid t)
+                                                                (:name "Overdue" :deadline past :scheduled past)
+                                                                (:name "Future" :anything (:scheduled future)))))))))
+#+END_SRC
+
+******* All TODO Items
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("x" "Todo Items" alltodo ""
+               ((org-agenda-prefix-format "  %?-12t% s")
+                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
+                (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
+                (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE"))
+                                           (:name "Scheduled" :scheduled t)
+                                           (:name "Inbox" :file-path ".*inbox.org$" :order 2)
+                                           (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")) :order 1)
+                                           (:name "Backlog" :tag "BACKLOG" :order 3))))))
+#+END_SRC
+
+******* Emacs
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("e" "Emacs Items" alltodo ""
+               ((org-agenda-prefix-format "  %?-12t% s")
+                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
+                (org-agenda-files (--map (concat org-directory "/" it) '("Emacs.org")))
+                (org-super-agenda-groups '((:name "Active" :todo "ACTIVE")
+                                           (:name "Next" :todo "NEXT")
+                                           (:name "Low Effort" :effort< "0:30")
+                                           (:name "Todo" :todo "TODO"))))))
+#+END_SRC
+
+******* Work
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("w" "Work" tags-todo "+WORK"))
+#+END_SRC
+
+******* Calendar
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("c" "Calendar" agenda ""
+               ((org-agenda-span 7)
+                (org-agenda-start-on-weekday nil)
+                (org-agenda-start-day "-1d")
+                (org-agenda-tag-filter-preset '("+CALENDAR")))))
+#+END_SRC
+
+******* Closing Tag
+
+#+BEGIN_SRC elisp
+:config
+(setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
+#+END_SRC
+
+******* Helper to reset the org agenda custom commands.
+
+#+BEGIN_SRC elisp :tangle no
+(setq org-agenda-custom-commands '())
+#+END_SRC
 ***** Tags
 ****** Tags List
 
@@ -1022,96 +1112,6 @@ Maybe just try persistent tags.
           :desc "Block"                :m "b" #'org-narrow-to-block
           :desc "Element"              :m "e" #'org-narrow-to-element
           :desc "widen"                :m "w" #'widen)))
-#+END_SRC
-***** Agenda
-****** Bindings
-#+BEGIN_SRC elisp
-(evil-define-key 'motion org-agenda-mode-map
-  "vd" 'org-agenda-day-view
-  "ds" 'org-agenda-schedule
-  "vw" 'org-agenda-week-view
-  "vm" 'org-agenda-month-view
-  "vy" 'org-agenda-year-view)
-#+END_SRC
-****** Custom Agenda Commands
-
-#+BEGIN_SRC elisp
-(after! org-agenda
-#+END_SRC
-
-******* Today View
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("d" "Today" ((agenda "a"
-                                    ((org-agenda-prefix-format "  %?-12t% s")
-                                     (org-agenda-start-on-weekday nil)
-                                     (org-agenda-span 1)
-                                     (org-agenda-start-day ".")
-                                     (org-agenda-skip-scheduled-if-done t)
-                                     (org-agenda-sorting-strategy '(timestamp-up time-up))
-                                     (org-agenda-day-view)
-                                     (org-super-agenda-groups '((:name "Today" :date today :time-grid t)
-                                                                (:name "Overdue" :deadline past :scheduled past)
-                                                                (:name "Future" :anything (:scheduled future)))))))))
-#+END_SRC
-
-******* All TODO Items
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("x" "Todo Items" alltodo ""
-               ((org-agenda-prefix-format "  %?-12t% s")
-                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
-                (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
-                (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE"))
-                                           (:name "Scheduled" :scheduled t)
-                                           (:name "Inbox" :file-path ".*inbox.org$" :order 2)
-                                           (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")) :order 1)
-                                           (:name "Backlog" :tag "BACKLOG" :order 3))))))
-#+END_SRC
-
-******* Emacs
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("e" "Emacs Items" alltodo ""
-               ((org-agenda-prefix-format "  %?-12t% s")
-                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
-                (org-agenda-files (--map (concat org-directory "/" it) '("Emacs.org")))
-                (org-super-agenda-groups '((:name "Active" :todo "ACTIVE")
-                                           (:name "Next" :todo "NEXT")
-                                           (:name "Low Effort" :effort< "0:30")
-                                           (:name "Todo" :todo "TODO"))))))
-#+END_SRC
-
-******* Work
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("w" "Work" tags-todo "+WORK"))
-#+END_SRC
-
-******* Calendar
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("c" "Calendar" agenda ""
-               ((org-agenda-span 7)
-                (org-agenda-start-on-weekday nil)
-                (org-agenda-start-day "-1d")
-                (org-agenda-tag-filter-preset '("+CALENDAR")))))
-#+END_SRC
-
-******* Closing Tag
-
-#+BEGIN_SRC elisp
-:config
-(setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
-#+END_SRC
-
-******* Helper to reset the org agenda custom commands.
-
-#+BEGIN_SRC elisp :tangle no
-(setq org-agenda-custom-commands '())
 #+END_SRC
 *** Javascript
 #+BEGIN_SRC elisp
