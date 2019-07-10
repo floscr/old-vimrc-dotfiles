@@ -9,7 +9,6 @@
 
  :ui
  doom
- doom-dashboard
  modeline
  doom-quit
  hl-todo
