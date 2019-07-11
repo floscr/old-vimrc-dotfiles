@@ -185,11 +185,11 @@ Enhancement of the default ~+workspace/switch-to~.
   (ivy-read "Switch to workspace: "
             (+workspace-list-names)
             :action '(1
+                      ("RET" +workspace/switch-to "Switch to workspace")
                       ("C-<backspace>" (lambda (x)
                                          (+workspace/delete x)
                                          (+workspace/my-switch-to))
-                       "Continous delete workspace")
-                      ("RET" +workspace/switch-to "Switch to workspace"))))
+                       "Continous delete workspace"))))
 #+END_SRC
 **** Switch to last visited workspace
 #+BEGIN_SRC elisp
@@ -2491,6 +2491,7 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Rename Buffer"                :n  "r" #'rename-buffer)
 
  (:desc "file" :prefix "f"
+   :desc "find in literate config file" :n  "D" (λ! (counsel-find-file (projectile-project-root)))
    :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
 
  (:desc "dir" :prefix "d"
