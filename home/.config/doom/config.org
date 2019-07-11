@@ -772,6 +772,7 @@ These can be solved with a lambda and dont need extra functions
           (sequence "[ ]([)" "|" "[X](])")
           (sequence "PROJECT(p)" "|" "DONE")
           (sequence "NOTE(N)")
+          (sequence "REVIEW(R)" "|" "DONE")
           (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "DONE" "CANCELLED(c)"))
    org-todo-keyword-faces
    '(("ACTIVE" :inherit warning :weight bold)
@@ -779,6 +780,7 @@ These can be solved with a lambda and dont need extra functions
      ("NOTE" :inherit warning :weight bold)
      ("WAITING" :inherit default :weight bold)
      ("SOMEDAY" :inherit default :weight bold)
+     ("REVIEW" :inherit 'org-todo :weight bold)
      ("LATER" :inherit default :weight bold)
      ("PROJECT" :inherit 'org-todo :weight bold))))
 #+END_SRC
@@ -948,9 +950,13 @@ Maybe just try persistent tags.
            (file org-default-notes-file)
            "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
 
-          ("w" "work" entry
+          ("ww" "Work Task" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %?\n%U"))))
+           "* TODO %?\n%U")
+
+          ("wr" "Work Review" entry
+           (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
+           "* REVIEW %(org-mac-chrome-get-frontmost-url)%?\n%U"))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
