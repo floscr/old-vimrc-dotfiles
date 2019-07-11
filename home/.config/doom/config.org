@@ -349,7 +349,7 @@ This will be disabled in terminal mode.
   (my-frame-resize-width 1410))
 
 (cond
- ((s-contains? "Florians-MBP" system-name)
+ ((--first (s-contains? it system-name) '("Florians-MBP" "Florians-MacBook-Pro"))
   (my-frame-resize-work-external)
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
