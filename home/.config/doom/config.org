@@ -1042,6 +1042,7 @@ Maybe just try persistent tags.
                                     ((org-agenda-prefix-format "  %?-12t% s")
                                      (org-agenda-start-on-weekday nil)
                                      (org-agenda-span 1)
+                                     (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org" "Work/work.org")))
                                      (org-agenda-start-day ".")
                                      (org-agenda-skip-scheduled-if-done t)
                                      (org-agenda-sorting-strategy '(timestamp-up time-up))
@@ -1083,7 +1084,8 @@ Maybe just try persistent tags.
 ******* Work
 #+BEGIN_SRC elisp
 (add-to-list 'org-agenda-custom-commands
-             '("w" "Work" tags-todo "+WORK"))
+             '("w" "Work" tags-todo "+WORK"
+               ((org-super-agenda-groups '((:name "Today" :scheduled today))))))
 #+END_SRC
 
 ******* Calendar
