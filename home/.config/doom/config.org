@@ -593,19 +593,44 @@ Create an action from a controller and import directly
 #+END_SRC
 *** Org
 **** Utils
-***** TODO Archive all done tasks
+***** Add source property from chrome
+#+BEGIN_SRC elisp
+(defun +org|source-properties-key-from-browser ()
+  (interactive)
+  (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
+#+END_SRC
+***** Archive all done tasks
 #+BEGIN_SRC elisp :tangle no
-(defun my-archive-entry ()
-  (message "%s" (thing-at-point 'line t)))
-
-(defun +org|org-archive-done-tasks ()
+(defun +org|archive-done-tasks ()
+  "Archive finished tasks."
   (interactive)
-  (org-map-entries #'my-archive-entry "/[X]" 'tree))
-
-(defun +org|org-archive-done-task ()
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/+{|DONE|CANCELED}" 'tree))
+#+END_SRC
+***** Archive and Done
+#+BEGIN_SRC elisp
+(defun org-archive-and-done ()
+  "Mark task as done and archive"
   (interactive)
-  (org-map-entries (lambda (file) (message file)) "/[X]" 'file))
+  (org-todo "DONE")
+  (org-archive-subtree))
 
+(defun org-agenda-archive-and-done ()
+  "Mark agenda task as done and archive"
+  (interactive)
+  (org-agenda-todo "DONE")
+  (org-agenda-archive))
+#+END_SRC
+***** Copy block to clipboard
+#+BEGIN_SRC elisp
+(defun +org|copy-block ()
+  "Copies the current block to clipboard"
+  (interactive)
+  (org-edit-src-code)
+  (clipboard-kill-ring-save (point-min) (point-max)))
 #+END_SRC
 ***** Export As Markdown
 #+BEGIN_SRC elisp
@@ -641,6 +666,21 @@ Create an action from a controller and import directly
            ".join(\"\\n\")"))))
     (insert tabs)))
 #+END_SRC
+***** Org Attach
+****** Download
+#+BEGIN_SRC elisp
+(defun +org-attach/downloads-file (file)
+  "Attach a file in your downloads-directory"
+  (interactive (list (read-file-name "Attach File: " downloads-dir)))
+  (+org-attach/uri file))
+#+END_SRC
+****** Screenshot
+#+BEGIN_SRC elisp
+(defun +org-attach/last-screenshot ()
+  "Attaches the last screenshot"
+  (interactive)
+  (+org-attach/file (latest-file screenshot-dir)))
+#+END_SRC
 ***** Paste Chrome Link Fix
 
 Fixes wrong paste behaviour where the link would be inserted directly on the character by adding a space
@@ -658,6 +698,24 @@ E.g.: (Brackets signal the cursor position)
   (insert " ")
   (insert (org-mac-chrome-get-frontmost-url)))
 #+END_SRC
+***** Paste Markdown as org
+#+BEGIN_SRC elisp
+(defun +org|paste-markdown-as-org ()
+  "Convert the current clipboard to markdown"
+  (interactive)
+  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
+#+END_SRC
+***** Schedule Tomorrow
+:PROPERTIES:
+:SOURCE:   [[https://github.com/xandeer/.doom/blob/master/modules/private/xandeer/+org.el][.doom/+org.el at master · xandeer/.doom]]
+:END:
+
+#+BEGIN_SRC elisp
+(defun +org|schedule-tomorrow ()
+  "Return scheduled string on tomorrow."
+  (format-time-string "SCHEDULED: <%F %a>"
+                      (time-add (current-time) (* 24 3600))))
+#+END_SRC
 ***** Sort org entries
 #+BEGIN_SRC elisp
 (defun +org|sort-entries ()
@@ -668,42 +726,6 @@ E.g.: (Brackets signal the cursor position)
   (org-shifttab)
   (org-cycle))
 #+END_SRC
-***** Copy block to clipboard
-#+BEGIN_SRC elisp
-(defun +org|copy-block ()
-  "Copies the current block to clipboard"
-  (interactive)
-  (org-edit-src-code)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-#+END_SRC
-***** Paste Markdown as org
-#+BEGIN_SRC elisp
-(defun +org|paste-markdown-as-org ()
-  "Convert the current clipboard to markdown"
-  (interactive)
-  (insert (shell-command-to-string "pbpaste | pandoc -f markdown -t org")))
-#+END_SRC
-***** Archive and Done
-#+BEGIN_SRC elisp
-(defun org-archive-and-done ()
-  "Mark task as done and archive"
-  (interactive)
-  (org-todo "DONE")
-  (org-archive-subtree))
-
-(defun org-agenda-archive-and-done ()
-  "Mark agenda task as done and archive"
-  (interactive)
-  (org-agenda-todo "DONE")
-  (org-agenda-archive))
-#+END_SRC
-***** Add source key from chrome
-#+BEGIN_SRC elisp
-(defun +org|source-properties-key-from-browser ()
-  (interactive)
-  (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
-#+END_SRC
-
 ***** Visit archive file
 #+BEGIN_SRC elisp
 (defun +org|visit-archive-file ()
@@ -712,27 +734,31 @@ E.g.: (Brackets signal the cursor position)
     (find-file archive-filename)
     (end-of-buffer)))
 #+END_SRC
-**** Config Rifle
+***** TODO Bookmarks
+
+These can be solved with a lambda and dont need extra functions
+
+#+BEGIN_SRC elisp
+(defun org-find-file (f)
+  "Find file in org directory"
+  (find-file (concat org-directory f)))
+
+(defun +org|org-open-home-file ()
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/home.org"))
+
+(defun +org|org-open-work-file ()
+  "Open the home org file"
+  (interactive)
+  (org-find-file "/Work/work.org"))
+#+END_SRC
+***** TODO Config Rifle
 #+BEGIN_SRC elisp
 (defun helm-org-rifle-config ()
   "Rifle for the literate configuration file"
   (interactive)
   (helm-org-rifle-files (list +literate-config-file)))
-#+END_SRC
-**** Org Attach
-***** Download
-#+BEGIN_SRC elisp
-(defun +org-attach/downloads-file (file)
-  "Attach a file in your downloads-directory"
-  (interactive (list (read-file-name "Attach File: " downloads-dir)))
-  (+org-attach/uri file))
-#+END_SRC
-***** Screenshot
-#+BEGIN_SRC elisp
-(defun +org-attach/last-screenshot ()
-  "Attaches the last screenshot"
-  (interactive)
-  (+org-attach/file (latest-file screenshot-dir)))
 #+END_SRC
 **** Config
 ***** General Config
@@ -765,7 +791,6 @@ E.g.: (Brackets signal the cursor position)
 #+END_SRC
 
 ****** Org variables
-
 #+BEGIN_SRC elisp
 (setq
  org-directory (expand-file-name "~/Dropbox/org")
@@ -789,7 +814,6 @@ Needs ~dvisvgm~
 #+BEGIN_SRC elisp
 (setq org-latex-create-formula-image-program 'dvisvgm)
 #+END_SRC
-
 ***** Tags
 ****** Tags List
 
@@ -928,10 +952,7 @@ Maybe just try persistent tags.
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
            "* TODO %?\n%U"))))
 #+END_SRC
-***** TODO Src Block Snippets
-
-Solve these with yasnippet
-
+***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
 (add-to-list 'org-structure-template-alist '("es" "#+BEGIN_SRC elisp\n?\n#+END_SRC\n"))
 (add-to-list 'org-structure-template-alist '("E" "#+BEGIN_EXAMPLE\n?\n#+END_EXAMPLE"))
@@ -943,25 +964,6 @@ Solve these with yasnippet
 (add-to-list 'org-structure-template-alist '("rb" "#+BEGIN_SRC ruby\n?\n#+END_SRC\n"))
 (add-to-list 'org-structure-template-alist '("md" "#+BEGIN_SRC markdown\n?\n#+END_SRC\n"))
 #+END_SRC
-
-***** TODO Bookmarks
-These can be solved with a lambda and dont need extra functions
-#+BEGIN_SRC elisp
-(defun org-find-file (f)
-  "Find file in org directory"
-  (find-file (concat org-directory f)))
-
-(defun +org|org-open-home-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/home.org"))
-
-(defun +org|org-open-work-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/Work/work.org"))
-#+END_SRC
-
 ***** Leader Bindings
 #+BEGIN_SRC elisp
 (map! :leader (:desc "Notes" :prefix "n"
@@ -2610,6 +2612,7 @@ Pacakge/Mode specific bindings
       :desc  "Copy Buffer To Markdown"  "y"  #'+org|copy-buffer-as-markdown
       :desc  "Align Tags"               "%"  #'+org-align-all-tags
       :desc  "Goto Archive"             "$"  #'+org|visit-archive-file
+      :desc  "Schedule Tomorrow"        "+"  #'+org|schedule-tomorrow
       (:prefix ("g" . "goto")
         :desc "Org Web Link" "l" #'+org-web-tools/read-url-at-point))
 #+END_SRC
