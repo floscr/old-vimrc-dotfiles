@@ -185,11 +185,11 @@ Enhancement of the default ~+workspace/switch-to~.
   (ivy-read "Switch to workspace: "
             (+workspace-list-names)
             :action '(1
+                      ("RET" +workspace/switch-to "Switch to workspace")
                       ("C-<backspace>" (lambda (x)
                                          (+workspace/delete x)
                                          (+workspace/my-switch-to))
-                       "Continous delete workspace")
-                      ("RET" +workspace/switch-to "Switch to workspace"))))
+                       "Continous delete workspace"))))
 #+END_SRC
 **** Switch to last visited workspace
 #+BEGIN_SRC elisp
@@ -349,7 +349,7 @@ This will be disabled in terminal mode.
   (my-frame-resize-width 1410))
 
 (cond
- ((s-contains? "Florians-MBP" system-name)
+ ((--first (s-contains? it system-name) '("Florians-MBP" "Florians-MacBook-Pro"))
   (my-frame-resize-work-external)
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
@@ -600,11 +600,7 @@ Create an action from a controller and import directly
   (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
 #+END_SRC
 ***** Archive all done tasks
-:PROPERTIES:
-:SOURCE:   [[https://github.com/xandeer/.doom/blob/master/modules/private/xandeer/+org.el][.doom/+org.el at master · xandeer/.doom]]
-:END:
-
-#+BEGIN_SRC elisp
+#+BEGIN_SRC elisp :tangle no
 (defun +org|archive-done-tasks ()
   "Archive finished tasks."
   (interactive)
@@ -776,6 +772,7 @@ These can be solved with a lambda and dont need extra functions
           (sequence "[ ]([)" "|" "[X](])")
           (sequence "PROJECT(p)" "|" "DONE")
           (sequence "NOTE(N)")
+          (sequence "REVIEW(R)" "|" "DONE")
           (sequence "WAITING(w)" "LATER(l)" "SOMEDAY(s)" "|" "DONE" "CANCELLED(c)"))
    org-todo-keyword-faces
    '(("ACTIVE" :inherit warning :weight bold)
@@ -783,6 +780,7 @@ These can be solved with a lambda and dont need extra functions
      ("NOTE" :inherit warning :weight bold)
      ("WAITING" :inherit default :weight bold)
      ("SOMEDAY" :inherit default :weight bold)
+     ("REVIEW" :inherit 'org-todo :weight bold)
      ("LATER" :inherit default :weight bold)
      ("PROJECT" :inherit 'org-todo :weight bold))))
 #+END_SRC
@@ -817,96 +815,6 @@ Needs ~dvisvgm~
 
 #+BEGIN_SRC elisp
 (setq org-latex-create-formula-image-program 'dvisvgm)
-#+END_SRC
-***** Agenda
-****** Bindings
-#+BEGIN_SRC elisp
-(evil-define-key 'motion org-agenda-mode-map
-  "vd" 'org-agenda-day-view
-  "ds" 'org-agenda-schedule
-  "vw" 'org-agenda-week-view
-  "vm" 'org-agenda-month-view
-  "vy" 'org-agenda-year-view)
-#+END_SRC
-****** Custom Agenda Commands
-
-#+BEGIN_SRC elisp
-(after! org-agenda
-#+END_SRC
-
-******* Today View
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("d" "Today" ((agenda "a"
-                                    ((org-agenda-prefix-format "  %?-12t% s")
-                                     (org-agenda-start-on-weekday nil)
-                                     (org-agenda-span 1)
-                                     (org-agenda-start-day ".")
-                                     (org-agenda-skip-scheduled-if-done t)
-                                     (org-agenda-sorting-strategy '(timestamp-up time-up))
-                                     (org-agenda-day-view)
-                                     (org-super-agenda-groups '((:name "Today" :date today :time-grid t)
-                                                                (:name "Overdue" :deadline past :scheduled past)
-                                                                (:name "Future" :anything (:scheduled future)))))))))
-#+END_SRC
-
-******* All TODO Items
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("x" "Todo Items" alltodo ""
-               ((org-agenda-prefix-format "  %?-12t% s")
-                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
-                (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
-                (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE"))
-                                           (:name "Scheduled" :scheduled t)
-                                           (:name "Inbox" :file-path ".*inbox.org$" :order 2)
-                                           (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")) :order 1)
-                                           (:name "Backlog" :tag "BACKLOG" :order 3))))))
-#+END_SRC
-
-******* Emacs
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("e" "Emacs Items" alltodo ""
-               ((org-agenda-prefix-format "  %?-12t% s")
-                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
-                (org-agenda-files (--map (concat org-directory "/" it) '("Emacs.org")))
-                (org-super-agenda-groups '((:name "Active" :todo "ACTIVE")
-                                           (:name "Next" :todo "NEXT")
-                                           (:name "Low Effort" :effort< "0:30")
-                                           (:name "Todo" :todo "TODO"))))))
-#+END_SRC
-
-******* Work
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("w" "Work" tags-todo "+WORK"))
-#+END_SRC
-
-******* Calendar
-
-#+BEGIN_SRC elisp
-(add-to-list 'org-agenda-custom-commands
-             '("c" "Calendar" agenda ""
-               ((org-agenda-span 7)
-                (org-agenda-start-on-weekday nil)
-                (org-agenda-start-day "-1d")
-                (org-agenda-tag-filter-preset '("+CALENDAR")))))
-#+END_SRC
-
-******* Closing Tag
-
-#+BEGIN_SRC elisp
-:config
-(setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
-#+END_SRC
-
-******* Helper to reset the org agenda custom commands.
-
-#+BEGIN_SRC elisp :tangle no
-(setq org-agenda-custom-commands '())
 #+END_SRC
 ***** Tags
 ****** Tags List
@@ -1042,9 +950,13 @@ Maybe just try persistent tags.
            (file org-default-notes-file)
            "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
 
-          ("w" "work" entry
+          ("ww" "Work Task" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %?\n%U"))))
+           "* TODO %?\n%U")
+
+          ("wr" "Work Review" entry
+           (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
+           "* REVIEW %(org-mac-chrome-get-frontmost-url)%?\n%U"))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
@@ -1112,6 +1024,104 @@ Maybe just try persistent tags.
           :desc "Block"                :m "b" #'org-narrow-to-block
           :desc "Element"              :m "e" #'org-narrow-to-element
           :desc "widen"                :m "w" #'widen)))
+#+END_SRC
+***** Agenda
+****** Bindings
+#+BEGIN_SRC elisp
+(evil-define-key 'motion org-agenda-mode-map
+  "vd" 'org-agenda-day-view
+  "ds" 'org-agenda-schedule
+  "vw" 'org-agenda-week-view
+  "vm" 'org-agenda-month-view
+  "vy" 'org-agenda-year-view)
+#+END_SRC
+****** Custom Agenda Commands
+
+#+BEGIN_SRC elisp
+(after! org-agenda
+#+END_SRC
+
+******* Today View
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("d" "Today" ((agenda "a"
+                                    ((org-agenda-prefix-format "  %?-12t% s")
+                                     (org-agenda-start-on-weekday nil)
+                                     (org-agenda-span 1)
+                                     (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org" "Work/work.org")))
+                                     (org-agenda-start-day ".")
+                                     (org-agenda-skip-scheduled-if-done t)
+                                     (org-agenda-sorting-strategy '(timestamp-up time-up))
+                                     (org-agenda-day-view)
+                                     (org-super-agenda-groups '((:name "Today" :date today :time-grid t)
+                                                                (:name "Overdue" :deadline past :scheduled past)
+                                                                (:name "Future" :anything (:scheduled future)))))))))
+#+END_SRC
+
+******* All TODO Items
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("x" "Todo Items" alltodo ""
+               ((org-agenda-prefix-format "  %?-12t% s")
+                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
+                (org-agenda-files (--map (concat org-directory "/" it) '("inbox.org" "home.org")))
+                (org-super-agenda-groups '((:name "Next" :todo ("ACTIVE"))
+                                           (:name "Scheduled" :scheduled t)
+                                           (:name "Inbox" :file-path ".*inbox.org$" :order 2)
+                                           (:name "Unscheduled" :and (:todo "TODO" :scheduled nil :not (:tag "BACKLOG")) :order 1)
+                                           (:name "Backlog" :tag "BACKLOG" :order 3))))))
+#+END_SRC
+
+******* Emacs
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("e" "Emacs Items" alltodo ""
+               ((org-agenda-prefix-format "  %?-12t% s")
+                (org-agenda-sorting-strategy '(timestamp-down todo-state-down))
+                (org-agenda-files (--map (concat org-directory "/" it) '("Emacs.org")))
+                (org-super-agenda-groups '((:name "Active" :todo "ACTIVE")
+                                           (:name "Next" :todo "NEXT")
+                                           (:name "Low Effort" :effort< "0:30")
+                                           (:name "Todo" :todo "TODO"))))))
+#+END_SRC
+
+******* Work
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("w" "Work" tags-todo "+WORK"
+               ((org-agenda-sorting-strategy '(timestamp-down time-down))
+                (org-super-agenda-groups '((:name "In Progress" :todo "ACTIVE")
+                                           (:name "Coming Up Today" :scheduled today)
+                                           (:name "Next" :not (:todo "SOMEDAY" :todo "WAITING" :tag ("BACKLOG" "TEXT" "EMACS")))
+                                           (:name "Waiting" :todo "WAITING")
+                                           (:name "Backlog" :tag "BACKLOG")
+                                           (:name "Reading List" :tag "TEXT"))))))
+#+END_SRC
+
+******* Calendar
+
+#+BEGIN_SRC elisp
+(add-to-list 'org-agenda-custom-commands
+             '("c" "Calendar" agenda ""
+               ((org-agenda-span 7)
+                (org-agenda-start-on-weekday nil)
+                (org-agenda-start-day "-1d")
+                (org-agenda-tag-filter-preset '("+CALENDAR")))))
+#+END_SRC
+
+******* Closing Tag
+
+#+BEGIN_SRC elisp
+:config
+(setq org-agenda-files (list org-directory (concat org-directory "/Work"))))
+#+END_SRC
+
+******* Helper to reset the org agenda custom commands.
+
+#+BEGIN_SRC elisp :tangle no
+(setq org-agenda-custom-commands '())
 #+END_SRC
 *** Javascript
 #+BEGIN_SRC elisp
@@ -2497,6 +2507,7 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Rename Buffer"                :n  "r" #'rename-buffer)
 
  (:desc "file" :prefix "f"
+   :desc "find in literate config file" :n  "D" (λ! (counsel-find-file (projectile-project-root)))
    :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
 
  (:desc "dir" :prefix "d"
@@ -2535,8 +2546,9 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
 
  (:desc "window" :prefix "w"
-   :desc "Split Vertical" :n "|" #'evil-window-vsplit
-   :desc "Split Horizontal" :n "_" #'evil-window-split)
+  :desc  "Split Vertical"  :n  "|"    #'evil-window-vsplit
+  :desc  "Split Vertical"  :n  "|"    #'evil-window-vsplit
+  :desc  "Swap"            :n  "SPC"  #'ace-swap-window)
 
  (:desc "workspace" :prefix "<tab>"
    :desc "Switch to"    :n "." #'+workspace/my-switch-to
@@ -2580,21 +2592,6 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
-**** (e) Eshell
-:PROPERTIES:
-:SOURCE:   [[https://github.com/xandeer/.doom/blob/master/modules/private/xandeer/%252Beshell.el][.doom/+eshell.el at master · xandeer/.doom]]
-:END:
-
-#+BEGIN_SRC elisp
-(map! :leader
-      :desc "eshell" "e" nil
-      (:prefix ("e" . "eshell")
-        :desc "Create a new eshell window below the current one."             "j"   #'+eshell/split-below
-        :desc "Create a new eshell window to the right of the current one."   "l"   #'+eshell/split-right
-        :desc "Switch to eshell and change directory to DIR."                 "z"   #'eshell-z))
-(map!
-   :n "M-;" #'eshell-command)
-#+END_SRC
 *** Little Word Motion
 #+BEGIN_SRC elisp
 (defun load-evil-camel-case-motion ()
@@ -2651,19 +2648,15 @@ Pacakge/Mode specific bindings
 (defun my-evil-org-agenda-set-keys ()
   (evil-define-key 'motion org-agenda-mode-map
     "da" 'org-agenda-archive
-    "dSp" (λ! (org-agenda-schedule t "+1d 7pm"))
-    "dSw" (λ! (org-agenda-schedule t "+1d 8am"))
-    "dSS" (λ! (org-agenda-schedule t "+1d"))
     "dA" 'org-agenda-archive-and-done))
 
 (advice-add #'evil-org-agenda-set-keys :after #'my-evil-org-agenda-set-keys)
 #+END_SRC
 ****** Fix Window Navigation
 #+BEGIN_SRC elisp
-(after! org
-  (map! :map org-agenda-mode-map
-        :desc "Org Window Left" "C-h" #'evil-window-left
-        :desc "Org Window Left" "C-l" #'evil-window-right))
+(map! :map org-agenda-mode-map
+      :desc "Org Window Left" "C-h" #'evil-window-left
+      :desc "Org Window Left" "C-l" #'evil-window-right)
 #+END_SRC
 **** Eshell
 #+BEGIN_SRC elisp

@@ -75,7 +75,13 @@ function pman() {
 # npm ls --depth=0 -g "$@" 2>/dev/null
 function npmls() {
   # Workaround for a fast global package listing
-  ls -1 ~/.nvm/versions/node/$(node -v)/lib/node_modules
+  if [[ -d $HOME/.fnm ]]; then
+    DIR="$FNM_DIR/current"
+  else
+    DIR="~/.nvm/versions/node/$(node -v)"
+  fi
+
+  ls -1 "$DIR/lib/node_modules"
 }
 
 # [numhash]:
