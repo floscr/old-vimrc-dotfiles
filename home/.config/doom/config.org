@@ -353,7 +353,9 @@ This will be disabled in terminal mode.
   (my-frame-resize-work-external)
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
-  (setq-default line-spacing 0.3))
+  (setq-default line-spacing 10)
+  (setq default-line-spacing 10)
+  (setq doom-font (font-spec :family "Menlo" :size 14)))
  ((string= system-name "Florians-MacBook-Air.local")
   (setq-default line-spacing 0.4)
   (setq initial-frame-alist
