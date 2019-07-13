@@ -16,8 +16,6 @@
 (package! org-super-agenda :recipe (:fetcher github :repo "alphapapa/org-super-agenda"))
 
 ;;; Utils
-;; Text Scale
-(package! default-text-scale)
 ;; Show changes in current branch
 (package! git-lens)
 ;; Image editing utility

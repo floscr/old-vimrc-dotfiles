@@ -2356,9 +2356,9 @@ The history can be accessed with ~C-n~ / ~C-p~
       :niv "s-9" (λ! (+workspace/switch-to 9))
 
       ;; Text scale
-      :niv "s-="   #'default-text-scale-increase
-      :niv "s--"   #'default-text-scale-decrease
-      :niv "s-0"   #'default-text-scale-reset)
+      :niv "s-="   #'doom/increase-font-size
+      :niv "s--"   #'doom/decrease-font-size
+      :niv "s-0"   #'doom/reset-font-size)
 #+END_SRC
 *** Evil Normal Bindings
 **** Window navigation
