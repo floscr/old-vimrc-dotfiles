@@ -553,7 +553,25 @@ Create an action from a controller and import directly
       (+js|generate-index actions-dir))
     (find-file action-file)))
 #+END_SRC
+*** Create canvas action
 
+Create an canvas action
+
+#+BEGIN_SRC elisp
+(defun +MM|canvas-create-action ()
+  "Create an action file from a controller file"
+  (interactive)
+  (let* ((action-name (read-string "Action Name: "))
+         (actions-dir (f-join (projectile-project-root) "src/containers/MapEditor/actions"))
+         (actions-index-file (f-join actions-dir "index.js"))
+         (action-file (f-join actions-dir (concat action-name ".js"))))
+    (copy-file
+     (f-join (projectile-project-root) "snippets/Core/Action.js")
+     action-file)
+    (with-temp-file actions-index-file
+      (+js|generate-index actions-dir))
+    (find-file action-file)))
+#+END_SRC
 *** Search MapEditor Only
 
 #+BEGIN_SRC elisp
