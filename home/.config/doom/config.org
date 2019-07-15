@@ -1752,6 +1752,11 @@ Automatically adds ~.projectfile~ and opens a new doom workspace.
     (npm-mode-npm-ci)))
 #+END_SRC
 
+#+BEGIN_SRC elisp
+(after! magit
+  (transient-append-suffix 'magit-worktree "y" '("m" "+MM|Worktree" +MM|new-worktree)))
+#+END_SRC
+
 ***** Revision show orignal file
 
 Show the orginal file when visiting a revision buffer.
