@@ -1104,10 +1104,12 @@ Maybe just try persistent tags.
                 (org-agenda-sorting-strategy '(timestamp-down time-down))
                 (org-super-agenda-groups '((:name "In Progress" :todo "ACTIVE")
                                            (:name "Coming Up Today" :scheduled today)
-                                           (:name "Next" :not (:todo "SOMEDAY" :todo "WAITING" :tag ("BACKLOG" "TEXT" "EMACS")))
-                                           (:name "Waiting" :todo "WAITING")
-                                           (:name "Backlog" :tag "BACKLOG")
-                                           (:name "Reading List" :tag "TEXT"))))))
+                                           (:name "Meta Work" :tag "META_WORK" :order 4)
+                                           (:name "Tasks" :not (:todo "SOMEDAY" :todo "WAITING" :tag ("BACKLOG" "TEXT" "EMACS")))
+                                           (:name "Reviews" :tag "REVIEW")
+                                           (:name "Waiting" :todo "WAITING" :order 5)
+                                           (:name "Backlog" :tag "BACKLOG" :order 11)
+                                           (:name "Reading List" :tag "TEXT" :order 10))))))
 #+END_SRC
 
 ******* Calendar
