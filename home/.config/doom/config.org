@@ -1712,6 +1712,110 @@ I want buffers added whenever I visit a buffer.
     ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
 #+END_SRC
 *** Magit / Git
+**** Utils
+***** Create New Git Worktree Workspace
+
+Creates a new git workspace from a branch.
+Automatically adds ~.projectfile~ and opens a new doom workspace.
+
+#+BEGIN_SRC elisp
+(defun magit-worktree-branch-project-worktree (branch start-point &optional force)
+  "Create a new BRANCH and check it out in a new worktree at PATH in a new workspace."
+  (interactive
+   `(,@(butlast (magit-branch-read-args "Create and checkout branch"))
+     ,current-prefix-arg))
+  (let* ((worktree-path (f-join (projectile-project-root) ".worktrees"))
+         (path (f-join (projectile-project-root) ".worktrees" branch)))
+    (when (not (f-exists-p worktree-path))
+      (mkdir worktree-path t))
+    (magit-run-git "worktree" "add" (if force "-B" "-b")
+                   branch (expand-file-name path) start-point)
+    (f-touch (f-join path ".projectile"))
+    (+workspace-new branch)
+    (+workspace-switch branch)
+    (magit-diff-visit-directory path)
+    (projectile-add-known-project path)
+    path))
+
+(defun npm-mode-npm-ci ()
+  "Run the 'npm install' command."
+  (interactive)
+  (npm-mode--exec-process "npm ci"))
+
+(defun +MM|new-worktree ()
+  "New worktree with the devpanel files and an npm install"
+  (interactive)
+  (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
+    (npm-mode)
+    (npm-mode-npm-ci)))
+#+END_SRC
+
+***** Revision show orignal file
+
+Show the orginal file when visiting a revision buffer.
+E.g.: When showing a diff from a commit, you may want to edit that file.
+
+#+BEGIN_SRC elisp
+(defun magit-revision-show-original-file ()
+  "Show the orginal file from a revision buffer
+If possible also go to the pointing line"
+  (interactive)
+  (when magit-buffer-file-name
+    (let ((file-name magit-buffer-file-name)
+          (line-number (line-number-at-pos)))
+      (delete-other-windows)
+      (find-file file-name)
+      (goto-line line-number))))
+#+END_SRC
+
+***** Git changed files
+
+Show a list of the changed files in the current branch.
+For now only works on branches that were directly forked from master.
+
+#+BEGIN_SRC elisp
+(defun shell-command-to-list (cmd)
+  "Split output from shell-command to list"
+  (split-string (shell-command-to-string cmd) "\n" t))
+
+(defun git-new-files ()
+  (shell-command-to-list "git ls-files -om --exclude-standard"))
+
+(defun git-modified-files (&optional branch)
+  (shell-command-to-list
+   (template "git --no-pager diff --no-renames --name-only --no-merges <<(magit-rev-parse \"HEAD\")>> <<branch>>;")))
+
+(defun git-get-changed-files (b)
+    (delete-dups (append (git-modified-files b) (git-new-files))))
+
+(defun +git|ivy-changed-files (&optional branch)
+  (interactive)
+  (let ((enable-recursive-minibuffers t))
+    (ivy-read (template "Changed files for <<branch>>:")
+              (git-get-changed-files (or branch "master"))
+              :require-match t
+              :history 'file-name-history
+              :action counsel-projectile-find-file-action
+              :caller '+git|ivy-changed-files)))
+#+END_SRC
+***** Git undo
+#+BEGIN_SRC elisp
+(defun +git|undo ()
+  "Soft reset current git repo to HEAD~1."
+  (interactive)
+  (magit-reset-soft "HEAD~1"))
+#+END_SRC
+***** TODO Browse git link
+
+Browse the current thing at point for git
+
+#+BEGIN_SRC elisp
+(defun browse-git-link ()
+  "Browse the git link at the current point"
+  (interactive)
+  (let ((git-link-open-in-browser t))
+    (call-interactively 'git-link)))
+#+END_SRC
 **** Config
 #+BEGIN_SRC elisp
 (setq-default magit-save-repository-buffers 'dontask)
@@ -1763,109 +1867,6 @@ Fixes evil window navigation for magit special buffers
    :n "C-l" #'evil-window-right))
 #+END_SRC
 
-**** Revision show orignal file
-
-Show the orginal file when visiting a revision buffer.
-E.g.: When showing a diff from a commit, you may want to edit that file.
-
-#+BEGIN_SRC elisp
-(defun magit-revision-show-original-file ()
-  "Show the orginal file from a revision buffer
-If possible also go to the pointing line"
-  (interactive)
-  (when magit-buffer-file-name
-    (let ((file-name magit-buffer-file-name)
-          (line-number (line-number-at-pos)))
-      (delete-other-windows)
-      (find-file file-name)
-      (goto-line line-number))))
-#+END_SRC
-
-**** Git changed files
-
-Show a list of the changed files in the current branch.
-For now only works on branches that were directly forked from master.
-
-#+BEGIN_SRC elisp
-(defun shell-command-to-list (cmd)
-  "Split output from shell-command to list"
-  (split-string (shell-command-to-string cmd) "\n" t))
-
-(defun git-new-files ()
-  (shell-command-to-list "git ls-files -om --exclude-standard"))
-
-(defun git-modified-files (&optional branch)
-  (shell-command-to-list
-   (template "git --no-pager diff --no-renames --name-only --no-merges <<(magit-rev-parse \"HEAD\")>> <<branch>>;")))
-
-(defun git-get-changed-files (b)
-    (delete-dups (append (git-modified-files b) (git-new-files))))
-
-(defun +git|ivy-changed-files (&optional branch)
-  (interactive)
-  (let ((enable-recursive-minibuffers t))
-    (ivy-read (template "Changed files for <<branch>>:")
-              (git-get-changed-files (or branch "master"))
-              :require-match t
-              :history 'file-name-history
-              :action counsel-projectile-find-file-action
-              :caller '+git|ivy-changed-files)))
-#+END_SRC
-**** Create New Git Worktree Workspace
-
-Creates a new git workspace from a branch.
-Automatically adds ~.projectfile~ and opens a new doom workspace.
-
-#+BEGIN_SRC elisp
-(defun magit-worktree-branch-project-worktree (branch start-point &optional force)
-  "Create a new BRANCH and check it out in a new worktree at PATH in a new workspace."
-  (interactive
-   `(,@(butlast (magit-branch-read-args "Create and checkout branch"))
-     ,current-prefix-arg))
-  (let* ((worktree-path (f-join (projectile-project-root) ".worktrees"))
-         (path (f-join (projectile-project-root) ".worktrees" branch)))
-    (when (not (f-exists-p worktree-path))
-      (mkdir worktree-path t))
-    (magit-run-git "worktree" "add" (if force "-B" "-b")
-                   branch (expand-file-name path) start-point)
-    (f-touch (f-join path ".projectile"))
-    (+workspace-new branch)
-    (+workspace-switch branch)
-    (magit-diff-visit-directory path)
-    (projectile-add-known-project path)
-    path))
-
-(defun npm-mode-npm-ci ()
-  "Run the 'npm install' command."
-  (interactive)
-  (npm-mode--exec-process "npm ci"))
-
-(defun +MM|new-worktree ()
-  "New worktree with the devpanel files and an npm install"
-  (interactive)
-  (let ((path (call-interactively 'magit-worktree-branch-project-worktree)))
-    (npm-mode)
-    (npm-mode-npm-ci)))
-#+END_SRC
-
-**** Git undo
-#+BEGIN_SRC elisp
-(defun +git|undo ()
-  "Soft reset current git repo to HEAD~1."
-  (interactive)
-  (magit-reset-soft "HEAD~1"))
-#+END_SRC
-**** TODO Browse git link
-
-Browse the current thing at point for git
-
-#+BEGIN_SRC elisp
-(defun browse-git-link ()
-  "Browse the git link at the current point"
-  (interactive)
-  (let ((git-link-open-in-browser t))
-    (call-interactively 'git-link)))
-#+END_SRC
 *** Smerge Mode
 **** Fix Colors
 #+BEGIN_SRC elisp
