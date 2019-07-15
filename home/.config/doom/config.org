@@ -2341,6 +2341,11 @@ Overrides dooms aliases.
   (company-complete-selection))
 #+END_SRC
 ** General Config
+*** Bookmarks
+#+BEGIN_SRC elisp
+(setq bookmark-default-file "~/Dropbox/Temp/bookmarks")
+#+END_SRC
+
 *** Disable Eldoc
 #+BEGIN_SRC elisp
 (global-eldoc-mode -1)
