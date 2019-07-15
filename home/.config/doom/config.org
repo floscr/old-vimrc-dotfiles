@@ -1100,7 +1100,8 @@ Maybe just try persistent tags.
 #+BEGIN_SRC elisp
 (add-to-list 'org-agenda-custom-commands
              '("w" "Work" tags-todo "+WORK"
-               ((org-agenda-sorting-strategy '(timestamp-down time-down))
+               ((org-agenda-hide-tags-regexp "WORK")
+                (org-agenda-sorting-strategy '(timestamp-down time-down))
                 (org-super-agenda-groups '((:name "In Progress" :todo "ACTIVE")
                                            (:name "Coming Up Today" :scheduled today)
                                            (:name "Next" :not (:todo "SOMEDAY" :todo "WAITING" :tag ("BACKLOG" "TEXT" "EMACS")))
