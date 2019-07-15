@@ -353,7 +353,9 @@ This will be disabled in terminal mode.
   (my-frame-resize-work-external)
   (setq-default line-spacing 0.3))
  ((string= system-name "Florians-iMac.local")
-  (setq-default line-spacing 0.3))
+  (setq-default line-spacing 10)
+  (setq default-line-spacing 10)
+  (setq doom-font (font-spec :family "Menlo" :size 14)))
  ((string= system-name "Florians-MacBook-Air.local")
   (setq-default line-spacing 0.4)
   (setq initial-frame-alist
@@ -2392,9 +2394,9 @@ The history can be accessed with ~C-n~ / ~C-p~
       :niv "s-9" (λ! (+workspace/switch-to 9))
 
       ;; Text scale
-      :niv "s-="   #'default-text-scale-increase
-      :niv "s--"   #'default-text-scale-decrease
-      :niv "s-0"   #'default-text-scale-reset)
+      :niv "s-="   #'doom/increase-font-size
+      :niv "s--"   #'doom/decrease-font-size
+      :niv "s-0"   #'doom/reset-font-size)
 #+END_SRC
 *** Evil Normal Bindings
 **** Window navigation
