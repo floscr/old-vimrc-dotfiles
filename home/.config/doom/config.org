@@ -2336,9 +2336,10 @@ The history can be accessed with ~C-n~ / ~C-p~
 *** Mac Modifier Bindings
 #+BEGIN_SRC elisp
 (map! (:map override
-        "s-x" #'execute-extended-command
         "s-w" #'+workspace/close-window-or-workspace
         "s-;" #'eval-expression)
+
+      :niv "s-x" #'execute-extended-command
 
       ;; Workspace Switching
       :niv "s-1" (λ! (+workspace/switch-to 0))
