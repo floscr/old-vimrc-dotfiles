@@ -1558,7 +1558,7 @@ Always keep markdown centered, without line numbers.
   (ivy-read "Add Rule" (ht-keys +MM-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
-**** Ivy Projectile
+**** TODO Ivy Projectile
 
 Override the default ~+default/search-project~, since that does just a basic rg, without respecting the
 projectile ignores.
