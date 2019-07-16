@@ -2272,10 +2272,6 @@ Overrides dooms aliases.
 (setq bookmark-default-file "~/Dropbox/Temp/bookmarks")
 #+END_SRC
 
-*** Disable Eldoc
-#+BEGIN_SRC elisp
-(global-eldoc-mode -1)
-#+END_SRC
 *** Open OTF fonts in image mode
 #+BEGIN_SRC elisp
 (add-to-list 'auto-mode-alist '("\\.otf\\'" . image-mode))
