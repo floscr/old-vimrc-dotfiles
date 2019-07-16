@@ -177,6 +177,7 @@ buffer in current window."
 #+END_SRC
 *** Workspace
 **** Switch to workspace
+
 Enhancement of the default ~+workspace/switch-to~.
 
 #+BEGIN_SRC elisp
@@ -203,6 +204,7 @@ Enhancement of the default ~+workspace/switch-to~.
   (+workspace/switch-to +workspace--last))
 #+END_SRC
 **** Find file for workspace
+
 Most of the time you create workspaces from a project.
 But when the CWD has changed in that workspace, you would have to relocate to
 the projects cwd to find a file.
@@ -256,22 +258,6 @@ This fix opens the folder and selects the file.
                    "    activate\n"
                    "    reveal POSIX file \"" (buffer-file-name) "\"\n"
                    "end tell")))
-#+END_SRC
-**** Show Next/Previous file in file listing
-#+BEGIN_SRC elisp
-(defun my-next-ls-file (&optional direction)
-  "Gives you the next file of a listing in the current dictionary"
-  (interactive)
-  (let* ((direction (or direction 1))
-         (files (-drop 2 (directory-files (file-name-directory (buffer-file-name)) nil nil nil)))
-         (current-index (-elem-index (file-name-nondirectory buffer-file-name) files))
-         (file-length (- (length files) 1))
-         (next-index (+ current-index direction)))
-    (--> (cond
-          ((equal (> file-length next-index) 0))
-          ((equal (< 0 next-index) file-length))
-          (t next-index))
-        (nth it files))))
 #+END_SRC
 **** Open private config
 #+BEGIN_SRC elisp
