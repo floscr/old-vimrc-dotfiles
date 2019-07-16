@@ -259,7 +259,8 @@ This fix opens the folder and selects the file.
                    "    reveal POSIX file \"" (buffer-file-name) "\"\n"
                    "end tell")))
 #+END_SRC
-*** Hydra Expand Region
+*** Hydras
+**** Hydra Expand Region
 :PROPERTIES:
 :SOURCE:   https://www.reddit.com/r/emacs/comments/also27/second_trial_for_a_weekly_tipstricksetc_thread/efi7pbj/
 :END:
