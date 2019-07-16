@@ -1956,7 +1956,8 @@ npm i -g json-fix
 (global-eldoc-mode -1)
 #+END_SRC
 *** Company
-**** Sort company by occurance
+**** Config
+***** Sort company by occurance
 :PROPERTIES:
 :SOURCE:   [[https://github.com/company-mode/company-mode/issues/52][{Proposal} Improve company-dabbrev candidate ordering · Issue #52 · company-mode/company-mode]]
 :END:
@@ -1964,7 +1965,8 @@ npm i -g json-fix
 (setq company-transformers '(company-sort-by-occurrence)
       company-idle-delay 0.5)
 #+END_SRC
-**** Company complete whole lines for all matching buffers
+**** Functions
+***** Company complete whole lines for all matching buffers
 
 Complete a whole line with all lines from buffers matching the current major-mode.
 
