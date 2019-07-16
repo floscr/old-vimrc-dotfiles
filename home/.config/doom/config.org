@@ -437,10 +437,15 @@ Macro Expansion
 
 (set-popup-rule! "^\\*compilation" :side 'right :size 0.5 :select t :modeline t :ttl nil)
 #+END_SRC
-*** Fill Column
+*** (Visual) Fill Column
 #+BEGIN_SRC elisp
 (setq-default fill-column 110)
 (setq visual-fill-column-width fill-column)
+
+(setq visual-fill-column-center-text t
+      visual-fill-column-width
+      ;; take Emacs 26 line numbers into account
+      (+ (if EMACS26+ 6 0) fill-column))
 #+END_SRC
 ** Work
 #+BEGIN_SRC elisp
@@ -582,13 +587,6 @@ Create an canvas action
        (copy-message it)))
 #+END_SRC
 ** Package Config
-*** Visual Fill Column
-#+BEGIN_SRC elisp
-(setq visual-fill-column-center-text t
-      visual-fill-column-width
-      ;; take Emacs 26 line numbers into account
-      (+ (if EMACS26+ 6 0) fill-column))
-#+END_SRC
 *** Org
 **** Utils
 ***** Add source property from chrome
