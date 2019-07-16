@@ -2506,8 +2506,8 @@ Global ~[~ & ~]~ combinator bindings
 **** Dumb Jump
 #+BEGIN_SRC elisp
 (map!
- :n "]f" #'dumb-jump-go
- :n "[f" #'dumb-jump-back)
+ :n "]F" #'dumb-jump-go
+ :n "[F" #'dumb-jump-back)
 #+END_SRC
 **** Flycheck Error Jumping
 #+BEGIN_SRC elisp
