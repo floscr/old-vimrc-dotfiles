@@ -2128,7 +2128,7 @@ Happypack slows down treemacs quite a bit.
 *** Org QL
 #+BEGIN_SRC elisp
 (def-package! org-ql
-  :after org)
+  :commands (org-ql-search))
 #+END_SRC
 *** Org SuperAgenda
 **** Config
