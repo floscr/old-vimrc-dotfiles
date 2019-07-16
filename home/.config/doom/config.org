@@ -2315,8 +2315,9 @@ Overrides dooms aliases.
     ("l"      "ls -lh")
     ("ll"     "ls -lah")
     ("gs"     "git status")
+    ("groot"  "cd (projectile-project-root)")
     ("gc"     "git commit")
-    ("grha"     "git reset --hard; git clean -f -d")
+    ("grha"   "git reset --hard; git clean -f -d")
     ("clear"  "clear-scrollback")))
 #+END_SRC
 **** Syntax highlighted cat
