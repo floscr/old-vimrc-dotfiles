@@ -1853,26 +1853,6 @@ the projects cwd to find a file.
   (let ((name (read-string "New workspace name: ")))
     (if name (+workspace/new name))))
 #+END_SRC
-*** Lookup
-#+BEGIN_SRC elisp
-(setq +lookup-provider-url-alist
-  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
-    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
-    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
-    ("Google"            . "https://google.com/search?q=%s")
-    ("Google images"     . "https://google.com/images?q=%s")
-    ("Google maps"       . "https://maps.google.com/maps?q=%s")
-    ("NPM"               . "https://npmjs.com/search?q=%s")
-    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
-    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
-    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
-    ("Explain Shell"     . "https://explainshell.com/explain?cmd=%s")
-    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
-    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
-    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
-    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
-    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
-#+END_SRC
 *** Smerge Mode
 **** Fix Colors
 #+BEGIN_SRC elisp
@@ -1882,9 +1862,7 @@ the projects cwd to find a file.
   ;; This fixes the smerge diff color is really bright an ugly
   (set-face-attribute 'smerge-refined-added nil :foreground nil :background nil))
 #+END_SRC
-
 **** Hydra
-
 :PROPERTIES:
 :SOURCE:   [[https://github.com/alphapapa/unpackaged.el#hydra][alphapapa/unpackaged.el: A collection of useful Emacs Lisp code that isn't substantial enough to be packaged]]
 :END:
@@ -1937,7 +1915,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (def-package! rainbow-mode
   :commands (rainbow-mode))
 #+END_SRC
-
 *** Indium
 #+BEGIN_SRC elisp
 (def-package! indium
@@ -2292,6 +2269,26 @@ Overrides dooms aliases.
   (company-complete-selection))
 #+END_SRC
 ** General Config
+*** Lookup Sources
+#+BEGIN_SRC elisp
+(setq +lookup-provider-url-alist
+  '(("DuckDuckGo"        . "https://duckduckgo.com/?q=%s")
+    ("DuckDuckGo Lucky"  . "https://duckduckgo.com/?q=\\%s")
+    ("Github Code"       . "https://github.com/search?search&q=%s&type=Code")
+    ("Google"            . "https://google.com/search?q=%s")
+    ("Google images"     . "https://google.com/images?q=%s")
+    ("Google maps"       . "https://maps.google.com/maps?q=%s")
+    ("NPM"               . "https://npmjs.com/search?q=%s")
+    ("Hoogle"            . "https://www.haskell.org/hoogle/?hoogle=%s")
+    ("Project Gutenberg" . "http://www.gutenberg.org/ebooks/search/?query=%s")
+    ("DevDocs.io"        . "https://devdocs.io/#q=%s")
+    ("Explain Shell"     . "https://explainshell.com/explain?cmd=%s")
+    ("StackOverflow"     . "https://stackoverflow.com/search?q=%s")
+    ("Github"            . "https://github.com/search?ref=simplesearch&q=%s")
+    ("Youtube"           . "https://youtube.com/results?aq=f&oq=&search_query=%s")
+    ("Wolfram alpha"     . "https://wolframalpha.com/input/?i=%s")
+    ("Wikipedia"         . "https://wikipedia.org/search-redirect.php?language=en&go=Go&search=%s")))
+#+END_SRC
 *** Bookmarks
 #+BEGIN_SRC elisp
 (setq bookmark-default-file "~/Dropbox/Temp/bookmarks")
