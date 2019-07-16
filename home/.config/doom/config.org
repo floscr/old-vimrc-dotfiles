@@ -161,7 +161,7 @@ shuffling is done in place."
 :SOURCE:   [[https://emacs.stackexchange.com/questions/2189/how-can-i-prevent-a-command-from-using-specific-windows][buffers - How can I prevent a command from using specific windows? - Emacs Stack Exchange]]
 :END:
 
-To lock a window you set the dedicadet flag on the window.
+To lock a window you set the dedicaded flag on the window.
 
 #+BEGIN_SRC elisp
 (defun toggle-window-dedicated ()
