@@ -758,6 +758,34 @@ E.g.: (Brackets signal the cursor position)
     (find-file archive-filename)
     (end-of-buffer)))
 #+END_SRC
+***** Nice Github Review Link
+
+The Github Review Title is very long,
+shorten it a bit for the org capture templates.
+
+#+BEGIN_SRC elisp
+(defun +github/just-pr-title (title)
+  (car (s-split " · " title)))
+
+(defun org-as-mac-chrome-get-frontmost-url-fix-title ()
+  "Adaption for org-as-mac-chrome-get-frontmost-url"
+    (--> (org-as-mac-chrome-get-frontmost-url)
+
+         (s-split "::split::" it)
+
+         (pcase it
+           ((pred (s-contains? "github.com" (-first-item it)))
+            (-update-at (- (length it) 1)
+                        #'+github/just-pr-title
+                        it))
+           (_ it))
+
+         (s-join "::split::" it)
+
+         (org-mac-paste-applescript-links it)))
+#+END_SRC
+
+
 ***** TODO Bookmarks
 
 These can be solved with a lambda and dont need extra functions
@@ -978,7 +1006,7 @@ Maybe just try persistent tags.
 
           ("wr" "Work Review" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %(org-mac-chrome-get-frontmost-url)%? :REVIEW:\n%U "))))
+           "* TODO %(org-as-mac-chrome-get-frontmost-url-fix-title)%? :REVIEW:\n%U "))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
