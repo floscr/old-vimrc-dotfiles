@@ -233,10 +233,8 @@ the projects cwd to find a file.
 :SOURCE:   https://stackoverflow.com/a/30886283
 :END:
 
-- Used in [[*Screenshot][Screenshot]]
-
 #+BEGIN_SRC elisp
-(defun latest-file (path)
+(defun +file/latest-file-in-dir (path)
   (let ((e (f-entries path)))
     (car (sort e (lambda (a b)
                    (not (time-less-p (file-timestamp a)
@@ -703,7 +701,7 @@ Create an canvas action
 (defun +org-attach/last-screenshot ()
   "Attaches the last screenshot"
   (interactive)
-  (+org-attach/file (latest-file screenshot-dir)))
+  (+org-attach/file (+file/latest-file-in-dir screenshot-dir)))
 #+END_SRC
 ***** Paste Chrome Link Fix
 
