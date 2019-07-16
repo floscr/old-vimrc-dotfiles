@@ -592,13 +592,14 @@ Create an canvas action
 ***** Add source property from chrome
 #+BEGIN_SRC elisp
 (defun +org|source-properties-key-from-browser ()
+  "Add the link from the frontmost chrome tab as a source property."
   (interactive)
   (org-set-property "SOURCE" (org-mac-chrome-get-frontmost-url)))
 #+END_SRC
 ***** Archive all done tasks
 #+BEGIN_SRC elisp :tangle no
 (defun +org|archive-done-tasks ()
-  "Archive finished tasks."
+  "Archive tasks with DONE or CANCELED todo state."
   (interactive)
   (org-map-entries
    (lambda ()
@@ -608,13 +609,13 @@ Create an canvas action
 #+END_SRC
 ***** Archive and Done
 #+BEGIN_SRC elisp
-(defun org-archive-and-done ()
+(defun +org|archive-and-done ()
   "Mark task as done and archive"
   (interactive)
   (org-todo "DONE")
   (org-archive-subtree))
 
-(defun org-agenda-archive-and-done ()
+(defun +org|agenda-archive-and-done ()
   "Mark agenda task as done and archive"
   (interactive)
   (org-agenda-todo "DONE")
@@ -649,7 +650,7 @@ Create an canvas action
 #+END_SRC
 ***** Grab Tablist from Chrome
 #+BEGIN_SRC elisp
-(defun +org|grab-tabs ()
+(defun +org|grab-chrome-tabs ()
   "Grab all the chrome tabs as an org list to save for later inspection"
   (interactive)
   (let ((tabs
@@ -730,7 +731,14 @@ E.g.: (Brackets signal the cursor position)
     (find-file archive-filename)
     (end-of-buffer)))
 #+END_SRC
-***** Nice Github Review Link
+***** Algin All Tags
+#+BEGIN_SRC elisp
+(defun +org|align-all-tags ()
+  "Interactive version of org-align-all-tags"
+  (interactive)
+  (org-align-all-tags))
+#+END_SRC
+***** Org get chrome tab formatted
 
 The Github Review Title is very long,
 shorten it a bit for the org capture templates.
@@ -739,7 +747,7 @@ shorten it a bit for the org capture templates.
 (defun +github/just-pr-title (title)
   (car (s-split " · " title)))
 
-(defun org-as-mac-chrome-get-frontmost-url-fix-title ()
+(defun +org/mac-chrome-get-frontmost-url-custom-format ()
   "Adaption for org-as-mac-chrome-get-frontmost-url"
     (--> (org-as-mac-chrome-get-frontmost-url)
 
@@ -757,33 +765,6 @@ shorten it a bit for the org capture templates.
          (org-mac-paste-applescript-links it)))
 #+END_SRC
 
-
-***** TODO Bookmarks
-
-These can be solved with a lambda and dont need extra functions
-
-#+BEGIN_SRC elisp
-(defun org-find-file (f)
-  "Find file in org directory"
-  (find-file (concat org-directory f)))
-
-(defun +org|org-open-home-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/home.org"))
-
-(defun +org|org-open-work-file ()
-  "Open the home org file"
-  (interactive)
-  (org-find-file "/Work/work.org"))
-#+END_SRC
-***** TODO Config Rifle
-#+BEGIN_SRC elisp
-(defun helm-org-rifle-config ()
-  "Rifle for the literate configuration file"
-  (interactive)
-  (helm-org-rifle-files (list +literate-config-file)))
-#+END_SRC
 **** Config
 ***** General Config
 ****** Todo Keywords
@@ -838,34 +819,6 @@ Needs ~dvisvgm~
 #+BEGIN_SRC elisp
 (setq org-latex-create-formula-image-program 'dvisvgm)
 #+END_SRC
-***** Tags
-****** Tags List
-
-Not sure yet if the shortcuts work for me.
-Maybe just try persistent tags.
-
-#+BEGIN_SRC elisp
-(setq
- org-tag-persistent-alist '(("ACCESABILTY"))
- org-tag-alist '(("CSS" . ?c)
-                 ("DESIGN" . ?d)
-                 ("EMACS" . ?e)
-                 ("GUIDE" . ?g)
-                 ("HASKELL" . ?h)
-                 ("JAVASCRIPT" . ?j)
-                 ("LEISURE" . ?l)
-                 ("MATH" . ?m)
-                 ("REASON_ML" . ?r)
-                 ("REPOSITORY". ?R)
-                 ("WORK" . ?w)))
-#+END_SRC
-****** Tags Helpers
-#+BEGIN_SRC elisp
-(defun +org-align-all-tags ()
-  "Interactive version of org-align-all-tags"
-  (interactive)
-  (org-align-all-tags))
-#+END_SRC
 ***** Refile Targets
 
 #+BEGIN_SRC elisp
@@ -910,7 +863,7 @@ Maybe just try persistent tags.
         org-agenda-refile org-agenda-files))
 #+END_SRC
 ***** Journal
-#+BEGIN_SRC elisp
+#+BEGIN_SRC elisp :tangle no
 (defvar org-journal-dir-default "~/Dropbox/org/journal")
 (defvar org-journal-dir-diary "~/Dropbox/org/diary")
 
@@ -978,7 +931,7 @@ Maybe just try persistent tags.
 
           ("wr" "Work Review" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %(org-as-mac-chrome-get-frontmost-url-fix-title)%? :REVIEW:\n%U "))))
+           "* TODO %(+org/mac-chrome-get-frontmost-url-custom-format)%? :REVIEW:\n%U "))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
@@ -1011,10 +964,10 @@ Maybe just try persistent tags.
                   :desc "Timestamp Up"            "="  #'org-clock-timestamps-up
                   :desc "Timestamp Down"          "-"  #'org-clock-timestamps-down)
                 :desc "Emacs"                     "e"  (λ! (find-file (concat org-directory "/Emacs.org")))
-                :desc "Home"                      "h"  #'+org|org-open-home-file
+                :desc "Home"                      "h"  (λ! (find-file (concat org-directory "/home.org")))
                 :desc "Inbox"                     "i"  (λ! (find-file (concat org-directory "/inbox.org")))
                 :desc "Reading List"              "r"  #'+org-reading-list/org-open-reading-list-file
-                :desc "Work"                      "w"  #'+org|org-open-work-file
+                :desc "Work"                      "w"  (λ! (find-file (concat org-directory "/Work/work.org")))
                 :desc "Store Link"                "y"  #'org-store-link))
 #+END_SRC
 ***** General Bindings
@@ -1026,9 +979,9 @@ Maybe just try persistent tags.
 
         :localleader
         :desc "Archive Subtree"          :m "a" #'org-archive-subtree
-        :desc "Archive Subtree and Done" :m "A" #'org-archive-and-done
+        :desc "Archive Subtree and Done" :m "A" #'+org|archive-and-done
         :desc "Paste Chrome Link"        :m "p" #'+org|paste-chrome-link
-        :desc "Grab tabs"                :m "P" #'+org|grab-tabs
+        :desc "Grab tabs"                :m "P" #'+org|grab-chrome-tabs
         :desc "Cut Subtree"              :m "C" #'org-cut-subtree
         :desc "Paste Subtree"            :m "P" #'org-paste-subtree
         :desc "Sort Entries"             :m "S" #'+org|sort-entries
@@ -2706,7 +2659,7 @@ Pacakge/Mode specific bindings
       :localleader
       :desc  "Set source key to tab"    "k"  #'+org|source-properties-key-from-browser
       :desc  "Copy Buffer To Markdown"  "y"  #'+org|copy-buffer-as-markdown
-      :desc  "Align Tags"               "%"  #'+org-align-all-tags
+      :desc  "Align Tags"               "%"  #'+org|align-all-tags
       :desc  "Goto Archive"             "$"  #'+org|visit-archive-file
       :desc  "Schedule Tomorrow"        "+"  #'+org|schedule-tomorrow
       (:prefix ("g" . "goto")
@@ -2730,7 +2683,7 @@ Pacakge/Mode specific bindings
 (defun my-evil-org-agenda-set-keys ()
   (evil-define-key 'motion org-agenda-mode-map
     "da" 'org-agenda-archive
-    "dA" 'org-agenda-archive-and-done))
+    "dA" '+org|agenda-archive-and-done))
 
 (advice-add #'evil-org-agenda-set-keys :after #'my-evil-org-agenda-set-keys)
 #+END_SRC
