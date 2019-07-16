@@ -187,8 +187,12 @@ Enhancement of the default ~+workspace/switch-to~.
             :action '(1
                       ("RET" +workspace/switch-to "Switch to workspace")
                       ("C-<backspace>" (lambda (x)
-                                         (+workspace/delete x)
-                                         (+workspace/my-switch-to))
+                                         (let* ((current-workspace-name (+workspace-current-name))
+                                                (new-workspace-name
+                                                 (or (--first (string= current-workspace-name it) (+workspace-list-names)) "main")))
+                                           (+workspace/delete x)
+                                           (+workspace-switch new-workspace-name)
+                                           (+workspace/my-switch-to)))
                        "Continous delete workspace"))))
 #+END_SRC
 **** Switch to last visited workspace
@@ -754,6 +758,34 @@ E.g.: (Brackets signal the cursor position)
     (find-file archive-filename)
     (end-of-buffer)))
 #+END_SRC
+***** Nice Github Review Link
+
+The Github Review Title is very long,
+shorten it a bit for the org capture templates.
+
+#+BEGIN_SRC elisp
+(defun +github/just-pr-title (title)
+  (car (s-split " · " title)))
+
+(defun org-as-mac-chrome-get-frontmost-url-fix-title ()
+  "Adaption for org-as-mac-chrome-get-frontmost-url"
+    (--> (org-as-mac-chrome-get-frontmost-url)
+
+         (s-split "::split::" it)
+
+         (pcase it
+           ((pred (s-contains? "github.com" (-first-item it)))
+            (-update-at (- (length it) 1)
+                        #'+github/just-pr-title
+                        it))
+           (_ it))
+
+         (s-join "::split::" it)
+
+         (org-mac-paste-applescript-links it)))
+#+END_SRC
+
+
 ***** TODO Bookmarks
 
 These can be solved with a lambda and dont need extra functions
@@ -974,7 +1006,7 @@ Maybe just try persistent tags.
 
           ("wr" "Work Review" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U :REVIEW:"))))
+           "* TODO %(org-as-mac-chrome-get-frontmost-url-fix-title)%? :REVIEW:\n%U "))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
@@ -1124,10 +1156,10 @@ Maybe just try persistent tags.
                 (org-agenda-sorting-strategy '(timestamp-down time-down))
                 (org-super-agenda-groups '((:name "In Progress" :todo "ACTIVE")
                                            (:name "Coming Up Today" :scheduled today)
-                                           (:name "Meta Work" :tag "META_WORK" :order 4)
-                                           (:name "Tasks" :not (:todo "SOMEDAY" :todo "WAITING" :tag ("BACKLOG" "TEXT" "EMACS")))
-                                           (:name "Reviews" :tag "REVIEW")
-                                           (:name "Waiting" :todo "WAITING" :order 5)
+                                           (:name "Meta Work" :tag "META_WORK" :order 3)
+                                           (:name "Reviews" :tag "REVIEW" :order 5)
+                                           (:name "Tasks" :not (:todo "SOMEDAY" :todo "WAITING" :tag ("BACKLOG" "TEXT" "EMACS")) :order 4)
+                                           (:name "Waiting" :todo "WAITING" :order 6)
                                            (:name "Backlog" :tag "BACKLOG" :order 11)
                                            (:name "Reading List" :tag "TEXT" :order 10))))))
 #+END_SRC
@@ -1554,7 +1586,7 @@ Always keep markdown centered, without line numbers.
   (ivy-read "Add Rule" (ht-keys +MM-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
-**** Ivy Projectile
+**** TODO Ivy Projectile
 
 Override the default ~+default/search-project~, since that does just a basic rg, without respecting the
 projectile ignores.
@@ -2311,8 +2343,9 @@ Overrides dooms aliases.
     ("l"      "ls -lh")
     ("ll"     "ls -lah")
     ("gs"     "git status")
+    ("groot"  "cd (projectile-project-root)")
     ("gc"     "git commit")
-    ("grha"     "git reset --hard; git clean -f -d")
+    ("grha"   "git reset --hard; git clean -f -d")
     ("clear"  "clear-scrollback")))
 #+END_SRC
 **** Syntax highlighted cat
@@ -2620,9 +2653,12 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
 
  (:desc "window" :prefix "w"
-  :desc  "Split Vertical"  :n  "|"    #'evil-window-vsplit
-  :desc  "Split Vertical"  :n  "|"    #'evil-window-vsplit
-  :desc  "Swap"            :n  "SPC"  #'ace-swap-window)
+  :desc  "Split Vertical"   :n  "|"    #'evil-window-vsplit
+  :desc  "Split Horizontal" :n  "_"    #'evil-window-split
+  :desc  "Split Horizontal" :n  "_"    #'evil-window-split
+  :desc  "Set Height"       :n  "C-_"    #'evil-window-set-height
+  :desc  "Set Height"       :n  "C-|"    #'evil-window-set-width
+  :desc  "Swap"             :n  "SPC"  #'ace-swap-window)
 
  (:desc "workspace" :prefix "<tab>"
    :desc "Switch to"    :n "." #'+workspace/my-switch-to
