@@ -978,7 +978,7 @@ Maybe just try persistent tags.
 
           ("wr" "Work Review" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U :REVIEW:"))))
+           "* TODO %(org-mac-chrome-get-frontmost-url)%? :REVIEW:\n%U "))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
