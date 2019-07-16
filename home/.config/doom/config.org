@@ -566,6 +566,178 @@ Create an canvas action
             :action #'projectile-find-file))
 #+END_SRC
 
+*** Rules
+#+BEGIN_SRC elisp :tangle no
+(setq +MM-Rules
+      (ht ("flexDirection"     '("row" "row-reverse" "column" "column-reverse"))
+          ("fontWeight"        '("normal" "regular" "heavy" "bold" "black" "light"))
+          ;; ("position"        '("absolute" "relative" "fixed"))
+          ;; ("padding"           'number)
+          ;; ("paddingHorizontal" 'number)
+          ;; ("paddingVertical"   'number)
+          ;; ("paddingTop"        'number)
+          ;; ("paddingBottom"     'number)
+          ;; ("paddingLeft"       'number)
+          ;; ("paddingRight"      'number)
+          ;; ("margin"            'number)
+          ;; ("marginTop"         'number)
+          ;; ("marginBottom"      'number)
+          ;; ("marginLeft"        'number)
+          ;; ("marginRight"       'number)
+          ;; ("top"               'number)
+          ;; ("left"              'number)
+          ;; ("right"             'number)
+          ;; ("bottom"            'number)
+          ;; ("translateY"            'number)
+          ;; ("translateX"            'number)
+          ;; ("rotate"            'number)
+          ;; ("absolute"       'noop)
+          ;; ("absoluteHorizontalCenter"       'noop)
+          ;; ("absoluteHorizontalCenter"       'noop))
+
+    ;; ("absoluteCenter" 'noop)
+    ;; ("absoluteHorizontalCenter" 'noop)
+    ;; ("absoluteVerticalCenter" 'noop)
+    ;; ("alignContent" '("flex-start", "flex-end", "center", "space-between", "space-around", "stretch"))
+    ;; ("alignItems" '())
+    ;; ("alignSelf" 'number)
+    ;; ("assoc" 'number)
+    ;; ("backfaceVisibility" 'number)
+    ;; ("backgroundColor" 'number)
+    ;; ("backgroundImage" 'number)
+    ;; ("backgroundPosition" 'number)
+    ;; ("backgroundRepeat" 'number)
+    ;; ("backgroundSize" 'number)
+    ;; ("borderBottomLeftRadius" 'number)
+    ;; ("borderBottomRightRadius" 'number)
+    ;; ("borderBottomWidth" 'number)
+    ;; ("borderColor" 'number)
+    ;; ("borderHorizontalWidth" 'number)
+    ;; ("borderLeftWidth" 'number)
+    ;; ("borderRadius" 'number)
+    ;; ("borderRightWidth" 'number)
+    ;; ("borderStyle" 'number)
+    ;; ("borderTopLeftRadius" 'number)
+    ;; ("borderTopRightRadius" 'number)
+    ;; ("borderTopWidth" 'number)
+    ;; ("borderVerticalWidth" 'number)
+    ;; ("borderWidth" 'number)
+    ;; ("bottom" 'number)
+    ;; ("boxShadow" 'number)
+    ;; ("boxShadows" 'number)
+    ;; ("boxShadows.result" 'number)
+    ;; ("boxSizing" 'number)
+    ;; ("color" 'number)
+    ;; ("concat" 'number)
+    ;; ("concatWhen" 'number)
+    ;; ("cursor" 'number)
+    ;; ("display" 'number)
+    ;; ("dissoc" 'number)
+    ;; ("fill" 'number)
+    ;; ("flexBasis" 'number)
+    ;; ("flexDirection" 'number)
+    ;; ("flexGrow" 'number)
+    ;; ("flexShrink" 'number)
+    ;; ("flexWrap" 'number)
+    ;; ("float" 'number)
+    ;; ("fontFamily" 'number)
+    ;; ("fontSize" 'number)
+    ;; ("fontStyle" 'number)
+    ;; ("fontWeight" 'number)
+    ;; ("fontWeight.Schema() callback" 'number)
+    ;; ("fontWeight.caseEquals('black') callback" 'number)
+    ;; ("fontWeight.caseEquals('heavy') callback" 'number)
+    ;; ("fontWeight.caseEquals('light') callback" 'number)
+    ;; ("fontWeight.caseEquals('regular') callback" 'number)
+    ;; ("fontWeight.default() callback" 'number)
+    ;; ("fontWeight.fold() callback" 'number)
+    ;; ("height" 'number)
+    ;; ("init" 'number)
+    ;; ("justifyContent" 'number)
+    ;; ("left" 'number)
+    ;; ("lineHeight" 'number)
+    ;; ("listStyleType" 'number)
+    ;; ("margin" 'number)
+    ;; ("marginBottom" 'number)
+    ;; ("marginHorizontal" 'number)
+    ;; ("marginLeft" 'number)
+    ;; ("marginRight" 'number)
+    ;; ("marginTop" 'number)
+    ;; ("marginVertical" 'number)
+    ;; ("maxHeight" 'number)
+    ;; ("maxSize" 'number)
+    ;; ("maxWidth" 'number)
+    ;; ("merge" 'number)
+    ;; ("minHeight" 'number)
+    ;; ("minSize" 'number)
+    ;; ("minWidth" 'number)
+    ;; ("opacity" 'number)
+    ;; ("overflow" 'number)
+    ;; ("overflowX" 'number)
+    ;; ("overflowY" 'number)
+    ;; ("padding" 'number)
+    ;; ("paddingBottom" 'number)
+    ;; ("paddingHorizontal" 'number)
+    ;; ("paddingLeft" 'number)
+    ;; ("paddingRight" 'number)
+    ;; ("paddingTop" 'number)
+    ;; ("paddingVertical" 'number)
+    ;; ("pointerEvents" 'number)
+    ;; ("position" 'number)
+    ;; ("resize" 'number)
+    ;; ("right" 'number)
+    ;; ("rotate" 'number)
+    ;; ("scale" 'number)
+    ;; ("scaleX" 'number)
+    ;; ("scaleY" 'number)
+    ;; ("schema" 'number)
+    ;; ("size" 'number)
+    ;; ("stretch" 'number)
+    ;; ("stroke" 'number)
+    ;; ("tableLayout" 'number)
+    ;; ("textAlign" 'number)
+    ;; ("textDecoration" 'number)
+    ;; ("textOverflow" 'number)
+    ;; ("textRendering" 'number)
+    ;; ("textShadow" 'number)
+    ;; ("textTransform" 'number)
+    ;; ("top" 'number)
+    ;; ("translate" 'number)
+    ;; ("translateX" 'number)
+    ;; ("translateY" 'number)
+    ;; ("truncate" 'number)
+    ;; ("userSelect" 'number)
+    ;; ("verticalAlign" 'number)
+    ;; ("visibility" 'number)
+    ;; ("whiteSpace" 'number)
+    ;; ("width" 'number)
+    ;; ("wordBreak" 'number)
+    ;; ("wordWrap" 'number)
+    ;; ("zIndex" 'number))
+
+(defvar +MM|add-prop-for-rule-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-<return>") (lambda (rule prop)
+                                         (ivy-quit-and-run
+                                           (progn
+                                            (+MM|write-rule rule prop)
+                                            (+MM|add-rule)))))
+    map))
+
+(defun +MM|write-rule (rule prop)
+    (insert (template ".<<rule>>('<<prop>>')\n")))
+
+(defun +MM|add-prop-for-rule (rule)
+  (ivy-read "Add prop" (ht-get +MM-Rules rule)
+            ;; :keymap counsel-find-file-map
+            :action (lambda (prop) (+MM|write-rule rule prop)
+                                   (+MM|add-rule))))
+
+(defun +MM|add-rule ()
+  (interactive)
+  (ivy-read "Add Rule" (ht-keys +MM-Rules)
+            :action '+MM|add-prop-for-rule))
+#+END_SRC
 ** Custom Packages
 *** Birthday Messsage
 #+BEGIN_SRC elisp
@@ -1284,42 +1456,11 @@ Remove the ~js~ extension for ~company-files~.
 (map! :map js2-mode-map
       :i "C-x C-f" #'company-js-files)
 #+END_SRC
-*** Markdown
-
-Always keep markdown centered, without line numbers.
-
-#+BEGIN_SRC elisp
-(def-package! markdown-mode
-  :init
-  (setq markdown-fontify-code-blocks-natively t)
-  :config
-  (add-hook! markdown-mode
-    (visual-line-mode)
-    (visual-fill-column-mode)
-    (outline-minor-mode)
-    (setq visual-fill-column-width 90
-          display-line-numbers nil)
-    (setq line-spacing 2
-          fill-column 80))
-
-  (map! (:map markdown-mode-map
-          :n "<"    #'markdown-promote
-          :n ">"    #'markdown-demote)))
-#+END_SRC
-*** Ivy
-**** TODO Counsel Config
-#+BEGIN_SRC elisp
-(defun counsel-org-doom-config ()
-  "Counsel the doom config"
-  (interactive)
-  (doom/find-private-org-config)
-  (counsel-org-goto))
-#+END_SRC
-**** Import JS File
+***** Import JS File
 #+BEGIN_SRC elisp
 ;; TODO Make template accepts a cursor placeholder
 ;; TODO Maybe even look at exports
-(defun my-js-import-file (file)
+(defun +js/import-file (file)
   (let ((cursor-postion (point))
         (filename (+js/remove-js-ext file)))
     (insert (template "import  from '<<filename>>';"))
@@ -1368,219 +1509,35 @@ Always keep markdown centered, without line numbers.
     (+MM:goto-or-add-header comment-header-title)
     (evil-insert-newline-below)
     (previous-line 1)
-    (my-js-import-file file)))
+    (+js/import-file file)))
 
 (defun +MM|import-file ()
   (interactive)
   (+js|ivy-import-file '+MM:add-import-to-file))
  #+END_SRC
 
-**** Rules
-#+BEGIN_SRC elisp :tangle no
-(setq +MM-Rules
-      (ht ("flexDirection"     '("row" "row-reverse" "column" "column-reverse"))
-          ("fontWeight"        '("normal" "regular" "heavy" "bold" "black" "light"))
-          ;; ("position"        '("absolute" "relative" "fixed"))
-          ;; ("padding"           'number)
-          ;; ("paddingHorizontal" 'number)
-          ;; ("paddingVertical"   'number)
-          ;; ("paddingTop"        'number)
-          ;; ("paddingBottom"     'number)
-          ;; ("paddingLeft"       'number)
-          ;; ("paddingRight"      'number)
-          ;; ("margin"            'number)
-          ;; ("marginTop"         'number)
-          ;; ("marginBottom"      'number)
-          ;; ("marginLeft"        'number)
-          ;; ("marginRight"       'number)
-          ;; ("top"               'number)
-          ;; ("left"              'number)
-          ;; ("right"             'number)
-          ;; ("bottom"            'number)
-          ;; ("translateY"            'number)
-          ;; ("translateX"            'number)
-          ;; ("rotate"            'number)
-          ;; ("absolute"       'noop)
-          ;; ("absoluteHorizontalCenter"       'noop)
-          ;; ("absoluteHorizontalCenter"       'noop))
+*** Markdown
 
-    ;; ("absoluteCenter" 'noop)
-    ;; ("absoluteHorizontalCenter" 'noop)
-    ;; ("absoluteVerticalCenter" 'noop)
-    ;; ("alignContent" '("flex-start", "flex-end", "center", "space-between", "space-around", "stretch"))
-    ;; ("alignItems" '())
-    ;; ("alignSelf" 'number)
-    ;; ("assoc" 'number)
-    ;; ("backfaceVisibility" 'number)
-    ;; ("backgroundColor" 'number)
-    ;; ("backgroundImage" 'number)
-    ;; ("backgroundPosition" 'number)
-    ;; ("backgroundRepeat" 'number)
-    ;; ("backgroundSize" 'number)
-    ;; ("borderBottomLeftRadius" 'number)
-    ;; ("borderBottomRightRadius" 'number)
-    ;; ("borderBottomWidth" 'number)
-    ;; ("borderColor" 'number)
-    ;; ("borderHorizontalWidth" 'number)
-    ;; ("borderLeftWidth" 'number)
-    ;; ("borderRadius" 'number)
-    ;; ("borderRightWidth" 'number)
-    ;; ("borderStyle" 'number)
-    ;; ("borderTopLeftRadius" 'number)
-    ;; ("borderTopRightRadius" 'number)
-    ;; ("borderTopWidth" 'number)
-    ;; ("borderVerticalWidth" 'number)
-    ;; ("borderWidth" 'number)
-    ;; ("bottom" 'number)
-    ;; ("boxShadow" 'number)
-    ;; ("boxShadows" 'number)
-    ;; ("boxShadows.result" 'number)
-    ;; ("boxSizing" 'number)
-    ;; ("color" 'number)
-    ;; ("concat" 'number)
-    ;; ("concatWhen" 'number)
-    ;; ("cursor" 'number)
-    ;; ("display" 'number)
-    ;; ("dissoc" 'number)
-    ;; ("fill" 'number)
-    ;; ("flexBasis" 'number)
-    ;; ("flexDirection" 'number)
-    ;; ("flexGrow" 'number)
-    ;; ("flexShrink" 'number)
-    ;; ("flexWrap" 'number)
-    ;; ("float" 'number)
-    ;; ("fontFamily" 'number)
-    ;; ("fontSize" 'number)
-    ;; ("fontStyle" 'number)
-    ;; ("fontWeight" 'number)
-    ;; ("fontWeight.Schema() callback" 'number)
-    ;; ("fontWeight.caseEquals('black') callback" 'number)
-    ;; ("fontWeight.caseEquals('heavy') callback" 'number)
-    ;; ("fontWeight.caseEquals('light') callback" 'number)
-    ;; ("fontWeight.caseEquals('regular') callback" 'number)
-    ;; ("fontWeight.default() callback" 'number)
-    ;; ("fontWeight.fold() callback" 'number)
-    ;; ("height" 'number)
-    ;; ("init" 'number)
-    ;; ("justifyContent" 'number)
-    ;; ("left" 'number)
-    ;; ("lineHeight" 'number)
-    ;; ("listStyleType" 'number)
-    ;; ("margin" 'number)
-    ;; ("marginBottom" 'number)
-    ;; ("marginHorizontal" 'number)
-    ;; ("marginLeft" 'number)
-    ;; ("marginRight" 'number)
-    ;; ("marginTop" 'number)
-    ;; ("marginVertical" 'number)
-    ;; ("maxHeight" 'number)
-    ;; ("maxSize" 'number)
-    ;; ("maxWidth" 'number)
-    ;; ("merge" 'number)
-    ;; ("minHeight" 'number)
-    ;; ("minSize" 'number)
-    ;; ("minWidth" 'number)
-    ;; ("opacity" 'number)
-    ;; ("overflow" 'number)
-    ;; ("overflowX" 'number)
-    ;; ("overflowY" 'number)
-    ;; ("padding" 'number)
-    ;; ("paddingBottom" 'number)
-    ;; ("paddingHorizontal" 'number)
-    ;; ("paddingLeft" 'number)
-    ;; ("paddingRight" 'number)
-    ;; ("paddingTop" 'number)
-    ;; ("paddingVertical" 'number)
-    ;; ("pointerEvents" 'number)
-    ;; ("position" 'number)
-    ;; ("resize" 'number)
-    ;; ("right" 'number)
-    ;; ("rotate" 'number)
-    ;; ("scale" 'number)
-    ;; ("scaleX" 'number)
-    ;; ("scaleY" 'number)
-    ;; ("schema" 'number)
-    ;; ("size" 'number)
-    ;; ("stretch" 'number)
-    ;; ("stroke" 'number)
-    ;; ("tableLayout" 'number)
-    ;; ("textAlign" 'number)
-    ;; ("textDecoration" 'number)
-    ;; ("textOverflow" 'number)
-    ;; ("textRendering" 'number)
-    ;; ("textShadow" 'number)
-    ;; ("textTransform" 'number)
-    ;; ("top" 'number)
-    ;; ("translate" 'number)
-    ;; ("translateX" 'number)
-    ;; ("translateY" 'number)
-    ;; ("truncate" 'number)
-    ;; ("userSelect" 'number)
-    ;; ("verticalAlign" 'number)
-    ;; ("visibility" 'number)
-    ;; ("whiteSpace" 'number)
-    ;; ("width" 'number)
-    ;; ("wordBreak" 'number)
-    ;; ("wordWrap" 'number)
-    ;; ("zIndex" 'number))
-
-(defvar +MM|add-prop-for-rule-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-<return>") (lambda (rule prop)
-                                         (ivy-quit-and-run
-                                           (progn
-                                            (+MM|write-rule rule prop)
-                                            (+MM|add-rule)))))
-    map))
-
-(defun +MM|write-rule (rule prop)
-    (insert (template ".<<rule>>('<<prop>>')\n")))
-
-(defun +MM|add-prop-for-rule (rule)
-  (ivy-read "Add prop" (ht-get +MM-Rules rule)
-            ;; :keymap counsel-find-file-map
-            :action (lambda (prop) (+MM|write-rule rule prop)
-                                   (+MM|add-rule))))
-
-(defun +MM|add-rule ()
-  (interactive)
-  (ivy-read "Add Rule" (ht-keys +MM-Rules)
-            :action '+MM|add-prop-for-rule))
-#+END_SRC
-**** TODO Ivy Projectile
-
-Override the default ~+default/search-project~, since that does just a basic rg, without respecting the
-projectile ignores.
+Always keep markdown centered, without line numbers.
 
 #+BEGIN_SRC elisp
-(defun +default/search-project (&optional arg)
-  "Conduct a text search in the current project root.
-If prefix ARG is set, prompt for a known project to search from."
-  (interactive "P")
-  (let ((default-directory
-          (if arg
-              (if-let* ((projects (projectile-relevant-known-projects)))
-                  (completing-read "Switch to project: " projects
-                                   nil t nil nil (doom-project-root))
-                (user-error "There are no known projects"))
-            default-directory)))
-    (call-interactively #'counsel-projectile-rg)))
-#+END_SRC
+(def-package! markdown-mode
+  :init
+  (setq markdown-fontify-code-blocks-natively t)
+  :config
+  (add-hook! markdown-mode
+    (visual-line-mode)
+    (visual-fill-column-mode)
+    (outline-minor-mode)
+    (setq visual-fill-column-width 90
+          display-line-numbers nil)
+    (setq line-spacing 2
+          fill-column 80))
 
-**** Minibuffer Maps
-#+BEGIN_SRC elisp
-;; Insert from the minibuffer
-(define-key! ivy-minibuffer-map
-  "C-c TAB" (λ! ()
-             (ivy-kill-whole-line)
-             (ivy-quit-and-run (yank))))
+  (map! (:map markdown-mode-map
+          :n "<"    #'markdown-promote
+          :n ">"    #'markdown-demote)))
 #+END_SRC
-**** ACTIVE Counsel Org Effort
-#+BEGIN_SRC elisp :tangle no
-(defun counsel-org-effort ()
-  (ivy-read "Set effort: " org-duration-units :action #'org-set-effort))
-#+END_SRC
-
 *** TODO Spelling
 
 Flycheck with ~hunspell~ (which supports other languages better than the default ~ispell~)
