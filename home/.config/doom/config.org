@@ -187,8 +187,12 @@ Enhancement of the default ~+workspace/switch-to~.
             :action '(1
                       ("RET" +workspace/switch-to "Switch to workspace")
                       ("C-<backspace>" (lambda (x)
-                                         (+workspace/delete x)
-                                         (+workspace/my-switch-to))
+                                         (let* ((current-workspace-name (+workspace-current-name))
+                                                (new-workspace-name
+                                                 (or (--first (string= current-workspace-name it) (+workspace-list-names)) "main")))
+                                           (+workspace/delete x)
+                                           (+workspace-switch new-workspace-name)
+                                           (+workspace/my-switch-to)))
                        "Continous delete workspace"))))
 #+END_SRC
 **** Switch to last visited workspace
