@@ -110,7 +110,7 @@ This is my emacs config for [[https://github.com/hlissner/doom-emacs][doom-emacs
     (setf (elt LIST el1) (elt LIST el2))
     (setf (elt LIST el2) tmp)))
 
-(defun shuffle-list (LIST)
+(defun -shuffle (LIST)
   "Shuffle the elements in LIST.
 shuffling is done in place."
   (loop for i in (reverse (number-sequence 1 (1- (length LIST))))
@@ -593,7 +593,7 @@ Create an canvas action
 (defun birthday-msg (name &optional emojis)
   "Creates birthday string"
   (let ((emojis (or emojis (--> birthday-slack-emojis
-                               (shuffle-list it)
+                               (-shuffle it)
                                (-take 3 it)
                                (string-join it " ")))))
     (template "<<(reverse emojis)>> !! Happy Birthday <<name>> !! <<emojis>>")))
