@@ -2525,7 +2525,7 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Undo"                        :n "u" #'+git|undo)
 
  (:desc "insert" :prefix "i"
-   :desc "Killring"   :n  "y" #'helm-show-kill-ring)
+   :desc "Killring"   :n  "y" #'counsel-yank-pop)
 
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
