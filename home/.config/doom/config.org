@@ -374,7 +374,7 @@ Macro Expansion
 *** Popups
 #+BEGIN_SRC elisp
 (after! org
-  (set-popup-rule! "^\\*Org Agenda" :side 'right :size 0.55 :select t :modeline t :ttl nil)
+  (set-popup-rule! "^\\*Org Agenda" :side 'right :size 0.55 :select t :modeline t :ttl nil :quit nil)
   (set-popup-rule! "^\\*Org Src" :ignore t)
   (set-popup-rule! "^\\*Org QL Search" :side 'bottom :size 0.5 :select t :modeline t :ttl nil))
 
