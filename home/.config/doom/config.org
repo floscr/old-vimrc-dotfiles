@@ -710,6 +710,19 @@ Create an canvas action
 (def-package! blimp
   :hook (image-mode-hook . blimp-mode))
 #+END_SRC
+*** Comint
+**** Allow evil enter anywhere
+
+Fix for comint mode, throwing an error when pressing enter in the middle of the line.
+
+#+BEGIN_EXAMPLE
+error in process filter: End of buffer
+#+END_EXAMPLE
+
+#+BEGIN_SRC elisp
+(map! :map comint-mode-map
+      :n "RET" (λ! (comint-send-input nil t)))
+#+END_SRC
 *** Company
 **** Config
 ***** Sort company by occurance
