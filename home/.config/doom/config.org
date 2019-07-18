@@ -2025,6 +2025,57 @@ Needs ~dvisvgm~
 #+BEGIN_SRC elisp :tangle no
 (setq org-agenda-custom-commands '())
 #+END_SRC
+***** Clocking
+****** Automatically set clocking or todo state
+:PROPERTIES:
+:SOURCE:   [[https://github.com/magnars/dash.el#-contains-list-element][magnars/dash.el: A modern list library for Emacs]]
+:END:
+
+#+BEGIN_SRC elisp
+(after! org
+#+END_SRC
+
+Clock in when the todo state has been changed to ~ACTIVE~
+
+#+BEGIN_SRC elisp
+(defun +org/org-clock-in-if-starting ()
+  "Clock in when the task is marked ACTIVE."
+  (when (and (string= org-state "ACTIVE")
+             (not (string= org-last-state org-state)))
+    (org-clock-in)))
+
+(add-hook 'org-after-todo-state-change-hook '+org/org-clock-in-if-starting)
+#+END_SRC
+
+Clock out when the todo state is set to a delay state.
+
+#+BEGIN_SRC elisp
+(defun +org/org-clock-out-if-waiting ()
+  "Clock out when the task is marked WAITING."
+  (when (and (-contains? '("WAITING" "SOMEDAY" "CANCELLED") org-state)
+             (equal (marker-buffer org-clock-marker) (current-buffer))
+             (< (point) org-clock-marker)
+             (> (save-excursion (outline-next-heading) (point))
+               org-clock-marker)
+             (not (string= org-last-state org-state)))
+    (org-clock-out)))
+
+(add-hook 'org-after-todo-state-change-hook '+org/org-clock-out-if-waiting)
+#+END_SRC
+
+Set the active state when clocking in.
+
+#+BEGIN_SRC elisp
+(defun +org/org-set-active-state (&optional args)
+  "Set the active state for the current item."
+  (org-todo "ACTIVE"))
+
+(advice-add #'org-clock-in :after #'+org/org-set-active-state)
+#+END_SRC
+
+#+BEGIN_SRC elisp
+)
+#+END_SRC
 *** Org QL
 #+BEGIN_SRC elisp
 (def-package! org-ql
