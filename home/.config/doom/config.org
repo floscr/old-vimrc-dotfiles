@@ -1732,6 +1732,10 @@ Needs ~dvisvgm~
 #+BEGIN_SRC elisp
 (setq org-latex-create-formula-image-program 'dvisvgm)
 #+END_SRC
+****** Attachment short link
+#+BEGIN_SRC elisp :tangle no
+(add-to-list 'org-link-abbrev-alist (cons "attach" (abbreviate-file-name org-attach-directory)))
+#+END_SRC
 ***** Refile Targets
 
 #+BEGIN_SRC elisp
