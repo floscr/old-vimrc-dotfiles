@@ -2505,26 +2505,6 @@ Global ~[~ & ~]~ combinator bindings
  :n "]e" #'flycheck-next-error
  :n "[e" #'flycheck-previous-error)
 #+END_SRC
-**** Insert Line above/below
-#+BEGIN_SRC elisp
-(evil-define-motion evil-motion-insert-newline-below (count)
-  "Insert COUNT newlines below"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-below))))
-
-(evil-define-motion evil-motion-insert-newline-above (count)
-  "Insert COUNT newlines above"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-above))))
-
-(after! evil
-  (map! :n "[ SPC" #'evil-motion-insert-newline-above
-        :n "] SPC" #'evil-motion-insert-newline-below))
-#+END_SRC
 *** Evil Insert Bindings
 
 Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
