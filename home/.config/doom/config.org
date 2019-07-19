@@ -2559,7 +2559,6 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
 #+END_SRC
 ***** TODO Inserting a character makes one undo state
 *** Leader Bindings
-
 #+BEGIN_SRC elisp
 (map!
  :leader
@@ -2568,19 +2567,36 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
  :n "//" #'+default/search-project
  :n "-"  #'quick-calc
 
- (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
+ (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle))
+#+END_SRC
 
+**** Buffer
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "buffer" :prefix "b"
-   :desc "Rename Buffer"                :n  "r" #'rename-buffer)
-
+   :desc "Rename Buffer" :n "r" #'rename-buffer))
+#+END_SRC
+**** File
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "file" :prefix "f"
    :desc "find in literate config file" :n  "D" (λ! (counsel-find-file (projectile-project-root)))
-   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
-
+   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config))
+#+END_SRC
+**** Dir
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "dir" :prefix "d"
    :desc "find in literate config file" :n  "r" #'dired-recent-open
-   :desc "Project Root"                 :n  "p" #'projectile-dired)
-
+   :desc "Project Root"                 :n  "p" #'projectile-dired))
+#+END_SRC
+**** Git
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "git" :prefix "g"
    :desc "Worktree Popup"              :n "%" #'magit-worktree
    :desc "Blame"                       :n "B" #'magit-blame
@@ -2592,34 +2608,64 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Checkout"                    :n "b" #'magit-checkout
    :desc "Diff"                        :n "d" #'magit-diff
    :desc "Push"                        :n "p" #'magit-push
-   :desc "Undo"                        :n "u" #'+git|undo)
-
+   :desc "Undo"                        :n "u" #'+git|undo))
+#+END_SRC
+**** Insert
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "insert" :prefix "i"
-   :desc "Killring"   :n  "y" #'counsel-yank-pop)
-
+   :desc "Killring"   :n  "y" #'counsel-yank-pop))
+#+END_SRC
+**** Projects
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
-   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
-
+   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file))
+#+END_SRC
+**** Toggle
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "toggle" :prefix "t"
-   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
-
+   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme))
+#+END_SRC
+**** Code
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "code" :prefix "c"
    :desc "Compile" "c" #'compile
-   :desc "Compile" "Compile last command" (λ! (compile (car compile-history))))
-
+   :desc "Compile" "Compile last command" (λ! (compile (car compile-history)))))
+#+END_SRC
+**** Open
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "open" :prefix "o"
    :desc "Eshell in Current Dir" :n  "." (λ! (+eshell/open t))
-   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
+   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t))))
+#+END_SRC
 
+**** Window
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "window" :prefix "w"
   :desc  "Split Vertical"   :n  "|"    #'evil-window-vsplit
   :desc  "Split Horizontal" :n  "_"    #'evil-window-split
   :desc  "Split Horizontal" :n  "_"    #'evil-window-split
   :desc  "Set Height"       :n  "C-_"    #'evil-window-set-height
   :desc  "Set Height"       :n  "C-|"    #'evil-window-set-width
-  :desc  "Swap"             :n  "SPC"  #'ace-swap-window)
-
+  :desc  "Swap"             :n  "SPC"  #'ace-swap-window
+  :desc "Toggle Locked" :n "#" #'toggle-window-dedicated))
+#+END_SRC
+**** Workspace
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "workspace" :prefix "<tab>"
    :desc "Switch to"    :n "." #'+workspace/my-switch-to
    :desc "Create"       :n "c" #'+workspace/new-named
@@ -2649,17 +2695,19 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Switch to 7th workspace"  "7"   (λ! (+workspace/switch-to 6))
    :desc "Switch to 8th workspace"  "8"   (λ! (+workspace/switch-to 7))
    :desc "Switch to 9th workspace"  "9"   (λ! (+workspace/switch-to 8))
-   :desc "Switch to last workspace" "0"   #'+workspace/switch-to-last)
+   :desc "Switch to last workspace" "0"   #'+workspace/switch-to-last))
+#+END_SRC
 
- (:desc "window" :prefix "w"
-   :desc "Toggle Locked" :n "#" #'toggle-window-dedicated)
-
- (:desc "Yank" :prefix "y"
-   :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
-   :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
-   :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
+**** Yank
+#+BEGIN_SRC elisp
+(map!
+  :leader
+  (:desc "Yank" :prefix "y"
+    :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
+    :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
+    :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
+    :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
+    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
 *** Little Word Motion
