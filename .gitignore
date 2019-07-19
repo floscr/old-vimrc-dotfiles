@@ -33,3 +33,4 @@ home/.config/hub
 settings/all/vscode/workspaceStorage/**
 home/.config/doom/config.el
 /settings/all/vscode
+/home/.config/karabiner/assets/complex_modifications/1563521836.json
