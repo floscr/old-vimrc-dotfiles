@@ -2398,10 +2398,7 @@ The history can be accessed with ~C-n~ / ~C-p~
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
-(map!
- :en "C-±"   #'+popup/raise
- :nv "C-a"   #'evil-numbers/inc-at-pt
- :nv "C-S-a" #'evil-numbers/dev-at-pt)
+(map! :en "C-±" #'+popup/raise)
 #+END_SRC
 *** Mac Modifier Bindings
 #+BEGIN_SRC elisp
