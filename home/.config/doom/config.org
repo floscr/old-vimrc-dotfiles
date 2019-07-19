@@ -2395,6 +2395,10 @@ The history can be accessed with ~C-n~ / ~C-p~
 #+BEGIN_SRC elisp
 (setq tags-revert-without-query 1)
 #+END_SRC
+*** Disable trailng whitespace error
+#+BEGIN_SRC elisp
+(setq-hook! 'prog-mode-hook show-trailing-whitespace nil)
+#+END_SRC
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
