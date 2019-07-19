@@ -1067,7 +1067,7 @@ Generate a file index in the current file for every other file in the current di
 (defun +js/index-file-names (&optional actions-dir)
   "Get filenames from current buffers directory"
   (let ((fs (directory-files (or actions-dir default-directory) nil ".*\\.js")))
-    (mapcar 'remove-js-ext
+    (mapcar '+js/remove-js-ext
             (remove "index.js" fs))))
 
 (defun +js|generate-index (&optional actions-dir)
