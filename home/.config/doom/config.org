@@ -1679,7 +1679,26 @@ shorten it a bit for the org capture templates.
 
          (org-mac-paste-applescript-links it)))
 #+END_SRC
+***** Custom Agenda Compare
 
+Sort my agenda entries by a ~DATE_CREATED~ property.
+
+#+BEGIN_SRC elisp
+(setq-default +org-created-property "DATE_CREATED")
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(defun +org|compare-created-date-property (a b)
+  "Compare two `org-mode' agenda entries, `A' and `B', by the \"CREATED\" property."
+  (let* ((a-pos (get-text-property 0 'org-marker a))
+         (b-pos (get-text-property 0 'org-marker b))
+         (a-date (or (org-entry-get a-pos +org-created-property)
+                     (format "<%s>" (org-read-date t nil "now"))))
+         (b-date (or (org-entry-get b-pos +org-created-property)
+                     (format "<%s>" (org-read-date t nil "now"))))
+         (cmp (compare-strings a-date nil nil b-date nil nil)))
+    (if (eq cmp t) nil (signum cmp))))
+#+END_SRC
 **** Config
 ***** General Config
 ****** Todo Keywords
@@ -1931,6 +1950,17 @@ Needs ~dvisvgm~
           :desc "widen"                :m "w" #'widen)))
 #+END_SRC
 ***** Agenda
+****** Config
+#+BEGIN_SRC elisp
+(after! org-agenda
+  (setq-default
+   org-agenda-cmp-user-defined #'+org|compare-created-date-property
+   org-agenda-sorting-strategy '((agenda habit-down user-defined-up time-up priority-down category-keep)
+                                 (todo priority-down category-keep user-defined-up time-up)
+                                 (tags priority-down category-keep user-defined-up time-up)
+                                 (search category-keep))))
+#+END_SRC
+
 ****** Bindings
 #+BEGIN_SRC elisp
 (evil-define-key 'motion org-agenda-mode-map
