@@ -1823,6 +1823,16 @@ Needs ~dvisvgm~
     (transient . t)))
 #+END_SRC
 
+****** Add created property after capture
+#+BEGIN_SRC elisp
+(defun +org|add-created-date-property ()
+  "Add DATE_CAPTURED property to the current item."
+  (interactive)
+  (org-set-property +org-created-property (format-time-string  "[%Y-%m-%d %a %H:%M]")))
+
+(add-hook 'org-capture-before-finalize-hook '+org|add-created-date-property)
+#+END_SRC
+
 ****** Org Capture Templates
 
 #+BEGIN_SRC elisp
