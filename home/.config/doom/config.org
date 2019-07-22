@@ -2403,7 +2403,7 @@ The history can be accessed with ~C-n~ / ~C-p~
  :nv "C-a"   #'evil-numbers/inc-at-pt
  :nv "C-S-a" #'evil-numbers/dev-at-pt)
 #+END_SRC
-*** Mac Modifier Bindings
+*** Osx / Mac Modifier Bindings
 #+BEGIN_SRC elisp
 (map! (:map override
         "s-w" #'+workspace/close-window-or-workspace
