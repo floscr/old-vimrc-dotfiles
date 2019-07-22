@@ -1139,6 +1139,7 @@ Remove the ~js~ extension for ~company-files~.
 (defun company-js-files (command &optional arg &rest ignored)
   "Company complete path. Remove extension after completion"
   (interactive (list 'interactive))
+  (require 'company)
   (cl-case command
     (interactive (company-begin-backend 'company-js-files))
     (prefix (company-files--grab-existing-name))
