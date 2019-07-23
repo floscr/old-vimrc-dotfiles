@@ -1680,7 +1680,26 @@ shorten it a bit for the org capture templates.
 
          (org-mac-paste-applescript-links it)))
 #+END_SRC
+***** Custom Agenda Compare
 
+Sort my agenda entries by a ~DATE_CREATED~ property.
+
+#+BEGIN_SRC elisp
+(setq-default +org-created-property "DATE_CREATED")
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(defun +org|compare-created-date-property (a b)
+  "Compare two `org-mode' agenda entries, `A' and `B', by the \"CREATED\" property."
+  (let* ((a-pos (get-text-property 0 'org-marker a))
+         (b-pos (get-text-property 0 'org-marker b))
+         (a-date (or (org-entry-get a-pos +org-created-property)
+                     (format "<%s>" (org-read-date t nil "now"))))
+         (b-date (or (org-entry-get b-pos +org-created-property)
+                     (format "<%s>" (org-read-date t nil "now"))))
+         (cmp (compare-strings a-date nil nil b-date nil nil)))
+    (if (eq cmp t) nil (signum cmp))))
+#+END_SRC
 **** Config
 ***** General Config
 ****** Todo Keywords
@@ -1805,6 +1824,16 @@ Needs ~dvisvgm~
     (transient . t)))
 #+END_SRC
 
+****** Add created property after capture
+#+BEGIN_SRC elisp
+(defun +org|add-created-date-property ()
+  "Add DATE_CAPTURED property to the current item."
+  (interactive)
+  (org-set-property +org-created-property (format-time-string  "[%Y-%m-%d %a %H:%M]")))
+
+(add-hook 'org-capture-before-finalize-hook '+org|add-created-date-property)
+#+END_SRC
+
 ****** Org Capture Templates
 
 #+BEGIN_SRC elisp
@@ -1822,36 +1851,36 @@ Needs ~dvisvgm~
   (setq org-capture-templates
         `(("t" "todo" entry
            (file org-default-notes-file)
-           "* TODO %?\n%U")
+           "* TODO %?")
 
           ("c" "Calendar Event" entry
            (file+headline ,(concat org-directory "/home.org") "Calendar")
-           "* %?\n%U")
+           "* %?")
 
           ("e" "Emacs Todo" entry
            (file+headline ,(concat org-directory "/emacs.org") "Emacs Todos")
-           "* TODO %?\n%U")
+           "* TODO %?")
 
           ("p" "Pin Bookmark" entry (file+headline org-pinboard-file "Pinboard")
            "* %(org-capture-bookmark-string-description)%?\n:PROPERTIES:\n:URL:  %(org-capture-bookmark-string-url)\n:TIME: %U\n:END:")
 
           ("rr" "Add to reading list" entry (file+headline +org-reading-list-file "Reading List")
-           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
+           "* TODO %(org-mac-chrome-get-frontmost-url)%?")
 
           ("rw" "Add to watching list" entry (file+headline +org-reading-list-file "Watching List")
-           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
+           "* TODO %(org-mac-chrome-get-frontmost-url)%?")
 
           ("C" "Browser" entry
            (file org-default-notes-file)
-           "* TODO %(org-mac-chrome-get-frontmost-url)%?\n%U")
+           "* TODO %(org-mac-chrome-get-frontmost-url)%?")
 
           ("ww" "Work Task" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %?\n%U")
+           "* TODO %?")
 
           ("wr" "Work Review" entry
            (file+headline ,(concat org-directory "/Work/work.org") "Work Todos")
-           "* TODO %(+org/mac-chrome-get-frontmost-url-custom-format)%? :REVIEW:\n%U "))))
+           "* TODO %(+org/mac-chrome-get-frontmost-url-custom-format)%? :REVIEW: "))))
 #+END_SRC
 ***** Src Block Snippets
 #+BEGIN_SRC elisp :tangle no
@@ -1932,6 +1961,17 @@ Needs ~dvisvgm~
           :desc "widen"                :m "w" #'widen)))
 #+END_SRC
 ***** Agenda
+****** Config
+#+BEGIN_SRC elisp
+(after! org-agenda
+  (setq-default
+   org-agenda-cmp-user-defined #'+org|compare-created-date-property
+   org-agenda-sorting-strategy '((agenda habit-down user-defined-up time-up priority-down category-keep)
+                                 (todo priority-down category-keep user-defined-up time-up)
+                                 (tags priority-down category-keep user-defined-up time-up)
+                                 (search category-keep))))
+#+END_SRC
+
 ****** Bindings
 #+BEGIN_SRC elisp
 (evil-define-key 'motion org-agenda-mode-map
@@ -2402,13 +2442,14 @@ The history can be accessed with ~C-n~ / ~C-p~
 #+BEGIN_SRC elisp
 (setq tags-revert-without-query 1)
 #+END_SRC
+*** Disable trailng whitespace error
+#+BEGIN_SRC elisp
+(setq-hook! 'prog-mode-hook show-trailing-whitespace nil)
+#+END_SRC
 ** Bindings
 *** General Bindings
 #+BEGIN_SRC elisp
-(map!
- :en "C-±"   #'+popup/raise
- :nv "C-a"   #'evil-numbers/inc-at-pt
- :nv "C-S-a" #'evil-numbers/dev-at-pt)
+(map! :en "C-±" #'+popup/raise)
 #+END_SRC
 *** Osx / Mac Modifier Bindings
 #+BEGIN_SRC elisp
@@ -2515,26 +2556,6 @@ Global ~[~ & ~]~ combinator bindings
  :n "]e" #'flycheck-next-error
  :n "[e" #'flycheck-previous-error)
 #+END_SRC
-**** Insert Line above/below
-#+BEGIN_SRC elisp
-(evil-define-motion evil-motion-insert-newline-below (count)
-  "Insert COUNT newlines below"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-below))))
-
-(evil-define-motion evil-motion-insert-newline-above (count)
-  "Insert COUNT newlines above"
-  :type line
-  (save-excursion
-    (dotimes (c (or count 1))
-      (evil-insert-newline-above))))
-
-(after! evil
-  (map! :n "[ SPC" #'evil-motion-insert-newline-above
-        :n "] SPC" #'evil-motion-insert-newline-below))
-#+END_SRC
 *** Evil Insert Bindings
 
 Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
@@ -2566,7 +2587,6 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
 #+END_SRC
 ***** TODO Inserting a character makes one undo state
 *** Leader Bindings
-
 #+BEGIN_SRC elisp
 (map!
  :leader
@@ -2575,19 +2595,36 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
  :n "//" #'+default/search-project
  :n "-"  #'quick-calc
 
- (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle)
+ (:desc "Toggle last iBuffer" :n "=" #'+popup/toggle))
+#+END_SRC
 
+**** Buffer
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "buffer" :prefix "b"
-   :desc "Rename Buffer"                :n  "r" #'rename-buffer)
-
+   :desc "Rename Buffer" :n "r" #'rename-buffer))
+#+END_SRC
+**** File
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "file" :prefix "f"
    :desc "find in literate config file" :n  "D" (λ! (counsel-find-file (projectile-project-root)))
-   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config)
-
+   :desc "find in literate config file" :n  "p" #'counsel-org-doom-config))
+#+END_SRC
+**** Dir
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "dir" :prefix "d"
    :desc "find in literate config file" :n  "r" #'dired-recent-open
-   :desc "Project Root"                 :n  "p" #'projectile-dired)
-
+   :desc "Project Root"                 :n  "p" #'projectile-dired))
+#+END_SRC
+**** Git
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "git" :prefix "g"
    :desc "Worktree Popup"              :n "%" #'magit-worktree
    :desc "Blame"                       :n "B" #'magit-blame
@@ -2599,34 +2636,64 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Checkout"                    :n "b" #'magit-checkout
    :desc "Diff"                        :n "d" #'magit-diff
    :desc "Push"                        :n "p" #'magit-push
-   :desc "Undo"                        :n "u" #'+git|undo)
-
+   :desc "Undo"                        :n "u" #'+git|undo))
+#+END_SRC
+**** Insert
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "insert" :prefix "i"
-   :desc "Killring"   :n  "y" #'counsel-yank-pop)
-
+   :desc "Killring"   :n  "y" #'counsel-yank-pop))
+#+END_SRC
+**** Projects
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "project" :prefix "p"
    :desc "services" :n  "s" #'prodigy
-   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file)
-
+   :desc "Workspace Project Files" :n  "P" #'+workspace|find-workspace-project-file))
+#+END_SRC
+**** Toggle
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "toggle" :prefix "t"
-   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme)
-
+   :desc "Theme Dark/Light" :n  "t" #'+doom|toggle-theme))
+#+END_SRC
+**** Code
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "code" :prefix "c"
    :desc "Compile" "c" #'compile
-   :desc "Compile" "Compile last command" (λ! (compile (car compile-history))))
-
+   :desc "Compile" "Compile last command" (λ! (compile (car compile-history)))))
+#+END_SRC
+**** Open
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "open" :prefix "o"
    :desc "Eshell in Current Dir" :n  "." (λ! (+eshell/open t))
-   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t)))
+   :desc "Eshell Popup in Current Dir" :n  ">" (λ! (+eshell/open t))))
+#+END_SRC
 
+**** Window
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "window" :prefix "w"
   :desc  "Split Vertical"   :n  "|"    #'evil-window-vsplit
   :desc  "Split Horizontal" :n  "_"    #'evil-window-split
   :desc  "Split Horizontal" :n  "_"    #'evil-window-split
   :desc  "Set Height"       :n  "C-_"    #'evil-window-set-height
   :desc  "Set Height"       :n  "C-|"    #'evil-window-set-width
-  :desc  "Swap"             :n  "SPC"  #'ace-swap-window)
-
+  :desc  "Swap"             :n  "SPC"  #'ace-swap-window
+  :desc "Toggle Locked" :n "#" #'toggle-window-dedicated))
+#+END_SRC
+**** Workspace
+#+BEGIN_SRC elisp
+(map!
+ :leader
  (:desc "workspace" :prefix "<tab>"
    :desc "Switch to"    :n "." #'+workspace/my-switch-to
    :desc "Create"       :n "c" #'+workspace/new-named
@@ -2656,17 +2723,19 @@ Insert Mode bindings, mostly unicode insertion and workaround for german umlaut.
    :desc "Switch to 7th workspace"  "7"   (λ! (+workspace/switch-to 6))
    :desc "Switch to 8th workspace"  "8"   (λ! (+workspace/switch-to 7))
    :desc "Switch to 9th workspace"  "9"   (λ! (+workspace/switch-to 8))
-   :desc "Switch to last workspace" "0"   #'+workspace/switch-to-last)
+   :desc "Switch to last workspace" "0"   #'+workspace/switch-to-last))
+#+END_SRC
 
- (:desc "window" :prefix "w"
-   :desc "Toggle Locked" :n "#" #'toggle-window-dedicated)
-
- (:desc "Yank" :prefix "y"
-   :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
-   :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
-   :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
-   :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
+**** Yank
+#+BEGIN_SRC elisp
+(map!
+  :leader
+  (:desc "Yank" :prefix "y"
+    :desc "filename"  :n  "f" (λ! (copy-message (file-name-nondirectory buffer-file-name)))
+    :desc "base"      :n  "b" (λ! (copy-message (file-name-base (buffer-file-name))))
+    :desc "directory" :n  "d" (λ! (copy-message (file-name-directory (buffer-file-name))))
+    :desc "path"      :n  "p" (λ! (copy-message (file-name-directory (buffer-file-name))))
+    :desc "project"   :n  "r" (λ! (copy-message (s-replace (projectile-project-root) "" (buffer-file-name))))))
 #+END_SRC
 
 *** Little Word Motion
