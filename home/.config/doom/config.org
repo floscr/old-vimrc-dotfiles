@@ -2453,27 +2453,28 @@ The history can be accessed with ~C-n~ / ~C-p~
 #+END_SRC
 *** Osx / Mac Modifier Bindings
 #+BEGIN_SRC elisp
-(map! (:map override
-        "s-w" #'+workspace/close-window-or-workspace
-        "s-;" #'eval-expression
-        "s-S" #'write-file
-        "s-x" #'execute-extended-command)
+(map!
+ (:map override
+   :gniv "s-w" #'+workspace/close-window-or-workspace
+   :gniv "s-;" #'eval-expression
+   :gniv "s-S" #'write-file
+   :gniv "s-x" #'execute-extended-command
 
-      ;; Workspace Switching
-      :niv "s-1" (λ! (+workspace/switch-to 0))
-      :niv "s-2" (λ! (+workspace/switch-to 1))
-      :niv "s-3" (λ! (+workspace/switch-to 2))
-      :niv "s-4" (λ! (+workspace/switch-to 3))
-      :niv "s-5" (λ! (+workspace/switch-to 4))
-      :niv "s-6" (λ! (+workspace/switch-to 5))
-      :niv "s-7" (λ! (+workspace/switch-to 6))
-      :niv "s-8" (λ! (+workspace/switch-to 7))
-      :niv "s-9" (λ! (+workspace/switch-to 9))
+   ;; Workspace Switching
+   :gniv "s-1" (λ! (+workspace/switch-to 0))
+   :gniv "s-2" (λ! (+workspace/switch-to 1))
+   :gniv "s-3" (λ! (+workspace/switch-to 2))
+   :gniv "s-4" (λ! (+workspace/switch-to 3))
+   :gniv "s-5" (λ! (+workspace/switch-to 4))
+   :gniv "s-6" (λ! (+workspace/switch-to 5))
+   :gniv "s-7" (λ! (+workspace/switch-to 6))
+   :gniv "s-8" (λ! (+workspace/switch-to 7))
+   :gniv "s-9" (λ! (+workspace/switch-to 9))
 
-      ;; Text scale
-      :niv "s-="   #'doom/increase-font-size
-      :niv "s--"   #'doom/decrease-font-size
-      :niv "s-0"   #'doom/reset-font-size)
+   ;; Text scale
+   :gniv "s-="   #'doom/increase-font-size
+   :gniv "s--"   #'doom/decrease-font-size
+   :gniv "s-0"   #'doom/reset-font-size))
 #+END_SRC
 *** Evil Normal Bindings
 **** Window navigation
