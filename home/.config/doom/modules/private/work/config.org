@@ -1,0 +1,345 @@
+#+TITLE: Emacs Work Config
+#+AUTHOR: Florian Schrödl (floscr)
+#+PROPERTY: header-args :tangle yes
+#+STARTUP: org-startup-folded: showall
+#+BEGIN_SRC emacs-lisp
+;; -*- lexical-binding: t -*-
+#+END_SRC
+
+* Configuration
+** Minor Mode
+
+Custom minor mode for work,
+When the variable ~+MM-Web-mode~ is enabled,
+this mode is enabled.
+
+#+BEGIN_SRC elisp
+(defvar +MM-Web-mode nil)
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(def-project-mode! +MM-Web-mode
+  :match "\\/Code\\/Meisterlabs\\/"
+  :on-load
+  (map!
+   :n "[1" #'+MM|alternate-file
+   :n "]1" #'+MM|alternate-file))
+#+END_SRC
+
+** Utils
+*** Alternate File
+
+#+BEGIN_SRC elisp
+(defun +MM|alternate-file ()
+  "Find the alternate file for the current buffer."
+  (let
+      ((file-path (file-name-nondirectory buffer-file-name))
+       (dir-path (file-name-directory buffer-file-name))
+       (alternate-file (if (string= file-path "component.js") "controller.js" "component.js")))
+    (find-file (f-join dir-path alternate-file))))
+#+END_SRC
+
+*** Turn Style Object into Function
+
+#+BEGIN_SRC elisp
+(fset '+MM|turn-style-object-into-function
+      (lambda (&optional arg)
+        "Convert a style object into a Style function, needs to be focused on the starting {"
+        (interactive "p")
+        (kmacro-exec-ring-item (quote ([?y ?s ?a ?B ?b ?i ?S ?t ?y ?l ?e escape ?l ?a ?f ?u ?n ?c ?t ?i ?o ?n ?  S-backspace ?  ?\( ?o ?p ?t ?i ?o ?n ?s ?, ?  ?R ?u ?l ?e ?s escape ?l ?l ?y ?s ?a ?B ?B ?i ?  escape ?l ?a return ?r ?e ?t ?u ?r ?n ?  escape ?l ?j ?> ?i ?\{ ?k ?$ ?% ?a return escape ?k ?a ?\; escape ?= ?= ?j ?b ?l ?%] 0 "%d")) arg)))
+#+END_SRC
+
+*** Convert to new Redux style
+
+#+BEGIN_SRC elisp
+(defun +MM|convert-to-new-redux-style ()
+  "Converts the current buffer to the new redux style."
+  (interactive)
+  (shell-command (template "jscodeshift --dry --print --silent --transform ~/Code/Meisterlabs/jscodeshift/redux/v5.8.0/actions-controllers.js <<(buffer-file-name)>>") (current-buffer)))
+#+END_SRC
+
+*** Create action
+
+Create an action from a controller and import directly
+
+#+BEGIN_SRC elisp
+(defun +MM|create-action ()
+  "Create an action file from a controller file"
+  (interactive)
+  (let* ((action-name (read-string "Action Name: "))
+         (root-dir (file-name-directory (buffer-file-name)))
+         (actions-dir (concat root-dir "actions/"))
+         (actions-index-file (concat actions-dir "index.js"))
+         (action-file (concat actions-dir (concat action-name ".js"))))
+    (unless (file-directory-p actions-dir) (mkdir actions-dir))
+    (copy-file
+     (concat (projectile-project-root) "snippets/Core/Action.js")
+     action-file)
+    (with-temp-file actions-index-file
+      (+js|generate-index actions-dir))
+    (find-file action-file)))
+#+END_SRC
+
+*** Create canvas action
+
+Create an canvas action
+
+#+BEGIN_SRC elisp
+(defun +MM|canvas-create-action ()
+  "Create an action file from a controller file"
+  (interactive)
+  (let* ((action-name (read-string "Action Name: "))
+         (actions-dir (f-join (projectile-project-root) "src/containers/MapEditor/actions"))
+         (actions-index-file (f-join actions-dir "index.js"))
+         (action-file (f-join actions-dir (concat action-name ".js"))))
+    (copy-file
+     (f-join (projectile-project-root) "snippets/Core/Action.js")
+     action-file)
+    (with-temp-file actions-index-file
+      (+js|generate-index actions-dir))
+    (find-file action-file)))
+#+END_SRC
+
+*** Search MapEditor Only
+
+#+BEGIN_SRC elisp
+(defun +MM|canvas-files ()
+  "Project files but only for canvas"
+  (interactive)
+  (ivy-read "Find File: "
+            (--filter (s-contains? "MapEditor" it) (projectile-current-project-files))
+            :action #'projectile-find-file))
+#+END_SRC
+
+*** Rules
+#+BEGIN_SRC elisp :tangle no
+(setq +MM-Rules
+      (ht ("flexDirection"     '("row" "row-reverse" "column" "column-reverse"))
+          ("fontWeight"        '("normal" "regular" "heavy" "bold" "black" "light"))
+          ;; ("position"        '("absolute" "relative" "fixed"))
+          ;; ("padding"           'number)
+          ;; ("paddingHorizontal" 'number)
+          ;; ("paddingVertical"   'number)
+          ;; ("paddingTop"        'number)
+          ;; ("paddingBottom"     'number)
+          ;; ("paddingLeft"       'number)
+          ;; ("paddingRight"      'number)
+          ;; ("margin"            'number)
+          ;; ("marginTop"         'number)
+          ;; ("marginBottom"      'number)
+          ;; ("marginLeft"        'number)
+          ;; ("marginRight"       'number)
+          ;; ("top"               'number)
+          ;; ("left"              'number)
+          ;; ("right"             'number)
+          ;; ("bottom"            'number)
+          ;; ("translateY"            'number)
+          ;; ("translateX"            'number)
+          ;; ("rotate"            'number)
+          ;; ("absolute"       'noop)
+          ;; ("absoluteHorizontalCenter"       'noop)
+          ;; ("absoluteHorizontalCenter"       'noop))
+
+    ;; ("absoluteCenter" 'noop)
+    ;; ("absoluteHorizontalCenter" 'noop)
+    ;; ("absoluteVerticalCenter" 'noop)
+    ;; ("alignContent" '("flex-start", "flex-end", "center", "space-between", "space-around", "stretch"))
+    ;; ("alignItems" '())
+    ;; ("alignSelf" 'number)
+    ;; ("assoc" 'number)
+    ;; ("backfaceVisibility" 'number)
+    ;; ("backgroundColor" 'number)
+    ;; ("backgroundImage" 'number)
+    ;; ("backgroundPosition" 'number)
+    ;; ("backgroundRepeat" 'number)
+    ;; ("backgroundSize" 'number)
+    ;; ("borderBottomLeftRadius" 'number)
+    ;; ("borderBottomRightRadius" 'number)
+    ;; ("borderBottomWidth" 'number)
+    ;; ("borderColor" 'number)
+    ;; ("borderHorizontalWidth" 'number)
+    ;; ("borderLeftWidth" 'number)
+    ;; ("borderRadius" 'number)
+    ;; ("borderRightWidth" 'number)
+    ;; ("borderStyle" 'number)
+    ;; ("borderTopLeftRadius" 'number)
+    ;; ("borderTopRightRadius" 'number)
+    ;; ("borderTopWidth" 'number)
+    ;; ("borderVerticalWidth" 'number)
+    ;; ("borderWidth" 'number)
+    ;; ("bottom" 'number)
+    ;; ("boxShadow" 'number)
+    ;; ("boxShadows" 'number)
+    ;; ("boxShadows.result" 'number)
+    ;; ("boxSizing" 'number)
+    ;; ("color" 'number)
+    ;; ("concat" 'number)
+    ;; ("concatWhen" 'number)
+    ;; ("cursor" 'number)
+    ;; ("display" 'number)
+    ;; ("dissoc" 'number)
+    ;; ("fill" 'number)
+    ;; ("flexBasis" 'number)
+    ;; ("flexDirection" 'number)
+    ;; ("flexGrow" 'number)
+    ;; ("flexShrink" 'number)
+    ;; ("flexWrap" 'number)
+    ;; ("float" 'number)
+    ;; ("fontFamily" 'number)
+    ;; ("fontSize" 'number)
+    ;; ("fontStyle" 'number)
+    ;; ("fontWeight" 'number)
+    ;; ("fontWeight.Schema() callback" 'number)
+    ;; ("fontWeight.caseEquals('black') callback" 'number)
+    ;; ("fontWeight.caseEquals('heavy') callback" 'number)
+    ;; ("fontWeight.caseEquals('light') callback" 'number)
+    ;; ("fontWeight.caseEquals('regular') callback" 'number)
+    ;; ("fontWeight.default() callback" 'number)
+    ;; ("fontWeight.fold() callback" 'number)
+    ;; ("height" 'number)
+    ;; ("init" 'number)
+    ;; ("justifyContent" 'number)
+    ;; ("left" 'number)
+    ;; ("lineHeight" 'number)
+    ;; ("listStyleType" 'number)
+    ;; ("margin" 'number)
+    ;; ("marginBottom" 'number)
+    ;; ("marginHorizontal" 'number)
+    ;; ("marginLeft" 'number)
+    ;; ("marginRight" 'number)
+    ;; ("marginTop" 'number)
+    ;; ("marginVertical" 'number)
+    ;; ("maxHeight" 'number)
+    ;; ("maxSize" 'number)
+    ;; ("maxWidth" 'number)
+    ;; ("merge" 'number)
+    ;; ("minHeight" 'number)
+    ;; ("minSize" 'number)
+    ;; ("minWidth" 'number)
+    ;; ("opacity" 'number)
+    ;; ("overflow" 'number)
+    ;; ("overflowX" 'number)
+    ;; ("overflowY" 'number)
+    ;; ("padding" 'number)
+    ;; ("paddingBottom" 'number)
+    ;; ("paddingHorizontal" 'number)
+    ;; ("paddingLeft" 'number)
+    ;; ("paddingRight" 'number)
+    ;; ("paddingTop" 'number)
+    ;; ("paddingVertical" 'number)
+    ;; ("pointerEvents" 'number)
+    ;; ("position" 'number)
+    ;; ("resize" 'number)
+    ;; ("right" 'number)
+    ;; ("rotate" 'number)
+    ;; ("scale" 'number)
+    ;; ("scaleX" 'number)
+    ;; ("scaleY" 'number)
+    ;; ("schema" 'number)
+    ;; ("size" 'number)
+    ;; ("stretch" 'number)
+    ;; ("stroke" 'number)
+    ;; ("tableLayout" 'number)
+    ;; ("textAlign" 'number)
+    ;; ("textDecoration" 'number)
+    ;; ("textOverflow" 'number)
+    ;; ("textRendering" 'number)
+    ;; ("textShadow" 'number)
+    ;; ("textTransform" 'number)
+    ;; ("top" 'number)
+    ;; ("translate" 'number)
+    ;; ("translateX" 'number)
+    ;; ("translateY" 'number)
+    ;; ("truncate" 'number)
+    ;; ("userSelect" 'number)
+    ;; ("verticalAlign" 'number)
+    ;; ("visibility" 'number)
+    ;; ("whiteSpace" 'number)
+    ;; ("width" 'number)
+    ;; ("wordBreak" 'number)
+    ;; ("wordWrap" 'number)
+    ;; ("zIndex" 'number))
+
+(defvar +MM|add-prop-for-rule-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-<return>") (lambda (rule prop)
+                                         (ivy-quit-and-run
+                                           (progn
+                                            (+MM|write-rule rule prop)
+                                            (+MM|add-rule)))))
+    map))
+
+(defun +MM|write-rule (rule prop)
+    (insert (template ".<<rule>>('<<prop>>')\n")))
+
+(defun +MM|add-prop-for-rule (rule)
+  (ivy-read "Add prop" (ht-get +MM-Rules rule)
+            ;; :keymap counsel-find-file-map
+            :action (lambda (prop) (+MM|write-rule rule prop)
+                                   (+MM|add-rule))))
+
+(defun +MM|add-rule ()
+  (interactive)
+  (ivy-read "Add Rule" (ht-keys +MM-Rules)
+            :action '+MM|add-prop-for-rule))
+#+END_SRC
+** Packages
+*** New Worktree
+
+#+BEGIN_SRC elisp
+(defun +MM|new-worktree ()
+  "New worktree with the devpanel files and an npm install"
+  (interactive)
+  (let* ((origin-path (projectile-project-root))
+         (path (call-interactively 'magit-worktree-branch-project-worktree))
+         (local-devutil-file (f-join origin-path "src/apps/Main/DevPlugin.local.js"))
+         (worktree-devutil-file (f-join path "src/apps/Main/DevPlugin.local.js")))
+    (when (file-exists-p local-devutil-file)
+      (copy-file local-devutil-file worktree-devutil-file))
+    (npm-mode)
+    (npm-mode-npm-ci)))
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(after! magit
+  (transient-append-suffix 'magit-worktree "y" '("m" "+MM|Worktree" +MM|new-worktree)))
+#+END_SRC
+*** Import File
+#+BEGIN_SRC elisp
+(setq +MM-comment-headers '("EXTERNALS" "LOCALS" "HELPERS" "MAIN"))
+
+(defun +MM:get-remaining-headers-list (header)
+  "Returns a reversed list of headers to search through"
+  (->> +MM-comment-headers
+       (-split-on header)
+       (-first-item)))
+
+(defun +MM:goto-or-add-header (header)
+  "Goes to a comment header or if it doesnt exist creates one"
+  (goto-char (point-min))
+  (if (search-forward header nil t)
+      (progn
+        (search-forward-regexp "^/\\*\\*" nil t)
+        (previous-line 2))
+    ;; Create header when none was found
+    (progn
+      (let* ((headers (reverse (+MM:get-remaining-headers-list header))))
+        (--first (search-forward it nil t) headers))
+      (search-forward-regexp "^/\\*\\*" nil t)
+      (evil-insert-newline-above)
+      (insert (template  "/** <<header>> **/\n\n\n\n"))
+      (previous-line 1))))
+
+(defun +MM:add-import-to-file (file)
+  (goto-char (point-min))
+  (let* ((is-local (s-contains? "./" file))
+         (comment-header-title (if is-local "LOCALS" "EXTERNALS")))
+    (+MM:goto-or-add-header comment-header-title)
+    (evil-insert-newline-below)
+    (previous-line 1)
+    (+js/import-file file)))
+
+(defun +MM|import-file ()
+  (interactive)
+  (+js|ivy-import-file '+MM:add-import-to-file))
+#+END_SRC

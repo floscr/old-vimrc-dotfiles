@@ -73,6 +73,7 @@
 
  :private
  reason
+ work
  (org
   +org-web-tools
   +org-reading-list))
