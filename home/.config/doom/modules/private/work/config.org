@@ -29,10 +29,10 @@ this mode is enabled.
 #+BEGIN_SRC elisp
 (defun +MM|alternate-file ()
   "Find the alternate file for the current buffer."
-  (let
-      ((file-path (file-name-nondirectory buffer-file-name))
-       (dir-path (file-name-directory buffer-file-name))
-       (alternate-file (if (string= file-path "component.js") "controller.js" "component.js")))
+  (interactive)
+  (let* ((file-path (file-name-nondirectory buffer-file-name))
+         (dir-path (file-name-directory buffer-file-name))
+         (alternate-file (if (string= file-path "component.js") "controller.js" "component.js")))
     (find-file (f-join dir-path alternate-file))))
 #+END_SRC
 
