@@ -108,6 +108,68 @@ Create an canvas action
             :action #'projectile-find-file))
 #+END_SRC
 
+** Packages
+*** New Worktree
+
+#+BEGIN_SRC elisp
+(defun +MM|new-worktree ()
+  "New worktree with the devpanel files and an npm install"
+  (interactive)
+  (let* ((origin-path (projectile-project-root))
+         (path (call-interactively 'magit-worktree-branch-project-worktree))
+         (local-devutil-file (f-join origin-path "src/apps/Main/DevPlugin.local.js"))
+         (worktree-devutil-file (f-join path "src/apps/Main/DevPlugin.local.js")))
+    (when (file-exists-p local-devutil-file)
+      (copy-file local-devutil-file worktree-devutil-file))
+    (npm-mode)
+    (npm-mode-npm-ci)))
+#+END_SRC
+
+#+BEGIN_SRC elisp
+(after! magit
+  (transient-append-suffix 'magit-worktree "y" '("m" "+MM|Worktree" +MM|new-worktree)))
+#+END_SRC
+*** Import File
+
+#+BEGIN_SRC elisp
+(setq +MM-comment-headers '("EXTERNALS" "LOCALS" "HELPERS" "MAIN"))
+
+(defun +MM:get-remaining-headers-list (header)
+  "Returns a reversed list of headers to search through"
+  (->> +MM-comment-headers
+       (-split-on header)
+       (-first-item)))
+
+(defun +MM:goto-or-add-header (header)
+  "Goes to a comment header or if it doesnt exist creates one"
+  (goto-char (point-min))
+  (if (search-forward header nil t)
+      (progn
+        (search-forward-regexp "^/\\*\\*" nil t)
+        (previous-line 2))
+    ;; Create header when none was found
+    (progn
+      (let* ((headers (reverse (+MM:get-remaining-headers-list header))))
+        (--first (search-forward it nil t) headers))
+      (search-forward-regexp "^/\\*\\*" nil t)
+      (evil-insert-newline-above)
+      (insert (template  "/** <<header>> **/\n\n\n\n"))
+      (previous-line 1))))
+
+(defun +MM:add-import-to-file (file)
+  (goto-char (point-min))
+  (let* ((is-local (s-contains? "./" file))
+         (comment-header-title (if is-local "LOCALS" "EXTERNALS")))
+    (+MM:goto-or-add-header comment-header-title)
+    (evil-insert-newline-below)
+    (previous-line 1)
+    (+js/import-file file)))
+
+(defun +MM|import-file ()
+  (interactive)
+  (+js|ivy-import-file '+MM:add-import-to-file))
+#+END_SRC
+
 *** Rules
 #+BEGIN_SRC elisp :tangle no
 (setq +MM-Rules
@@ -280,67 +342,8 @@ Create an canvas action
   (ivy-read "Add Rule" (ht-keys +MM-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
-** Packages
-*** New Worktree
-
-#+BEGIN_SRC elisp
-(defun +MM|new-worktree ()
-  "New worktree with the devpanel files and an npm install"
-  (interactive)
-  (let* ((origin-path (projectile-project-root))
-         (path (call-interactively 'magit-worktree-branch-project-worktree))
-         (local-devutil-file (f-join origin-path "src/apps/Main/DevPlugin.local.js"))
-         (worktree-devutil-file (f-join path "src/apps/Main/DevPlugin.local.js")))
-    (when (file-exists-p local-devutil-file)
-      (copy-file local-devutil-file worktree-devutil-file))
-    (npm-mode)
-    (npm-mode-npm-ci)))
-#+END_SRC
-
-#+BEGIN_SRC elisp
-(after! magit
-  (transient-append-suffix 'magit-worktree "y" '("m" "+MM|Worktree" +MM|new-worktree)))
-#+END_SRC
-*** Import File
-#+BEGIN_SRC elisp
-(setq +MM-comment-headers '("EXTERNALS" "LOCALS" "HELPERS" "MAIN"))
-
-(defun +MM:get-remaining-headers-list (header)
-  "Returns a reversed list of headers to search through"
-  (->> +MM-comment-headers
-       (-split-on header)
-       (-first-item)))
-
-(defun +MM:goto-or-add-header (header)
-  "Goes to a comment header or if it doesnt exist creates one"
-  (goto-char (point-min))
-  (if (search-forward header nil t)
-      (progn
-        (search-forward-regexp "^/\\*\\*" nil t)
-        (previous-line 2))
-    ;; Create header when none was found
-    (progn
-      (let* ((headers (reverse (+MM:get-remaining-headers-list header))))
-        (--first (search-forward it nil t) headers))
-      (search-forward-regexp "^/\\*\\*" nil t)
-      (evil-insert-newline-above)
-      (insert (template  "/** <<header>> **/\n\n\n\n"))
-      (previous-line 1))))
-
-(defun +MM:add-import-to-file (file)
-  (goto-char (point-min))
-  (let* ((is-local (s-contains? "./" file))
-         (comment-header-title (if is-local "LOCALS" "EXTERNALS")))
-    (+MM:goto-or-add-header comment-header-title)
-    (evil-insert-newline-below)
-    (previous-line 1)
-    (+js/import-file file)))
-
-(defun +MM|import-file ()
-  (interactive)
-  (+js|ivy-import-file '+MM:add-import-to-file))
-#+END_SRC
 ** Bindings
+
 #+BEGIN_SRC elisp
 (defun +MM/setup-keybindings ()
   "Setup Keybindings"
