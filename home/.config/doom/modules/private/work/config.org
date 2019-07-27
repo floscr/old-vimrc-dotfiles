@@ -167,7 +167,13 @@ Create an canvas action
 #+END_SRC
 
 *** CSS Rules
+**** Requirements
+#+BEGIN_SRC elisp
+(require 'ht)
+#+END_SRC
+
 **** Rules
+
 #+BEGIN_SRC elisp
 (defvar +MM-Rules-percent)
 (defvar +MM-Rules-pixel)
@@ -312,8 +318,7 @@ Create an canvas action
 
 **** Add rule
 
-#+BEGIN_SRC elisp :tangle no
-
+#+BEGIN_SRC elisp
 (defvar +MM|add-prop-for-rule-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-<return>") (lambda (rule prop)
