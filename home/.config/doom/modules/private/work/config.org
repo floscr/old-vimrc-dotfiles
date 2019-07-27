@@ -14,10 +14,6 @@ When the variable ~+MM-Web-mode~ is enabled,
 this mode is enabled.
 
 #+BEGIN_SRC elisp
-(defvar +MM-Web-mode nil)
-#+END_SRC
-
-#+BEGIN_SRC elisp
 (def-project-mode! +MM-Web-mode
   :match "\\/Code\\/Meisterlabs\\/"
   :add-hooks (+MM/setup-keybindings))
@@ -170,154 +166,153 @@ Create an canvas action
   (+js|ivy-import-file '+MM:add-import-to-file))
 #+END_SRC
 
-*** Rules
-#+BEGIN_SRC elisp :tangle no
-(setq +MM-Rules
-      (ht ("flexDirection"     '("row" "row-reverse" "column" "column-reverse"))
-          ("fontWeight"        '("normal" "regular" "heavy" "bold" "black" "light"))
-          ;; ("position"        '("absolute" "relative" "fixed"))
-          ;; ("padding"           'number)
-          ;; ("paddingHorizontal" 'number)
-          ;; ("paddingVertical"   'number)
-          ;; ("paddingTop"        'number)
-          ;; ("paddingBottom"     'number)
-          ;; ("paddingLeft"       'number)
-          ;; ("paddingRight"      'number)
-          ;; ("margin"            'number)
-          ;; ("marginTop"         'number)
-          ;; ("marginBottom"      'number)
-          ;; ("marginLeft"        'number)
-          ;; ("marginRight"       'number)
-          ;; ("top"               'number)
-          ;; ("left"              'number)
-          ;; ("right"             'number)
-          ;; ("bottom"            'number)
-          ;; ("translateY"            'number)
-          ;; ("translateX"            'number)
-          ;; ("rotate"            'number)
-          ;; ("absolute"       'noop)
-          ;; ("absoluteHorizontalCenter"       'noop)
-          ;; ("absoluteHorizontalCenter"       'noop))
+*** CSS Rules
+**** Rules
+#+BEGIN_SRC elisp
+(defvar +MM-Rules-percent)
+(defvar +MM-Rules-pixel)
+(defvar +MM-Rules-number)
+(defvar +MM-Rules-deg)
 
-    ;; ("absoluteCenter" 'noop)
-    ;; ("absoluteHorizontalCenter" 'noop)
-    ;; ("absoluteVerticalCenter" 'noop)
-    ;; ("alignContent" '("flex-start", "flex-end", "center", "space-between", "space-around", "stretch"))
-    ;; ("alignItems" '())
-    ;; ("alignSelf" 'number)
-    ;; ("assoc" 'number)
-    ;; ("backfaceVisibility" 'number)
-    ;; ("backgroundColor" 'number)
-    ;; ("backgroundImage" 'number)
-    ;; ("backgroundPosition" 'number)
-    ;; ("backgroundRepeat" 'number)
-    ;; ("backgroundSize" 'number)
-    ;; ("borderBottomLeftRadius" 'number)
-    ;; ("borderBottomRightRadius" 'number)
-    ;; ("borderBottomWidth" 'number)
-    ;; ("borderColor" 'number)
-    ;; ("borderHorizontalWidth" 'number)
-    ;; ("borderLeftWidth" 'number)
-    ;; ("borderRadius" 'number)
-    ;; ("borderRightWidth" 'number)
-    ;; ("borderStyle" 'number)
-    ;; ("borderTopLeftRadius" 'number)
-    ;; ("borderTopRightRadius" 'number)
-    ;; ("borderTopWidth" 'number)
-    ;; ("borderVerticalWidth" 'number)
-    ;; ("borderWidth" 'number)
-    ;; ("bottom" 'number)
-    ;; ("boxShadow" 'number)
-    ;; ("boxShadows" 'number)
-    ;; ("boxShadows.result" 'number)
-    ;; ("boxSizing" 'number)
-    ;; ("color" 'number)
-    ;; ("concat" 'number)
-    ;; ("concatWhen" 'number)
-    ;; ("cursor" 'number)
-    ;; ("display" 'number)
-    ;; ("dissoc" 'number)
-    ;; ("fill" 'number)
-    ;; ("flexBasis" 'number)
-    ;; ("flexDirection" 'number)
-    ;; ("flexGrow" 'number)
-    ;; ("flexShrink" 'number)
-    ;; ("flexWrap" 'number)
-    ;; ("float" 'number)
-    ;; ("fontFamily" 'number)
-    ;; ("fontSize" 'number)
-    ;; ("fontStyle" 'number)
-    ;; ("fontWeight" 'number)
-    ;; ("fontWeight.Schema() callback" 'number)
-    ;; ("fontWeight.caseEquals('black') callback" 'number)
-    ;; ("fontWeight.caseEquals('heavy') callback" 'number)
-    ;; ("fontWeight.caseEquals('light') callback" 'number)
-    ;; ("fontWeight.caseEquals('regular') callback" 'number)
-    ;; ("fontWeight.default() callback" 'number)
-    ;; ("fontWeight.fold() callback" 'number)
-    ;; ("height" 'number)
-    ;; ("init" 'number)
-    ;; ("justifyContent" 'number)
-    ;; ("left" 'number)
-    ;; ("lineHeight" 'number)
-    ;; ("listStyleType" 'number)
-    ;; ("margin" 'number)
-    ;; ("marginBottom" 'number)
-    ;; ("marginHorizontal" 'number)
-    ;; ("marginLeft" 'number)
-    ;; ("marginRight" 'number)
-    ;; ("marginTop" 'number)
-    ;; ("marginVertical" 'number)
-    ;; ("maxHeight" 'number)
-    ;; ("maxSize" 'number)
-    ;; ("maxWidth" 'number)
-    ;; ("merge" 'number)
-    ;; ("minHeight" 'number)
-    ;; ("minSize" 'number)
-    ;; ("minWidth" 'number)
-    ;; ("opacity" 'number)
-    ;; ("overflow" 'number)
-    ;; ("overflowX" 'number)
-    ;; ("overflowY" 'number)
-    ;; ("padding" 'number)
-    ;; ("paddingBottom" 'number)
-    ;; ("paddingHorizontal" 'number)
-    ;; ("paddingLeft" 'number)
-    ;; ("paddingRight" 'number)
-    ;; ("paddingTop" 'number)
-    ;; ("paddingVertical" 'number)
-    ;; ("pointerEvents" 'number)
-    ;; ("position" 'number)
-    ;; ("resize" 'number)
-    ;; ("right" 'number)
-    ;; ("rotate" 'number)
-    ;; ("scale" 'number)
-    ;; ("scaleX" 'number)
-    ;; ("scaleY" 'number)
-    ;; ("schema" 'number)
-    ;; ("size" 'number)
-    ;; ("stretch" 'number)
-    ;; ("stroke" 'number)
-    ;; ("tableLayout" 'number)
-    ;; ("textAlign" 'number)
-    ;; ("textDecoration" 'number)
-    ;; ("textOverflow" 'number)
-    ;; ("textRendering" 'number)
-    ;; ("textShadow" 'number)
-    ;; ("textTransform" 'number)
-    ;; ("top" 'number)
-    ;; ("translate" 'number)
-    ;; ("translateX" 'number)
-    ;; ("translateY" 'number)
-    ;; ("truncate" 'number)
-    ;; ("userSelect" 'number)
-    ;; ("verticalAlign" 'number)
-    ;; ("visibility" 'number)
-    ;; ("whiteSpace" 'number)
-    ;; ("width" 'number)
-    ;; ("wordBreak" 'number)
-    ;; ("wordWrap" 'number)
-    ;; ("zIndex" 'number))
+(defvar +MM-Rules-flex-align
+  '("center", "flex-start", "flex-end", "space-between", "space-around", "stretch"))
+
+(defvar +MM-Rules-colors
+  '("colors.red"
+    "colors.grey900",
+    "colors.grey700",
+    "colors.grey500",
+    "colors.grey300",
+    "colors.grey200",
+    "colors.grey100",
+    "colors.white",
+    "colors.blue",
+    "colors.sky",
+    "colors.navy",
+    "colors.turquoise",
+    "colors.green",
+    "colors.grass",
+    "colors.yellow",
+    "colors.banana",
+    "colors.orange",
+    "colors.red",
+    "colors.pink",
+    "colors.purple"))
+
+(setq +MM-Web-Rules
+      (ht ("flexDirection"            '("column" "row" "row-reverse" "column-reverse"))
+          ("alignContent"             '+MM-Rules-flex-align)
+          ("alignItems"               '+MM-Rules-flex-align)
+          ("alignSelf"                '+MM-Rules-flex-align)
+          ("flexGrow"                 '+MM-Rules-number)
+          ("flexShrink"               '+MM-Rules-number)
+          ("flexWrap"                 '+MM-Rules-number)
+
+          ("display"                  '("flex" "block" "inline-flex" "inline-block"))
+
+          ("height"                   '+MM-Rules-number)
+          ("maxHeight"                '+MM-Rules-number)
+          ("maxSize"                  '+MM-Rules-number)
+          ("maxWidth"                 '+MM-Rules-number)
+          ("minHeight"                '+MM-Rules-number)
+          ("minSize"                  '+MM-Rules-number)
+          ("minWidth"                 '+MM-Rules-number)
+          ("size"                     '+MM-Rules-number)
+          ("width"                    '+MM-Rules-number)
+
+          ("listStyleType"            '+MM-Rules-number)
+
+          ("padding"                  '+MM-Rules-pixel)
+          ("paddingHorizontal"        '+MM-Rules-pixel)
+          ("paddingVertical"          '+MM-Rules-pixel)
+          ("paddingTop"               '+MM-Rules-pixel)
+          ("paddingBottom"            '+MM-Rules-pixel)
+          ("paddingLeft"              '+MM-Rules-pixel)
+          ("paddingRight"             '+MM-Rules-pixel)
+
+          ("margin"                   '+MM-Rules-pixel)
+          ("marginTop"                '+MM-Rules-pixel)
+          ("marginBottom"             '+MM-Rules-pixel)
+          ("marginLeft"               '+MM-Rules-pixel)
+          ("marginRight"              '+MM-Rules-pixel)
+
+          ("position"                 '("absolute" "relative" "fixed"))
+          ("absoluteHorizontalCenter" 'noop)
+          ("absoluteHorizontalCenter" 'noop)
+          ("absoluteCenter"           'noop)
+          ("absoluteHorizontalCenter" 'noop)
+          ("absoluteVerticalCenter"   'noop)
+          ("top"                      '+MM-Rules-number)
+          ("left"                     '+MM-Rules-number)
+          ("right"                    '+MM-Rules-number)
+          ("bottom"                   '+MM-Rules-number)
+
+          ("translateY"               '+MM-Rules-pixel)
+          ("translateX"               '+MM-Rules-pixel)
+          ("scale"                    '+MM-Rules-number)
+          ("scaleX"                   '+MM-Rules-number)
+          ("scaleY"                   '+MM-Rules-number)
+          ("rotate"                   '+MM-Rules-deg)
+
+          ("color"                    '+MM-Rules-colors)
+          ("fontWeight"               '("heavy" "bold" "black" "light" "normal" "regular"))
+          ("fontFamily"               '+MM-Rules-number)
+          ("fontSize"                 '+MM-Rules-number)
+          ("fontStyle"                '+MM-Rules-number)
+          ("lineHeight"               '+MM-Rules-number)
+          ("textDecoration"           '+MM-Rules-number)
+          ("textShadow"               '+MM-Rules-number)
+          ("textTransform"            '+MM-Rules-number)
+          ("truncate"                 'noop)
+          ("wordBreak"                '+MM-Rules-number)
+          ("wordWrap"                 '+MM-Rules-number)
+
+          ("boxSizing"                '+MM-Rules-number)
+
+          ("cursor"                   '("pointer"))
+
+          ("backfaceVisibility" "hidden")
+          ("backgroundColor"          '+MM-Rules-colors)
+          ("backgroundImage" "")
+          ("backgroundPosition"       '("center"))
+          ("backgroundRepeat"         '("repeat" "no-repeat" "repeat-x" "repeat-y"))
+          ;; ("backgroundSize"        '+MM-Rules-number))
+
+          ("borderBottomLeftRadius"   '+MM-Rules-number)
+          ("borderBottomRightRadius"  '+MM-Rules-number)
+          ("borderBottomWidth"        '+MM-Rules-number)
+          ("borderColor"              '+MM-Rules-colors)
+          ("borderHorizontalWidth"    '+MM-Rules-number)
+          ("borderLeftWidth"          '+MM-Rules-number)
+          ("borderRadius"             '+MM-Rules-number)
+          ("borderRightWidth"         '+MM-Rules-number)
+          ("borderStyle"              '("solid" "dashed"))
+          ("borderTopLeftRadius"      '+MM-Rules-number)
+          ("borderTopRightRadius"     '+MM-Rules-number)
+          ("borderTopWidth"           '+MM-Rules-number)
+          ("borderVerticalWidth"      '+MM-Rules-number)
+          ("borderWidth"              '+MM-Rules-number)
+
+          ("boxShadow"                '+MM-Rules-number)
+
+          ("overflow"                 '+MM-Rules-number)
+          ("overflowX"                '+MM-Rules-number)
+          ("overflowY"                '+MM-Rules-number)
+
+          ("fill"                     '+MM-Rules-colors)
+
+          ("opacity"                  '+MM-Rules-number)
+          ("visibility"               '("visible" "hidden"))
+
+          ("pointerEvents"                 "none")
+          ("userSelect"                    "none")
+
+          ("zIndex"                   '+MM-Rules-number)))
+#+END_SRC
+
+**** Add rule
+
+#+BEGIN_SRC elisp :tangle no
 
 (defvar +MM|add-prop-for-rule-map
   (let ((map (make-sparse-keymap)))
@@ -328,18 +323,45 @@ Create an canvas action
                                             (+MM|add-rule)))))
     map))
 
-(defun +MM|write-rule (rule prop)
-    (insert (template ".<<rule>>('<<prop>>')\n")))
+
+(defun +MM|write-rule (rule &optional prop extension)
+  (let* ((is-zero-p (string= prop "0"))
+         (prop (cond (is-zero-p prop)
+                     (extension (template "'<<prop>>"))
+                     (prop prop)
+                     (t "")))
+         (extension (cond (is-zero-p "")
+                          (extension (template "<<extension>>'"))
+                          (t ""))))
+    (insert (template ".<<rule>>(<<prop>><<extension>>)\n"))))
+
+(defun +MM|write-rule-and-restart (rule &optional prop extension)
+  (+MM|write-rule rule prop extension)
+  (+MM|add-rule))
+
+(defun +MM|rule-numbers ()
+  (-map #'number-to-string (number-sequence 0 100 10)))
 
 (defun +MM|add-prop-for-rule (rule)
-  (ivy-read "Add prop" (ht-get +MM-Rules rule)
-            ;; :keymap counsel-find-file-map
-            :action (lambda (prop) (+MM|write-rule rule prop)
-                                   (+MM|add-rule))))
+  (let* ((prop-value (ht-get +MM-Web-Rules rule))
+         (prop (cond
+                ((eq prop-value #'noop) nil)
+                ((-contains? (list '+MM-Rules-number '+MM-Rules-pixel '+MM-Rules-percent '+MM-Rules-deg) prop-value)
+                 (+MM|rule-numbers))
+                (t prop-value))))
+    (if prop
+        (ivy-read "Add prop: " prop
+                  :action (lambda (x)
+                            (let ((extension (cond
+                                              ((eq prop-value '+MM-Rules-pixel) "px")
+                                              ((eq prop-value '+MM-Rules-percent) "%")
+                                              (t nil))))
+                              (+MM|write-rule-and-restart rule x extension))))
+      (+MM|write-rule-and-restart rule))))
 
 (defun +MM|add-rule ()
   (interactive)
-  (ivy-read "Add Rule" (ht-keys +MM-Rules)
+  (ivy-read "Add Rule: " (ht-keys +MM-Web-Rules)
             :action '+MM|add-prop-for-rule))
 #+END_SRC
 ** Bindings
