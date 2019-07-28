@@ -387,6 +387,7 @@ Create an canvas action
           :desc  "Convert into new Redux Style"  "X"   #'+MM|turn-style-object-into-function)
 
         (:prefix ("c" . "Create")
+          :desc  "action"  "r"  #'+MM|add-rule
           :desc  "action"  "a"  #'+MM|create-action
           :desc  "action"  "A"  #'+MM|canvas-create-action)))
 #+END_SRC
