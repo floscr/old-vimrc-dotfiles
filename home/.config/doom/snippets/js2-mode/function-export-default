@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Export Default Function
-# key: exdf
-# --
-export default function($1) {
-    $0
-}

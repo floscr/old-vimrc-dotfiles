@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: Return Statement (true)
-# key: rt
-# condition: t
-# --
-return true;

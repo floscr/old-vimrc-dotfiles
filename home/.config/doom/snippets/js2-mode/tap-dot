@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: .tap
-# key: .tap
-# type: command
-# --
-(insert ".")
-(yas-expand-snippet (yas-lookup-snippet "tap"))

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Console.group
-# key: cg
-# --
-console.group()
-$0
-console.groupEnd()

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: setTimeout
-# key: timeout
-# --
-setTimeout(function() {
-  $0
-}, ${1:3000})

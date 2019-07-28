@@ -34,3 +34,6 @@ settings/all/vscode/workspaceStorage/**
 home/.config/doom/config.el
 /settings/all/vscode
 home/.config/karabiner/automatic_backups/**
+
+# Emacs
+home/.config/doom

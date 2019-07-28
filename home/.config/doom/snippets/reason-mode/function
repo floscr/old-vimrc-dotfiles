@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Function
-# key: f            
-# --
-let ${1:fun} = ($2) => $0;

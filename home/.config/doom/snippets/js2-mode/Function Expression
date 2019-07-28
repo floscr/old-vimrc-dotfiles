@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: Function Expression
-# key: cf
-# --
-
-const $1 = function({ $2 }) {
-    $0
-};
