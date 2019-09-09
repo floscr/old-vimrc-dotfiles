@@ -59,12 +59,12 @@
   # time.timeZone = "Europe/Copenhagen";
 
   # Set up hlissner user account
-  users.users.hlissner = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
-    shell = pkgs.zsh;
-  };
+  # users.users.hlissner = {
+  #   isNormalUser = true;
+  #   uid = 1000;
+  #   extraGroups = [ "wheel" "video" "networkmanager" ];
+  #   shell = pkgs.zsh;
+  # };
 
   home-manager.users.hlissner = {
     xdg.enable = true;
