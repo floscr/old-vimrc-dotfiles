@@ -4,8 +4,6 @@
 
 {
   imports = [
-    <nixpkgs/nixos/modules/installer/virtualbox-demo.nix>
-    ../.  # import common settings
     ./modules/desktop/bspwm.nix
 
     ./modules/dev
