@@ -30,7 +30,7 @@ in
     promptInit = "";
   };
 
-  home-manager.users.hlissner.xdg.configFile = {
+  home-manager.users.floscr.xdg.configFile = {
     # link recursively so other modules can link files in this folder,
     # particularly in zsh/rc.d/*.zsh
     "zsh" = { source = <config/zsh>; recursive = true; };

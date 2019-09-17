@@ -7,7 +7,7 @@
 
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/hlissner/music";
+    musicDirectory = "/home/floscr/music";
     startWhenNeeded = true;
     extraConfig = ''
       input {

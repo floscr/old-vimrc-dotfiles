@@ -6,7 +6,7 @@ A tidy `$HOME` is a tidy mind.
 
 ```sh
 # Make sure your partitions are set up by this point
-git clone https://github.com/hlissner/dotfiles /etc/dotfiles
+git clone https://github.com/floscr/dotfiles /etc/dotfiles
 /etc/dotfiles/deploy HOSTNAME   # installs nixos to /mnt
 ```
 

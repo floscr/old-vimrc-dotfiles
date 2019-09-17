@@ -5,7 +5,7 @@
 
   environment.systemPackages = with pkgs; [ arc-theme ];
 
-  home-manager.users.hlissner = {
+  home-manager.users.floscr = {
     home.file.".background-image".source = ./wallpaper.jpg;
 
     xdg.configFile = {

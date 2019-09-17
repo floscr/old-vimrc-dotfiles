@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [ arc-theme ];
 
   services.xserver.displayManager.lightdm.background = "${./wallpaper.png}";
-  home-manager.users.hlissner = {
+  home-manager.users.floscr = {
     home.file.".background-image".source = ./wallpaper.png;
 
     xdg.configFile = {

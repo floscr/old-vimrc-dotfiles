@@ -4,8 +4,8 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    user = "hlissner";
-    configDir = "/home/hlissner/.config/syncthing";
-    dataDir = "/home/hlissner/sync";
+    user = "floscr";
+    configDir = "/home/floscr/.config/syncthing";
+    dataDir = "/home/floscr/sync";
   };
 }

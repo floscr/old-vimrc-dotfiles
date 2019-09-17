@@ -7,7 +7,7 @@
 [core]
 	whitespace = trailing-space
 [github]
-	user = hlissner
+	user = floscr
 [rebase]
 	autosquash = true
 [push]
