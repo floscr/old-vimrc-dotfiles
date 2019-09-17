@@ -6,7 +6,7 @@
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-    <home-manager/nixos>
+    # <home-manager/nixos>
   ];
 
   nix = {
