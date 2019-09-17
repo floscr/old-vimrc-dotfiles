@@ -68,7 +68,7 @@
 
     # link recursively so other modules can link files in their folders, e.g.
     # ~/.config/bspwm/rc.d and ~/.config/rofi/theme
-    "bspwm" = { source = <config/bspwm>; recursive = true; };
-    "rofi" = { source = <config/rofi>; recursive = true; };
+    # "bspwm" = { source = <config/bspwm>; recursive = true; };
+    # "rofi" = { source = <config/rofi>; recursive = true; };
   };
 }
