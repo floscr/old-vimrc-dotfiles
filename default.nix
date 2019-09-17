@@ -20,9 +20,10 @@
 
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;
+
   # Use simple bootloader; I prefer the on-demand BIOs boot menu
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   environment = {
     systemPackages = with pkgs; [
@@ -55,8 +56,8 @@
     };
   };
 
-  time.timeZone = "America/Toronto";
-  # time.timeZone = "Europe/Copenhagen";
+  # time.timeZone = "America/Toronto";
+  time.timeZone = "Europe/Vienna";
 
   # Set up hlissner user account
   # users.users.hlissner = {
@@ -66,10 +67,10 @@
   #   shell = pkgs.zsh;
   # };
 
-  home-manager.users.hlissner = {
-    xdg.enable = true;
-    home.file."bin" = { source = ./bin; recursive = true; };
-  };
+  # home-manager.users.hlissner = {
+  #   xdg.enable = true;
+  #   home.file."bin" = { source = ./bin; recursive = true; };
+  # };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
