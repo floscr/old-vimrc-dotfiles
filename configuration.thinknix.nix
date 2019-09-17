@@ -8,11 +8,11 @@ in {
     # Hardware specific
     "${nixos-hardware}/lenovo/thinkpad/t490"
 
-    ./modules/desktop/bspwm.nix
+    # ./modules/desktop/bspwm.nix
 
     # ./modules/browser/firefox.nix
     # ./modules/editors/emacs.nix
-    ./modules/dev
+    # ./modules/dev
     # ./modules/shell/direnv.nix
     # ./modules/shell/git.nix
     # ./modules/shell/gnupg.nix

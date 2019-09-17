@@ -1,85 +1,99 @@
-# Common configuration across systems. This should be required by
-# configuration.$HOSTNAME.nix files.
+{ config, lib, pkgs, ...}: with lib;
+  {
+    # Hostname
+    networking.hostName = "thinknix";
 
-{ config, pkgs, options, ... }:
+    nixpkgs.config.allowUnfree = true;
 
-{
-  imports = [
-    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-    # <home-manager/nixos>
-  ];
+    # Nothing in /tmp should survive a reboot
+    boot.cleanTmpDir = true;
 
-  nix = {
-    nixPath = options.nix.nixPath.default ++ [
-      "config=/etc/dotfiles/config"
-    ];
-    autoOptimiseStore = true;
-    trustedUsers = [ "root" "@wheel" ];
-  };
-  nixpkgs.config.allowUnfree = true;
+    # Bootloader
+	  boot.loader.systemd-boot.enable = true;
+	  boot.loader.efi.canTouchEfiVariables = true;
 
-  # Nothing in /tmp should survive a reboot
-  boot.cleanTmpDir = true;
+    # Cpu throttling
+    services.thermald.enable = true;
 
-  # Use simple bootloader; I prefer the on-demand BIOs boot menu
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  environment = {
-    systemPackages = with pkgs; [
-      # Just the bear necessities~
-      coreutils
-      git
-      wget
-      vim
-      htop
-      networkmanager
-      networkmanagerapplet
-      killall
-      wget
-      unzip
-      bc
-      # Support for extra filesystems
-      bashmount  # convenient mounting
-      sshfs
-      exfat
-      ntfs3g
-      hfsprogs
-    ];
-    variables = {
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_DATA_HOME = "$HOME/.local/share";
-      XDG_BIN_HOME = "$HOME/.local/bin";
+    environment = {
+      systemPackages = with pkgs; [
+        # Just the bear necessities~
+        coreutils
+        git
+        wget
+        vim
+        htop
+        networkmanager
+        networkmanagerapplet
+        killall
+        wget
+        unzip
+        bc
+        # Support for extra filesystems
+        bashmount  # convenient mounting
+        sshfs
+        exfat
+        ntfs3g
+        hfsprogs
+      ];
+      variables = {
+        XDG_CONFIG_HOME = "$HOME/.config";
+        XDG_CACHE_HOME = "$HOME/.cache";
+        XDG_DATA_HOME = "$HOME/.local/share";
+        XDG_BIN_HOME = "$HOME/.local/bin";
+      };
+      shellAliases = {
+        nix-env = "NIXPKGS_ALLOW_UNFREE=1 nix-env";
+        ne = "nix-env";
+        nu = "sudo nix-channel --update && sudo nixos-rebuild -I config=$HOME/.dotfiles/config switch";
+        nre = "sudo nixos-rebuild -I config=$HOME/.dotfiles/config";
+        ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+      };
     };
-    shellAliases = {
-      nix-env = "NIXPKGS_ALLOW_UNFREE=1 nix-env";
-      ne = "nix-env";
-      nu = "sudo nix-channel --update && sudo nixos-rebuild -I config=$HOME/.dotfiles/config switch";
-      nre = "sudo nixos-rebuild -I config=$HOME/.dotfiles/config";
-      ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
+
+    services.xserver = {
+      enable = true;
+      layout = "en";
+      xkbOptions = "eurosign:e";
+
+      windowManager.bspwm.enable = true;
+      windowManager.default = "bspwm";
+      windowManager.bspwm.configFile = "/etc/dotfiles/config/bspwm/bspwmrc";
+      windowManager.bspwm.sxhkd.configFile= "/etc/dotfiles/config/sxhkd/sxhkdrc";
+      desktopManager.xterm.enable = false;
+
+      displayManager.auto = {
+        enable = true;
+        user = "sky";
+      };
+
+      # Graphic
+      videoDrivers = ["intel"];
+
+      # Notebook
+      synaptics.enable = true;
+      synaptics.twoFingerScroll = true;
     };
-  };
 
-  # time.timeZone = "America/Toronto";
-  time.timeZone = "Europe/Vienna";
+    #Time
+    time.timeZone = "Europe/Vienna";
 
-  # Set up user account
-  users.users.floscr = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
-    shell = pkgs.zsh;
-  };
+    # Set up user account
+    users.users.floscr = {
+      isNormalUser = true;
+      uid = 1000;
+      extraGroups = [ "wheel" "video" "networkmanager" ];
+    };
 
-  # home-manager.users.floscr = {
-  #   xdg.enable = true;
-  #   home.file."bin" = { source = ./bin; recursive = true; };
-  # };
+    # Hardware
+    hardware = {
+      bluetooth.enable = true;
+      bluetooth.powerOnBoot = false;
+    };
 
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
-}
+    # This value determines the NixOS release with which your system is to be
+    # compatible, in order to avoid breaking some software such as database
+    # servers. You should change this only after NixOS release notes say you
+    # should.
+    system.stateVersion = "19.03"; # Did you read the comment?
+  }
