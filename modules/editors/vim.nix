@@ -13,7 +13,7 @@
     ];
   };
 
-  home-manager.users.hlissner.xdg.configFile = {
-    "zsh/rc.d/aliases.vim.zsh".source = <config/vim/aliases.zsh>;
-  };
+  # home-manager.users.hlissner.xdg.configFile = {
+  #   "zsh/rc.d/aliases.vim.zsh".source = <config/vim/aliases.zsh>;
+  # };
 }

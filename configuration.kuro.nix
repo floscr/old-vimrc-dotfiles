@@ -8,17 +8,17 @@
 
     ./modules/desktop/bspwm.nix
 
-    ./modules/audio/audacity.nix
-    ./modules/audio/lmms.nix
+    # ./modules/audio/audacity.nix
+    # ./modules/audio/lmms.nix
     ./modules/browser/firefox.nix
     ./modules/dev
-    ./modules/editors/emacs.nix
+    # ./modules/editors/emacs.nix
     ./modules/editors/vim.nix
-    ./modules/gaming/steam.nix
-    ./modules/graphics/aseprite.nix
+    # ./modules/gaming/steam.nix
+    # ./modules/graphics/aseprite.nix
     # ./modules/graphics/blender.nix
-    ./modules/graphics/gimp.nix
-    ./modules/misc/virtualbox.nix
+    # ./modules/graphics/gimp.nix
+    # ./modules/misc/virtualbox.nix
     ./modules/shell/direnv.nix
     ./modules/shell/git.nix
     ./modules/shell/gnupg.nix
