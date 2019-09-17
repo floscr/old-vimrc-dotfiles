@@ -6,12 +6,11 @@
     xclip
     xdotool
     ffmpeg
-    mpv       # video player
-    feh       # image viewer
+    # mpv       # video player
+    # feh       # image viewer
 
     # Useful apps
-    evince    # pdf reader
-    discord
+    # evince    # pdf reader
   ];
 
   sound.enable = true;
@@ -21,13 +20,14 @@
     xserver = {
       enable = true;
       libinput.disableWhileTyping = true;
+      libinput.enable = true;
     };
 
     redshift = (if config.time.timeZone == "America/Toronto" then {
       enable = true;
       latitude = "43.70011";
       longitude = "-79.4163";
-    } else if config.time.timeZone == "Europe/Copenhagen" then {
+    } else if config.time.timeZone == "Europe/Vienna" then {
       enable = true;
       latitude = "55.88";
       longitude = "12.5";
