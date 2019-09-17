@@ -19,7 +19,7 @@ in {
     ./modules/shell/zsh.nix
 
     # Themes
-    ./themes/glimpse
+    # ./themes/glimpse
   ];
 
   boot.initrd.luks.devices = [{
