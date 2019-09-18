@@ -1,10 +1,5 @@
 { config, lib, pkgs, ...}: with lib;
   {
-    imports =
-      [
-        ./hardware-configuration.nix
-      ];
-
     # Nothing in /tmp should survive a reboot
     boot.cleanTmpDir = true;
 
