@@ -54,11 +54,10 @@
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.desktopManager.plasma5.enable = true;
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.floscr = {
       isNormalUser = true;
       uid = 1000;
-      extraGroups = [ "wheel" "video" "networkmanager" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "video" "networkmanager" ];
     };
 
     # This value determines the NixOS release with which your system is to be

@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardware/archive/master.tar.gz;
+
 in {
   imports = [
     ./.  # import common settings
