@@ -14,7 +14,13 @@
 
     # Enable sound.
     sound.enable = true;
-    hardware.pulseaudio.enable = true;
+
+    # bluetooth
+    hardware = {
+      bluetooth.enable = true;
+      bluetooth.powerOnBoot = false;
+      pulseaudio.enable = true;
+    };
 
     environment = {
       systemPackages = with pkgs; [
@@ -88,11 +94,6 @@
       extraGroups = [ "wheel" "video" "networkmanager" ];
     };
 
-    # bluetooth
-    hardware = {
-      bluetooth.enable = true;
-      bluetooth.powerOnBoot = false;
-    };
 
     # This value determines the NixOS release with which your system is to be
     # compatible, in order to avoid breaking some software such as database
