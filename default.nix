@@ -3,7 +3,7 @@
 {
 
   imports = [
-    <home-manager/nixos>
+    <home-manager>
   ];
 
   # Nothing in /tmp should survive a reboot
