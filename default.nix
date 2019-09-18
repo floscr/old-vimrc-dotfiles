@@ -19,6 +19,7 @@
     environment.systemPackages = with pkgs; [
       bc
       coreutils
+      tree
       firefox
       git
       htop
