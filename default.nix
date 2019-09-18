@@ -1,96 +1,64 @@
 { config, lib, pkgs, ...}: with lib;
   {
-    nixpkgs.config.allowUnfree = true;
+    imports =
+      [ # Include the results of the hardware scan.
+        <nixos-hardware/lenovo/thinkpad/t490>
+        ./hardware-configuration.nix
+      ];
 
     # Nothing in /tmp should survive a reboot
     boot.cleanTmpDir = true;
 
-    # Bootloader
-	  boot.loader.systemd-boot.enable = true;
-	  boot.loader.efi.canTouchEfiVariables = true;
+    boot.initrd.luks.devices = [{
+      name = "root";
+      device = "/dev/nvme0n1p2";
+      preLVM = true;
+    }];
 
     # Cpu throttling
     services.thermald.enable = true;
 
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = with pkgs; [
+      bc
+      coreutils
+      firefox
+      git
+      htop
+      killall
+      networkmanager
+      networkmanagerapplet
+      rofi
+      unzip
+      vim
+      wget
+    ];
+
     # Enable sound.
     sound.enable = true;
+    hardware.pulseaudio.enable = true;
 
-    # bluetooth
-    hardware = {
-      bluetooth.enable = true;
-      bluetooth.powerOnBoot = false;
-      pulseaudio.enable = true;
-    };
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
+    services.xserver.layout = "us";
+    # services.xserver.xkbOptions = "eurosign:e";
+    services.xserver.windowManager.i3.enable = true;
+    services.xserver.autorun = true;
 
-    environment = {
-      systemPackages = with pkgs; [
-        # Just the bear necessities~
-        coreutils
-        git
-        bspwm
-        wget
-        vim
-        htop
-        firefox
-        rofi
-        networkmanager
-        networkmanagerapplet
-        killall
-        wget
-        unzip
-        bc
-        # Support for extra filesystems
-        bashmount  # convenient mounting
-        sshfs
-        exfat
-        ntfs3g
-        hfsprogs
-      ];
-      variables = {
-        XDG_CONFIG_HOME = "$HOME/.config";
-        XDG_CACHE_HOME = "$HOME/.cache";
-        XDG_DATA_HOME = "$HOME/.local/share";
-        XDG_BIN_HOME = "$HOME/.local/bin";
-      };
-      shellAliases = {
-        nix-env = "NIXPKGS_ALLOW_UNFREE=1 nix-env";
-        ne = "nix-env";
-        nu = "sudo nix-channel --update && sudo nixos-rebuild -I config=$HOME/.dotfiles/config switch";
-        nre = "sudo nixos-rebuild -I config=$HOME/.dotfiles/config";
-        ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
-      };
-    };
+    # Enable touchpad support.
+    services.xserver.libinput.enable = true;
 
-    services.xserver = {
-      enable = true;
-      layout = "us";
+    # Enable the KDE Desktop Environment.
+    services.xserver.displayManager.sddm.enable = true;
+    services.xserver.desktopManager.plasma5.enable = true;
 
-      windowManager.bspwm.enable = true;
-      windowManager.default = "bspwm";
-      windowManager.bspwm.configFile = "/etc/dotfiles/config/bspwm/bspwmrc";
-      windowManager.bspwm.sxhkd.configFile= "/etc/dotfiles/config/sxhkd/sxhkdrc";
-      desktopManager.xterm.enable = false;
-      libinput.enable = true;
-
-      displayManager.auto = {
-        enable = true;
-        user = "floscr";
-      };
-
-      # Graphic
-      videoDrivers = ["intel"];
-    };
-
-    #Time
-    time.timeZone = "Europe/Vienna";
-
-    # Set up user account
+    # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.floscr = {
       isNormalUser = true;
       uid = 1000;
-      extraGroups = [ "wheel" "video" "networkmanager" ];
+      extraGroups = [ "wheel" "video" "networkmanager" ]; # Enable ‘sudo’ for the user.
     };
-
 
     # This value determines the NixOS release with which your system is to be
     # compatible, in order to avoid breaking some software such as database
