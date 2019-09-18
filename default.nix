@@ -1,8 +1,5 @@
 { config, lib, pkgs, ...}: with lib;
   {
-    # Hostname
-    networking.hostName = "thinknix";
-
     nixpkgs.config.allowUnfree = true;
 
     # Nothing in /tmp should survive a reboot
@@ -15,14 +12,21 @@
     # Cpu throttling
     services.thermald.enable = true;
 
+    # Enable sound.
+    sound.enable = true;
+    hardware.pulseaudio.enable = true;
+
     environment = {
       systemPackages = with pkgs; [
         # Just the bear necessities~
         coreutils
         git
+        bspwm
         wget
         vim
         htop
+        firefox
+        rofi
         networkmanager
         networkmanagerapplet
         killall
@@ -53,8 +57,7 @@
 
     services.xserver = {
       enable = true;
-      layout = "en";
-      xkbOptions = "eurosign:e";
+      layout = "us";
 
       windowManager.bspwm.enable = true;
       windowManager.default = "bspwm";
@@ -64,7 +67,7 @@
 
       displayManager.auto = {
         enable = true;
-        user = "sky";
+        user = "floscr";
       };
 
       # Graphic
@@ -85,7 +88,10 @@
       extraGroups = [ "wheel" "video" "networkmanager" ];
     };
 
-    # Hardware
+    sound.enable = true;
+    hardware.pulseaudio.enable = true;
+
+    # bluetooth
     hardware = {
       bluetooth.enable = true;
       bluetooth.powerOnBoot = false;

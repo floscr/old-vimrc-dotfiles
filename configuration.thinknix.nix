@@ -31,7 +31,7 @@ in {
 
   # Networking
   networking.hostName = "thinknix";
-  # networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
 
   # Optimize power use
   environment.systemPackages = [ pkgs.powertop ];
