@@ -1,11 +1,6 @@
 { config, pkgs, ...}:
 
 {
-
-  imports = [
-    <home-manager>
-  ];
-
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;
 
