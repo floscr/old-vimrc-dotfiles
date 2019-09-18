@@ -16,8 +16,6 @@
     # Cpu throttling
     services.thermald.enable = true;
 
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
     environment.systemPackages = with pkgs; [
       bc
       coreutils
@@ -55,6 +53,7 @@
       isNormalUser = true;
       uid = 1000;
       extraGroups = [ "wheel" "video" "networkmanager" ];
+      shell = pkgs.zsh;
     };
 
     # This value determines the NixOS release with which your system is to be
