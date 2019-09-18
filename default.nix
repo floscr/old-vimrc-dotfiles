@@ -88,9 +88,6 @@
       extraGroups = [ "wheel" "video" "networkmanager" ];
     };
 
-    sound.enable = true;
-    hardware.pulseaudio.enable = true;
-
     # bluetooth
     hardware = {
       bluetooth.enable = true;
