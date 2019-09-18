@@ -70,6 +70,7 @@
       windowManager.bspwm.configFile = "/etc/dotfiles/config/bspwm/bspwmrc";
       windowManager.bspwm.sxhkd.configFile= "/etc/dotfiles/config/sxhkd/sxhkdrc";
       desktopManager.xterm.enable = false;
+      libinput.enable = true;
 
       displayManager.auto = {
         enable = true;
@@ -78,10 +79,6 @@
 
       # Graphic
       videoDrivers = ["intel"];
-
-      # Notebook
-      synaptics.enable = true;
-      synaptics.twoFingerScroll = true;
     };
 
     #Time
