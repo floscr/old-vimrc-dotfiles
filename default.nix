@@ -1,6 +1,11 @@
 { config, pkgs, ...}:
 
 {
+
+  imports = [
+    <home-manager/nixos>
+  ];
+
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;
 
