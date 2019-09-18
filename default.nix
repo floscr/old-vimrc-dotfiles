@@ -1,8 +1,7 @@
 { config, lib, pkgs, ...}: with lib;
   {
     imports =
-      [ # Include the results of the hardware scan.
-        <nixos-hardware/lenovo/thinkpad/t490>
+      [
         ./hardware-configuration.nix
       ];
 
