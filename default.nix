@@ -7,6 +7,15 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    nix = {
+      nixPath = options.nix.nixPath.default ++ [
+        "config=/etc/dotfiles/config"
+      ];
+      autoOptimiseStore = true;
+      trustedUsers = [ "root" "@wheel" ];
+    };
+    nixpkgs.config.allowUnfree = true;
+
     # Cpu throttling
     services.thermald.enable = true;
 
