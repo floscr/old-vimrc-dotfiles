@@ -5,25 +5,31 @@
 
   environment = {
     systemPackages = with pkgs; [
-      lightdm
       bspwm
     ];
   };
 
-  fonts.fonts = [ pkgs.siji ];
-
-  services = {
-    xserver = {
-      desktopManager.xterm.enable = false;
-      displayManager.lightdm.enable = true;
-      windowManager.bspwm.enable = true;
+  home-manager.users.floscr = {
+    programs.rofi = {
+      enable = true;
+      extraConfig = ''
+        rofi.modi: window,run,ssh,combi
+        rofi.ssh-client: mosh
+        rofi.ssh-command: {terminal} -e "{ssh-client} {host}"
+        rofi.combi-modi: window,drun,ssh
+        rofi.font: Iosevka 21
+      '';
+      terminal = "termite";
+      theme = "flat-orange";
     };
 
-    compton = {
-      enable = true;
-      backend = "glx";
-      vSync = "opengl-swc";
-      inactiveOpacity = "0.90";
+    xdg.configFile = {
+      # "bspwm/bspwmrc".source = <config/bspwm/bspwmrc>;
+      "sxhkd/sxhkdrc".source = <config/sxhkd/sxhkdrc>;
+      "rofi" = {
+        source = <config/rofi>;
+        recursive = true;
+      };
     };
   };
 }
