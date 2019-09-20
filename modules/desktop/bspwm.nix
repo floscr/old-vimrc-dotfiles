@@ -5,6 +5,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      sxhkd
       bspwm
       rofi
       (writeScriptBin "rofi" ''
