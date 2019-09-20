@@ -6,6 +6,10 @@ super + Return
 super + @space
 	rofi -show run
 
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
 # program launcher
 super + d
 	rofi -show
