@@ -8,6 +8,11 @@
       sxhkd
       bspwm
       rofi
+      (polybar.override {
+        mpdSupport = true;
+        pulseSupport = true;
+        nlSupport = true;
+      })
       (writeScriptBin "rofi" ''
         #!${stdenv.shell}
         exec ${rofi}/bin/rofi -config "$XDG_CONFIG_HOME/rofi/config" $@
