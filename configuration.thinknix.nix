@@ -16,7 +16,7 @@ in {
     ./modules/editors/emacs.nix
     # ./modules/dev
     # ./modules/shell/direnv.nix
-    # ./modules/shell/git.nix
+    ./modules/shell/git.nix
     # ./modules/shell/gnupg.nix
     ./modules/shell/zsh.nix
 

@@ -7,8 +7,8 @@
   ];
 
   home-manager.users.floscr.xdg.configFile = {
-    # "git/config".source = <config/git/config>;
-    # "git/ignore".source = <config/git/ignore>;
-    # "zsh/rc.d/aliases.git.zsh".source = <config/git/aliases.zsh>;
+    "git/config".source = <config/git/config>;
+    "git/ignore".source = <config/git/ignore>;
+    "zsh/rc.d/aliases.git.zsh".source = <config/git/aliases.zsh>;
   };
 }
