@@ -63,6 +63,14 @@
     shell = pkgs.zsh;
   };
 
+  home-manager.users.floscr = {
+    xdg.enable = true;
+    home.file."bin" = {
+      source = ./bin;
+      recursive = true;
+    };
+  };
+
   # programs.home-manager.enable = true;
   # programs.home-manager.path = https://github.com/rycee/home-manager/archive/master.tar.gz;
 
