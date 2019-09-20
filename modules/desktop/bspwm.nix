@@ -28,13 +28,13 @@
       theme = "flat-orange";
     };
 
-    xdg.configFile = {
-      # "bspwm/bspwmrc".source = <config/bspwm/bspwmrc>;
-      "sxhkd/sxhkdrc".source = <config/sxhkd/sxhkdrc>;
-      # "rofi" = {
-      #   source = <config/rofi>;
-      #   recursive = true;
-      # };
+    home-manager.users.floscr.xdg.configFile = {
+      "sxhkd".source = <config/sxhkd>;
+
+        # link recursively so other modules can link files in their folders, e.g.
+        # ~/.config/bspwm/rc.d and ~/.config/rofi/theme
+        # "bspwm" = { source = <config/bspwm>; recursive = true; };
+        "rofi" = { source = <config/rofi>; recursive = true; };
     };
   };
 }
