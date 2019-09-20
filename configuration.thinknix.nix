@@ -18,7 +18,7 @@ in {
     # ./modules/shell/direnv.nix
     # ./modules/shell/git.nix
     # ./modules/shell/gnupg.nix
-    # ./modules/shell/zsh.nix
+    ./modules/shell/zsh.nix
 
     # Themes
     # ./themes/glimpse
