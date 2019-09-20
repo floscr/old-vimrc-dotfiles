@@ -65,19 +65,21 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.autorun = true;
+  services.xserver = {
+    enable = true;
+    autorun = true;
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+    layout = "us";
 
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    windowManager.i3.enable = true;
+
+    # Enable touchpad support.
+    libinput.enable = true;
+
+    # Enable the KDE Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
+  }
 
   users.users.floscr = {
     isNormalUser = true;
