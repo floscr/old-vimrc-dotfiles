@@ -16,8 +16,12 @@ super + Return
 	termite
 
 # program launcher
+super + Space
+	rofi -show run
+
+# program launcher
 super + d
-	rofi -show combi
+	rofi -show
 
 # sxhkd config reload
 super + Escape
