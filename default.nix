@@ -69,8 +69,8 @@
     enable = true;
     autorun = true;
 
-    autoRepeatDelay = 250;
-    autoRepeatInterval = 25;
+    autoRepeatDelay = 100;
+    autoRepeatInterval = 15;
     layout = "us";
 
     windowManager.i3.enable = true;
