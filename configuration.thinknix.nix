@@ -10,6 +10,7 @@ in {
     "${nixos-hardware}/lenovo/thinkpad/t490"
 
     # ./modules/desktop/bspwm.nix
+    ./modules/shell/termite.nix
 
     # ./modules/browser/firefox.nix
     # ./modules/editors/emacs.nix
