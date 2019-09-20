@@ -81,7 +81,7 @@
     # Enable the KDE Desktop Environment.
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
-  }
+  };
 
   users.users.floscr = {
     isNormalUser = true;
