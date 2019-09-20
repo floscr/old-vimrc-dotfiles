@@ -21,7 +21,8 @@
   # Cpu throttling
   services.thermald.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment = {
+    systemPackages = with pkgs; [
     bc
     coreutils
     tree
@@ -36,7 +37,21 @@
     vim
     wget
     (ripgrep.override { withPCRE2 = true; })
-  ];
+    ];
+    variables = {
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      DOTFILES = "$HOME/.dotfiles";
+      # GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
+    };
+    shellAliases = {
+      q = "exit";
+      clr = "clear";
+      sudo = "sudo ";
+    };
+  };
 
   # Enable sound.
   sound.enable = true;
