@@ -26,10 +26,10 @@
     xdg.configFile = {
       # "bspwm/bspwmrc".source = <config/bspwm/bspwmrc>;
       "sxhkd/sxhkdrc".source = <config/sxhkd/sxhkdrc>;
-      "rofi" = {
-        source = <config/rofi>;
-        recursive = true;
-      };
+      # "rofi" = {
+      #   source = <config/rofi>;
+      #   recursive = true;
+      # };
     };
   };
 }
