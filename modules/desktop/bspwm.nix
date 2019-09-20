@@ -25,7 +25,6 @@
         rofi.font: Iosevka 21
       '';
       terminal = "termite";
-      theme = "flat-orange";
     };
 
     xdg.configFile = {
