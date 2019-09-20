@@ -35,6 +35,7 @@
     unzip
     vim
     wget
+    (ripgrep.override { withPCRE2 = true; })
   ];
 
   # Enable sound.
