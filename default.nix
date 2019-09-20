@@ -70,6 +70,8 @@
     enable = true;
     autorun = true;
 
+    videoDrivers = ["intel"];
+
     autoRepeatDelay = 100;
     autoRepeatInterval = 15;
     layout = "us";
