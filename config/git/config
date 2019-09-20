@@ -1,9 +1,6 @@
 [user]
-	name = Henrik Lissner
-	email = henrik@lissner.net
-	signingkey = 5F6C0EA160557395
-[commit]
-	gpgsign = true
+  email = hello@florianschroedl.com
+  name = Florian Schroedl
 [core]
 	whitespace = trailing-space
 [github]
