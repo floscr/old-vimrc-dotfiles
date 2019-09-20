@@ -28,7 +28,7 @@
       theme = "flat-orange";
     };
 
-    home-manager.users.floscr.xdg.configFile = {
+    xdg.configFile = {
       "sxhkd".source = <config/sxhkd>;
 
         # link recursively so other modules can link files in their folders, e.g.
