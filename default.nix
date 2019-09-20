@@ -70,7 +70,7 @@
     autorun = true;
 
     autoRepeatDelay = 250;
-    autoRepeatInterval = 50;
+    autoRepeatInterval = 25;
     layout = "us";
 
     windowManager.i3.enable = true;
