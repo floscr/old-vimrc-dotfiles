@@ -44,8 +44,8 @@ fi
 autoload -Uz edit-command-line; zle -N edit-command-line
 bindkey '^ ' edit-command-line
 
-bindkey -M viins '^n' history-substring-search-down
-bindkey -M viins '^p' history-substring-search-up
+# bindkey -M viins '^n' history-substring-search-down
+# bindkey -M viins '^p' history-substring-search-up
 bindkey -M viins '^s' history-incremental-pattern-search-backward
 bindkey -M viins '^u' backward-kill-line
 bindkey -M viins '^w' backward-kill-word
@@ -63,8 +63,8 @@ bindkey -M vicmd 'H'  run-help
 bindkey -M viins '^[[Z' reverse-menu-complete
 
 # bind UP and DOWN arrow keys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 
 # C-z to toggle current process (background/foreground)
 fancy-ctrl-z () {
@@ -124,4 +124,3 @@ bindkey -rM viins '^X'
 bindkey -M viins '^X,' _history-complete-newer \
   '^X/' _history-complete-older \
   '^X`' _bash_complete-word
-
