@@ -30,6 +30,7 @@
     coreutils
     tree
     firefox
+    chromium
     git
     htop
     killall
