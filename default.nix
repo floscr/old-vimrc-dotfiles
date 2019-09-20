@@ -78,6 +78,7 @@
     shell = pkgs.zsh;
   };
 
+  nix.nixPath = options.nix.nixPath.default ++ [ "config=${./config}" ];
   home-manager.users.floscr = {
     xdg.enable = true;
     home.file."bin" = {
