@@ -30,6 +30,34 @@ in {
 	  preLVM = true;
   }];
 
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale = "en_US.UTF-8";
+  };
+
+  fonts = {
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      defaultFonts.monospace = [ "Iosevka" ];
+      allowBitmaps = true;
+      useEmbeddedBitmaps = true;
+      ultimate = {
+        enable = true;
+        substitutions = "combi";
+      };
+    };
+    fonts = with pkgs; [
+      fira-code-symbols
+      iosevka
+      noto-fonts
+      symbola
+      noto-fonts-cjk
+      font-awesome_5
+    ];
+  };
+
   # Networking
   networking.hostName = "thinknix";
   networking.networkmanager.enable = true;
