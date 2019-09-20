@@ -74,7 +74,7 @@
     autoRepeatInterval = 15;
     layout = "us";
 
-    windowManager.i3.enable = true;
+    windowManager.bspwm.enable = true;
 
     # Enable touchpad support.
     libinput.enable = true;
