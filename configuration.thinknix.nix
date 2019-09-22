@@ -25,7 +25,7 @@ in {
     ./modules/shell/zsh.nix
 
     # Services
-    ./modules/services/dropbox.nix
+    # ./modules/services/dropbox.nix
 
     # Themes
     # ./themes/glimpse
