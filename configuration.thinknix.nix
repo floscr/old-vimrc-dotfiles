@@ -3,6 +3,9 @@
 let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardware/archive/master.tar.gz;
 
 in {
+  # setxkbmap -option ctrl:nocaps
+  # xcape -e 'Control_L=Escape'
+
   imports = [
     ./.  # import common settings
 
