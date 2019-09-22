@@ -1,31 +1,38 @@
-{ config, lib, pkgs, ... }:
+self: super: {
 
-{
-  environment.systemPackages = with pkgs; [
-    # dropbox - we don't need this in the environment. systemd unit pulls it in
-    dropbox-cli
-  ];
+  dropbox-filesystem-fix = with super; stdenv.mkDerivation rec {
+    name = "dropbox-filesystem-fix-${version}";
+    version = "20190417";
 
-  networking.firewall = {
-    allowedTCPPorts = [ 17500 ];
-    allowedUDPPorts = [ 17500 ];
+    src = fetchFromGitHub {
+        owner = "dark";
+        repo = "dropbox-filesystem-fix";
+        rev = "72f4d04852d5002d9ba29b3f77fbacb2c12d1432";
+        sha256 = "03h95lncbw8mss1f67697jl3diiw7iyq6cxqlzgl3xwgxwbhqd0j";
+    };
+
+    installPhase = ''
+        mkdir -p $out/lib
+        cp libdropbox_fs_fix.so $out/lib
+    '';
+
+    meta = with stdenv.lib; {
+        description = "Fix filesystem detection in Dropbox";
+        license = licenses.gpl30;
+        platforms = platforms.linux;
+    };
   };
 
-  systemd.user.services.dropbox = {
-    description = "Dropbox";
-    wantedBy = [ "graphical-session.target" ];
-    environment = {
-      QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
-      QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
-    };
-    serviceConfig = {
-      ExecStart = "${pkgs.dropbox.out}/bin/dropbox";
-      ExecReload = "${pkgs.coreutils.out}/bin/kill -HUP $MAINPID";
-      KillMode = "control-group"; # upstream recommends process
-      Restart = "on-failure";
-      PrivateTmp = true;
-      ProtectSystem = "full";
-      Nice = 10;
-    };
+  dropbox-filesystem-agnostic = with super; stdenv.mkDerivation rec {
+    name = "dropbox-fixed";
+
+    buildInputs = [ makeWrapper ];
+
+    unpackPhase = "true";
+    installPhase = ''
+      mkdir -p $out/bin
+      makeWrapper ${pkgs.dropbox}/bin/dropbox $out/bin/dropbox \
+        --prefix LD_PRELOAD : ${self.dropbox-filesystem-fix}/lib/libdropbox_fs_fix.so
+    '';
   };
 }
