@@ -9,16 +9,19 @@ in {
     # Hardware specific
     "${nixos-hardware}/lenovo/thinkpad/t490"
 
+    # Desktoop Ui
     ./modules/desktop/bspwm.nix
-    ./modules/shell/termite.nix
 
-    # ./modules/browser/firefox.nix
+    # Dev
     ./modules/editors/emacs.nix
-    # ./modules/dev
-    # ./modules/shell/direnv.nix
+
+    # Shell
+    ./modules/shell/termite.nix
     ./modules/shell/git.nix
-    # ./modules/shell/gnupg.nix
     ./modules/shell/zsh.nix
+
+    # Services
+    ./modules/services/dropbox.nix
 
     # Themes
     # ./themes/glimpse
