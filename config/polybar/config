@@ -50,7 +50,7 @@ background = ${colors.bg}
 foreground = ${colors.fg}
 
 font-0 = "Iosevka:weight=regular:size=13;3"
-font-1 = "FontAwesome:size=13;1"
+font-1 = "FontAwesome:size=13;4"
 font-2 = "Siji:size=18;2"
 
 scroll-up = bspc desktop -f prev.local
