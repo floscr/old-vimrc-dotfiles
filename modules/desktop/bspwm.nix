@@ -41,6 +41,7 @@
         # ~/.config/bspwm/rc.d and ~/.config/rofi/theme
         "bspwm" = { source = <config/bspwm>; recursive = true; };
         "rofi" = { source = <config/rofi>; recursive = true; };
+        "polybar" = { source = <config/polybar>; recursive = true; };
     };
   };
 }
