@@ -11,6 +11,7 @@ in {
 
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
+    ./modules/browser/chromium.nix
 
     # Dev
     ./modules/editors/emacs.nix
