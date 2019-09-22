@@ -80,6 +80,17 @@
     # Enable the KDE Desktop Environment.
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
+
+    displayManager.sessionCommands = ''
+# disable Display Power Managing Signaling
+xset -dpms
+
+# Capslock to control
+setxkbmap -option ctrl:nocaps
+xcape -e 'Control_L=Escape'
+
+sh ~/.config/polybar/launch.sh
+    '';
   };
 
   users.users.floscr = {
