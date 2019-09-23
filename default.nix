@@ -25,19 +25,19 @@
 
   environment = {
     systemPackages = with pkgs; [
-    bc
-    coreutils
-    tree
-    git
-    htop
-    killall
-    networkmanager
-    networkmanagerapplet
-    rofi
-    unzip
-    vim
-    wget
-    (ripgrep.override { withPCRE2 = true; })
+      bc
+      coreutils
+      tree
+      git
+      htop
+      killall
+      networkmanager
+      networkmanagerapplet
+      rofi
+      unzip
+      vim
+      wget
+      (ripgrep.override { withPCRE2 = true; })
     ];
     variables = {
       XDG_CONFIG_HOME = "$HOME/.config";
