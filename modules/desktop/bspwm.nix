@@ -5,6 +5,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      lightdm
       xcape
       sxhkd
       bspwm
