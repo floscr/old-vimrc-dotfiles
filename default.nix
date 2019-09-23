@@ -73,12 +73,12 @@
     layout = "us";
 
     windowManager.bspwm.enable = true;
+    displayManager.lightdm.enable = true;
 
     # Enable touchpad support.
     libinput.enable = true;
 
     # Enable the KDE Desktop Environment.
-    displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
 
     displayManager.sessionCommands = ''
