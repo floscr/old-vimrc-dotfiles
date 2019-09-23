@@ -20,6 +20,7 @@ in {
     ./modules/editors/emacs.nix
 
     # Shell
+    ./modules/shell/gnupg.nix
     ./modules/shell/termite.nix
     ./modules/shell/git.nix
     ./modules/shell/zsh.nix
