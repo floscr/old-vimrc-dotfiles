@@ -26,7 +26,7 @@ in {
     ./modules/shell/zsh.nix
 
     # Services
-    # ./modules/services/dropbox.nix
+    ./modules/services/syncthing.nix
 
     # Themes
     # ./themes/glimpse
