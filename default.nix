@@ -25,6 +25,8 @@
 
   environment = {
     systemPackages = with pkgs; [
+      # fan control
+      s-tui
       bc
       coreutils
       tree
