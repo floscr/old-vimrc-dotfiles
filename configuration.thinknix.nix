@@ -34,9 +34,9 @@ in {
 
   # Encrypted Disk
   boot.initrd.luks.devices = [{
-	  name = "root";
-	  device = "/dev/nvme0n1p2";
-	  preLVM = true;
+    name = "root";
+    device = "/dev/nvme0n1p2";
+    preLVM = true;
   }];
 
   i18n = {
