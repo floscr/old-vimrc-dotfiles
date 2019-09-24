@@ -3,9 +3,6 @@
 let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardware/archive/master.tar.gz;
 
 in {
-  # setxkbmap -option ctrl:nocaps
-  # xcape -e 'Control_L=Escape'
-
   imports = [
     ./.  # import common settings
 
@@ -26,7 +23,7 @@ in {
     ./modules/shell/zsh.nix
 
     # Services
-    # ./modules/services/dropbox.nix
+    ./modules/services/syncthing.nix
 
     # Themes
     # ./themes/glimpse
@@ -34,9 +31,9 @@ in {
 
   # Encrypted Disk
   boot.initrd.luks.devices = [{
-	  name = "root";
-	  device = "/dev/nvme0n1p2";
-	  preLVM = true;
+    name = "root";
+    device = "/dev/nvme0n1p2";
+    preLVM = true;
   }];
 
   i18n = {
