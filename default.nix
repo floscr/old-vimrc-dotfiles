@@ -23,10 +23,13 @@
   # Cpu throttling
   services.thermald.enable = true;
 
+  systemd.packages = [ pkgs.fwupd ];
+
   environment = {
     systemPackages = with pkgs; [
       # fan control
       s-tui
+      fwupd
       bc
       coreutils
       tree
