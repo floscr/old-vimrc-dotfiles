@@ -16,6 +16,7 @@
   };
 
   programs.chromium = {
+    enable = true;
     extensions = [
       "aomjjhallfgjeglblehebfpbcfeobpgk" # 1Password X
       "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
