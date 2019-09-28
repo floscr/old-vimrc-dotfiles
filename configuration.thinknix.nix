@@ -44,6 +44,7 @@ in {
 
   fonts = {
     fontconfig = {
+      dpi = 180;
       enable = true;
       antialias = true;
       defaultFonts.monospace = [ "Iosevka" ];
