@@ -30,6 +30,7 @@
       # fan control
       s-tui
       fwupd
+      undervolt
       bc
       coreutils
       tree
