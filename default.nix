@@ -74,10 +74,6 @@
 
     videoDrivers = ["intel"];
 
-    autoRepeatDelay = 100;
-    autoRepeatInterval = 15;
-    layout = "us";
-
     windowManager.bspwm.enable = true;
     displayManager.lightdm.enable = true;
 

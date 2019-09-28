@@ -25,6 +25,8 @@ in {
     # Services
     ./modules/services/syncthing.nix
 
+    ./modules/misc/keyboard.nix
+
     # Themes
     # ./themes/glimpse
   ];
