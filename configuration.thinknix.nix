@@ -31,6 +31,10 @@ in {
     # ./themes/glimpse
   ];
 
+  nixpkgs.overlays = [
+    (import ./overlays/chromium.nix)
+  ];
+
   # Encrypted Disk
   boot.initrd.luks.devices = [{
     name = "root";
