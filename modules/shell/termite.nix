@@ -8,7 +8,7 @@ in
   home-manager.users.floscr.programs = {
     termite = {
       enable = true;
-      font = "${font} 13";
+      font = "${font} 8";
       backgroundColor = "rgba(20, 21, 23, 0.9)";
       foregroundColor = "#c5c8c6";
       browser = "firefox";
