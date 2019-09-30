@@ -51,7 +51,6 @@
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_BIN_HOME = "$HOME/.local/bin";
       DOTFILES = "$HOME/.dotfiles";
-      # GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
     };
     shellAliases = {
       q = "exit";
