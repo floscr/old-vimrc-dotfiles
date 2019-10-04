@@ -15,6 +15,7 @@ in {
 
     # Dev
     ./modules/editors/emacs.nix
+    ./modules/dev/node.nix
 
     # Shell
     ./modules/shell/gnupg.nix
