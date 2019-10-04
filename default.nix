@@ -24,11 +24,13 @@
   services.thermald.enable = true;
 
   services.fwupd.enable = true;
+  services.thinkfan.enable = true;
 
   environment = {
     systemPackages = with pkgs; [
       # fan control
       s-tui
+      thinkfan
       fwupd
       undervolt
       bc
