@@ -23,7 +23,7 @@
   # Cpu throttling
   services.thermald.enable = true;
 
-  systemd.packages = [ pkgs.fwupd ];
+  services.fwupd.enable = true;
 
   environment = {
     systemPackages = with pkgs; [
