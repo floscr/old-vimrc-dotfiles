@@ -91,6 +91,10 @@ in {
   services.tlp.enable = true;
   powerManagement.powertop.enable = true;
 
+  services.undervolt.enable = true;
+  services.undervolt.coreOffset= "-110";
+  services.undervolt.temp= "95";
+
   # Monitor backlight control
   programs.light.enable = true;
 }
