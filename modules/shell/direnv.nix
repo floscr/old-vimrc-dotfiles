@@ -1,21 +1,24 @@
 { config, lib, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (self: super: {
-      lorri =
-        let src = (super.fetchFromGitHub {
-              owner = "target";
-              repo = "lorri";
-              rev = "e943fa403234f1a5e403b6fdc112e79abc1e29ba";
-              sha256 = "1ar7clza117qdzldld9qzg4q0wr3g20zxrnd1s51cg6gxwlpg7fa";
-            });
-        in super.callPackage src { inherit src; };
-    })
-  ];
+  environment.systemPackages = with pkgs; [ direnv ];
 
-  environment.systemPackages = with pkgs; [
-    direnv
-    lorri
-  ];
+  programs = {
+    bash.interactiveShellInit = ''
+      eval "$(${pkgs.direnv}/bin/direnv hook bash)"
+    '';
+    zsh.interactiveShellInit = ''
+      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+    '';
+    fish.interactiveShellInit = ''
+      eval (${pkgs.direnv}/bin/direnv hook fish)
+    '';
+  };
+
+  home-manager.users.floscr = {
+    xdg.configFile = {
+      # "zsh/rc.d/aliases.direnv.zsh".source = <config/direnv/aliases.zsh>;
+      "direnv/direnvrc".source = <config/direnv/direnvrc>;
+    };
+  };
 }
