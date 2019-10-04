@@ -7,7 +7,9 @@ in {
     ./.  # import common settings
 
     # Hardware specific
-    "${nixos-hardware}/lenovo/thinkpad/t490"
+    "${nixos-hardware}/common/cpu/intel"
+    "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
+    "${nixos-hardware}/common/pc/laptop/cpu-throttling-bug.nix"
 
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
@@ -44,9 +46,6 @@ in {
       # listenOptions = [];
     };
   };
-
-  users.users.floscr.extraGroups = [ "docker" ];
-
   # Encrypted Disk
   boot.initrd.luks.devices = [{
     name = "root";
