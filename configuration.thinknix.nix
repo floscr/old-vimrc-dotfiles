@@ -36,6 +36,17 @@ in {
     (import ./overlays/chromium.nix)
   ];
 
+  virtualisation = {
+    docker = {
+      enable = true;
+      autoPrune.enable = true;
+      enableOnBoot = false;
+      # listenOptions = [];
+    };
+  };
+
+  users.users.floscr.extraGroups = [ "docker" ];
+
   # Encrypted Disk
   boot.initrd.luks.devices = [{
     name = "root";
