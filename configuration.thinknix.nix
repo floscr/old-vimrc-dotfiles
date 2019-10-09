@@ -20,6 +20,7 @@ in {
     ./modules/dev/node.nix
 
     # Shell
+    # ./modules/shell/direnv.nix
     ./modules/shell/gnupg.nix
     ./modules/shell/termite.nix
     ./modules/shell/git.nix
