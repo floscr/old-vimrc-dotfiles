@@ -72,6 +72,13 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  services.compton = {
+    enable = true;
+    backend = "glx";
+    vSync = "opengl-swc";
+    inactiveOpacity = "0.90";
+  };
+
   services.xserver = {
     enable = true;
     autorun = true;
