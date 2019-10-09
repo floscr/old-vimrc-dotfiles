@@ -42,7 +42,7 @@ padding-left = 2
 padding-right = 2
 tray-position = left
 
-modules-right =  cpu memory battery date powermenu
+modules-right =  cpu memory wlan battery date powermenu
 modules-left = bspwm
 separator = " "
 
@@ -82,6 +82,34 @@ font-1 = "FontAwesome:fontformat=truetype:size=13;1"
 
 scroll-up = bspc desktop -f prev.local
 scroll-down = bspc desktop -f next.local
+
+[module/wlan]
+type = internal/network
+interface = ${env:WLP:wlp0s20f3}
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.blu}
+label-connected = %essid%
+
+format-packetloss = <animation-packetloss> <label-connected>
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.red}
+
+ramp-signal-0 = 
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1 = 
+ramp-signal-1-foreground = ${colors.ylw}
+ramp-signal-2 = 
+ramp-signal-2-foreground = ${colors.ylw}
+ramp-signal-3 = 
+ramp-signal-3-foreground = ${colors.icons}
+ramp-signal-4 = 
+ramp-signal-4-foreground = ${colors.icons}
+
+click-right = nm-applet &
 
 [module/backlight]
 type = internal/xbacklight
