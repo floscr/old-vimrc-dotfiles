@@ -24,13 +24,13 @@
   services.thermald.enable = true;
 
   services.fwupd.enable = true;
-  services.thinkfan.enable = true;
+  # services.thinkfan.enable = true;
 
   environment = {
     systemPackages = with pkgs; [
       # fan control
       s-tui
-      thinkfan
+      # thinkfan
       fwupd
       undervolt
       bc
@@ -45,6 +45,7 @@
       unzip
       vim
       wget
+      neofetch
       (ripgrep.override { withPCRE2 = true; })
     ];
     variables = {
