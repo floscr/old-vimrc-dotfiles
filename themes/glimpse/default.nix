@@ -15,7 +15,7 @@
       "bspwm/rc.d/theme".source = ./bspwmrc;
       "bspwm/rc.d/polybar".source = ./polybar/run.sh;
       "rofi/theme".source = ./rofi.theme;
-      "polybar" = { source = ./polybar; recursive = true; };
+      # "polybar" = { source = ./polybar; recursive = true; };
 
       # GTK
       "gtk-3.0/settings.ini".text = ''

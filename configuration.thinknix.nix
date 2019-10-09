@@ -27,11 +27,12 @@ in {
 
     # Services
     ./modules/services/syncthing.nix
+    ./modules/services/greenclip.nix
 
     ./modules/misc/keyboard.nix
 
     # Themes
-    # ./themes/glimpse
+    ./themes/glimpse
   ];
 
   nixpkgs.overlays = [
