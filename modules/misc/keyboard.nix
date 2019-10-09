@@ -2,12 +2,12 @@
 
 {
   environment.systemPackages = with pkgs; [
-    xmodmap
+    xorg.xmodmap
   ];
 
   services.xserver = {
-    autoRepeatDelay = 300;
-    autoRepeatInterval = 45;
+    autoRepeatDelay = 190;
+    autoRepeatInterval = 30;
     layout = "us";
   };
 }
