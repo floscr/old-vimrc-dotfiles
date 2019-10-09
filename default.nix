@@ -1,4 +1,4 @@
-{ config, pkgs, options, ...}:
+{ config, pkgs, options, lib, ...}:
 {
   imports = [
     <home-manager/nixos>
