@@ -88,7 +88,7 @@ in {
   networking.networkmanager.enable = true;
 
   # Optimize power use
-  environment.systemPackages = [ pkgs.powertop ];
+  environment.systemPackages = [ pkgs.powertop pkgs.docker pkgs.docker-compose  ];
   services.tlp.enable = true;
   powerManagement.powertop.enable = true;
 
