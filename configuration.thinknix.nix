@@ -9,7 +9,6 @@ in {
     # Hardware specific
     "${nixos-hardware}/common/cpu/intel"
     "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
-    "${nixos-hardware}/common/pc/laptop/cpu-throttling-bug.nix"
 
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
@@ -87,6 +86,8 @@ in {
   # Networking
   networking.hostName = "thinknix";
   networking.networkmanager.enable = true;
+
+  # services.throttled.enable = true;
 
   # Optimize power use
   environment.systemPackages = [ pkgs.powertop pkgs.docker pkgs.docker-compose  ];
