@@ -1,55 +1,52 @@
 #!/usr/bin/env bash
 # Sets right perspective when monitor is plugged in
 export DISPLAY=:0
-export XAUTHORITY=/home/neel/.Xauthority
 
-function connectHDMI(){
-  xrandr --output HDMI2 --mode 2560x1440 --dpi 192 --scale 1x1 --panning 0x0+0+0/0x0+0+0 --output eDP1 --off
-}
-
-function connectDP(){
+function connectLG(){
   xrandr \
-    --output DP1 --mode 2560x1440 --pos 1280x0 --rotate normal \
-    --output LVDS1 --primary --mode 1920x1080 --pos 0x600 --dpi 314 --rotate normal \
-    --output DP2 --off \
-    --output DP3 --off \
-    --output HDMI1 --off \
-    --output HDMI2 --off \
-    --output HDMI3 --off \
-    --output VGA1 --off
-    --output VIRTUAL1 --off \
+    --output VIRTUAL1 \
+    --off \
+    --output DP2 \
+    --off \
+    --output DP1 \
+    --off \
+    --output HDMI2 \
+    --off \
+    --output HDMI1 \
+    --off \
+    --output eDP1 \
+    --off \
+    --output DP2 \
+    --primary \
+    --mode 3840x2160 \
+    --pos 0x0 \
+    --scale 1.5x1.5 \
+    --rotate normal
 }
 
 function disconnect(){
   xrandr \
     --output VIRTUAL1 \
     --off \
-    --output DP3 \
+    --output DP1 \
     --off \
     --output DP2 \
     --off \
     --output DP1 \
     --off \
-    --output HDMI3 \
+    --output HDMI1 \
     --off \
     --output HDMI2 \
     --off \
-    --output HDMI1 \
-    --off \
-    --output eDPI1 \
+    --output eDP1 \
     --primary \
     --mode 1920x1080 \
     --pos 0x0 \
-    --dpi 314 \
-    --rotate normal \
-    --output VGA1 \
-    --off
+    --rotate normal
 }
 
-if [[ $(xrandr | grep "DP1 connected") ]]; then
-  connectDP
-elif [[ $(xrandr | grep "HDMI1 connected") ]]; then
-  connectHDMI
+if [[ $(xrandr | grep "^DP2 connected") ]]; then
+  connectLG
 else
   disconnect
 fi
@@ -58,5 +55,5 @@ fi
 if ! [ "$INIT_MODE" = "1" ]; then
   sleep 1
   echo "re-launching bars"
-  /home/neel/.config/polybar/launch.sh
+  /home/floscr/.config/polybar/launch.sh
 fi
