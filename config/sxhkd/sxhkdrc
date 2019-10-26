@@ -10,6 +10,11 @@ super + @space
 super + {_,shift + }w
 	bspc node -{c,k}
 
+
+# program launcher
+super + Tab
+	rofi -show
+
 # program launcher
 super + d
 	rofi -show
@@ -25,6 +30,9 @@ super + {_,ctrl + }f
 super + {_,ctrl +}{h,j,k,l}
 	 /etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}
 
+hyper_r + {_,ctrl +}{h,j,k,l}
+	 /etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}
+
 super + shift + {_,ctrl +}{h,j,k,l}
 	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
 
@@ -34,10 +42,6 @@ super + {_,shift +}{1-9,0}
 # sxhkd config reload
 super + Escape
 	pkill -USR1 -x sxhkd
-
-# sxhkd config reload
-super + Tab
-	monitor-hotplug
 
 XF86MonBrightnessUp
 	light -A 5
