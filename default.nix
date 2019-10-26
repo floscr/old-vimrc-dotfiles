@@ -10,6 +10,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
   nix = {
     autoOptimiseStore = true;
@@ -23,6 +24,11 @@
   # Cpu throttling
   services.thermald.enable = true;
 
+  # services.udiskie = {
+  #   enable = true;
+  #   notify = false;
+  # };
+
   services.fwupd.enable = true;
   # services.thinkfan.enable = true;
 
@@ -32,6 +38,7 @@
       s-tui
       # thinkfan
       fwupd
+      udiskie
       undervolt
       bc
       coreutils
@@ -113,6 +120,10 @@ xmodmap -e "keycode any = space"
 xcape -e "$spare_modifier=space"
 
 greenclip daemon &
+
+# Capslock to control
+setxkbmap -option ctrl:nocaps
+xcape -e 'Control_L=Escape'
 
 sh ~/.config/polybar/launch.sh
     '';
