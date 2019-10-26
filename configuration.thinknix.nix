@@ -24,6 +24,7 @@ in {
     ./modules/shell/termite.nix
     ./modules/shell/git.nix
     ./modules/shell/zsh.nix
+    ./modules/shell/pass.nix
 
     # Services
     ./modules/services/syncthing.nix
