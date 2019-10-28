@@ -6,8 +6,9 @@
     xclip
     xdotool
     ffmpeg
-    # mpv       # video player
-    # feh       # image viewer
+    mpv
+    feh
+    simplescreenrecorder
 
     # Useful apps
     # evince    # pdf reader
