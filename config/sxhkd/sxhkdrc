@@ -2,6 +2,10 @@
 super + Return
 	termite
 
+# Paste
+super + shift + v
+	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
 # program launcher
 super + @space
 	rofi -show run
