@@ -99,9 +99,6 @@
     # Enable touchpad support.
     libinput.enable = true;
 
-    # Enable the KDE Desktop Environment.
-    # desktopManager.plasma5.enable = true;
-
     displayManager.sessionCommands = ''
 # disable Display Power Managing Signaling
 xset -dpms
