@@ -42,7 +42,7 @@ padding-left = 2
 padding-right = 2
 tray-position = left
 
-modules-right =  cpu memory wlan battery date powermenu
+modules-right =  cpu memory wlan battery date powermenu pulseaudio-rofi-output
 modules-left = bspwm
 separator = " "
 
