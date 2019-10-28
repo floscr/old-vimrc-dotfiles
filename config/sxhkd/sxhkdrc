@@ -14,7 +14,6 @@ super + @space
 super + {_,shift + }w
 	bspc node -{c,k}
 
-
 # program launcher
 super + Tab
 	rofi -show
@@ -51,3 +50,10 @@ XF86MonBrightnessUp
 	light -A 5
 XF86MonBrightnessDown
 	light -U 5
+
+XF86AudioMute
+	amixer -q set Master toggle
+XF86AudioLowerVolume
+	amixer -q set Master 10%- unmute
+XF86AudioRaiseVolume
+	amixer -q set Master 10%+ unmute
