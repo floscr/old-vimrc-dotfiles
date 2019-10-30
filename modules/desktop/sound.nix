@@ -33,5 +33,6 @@
   environment.systemPackages = [
     pkgs.pavucontrol
     pkgs.blueman
+    pkgs.spotify
   ];
 }
