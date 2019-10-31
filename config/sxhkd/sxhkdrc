@@ -16,7 +16,7 @@ super + {_,shift + }w
 
 # program launcher
 super + Tab
-	rofi -show
+	~/bin/rofi/app_switch
 
 # program launcher
 super + d
