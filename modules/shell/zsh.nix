@@ -14,6 +14,7 @@ in
     systemPackages = with pkgs; [
       zsh
       nix-zsh-completions
+      fzf
       fasd
       exa
       fd

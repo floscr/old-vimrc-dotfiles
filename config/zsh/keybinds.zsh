@@ -124,3 +124,7 @@ bindkey -rM viins '^X'
 bindkey -M viins '^X,' _history-complete-newer \
   '^X/' _history-complete-older \
   '^X`' _bash_complete-word
+
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+fi
