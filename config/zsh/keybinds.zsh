@@ -44,8 +44,8 @@ fi
 autoload -Uz edit-command-line; zle -N edit-command-line
 bindkey '^ ' edit-command-line
 
-# bindkey -M viins '^n' history-substring-search-down
-# bindkey -M viins '^p' history-substring-search-up
+bindkey -M viins '^n' history-substring-search-down
+bindkey -M viins '^p' history-substring-search-up
 bindkey -M viins '^s' history-incremental-pattern-search-backward
 bindkey -M viins '^u' backward-kill-line
 bindkey -M viins '^w' backward-kill-word
