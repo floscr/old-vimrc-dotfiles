@@ -2,6 +2,6 @@ self: super:
 
 {
   chromium = super.chromium.override {
-    commandLineArgs = ''--add-flags "--force-device-scale-factor=1.5"'';
+    commandLineArgs = ''--add-flags "--force-device-scale-factor=1.1"'';
   };
 }
