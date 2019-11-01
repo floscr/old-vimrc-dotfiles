@@ -13,6 +13,7 @@ in
 
     systemPackages = with pkgs; [
       zsh
+      bat
       nix-zsh-completions
       fzf
       fasd
