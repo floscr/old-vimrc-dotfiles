@@ -22,9 +22,6 @@ super + Tab
 super + d
 	rofi -show
 
-super + q
-	bspc quit
-
 # Toggle floating/fullscreen
 super + {_,ctrl + }f
 	bspc node -t ~{floating,fullscreen}
