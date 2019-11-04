@@ -21,6 +21,9 @@ in {
     ./modules/dev/cpp.nix
     ./modules/dev/default.nix
 
+    ./modules/graphics/gimp.nix
+    ./modules/graphics/krita.nix
+
     # Shell
     # ./modules/shell/direnv.nix
     ./modules/shell/gnupg.nix
