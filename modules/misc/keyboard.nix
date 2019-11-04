@@ -10,4 +10,9 @@
     autoRepeatInterval = 30;
     layout = "us";
   };
+
+  # Restore keyboard modifications that get lost during hibernate
+  powerManagement.resumeCommands = ''
+    sh ~/bin/setup-keyboard
+  '';
 }
