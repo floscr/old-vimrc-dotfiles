@@ -1,6 +1,10 @@
 #!/bin/sh
 # to be executed from .xsessionrc
 
+# Stop previous xcape processes, otherwise xcape is launched multiple times
+# And buttons get implemented multiple times
+killall xcape
+
 # Capslock to control
 setxkbmap -option ctrl:nocaps
 xcape -e 'Control_L=Escape'
