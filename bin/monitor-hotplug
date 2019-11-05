@@ -4,41 +4,38 @@ export DISPLAY=:0
 
 function connectLG(){
   xrandr \
-    --output VIRTUAL1 \
-    --off \
+    --output VIRTUAL1 --off \
+    --output DP2 --off \
+    --output DP1 --off \
+    --output HDMI2 --off \
+    --output HDMI1 --off \
+    --output eDP1 --off \
     --output DP2 \
-    --off \
-    --output DP1 \
-    --off \
-    --output HDMI2 \
-    --off \
-    --output HDMI1 \
-    --off \
-    --output eDP1 \
-    --off \
-    --output DP2 \
+
     --primary \
     --mode 3840x2160 \
+    --scale 1x1 \
+    --dpi 110 \
     --pos 0x0 \
-    --scale 1.5x1.5 \
     --rotate normal
+
+  # Restart compton
+  killall compton
+  compton&
+
+  ~/.config/bspwm/bspwmrc
 }
 
 function disconnect(){
   xrandr \
-    --output VIRTUAL1 \
-    --off \
-    --output DP1 \
-    --off \
-    --output DP2 \
-    --off \
-    --output DP1 \
-    --off \
-    --output HDMI1 \
-    --off \
-    --output HDMI2 \
-    --off \
+    --output VIRTUAL1 --off \
+    --output DP1 --off \
+    --output DP2 --off \
+    --output DP1 --off \
+    --output HDMI1 --off \
+    --output HDMI2 --off \
     --output eDP1 \
+
     --primary \
     --mode 1920x1080 \
     --pos 0x0 \
