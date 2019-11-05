@@ -58,4 +58,8 @@ XF86AudioRaiseVolume
 
 super + alt + p
 	playerctl play-pause
+super + alt + j
+	amixer -q set Master 10%- unmute
+super + alt + k
+	amixer -q set Master 10%+ unmute
 
