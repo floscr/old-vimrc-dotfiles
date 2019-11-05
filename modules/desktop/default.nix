@@ -10,6 +10,7 @@
     feh
     simplescreenrecorder
     flameshot
+    imagemagickBig
 
     # Useful apps
     # evince    # pdf reader
