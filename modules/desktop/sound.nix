@@ -31,6 +31,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.playerctl
     pkgs.pavucontrol
     pkgs.blueman
     pkgs.spotify
