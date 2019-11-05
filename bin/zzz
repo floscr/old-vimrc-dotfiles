@@ -3,6 +3,9 @@
 # If -f, then put computer to sleep.
 # Otherwise, lock screen and turn off monitor.
 
+# Pause playing videos audio
+playerctl pause
+
 if [[ $1 == -h ]]; then
   bin=${0##*/}
   echo "Usage: $bin [-f]"
