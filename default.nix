@@ -69,6 +69,7 @@
       nu = "sudo nix-channel --update && sudo nixos-rebuild -I config=$HOME/.dotfiles/config switch";
       ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
       nre = "sudo nixos-rebuild switch -I config=/etc/dotfiles/config";
+      ns = "nix-env -qaP .\*$1.\*";
       sudo = "sudo ";
     };
   };
