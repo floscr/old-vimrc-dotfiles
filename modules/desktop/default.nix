@@ -9,6 +9,7 @@
     mpv
     feh
     simplescreenrecorder
+    flameshot
 
     # Useful apps
     # evince    # pdf reader
