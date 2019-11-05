@@ -69,4 +69,11 @@ super + alt + j
 	amixer -q set Master 10%- unmute
 super + alt + k
 	amixer -q set Master 10%+ unmute
+super + alt + l
+	playerctl next
+super + alt + h
+	playerctl previous
+super + alt + m
+	amixer -q set Master toggle
+
 
