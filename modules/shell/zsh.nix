@@ -22,6 +22,7 @@ in
       tmux
       htop
       tree
+      zip
     ];
   };
 
