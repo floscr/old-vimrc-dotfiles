@@ -56,6 +56,13 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
 	amixer -q set Master 10%+ unmute
 
+# turn off screen
+super + backspace
+	zzz
+# sleep
+super + backspace
+	zzz -f
+
 super + alt + p
 	playerctl play-pause
 super + alt + j
