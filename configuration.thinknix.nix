@@ -23,6 +23,7 @@ in {
 
     ./modules/graphics/gimp.nix
     ./modules/graphics/krita.nix
+    ./modules/graphics/screencapture.nix
 
     # Shell
     # ./modules/shell/direnv.nix

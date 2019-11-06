@@ -63,6 +63,9 @@ super + backspace
 super + backspace
 	zzz -f
 
+super + s
+	flameshot gui
+
 super + alt + p
 	playerctl play-pause
 super + alt + j

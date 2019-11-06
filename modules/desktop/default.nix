@@ -8,8 +8,6 @@
     ffmpeg
     mpv
     feh
-    simplescreenrecorder
-    flameshot
     imagemagickBig
 
     # Useful apps
