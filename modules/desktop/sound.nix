@@ -8,12 +8,13 @@
     powerOnBoot = true;
     extraConfig = ''
         ControllerMode = bredr
-        AutoConnect=true
         [Headset]
         HFP=true
         MaxConnected=1
         FastConnectable=true
         [General]
+        MultiProfile=multiple
+        AutoConnect=true
         Enable=Source,Sink,Media,Socket
         '';
   };
