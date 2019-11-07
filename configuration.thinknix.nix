@@ -103,6 +103,9 @@ in {
   services.tlp.enable = true;
   powerManagement.powertop.enable = true;
 
+  # Printing
+  services.printing.enable = true;
+
   services.undervolt.enable = true;
   services.undervolt.coreOffset= "-110";
   services.undervolt.temp= "95";

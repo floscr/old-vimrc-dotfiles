@@ -16,8 +16,11 @@ super + {_,shift + }w
 	bspc node -{c,k}
 
 # program launcher
-super + Tab
+super + shift + Tab
 	~/bin/rofi/app_switch
+
+super + {grave,Tab}
+	bspc {node,desktop} -f last
 
 # program launcher
 super + d
@@ -56,11 +59,12 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
 	amixer -q set Master 10%+ unmute
 
+
 # turn off screen
-super + backspace
+super + BackSpace
 	zzz
 # sleep
-super + backspace
+super + shift + BackSpace
 	zzz -f
 
 super + s
