@@ -67,7 +67,7 @@ super + BackSpace
 super + shift + BackSpace
 	zzz -f
 
-super + s
+super + shift + s
 	flameshot gui
 
 super + alt + p
