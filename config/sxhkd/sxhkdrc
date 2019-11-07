@@ -52,13 +52,18 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	light -U 5
 
-XF86AudioMute
-	amixer -q set Master toggle
-XF86AudioLowerVolume
-	amixer -q set Master 10%- unmute
-XF86AudioRaiseVolume
+{ XF86AudioRaiseVolume, super + alt + j }
 	amixer -q set Master 10%+ unmute
-
+{ XF86AudioLowerVolume, super + alt + j }
+	amixer -q set Master 10%- unmute
+{ XF86AudioPlay, super + alt + p }
+	playerctl play-pause
+{ XF86AudioNext, super + alt + l }
+	playerctl next
+{ XF86AudioPrev, super + alt + h }
+	playerctl previous
+{ XF86AudioMute, super + alt + m }
+	amixer -q set Master toggle
 
 # turn off screen
 super + BackSpace
