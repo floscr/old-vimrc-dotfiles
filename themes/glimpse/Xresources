@@ -15,7 +15,7 @@
 #define bcyn #a3685a
 #define wht  #c5c8c6
 #define bwht #ffffff
-#define bg blk
+#define bg #191c21
 #define fg wht
 
 *.foreground:  fg
