@@ -46,7 +46,7 @@ modules-right =  filesystem cpu memory wlan battery date powermenu pulseaudio-ro
 modules-left = bspwm
 separator = " "
 
-background = ${colors.bg}
+background = #191c21
 foreground = ${colors.fg}
 
 font-0 = "Iosevka:weight=regular:size=13;3"
