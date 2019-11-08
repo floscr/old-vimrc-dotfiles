@@ -35,13 +35,13 @@ wm-restack = bspwm
 # REQUIRED to move the window with hideit.sh
 override-redirect = true
 
-background =
+background = #191c21
 foreground = ${colors.fg}
 
 width = 100%
 height = 24
 offset-x = 0
-offset-y = 8
+offset-y = 10
 bottom = 1
 
 overline-size = 0
