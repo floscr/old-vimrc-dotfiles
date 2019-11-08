@@ -17,9 +17,6 @@ function connectLG(){
   killall compton
   compton&
 
-  # Restart window manager
-  ~/.config/bspwm/bspwmrc
-
   xcape
   ~/bin/setup-keyboard
 }
@@ -43,3 +40,7 @@ if [[ $(xrandr | grep "^DP2 connected") ]]; then
 else
   disconnect
 fi
+
+~/.config/bspwm/bspwmrc
+
+feh --bg-scale /etc/dotfiles/themes/glimpse/wallpaper.png
