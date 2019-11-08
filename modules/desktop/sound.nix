@@ -13,6 +13,8 @@
         MaxConnected=1
         FastConnectable=true
         [General]
+        Disable=Headset
+        AutoEnable=true
         MultiProfile=multiple
         AutoConnect=true
         Enable=Source,Sink,Media,Socket
@@ -24,6 +26,10 @@
     package = pkgs.pulseaudioFull;
     extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
+
+ # hardware.pulseaudio.configFile = pkgs.runCommand "default.pa" {} ''
+ #    pacmd set-card-profile 3 a2dp_sink
+ #  '';
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
