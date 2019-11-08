@@ -1,3 +1,6 @@
+F12
+	~/bin/monitor-hotplug
+
 # terminal emulator
 super + Return
 	termite

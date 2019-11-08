@@ -12,7 +12,7 @@ in {
 
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
-    ./modules/desktop/autorandr.nix
+    # ./modules/desktop/autorandr.nix
     ./modules/desktop/sound.nix
     ./modules/browser/chromium.nix
 
