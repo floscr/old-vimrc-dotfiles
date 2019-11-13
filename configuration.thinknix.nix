@@ -14,6 +14,7 @@ in {
     ./modules/desktop/bspwm.nix
     # ./modules/desktop/autorandr.nix
     ./modules/desktop/sound.nix
+    ./modules/desktop/notifications.nix
     ./modules/browser/chromium.nix
 
     # Dev
