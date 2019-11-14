@@ -38,7 +38,7 @@ in
     enable = true;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
+    extraModules = [ unstable.pulseaudio-modules-bt ];
   };
 
  # hardware.pulseaudio.configFile = pkgs.runCommand "default.pa" {} ''
