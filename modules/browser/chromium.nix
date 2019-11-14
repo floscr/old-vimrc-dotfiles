@@ -24,6 +24,7 @@
       "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+      "lhaoghhllmiaaagaffababmkdllgfcmc" # Atomic Chrome, edit inputs in emacs
     ];
   };
 }
